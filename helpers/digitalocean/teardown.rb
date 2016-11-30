@@ -1,6 +1,7 @@
 require 'droplet_kit'
 require 'json'
-require_relative '../../init/registry'
+require 'registry'
+require 'canzea/config'
 
 parameters = JSON.parse(ARGV[0])
 
