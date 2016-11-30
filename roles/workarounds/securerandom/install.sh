@@ -8,7 +8,7 @@ yum install -y rng-tools
 
 chkconfig rngd on
 
-yes | cp prod-1/Files/usr/lib/systemd/system/rngd.service /usr/lib/systemd/system/.
+yes | cp roles/workarounds/securerandom/config/rngd.service /usr/lib/systemd/system/.
 
 systemctl daemon-reload
 
