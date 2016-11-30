@@ -1,6 +1,7 @@
 require 'droplet_kit'
 require 'json'
-require_relative '../../init/registry'
+require 'registry'
+require 'canzea/config'
 
 parameters = JSON.parse(ARGV[0])
 
@@ -19,11 +20,11 @@ for i in 1..instances
 
     item = client.droplet_actions.snapshot(droplet_id: did, name: "#{base}-#{i}-snapshot")
 
-    File.open("vps-#{base}-#{i}-image.json", 'w') { |file| file.write(item.to_json) }
+    File.open("#{Canzea::config[:pwd]}/vps-#{base}-#{i}-image.json", 'w') { |file| file.write(item.to_json) }
 
     puts "#{item['id']} #{item['status']}"
 
-    file = File.read("vps-#{base}-#{i}-image.json")
+    file = File.read("#{Canzea::config[:pwd]}/vps-#{base}-#{i}-image.json")
     item = JSON.parse(file)
 
     active = false
