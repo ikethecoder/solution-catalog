@@ -1,3 +1,3 @@
 #!/bin/bash
 
-yes | cp -v prod-1/Files/etc/mongod.conf /etc/mongod.conf
+yes | cp -v roles/documentdatabase/mongodb/config/mongod.conf /etc/mongod.conf
