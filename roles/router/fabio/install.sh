@@ -5,7 +5,7 @@ mkdir -p /opt/fabio
 ( export GOPATH=/opt/fabio && go get github.com/eBay/fabio )
 
 # Configure as a service
-ruby ./init/template.rb roles/router/fabio/config/fabio.service /etc/systemd/system/multi-user.target.wants/fabio.service
+canzea --config_git_commit --template=roles/router/fabio/config/fabio.service /etc/systemd/system/multi-user.target.wants/fabio.service
 
 # http://build.escca.canzea.cc:9998/routes
 
