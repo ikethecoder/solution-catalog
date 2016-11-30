@@ -1,0 +1,26 @@
+# ruby helpers/helper-run.rb  gocd list-config-object '{"qualifier":"A", "A":{"type":"pipeline_groups"}}'
+
+
+require 'json'
+require 'net/http'
+parameters = JSON.parse(ARGV[0])
+
+qualifier = parameters['qualifier']
+
+# Type: environments, pipelines
+type = parameters[qualifier]['type']
+
+headers = {
+  'Content-Type' => 'application/json'
+}
+
+http = Net::HTTP.new("localhost",8153)
+http.use_ssl = false
+res = http.get("/go/api/config/#{type}", headers)
+
+if ( Integer(res.code) != 200 )
+    puts res.body
+    raise("Getting #{type} failed")
+end
+
+File.write("#{type}.json", res.body)

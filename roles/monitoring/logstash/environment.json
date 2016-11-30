@@ -1,0 +1,13 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"elasticsearch"},
+    {"name":"kibana"},
+    {"name":"logstash"},
+    {"name":"Vault"}
+  ],
+  "secrets": [
+  ]
+}

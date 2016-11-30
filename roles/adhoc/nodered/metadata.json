@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"nodered",
+            "listener":"pub",
+            "port":1880,
+            "ssl":false
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+
+# Python, Postgresql
+
+
+
+# pip install --upgrade virtualenv
+
+# mkvirtualenv -p /usr/bin/python3.4 taiga
+
+
+# TRY AND NOT DO : yum -y update
+
+# pip install --upgrade pip
+
+# rm -rf ~/.virtualenvs
+
+
+
+
+# pip install -r requirements.txt -U
+
+# (cd ~/taiga-back && export PATH=/home/taiga/.virtualenvs/taiga/bin:$PATH && pip install -r requirements.txt)
+
+# pip install Django==1.9.2
+
+# (cd ~/taiga-back && pip update -r requirements.txt)
+
+# pip install kombu celery
+
+# pip install Django --upgrade
+
+# pip install patterns
+

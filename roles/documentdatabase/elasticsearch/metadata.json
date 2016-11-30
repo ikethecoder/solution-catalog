@@ -1,0 +1,13 @@
+{
+    "services":[
+        {
+            "name":"elasticsearch",
+            "listener":"prv",
+            "port":9200,
+            "dependencies": [
+            ],
+            "logging": [
+            ]
+        }
+    ]
+}

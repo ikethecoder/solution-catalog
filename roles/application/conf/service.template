@@ -1,0 +1,12 @@
+[Unit]
+Description={{service}}
+# After=syslog.target
+
+[Service]
+User=appuser
+WorkingDirectory=/opt/applications/working
+ExecStart=/usr/java/jdk1.8.0_60/bin/java -Xms200M -Xmx200M -Dserver.port={{port}} -jar {{base}}/{{jar}}
+# SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

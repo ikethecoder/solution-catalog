@@ -1,0 +1,9 @@
+[Unit]
+Description=Fabio
+
+[Service]
+Restart=always
+ExecStart=/opt/fabio/bin/fabio -cfg /opt/fabio/config.properties
+
+[Install]
+WantedBy=local.target

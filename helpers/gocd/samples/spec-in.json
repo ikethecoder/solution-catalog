@@ -1,0 +1,374 @@
+[
+  {
+    "id": 1,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "expand:Build2:B:1",
+    "instanceName": "build2-b-01",
+    "buildingBlock": "ecosystem",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "expand:Build2:B:1",
+      "averageExecutionTime": 10000,
+      "minExecutionTime": 10000,
+      "maxExecutionTime": 10000,
+      "sampleSize": 0
+    },
+    "arguments": {
+      "image": "centos-7-2-x64",
+      "environment": "Build2",
+      "product": "M4GB_D60GB",
+      "quantity": "1",
+      "provider": "DigitalOcean",
+      "segment": "B"
+    }
+  },
+  {
+    "id": 2,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "provisioning:expanded:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "provisioning:expanded:execute",
+      "averageExecutionTime": 47605,
+      "minExecutionTime": 25047,
+      "maxExecutionTime": 567176,
+      "sampleSize": 83
+    },
+    "arguments": {}
+  },
+  {
+    "id": 3,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:workarounds:ruby:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:workarounds:ruby:execute",
+      "averageExecutionTime": 3502,
+      "minExecutionTime": 2556,
+      "maxExecutionTime": 5513,
+      "sampleSize": 50
+    },
+    "arguments": {}
+  },
+  {
+    "id": 4,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:workarounds:ruby-gems:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:workarounds:ruby-gems:execute",
+      "averageExecutionTime": 27601,
+      "minExecutionTime": 19252,
+      "maxExecutionTime": 112501,
+      "sampleSize": 64
+    },
+    "arguments": {}
+  },
+  {
+    "id": 5,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:workarounds:bash:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:workarounds:bash:execute",
+      "averageExecutionTime": 1612,
+      "minExecutionTime": 1447,
+      "maxExecutionTime": 6617,
+      "sampleSize": 97
+    },
+    "arguments": {}
+  },
+  {
+    "id": 6,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:workarounds:sshd:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:workarounds:sshd:execute",
+      "averageExecutionTime": 1435,
+      "minExecutionTime": 1328,
+      "maxExecutionTime": 4471,
+      "sampleSize": 97
+    },
+    "arguments": {}
+  },
+  {
+    "id": 7,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:workarounds:zip:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:workarounds:zip:execute",
+      "averageExecutionTime": 3494,
+      "minExecutionTime": 2533,
+      "maxExecutionTime": 17875,
+      "sampleSize": 88
+    },
+    "arguments": {}
+  },
+  {
+    "id": 8,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:workarounds:expect:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:workarounds:expect:execute",
+      "averageExecutionTime": 4036,
+      "minExecutionTime": 3152,
+      "maxExecutionTime": 6718,
+      "sampleSize": 77
+    },
+    "arguments": {}
+  },
+  {
+    "id": 9,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:virtualmachine:java:execute",
+    "instanceName": "build2-b-01",
+    "buildingBlock": "java",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:virtualmachine:java:execute",
+      "averageExecutionTime": 36909,
+      "minExecutionTime": 5703,
+      "maxExecutionTime": 99711,
+      "sampleSize": 96
+    },
+    "arguments": {}
+  },
+  {
+    "id": 10,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:workarounds:securerandom:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:workarounds:securerandom:execute",
+      "averageExecutionTime": 3063,
+      "minExecutionTime": 2518,
+      "maxExecutionTime": 5583,
+      "sampleSize": 51
+    },
+    "arguments": {}
+  },
+  {
+    "id": 11,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:workarounds:sudoers:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:workarounds:sudoers:execute",
+      "averageExecutionTime": 1636,
+      "minExecutionTime": 1392,
+      "maxExecutionTime": 3077,
+      "sampleSize": 51
+    },
+    "arguments": {}
+  },
+  {
+    "id": 12,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:workarounds:canzea:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:workarounds:canzea:execute",
+      "averageExecutionTime": 10000,
+      "minExecutionTime": 10000,
+      "maxExecutionTime": 10000,
+      "sampleSize": 0
+    },
+    "arguments": {}
+  },
+  {
+    "id": 13,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "service:monitoring:ELK_Kibana:execute",
+    "instanceName": "build2-b-01",
+    "buildingBlock": "elk",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "service:monitoring:ELK_Kibana:execute",
+      "averageExecutionTime": 107449,
+      "minExecutionTime": 65908,
+      "maxExecutionTime": 144678,
+      "sampleSize": 18
+    },
+    "arguments": {}
+  },
+  {
+    "id": 14,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "service:monitoring:statsd:execute",
+    "instanceName": "build2-b-01",
+    "buildingBlock": "statsd",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "service:monitoring:statsd:execute",
+      "averageExecutionTime": 48850,
+      "minExecutionTime": 8695,
+      "maxExecutionTime": 59736,
+      "sampleSize": 5
+    },
+    "arguments": {}
+  },
+  {
+    "id": 15,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "service:monitoring:ElasticHQ:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "service:monitoring:ElasticHQ:execute",
+      "averageExecutionTime": 31790,
+      "minExecutionTime": 27676,
+      "maxExecutionTime": 42427,
+      "sampleSize": 18
+    },
+    "arguments": {}
+  },
+  {
+    "id": 16,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "service:monitoring:grafana:execute",
+    "instanceName": "build2-b-01",
+    "buildingBlock": "grafana",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "service:monitoring:grafana:execute",
+      "averageExecutionTime": 16144,
+      "minExecutionTime": 9590,
+      "maxExecutionTime": 17388,
+      "sampleSize": 5
+    },
+    "arguments": {}
+  },
+  {
+    "id": 17,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:monitoring:ElasticHQ-NGINX:execute",
+    "instanceName": "build2-b-01-a-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:monitoring:ElasticHQ-NGINX:execute",
+      "averageExecutionTime": 2220,
+      "minExecutionTime": 1702,
+      "maxExecutionTime": 2638,
+      "sampleSize": 15
+    },
+    "arguments": {}
+  },
+  {
+    "id": 18,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "service:monitoring:collectd:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "service:monitoring:collectd:execute",
+      "averageExecutionTime": 10000,
+      "minExecutionTime": 10000,
+      "maxExecutionTime": 10000,
+      "sampleSize": 0
+    },
+    "arguments": {}
+  },
+  {
+    "id": 19,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "service:monitoring:filebeat:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "service:monitoring:filebeat:execute",
+      "averageExecutionTime": 10000,
+      "minExecutionTime": 10000,
+      "maxExecutionTime": 10000,
+      "sampleSize": 0
+    },
+    "arguments": {}
+  },
+  {
+    "id": 20,
+    "activitySetId": "4fa005b6-3d2b-4bd2-b7d0-2f3bbda08333",
+    "activity": "step:audit:auditd:execute",
+    "instanceName": "build2-b-01",
+    "taskNumber": 1,
+    "failedAttempts": 0,
+    "state": "Pending",
+    "registerTs": 1479786414899,
+    "estimatedExecutionTime": {
+      "activity": "step:audit:auditd:execute",
+      "averageExecutionTime": 2758,
+      "minExecutionTime": 2593,
+      "maxExecutionTime": 4640,
+      "sampleSize": 41
+    },
+    "arguments": {}
+  }
+]

@@ -1,0 +1,10 @@
+[Unit]
+Description=Consul
+After=network.target
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/consul agent -bind {{IP_1_PRIVATE}} -client {{IP_1_PRIVATE}} -data-dir /opt/consul -server -ui -bootstrap -config-dir /etc/consul.d
+
+[Install]
+WantedBy=local.target

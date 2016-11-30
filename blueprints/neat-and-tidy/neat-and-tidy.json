@@ -1,0 +1,734 @@
+{
+  "nodes":[
+        {
+          "name": "PE",
+          "title": {
+            "icon": "&#xf0ad",
+            "label": "Build"
+          },
+          "x": 115,
+          "y": 115,
+          "type": "lifecycle",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "MEASURE",
+          "title": {
+            "icon": "&#xf0e4",
+            "label": "Measure"
+          },
+          "x": 690,
+          "y": 460,
+          "type": "lifecycle",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "LEARN",
+          "title": {
+            "icon": "&#xf19c",
+            "label": "Learn"
+          },
+          "x": 115,
+          "y": 460,
+          "type": "lifecycle",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "digitalocean",
+          "title": {
+            "segment": "Infrastructure",
+            "role": "Provisioning",
+            "solution": "Digital Ocean"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "centos",
+          "title": {
+            "segment": "Runtime",
+            "role": "Operating System",
+            "solution": "CentOS"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "gitlab",
+          "title": {
+            "segment": "Develop",
+            "role": "Source Control",
+            "solution": "GitLab"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "git",
+          "title": {
+            "segment": "Develop",
+            "role": "Source Control",
+            "solution": "Git"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "gocd",
+          "title": {
+            "segment": "Deploy",
+            "role": "Delivery Pipeline",
+            "solution": "Go.CD"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "rocketchat",
+          "title": {
+            "segment": "Develop",
+            "role": "Collaboration",
+            "solution": "Rocket.Chat"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "taiga",
+          "title": {
+            "segment": "Develop",
+            "role": "Agile Project Mgmt",
+            "solution": "Taiga"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "helpy",
+          "title": {
+            "segment": "Monitoring",
+            "role": "Incident Mgmt",
+            "solution": "Helpy"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "maven",
+          "title": {
+            "segment": "Runtime",
+            "role": "Build",
+            "solution": "Maven",
+            "homePage":"https://maven.apache.org/",
+            "documentation":"https://maven.apache.org/"
+          },
+          "x": 458,
+          "y": 191,
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "docker",
+          "title": {
+            "segment": "Runtime",
+            "role": "Container Engine",
+            "solution": "Docker"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "nodejs",
+          "title": {
+            "segment": "Runtime",
+            "role": "Virtual Machine",
+            "solution": "NodeJS"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "java",
+          "title": {
+            "segment": "Runtime",
+            "role": "Virtual Machine",
+            "solution": "Java"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "dockerregistry",
+          "title": {
+            "segment": "Registry",
+            "role": "Artifact Registry",
+            "solution": "Docker"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "archiva",
+          "title": {
+            "segment": "Registry",
+            "role": "Artifact Registry",
+            "solution": "Archiva"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "ansible",
+          "title": {
+            "segment": "Deploy",
+            "role": "Deployment",
+            "solution": "Ansible"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "sensu",
+          "title": {
+            "segment": "Monitoring",
+            "role": "Ops Alerting",
+            "solution": "Sensu"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "kibana",
+          "title": {
+            "segment": "Monitoring",
+            "role": "Ops Monitoring",
+            "solution": "Kibana"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+    {
+      "name": "logstash",
+      "title": {
+        "segment": "Monitoring",
+        "role": "Ops Monitoring",
+        "solution": "Logstash"
+      },
+      "type": "shapedItemVertical",
+      "fixed": true,
+      "boundary": "A"
+    },
+    {
+      "name": "elasticsearch",
+      "title": {
+        "segment": "Monitoring",
+        "role": "Ops Monitoring",
+        "solution": "Elasticsearch"
+      },
+      "type": "shapedItemVertical",
+      "fixed": true,
+      "boundary": "A"
+    },
+        {
+          "name": "statsd",
+          "title": {
+            "segment": "Monitoring",
+            "role": "Aggregation",
+            "solution": "StatsD"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "consul",
+          "title": {
+            "segment": "Config",
+            "role": "Configuration Mgmt",
+            "solution": "Hashicorp Consul"
+          },
+          "x": 396,
+          "y": 402,
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "hashicorpvault",
+          "title": {
+            "segment": "Security",
+            "role": "Key Management",
+            "solution": "Hashicorp Vault"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "letsencrypt",
+          "title": {
+            "segment": "Security",
+            "role": "SSL Cert Provider",
+            "solution": "LetsEncrypt"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "strongswan",
+          "title": {
+            "segment": "Security",
+            "role": "Virtual Private Network",
+            "solution": "Strongswan"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "nginx",
+          "title": {
+            "segment": "Config",
+            "role": "Load Balancing",
+            "solution": "NGINX"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "flannel",
+          "title": {
+            "segment": "Config",
+            "role": "Virtual LAN",
+            "solution": "flannel"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "fabio",
+          "title": {
+            "segment": "Config",
+            "role": "Routing",
+            "solution": "eBay Fabio"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "mongodb",
+          "title": {
+            "segment": "Database",
+            "role": "Document Database",
+            "solution": "MongoDB"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "rabbitmq",
+          "title": {
+            "segment": "Database",
+            "role": "Messaging",
+            "solution": "RabbitMQ"
+          },
+          "type": "shapedItemVertical",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA01",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "React"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA02",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "Redux"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA03",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "Babel"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA04",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "Webpack"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA05",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "Browsersync"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA06",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "Mocha"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA07",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "Isparta"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA08",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "TrackJS"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA09",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "ESLint"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA10",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "SASS"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "REA11",
+          "title": {
+            "segment": "ReactStack",
+            "solution": "npm"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "CONF01",
+          "title": {
+            "segment": "Configuration",
+            "solution": "Ruby"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "CONF02",
+          "title": {
+            "segment": "Configuration",
+            "solution": "Python"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "CONF03",
+          "title": {
+            "segment": "Configuration",
+            "solution": "Groovy"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "JAV01",
+          "title": {
+            "segment": "JavaStack",
+            "solution": "Java"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "JAV02",
+          "title": {
+            "segment": "JavaStack",
+            "solution": "Spring"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "JAV03",
+          "title": {
+            "segment": "JavaStack",
+            "solution": "Selenium"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "JAV04",
+          "title": {
+            "segment": "JavaStack",
+            "solution": "Maven"
+          },
+          "type": "shapedItem",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "LOGO",
+          "title": {
+            "image": "styles/img/canzea-managedby.svg",
+            "width": 140,
+            "height": 20.95295980409741
+          },
+          "x": -5,
+          "y": 15,
+          "type": "image",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "Build",
+          "title": {
+            "label": "Build",
+            "pipeline": false,
+            "provision": true,
+            "order": [
+              { "product":"M4GB_D60GB", "qty":1, "segment":"A", "label":"CD" }
+            ]
+          },
+          "x": 100,
+          "y": 72,
+          "type": "environment",
+          "fixed": true,
+          "boundary": "A"
+        },
+    {
+      "name": "Build2",
+      "title": {
+        "label": "Build2",
+        "pipeline": false,
+        "provision": false,
+        "order": [
+          { "product":"M4GB_D60GB", "qty":1, "segment":"B", "label":"Monitoring" },
+          { "product":"M2GB_D40GB", "qty":1, "segment":"D", "label":"GitLab"},
+          { "product":"M2GB_D40GB", "qty":1, "segment":"E", "label":"Collaboration", "IGNORE_image":"ubuntu-16-10-x64"}
+        ]
+      },
+      "x": 130,
+      "y": 72,
+      "type": "environment",
+      "fixed": true,
+      "boundary": "A"
+    },
+        {
+          "name": "Integration",
+          "title": {
+            "label": "Integration",
+            "pipeline": true,
+            "provision": false,
+            "order": [{ "product":"M2GB_D40GB", "qty":1, "segment":"C" }]
+          },
+          "x": 255,
+          "y": 72,
+          "type": "environment",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "Testing",
+          "title": {
+            "label": "Testing",
+            "pipeline": true,
+            "provision": false,
+            "order": [{ "product":"M1GB_D30GB", "qty":1, "segment":"C" }]
+          },
+          "x": 360,
+          "y": 72,
+          "type": "environment",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "Performance",
+          "title": {
+            "label": "Performance",
+            "pipeline": true,
+            "provision": false,
+            "order": [{ "product":"M1GB_D30GB", "qty":1, "segment":"C" }]
+          },
+          "x": 465,
+          "y": 72,
+          "type": "environment",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "Live",
+          "title": {
+            "label": "Live",
+            "pipeline": true,
+            "provision": false,
+            "order": [{ "product":"M1GB_D30GB", "qty":1, "segment":"C" }]
+          },
+          "x": 570,
+          "y": 72,
+          "type": "environment",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "ZoneA",
+          "title": {
+            "label": "A",
+            "image": "CentOS"
+          },
+          "x": 730,
+          "y": 125,
+          "type": "segment",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "Resource_Source",
+          "title": {
+            "role": "",
+            "solution":"Source"
+          },
+          "x": 760,
+          "y": 450,
+          "type": "stackedBuildingBlockMicro",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "Resource_Data",
+          "title": {
+            "role": "",
+            "solution":"Data"
+          },
+          "x": 760,
+          "y": 360,
+          "type": "stackedBuildingBlockMicro",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "Resource_Files",
+          "title": {
+            "role": "",
+            "solution":"Files"
+          },
+          "x": 760,
+          "y": 390,
+          "type": "stackedBuildingBlockMicro",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "Resource_External",
+          "title": {
+            "role": "",
+            "solution":"External"
+          },
+          "x": 760,
+          "y": 420,
+          "type": "stackedBuildingBlockMicro",
+          "fixed": true,
+          "boundary": "A"
+        },
+        {
+          "name": "App01",
+          "title": {
+            "name": "Hello World",
+            "version":"1.0.0"
+          },
+          "x": 624,
+          "y": 235,
+          "type": "application",
+          "fixed": true,
+          "boundary": "A"
+        }
+  ],
+  "links": [
+  ],
+  "zones": [
+      { "type" : "sectionTop", "rectangle": [340, 360, 200, 160], "title": "Top" },
+      { "type" : "sectionBottom", "rectangle": [340, 360, 200, 160], "title": "Bottom" },
+      { "type" : "sectionCenter", "rectangle": [340, 360, 200, 160], "title": "Center" },
+      { "type" : "sectionLeft", "rectangle": [10, 200, 200, 160], "title": "Left" },
+      { "type" : "sectionRight", "rectangle": [340, 360, 200, 160], "title": "Right" },
+      { "type" : "verticalLabel", "layout": {"seg":"Security"}, "label":"Security" },
+      { "type" : "verticalLabel", "layout": {"seg":"Database"}, "label":"Data" },
+      { "type" : "verticalLabel", "layout": {"seg":"Config"}, "label":"Servicing" },
+      { "type" : "verticalLabel", "layout": {"seg":"Runtime"}, "label":"Runtime" },
+      { "type" : "verticalLabel", "layout": {"seg":"Monitoring"}, "label":"Monitoring" }
+  ]
+}

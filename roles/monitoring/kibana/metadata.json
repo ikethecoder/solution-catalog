@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"kibana",
+            "listener":"pub",
+            "port":5601,
+            "ssl":true
+        }
+    ]
+}

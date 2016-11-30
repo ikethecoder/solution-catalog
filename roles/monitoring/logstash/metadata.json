@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"logstash",
+            "listener":"prv",
+            "port":5044,
+            "ssl":true
+        }
+    ]
+}

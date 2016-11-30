@@ -1,0 +1,9 @@
+[Unit]
+Description=PhantomJS
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/phantomjs --local-storage-path=/tmp/phantom-storage --cookies-file=/tmp/phantomjs-cookies --webdriver=8001
+
+[Install]
+WantedBy=local.target

@@ -1,0 +1,11 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"elasticsearch"},
+    {"name":"logstash"}
+  ],
+  "secrets": [
+  ]
+}

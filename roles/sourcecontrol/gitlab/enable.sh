@@ -1,0 +1,2 @@
+
+sudo gitlab-ctl restart

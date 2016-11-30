@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"taiga",
+            "listener":"loc",
+            "port":85,
+            "ssl":false
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "services": [
+    {
+      "solution": "collectd",
+      "listener": ["pub","prv","loc","vpn"],
+      "port": 2000
+    }
+  ],
+  "wiring": [
+    {
+      "solution": "collectd",
+      "dependency": [
+        {
+          "service": "Logstash", "tls": true, "credentials": false
+        }
+      ]
+    }
+  ],
+  "storage": [],
+  "backups": [],
+  "dependencies": [],
+  "checks": []
+}

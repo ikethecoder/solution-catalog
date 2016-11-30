@@ -1,0 +1,23 @@
+
+elasticdump \
+    --input=http://10.136.18.197:9200/.kibana  \
+    --output=$ \
+    --type=data \
+        --searchBody='{"filter": { "or": [ {"type": {"value": "dashboard"}}, {"type" : {"value":"visualization"}}] }}' \
+    > kibana-exported.json
+
+
+elasticdump \
+    --input=kibana-exported.json \
+    --output=http://10.136.18.197:9200/.kibana \
+    --type=data
+
+elasticdump \
+    --input=out.index \
+    --output=http://10.136.18.197:9200/.ecosystem \
+    --type=data
+
+elasticdump \
+    --input=http://10.136.18.197:9200/.ecosystem \
+    --output=$ \
+    --type=mapping

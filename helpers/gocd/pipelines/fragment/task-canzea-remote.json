@@ -1,0 +1,19 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "on_cancel": null,
+    "command": "canzea",
+    "arguments": [
+      "--remote",
+      "--serverBase={{base}}",
+      "--serverNumber={{serverNumber}}",
+      "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+      "--role={{role}}",
+      "--solution={{solution}}"
+    ],
+    "working_directory": ""
+  }
+}

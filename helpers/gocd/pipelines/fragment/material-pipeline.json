@@ -1,0 +1,9 @@
+{
+  "type": "dependency",
+  "attributes": {
+    "pipeline": "{{project}}-{{branch}}-Build",
+    "stage": "Build",
+    "name": "{{project}}-{{branch}}-Build",
+    "auto_update": true
+  }
+}

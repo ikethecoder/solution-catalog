@@ -1,0 +1,9 @@
+{
+  "check": {
+    "id": "Hello World",
+    "name": "HTTP API on port 5000",
+    "http": "http://integration.escca.canzea.cc:1888/health",
+    "interval": "10s",
+    "timeout": "1s"
+  }
+}

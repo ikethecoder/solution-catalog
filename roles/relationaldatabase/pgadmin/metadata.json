@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"pgadmin",
+            "listener":"loc",
+            "port":5050,
+            "ssl":false
+        }
+    ]
+}

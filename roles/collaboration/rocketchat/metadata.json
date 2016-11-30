@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"rocketchat",
+            "listener":"pub",
+            "port":8780,
+            "ssl":false
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"collectd",
+            "listener":"loc",
+            "port":25826,
+            "ssl":false
+        }
+    ]
+}

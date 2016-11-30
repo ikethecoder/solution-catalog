@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"phantomjs",
+            "listener":"pub",
+            "port":8001,
+            "ssl":false
+        }
+    ]
+}

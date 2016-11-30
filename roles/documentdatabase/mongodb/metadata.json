@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"mongodb",
+            "listener":"pub",
+            "port":27017,
+            "ssl":false
+        }
+    ]
+}

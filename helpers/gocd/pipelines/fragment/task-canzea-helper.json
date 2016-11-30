@@ -1,0 +1,17 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "on_cancel": null,
+    "command": "canzea",
+    "arguments": [
+      "--lifecycle=wire",
+      "--solution={{solution}}",
+      "--action={{action}}",
+      "--args={{{args}}}"
+    ],
+    "working_directory": ""
+  }
+}

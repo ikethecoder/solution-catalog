@@ -1,0 +1,145 @@
+{
+  "group": "defaultGroup",
+  "pipeline": {
+    "label_template": "${COUNT}",
+    "enable_pipeline_locking": true,
+    "name": "hello-world-svc-app-v2",
+    "template": null,
+    "parameters": [
+    ],
+    "environment_variables": [
+      {
+        "secure": false,
+        "name": "APP_GIT_SOURCE",
+        "value": "https://gitlab.com/ikethecoder/hello-world-svc-app.git"
+      },
+      {
+        "secure": false,
+        "name": "APP_GIT_BRANCH",
+        "value": "master"
+      },
+      {
+        "secure": false,
+        "name": "APP_PROJECT_NAME",
+        "value": "my_project"
+      },
+      {
+        "secure": false,
+        "name": "REGISTRY_HOST",
+        "value": "envbuild.es9e0.canzea.cc"
+      },
+      {
+        "secure": false,
+        "name": "REGISTRY_PORT",
+        "value": "9080"
+      },
+      {
+        "secure": false,
+        "name": "TARGET_FOLDER",
+        "value": "tmp_my_folder"
+      },
+      {
+        "secure": true,
+        "name": "B",
+        "encrypted_value": "NUaiGvVuvhA="
+      }
+    ],
+    "materials": [
+      {
+        "type": "git",
+        "attributes": {
+          "url": "http://base.local/root/hello-world-svc-app.git",
+          "destination": "hello-world-svc-app",
+          "filter": null,
+          "invert_filter": false,
+          "name": null,
+          "auto_update": true,
+          "branch": "master",
+          "submodule_folder": null,
+          "shallow_clone": true
+        }
+      },
+      {
+        "type": "git",
+        "attributes": {
+          "url": "https://IKE_CI:55665566@gitlab.com/ikethecoder/ike-environments.git",
+          "destination": "ike-environments",
+          "filter": null,
+          "invert_filter": false,
+          "name": null,
+          "auto_update": false,
+          "branch": "master",
+          "submodule_folder": null,
+          "shallow_clone": false
+        }
+      }
+    ],
+    "stages": [
+      {
+        "name": "Build",
+        "fetch_materials": true,
+        "clean_working_directory": false,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+            ],
+            "users": [
+            ]
+          }
+        },
+        "environment_variables": [
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": "never",
+            "environment_variables": [
+            ],
+            "resources": [
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "ls",
+                  "working_directory": null
+                }
+              },
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "sudo",
+                  "arguments": [
+                    "-E",
+                    "ruby",
+                    "roles/application-manager-help.rb",
+                    "install"
+                  ],
+                  "working_directory": "ike-environments/environment/production"
+                }
+              }
+            ],
+            "tabs": [
+            ],
+            "artifacts": [
+            ],
+            "properties": null
+          }
+        ]
+      }
+    ],
+    "tracking_tool": null,
+    "timer": null
+  }
+}

@@ -1,0 +1,15 @@
+[Unit]
+Description=Helpy
+After=network.target postgresql.service
+
+[Service]
+WorkingDirectory=/home/rails/helpy
+Restart=always
+ExecStart=/home/rails/.rvm/gems/ruby-2.2.1/wrappers/bundle exec "unicorn_rails -c config/unicorn.rb -E production"
+Environment=RAILS_ENV=production
+Environment=SECRET_KEY_BASE=c1c4a39f24c54081008488d4a897df7c20c2d384d5a6d462313a39d705512c5316ffe64f59a30c97c4fb6aaa61fbe2e879c165e29fb3c552a84b402710588681
+Environment=APP_DATABASE_PASSWORD=rails
+User=rails
+
+[Install]
+WantedBy=local.target

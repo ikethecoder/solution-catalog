@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"consul-ui",
+            "listener":"pub",
+            "port":81,
+            "ssl":true
+        }
+    ]
+}

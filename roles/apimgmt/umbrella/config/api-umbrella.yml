@@ -1,0 +1,7 @@
+web:
+  admin:
+    initial_superusers:
+      - your.email@example.com
+
+http_port: 8281
+https_port: 8282

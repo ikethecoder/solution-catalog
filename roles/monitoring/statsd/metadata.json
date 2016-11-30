@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"statsd",
+            "listener":"prv",
+            "port":8125,
+            "ssl":false
+        }
+    ]
+}

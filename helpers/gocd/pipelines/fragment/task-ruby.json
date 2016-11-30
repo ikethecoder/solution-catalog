@@ -1,0 +1,17 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "on_cancel": null,
+    "command": "ruby",
+    "arguments": [
+      "helpers/helper-run.rb",
+      "{{solution}}",
+      "{{action}}",
+      {{{parameters}}}
+    ],
+    "working_directory": "ike-environments/environment/production"
+  }
+}

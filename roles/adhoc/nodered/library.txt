@@ -1,0 +1,696 @@
+[
+    {
+        "id": "3d86c064.448c",
+        "type": "tab",
+        "label": "Canzea Helper"
+    },
+    {
+        "id": "eabb3d7a.3927d",
+        "type": "tab",
+        "label": "Binding"
+    },
+    {
+        "id": "9a58624a.fd35c",
+        "type": "tab",
+        "label": "Consul Flow"
+    },
+    {
+        "id": "b3725691.bae6f8",
+        "type": "tab",
+        "label": "Rocket.Chat Flow"
+    },
+    {
+        "id": "5b4c3a7a.ae0904",
+        "type": "tab",
+        "label": "Go.CD Flow"
+    },
+    {
+        "id": "388d3ecc.c697b2",
+        "type": "tab",
+        "label": "Flow 6"
+    },
+    {
+        "id": "ffd4d19e.deae2",
+        "type": "tab",
+        "label": "Flow 7"
+    },
+    {
+        "id": "a8971638.5c8fa8",
+        "type": "tab",
+        "label": "Flow 8"
+    },
+    {
+        "id": "d7adbf16.37e4d",
+        "type": "tab",
+        "label": "Flow 9"
+    },
+    {
+        "id": "40a0379c.4d6ab8",
+        "type": "tab",
+        "label": "Flow 10"
+    },
+    {
+        "id": "3ee0c94e.1d5776",
+        "type": "tab",
+        "label": "Flow 11"
+    },
+    {
+        "id": "a3e1da0.ce47928",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "5b617337.bb8ebc",
+        "type": "tab",
+        "label": "Flow 12"
+    },
+    {
+        "id": "7a3c07c5.8f5d78",
+        "type": "tab",
+        "label": "Flow 13"
+    },
+    {
+        "id": "fd98d039.65e48",
+        "type": "tab",
+        "label": "Flow 14"
+    },
+    {
+        "id": "a7881d0c.d94cf",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "27017",
+        "db": "test",
+        "name": ""
+    },
+    {
+        "id": "dab73412.a08bb8",
+        "type": "cron",
+        "z": "3d86c064.448c",
+        "name": "",
+        "crontab": "5/5 * * * * *",
+        "x": 85.5,
+        "y": 105,
+        "wires": [
+            [
+                "3b2dd292.e305ce",
+                "ac7f1aba.858f68",
+                "16750fe0.cb8ec"
+            ]
+        ]
+    },
+    {
+        "id": "3b2dd292.e305ce",
+        "type": "debug",
+        "z": "3d86c064.448c",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 482.5,
+        "y": 93,
+        "wires": []
+    },
+    {
+        "id": "c1f6e283.45e35",
+        "type": "bigexec",
+        "z": "3d86c064.448c",
+        "name": "Sample Info",
+        "command": "ruby",
+        "commandArgs": "helpers/helper-run.rb",
+        "minError": 1,
+        "minWarning": 1,
+        "cwd": "/root/ike-environments/environment/production",
+        "shell": false,
+        "extraArgumentProperty": "args",
+        "envProperty": "env",
+        "format": "utf8",
+        "limiter": true,
+        "payloadIs": "triggerNoStdin",
+        "x": 348.5,
+        "y": 306.5,
+        "wires": [
+            [
+                "b64cfaaf.0622c8"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b64cfaaf.0622c8",
+        "type": "file",
+        "z": "3d86c064.448c",
+        "name": "",
+        "filename": "/tmp/out.log",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "false",
+        "x": 570.5,
+        "y": 251,
+        "wires": []
+    },
+    {
+        "id": "ac7f1aba.858f68",
+        "type": "function",
+        "z": "3d86c064.448c",
+        "name": "Set Environment",
+        "func": "msg.args=['sample', 'info', '{\"ecosystem\":\"ABC-DD\"}']\nmsg.env={\"CONSUL_URL\":\"http://localhost:330\"}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 160.5,
+        "y": 306,
+        "wires": [
+            [
+                "c1f6e283.45e35",
+                "393ea7b8.a1d458",
+                "59c21c0f.2eeb14"
+            ]
+        ]
+    },
+    {
+        "id": "393ea7b8.a1d458",
+        "type": "link out",
+        "z": "3d86c064.448c",
+        "name": "",
+        "links": [
+            "da9df4ec.e91698",
+            "d532a639.45c178"
+        ],
+        "x": 275.5,
+        "y": 214,
+        "wires": []
+    },
+    {
+        "id": "da9df4ec.e91698",
+        "type": "link in",
+        "z": "9a58624a.fd35c",
+        "name": "",
+        "links": [
+            "393ea7b8.a1d458",
+            "e0647d88.11b96"
+        ],
+        "x": 153.5,
+        "y": 46,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a709cabd.a3be28",
+        "type": "debug",
+        "z": "9a58624a.fd35c",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "topic",
+        "x": 286.5,
+        "y": 44,
+        "wires": []
+    },
+    {
+        "id": "d532a639.45c178",
+        "type": "link in",
+        "z": "b3725691.bae6f8",
+        "name": "Rocket.Chat",
+        "links": [
+            "393ea7b8.a1d458",
+            "16750fe0.cb8ec",
+            "312dd4e4.60175c",
+            "48e43066.e6811",
+            "f3691147.b954a"
+        ],
+        "x": 172,
+        "y": 62,
+        "wires": [
+            [
+                "27da14c6.c8b2ec"
+            ]
+        ]
+    },
+    {
+        "id": "e9e1e859.160848",
+        "type": "debug",
+        "z": "b3725691.bae6f8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "status",
+        "x": 618,
+        "y": 35,
+        "wires": []
+    },
+    {
+        "id": "16750fe0.cb8ec",
+        "type": "link out",
+        "z": "3d86c064.448c",
+        "name": "",
+        "links": [
+            "d532a639.45c178"
+        ],
+        "x": 358.5,
+        "y": 149,
+        "wires": []
+    },
+    {
+        "id": "140dc60b.5df37a",
+        "type": "www-request",
+        "z": "b3725691.bae6f8",
+        "name": "Login",
+        "method": "POST",
+        "ret": "obj",
+        "url": "http://67.205.168.20:8780/api/login",
+        "tls": "",
+        "x": 361.5,
+        "y": 178,
+        "wires": [
+            [
+                "c3c6e532.318ef8"
+            ]
+        ]
+    },
+    {
+        "id": "27da14c6.c8b2ec",
+        "type": "function",
+        "z": "b3725691.bae6f8",
+        "name": "Get Creds",
+        "func": "msg.detail = msg.payload;\nmsg.payload = {'user' : 'admin', 'password' : 'admin1admin' }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 207.5,
+        "y": 177,
+        "wires": [
+            [
+                "140dc60b.5df37a"
+            ]
+        ]
+    },
+    {
+        "id": "c3c6e532.318ef8",
+        "type": "function",
+        "z": "b3725691.bae6f8",
+        "name": "Set Headers",
+        "func": "json = msg.payload\nmsg.headers = {\n  'X-Auth-Token' : json['data']['authToken'],\n  'X-User-Id' : json['data']['userId'],\n  'Content-Type' : 'application/json'\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 528,
+        "y": 178,
+        "wires": [
+            [
+                "41e9731c.afcc2c"
+            ]
+        ]
+    },
+    {
+        "id": "d014f2c5.9fec8",
+        "type": "www-request",
+        "z": "b3725691.bae6f8",
+        "name": "Get Rooms",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://67.205.168.20:8780/api/publicRooms",
+        "tls": "",
+        "x": 298.5,
+        "y": 290,
+        "wires": [
+            [
+                "1198c37a.f02abd"
+            ]
+        ]
+    },
+    {
+        "id": "1198c37a.f02abd",
+        "type": "function",
+        "z": "b3725691.bae6f8",
+        "name": "Find Room",
+        "func": "json = JSON.parse(msg.payload)\ndata = json['rooms']\nfor(var i = 0; i < data.length; i++) {\n    var room = data[i];\n    if ( room['name'] == msg.detail['channel'] ) {\n        msg.topic = room['_id'];\n        return msg;\n    }\n}\nnode.error(\"Invalid Channel \" + msg.detail['channel'], msg)",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 452.5,
+        "y": 289,
+        "wires": [
+            [
+                "a3acbb61.e9fd68"
+            ]
+        ]
+    },
+    {
+        "id": "e22658dd.95b888",
+        "type": "www-request",
+        "z": "b3725691.bae6f8",
+        "name": "Send Msg to Channel",
+        "method": "POST",
+        "ret": "txt",
+        "url": "http://67.205.168.20:8780/api/rooms/GENERAL/send",
+        "tls": "",
+        "x": 807,
+        "y": 289,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a3acbb61.e9fd68",
+        "type": "function",
+        "z": "b3725691.bae6f8",
+        "name": "Set Message",
+        "func": "\nmsg.payload = {\"msg\":msg.detail['message']};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 289,
+        "wires": [
+            [
+                "e22658dd.95b888"
+            ]
+        ]
+    },
+    {
+        "id": "59c21c0f.2eeb14",
+        "type": "mongodb out",
+        "z": "3d86c064.448c",
+        "mongodb": "a7881d0c.d94cf",
+        "name": "",
+        "collection": "nodered",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 407.5,
+        "y": 413,
+        "wires": []
+    },
+    {
+        "id": "959cf15d.72fd7",
+        "type": "status",
+        "z": "b3725691.bae6f8",
+        "name": "",
+        "scope": null,
+        "x": 441.5,
+        "y": 35,
+        "wires": [
+            [
+                "e9e1e859.160848"
+            ]
+        ]
+    },
+    {
+        "id": "144bf806.a526a8",
+        "type": "comment",
+        "z": "b3725691.bae6f8",
+        "name": "Send Msg to Channel",
+        "info": "",
+        "x": 120.5,
+        "y": 489,
+        "wires": []
+    },
+    {
+        "id": "837e5428.7564f8",
+        "type": "comment",
+        "z": "b3725691.bae6f8",
+        "name": "New Channel",
+        "info": "",
+        "x": 301,
+        "y": 489,
+        "wires": []
+    },
+    {
+        "id": "18a542bf.60bd9d",
+        "type": "comment",
+        "z": "b3725691.bae6f8",
+        "name": "New User",
+        "info": "",
+        "x": 475,
+        "y": 489,
+        "wires": []
+    },
+    {
+        "id": "17b64508.02104b",
+        "type": "comment",
+        "z": "b3725691.bae6f8",
+        "name": "Delete Channel",
+        "info": "",
+        "x": 313,
+        "y": 526,
+        "wires": []
+    },
+    {
+        "id": "51a2e860.fd2c68",
+        "type": "comment",
+        "z": "b3725691.bae6f8",
+        "name": "Delete User",
+        "info": "",
+        "x": 484,
+        "y": 527,
+        "wires": []
+    },
+    {
+        "id": "8b557dee.6e0b3",
+        "type": "http in",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "url": "/collaboration/message",
+        "method": "post",
+        "swaggerDoc": "",
+        "x": 155.5,
+        "y": 81,
+        "wires": [
+            [
+                "77709459.a7011c",
+                "f27d6e11.12185"
+            ]
+        ]
+    },
+    {
+        "id": "ac61e1e3.53945",
+        "type": "json-schema",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "func": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"message\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"channel\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"message\", \"channel\"]\n}",
+        "x": 609.5,
+        "y": 80,
+        "wires": [
+            [
+                "f3691147.b954a"
+            ]
+        ]
+    },
+    {
+        "id": "77709459.a7011c",
+        "type": "change",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "req.body",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "send_message",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 395.5,
+        "y": 81,
+        "wires": [
+            [
+                "ac61e1e3.53945"
+            ]
+        ]
+    },
+    {
+        "id": "f3691147.b954a",
+        "type": "link out",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "links": [
+            "d532a639.45c178"
+        ],
+        "x": 727.5,
+        "y": 119,
+        "wires": []
+    },
+    {
+        "id": "7e2e283f.e5a388",
+        "type": "debug",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "status",
+        "x": 247,
+        "y": 32,
+        "wires": []
+    },
+    {
+        "id": "a05a9281.2ce6d",
+        "type": "status",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "scope": null,
+        "x": 96.5,
+        "y": 32,
+        "wires": [
+            [
+                "7e2e283f.e5a388"
+            ]
+        ]
+    },
+    {
+        "id": "6a065c6d.0f9f74",
+        "type": "http in",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "url": "/pipeline_events",
+        "method": "post",
+        "swaggerDoc": "",
+        "x": 135,
+        "y": 205,
+        "wires": [
+            [
+                "b3a3ffee.e4d22",
+                "29883435.866e6c"
+            ]
+        ]
+    },
+    {
+        "id": "b3a3ffee.e4d22",
+        "type": "change",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "req.body",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 415,
+        "y": 205,
+        "wires": [
+            [
+                "40d04085.cb412"
+            ]
+        ]
+    },
+    {
+        "id": "29883435.866e6c",
+        "type": "http response",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "x": 382.5,
+        "y": 244,
+        "wires": []
+    },
+    {
+        "id": "2d4e19de.071f96",
+        "type": "comment",
+        "z": "eabb3d7a.3927d",
+        "name": "Syntax",
+        "info": "curl -v -X POST\n\n-d '{\"message\":\"My message\",\"channel\":\"general\"}' \n\n-H \"Content-Type: application/json\"\n\nhttp://build.es468a.canzea.cc:1880/collaboration\n\n",
+        "x": 85.5,
+        "y": 117,
+        "wires": []
+    },
+    {
+        "id": "40d04085.cb412",
+        "type": "json-schema",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "func": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"message\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"channel\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t},\n\t\"required\": [\"message\", \"channel\"]\n}",
+        "x": 614,
+        "y": 203,
+        "wires": [
+            [
+                "f3691147.b954a"
+            ]
+        ]
+    },
+    {
+        "id": "f27d6e11.12185",
+        "type": "http response",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "x": 365,
+        "y": 119,
+        "wires": []
+    },
+    {
+        "id": "41e9731c.afcc2c",
+        "type": "switch",
+        "z": "b3725691.bae6f8",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "send_message",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 111.5,
+        "y": 330,
+        "wires": [
+            [
+                "d014f2c5.9fec8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c721bfd6.7d89a",
+        "type": "chatbot-voice",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "message": "How are you",
+        "language": "en-us",
+        "x": 254.5,
+        "y": 392,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "99d63dfa.02a8e",
+        "type": "inject",
+        "z": "eabb3d7a.3927d",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 81.5,
+        "y": 404,
+        "wires": [
+            [
+                "c721bfd6.7d89a"
+            ]
+        ]
+    }
+]

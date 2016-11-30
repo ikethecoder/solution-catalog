@@ -1,0 +1,12 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"Gitlab"},
+    {"name":"Archiva"},
+    {"name":"Rocket.Chat"}
+  ],
+  "secrets": [
+  ]
+}

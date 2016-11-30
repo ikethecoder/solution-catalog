@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"fabio",
+            "listener":"pub",
+            "port":9998,
+            "ssl":false
+        }
+    ]
+}

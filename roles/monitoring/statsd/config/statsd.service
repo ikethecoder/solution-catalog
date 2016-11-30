@@ -1,0 +1,11 @@
+[Unit]
+Description=statsd
+After=network.target
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/node /home/statsduser/statsd/stats.js /home/statsduser/statsd/config.js
+User=statsduser
+
+[Install]
+WantedBy=local.target

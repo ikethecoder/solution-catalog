@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"archiva",
+            "listener":"pub",
+            "port":9080,
+            "ssl":false
+        }
+    ]
+}

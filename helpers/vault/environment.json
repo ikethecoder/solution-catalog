@@ -1,0 +1,10 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"Vault"}
+  ],
+  "secrets": [
+  ]
+}

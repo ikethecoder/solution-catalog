@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"gocd",
+            "listener":"pub",
+            "port":8153,
+            "ssl":false
+        }
+    ]
+}

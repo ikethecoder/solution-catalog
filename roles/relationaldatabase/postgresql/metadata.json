@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"postgresql",
+            "listener":"loc",
+            "port":5432,
+            "ssl":false
+        }
+    ]
+}

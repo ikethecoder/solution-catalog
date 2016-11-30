@@ -1,0 +1,15 @@
+{
+  "name": "{{name}}",
+  "fetch_materials": true,
+  "clean_working_directory": false,
+  "never_cleanup_artifacts": false,
+  "approval": {
+    "type": "manual",
+    "authorization": {
+      "roles": [],
+      "users": []
+    }
+  },
+  "environment_variables": [],
+  "jobs": []
+}

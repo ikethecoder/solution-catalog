@@ -1,0 +1,12 @@
+{
+  "keyvalues": [
+    {"name":"ecosystem/label"}
+  ],
+
+  "services": [
+    {"name":"consul"}
+  ],
+  "secrets": [
+    {"name":"ecosystem/sample"}
+  ]
+}

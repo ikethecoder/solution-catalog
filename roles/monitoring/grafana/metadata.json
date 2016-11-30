@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"grafana",
+            "listener":"prv",
+            "port":3000,
+            "ssl":false
+        }
+    ]
+}

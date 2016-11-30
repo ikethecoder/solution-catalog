@@ -1,0 +1,12 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"Rocket.Chat"},
+    {"name":"Vault"}
+  ],
+  "secrets": [
+    {"name":"admin/rocketchat"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "Name": "rocketchat",
+  "Tags": [
+    "specific",
+    "v1",
+    "collaboration"
+  ],
+  "Address": "envbuild.es968.canzea.cc",
+  "Port": 8780
+}

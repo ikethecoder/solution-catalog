@@ -1,0 +1,4 @@
+spawn roles/sourcecontrol/git/set-public-key.sh
+expect "assword"
+send "$env(TMP_PASSWORD)\n"
+expect

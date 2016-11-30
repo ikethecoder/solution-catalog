@@ -1,0 +1,1251 @@
+{
+  "group": "Images",
+  "pipeline": {
+    "label_template": "${COUNT}",
+    "enable_pipeline_locking": true,
+    "name": "Image-Build2-B-BUILD",
+    "template": null,
+    "parameters": [
+
+    ],
+    "environment_variables": [
+      {
+        "secure": false,
+        "name": "CONSUL_URL",
+        "value": "http://10.136.0.48:8500"
+      },
+      {
+        "secure": true,
+        "name": "VAULT_TOKEN",
+        "value": "1234"
+      },
+      {
+        "secure": true,
+        "name": "DIGITAL_OCEAN_API_KEY",
+        "value": "e6e6bdd4a7fb960e0e984bc1a43b4aacddfdea4ba04863970b0b01cbbd0f8d98"
+      }
+    ],
+    "materials": [
+      {
+        "type": "git",
+        "attributes": {
+          "url": "https://IKE_CI:55665566@gitlab.com/ikethecoder/ike-environments.git",
+          "destination": "ike-environments",
+          "filter": null,
+          "name": null,
+          "auto_update": false,
+          "branch": "master",
+          "submodule_folder": null,
+          "shallow_clone": false
+        }
+      }
+    ],
+    "stages": [
+      {
+        "name": "Provision",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+
+        ]
+      },
+      {
+        "name": "Health-Check",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+
+        ]
+      },
+      {
+        "name": "Bootstrap",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+
+        ]
+      },
+      {
+        "name": "Install workarounds ruby",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=workarounds",
+                    "--solution=ruby"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install workarounds ruby-gems",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=workarounds",
+                    "--solution=ruby-gems"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install workarounds bash",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=workarounds",
+                    "--solution=bash"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install workarounds sshd",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=workarounds",
+                    "--solution=sshd"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install workarounds zip",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=workarounds",
+                    "--solution=zip"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install workarounds expect",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=workarounds",
+                    "--solution=expect"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install virtualmachine java",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=virtualmachine",
+                    "--solution=java"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install workarounds securerandom",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=workarounds",
+                    "--solution=securerandom"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install workarounds sudoers",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=workarounds",
+                    "--solution=sudoers"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install workarounds canzea",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=workarounds",
+                    "--solution=canzea"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install monitoring ELK_Kibana",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=monitoring",
+                    "--solution=ELK_Kibana"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install monitoring statsd",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=monitoring",
+                    "--solution=statsd"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install monitoring ElasticHQ",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=monitoring",
+                    "--solution=ElasticHQ"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install monitoring grafana",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=monitoring",
+                    "--solution=grafana"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install monitoring ElasticHQ-NGINX",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=monitoring",
+                    "--solution=ElasticHQ-NGINX"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install monitoring collectd",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=monitoring",
+                    "--solution=collectd"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install monitoring filebeat",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=monitoring",
+                    "--solution=filebeat"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Install audit auditd",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--remote",
+                    "--serverBase=Build2-B",
+                    "--serverNumber=1",
+                    "--privateKey=/var/go/.ssh/id_rsa_digitalocean",
+                    "--role=audit",
+                    "--solution=auditd"
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Image",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--helper",
+                    "--solution=digitalocean",
+                    "--action=image",
+                    "--args="
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Teardown",
+        "fetch_materials": true,
+        "clean_working_directory": true,
+        "never_cleanup_artifacts": false,
+        "approval": {
+          "type": "success",
+          "authorization": {
+            "roles": [
+
+            ],
+            "users": [
+
+            ]
+          }
+        },
+        "environment_variables": [
+
+        ],
+        "jobs": [
+          {
+            "name": "defaultJob",
+            "run_instance_count": null,
+            "timeout": 0,
+            "environment_variables": [
+
+            ],
+            "resources": [
+
+            ],
+            "tasks": [
+              {
+                "type": "exec",
+                "attributes": {
+                  "run_if": [
+                    "passed"
+                  ],
+                  "on_cancel": null,
+                  "command": "canzea",
+                  "arguments": [
+                    "--helper",
+                    "--solution=digitalocean",
+                    "--action=teardown",
+                    "--args="
+                  ],
+                  "working_directory": ""
+                }
+              }
+            ],
+            "artifacts": [
+
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

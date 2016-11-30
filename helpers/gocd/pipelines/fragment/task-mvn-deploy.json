@@ -1,0 +1,15 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "command": "mvn",
+    "arguments": [
+      "deploy",
+      "-B",
+      "-DaltDeploymentRepository=snapshotRepository::default::http://localhost:9080/repository/snapshots"
+    ],
+    "working_directory": "{{project}}"
+  }
+}
