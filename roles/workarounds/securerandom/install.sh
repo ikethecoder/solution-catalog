@@ -1,5 +1,5 @@
 
-# Spring Boot blocks
+# NOTE: Spring Boot blocks
 
 #########################################################
 # Getting slow start time on SecureRandom; this fixes it
