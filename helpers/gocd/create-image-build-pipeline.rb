@@ -18,7 +18,7 @@ image = data["instructions"]["segments"][segment]['image']
 provision = data["instructions"]["segments"][segment]['provision']
 abbrev = data["instructions"]["segments"][segment]['abbreviation']
 
-base = "#{parameters['environment']}-#{parameters['segment']}-#{abbrev}".downcase
+base = "#{parameters['environment']}-#{parameters['segment']}-#{abbrev}"
 
 parameters['pipeline'] = "Image-#{base}-BUILD"
 parameters['group'] = "Images"
