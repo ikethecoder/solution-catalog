@@ -1,6 +1,5 @@
 
-
-roles/monitoring/statsd/install-statsduser.sh
+canzea --util=gen-user statsduser
 
 sudo yum -y install epel-release
 
