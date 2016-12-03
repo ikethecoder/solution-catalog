@@ -22,9 +22,9 @@ mkdir /home/rails/helpy/pids
 
 chown rails:rails /home/rails/helpy/pids
 
-ruby ./init/template.rb roles/incidentmgmt/helpy/config/nginx-helpy.conf /etc/nginx/conf.d/helpy.conf
+canzea --config_git_commit --template=roles/incidentmgmt/helpy/config/nginx-helpy.conf /etc/nginx/conf.d/helpy.conf
 
-ruby ./init/template.rb roles/incidentmgmt/helpy/config/helpy.service /etc/systemd/system/multi-user.target.wants/helpy.service
+canzea --config_git_commit --template=roles/incidentmgmt/helpy/config/helpy.service /etc/systemd/system/multi-user.target.wants/helpy.service
 
 
 # export APP_DATABASE_PASSWORD=rails
