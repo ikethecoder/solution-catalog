@@ -36,7 +36,7 @@ payload = {
     private_networking: true,
     ipv6: false,
     user_data: JSON.generate(userData),
-    tags: ["canzea"]
+    tags: parameters['tags']
 }
 
 puts payload

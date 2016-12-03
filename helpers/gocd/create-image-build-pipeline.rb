@@ -18,7 +18,7 @@ image = data["instructions"]["segments"][segment]['image']
 provision = data["instructions"]["segments"][segment]['provision']
 abbrev = data["instructions"]["segments"][segment]['abbreviation']
 
-base = "#{parameters['environment']}-#{parameters['segment']}-#{abbrev}"
+base = "#{parameters['environment']}-#{parameters['segment']}"
 
 parameters['pipeline'] = "Image-#{base}-BUILD"
 parameters['group'] = "Images"
@@ -29,7 +29,8 @@ params = {
     "fingerprint"=>"96:4a:8d:f4:fb:b9:b9:46:e9:d2:96:38:f2:1a:dc:f5",
     "region"=>provision['region'],
     "size"=>provision['size'],
-    "image"=>provision['image']
+    "image"=>provision['image'],
+    "tags"=>[abbrev,"canzea"]
 }
 
 params = JSON.generate(params)
