@@ -16,3 +16,5 @@ chmod +x roles/sourcecontrol/git/set-public-key.sh
 export TMP_PASSWORD=get1git; expect roles/sourcecontrol/git/set-public-key.expect
 
 chmod 600 /home/git/.ssh/authorized_keys
+
+# Cleanup: userdel git && rm -rf /home/git

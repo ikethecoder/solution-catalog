@@ -1,5 +1,5 @@
 
-ruby ./init/template.rb roles/documentdatabase/elasticsearch/config/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
+canzea --config_git_commit --template=roles/documentdatabase/elasticsearch/config/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 
 systemctl start elasticsearch
 

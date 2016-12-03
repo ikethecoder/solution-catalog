@@ -7,17 +7,10 @@ require 'canzea/config'
 
 parameters = JSON.parse(ARGV[0])
 
-qualifier = parameters['qualifier']
-
 # Type: environments, pipelines
 
-if (qualifier == "N/A")
-    type = parameters['type']
-    name = parameters['name']
-else
-    type = parameters[qualifier]['type']
-    name = parameters[qualifier]['name']
-end
+type = parameters['type']
+name = parameters['name']
 
 headers = {
   'Accept' => 'application/vnd.go.cd.v1+json',
