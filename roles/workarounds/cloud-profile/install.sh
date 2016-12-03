@@ -15,3 +15,5 @@ mkdir /opt/cloud-profile
 
 
 cp roles/workarounds/cloud-profile/per-instance/configure.sh /var/lib/cloud/scripts/per-instance/configure.sh
+
+chmod +x /var/lib/cloud/scripts/per-instance/configure.sh

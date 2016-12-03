@@ -12,8 +12,8 @@ export PUBLIC_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/public
 
 chmod +x /opt/cloud-profile/configure.sh
 
-(cd /root/.local/bin/ike-environments ; git fetch --all; git reset --hard origin/master)
+canzea --reset
 
-(. /root/.bash_profile && cd /root/.local/bin/ike-environments/environment/production && /opt/cloud-profile/configure.sh >> /root/configure.log)
+(/opt/cloud-profile/configure.sh >> /root/configure.log)
 
 echo "Hello World DONE.  The time is now $(date -R)!" | tee -a /root/output.txt
