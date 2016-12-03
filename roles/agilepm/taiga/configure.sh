@@ -29,7 +29,7 @@ su taiga -l -c "(cd ~/taiga-back && workon taiga && python manage.py collectstat
 
 # Copy local.py
 
-ruby ./init/template.rb roles/agilepm/taiga/config/local.py /home/taiga/taiga-back/settings/local.py
+canzea --config_git_commit --template=roles/agilepm/taiga/config/local.py /home/taiga/taiga-back/settings/local.py
 
 # su taiga -l -c "(cd ~/taiga-back && workon taiga && python manage.py runserver)"
 
