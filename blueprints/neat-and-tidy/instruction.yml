@@ -1,0 +1,202 @@
+
+instructions:
+  segments:
+    A:
+      abbreviation: foundation
+      label: foundation
+      description: Go.CD, Vault, Consul, Nodered
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-2-x64
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby-upgrade
+        - step:workarounds:ruby-gems
+        - step:provisioning:digitalocean
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:sourcecontrol:git
+        - step:configdb:consul
+        - step:keymgmt:hashicorpvault
+        - step:loadbalancer:nginx
+        - step:virtualmachine:java
+        - step:workarounds:sudoers
+        - step:build:maven
+        - step:testsuite:phantomjs
+        - step:testsuite:selenium
+        - step:certprovider:letsencrypt
+        - step:registry:archiva
+        - step:deploy:ansible
+        - step:deploy:gocd
+        - step:deploy:gocd-plugins
+        - step:adhoc:nodered
+        - step:workarounds:swap
+        - step:deploy:gocd-agent
+        - step:workarounds:canzea
+        - step:container:docker
+        - step:registry:docker
+        - step:loadbalancer:nginx-consul
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+
+    B:
+      abbreviation: metrics
+      label: metrics and analytics
+      description: ELK Stack, Grafana
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-2-x64
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:loadbalancer:nginx
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:documentdatabase:elasticsearch
+        - step:monitoring:logstash
+        - step:monitoring:kibana
+        - step:monitoring:statsd
+        - step:documentdatabase:ElasticHQ
+        - step:monitoring:grafana
+        - step:documentdatabase:ElasticHQ-NGINX
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:audit:auditd
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+
+    D:
+      abbreviation: sourcecontrol
+      label: sourcecontrol
+      description: Gitlab
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-2-x64
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:sourcecontrol:gitlab
+        - step:sourcecontrol:gitlab-configuration
+        - step:workarounds:canzea
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:audit:auditd
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+
+    E:
+      abbreviation: collaboration
+      label: collaboration
+      description: Rocket.Chat, Helpy, Taiga
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-2-x64
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:workarounds:swap
+        - step:loadbalancer:nginx
+        - step:container:docker
+        - step:collaboration:rocketchat
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:audit:auditd
+        - step:relationaldatabase:postgresql
+        - step:relationaldatabase:pgadmin
+        - step:incidentmgmt:rails
+        - step:incidentmgmt:helpy
+        - step:agilepm:package-upgrade
+        - step:agilepm:python35
+        - step:agilepm:taiga
+        - step:agilepm:taiga-frontend
+        - step:agilepm:taiga-circus
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+
+    C:
+      abbreviation: application
+      label: application
+      description: MongoDB, Fabio, RabbitMQ
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-2-x64
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:documentdatabase:mongodb
+        - step:loadbalancer:nginx
+        - step:messaging:rabbitmq
+        - step:audit:auditd
+        - step:workarounds:golang
+        - step:router:fabio
+        - step:application:user
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+
+      settings:
+        step:monitoring:collectd:
+          port: 8500

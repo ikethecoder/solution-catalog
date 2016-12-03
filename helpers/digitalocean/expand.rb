@@ -35,17 +35,9 @@ droplet = DropletKit::Droplet.new( payload )
 
 response = client.droplets.create_multiple(droplet)
 
-File.open("#{Canzea::config[:pwd]}/digital-ocean-instances.json", 'w') { |file| file.write(response.to_json) }
+File.open("#{Canzea::config[:pwd]}/provision-#{base}.json", 'w') { |file| file.write(response.to_json) }
 
-response.each do |item|
-    puts item['name']
-
-    # r.register "machines/#{item['name']}", 'id', item['id']
-    # r.register "machines/#{item['name']}", 'memory', item['memory']
-    # r.register "machines/#{item['name']}", 'vcpus', item['vcpus']
-end
-
-file = File.read("#{Canzea::config[:pwd]}/digital-ocean-instances.json")
+file = File.read("#{Canzea::config[:pwd]}/provision-#{base}.json")
 response = JSON.parse(file)
 
 active = false
@@ -77,23 +69,6 @@ while active == false
   end
 end
 
-File.open("#{Canzea::config[:pwd]}/digital-ocean-instances-final2.json", 'w') { |file| file.write(response.to_json) }
+File.open("#{Canzea::config[:pwd]}/provision-#{base}-active.json", 'w') { |file| file.write(response.to_json) }
 
 puts "All instances active."
-
-
-file = File.read("#{Canzea::config[:pwd]}/digital-ocean-instances-final2.json")
-response = JSON.parse(file)
-
-response.each do |item|
-    puts item['name']
-
-    item['networks']['v4'].each do |net|
-        if net['type'] == "private"
-            #r.register "machines/#{item['name']}", 'private_ip', net['ip_address']
-        end
-        if net['type'] == "public"
-            #r.register "machines/#{item['name']}", 'public_ip', net['ip_address']
-        end
-    end
-end

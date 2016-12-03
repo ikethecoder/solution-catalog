@@ -22,7 +22,7 @@ class Builder
         return self
     end
     def base (name)
-        @root = JSON.parse(@t.process "helpers/gocd/pipelines/fragment/#{name}.json", @attributes)
+        @root = JSON.parse(@t.process "#{ENV['CATALOG_LOCATION']}/helpers/gocd/pipelines/fragment/#{name}.json", @attributes)
         return self
     end
 
@@ -32,18 +32,19 @@ class Builder
     end
 
     def save (file)
+        puts "Writing #{file}"
         File.write(file, JSON.pretty_generate(@root))
         return self
     end
 
     def add (path, template, localAttributes = @attributes)
-        content = @t.process "helpers/gocd/pipelines/fragment/#{template}.json", localAttributes
-        puts content
+        content = @t.process "#{ENV['CATALOG_LOCATION']}/helpers/gocd/pipelines/fragment/#{template}.json", localAttributes
+        # puts content
         content = JSON.parse(content)
         start = find(path)
         index = start.push (content)
         @lastReference = "#{path}[#{start.size()-1}]"
-        puts @lastReference
+        # puts @lastReference
         return self
     end
 
@@ -64,13 +65,13 @@ class Builder
     end
 
     def getLastReference ()
-        puts "GET LAST REFERENCE #{@lastReference}"
+        # puts "GET LAST REFERENCE #{@lastReference}"
         return @lastReference
     end
 
     def find (path)
         start = @root
-        puts "FINDING #{path}"
+        # puts "FINDING #{path}"
         path.split(".").each { | p |
             if (p.index('[') == nil)
                 start = start[p]
@@ -81,7 +82,7 @@ class Builder
                 start = start[ind]
             end
         }
-        puts "RETURNING #{start}"
+        # puts "RETURNING #{start}"
         return start
     end
 
@@ -97,10 +98,10 @@ class BuilderIterator
     def add (path, template, templateAttributes = {})
         newContext = []
         @buildDefinition.each { | a |
-            puts a
+            # puts a
             @builder.add path, template, evalAttributes(templateAttributes, a)
             newContext.push({:ref=>@builder.getLastReference(), :def=>a})
-            puts "DONE - #{newContext.size()}"
+            # puts "DONE - #{newContext.size()}"
         }
         @context = newContext
         return self
@@ -108,12 +109,12 @@ class BuilderIterator
 
     def append (path, template, templateAttributes = {})
         newContext = []
-        puts "APPENDING #{@context.size()} #{path}"
+        # puts "APPENDING #{@context.size()} #{path}"
         @context.each { | a |
-            puts a
-            puts "APPENDING(ADD) : #{a[:ref]}.#{path}"
+            # puts a
+            # puts "APPENDING(ADD) : #{a[:ref]}.#{path}"
             @builder.add "#{a[:ref]}.#{path}", template, evalAttributes(templateAttributes, a[:def])
-            puts "APPENDED... "
+            # puts "APPENDED... "
             newContext.push({:ref=>@builder.getLastReference(), :def=>a[:def]})
         }
         @context = newContext
@@ -122,13 +123,13 @@ class BuilderIterator
 
     def evalAttributes (templateAttributes, attributes)
         newSet = {}
-        puts templateAttributes
+        # puts templateAttributes
         templateAttributes.each { | key, value |
-            puts "#{key} = #{value}"
+            # puts "#{key} = #{value}"
             p = @t.processString("#{value}", attributes)
             newSet[key] = p
         }
-        puts newSet
+        # puts newSet
         return newSet;
     end
 
