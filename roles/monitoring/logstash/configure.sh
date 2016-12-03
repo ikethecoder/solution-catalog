@@ -1,8 +1,8 @@
 
 cp roles/monitoring/logstash/config/conf.d/* /etc/logstash/conf.d/.
 
-ruby ./init/template.rb roles/monitoring/logstash/config/logstash/02-filebeat-input.conf /etc/logstash/conf.d/02-filebeat-input.conf
-ruby ./init/template.rb roles/monitoring/logstash/config/logstash/30-elasticsearch-output.conf /etc/logstash/conf.d/30-elasticsearch-output.conf
+canzea --config_git_commit --template=roles/monitoring/logstash/config/logstash/02-filebeat-input.conf /etc/logstash/conf.d/02-filebeat-input.conf
+canzea --config_git_commit --template=roles/monitoring/logstash/config/logstash/30-elasticsearch-output.conf /etc/logstash/conf.d/30-elasticsearch-output.conf
 
 # Configure the TLS Certificate and still on CONSUL (VAULT?)
 # Create a TLS certificate used by all services connecting to logstash
@@ -24,7 +24,7 @@ service logstash configtest
 # CollectD (with LogStash configuration)
 #####################################################
 
-yes | cp prod-1/Files/etc/logstash/conf.d/03-collectd.conf /etc/logstash/conf.d/.
+yes | cp roles/monitoring/logstash/config/conf.d/03-collectd.conf /etc/logstash/conf.d/.
 
 
 
