@@ -6,7 +6,7 @@ canzea --config_git_commit --template=roles/monitoring/logstash/config/logstash/
 
 # Configure the TLS Certificate and still on CONSUL (VAULT?)
 # Create a TLS certificate used by all services connecting to logstash
-(export SUBJECT_ADDRESS=`/sbin/ifconfig eth1 | grep 'inet ' | awk '{ print $2}'` ; ruby ./init/template.rb roles/monitoring/logstash/config/openssl.cnf /etc/pki/tls/openssl.cnf)
+(export SUBJECT_ADDRESS=`/sbin/ifconfig eth1 | grep 'inet ' | awk '{ print $2}'` ; canzea --config_git_commit --template=roles/monitoring/logstash/config/openssl.cnf /etc/pki/tls/openssl.cnf)
 (cd /etc/pki/tls; sudo openssl req -config /etc/pki/tls/openssl.cnf -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt )
 
 base64 /etc/pki/tls/certs/logstash-forwarder.crt > /etc/pki/tls/certs/logstash-forwarder.crt64
