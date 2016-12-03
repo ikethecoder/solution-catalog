@@ -6,9 +6,20 @@ role = parameters['role']
 solution = parameters['solution']
 gitRoot = parameters['gitRoot']
 
+steps = {}
+
 # write to configure the registration of the service
-if (File.exists?("#{gitRoot}/configure.sh") == false)
-    File.open("#{gitRoot}/configure.sh", 'a') { |file| file.puts("#!/bin/bash") }
+if (File.exists?("#{gitRoot}/configure.json"))
+    steps = JSON.parse(File.read("#{gitRoot}/configure.json"))
+else
+    steps["steps"] = []
 end
 
-File.open("#{gitRoot}/configure.sh", 'a') { |file| file.puts("canzea --lifecycle=configure --role=#{role} --solution=#{solution}") }
+conf = {
+    :role => role,
+    :solution => solution
+}
+steps["steps"].push(conf)
+
+File.open("#{gitRoot}/configure.json", 'w') { |file| file.puts(JSON.generate(steps)) }
+
