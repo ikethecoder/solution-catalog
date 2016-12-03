@@ -5,7 +5,7 @@
 
 # Chicken and the egg issue here...
 
-ruby ./init/template.rb roles/sourcecontrol/gitlab/config/gitlab.rb /etc/gitlab/gitlab.rb
+canzea --config_git_commit --template=roles/sourcecontrol/gitlab/config/gitlab.rb /etc/gitlab/gitlab.rb
 
 export GITLAB_ROOT_PASSWORD=adminadmin && export GITLAB_ROOT_EMAIL=gitlab@nowhere.com && sudo gitlab-ctl reconfigure
 
