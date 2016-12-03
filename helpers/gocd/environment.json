@@ -3,6 +3,7 @@
   ],
 
   "services": [
+    {"name":"Go.CD"}
   ],
   "secrets": [
   ]
