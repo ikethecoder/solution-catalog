@@ -3,6 +3,8 @@ require 'plan-step-class'
 
 parameters = JSON.parse(ARGV[0])
 
+gitRoot = parameters['gitRoot']
+
 ps = PlanStep.new
 
 # Read the configuration file and make calls out to run
