@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"gitlab",
+            "listener":"pub",
+            "port":90,
+            "ssl":false
+        }
+    ]
+}
