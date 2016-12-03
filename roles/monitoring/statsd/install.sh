@@ -29,6 +29,6 @@ sudo yum -y install nodejs
 
 # echo "foo:1|c" | nc -u -w1 127.0.0.1 8126
 
-ruby ./init/template.rb roles/monitoring/statsd/config/statsd.service /etc/systemd/system/multi-user.target.wants/statsd.service
+#ruby ./init/template.rb roles/monitoring/statsd/config/statsd.service /etc/systemd/system/multi-user.target.wants/statsd.service
 
-systemctl daemon-reload
+#systemctl daemon-reload
