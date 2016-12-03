@@ -12,7 +12,7 @@ mkdir -p /etc/circus/conf.d
 yes | cp -f roles/agilepm/taiga-circus/config/circus.ini /etc/circus/circus.ini
 
 
-ruby ./init/template.rb roles/agilepm/taiga-circus/config/config.ini /etc/circus/conf.d/config.ini
+canzea --config_git_commit --template=roles/agilepm/taiga-circus/config/config.ini /etc/circus/conf.d/config.ini
 
 su taiga -l -c "mkdir -p ~/logs"
 
