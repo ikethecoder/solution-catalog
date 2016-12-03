@@ -1,7 +1,7 @@
 
 # Kibana
 
-cp prod-1/Files/etc/yum.repos.d/kibana.repo /etc/yum.repos.d/kibana.repo
+cp roles/monitoring/kibana/config/kibana.repo /etc/yum.repos.d/kibana.repo
 
 yum install -y kibana
 
