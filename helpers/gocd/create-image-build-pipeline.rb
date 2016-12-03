@@ -13,18 +13,16 @@ segment = parameters['segment']
 if (!data["instructions"]["segments"].has_key?(segment))
     raise("No segment #{segment} found")
 end
-image = data["instructions"]["segments"][parameters['segment']]['image']
+image = data["instructions"]["segments"][segment]['image']
 
 parameters['pipeline'] = "Image-#{parameters['environment']}-#{parameters['segment']}-BUILD"
 parameters['group'] = "Images"
 
-base = "#{parameters['environment']}-#{parameters['segment']}"
 
-# buildDefinition = JSON.parse(File.read("#{Canzea::config[:pwd]}/environment_#{base}.json"))
+provision = data["instructions"]["segments"][segment]['provision']
+abbrev = data["instructions"]["segments"][segment]['abbreviation']
 
-# provision = buildDefinition[0]['arguments']
-
-provision = data["instructions"]["segments"]['C']['provision']
+base = "#{parameters['environment']}-#{parameters['segment']}-#{abbrev}".downcase
 
 params = {
     "base"=>base,
@@ -62,7 +60,7 @@ image.each { | key |
 
 Builder.new(parameters)
     .base("pipeline-image")
-    .required(["CONSUL_URL","VAULT_TOKEN"], ["environment", "segment"])
+    .required(["CONSUL_URL","VAULT_TOKEN","DIGITAL_OCEAN_API_KEY"], ["environment", "segment"])
     .add("pipeline.materials", "material-environment")
     .add("pipeline.stages", "stage-first", {"name"=>"Provision"})
         .append("jobs", "job")

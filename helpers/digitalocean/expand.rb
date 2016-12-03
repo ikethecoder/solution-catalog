@@ -27,7 +27,17 @@ client = DropletKit::Client.new(access_token: token)
 
 userData = { "CONSUL_URL" => ENV['CONSUL_URL'], "VAULT_TOKEN" => "1234" }
 
-payload = { names: ary, ssh_keys: [fingerprint], region: region, size: size, image: image, private_networking: true, ipv6: false, user_data: JSON.generate(userData) }
+payload = {
+    names: ary,
+    ssh_keys: [fingerprint],
+    region: region,
+    size: size,
+    image: image,
+    private_networking: true,
+    ipv6: false,
+    user_data: JSON.generate(userData),
+    tags: ["canzea"]
+}
 
 puts payload
 
