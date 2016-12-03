@@ -40,7 +40,6 @@ instructions:
         - step:adhoc:nodered
         - step:workarounds:swap
         - step:deploy:gocd-agent
-        - step:workarounds:canzea
         - step:container:docker
         - step:registry:docker
         - step:loadbalancer:nginx-consul
@@ -111,7 +110,6 @@ instructions:
         - step:workarounds:sudoers
         - step:sourcecontrol:gitlab
         - step:sourcecontrol:gitlab-configuration
-        - step:workarounds:canzea
         - step:monitoring:collectd
         - step:monitoring:filebeat
         - step:audit:auditd
