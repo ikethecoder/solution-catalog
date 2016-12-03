@@ -18,7 +18,9 @@ ruby -v
 
 ruby -v
 
+chmod +x roles/workarounds/ruby-gems/install.sh
+
 # Run the gems as we need the minimal to support Canzea CLI
-./roles/workarounds/ruby-gems/install.sh
+sh -c "./roles/workarounds/ruby-gems/install.sh"
 
 gem list
