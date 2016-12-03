@@ -1,4 +1,4 @@
-cp prod-1/Files/etc/yum.repos.d/elasticsearch.repo /etc/yum.repos.d/elasticsearch.repo
+cp roles/documentdatabase/elasticsearch/config/elasticsearch.repo /etc/yum.repos.d/elasticsearch.repo
 
 sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
 
