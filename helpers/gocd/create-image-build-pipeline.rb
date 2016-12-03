@@ -15,14 +15,13 @@ if (!data["instructions"]["segments"].has_key?(segment))
 end
 image = data["instructions"]["segments"][segment]['image']
 
-parameters['pipeline'] = "Image-#{parameters['environment']}-#{parameters['segment']}-BUILD"
-parameters['group'] = "Images"
-
-
 provision = data["instructions"]["segments"][segment]['provision']
 abbrev = data["instructions"]["segments"][segment]['abbreviation']
 
 base = "#{parameters['environment']}-#{parameters['segment']}-#{abbrev}".downcase
+
+parameters['pipeline'] = "Image-#{base}-BUILD"
+parameters['group'] = "Images"
 
 params = {
     "base"=>base,
