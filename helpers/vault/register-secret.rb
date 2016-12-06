@@ -2,6 +2,8 @@
 
 require 'json'
 require 'net/http'
+require 'template-runner'
+
 parameters = JSON.parse(ARGV[0])
 
 key = parameters['key']
