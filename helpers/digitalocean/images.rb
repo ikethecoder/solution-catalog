@@ -6,7 +6,7 @@ require 'canzea/config'
 
 parameters = JSON.parse(ARGV[0])
 
-token = ENV["DIGITAL_OCEAN_API_KEY"]
+token = ENV["DIGITALOCEAN_TOKEN"]
 
 client = DropletKit::Client.new(access_token: token)
 
