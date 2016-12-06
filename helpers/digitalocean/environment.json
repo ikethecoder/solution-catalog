@@ -1,0 +1,11 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"Vault"}
+  ],
+  "secrets": [
+    {"name":"digitalocean"}
+  ]
+}

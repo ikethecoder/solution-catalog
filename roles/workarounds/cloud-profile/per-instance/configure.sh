@@ -11,10 +11,12 @@ export HOSTNAME=`curl -s http://169.254.169.254/metadata/v1/hostname`
 export PUBLIC_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address`
 export PRIVATE_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address`
 
-chmod +x /opt/cloud-profile/configure.sh
+# chmod +x /opt/cloud-profile/configure.sh
 
 canzea --reset
 
-(/opt/cloud-profile/configure.sh >> /root/configure.log)
+canzea --util=apply-config --step=1 --task=1
+
+# (/opt/cloud-profile/configure.sh >> /root/configure.log)
 
 echo "Hello World DONE.  The time is now $(date -R)!" | tee -a /root/output.txt
