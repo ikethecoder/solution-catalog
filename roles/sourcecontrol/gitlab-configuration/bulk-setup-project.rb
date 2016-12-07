@@ -24,6 +24,10 @@ class SetupProject
         }
         http = Net::HTTP.new(ENV['GITLAB_ADDRESS'], ENV['GITLAB_PORT'])
         res = http.post("/api/v3/projects?private_token=#{privateToken}", payload.to_json, headers)
-        puts res
+
+        if (Integer(res.code) != 200)
+            puts res.body
+            raise("Creation failed with error #{res.code}"
+        end
     end
 end
