@@ -1,0 +1,11 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"Archiva"},
+    {"name":"Gitlab"}
+  ],
+  "secrets": [
+  ]
+}
