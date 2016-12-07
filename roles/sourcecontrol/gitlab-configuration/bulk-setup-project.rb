@@ -27,7 +27,7 @@ class SetupProject
 
         if (Integer(res.code) != 200)
             puts res.body
-            raise("Creation failed with error #{res.code}"
+            raise("Creation failed with error #{res.code}")
         end
     end
 end
