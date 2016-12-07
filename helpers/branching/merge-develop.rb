@@ -3,8 +3,8 @@
 require 'git'
 require 'json'
 require 'fileutils'
-require_relative '../../init/registry.rb'
-require_relative '../../init/trace-runner'
+require 'registry'
+require 'trace-runner'
 
 parameters = JSON.parse(ARGV[0])
 
@@ -25,8 +25,6 @@ prefix = "release"
 if (type == "patch")
     prefix = "hotfix"
 end
-
-#url = "git@build.escca.canzea.cc:root/#{app}.git"
 
 branch = "#{prefix}-#{newVersion}"
 
