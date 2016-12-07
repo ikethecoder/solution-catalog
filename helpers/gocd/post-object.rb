@@ -9,8 +9,18 @@ parameters = JSON.parse(ARGV[0])
 
 # Type: environments, pipelines
 
-type = parameters['type']
-name = parameters['name']
+qualifier = parameters.has_key?('qualifier') ? parameters['qualifier']:"N/A"
+
+# Type: environments, pipelines
+
+if (qualifier == "N/A")
+    type = parameters['type']
+    name = parameters['name']
+else
+    type = parameters[qualifier]['type']
+    name = parameters[qualifier]['name']
+end
+
 
 headers = {
   'Accept' => 'application/vnd.go.cd.v1+json',
