@@ -1,6 +1,6 @@
 [Unit]
 Description={{service}}
-# After=syslog.target
+After=network.target
 
 [Service]
 User=appuser
