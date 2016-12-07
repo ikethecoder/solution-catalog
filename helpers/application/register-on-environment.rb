@@ -4,8 +4,8 @@ require 'git'
 require 'json'
 require 'fileutils'
 require 'java-properties'
-require_relative '../../init/registry.rb'
-require_relative '../../init/trace-runner'
+require 'registry'
+require 'trace-runner'
 
 parameters = JSON.parse(ARGV[0])
 

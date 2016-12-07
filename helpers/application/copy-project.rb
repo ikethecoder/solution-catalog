@@ -9,6 +9,6 @@ sp = SetupProject.new
 sp.create parameters['name']
 
 n = CopyProject.new
-n.copy parameters, parameters['name'], parameters['name']
+n.copy parameters, parameters['targetName'], parameters['name']
 
 
