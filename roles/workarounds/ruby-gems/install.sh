@@ -24,3 +24,5 @@ gem install xml-simple
 
 # Used for canzea command line
 gem install cri
+
+gem install selenium-webdriver
