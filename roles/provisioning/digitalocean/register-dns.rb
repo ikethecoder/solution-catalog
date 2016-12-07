@@ -1,7 +1,7 @@
 require 'droplet_kit'
 require 'json'
 
-token=ENV["DIGITAL_OCEAN_API_KEY"]
+token=ENV["DIGITALOCEAN_TOKEN"]
 
 domain = ARGV[0]
 ip = ARGV[1]

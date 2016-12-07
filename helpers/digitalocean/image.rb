@@ -10,7 +10,7 @@ r = Registry.new
 base=parameters['base']
 instances=Integer(parameters['instances'])
 
-token=ENV["DIGITAL_OCEAN_API_KEY"]
+token=ENV["DIGITALOCEAN_TOKEN"]
 
 client = DropletKit::Client.new(access_token: token)
 

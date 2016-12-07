@@ -17,11 +17,6 @@
         "secure": true,
         "name": "VAULT_TOKEN",
         "value": "{{VAULT_TOKEN}}"
-      },
-      {
-        "secure": true,
-        "name": "DIGITAL_OCEAN_API_KEY",
-        "value": "{{DIGITAL_OCEAN_API_KEY}}"
       }
     ],
     "materials": [],

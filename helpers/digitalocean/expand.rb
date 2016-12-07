@@ -21,11 +21,11 @@ for i in 1..instances
  # r.exists "/machines/#{base}-#{i}"
 end
 
-token=ENV["DIGITAL_OCEAN_API_KEY"]
+token=ENV["DIGITALOCEAN_TOKEN"]
 
 client = DropletKit::Client.new(access_token: token)
 
-userData = { "CONSUL_URL" => ENV['CONSUL_URL'], "VAULT_TOKEN" => "1234" }
+userData = { "CONSUL_URL" => ENV['CONSUL_URL'], "VAULT_TOKEN" => ENV['VAULT_TOKEN'] }
 
 payload = {
     names: ary,

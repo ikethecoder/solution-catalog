@@ -60,7 +60,7 @@ image.each { | key |
 
 Builder.new(parameters)
     .base("pipeline-image")
-    .required(["CONSUL_URL","VAULT_TOKEN","DIGITAL_OCEAN_API_KEY"], ["environment", "segment"])
+    .required(["CONSUL_URL","VAULT_TOKEN"], ["environment", "segment"])
     .add("pipeline.materials", "material-environment")
     .add("pipeline.stages", "stage-first", {"name"=>"Provision"})
         .append("jobs", "job")

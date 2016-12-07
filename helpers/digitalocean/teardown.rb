@@ -16,7 +16,7 @@ for i in 1..instances
     ary.push(r.getValue "nodes/#{base}-#{id}", "id")
 end
 
-token=ENV["DIGITAL_OCEAN_API_KEY"]
+token=ENV["DIGITALOCEAN_TOKEN"]
 
 client = DropletKit::Client.new(access_token: token)
 
