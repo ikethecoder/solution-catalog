@@ -2,7 +2,9 @@
 ################################################################
 # Install Circus and configure for Taiga
 
-pip install circus
+pip -v install --upgrade pip
+
+pip -v install circus
 
 yes | cp -f roles/agilepm/taiga-circus/config/circus.service /usr/lib/systemd/system/circusd.service
 
