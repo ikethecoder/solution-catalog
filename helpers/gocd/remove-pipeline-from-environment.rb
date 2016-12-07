@@ -3,7 +3,7 @@
 
 require 'json'
 require 'net/http'
-require_relative '../../init/template-runner'
+require 'template-runner'
 
 parameters = JSON.parse(ARGV[0])
 
