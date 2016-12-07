@@ -7,5 +7,5 @@ yes | cp -f roles/deploy/gocd-agent/config/register_service.sh /opt/canzea-utils
 
 chmod +x /opt/canzea-utils/register_service.sh
 
-(su - go -c "echo -e 'y\n'|ssh-keygen -t rsa -f .ssh/id_rsa -P ''")
+(su - go -c "echo -e 'y\n'|ssh-keygen -t rsa -f ~/.ssh/id_rsa -P ''")
 
