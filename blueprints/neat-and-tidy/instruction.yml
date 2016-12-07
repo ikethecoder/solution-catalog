@@ -122,7 +122,7 @@ instructions:
       description: Rocket.Chat, Helpy, Taiga
       provision:
         region: nyc1
-        size: 2gb
+        size: 4gb
         image: centos-7-2-x64
       image:
         - wire:digitalocean:expand
