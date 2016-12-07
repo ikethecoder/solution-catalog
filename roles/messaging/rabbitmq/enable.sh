@@ -1,4 +1,6 @@
 
+chkconfig rabbitmq-server on
+
 sudo service rabbitmq-server start
 
 # Need rabbitmq running to do this
