@@ -5,7 +5,7 @@ require 'patron'
 require 'mustache'
 
 class Template < Mustache
-  self.template_file = 'roles/application/conf/service.template'
+  self.template_file = "#{ENV['CATALOG_LOCATION']}/roles/application/conf/service.template"
 end
 
 class InstallProject
@@ -46,7 +46,6 @@ class InstallProject
         s[:base] = "/opt/applications"
         s[:port] = attributes['port']
 
-        # File.write("/etc/systemd/system/multi-user.target.wants/#{projectName}-#{artifactId}-#{version}.service", s.render)
         File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.service", s.render)
 
         result = system "sudo /opt/canzea-utils/register_service.sh #{projectName}-#{artifactId} /opt/applications/#{projectName}-#{artifactId}-#{version}.service"

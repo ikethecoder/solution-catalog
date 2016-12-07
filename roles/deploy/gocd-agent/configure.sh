@@ -9,3 +9,5 @@ chmod +x /opt/canzea-utils/register_service.sh
 
 (su - go -c "echo -e 'y\n'|ssh-keygen -t rsa -f ~/.ssh/id_rsa -P ''")
 
+
+chown -R go /opt/applications/
