@@ -82,8 +82,10 @@ Builder.new(parameters)
         .end()
     .add("pipeline.stages", "stage", {"name"=>"Image"})
         .append("jobs", "job")
-        .append("tasks", "task-canzea-helper", {"solution" => "digitalocean", "action" => "image", "parameters" => params4 })
-        .append("tasks", "task-canzea-helper", {"solution" => "digitalocean", "action" => "consul-update-images", "parameters" => params4 })
+        .appendAll([
+            ["tasks", "task-canzea-helper", {"solution" => "digitalocean", "action" => "image", "parameters" => params4 } ],
+            ["tasks", "task-canzea-helper", {"solution" => "digitalocean", "action" => "consul-update-images", "parameters" => params4 }]
+        ])
     .add("pipeline.stages", "stage", {"name"=>"Teardown"})
         .append("jobs", "job")
         .append("tasks", "task-canzea-helper", {"solution" => "digitalocean", "action" => "teardown", "parameters" => params4 })
