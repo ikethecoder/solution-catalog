@@ -22,6 +22,7 @@ chmod +x roles/workarounds/ruby-gems/install.sh
 
 # If this fails, then we can run: rvm remove ruby-2.3.0 manually to revert back to beginning of this script
 # Run the gems as we need the minimal to support Canzea CLI
-sh -c "./roles/workarounds/ruby-gems/install.sh"
+bash -l -c "./roles/workarounds/ruby-gems/install.sh"
+bash -l -c "gem list"
 
 gem list
