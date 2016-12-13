@@ -13,12 +13,10 @@ instances=Integer(parameters['instances'])
 for i in 1..instances
 
     file = File.read("#{Canzea::config[:pwd]}/vps-#{base}-#{i}-image.json")
-    response = JSON.parse(file)
+    item = JSON.parse(file)
 
-    response.each do |item|
-        puts item['id']
+    puts item['id']
 
-        r.register "images/#{base}-#{i}", 'id', item['id']
-        r.register "images/#{base}-#{i}", 'resource_id', item['resource_id']
-    end
+    r.register "images/#{base}-#{i}", 'id', item['id']
+    r.register "images/#{base}-#{i}", 'resource_id', item['resource_id']
 end
