@@ -26,7 +26,7 @@ serviceId = "#{node}-#{parameters['service']}-#{parameters['port']}"
 
 payload = {
     "Node" => node,
-    "Address" => publicAddress,
+    "Address" => privateAddress,
     "Service" => {
         "ID" => serviceId,
         "Service" => parameters['service'],

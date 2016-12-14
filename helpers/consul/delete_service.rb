@@ -5,9 +5,7 @@ parameters = JSON.parse(ARGV[0])
 
 http = Connection.new.prepareHttpPutConnection()
 
-payload = { "ServiceID" => parameters['service_id'], "Node" => parameters['node'] }
-
-request = Net::HTTP::Put.new("/v1/catalog/deregister")
+request = Net::HTTP::Delete.new("/v1/agent/service/deregister/#{parameters['service_id']}")
 
 res = http.request(request, payload.to_json)
 
