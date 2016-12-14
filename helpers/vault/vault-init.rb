@@ -12,7 +12,7 @@ headers = {}
 pemCert = File.read(ENV['VAULT_CLIENT_CERT'])
 pemKey = File.read(ENV['VAULT_CLIENT_KEY'])
 
-uri = URI.parse(ENV["VAULT_ADDR"] + '/v1/secret/' + svc['name'])
+uri = URI.parse(ENV["VAULT_ADDR"] + '/v1/sys/init')
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 http.ca_file = ENV['VAULT_CACERT']
