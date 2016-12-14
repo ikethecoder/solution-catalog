@@ -7,7 +7,7 @@ http = Connection.new.prepareHttpPutConnection()
 
 request = Net::HTTP::Delete.new("/v1/agent/service/deregister/#{parameters['service_id']}")
 
-res = http.request(request, payload.to_json)
+res = http.request(request)
 
 puts res.body
 
