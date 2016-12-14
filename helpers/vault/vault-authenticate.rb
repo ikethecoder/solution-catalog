@@ -3,14 +3,15 @@ require_relative 'connection'
 
 parameters = JSON.parse(ARGV[0])
 
+http = Connection.new.prepareHttpPutConnection()
+
 payload = { "app_id" => parameters['appId'], "user_id" => parameters['userId'] }
 
-headers = {
-  'Content-Type' => 'application/json'
-}
+request = Net::HTTP::Put.new("/v1/auth/app-id/login")
+request['Content-Type'] = 'application/json'
+request['X-Vault-Token'] = ENV['VAULT_TOKEN']
 
-http = Net::HTTP.new(ENV['VAULT_ADDRESS'], ENV['VAULT_PORT'])
-res = http.post("/v1/auth/app-id/login", payload.to_json, headers)
+res = http.request(request, payload.to_json)
 
 puts res.body
 
