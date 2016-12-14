@@ -13,5 +13,5 @@ n = RunnerWorker.new
 
 n.run "(cd #{folder}; mkdir .ssh; rm -f .ssh/id_rsa_#{key}*; ssh-keygen -t rsa -f #{folder}/.ssh/id_rsa_#{key} -P '')", 0, 0
 
-n.run "(cd #{folder}; chown -R #{name}:#{name} .ssh/id_rsa_#{key}*)", 0, 0
+n.run "(cd #{folder}; chown -R #{name}:#{name} .ssh)", 0, 0
 
