@@ -20,13 +20,15 @@ elsif (listener == 'loc')
     address = "localhost"
 end
 
+serviceId = "#{node}-#{parameters['service']}-#{parameters['port']}"
+
 # check = { "http" => "http://#{address}:#{port}#{checkPath}" , "interval" => "10s", "timeout" => "1s" }
 
 payload = {
     "Node" => node,
     "Address" => publicAddress,
     "Service" => {
-        "ID" => parameters['service_id'],
+        "ID" => serviceId,
         "Service" => parameters['service'],
         "Tags" => parameters['tags'],
         "Port" => parameters['port'],
