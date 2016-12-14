@@ -1,5 +1,6 @@
 require 'json'
-require 'net/http'
+require_relative 'connection'
+
 parameters = JSON.parse(ARGV[0])
 
 payload = { "type" => "app-id" }

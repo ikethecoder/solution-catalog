@@ -1,18 +1,15 @@
-
 require 'json'
-require 'net/http'
-parameters = JSON.parse(ARGV[0])
+require_relative 'connection'
 
-# curl -X PUT -d "{\"secret_shares\":1, \"secret_threshold\":1}" http://127.0.0.1:8200/v1/sys/init
+parameters = JSON.parse(ARGV[0])
+http = Connection.new.prepareHttpPutConnection()
 
 payload = { "key" => parameters['key'] }
 
-headers = {
-  'Content-Type' => 'application/json'
-}
+request = Net::HTTP::Put.new("/v1/sys/unseal")
+request['Content-Type'] = 'application/json'
 
-http = Net::HTTP.new(ENV['VAULT_ADDRESS'], ENV['VAULT_PORT'])
-res = http.put("/v1/sys/unseal", payload.to_json, headers)
+res = http.request(request, payload.to_json)
 
 puts res.body
 

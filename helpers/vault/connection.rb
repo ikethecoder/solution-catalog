@@ -5,7 +5,7 @@ require 'openssl'
 class Connection
     def prepareHttpPutConnection()
         pemCert = File.read(ENV['VAULT_CLIENT_CERT'])
-        pemKey = File.read(ENV['VAULT_CLIENT_KEY'])
+            pemKey = File.read(ENV['VAULT_CLIENT_KEY'])
 
         uri = URI.parse(ENV["VAULT_ADDR"])
         http = Net::HTTP.new(uri.host, uri.port)
