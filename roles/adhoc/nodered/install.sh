@@ -37,5 +37,6 @@ npm install -g node-red-contrib-chatbot
 
 npm install -g pm2
 
-
+# For SSL
+npm install -g fs
 
