@@ -3,8 +3,14 @@
   ],
 
   "services": [
-    {"name":"Vault"}
   ],
   "secrets": [
+  ],
+  "environment": [
+    {"name":"VAULT_CLIENT_CERT", "value":"/etc/consul.d/ssl/vault.cert"},
+    {"name":"VAULT_ADDR", "value":"https://vault.service.dc1.consul:8200"},
+    {"name":"VAULT_CLIENT_KEY", "value":"/etc/consul.d/ssl/vault.key"},
+    {"name":"VAULT_CACERT", "value":"/etc/consul.d/ssl/ca.cert"}
   ]
 }
+

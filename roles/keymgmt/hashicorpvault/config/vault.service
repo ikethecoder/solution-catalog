@@ -1,11 +1,10 @@
 [Unit]
 Description=Vault
-Requires=consul.service
 After=consul.service
 
 [Service]
 Restart=always
-ExecStart=/usr/local/bin/vault server -config /etc/vault.config
+ExecStart=/usr/local/bin/vault server -config /etc/vault.d/vault.config
 
 [Install]
 WantedBy=local.target

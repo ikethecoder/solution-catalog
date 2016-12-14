@@ -13,4 +13,4 @@ curl -X PUT -d 50 http://localhost:8500/v1/kv
 # https://github.com/JoergM/consul-examples/tree/master/http_api
 
 
-curl localhost:8500/v1/catalog/service/rocketchat
+curl -v consul.service.dc1.consul:8080/v1/catalog/service/rocketchat

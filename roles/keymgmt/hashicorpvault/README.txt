@@ -61,3 +61,8 @@ curl \
     -d '{"password":"1234"}' \
     http://127.0.0.1:8200/v1/secret/rocketchat/root
 
+
+export VAULT_CLIENT_CERT=/etc/consul.d/ssl/vault.cert
+export VAULT_ADDR=https://vault.service.dc1.consul:8200
+export VAULT_CLIENT_KEY=/etc/consul.d/ssl/vault.key
+export VAULT_CACERT=/etc/consul.d/ssl/ca.cert
