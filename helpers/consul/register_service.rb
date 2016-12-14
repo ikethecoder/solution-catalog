@@ -3,14 +3,32 @@ require_relative 'connection'
 
 parameters = JSON.parse(ARGV[0])
 
+listener = parameters['listener']
+checkPath = parameters['checkPath']
+
 http = Connection.new.prepareHttpPutConnection()
 
+node = Net::HTTP.get('169.254.169.254', '/metadata/v1/hostname')
+
+if (listener == 'pub')
+    address = Net::HTTP.get('169.254.169.254', '/metadata/v1/interfaces/public/0/ipv4/address')
+elsif (listener == 'prv')
+    address = Net::HTTP.get('169.254.169.254', '/metadata/v1/interfaces/private/0/ipv4/address')
+elsif (listener == 'loc')
+    address = "localhost"
+end
+
+check = { "http" => "http://#{address}:#{port}#{checkPath}" , "interval" => "10s", "timeout" => "1s" }
+
+
 payload = {
-    "Node" => parameters['node'],
+    "Node" => node,
     "Service" => {
         "ID" => parameters['service_id'],
         "Service" => parameters['service'],
-        "Tags" => parameters['tags']
+        "Tags" => parameters['tags'],
+        "Port" => parameters['port'],
+        "Address" => address
     }
 }
 
