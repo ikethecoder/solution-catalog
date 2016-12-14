@@ -5,15 +5,16 @@ parameters = JSON.parse(ARGV[0])
 
 http = Connection.new.prepareHttpPutConnection()
 
-appId = parameters['appId']
+payload = { "ServiceID" => parameters['name'] }
 
-payload = { "value" => parameters['policy'], "display_name" => parameters['displayName'] }
-
-request = Net::HTTP::Delete.new("/v1/agent/service/unregister/#{name}")
+request = Net::HTTP::Put.new("/v1/catalog/service/deregister")
 
 res = http.request(request, payload.to_json)
 
+puts res.body
+
 if ( Integer(res.code) != 200 )
+    puts res.code
     puts res.body
     raise("Deleting service configuration failed")
 end
