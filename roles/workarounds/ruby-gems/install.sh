@@ -26,3 +26,5 @@ gem install xml-simple
 gem install cri
 
 gem install selenium-webdriver
+
+gem install canzea

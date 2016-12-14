@@ -1,0 +1,159 @@
+Content-Type: multipart/mixed; boundary="===============8645434374073493512=="
+MIME-Version: 1.0
+
+--===============8645434374073493512==
+MIME-Version: 1.0
+Content-Type: text/cloud-config; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config"
+
+#cloud-config
+disable_root: false
+manage_etc_hosts: true
+
+network:
+    config: disabled
+
+locale_configfile: /etc/sysconfig/i18n
+
+cloud_init_modules:
+ - migrator
+ - seed_random
+ - bootcmd
+ - write-files
+ - [ growpart, always ]
+ - [ resizefs, always ]
+ - set_hostname
+ - [ update_hostname, once-per-instance ]
+ - [ update_etc_hosts, once-per-instance ]
+ - ca-certs
+ - rsyslog
+ - users-groups
+ - ssh
+
+cloud_config_modules:
+ - emit_upstart
+ - disk_setup
+ - mounts
+ - ssh-import-id
+ - locale
+ - set-passwords
+ - package-update-upgrade-install
+ - landscape
+ - timezone
+ - puppet
+ - chef
+ - salt-minion
+ - mcollective
+ - disable-ec2-metadata
+ - runcmd
+
+cloud_final_modules:
+ - rightscale_userdata
+ - [ scripts-vendor, always ]
+ - scripts-per-once
+ - scripts-per-boot
+ - scripts-per-instance
+ - scripts-user
+ - ssh-authkey-fingerprints
+ - keys-to-console
+ - phone-home
+ - final-message
+ - power-state-change
+
+system_info:
+  distro: rhel
+  paths:
+    cloud_dir: /var/lib/cloud
+    templates_dir: /etc/cloud/templates
+  ssh_svcname: sshd
+
+
+--===============8645434374073493512==
+MIME-Version: 1.0
+Content-Type: text/cloud-boothook; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="entropy-seed"
+
+#!/bin/sh -x
+# DigitalOcean Entropy Seed script
+logger -t DigitalOcean 'adding random seed to /dev/urandom'
+(base64 -d <<EOE
+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
+
+EOE
+) > /dev/urandom
+
+
+--===============8645434374073493512==
+MIME-Version: 1.0
+Content-Type: text/cloud-boothook; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="use_old_metadata"
+
+#!/bin/sh
+
+# DigitalOcean updated the vendor-data to better support various distributions.
+# This script makes it so older snapshots will work by restoring the default behavior
+# of cloud-init.
+
+if [ -e /etc/cloud/cloud.cfg.disabled ]; then
+    mv /etc/cloud/cloud.cfg /etc/cloud/cloud.cfg.d/99-digitalocean
+    mv /etc/cloud/cloud.cfg.disabled /etc/cloud/cloud.cfg
+    logger -t DigitalOcean "restored default cloud-init behavior by renaming /etc/cloud/cloud.cfg.disabled to /etc/cloud/cloud.cfg"
+fi
+
+--===============8645434374073493512==--

@@ -3,8 +3,9 @@ Description=Consul
 After=network.target
 
 [Service]
+User=consul
 Restart=always
-ExecStart=/usr/local/bin/consul agent -bind {{PRIVATE_IPV4}} -client {{PRIVATE_IPV4}} -data-dir /opt/consul -server -ui -bootstrap -config-dir /etc/consul.d
+ExecStart=/usr/local/bin/consul agent -bind {{PRIVATE_IPV4}} -client {{PRIVATE_IPV4}} -data-dir /opt/consul/data -server -ui -config-dir /etc/consul.d
 
 [Install]
 WantedBy=local.target
