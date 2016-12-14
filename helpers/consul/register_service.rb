@@ -10,19 +10,21 @@ http = Connection.new.prepareHttpPutConnection()
 
 node = Net::HTTP.get('169.254.169.254', '/metadata/v1/hostname')
 
+privateAddress = Net::HTTP.get('169.254.169.254', '/metadata/v1/interfaces/private/0/ipv4/address')
+
 if (listener == 'pub')
     address = Net::HTTP.get('169.254.169.254', '/metadata/v1/interfaces/public/0/ipv4/address')
 elsif (listener == 'prv')
-    address = Net::HTTP.get('169.254.169.254', '/metadata/v1/interfaces/private/0/ipv4/address')
+    address = privateAddress
 elsif (listener == 'loc')
     address = "localhost"
 end
 
-check = { "http" => "http://#{address}:#{port}#{checkPath}" , "interval" => "10s", "timeout" => "1s" }
-
+# check = { "http" => "http://#{address}:#{port}#{checkPath}" , "interval" => "10s", "timeout" => "1s" }
 
 payload = {
     "Node" => node,
+    "Address" => publicAddress,
     "Service" => {
         "ID" => parameters['service_id'],
         "Service" => parameters['service'],
@@ -41,5 +43,5 @@ puts res.body
 if ( Integer(res.code) != 200 )
     puts res.code
     puts res.body
-    raise("Deleting service configuration failed")
+    raise("Registering service configuration failed")
 end
