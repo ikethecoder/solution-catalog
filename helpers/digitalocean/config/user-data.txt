@@ -26,6 +26,8 @@ echo "CANZDATA"
 
 echo "USER-DATA.  The time is now $(date -R)!" | tee -a /root/output.txt
 
+export HOME=/root
+
 export CONSUL_URL="{{CONSUL_URL}}"
 
 logger -t Canzea "Run configuration"
