@@ -2,6 +2,7 @@ require 'droplet_kit'
 require 'json'
 require 'registry'
 require 'canzea/config'
+require 'template-runner'
 
 parameters = JSON.parse(ARGV[0])
 
@@ -25,7 +26,7 @@ token=ENV["DIGITALOCEAN_TOKEN"]
 
 client = DropletKit::Client.new(access_token: token)
 
-userData = { "CONSUL_URL" => ENV['CONSUL_URL'], "VAULT_TOKEN" => ENV['VAULT_TOKEN'] }
+userData = Template.new.process 'helpers/digitalocean/config/user-data.txt', {}
 
 payload = {
     names: ary,
@@ -35,7 +36,7 @@ payload = {
     image: image,
     private_networking: true,
     ipv6: false,
-    user_data: JSON.generate(userData),
+    user_data: userData,
     tags: parameters['tags']
 }
 

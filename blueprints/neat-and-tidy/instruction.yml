@@ -18,6 +18,7 @@ instructions:
         - step:workarounds:cloud-profile
         - step:workarounds:ruby-upgrade
         - step:workarounds:ruby-gems
+        - step:workarounds:canzea
         - step:provisioning:digitalocean
         - step:workarounds:sshd
         - step:workarounds:network

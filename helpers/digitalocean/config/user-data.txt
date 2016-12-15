@@ -1,0 +1,20 @@
+Content-Type: multipart/mixed; boundary="===============8645434374073493512=="
+MIME-Version: 1.0
+
+--===============8645434374073493512==
+MIME-Version: 1.0
+Content-Type: text/cloud-boothook; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="use_old_metadata"
+
+#!/bin/sh
+
+export CONSUL_URL="{{CONSUL_URL}}"
+
+logger -t Canzea "Run configuration"
+
+canzea -v
+
+canzea --reset
+
+--===============8645434374073493512==--
