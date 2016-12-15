@@ -18,9 +18,6 @@ end
 
 http = Connection.new.prepareHttpPutConnection()
 
-userId = parameters['userId']
-payload = { "value" => parameters['appId'] }
-
 request = Net::HTTP::Post.new("/v1/secret/#{key}")
 request['Content-Type'] = 'application/json'
 request['X-Vault-Token'] = ENV['VAULT_TOKEN']
