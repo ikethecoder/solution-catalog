@@ -28,9 +28,9 @@ var server = http.createServer(app);
 
 // Create the settings object - see default settings.js file for other options
 var settings = {
-    httpAdminRoot:"/red",
+    httpAdminRoot:"/admin",
     httpNodeRoot: "/api",
-    userDir:"/home/pm2user/.nodered/",
+    userDir:"/home/pm2user/.node-red/",
     adminAuth: {
         type: "credentials",
         users: [{
@@ -44,6 +44,14 @@ var settings = {
             level: "info",
             metrics: false,
             audit: false
+        }
+    },
+    editorTheme: {
+        page: {
+            title: "Ecosystem Gateway"
+        },
+        header: {
+            title: "Ecosystem Gateway"
         }
     },
     functionGlobalContext: { }    // enables global context
