@@ -1,22 +1,21 @@
 # ruby helpers/helper-run.rb consul add_keyvalue '{"key":"test/a","value":"value"}'
 
 require 'json'
-require 'net/http'
+require_relative 'connection'
+
 parameters = JSON.parse(ARGV[0])
 
 key = parameters['key']
 value = parameters['value']
 
-# Get the authtoken and userId
-uri = URI(ENV['CONSUL_URL'])
+http = Connection.new.prepareHttpPutConnection()
 
-headers = {
-}
+request = Net::HTTP::Put.new("/v1/kv/#{key}")
 
-http = Net::HTTP.new(uri.host, uri.port)
-res = http.put("/v1/kv/#{key}", value, headers)
+res = http.request(request, value)
 
 if ( Integer(res.code) != 200 )
+    puts res.code
     puts res.body
     raise("Adding key value configuration failed")
 end
