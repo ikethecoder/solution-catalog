@@ -42,9 +42,8 @@ instructions:
         - step:adhoc:nodered
         - step:adhoc:nodered-oauth
         - step:deploy:gocd-agent
-        - step:container:docker
-        - step:registry:docker
         - step:loadbalancer:nginx-consul
+        - step:workarounds:iptables
         - wire:digitalocean:image
         - wire:digitalocean:teardown
 
