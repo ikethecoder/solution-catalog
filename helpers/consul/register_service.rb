@@ -29,16 +29,16 @@ payload = {
     "Address" => privateAddress,
     "Service" => {
         "ID" => serviceId,
-        "Service" => serviceId,
+        "Name" => serviceId,
         "Tags" => parameters['tags'],
         "Port" => parameters['port'],
         "Address" => address
     }
 }
 
-request = Net::HTTP::Put.new("/v1/catalog/register")
+request = Net::HTTP::Put.new("/v1/agent/service/register")
 
-res = http.request(request, payload.to_json)
+res = http.request(request, payload['Service'].to_json)
 
 puts res.body
 
