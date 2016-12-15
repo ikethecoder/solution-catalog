@@ -27,6 +27,7 @@ instructions:
         - step:sourcecontrol:git
         - step:configdb:consul
         - step:keymgmt:hashicorpvault
+        - step:workarounds:ecosystem-bootstrap
         - step:loadbalancer:nginx
         - step:virtualmachine:java
         - step:workarounds:sudoers
