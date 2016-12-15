@@ -4,6 +4,7 @@ require 'net/ssh'
 require 'net/sftp'
 require 'json'
 require 'canzea/config'
+require 'active_support/time'
 
 parameters = JSON.parse(ARGV[0])
 
