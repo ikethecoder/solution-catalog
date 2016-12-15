@@ -20,6 +20,9 @@ for try in [0..10]
         response.each do |item|
             puts item['name']
 
+            privateIp = nil
+            publicIp = nil
+
             item['networks']['v4'].each do |net|
                 if net['type'] == "private"
                     privateIp = net['ip_address']
