@@ -26,7 +26,7 @@ token=ENV["DIGITALOCEAN_TOKEN"]
 
 client = DropletKit::Client.new(access_token: token)
 
-userData = Template.new.process 'helpers/digitalocean/config/user-data.txt', {}
+userData = Template.new.process "#{ENV['CATALOG_LOCATION']}/helpers/digitalocean/config/user-data.txt", {}
 
 payload = {
     names: ary,
