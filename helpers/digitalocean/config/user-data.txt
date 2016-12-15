@@ -1,13 +1,30 @@
-Content-Type: multipart/mixed; boundary="===============8645434374073493512=="
+Content-Type: multipart/mixed; boundary="===============8645434374073493599=="
 MIME-Version: 1.0
 
---===============8645434374073493512==
+--===============8645434374073493599==
+MIME-Version: 1.0
+Content-Type: text/x-shellscript; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="canzea_1"
+
+#!/bin/sh
+
+echo "CANZDATA_1"
+
+echo "USER-DATA_1.  The time is now $(date -R)!" | tee -a /root/output.txt
+
+
+--===============8645434374073493599==
 MIME-Version: 1.0
 Content-Type: text/cloud-boothook; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment; filename="use_old_metadata"
+Content-Disposition: attachment; filename="canzea_2"
 
 #!/bin/sh
+
+echo "CANZDATA"
+
+echo "USER-DATA.  The time is now $(date -R)!" | tee -a /root/output.txt
 
 export CONSUL_URL="{{CONSUL_URL}}"
 
@@ -17,4 +34,4 @@ canzea -v
 
 canzea --reset
 
---===============8645434374073493512==--
+--===============8645434374073493599==--
