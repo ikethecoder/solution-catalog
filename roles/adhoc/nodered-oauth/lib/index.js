@@ -1,16 +1,15 @@
 var http = require('http');
 var express = require("express");
 var RED = require("node-red");
-var bodyParser = require('body-parser'),
+var bodyParser = require('body-parser');
 var oauthserver = require('oauth2-server');
-var model = require('./memory.js')
+var model = require('./memory.js');
 
 // Create an Express app
 var app = express();
 
-// app.use(bodyParser.urlencoded({ extended: true }));
-
-// app.use(bodyParser.json());
+app.use("/oauth/token", bodyParser.urlencoded({ extended: true }));
+app.use("/oauth/token", bodyParser.json());
 
 app.oauth = oauthserver({
   model: model, // See below for specification
@@ -19,13 +18,6 @@ app.oauth = oauthserver({
 });
 
 app.all('/oauth/token', app.oauth.grant());
-
-app.get('/blah', app.oauth.authorise(), function (req, res) {
-  model.dump();
-  res.send('Secret area');
-});
-
-app.use(app.oauth.errorHandler());
 
 
 // Add a simple route for static content served from 'public'
@@ -64,7 +56,9 @@ RED.init(server,settings);
 app.use(settings.httpAdminRoot,RED.httpAdmin);
 
 // Serve the http nodes UI from /api
-app.use(settings.httpNodeRoot,RED.httpNode);
+app.use(settings.httpNodeRoot,app.oauth.authorise(), RED.httpNode);
+
+app.use(settings.httpNodeRoot,app.oauth.errorHandler());
 
 server.listen(8000);
 

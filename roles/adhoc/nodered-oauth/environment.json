@@ -1,0 +1,10 @@
+{
+  "keyvalues": [
+    {"name":"nodes/build-a-01/secure_host"}
+  ],
+
+  "services": [
+  ],
+  "secrets": [
+  ]
+}
