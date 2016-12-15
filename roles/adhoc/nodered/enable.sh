@@ -1,6 +1,10 @@
 
 canzea --util=gen-user pm2user
 
+groupadd pm2grp
+
+usermod -a -G pm2grp pm2user
+
 (cd /home/pm2user && sudo su -c "env PATH=$PATH:/usr/bin pm2 startup systemd -u pm2user --hp /home/pm2user")
 
 (cd /home/pm2user && sudo su pm2user -c "env PATH=$PATH:/usr/bin pm2 start /usr/bin/node-red -- -v")
