@@ -5,9 +5,9 @@ token=ENV["DIGITALOCEAN_TOKEN"]
 
 parameters = JSON.parse(ARGV[0])
 
-domain = parameters[0]
-ip = parameters[1]
-rootHost = parameters[2]
+domain = parameters["domain"]
+ip = parameters["ip"]
+rootHost = parameters["rootHost"]
 
 client = DropletKit::Client.new(access_token: token)
 
