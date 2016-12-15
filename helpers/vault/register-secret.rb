@@ -3,6 +3,7 @@
 require 'json'
 require 'net/http'
 require 'template-runner'
+require_relative 'connection'
 
 parameters = JSON.parse(ARGV[0])
 
@@ -14,17 +15,20 @@ payload.each_pair do |k, v|
     payload[k] = Template.new.processString(v, {})
 end
 
-uri = ENV['VAULT_URL'] + "/v1/secret/#{key}"
 
-headers = {
-  'X-Vault-Token' => ENV['VAULT_TOKEN'],
-  'Content-Type' => 'application/json'
-}
+http = Connection.new.prepareHttpPutConnection()
 
-http = Net::HTTP.new(ENV['VAULT_ADDRESS'], ENV['VAULT_PORT'])
-res = http.post("/v1/secret/#{key}", payload.to_json, headers)
+userId = parameters['userId']
+payload = { "value" => parameters['appId'] }
+
+request = Net::HTTP::Post.new("/v1/secret/#{key}")
+request['Content-Type'] = 'application/json'
+request['X-Vault-Token'] = ENV['VAULT_TOKEN']
+
+res = http.request(request, payload.to_json)
 
 if (Integer(res.code) != 204)
+   puts res.code
    puts res.msg
    raise("Unable to register secret #{res.code}")
 end
