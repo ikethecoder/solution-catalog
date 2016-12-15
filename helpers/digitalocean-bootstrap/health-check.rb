@@ -3,29 +3,32 @@
 require 'net/ssh'
 require 'net/sftp'
 require 'json'
-require 'registry'
 require 'canzea/config'
 
 parameters = JSON.parse(ARGV[0])
 
-r = Registry.new
-
-base=parameters['base']
-instances=Integer(parameters['instances'])
 privateKey=parameters['privateKey']
 
-ary = []
-for i in 1..instances
-    id = i.to_s.rjust(2, '0')
-    ary.push("nodes/#{base}-#{id}")
-end
+file = File.read("#{Canzea::config[:pwd]}/#{parameters['metadata']}")
+response = JSON.parse(file)
 
 success = false
 for try in [0..10]
     begin
-        for id in ary
 
-            @hostname = r.getValue "#{id}", "public_ip"
+        response.each do |item|
+            puts item['name']
+
+            item['networks']['v4'].each do |net|
+                if net['type'] == "private"
+                    privateIp = net['ip_address']
+                end
+                if net['type'] == "public"
+                    publicIp = net['ip_address']
+                end
+            end
+
+            @hostname = publicIp
             @username = "root"
 
             begin
