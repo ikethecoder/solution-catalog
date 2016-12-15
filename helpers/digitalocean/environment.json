@@ -7,5 +7,8 @@
   ],
   "secrets": [
     {"name":"digitalocean"}
+  ],
+  "environment": [
+    {"name":"VAULT_URL","value":"https://vault.service.dc1.consul:8200"}
   ]
 }
