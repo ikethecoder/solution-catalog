@@ -3,7 +3,7 @@
   ],
 
   "services": [
-    {"name":"Vault"}
+    {"name":"vault"}
   ],
   "secrets": [
     {"name":"digitalocean"}
