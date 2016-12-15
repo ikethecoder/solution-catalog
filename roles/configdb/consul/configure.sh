@@ -16,4 +16,4 @@ cp /etc/consul.d/ssl/CA/consul.* /etc/consul.d/ssl/.
 cp /etc/consul.d/ssl/CA/ca.cert /etc/consul.d/ssl/.
 rm /etc/consul.d/ssl/consul.csr
 
-`pwd`/roles/configdb/consul/firewall.sh
+sh -c `pwd`/roles/configdb/consul/firewall.sh
