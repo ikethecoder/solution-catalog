@@ -6,7 +6,6 @@ canzea --config_git_commit --template=roles/configdb/consul/config/etc/systemd/s
 
 canzea --config_git_commit --template=roles/configdb/consul/config/config.json /etc/consul.d/config.json
 
-
 #// Create a certificate request and get it signed by local CA
 
 (cd /etc/consul.d/ssl/CA && openssl req -newkey rsa:1024 -nodes -out consul.csr -keyout consul.key -subj "/C=US/ST=Denial/L=Springfield/O=Canzea/CN=consul.service.dc1.consul")
