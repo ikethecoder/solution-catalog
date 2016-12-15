@@ -39,7 +39,6 @@ instructions:
         - step:deploy:gocd-plugins
         - step:adhoc:nodered
         - step:adhoc:nodered-oauth
-        - step:workarounds:swap
         - step:deploy:gocd-agent
         - step:container:docker
         - step:registry:docker
