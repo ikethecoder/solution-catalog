@@ -3,7 +3,6 @@
   ],
 
   "services": [
-    {"name":"consul"},
     {"name":"vault"}
   ],
   "secrets": [
