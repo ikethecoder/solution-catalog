@@ -11,5 +11,5 @@ canzea --lifecycle=wire --solution=vault --action=vault-init-unseal --args='{}'
 canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key":"digitalocean","data":{"token":"{{DIGITALOCEAN_TOKEN}}"}}'
 
 #// DNS Registration
-canzea --lifecycle=wire --solution=digitalocean --action=register-dns --args='{"domain":"ese385","ip":"162.243.172.46","rootHost":"canzea.cc"}'
+canzea --lifecycle=wire --solution=digitalocean --action=register-dns --args='{"domain":"ese385","ip":"{{PUBLIC_IPV4}}","rootHost":"canzea.cc"}'
 
