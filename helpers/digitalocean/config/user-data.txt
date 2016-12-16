@@ -32,6 +32,8 @@ export CONSUL_URL="{{CONSUL_URL}}"
 
 logger -t Canzea "Run configuration"
 
+gem install canzea
+
 canzea -v
 
 canzea --reset
