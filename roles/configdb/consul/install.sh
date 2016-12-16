@@ -26,11 +26,6 @@ chown root:consul /etc/consul.d
 chmod 750 /etc/consul.d
 
 
-#// Prevent HTTP API from clients
-
-iptables -A OUTPUT -p tcp -m tcp --dport 8500 -j REJECT
-
-iptables -A OUTPUT -m tcp -p tcp --dport 8500 -m owner --uid-owner consul -j ACCEPT
 
 
 #// Create the SSL Structure
