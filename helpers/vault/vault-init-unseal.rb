@@ -49,3 +49,5 @@ extraConfig = Canzea::config[:catalog_location] + "/env.json"
 env = JSON.parse(File.read(extraConfig))
 env['VAULT_TOKEN'] = token
 env['VAULT_URL'] = "https://vault.service.dc1.consul:8200"
+
+File.write(extraConfig, JSON.generate(env))
