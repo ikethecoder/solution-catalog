@@ -38,11 +38,5 @@ if ( Integer(res.code) != 200 )
     raise("Unseal of vault failed")
 end
 
-
-extraConfig = Canzea::config[:catalog_location] + "/env.json"
-
-env = JSON.parse(File.read(extraConfig))
-env['VAULT_TOKEN'] = token
-env['VAULT_URL'] = "https://vault.service.dc1.consul:8200"
-
-File.write(extraConfig, JSON.generate(env))
+canzea --util=add-env VAULT_TOKEN token
+canzea --util=add-env VAULT_URL "https://vault.service.dc1.consul:8200"
