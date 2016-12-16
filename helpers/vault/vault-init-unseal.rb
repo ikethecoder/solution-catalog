@@ -1,4 +1,5 @@
 require 'json'
+require 'canzea'
 require_relative 'connection'
 
 parameters = JSON.parse(ARGV[0])
@@ -11,13 +12,8 @@ request = Net::HTTP::Put.new("/v1/sys/init")
 
 res = http.request(request, payload.to_json)
 
-
-puts res.body
 # {"keys":["63f4c80fcd73c64937c430bd922193df13b95a1ca596bd9f32bbe42e2d3d9243"],"root_token":"30db3502-ca03-8456-0810-6ec59f964fd9"}
-# Get the token and key
-# Call unseal with the key
-# Set environment variables that will be picked up by Canzea
-#
+
 if ( Integer(res.code) != 200 )
     puts res.code
     raise("Initialization of vault failed")
@@ -27,7 +23,6 @@ info = JSON.parse(res.body)
 
 key = info['keys'][0]
 token = info['root_token']
-
 
 payload = { "key" => key }
 
