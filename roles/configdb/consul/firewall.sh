@@ -16,11 +16,13 @@ iptables -A OUTPUT -m tcp -p tcp --dport 8500 -m owner --uid-owner consul -j ACC
 
 iptables -L -n
 
+yum -y remove iptables-services
+yum -y install iptables-services
+
 /sbin/service iptables save
 
-# chkconfig iptables on
-
-service iptables restart
+systemctl restart iptables
+systemctl enable iptables
 
 #// DNS - disable resolv and update consul config to forward dns requests to external DNS
 canzea --config_git_commit --template=roles/configdb/consul/config/resolv.conf /etc/resolv.conf

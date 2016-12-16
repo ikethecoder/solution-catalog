@@ -28,3 +28,5 @@ cp /etc/consul.d/ssl/CA/ca.cert /home/pm2user/ssl/.
 
 
 canzea --config_git_commit --template=roles/adhoc/nodered/config/settings.js /home/pm2user/.node-red/settings.js
+
+chown -R pm2user:pm2user /home/pm2user/.node-red
