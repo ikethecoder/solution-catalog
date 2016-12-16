@@ -14,4 +14,4 @@ iptables -L -n
 
 iptables-save | sudo tee /etc/sysconfig/iptables
 
-service iptables restart
+# service iptables restart
