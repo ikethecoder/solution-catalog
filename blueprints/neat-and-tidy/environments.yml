@@ -1,0 +1,47 @@
+
+environments:
+   -
+      name: Build2
+      title:
+        label: Build2
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: M4GB_D60GB
+            qty: 1
+            segment: B
+            label: Monitoring
+          -
+            product: M4GB_D60GB
+            qty: 1
+            segment: D
+            label: GitLab
+          -
+            product: M4GB_D60GB
+            qty: 1
+            segment: B
+            label: Collaboration
+
+   -
+      name: Build2
+      title:
+        label: Build2
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: M4GB_D60GB
+            qty: 1
+            segment: B
+            label: Monitoring
+          -
+            product: M4GB_D60GB
+            qty: 1
+            segment: D
+            label: GitLab
+          -
+            product: M4GB_D60GB
+            qty: 1
+            segment: B
+            label: Collaboration

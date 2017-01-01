@@ -32,10 +32,16 @@ export CONSUL_URL="{{CONSUL_URL}}"
 
 logger -t Canzea "Run configuration"
 
+# Upgrade to the latest version of canzea CLI
 gem install canzea
 
 canzea -v
 
+# Get the latest version of the ecosystem-catalog
 canzea --reset
+
+logger -t Canzea "Configure services"
+
+/var/lib/cloud/scripts/configure.sh
 
 --===============8645434374073493599==--

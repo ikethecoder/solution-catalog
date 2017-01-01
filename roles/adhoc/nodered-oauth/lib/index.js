@@ -30,6 +30,7 @@ var server = http.createServer(app);
 var settings = {
     httpAdminRoot:"/admin",
     httpNodeRoot: "/api",
+    ui: {"path":"dashboard"},
     userDir:"/home/pm2user/.node-red/",
     adminAuth: {
         type: "credentials",

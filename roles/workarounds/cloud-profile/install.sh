@@ -14,6 +14,6 @@ mkdir /opt/cloud-profile
 (cd /opt/cloud-profile && git add -A && git commit -m"Initial")
 
 
-cp roles/workarounds/cloud-profile/per-instance/configure.sh /var/lib/cloud/scripts/per-instance/configure.sh
+cp roles/workarounds/cloud-profile/per-instance/configure.sh /var/lib/cloud/scripts/configure.sh
 
-chmod +x /var/lib/cloud/scripts/per-instance/configure.sh
+chmod +x /var/lib/cloud/scripts/configure.sh

@@ -1,0 +1,6 @@
+
+buildingBlocks:
+   -
+     solution: Git
+     role: Source Control
+     category: Monitoring

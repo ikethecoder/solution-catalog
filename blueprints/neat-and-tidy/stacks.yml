@@ -1,0 +1,32 @@
+
+
+stacks:
+   -
+     name: JavaStack
+     solutions:
+        - Spring
+        - Java
+        - Selenium
+        - Maven
+   -
+     name: ReactStack
+     solutions:
+        - React
+        - Redux
+        - Babel
+        - Webpack
+        - Browsersync
+        - Mocha
+        - Isparta
+        - TrackJS
+        - ESLint
+        - SASS
+        - npm
+   -
+     name: Configuration
+     solutions:
+        - Ruby
+        - Python
+        - Groovy
+
+
