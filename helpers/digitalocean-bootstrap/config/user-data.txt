@@ -9,9 +9,9 @@ Content-Disposition: attachment; filename="canzea_1"
 
 #!/bin/sh
 
-echo "CANZDATA_BOOTSTRAP_1"
+echo "CANZDATA_1"
 
-echo "USER-DATA_BOOTSTRAP_1.  The time is now $(date -R)!" | tee -a /root/output.txt
+echo "USER-DATA_1.  The time is now $(date -R)!" | tee -a /root/output.txt
 
 
 --===============8645434374073493599==
@@ -22,8 +22,26 @@ Content-Disposition: attachment; filename="canzea_2"
 
 #!/bin/sh
 
-echo "CANZDATA_BOOTSTRAP"
+echo "CANZDATA"
 
-echo "USER-DATA-BOOTSTRAP.  The time is now $(date -R)!" | tee -a /root/output.txt
+echo "USER-DATA.  The time is now $(date -R)!" | tee -a /root/output.txt
+
+export HOME=/root
+
+export CONSUL_URL="{{CONSUL_URL}}"
+
+logger -t Canzea "Run configuration"
+
+# Upgrade to the latest version of canzea CLI
+gem install canzea
+
+canzea -v
+
+# Get the latest version of the ecosystem-catalog
+canzea --reset
+
+logger -t Canzea "Configure services"
+
+/var/lib/cloud/scripts/configure.sh
 
 --===============8645434374073493599==--
