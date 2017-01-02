@@ -39,16 +39,16 @@ logger -t Canzea "Run configuration"
 # Upgrade to the latest version of canzea CLI
 gem install canzea
 
-canzea -v
+canzea -v >> /root/info.log
 
 # Get the latest version of the ecosystem-catalog
-canzea --reset
+canzea --reset >> /root/info.log
 
-gem list
+gem list >> /root/info.log
 
-rvm list
+rvm list >> /root/info.log
 
-rvm use 2.3.3
+rvm use 2.3.3 >> /root/info.log
 
 logger -t Canzea "Configure services"
 
