@@ -33,7 +33,7 @@ payload = {
     ssh_keys: [fingerprint],
     region: region,
     size: size,
-    image: image,
+    image: Integer(image) rescue image,
     private_networking: true,
     ipv6: false,
     user_data: userData,
