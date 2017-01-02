@@ -30,6 +30,8 @@ export HOME=/root
 
 export CONSUL_URL="{{CONSUL_URL}}"
 
+export ECOSYSTEM="{{ECOSYSTEM}}"
+
 logger -t Canzea "Run configuration"
 
 # Upgrade to the latest version of canzea CLI
