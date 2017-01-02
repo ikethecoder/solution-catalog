@@ -9,6 +9,9 @@ canzea --lifecycle=wire --solution=consul --action=add_keyvalue --args='{"key":"
 #// Inject the VAULT_URL and VAULT_TOKEN
 canzea --lifecycle=wire --solution=vault --action=vault-init-unseal --args='{}'
 
+# canzea --util=add-env VAULT_TOKEN token
+# canzea --util=add-env VAULT_URL "https://vault.service.dc1.consul:8200"
+
 #// Add Digital Ocean secret
 canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key":"digitalocean","data":{"token":"{{DIGITALOCEAN_TOKEN}}"}}'
 
