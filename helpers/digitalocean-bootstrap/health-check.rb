@@ -8,6 +8,8 @@ require 'active_support/time'
 
 parameters = JSON.parse(ARGV[0])
 
+base=parameters['base']
+
 privateKey=parameters['privateKey']
 
 file = File.read("#{Canzea::config[:pwd]}/#{parameters['metadata']}")
@@ -17,6 +19,7 @@ success = false
 for try in [0..10]
     begin
 
+        index = 1
         response.each do |item|
             puts item['name']
 
@@ -34,6 +37,10 @@ for try in [0..10]
 
             @hostname = publicIp
             @username = "root"
+
+            File.open("#{Canzea::config[:pwd]}/vps-#{base}-#{index}.json", 'w') { |file| file.write(@hostname) }
+
+            index = index + 1
 
             begin
                 puts "Connecting health check ON " + @hostname
