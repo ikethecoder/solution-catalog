@@ -46,15 +46,15 @@ canzea --reset | tee -a /root/output.txt
 
 gem list | tee -a /root/output.txt
 
-rvm list | tee -a /root/output.txt
+/usr/local/rvm/bin/rvm list | tee -a /root/output.txt
 
-rvm use 2.3.3 | tee -a /root/output.txt
+/usr/local/rvm/bin/rvm use 2.3.3 | tee -a /root/output.txt
 
 ruby -v | tee -a /root/output.txt
 
 gem list | tee -a /root/output.txt
 
-gem install droplet_kit
+gem install droplet_kit | tee -a /root/output.txt
 
 logger -t Canzea "Configure services"
 
