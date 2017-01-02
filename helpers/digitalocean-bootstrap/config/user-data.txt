@@ -44,6 +44,12 @@ canzea -v
 # Get the latest version of the ecosystem-catalog
 canzea --reset
 
+gem list
+
+rvm list
+
+rvm use 2.3.3
+
 logger -t Canzea "Configure services"
 
 /var/lib/cloud/scripts/configure.sh
