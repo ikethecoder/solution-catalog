@@ -9,7 +9,7 @@ canzea --lifecycle=wire --solution=consul --action=add_keyvalue --args='{"key":"
 canzea --lifecycle=wire --solution=vault --action=vault-init-unseal --args='{}'
 
 
-canzea --util=add-env VAULT_TOKEN xxxxxxxx
+# canzea --util=add-env VAULT_TOKEN xxxxxxxx
 
 #// Add Digital Ocean secret
 canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key":"digitalocean","data":{"token":"{{DIGITALOCEAN_TOKEN}}"}}'
