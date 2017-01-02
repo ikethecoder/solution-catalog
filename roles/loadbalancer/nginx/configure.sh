@@ -10,6 +10,7 @@ htpasswd -c -db /etc/nginx/htpasswd.users admin admin1admin
 
 
 
-yes | cp -f roles/loadbalancer/nginx/config/nginx.service /etc/systemd/system/multi-user.target.wants/.
+canzea --config_git_commit --template=roles/loadbalancer/nginx/config/nginx.service /usr/lib/systemd/system/nginx.service
+
 systemctl daemon-reload
 
