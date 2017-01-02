@@ -1,5 +1,8 @@
 
 
+yum -y remove iptables-services
+yum -y install iptables-services
+
 iptables -t nat -A PREROUTING -p udp -m udp --dport 53 -j REDIRECT --to-ports 8600
 
 iptables -t nat -A PREROUTING -p tcp -m tcp --dport 53 -j REDIRECT --to-ports 8600
@@ -15,9 +18,6 @@ iptables -A OUTPUT -p tcp -m tcp --dport 8500 -j REJECT
 iptables -A OUTPUT -m tcp -p tcp --dport 8500 -m owner --uid-owner consul -j ACCEPT
 
 iptables -L -n
-
-yum -y remove iptables-services
-yum -y install iptables-services
 
 /sbin/service iptables save
 
