@@ -1,7 +1,5 @@
 
 
-sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
-
 canzea --config_git_commit --template=roles/certprovider/letsencrypt/config/ssl.conf /etc/nginx/conf.d/ssl.conf
 
 echo "Registering domain $NODES_BUILD_A_01_SECURE_HOST"
