@@ -38,6 +38,8 @@ response.each do |dropitem|
             sleep(10.seconds)
         else
             active = true
+            File.open("#{Canzea::config[:pwd]}/vps-#{dropitem['name']}-image-active.json", 'w') { |file| file.write(image.to_json) }
+
         end
     end
 end
