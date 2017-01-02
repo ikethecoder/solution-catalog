@@ -30,6 +30,8 @@ export HOME=/root
 
 export CONSUL_URL="{{CONSUL_URL}}"
 
+export DIGITALOCEAN_TOKEN="xxxxxxxxx"
+
 export ECOSYSTEM="{{ECOSYSTEM}}"
 
 logger -t Canzea "Run configuration"
