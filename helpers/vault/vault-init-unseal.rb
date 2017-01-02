@@ -39,4 +39,6 @@ if ( Integer(res.code) != 200 )
     raise("Unseal of vault failed")
 end
 
+File.open("#{Canzea::config[:pwd]}/vault-token", 'w') { |file| file.write(token) }
+
 # AddEnv.new.add "VAULT_TOKEN", token
