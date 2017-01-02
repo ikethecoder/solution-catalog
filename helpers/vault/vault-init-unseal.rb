@@ -1,6 +1,6 @@
 require 'json'
 require 'canzea'
-require 'canzea/commands/add-env'
+# require 'canzea/commands/add-env'
 require_relative 'connection'
 
 parameters = JSON.parse(ARGV[0])
@@ -39,4 +39,4 @@ if ( Integer(res.code) != 200 )
     raise("Unseal of vault failed")
 end
 
-AddEnv.new.add "VAULT_TOKEN", token
+# AddEnv.new.add "VAULT_TOKEN", token
