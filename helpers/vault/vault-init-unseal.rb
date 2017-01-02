@@ -1,6 +1,6 @@
 require 'json'
 require 'canzea'
-require 'canzea/add-env'
+require 'canzea/commands/add-env'
 require_relative 'connection'
 
 parameters = JSON.parse(ARGV[0])
