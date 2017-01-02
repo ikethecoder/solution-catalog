@@ -38,5 +38,3 @@ if ( Integer(res.code) != 200 )
     raise("Unseal of vault failed")
 end
 
-# canzea --util=add-env VAULT_TOKEN token
-# canzea --util=add-env VAULT_URL "https://vault.service.dc1.consul:8200"
