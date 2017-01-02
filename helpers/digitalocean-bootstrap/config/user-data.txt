@@ -50,6 +50,12 @@ rvm list | tee -a /root/output.txt
 
 rvm use 2.3.3 | tee -a /root/output.txt
 
+ruby -v | tee -a /root/output.txt
+
+gem list | tee -a /root/output.txt
+
+gem install droplet_kit
+
 logger -t Canzea "Configure services"
 
 /var/lib/cloud/scripts/configure.sh
