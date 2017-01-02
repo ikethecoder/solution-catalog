@@ -1,6 +1,4 @@
 
-# HARDCODED DOMAIN NAME!
-
 #// Add the keyvalue for secure host
 canzea --lifecycle=wire --solution=consul --action=add_keyvalue --args='{"key":"nodes/build-a-01/secure_host","value":"{{ECOSYSTEM}}.canzea.cc"}'
 
@@ -8,6 +6,7 @@ canzea --lifecycle=wire --solution=consul --action=add_keyvalue --args='{"key":"
 #// Injects the VAULT_URL and VAULT_TOKEN (see /helpers/vault/environment.json)
 canzea --lifecycle=wire --solution=vault --action=vault-init-unseal --args='{}'
 
+echo `cat vault-token`
 
 canzea --util=add-env VAULT_TOKEN `cat vault-token`
 
