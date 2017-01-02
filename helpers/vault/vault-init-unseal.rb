@@ -19,7 +19,7 @@ end
 
 info = JSON.parse(res.body)
 
-File.open("#{Canzea::config[:pwd]}/vault.json", 'w') { |file| file.write(res.body.to_json) }
+File.open("#{Canzea::config[:pwd]}/vault.json", 'w') { |file| file.write(info.to_json) }
 
 key = info['keys'][0]
 token = info['root_token']
