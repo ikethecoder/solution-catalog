@@ -11,7 +11,7 @@ Content-Disposition: attachment; filename="canzea_1"
 
 echo "CANZDATA_1"
 
-echo "USER-DATA_1.  The time is now $(date -R)!" | tee -a /root/output.txt
+echo "USER-DATA-BOOTSTRAP_1.  The time is now $(date -R)!" | tee -a /root/output.txt
 
 
 --===============8645434374073493599==
@@ -24,7 +24,7 @@ Content-Disposition: attachment; filename="canzea_2"
 
 echo "CANZDATA"
 
-echo "USER-DATA.  The time is now $(date -R)!" | tee -a /root/output.txt
+echo "USER-DATA-BOOTSTRAP.  The time is now $(date -R)!" | tee -a /root/output.txt
 
 export HOME=/root
 
@@ -39,16 +39,16 @@ logger -t Canzea "Run configuration"
 # Upgrade to the latest version of canzea CLI
 gem install canzea
 
-canzea -v >> /root/info.log
+canzea -v | tee -a /root/output.txt
 
 # Get the latest version of the ecosystem-catalog
-canzea --reset >> /root/info.log
+canzea --reset | tee -a /root/output.txt
 
-gem list >> /root/info.log
+gem list | tee -a /root/output.txt
 
-rvm list >> /root/info.log
+rvm list | tee -a /root/output.txt
 
-rvm use 2.3.3 >> /root/info.log
+rvm use 2.3.3 | tee -a /root/output.txt
 
 logger -t Canzea "Configure services"
 
