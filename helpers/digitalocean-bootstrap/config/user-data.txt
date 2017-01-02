@@ -34,17 +34,9 @@ export DIGITALOCEAN_TOKEN="xxxxxxxxx"
 
 export ECOSYSTEM="{{ECOSYSTEM}}"
 
-logger -t Canzea "Run configuration"
-
-# Upgrade to the latest version of canzea CLI
-gem install canzea
-
-canzea -v | tee -a /root/output.txt
-
-# Get the latest version of the ecosystem-catalog
-canzea --reset | tee -a /root/output.txt
-
 logger -t Canzea "Configure services"
+
+/bin/bash --login -c "gem install canzea"
 
 /bin/bash --login -c "/var/lib/cloud/scripts/configure.sh" 2>&1 | tee -a /root/output.txt
 
