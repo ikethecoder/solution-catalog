@@ -32,7 +32,7 @@ gem install canzea
 
 export CONSUL_URL="{{CONSUL_URL}}"
 
-export DIGITALOCEAN_TOKEN=`canzea --decrypt --privateKey=~/.ssh/id_rsa {{CLOUD_TOKEN}}`
+export DIGITALOCEAN_TOKEN=`canzea --decrypt --privateKey=/root/.ssh/id_rsa {{CLOUD_TOKEN}}`
 
 export ECOSYSTEM="{{ECOSYSTEM}}"
 

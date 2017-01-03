@@ -8,6 +8,8 @@ canzea --lifecycle=wire --solution=vault --action=vault-init-unseal --args='{}'
 
 canzea --util=add-env-secret VAULT_TOKEN `cat vault-token`
 
+echo $DIGITALOCEAN_TOKEN
+
 #// Add Digital Ocean secret
 canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key":"digitalocean","data":{"token":"{{DIGITALOCEAN_TOKEN}}"}}'
 
