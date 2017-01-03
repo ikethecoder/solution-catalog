@@ -13,19 +13,6 @@ echo "CANZDATA_1"
 
 echo "USER-DATA-BOOTSTRAP_1.  The time is now $(date -R)!" | tee -a /root/output.txt
 
-
---===============8645434374073493599==
-MIME-Version: 1.0
-Content-Type: text/cloud-boothook; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment; filename="canzea_2"
-
-#!/bin/sh
-
-echo "CANZDATA"
-
-echo "USER-DATA-BOOTSTRAP.  The time is now $(date -R)!" | tee -a /root/output.txt
-
 export HOME=/root
 
 gem install canzea
@@ -43,5 +30,18 @@ logger -t Canzea "Configure services"
 /bin/bash --login -c "gem install canzea"
 
 /bin/bash --login -c "/var/lib/cloud/scripts/configure.sh" 2>&1 | tee -a /root/output.txt
+
+
+--===============8645434374073493599==
+MIME-Version: 1.0
+Content-Type: text/cloud-boothook; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="canzea_2"
+
+#!/bin/sh
+
+echo "CANZDATA"
+
+echo "USER-DATA-BOOTSTRAP.  The time is now $(date -R)!" | tee -a /root/output.txt
 
 --===============8645434374073493599==--
