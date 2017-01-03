@@ -28,9 +28,11 @@ echo "USER-DATA-BOOTSTRAP.  The time is now $(date -R)!" | tee -a /root/output.t
 
 export HOME=/root
 
+gem install canzea
+
 export CONSUL_URL="{{CONSUL_URL}}"
 
-export DIGITALOCEAN_TOKEN="xxxxxxxxx"
+export DIGITALOCEAN_TOKEN=`canzea --decrypt --privateKey=~/.ssh/id_rsa {{CLOUD_TOKEN}}`
 
 export ECOSYSTEM="{{ECOSYSTEM}}"
 
