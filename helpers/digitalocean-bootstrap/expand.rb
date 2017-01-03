@@ -15,6 +15,7 @@ size=parameters['size']
 image=parameters['image']
 
 ecosystem=parameters['ecosystem']
+cloudToken=parameters['cloudToken']
 
 ary = []
 for i in 1..instances
@@ -28,7 +29,7 @@ token=ENV["DIGITALOCEAN_TOKEN"]
 
 client = DropletKit::Client.new(access_token: token)
 
-userData = Template.new.process "#{ENV['CATALOG_LOCATION']}/helpers/digitalocean-bootstrap/config/user-data.txt", {"ECOSYSTEM":ecosystem}
+userData = Template.new.process "#{ENV['CATALOG_LOCATION']}/helpers/digitalocean-bootstrap/config/user-data.txt", {"ECOSYSTEM":ecosystem,"CLOUD_TOKEN":cloudToken}
 
 payload = {
     names: ary,
