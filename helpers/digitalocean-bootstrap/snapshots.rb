@@ -15,7 +15,9 @@ output = []
 images = client.snapshots.all()
 images.each { | image |
     puts image['id']
-    puts image['type']
+    puts image['name']
+    puts image['resource_id']
+    puts image['resource_type']
     output.push ( {"id":image['id'], "name":image['name']} )
 }
 
