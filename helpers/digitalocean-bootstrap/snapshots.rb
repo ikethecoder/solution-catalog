@@ -18,7 +18,7 @@ images.each { | image |
     puts image['name']
     puts image['resource_id']
     puts image['resource_type']
-    output.push ( {"id":image['id'], "name":image['name']} )
+    output.push ( {"id":image['id'], "name":image['name'], "id":image['resource_id']} )
 }
 
 puts JSON.pretty_generate(output)
