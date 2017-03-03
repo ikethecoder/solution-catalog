@@ -2,32 +2,39 @@
 consoles:
   -
     name: consul-ui
+    description: Consul Console
     url: http://${domainName}:81/ui
     remarks: default creds admin,admin1admin
 
   -
     name: archiva
+    description: Archiva Package Repository
     url: http://${domainName}:9080/ui
 
   -
     name: nodered
+    description: Node-Red Wiring Gateway
     url: https://${domainName}/gw/admin/
     remarks: default creds admin,password
 
   -
     name: gocd
+    description: Go.CD Delivery Pipeline
     url: https://${domainName}:8153
 
 services:
   -
     name: consul
+    description: Hashicorp Consul
     url: http://${domainName}:81
     remarks: default creds admin,admin1admin
 
   -
     name: phantomjs
+    description: PhantomJS Headless Browser
     url: http://${domainName}:8001
 
   -
     name: vault
+    description: Hashicorp Vault Secrets Management
     url: http://${domainName}:8200
