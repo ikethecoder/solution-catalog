@@ -3,7 +3,7 @@
   ],
 
   "services": [
-    {"name":"Gitlab"}
+    {"name":"gitlab"}
   ],
   "secrets": [
   ]

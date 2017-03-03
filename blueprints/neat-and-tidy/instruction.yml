@@ -1,5 +1,46 @@
 
 instructions:
+  members:
+  components:
+    remove:
+    version:
+    add:
+      providers:
+        -
+          provider: consul
+          steps:
+            - helper:v2:branching:new-application
+            - helper:v2:application:analyze-project
+            - helper:v2:application:application-add-prepare-context
+            - helper:v2:application:copy-project
+            - helper:v2:application:register-on-environment
+        -
+          provider: gocd
+          steps:
+            - helper:v2:gocd:update-pipeline-for-build:build_pipeline
+            - helper:v2:gocd:post-object:build_pipeline
+            - helper:v2:gocd:get-object:build_environment
+            - helper:v2:gocd:add-pipeline-to-environment:build_environment
+            - helper:v2:gocd:put-object:build_environment
+            - helper:v2:gocd:unpause:build_pipeline
+
+            - helper:v2:gocd:update-pipeline-for-deploy:deploy_pipeline
+            - helper:v2:gocd:post-object:deploy_pipeline
+            - helper:v2:gocd:get-object:deploy_environment
+            - helper:v2:gocd:add-pipeline-to-environment:deploy_environment
+            - helper:v2:gocd:put-object:deploy_environment
+            - helper:v2:gocd:unpause:deploy_pipeline
+            - helper:v2:gocd:schedule:build_pipeline
+        -
+          provider: git
+          steps:
+            - helper:v2:gitlab:add-hook
+        -
+          provider: other
+          steps:
+            - helper:v2:consul:add_service
+            - reporting:v2:application:metrics
+
   segments:
     A:
       abbreviation: foundation
