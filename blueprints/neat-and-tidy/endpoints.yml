@@ -1,0 +1,33 @@
+
+consoles:
+  -
+    name: consul-ui
+    url: http://${domainName}:81/ui
+    remarks: default creds admin,admin1admin
+
+  -
+    name: archiva
+    url: http://${domainName}:9080/ui
+
+  -
+    name: nodered
+    url: https://${domainName}/gw/admin/
+    remarks: default creds admin,password
+
+  -
+    name: gocd
+    url: https://${domainName}:8153
+
+services:
+  -
+    name: consul
+    url: http://${domainName}:81
+    remarks: default creds admin,admin1admin
+
+  -
+    name: phantomjs
+    url: http://${domainName}:8001
+
+  -
+    name: vault
+    url: http://${domainName}:8200
