@@ -9,7 +9,7 @@ consoles:
   -
     name: archiva
     description: Archiva Package Repository
-    url: http://${domainName}:9080/ui
+    url: http://${domainName}:9080
 
   -
     name: nodered
@@ -20,13 +20,13 @@ consoles:
   -
     name: gocd
     description: Go.CD Delivery Pipeline
-    url: https://${domainName}:8153
+    url: http://${domainName}:8153
 
 services:
   -
     name: consul
     description: Hashicorp Consul
-    url: http://${domainName}:81
+    url: http://${domainName}:8300
     remarks: default creds admin,admin1admin
 
   -
