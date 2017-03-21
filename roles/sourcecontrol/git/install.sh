@@ -9,7 +9,7 @@ export TMP_PASSWORD=get1git; expect roles/application/user/set-password.expect g
 
 sudo -E -u git expect roles/application/user/key-gen.expect
 
-sudo -E -u root expect roles/application/user/key-gen.expect
+# sudo -E -u root expect roles/application/user/key-gen.expect
 
 chmod +x roles/sourcecontrol/git/set-public-key.sh
 
