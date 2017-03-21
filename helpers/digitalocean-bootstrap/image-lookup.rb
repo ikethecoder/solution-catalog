@@ -19,6 +19,7 @@ response.each do |dropitem|
     images = client.images.all(type: 'snapshot')
 
     images.each { | image |
+        puts image.to_json
         if (image['public'] == false and image['name'] == item['name'])
             puts image['id']
             puts image['name']
