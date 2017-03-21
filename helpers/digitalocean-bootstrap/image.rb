@@ -41,10 +41,6 @@ response.each do |dropitem|
 
             File.open("#{Canzea::config[:pwd]}/vps-#{dropitem['name']}-image-active.json", 'w') { |file| file.write(image.to_json) }
 
-            snapshot = client.snapshots.find(id: item['resource_id'])
-
-            File.open("#{Canzea::config[:pwd]}/vps-#{dropitem['name']}-snapshot-active.json", 'w') { |file| file.write(snapshot.to_json) }
-
         end
     end
 end

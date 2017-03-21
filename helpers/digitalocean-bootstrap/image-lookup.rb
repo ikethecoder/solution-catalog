@@ -16,9 +16,15 @@ response.each do |dropitem|
 
     file = File.read("#{Canzea::config[:pwd]}/vps-#{dropitem['name']}-image.json")
     item = JSON.parse(file)
+    images = client.images.all(type: 'snapshot')
 
-    active = false
-    snapshot = client.snapshots.find(id: item['resource_id'])
+    images.each { | image |
+        if (image['public'] == false and image['name'] == item['name'])
+            puts image['id']
+            puts image['name']
+            puts image['type']
 
-    File.open("#{Canzea::config[:pwd]}/vps-#{dropitem['name']}-snapshot-active.json", 'w') { |file| file.write(snapshot.to_json) }
+            File.open("#{Canzea::config[:pwd]}/vps-#{dropitem['name']}-snapshot-active.json", 'w') { |file| file.write(image.to_json) }
+        end
+    }
 end
