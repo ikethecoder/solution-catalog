@@ -36,13 +36,13 @@ instructions:
           steps:
             - helper:v2:gitlab:add-hook
         -
-          provider: other
+          provider: consul
           steps:
             - helper:v2:consul:add_service
             - reporting:v2:application:metrics
 
   segments:
-    A:
+    ci:
       abbreviation: foundation
       label: foundation
       description: Go.CD, Vault, Consul, Nodered
@@ -89,7 +89,7 @@ instructions:
         - wire:digitalocean:image
         - wire:digitalocean:teardown
 
-    B:
+    mon:
       abbreviation: metrics
       label: metrics and analytics
       description: ELK Stack, Grafana
@@ -127,7 +127,7 @@ instructions:
         - wire:digitalocean:image
         - wire:digitalocean:teardown
 
-    D:
+    sc:
       abbreviation: sourcecontrol
       label: sourcecontrol
       description: Gitlab
@@ -159,7 +159,7 @@ instructions:
         - wire:digitalocean:image
         - wire:digitalocean:teardown
 
-    E:
+    col:
       abbreviation: collaboration
       label: collaboration
       description: Rocket.Chat, Helpy, Taiga

@@ -1,0 +1,66 @@
+{
+  "config": {
+    "background_color": "lightblue",
+    "paper_width": 800,
+    "preferred_ratio": 0.666,
+    "fixed_width": false
+  },
+  "nodes":[
+    {
+      "name": "PE",
+      "title": {
+        "icon": "&#xf0ad",
+        "label": "Build"
+      },
+      "x": 25,
+      "y": 105,
+      "type": "lifecycle",
+      "fixed": true,
+      "boundary": "A"
+    },
+    {
+      "name": "MEASURE",
+      "title": {
+        "icon": "&#xf0e4",
+        "label": "Measure"
+      },
+      "x": 730,
+      "y": 516,
+      "type": "lifecycle",
+      "fixed": true,
+      "boundary": "A"
+    },
+    {
+      "name": "LEARN",
+      "title": {
+        "icon": "&#xf19c",
+        "label": "Learn"
+      },
+      "x": 25,
+      "y": 516,
+      "type": "lifecycle",
+      "fixed": true,
+      "boundary": "A"
+    },
+    {"type":"component-app","name":"A", "icon":"th", "label":"ABC","boundary":"A", "scale":0.6, "x":620, "y":240}
+  ],
+  "links": [
+  ],
+  "zones": [
+    { "type" : "section-top", "rectangle": [340, 360, 200, 160], "title": "Top" },
+    { "type" : "section-bottom", "rectangle": [340, 360, 200, 160], "title": "Bottom" },
+    { "type" : "section-center", "rectangle": [340, 360, 200, 160], "title": "Center" },
+    { "type" : "section-left", "rectangle": [10, 200, 200, 160], "title": "Left", "stacks":["React Stack","Java Stack", "Configuration"] },
+    { "type" : "section-right", "rectangle": [340, 360, 200, 160], "title": "Right" },
+    { "type" : "section-right-col", "rectangle": [340, 360, 200, 160], "title": "Right" },
+    { "type" : "vertical-label", "layout": {"seg":"CI1"}, "label":"CI" },
+    { "type" : "vertical-label", "layout": {"seg":"CI2"}, "label":"Registries" },
+    { "type" : "vertical-label", "layout": {"seg":"CI3"}, "label":"Collaboration" },
+    { "type" : "vertical-label", "layout": {"seg":"Security"}, "label":"Security" },
+    { "type" : "vertical-label", "layout": {"seg":"Database"}, "label":"Data" },
+    { "type" : "vertical-label", "layout": {"seg":"Config"}, "label":"Networking" },
+    { "type" : "vertical-label", "layout": {"seg":"Runtime"}, "label":"Process Mgrs" },
+    { "type" : "vertical-label", "layout": {"seg":"Monitoring"}, "label":"Monitoring" }
+
+  ]
+}

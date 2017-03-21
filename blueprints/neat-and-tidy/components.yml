@@ -1,0 +1,226 @@
+
+components:
+   -
+     name: consul
+     icon: th
+     segment: cd-ci-1
+     state: inactive
+
+   -
+     name: vault
+     icon: database
+     segment: cd-ci-1
+     state: inactive
+
+   -
+     name: gocd
+     icon: th
+     segment: cd-ci-1
+     state: inactive
+
+   -
+     name: phantomjs
+     icon: th
+     segment: cd-ci-1
+     state: inactive
+
+   -
+     name: archiva
+     icon: th
+     segment: cd-ci-1
+     state: inactive
+
+   -
+     name: nodered
+     icon: th
+     segment: cd-ci-1
+     state: inactive
+
+   -
+     name: nginx
+     icon: th
+     segment: cd-ci-1
+     state: inactive
+
+   -
+     name: gitlab
+     icon: th
+     segment: cd-sc-1
+     state: inactive
+
+   -
+     name: kibana
+     icon: th
+     segment: mon-mon-1
+     state: inactive
+
+   -
+     name: esearch
+     icon: database
+     segment: mon-mon-1
+     state: inactive
+
+   -
+     name: grafana
+     icon: th
+     segment: mon-mon-1
+     state: inactive
+
+   -
+     name: statsd
+     icon: th
+     segment: mon-mon-1
+     state: inactive
+
+   -
+     name: helpy
+     icon: th
+     segment: cd-col-1
+     state: inactive
+
+   -
+     name: taiga
+     icon: th
+     segment: cd-col-1
+     state: inactive
+
+   -
+     name: postgresql
+     icon: database
+     segment: cd-col-1
+     state: inactive
+
+   -
+     name: mongodb
+     icon: database
+     segment: cd-col-1
+     state: inactive
+
+   -
+     name: rocketchat
+     icon: th
+     segment: cd-col-1
+     state: inactive
+
+   -
+     name: consul
+     icon: database
+     segment: live-db-1
+     state: inactive
+
+   -
+     name: mongodb
+     icon: database
+     segment: live-db-1
+     state: inactive
+
+   -
+     name: rabbitmq
+     icon: database
+     segment: live-db-1
+     state: inactive
+
+   -
+     name: vault
+     icon: th
+     segment: live-app-1
+     state: inactive
+
+   -
+     name: Hello-World
+     icon: th
+     segment: live-app-1
+     state: inactive
+
+
+   -
+     name: consul
+     icon: database
+     segment: uat-db-1
+     state: inactive
+
+   -
+     name: mongodb
+     icon: database
+     segment: uat-db-1
+     state: inactive
+
+   -
+     name: rabbitmq
+     icon: database
+     segment: uat-db-1
+     state: inactive
+
+   -
+     name: vault
+     icon: th
+     segment: uat-app-1
+     state: inactive
+
+   -
+     name: Hello-World
+     icon: th
+     segment: uat-app-1
+     state: inactive
+
+
+   -
+     name: consul
+     icon: database
+     segment: perf-db-1
+     state: inactive
+
+   -
+     name: mongodb
+     icon: database
+     segment: perf-db-1
+     state: inactive
+
+   -
+     name: rabbitmq
+     icon: database
+     segment: perf-db-1
+     state: inactive
+
+   -
+     name: vault
+     icon: th
+     segment: perf-app-1
+     state: inactive
+
+   -
+     name: Hello-World
+     icon: th
+     segment: perf-app-1
+     state: inactive
+
+
+   -
+     name: consul
+     icon: database
+     segment: intg-db-1
+     state: inactive
+
+   -
+     name: mongodb
+     icon: database
+     segment: intg-db-1
+     state: inactive
+
+   -
+     name: rabbitmq
+     icon: database
+     segment: intg-db-1
+     state: inactive
+
+   -
+     name: vault
+     icon: th
+     segment: intg-app-1
+     state: inactive
+
+   -
+     name: Hello-World
+     icon: th
+     segment: intg-app-1
+     state: inactive

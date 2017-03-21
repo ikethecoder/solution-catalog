@@ -22,12 +22,31 @@ consoles:
     description: Go.CD Delivery Pipeline
     url: http://${domainName}:8153
 
+  -
+    segment: E
+    name: rocketchat
+    description: Rocket.Chat Real-Time Chat and Collaboration
+    url: http://${domainName}:8780
+
+  -
+    segment: E
+    name: helpy
+    description: Helpy Incident Ticketing System
+    url: http://${domainName}:4444
+
+  -
+    segment: E
+    name: taiga
+    description: Taiga Agile Project Management
+    url: http://${domainName}:8000
+
 services:
   -
     name: consul
     description: Hashicorp Consul
     url: http://${domainName}:8300
     remarks: default creds admin,admin1admin
+    nodes: build/a/1-4
 
   -
     name: phantomjs
@@ -38,3 +57,10 @@ services:
     name: vault
     description: Hashicorp Vault Secrets Management
     url: http://${domainName}:8200
+
+  -
+    name: postgresql
+    description: Postgresql Relational Database
+    url: http://${domainName}:5432
+    nodes: build/e/*
+

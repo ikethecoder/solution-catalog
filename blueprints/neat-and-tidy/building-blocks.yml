@@ -1,6 +1,122 @@
 
 buildingBlocks:
    -
-     solution: Git
+     solution: GitLab
      role: Source Control
+     category: CI1
+
+   -
+     solution: Rocket.Chat
+     role: Collaboration
+     category: CI3
+
+   -
+     solution: Helpy
+     role: Incident Mgmt
+     category: CI3
+
+   -
+     solution: Node-Red
+     role: Event Processor
+     category: CI1
+
+   -
+     solution: Taiga
+     role: Agile Project Mgmt
+     category: CI3
+
+   -
+     solution: Go.CD
+     role: Delivery Pipeline
+     category: CI1
+
+   -
+     solution: Docker
+     role: Artifact Registry
+     category: CI2
+
+   -
+     solution: Archiva
+     role: Artifact Registry
+     category: CI2
+
+   -
+     solution: Digital Ocean
+     role: Provisioning
+     category: CI2
+
+
+
+   -
+     solution: Strongswan
+     role: Virtual Private Network
+     category: Security
+
+   -
+     solution: LetsEncrypt
+     role: SSL Cert Provider
+     category: Security
+
+   -
+     solution: Hashicorp Vault
+     role: Secret Management
+     category: Security
+
+   -
+     solution: RabbitMQ
+     role: Messaging
+     category: Database
+
+   -
+     solution: MongoDB
+     role: Document Database
+     category: Database
+
+   -
+     solution: NGINX
+     role: Load Balancing
+     category: Config
+
+   -
+     solution: Fabio
+     role: API Gateway
+     category: Config
+
+   -
+     solution: Docker
+     role: Container Engine
+     category: Other
+
+   -
+     solution: Java
+     role: Virtual Machine
+     category: Other
+
+   -
+     solution: Node
+     role: Virtual Machine
+     category: Other
+
+
+   -
+     solution: Kibana
+     role: Data Visualization
      category: Monitoring
+
+   -
+     solution: Logstash
+     role: Aggregator
+     category: Monitoring
+
+   -
+     solution: Elasticsearch
+     role: Database
+     category: Monitoring
+
+   -
+     solution: Grafana
+     role: Data Visualisation
+     category: Monitoring
+
+
+

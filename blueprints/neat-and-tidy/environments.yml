@@ -1,47 +1,107 @@
 
 environments:
    -
-      name: Build2
+      name: "cd"
       title:
-        label: Build2
+        label: "Continuous Delivery"
         pipeline: false
         provision: false
         order:
           -
-            product: M4GB_D60GB
+            product: "M4GB_D60GB"
             qty: 1
-            segment: B
-            label: Monitoring
+            segment: "ci"
+            label: "Pipeline Mgmt"
           -
-            product: M4GB_D60GB
+            product: "M4GB_D60GB"
             qty: 1
-            segment: D
-            label: GitLab
+            segment: "col"
+            label: "Collaboration"
           -
-            product: M4GB_D60GB
+            product: "M4GB_D60GB"
             qty: 1
-            segment: B
-            label: Collaboration
+            segment: "sc"
+            label: "GitLab"
 
    -
-      name: Build2
+      name: "mon"
       title:
-        label: Build2
+        label: "Monitoring & Analytics"
         pipeline: false
         provision: false
         order:
           -
-            product: M4GB_D60GB
+            product: "M4GB_D60GB"
             qty: 1
-            segment: B
-            label: Monitoring
+            segment: "mon"
+            label: "Monitoring"
+
+   -
+      name: "intg"
+      title:
+        label: "Integration"
+        pipeline: true
+        provision: true
+        order:
           -
-            product: M4GB_D60GB
-            qty: 1
-            segment: D
-            label: GitLab
+            product: "M2GB_D40GB"
+            qty: 3
+            segment: "db"
+            label: "DB"
           -
-            product: M4GB_D60GB
+            product: "M4GB_D60GB"
             qty: 1
-            segment: B
-            label: Collaboration
+            segment: "app"
+            label: "App"
+
+   -
+      name: "perf"
+      title:
+        label: "Performance"
+        pipeline: true
+        provision: false
+        order:
+          -
+            product: "M2GB_D40GB"
+            qty: 3
+            segment: "db"
+            label: "DB"
+          -
+            product: "M4GB_D60GB"
+            qty: 1
+            segment: "app"
+            label: "App"
+   -
+      name: "uat"
+      title:
+        label: "Acceptance"
+        pipeline: true
+        provision: false
+        order:
+          -
+            product: "M2GB_D40GB"
+            qty: 3
+            segment: "db"
+            label: "DB"
+          -
+            product: "M4GB_D60GB"
+            qty: 1
+            segment: "app"
+            label: "App"
+   -
+      name: "live"
+      title:
+        label: "Live"
+        pipeline: true
+        provision: false
+        order:
+          -
+            product: "M2GB_D40GB"
+            qty: 3
+            segment: "db"
+            label: "DB"
+          -
+            product: "M4GB_D60GB"
+            qty: 1
+            segment: "app"
+            label: "App"
