@@ -1,5 +1,5 @@
 {
-    "log_level": "INFO",
+    "log_level": "DEBUG",
     "ports": {
         "dns": 8600,
         "https": 8080

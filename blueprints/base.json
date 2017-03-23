@@ -1,6 +1,6 @@
 {
   "config": {
-    "background_color": "lightblue",
+    "background_color": "white",
     "paper_width": 800,
     "preferred_ratio": 0.666,
     "fixed_width": false
