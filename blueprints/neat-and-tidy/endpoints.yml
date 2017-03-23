@@ -40,6 +40,24 @@ consoles:
     description: Taiga Agile Project Management
     url: http://${domainName}:8000
 
+  -
+    segment: mon
+    name: Kibana
+    description: Kibana
+    url: http://${domainName}:5601
+
+  -
+    segment: mon
+    name: Grafana
+    description: Grafana
+    url: http://${domainName}:3000
+
+  -
+    segment: mon
+    name: elastichq
+    description: ElasticHQ
+    url: http://${domainName}:81/_plugin/hq
+
 services:
   -
     name: consul
@@ -64,3 +82,12 @@ services:
     url: http://${domainName}:5432
     nodes: build/e/*
 
+  -
+    name: logstash
+    description: Logstash
+    url: http://${domainName}:5044
+
+  -
+    name: elasticsearch
+    description: Elasticsearch
+    url: http://${domainName}:9200

@@ -21,7 +21,7 @@ sudo -u postgres createdb taiga -O taiga
 su taiga -l -c "(cd ~/taiga-back && workon taiga && python manage.py migrate --noinput)"
 su taiga -l -c "(cd ~/taiga-back && workon taiga && python manage.py loaddata initial_user)"
 su taiga -l -c "(cd ~/taiga-back && workon taiga && python manage.py loaddata initial_project_templates)"
-su taiga -l -c "(cd ~/taiga-back && workon taiga && python manage.py loaddata initial_role)"
+# su taiga -l -c "(cd ~/taiga-back && workon taiga && python manage.py loaddata initial_role)"
 su taiga -l -c "(cd ~/taiga-back && workon taiga && python manage.py compilemessages)"
 su taiga -l -c "(cd ~/taiga-back && workon taiga && python manage.py collectstatic --noinput)"
 

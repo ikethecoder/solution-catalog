@@ -173,7 +173,7 @@ output:
     #index: filebeat
 
     # Optional TLS. By default is off.
-    tls:
+    ssl:
       # List of root certificates for HTTPS server verifications
       certificate_authorities: ["/etc/pki/tls/certs/logstash-forwarder.crt"]
 

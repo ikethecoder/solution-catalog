@@ -16,7 +16,7 @@ canzea --lifecycle=wire --solution=consul --action=add_keyvalue --args='{"key":"
 
 # curl $CONSUL_URL/v1/kv/certs/logstash
 
-service logstash configtest
+# service logstash configtest
 
 
 
