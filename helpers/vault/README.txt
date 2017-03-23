@@ -26,3 +26,5 @@ canzea --lifecycle=wire --solution=vault --action=vault-assoc-app-to-user --args
 canzea --lifecycle=wire --solution=vault --action=vault-authenticate --args='{"appId":"1-2-3-4","userId":"JoeUserId"}'
 {"lease_id":"","renewable":false,"lease_duration":0,"data":null,"warnings":null,"auth":{"client_token":"9123a699-8701-70cd-4d0a-cad24e447ea7","accessor":"3b71b10a-03c8-8a96-367c-743a8ca32b87","policies":["ABC","default"],"metadata":{"app-id":"sha1:39a957a3f07688f318187f75cefd65c2012e7f77","user-id":"sha1:8fade0c3ab5c4e19fc90672bf10b4de1213b15e0"},"lease_duration":2592000,"renewable":true}}
 
+
+canzea --lifecycle=wire --solution=vault --action=get-secret --args='{"key":"abc","data":{"user":"joe"}}'

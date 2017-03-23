@@ -115,3 +115,8 @@ services:
     name: elasticsearch
     description: Elasticsearch
     url: http://${domainName}:9200
+
+  -
+    name: statsd
+    description: statsd aggregation daemon (nodejs)
+    url: http://${domainName}:8126
