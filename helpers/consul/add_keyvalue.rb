@@ -7,6 +7,10 @@ parameters = JSON.parse(ARGV[0])
 
 key = parameters['key']
 value = parameters['value']
+if (parameters.has_key? "file")
+    file = parameters['file']
+    value = File.read(file)
+end
 
 http = Connection.new.prepareHttpPutConnection()
 
