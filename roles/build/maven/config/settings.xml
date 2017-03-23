@@ -110,7 +110,12 @@ under the License.
      |-->
     <servers>
         <server>
-            <id>remote</id>
+            <id>snapshotRepository</id>
+            <username>admin</username>
+            <password>admin1admin1</password>
+        </server>
+        <server>
+            <id>releaseRepository</id>
             <username>admin</username>
             <password>admin1admin1</password>
         </server>

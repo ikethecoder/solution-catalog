@@ -1,9 +1,7 @@
 {
   "keyvalues": [
   ],
-
   "services": [
-    {"name":"gocd"}
   ],
   "secrets": [
   ]

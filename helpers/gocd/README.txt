@@ -30,13 +30,29 @@ ruby helpers/helper-run.rb gocd unpause '{"pipeline":"hello-world-svc-app-1.0.0-
 #
 ##### Create the Integration Environment
 echo '{"name":"Integration"}' > environments-Integration.json
-ruby helpers/helper-run.rb gocd post-object '{"type":"environments", "name":"Integration"}'
+canzea --lifecycle=wire --solution=gocd --action=post-object --args='{"type":"environments", "name":"Integration"}'
+
+# Make sure you are in the appropriate folder where catalog 'helpers' is located
+# Outputs: pipelines-ABC.json
+canzea --lifecycle=wire --solution=gocd --action=update-pipeline-for-build --args='{"name":"hello-world-svc-app","branch":"hotfix-1.0.3", "version":"1.0.3","qualifier":"N", "N":{"pattern":"Build","name":"ABC"}, "localUrl":"https://IKE_CI:55665566@gitlab.com/ikethecoder/hello-world-svc-app.git","localBranch":"master"}'
+
+canzea --lifecycle=wire --solution=gocd --action=get-object --args='{"type":"pipelines", "name":"ABC"}'
+
+canzea --lifecycle=wire --solution=gocd --action=post-object --args='{"type":"pipelines", "name":"ABC"}'
 
 # Add a new pipeline for the deployment to integration
-ruby helpers/helper-run.rb gocd get-object '{"type":"environments", "name":"Integration"}'
-ruby helpers/helper-run.rb gocd add-pipeline-to-environment '{"type":"environments", "name":"Integration", "pipelineName": "hello-world-svc-app-1.0.3-Deploy"}'
-ruby helpers/helper-run.rb gocd put-object '{"type":"environments","name":"Integration"}'
+canzea --lifecycle=wire --solution=gocd --action=get-object --args='{"qualifier":"A", "A":{"type":"environments", "name":"Integration"}}'
+canzea --lifecycle=wire --solution=gocd --action=add-pipeline-to-environment --args='{"qualifier":"A", "A":{"type":"environments", "name":"Integration", "pipelineName": "ABC"}}'
+canzea --lifecycle=wire --solution=gocd --action=put-object --args='{"qualifier":"A", "A":{"type":"environments", "name":"Integration"}}'
 
+canzea --lifecycle=wire --solution=gocd --action=unpause --args='{"qualifier":"A", "A":{"name":"ABC"}}'
+canzea --lifecycle=wire --solution=gocd --action=schedule --args='{"qualifier":"A", "A":{"name":"ABC"}}'
+
+canzea --lifecycle=wire --solution=gocd --action=get-object --args='{"qualifier":"A", "A":{"type":"environments", "name":"Integration"}}'
+canzea --lifecycle=wire --solution=gocd --action=remove-pipeline-from-environment --args='{"qualifier":"A", "A":{"type":"environments","name":"Integration", "pipelineName":"ABC"}}'
+canzea --lifecycle=wire --solution=gocd --action=put-object --args='{"qualifier":"A", "A":{"type":"environments", "name":"Integration"}}'
+
+canzea --lifecycle=wire --solution=gocd --action=delete-object --args='{"qualifier":"A", "A":{"type":"pipelines","name":"ABC"}}'
 
 #
 # Deploy to Integration environment

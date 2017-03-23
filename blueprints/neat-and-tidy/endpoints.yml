@@ -58,6 +58,30 @@ consoles:
     description: ElasticHQ
     url: http://${domainName}:81/_plugin/hq
 
+  -
+    segment: col
+    name: rocketchat
+    description: Rocket.Chat (register first user)
+    url: http://${domainName}:8780
+
+  -
+    segment: col
+    name: taiga
+    description: Taiga Agile Project Management (admin/123123)
+    url: http://${domainName}:85
+
+  -
+    segment: col
+    name: helpy
+    description: Helpy Support (admin@test.com / 12345678)
+    url: http://${domainName}:4444
+
+  -
+    segment: col
+    name: pgadmin
+    description: Postgresql Admin 4
+    url: http://${domainName}:5050
+
 services:
   -
     name: consul

@@ -23,7 +23,7 @@ end
 
 
 headers = {
-  'Accept' => 'application/vnd.go.cd.v1+json',
+  'Accept' => 'application/vnd.go.cd.v3+json',
   'Content-Type' => 'application/json',
 }
 
