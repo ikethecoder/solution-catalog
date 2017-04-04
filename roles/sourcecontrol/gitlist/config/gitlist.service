@@ -1,0 +1,12 @@
+[Unit]
+Description=Rocket.Chat container
+Requires=docker.service rocketchat-db.service
+After=docker.service rocketchat-db.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a rocketchat
+ExecStop=/usr/bin/docker stop -t 2 rocketchat
+
+[Install]
+WantedBy=local.target

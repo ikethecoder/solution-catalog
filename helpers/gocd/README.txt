@@ -34,11 +34,11 @@ canzea --lifecycle=wire --solution=gocd --action=post-object --args='{"type":"en
 
 # Make sure you are in the appropriate folder where catalog 'helpers' is located
 # Outputs: pipelines-ABC.json
-canzea --lifecycle=wire --solution=gocd --action=update-pipeline-for-build --args='{"name":"hello-world-svc-app","branch":"hotfix-1.0.3", "version":"1.0.3","qualifier":"N", "N":{"pattern":"Build","name":"ABC"}, "localUrl":"https://IKE_CI:55665566@gitlab.com/ikethecoder/hello-world-svc-app.git","localBranch":"master"}'
+canzea --lifecycle=wire --solution=gocd --action=update-pipeline-for-build --args='{"name":"hello-world-svc-app","branch":"hotfix-1.0.3", "version":"1.0.3","qualifier":"N", "N":{"pattern":"Build","name":"hello-world-svc-app-hotfix-1.0.3-Build"}, "localUrl":"https://IKE_CI:55665566@gitlab.com/ikethecoder/hello-world-svc-app.git","localBranch":"master"}'
 
-canzea --lifecycle=wire --solution=gocd --action=get-object --args='{"type":"pipelines", "name":"ABC"}'
+canzea --lifecycle=wire --solution=gocd --action=get-object --args='{"type":"pipelines", "name":"hello-world-svc-app-hotfix-1.0.3-Build"}'
 
-canzea --lifecycle=wire --solution=gocd --action=post-object --args='{"type":"pipelines", "name":"ABC"}'
+canzea --lifecycle=wire --solution=gocd --action=post-object --args='{"type":"pipelines", "name":"hello-world-svc-app-hotfix-1.0.3-Build"}'
 
 # Add a new pipeline for the deployment to integration
 canzea --lifecycle=wire --solution=gocd --action=get-object --args='{"qualifier":"A", "A":{"type":"environments", "name":"Integration"}}'
@@ -57,6 +57,12 @@ canzea --lifecycle=wire --solution=gocd --action=delete-object --args='{"qualifi
 #
 # Deploy to Integration environment
 #
+
+canzea --lifecycle=wire --solution=gocd --action=update-pipeline-for-deploy --args='{"name":"hello-world-svc-app","branch":"hotfix-1.0.3", "version":"1.0.3","qualifier":"N", "N":{"pattern":"Build","name":"ABC-Deploy"}, "localUrl":"https://IKE_CI:55665566@gitlab.com/ikethecoder/hello-world-svc-app.git","localBranch":"master"}'
+
+canzea --lifecycle=wire --solution=gocd --action=post-object --args='{"type":"pipelines", "name":"ABC-Deploy"}'
+
+
 ruby helpers/helper-run.rb gocd get-object '{"type":"pipelines", "name":"hello-world-svc-app-1.0.1-Deploy"}'
 ruby helpers/helper-run.rb gocd update-pipeline-for-deploy '{"data":{"project":"hello-world-svc-app","branch":"hotfix-1.0.3", "version":"1.0.1","pattern":"Deploy"}}'
 ruby helpers/helper-run.rb gocd put-object '{"type":"pipelines", "name":"hello-world-svc-app-1.0.1-Deploy"}'

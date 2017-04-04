@@ -43,8 +43,6 @@ if (type == "patch")
     prefix = "hotfix"
 end
 
-#url = "git@build.escca.canzea.cc:root/#{app}.git"
-
 branch = "develop"
 
 folder = "#{app}"
