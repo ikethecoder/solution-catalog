@@ -3,7 +3,8 @@
     "background_color": "white",
     "paper_width": 800,
     "preferred_ratio": 0.666,
-    "fixed_width": false
+    "fixed_width": false,
+    "pan_and_zoom": false
   },
   "nodes":[
     {
