@@ -2,6 +2,7 @@
   "keyvalues": [
   ],
   "services": [
+    {"name":"nodered"}
   ],
   "secrets": [
   ]

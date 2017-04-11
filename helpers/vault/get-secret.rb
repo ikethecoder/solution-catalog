@@ -20,7 +20,7 @@ res = http.request(request)
 if (Integer(res.code) != 200)
    puts res.code
    puts res.msg
-   raise("Unable to register secret #{res.code}")
+   raise("Unable to find secret #{res.code}")
 end
 
 puts res.body.to_json

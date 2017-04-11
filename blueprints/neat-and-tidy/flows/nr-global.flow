@@ -1,0 +1,15 @@
+{
+  "id": "global",
+  "configs": [
+    {
+      "id": "692f4929.e69968",
+      "type": "websocket-client",
+      "z": "",
+      "path": "ws://localhost:8887",
+      "wholemsg": "false",
+      "_users": [
+        "f1eff82e.669eb8"
+      ]
+    }
+  ]
+}
