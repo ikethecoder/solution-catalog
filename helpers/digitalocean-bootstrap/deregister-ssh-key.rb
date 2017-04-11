@@ -9,8 +9,7 @@ token=ENV["DIGITALOCEAN_TOKEN"]
 client = DropletKit::Client.new(access_token: token)
 
 file = File.open('key-registration.json', "rb")
-pub_key = file.read
+
+pub_key = JSON.parse(file.read)
 
 response = client.ssh_keys.delete(id: pub_key['id']);
-
-

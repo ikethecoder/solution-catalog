@@ -1,4 +1,4 @@
-# ruby helpers/helper-run.rb digitalocean register-ssh-key '{"publicKey":"/var/go/.ssh/id_rsa_digitalocean.pub","name":"A"}'
+kjjj# ruby helpers/helper-run.rb digitalocean register-ssh-key '{"publicKey":"/var/go/.ssh/id_rsa_digitalocean.pub","name":"A"}'
 
 require 'droplet_kit'
 require 'json'
