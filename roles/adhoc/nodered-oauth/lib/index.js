@@ -30,7 +30,7 @@ var server = http.createServer(app);
 var settings = {
     httpAdminRoot:"/admin",
     httpNodeRoot: "/api",
-    ui: {"path":"dashboard"},
+    ui: {"path":"/dashboard"},
     userDir:"/home/pm2user/.node-red/",
     adminAuth: {
         type: "credentials",
@@ -65,6 +65,9 @@ RED.init(server,settings);
 app.use(settings.httpAdminRoot,RED.httpAdmin);
 
 // Serve the http nodes UI from /api
+//app.use(settings.httpNodeRoot,app.oauth.authorise(), RED.httpNode);
+
+app.use(settings.httpNodeRoot + settings.ui.path, RED.httpNode);
 app.use(settings.httpNodeRoot,app.oauth.authorise(), RED.httpNode);
 
 app.use(settings.httpNodeRoot,app.oauth.errorHandler());

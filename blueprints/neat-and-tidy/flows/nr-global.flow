@@ -10,6 +10,93 @@
       "_users": [
         "f1eff82e.669eb8"
       ]
+    },
+    {
+      "id": "d8eec1bf.7984a",
+      "type": "ui_base",
+      "theme": {
+        "name": "theme-light",
+        "lightTheme": {
+          "default": "#0094CE",
+          "baseColor": "#0094CE",
+          "baseFont": "Helvetica Neue",
+          "edited": false
+        },
+        "darkTheme": {
+          "default": "#097479",
+          "baseColor": "#097479",
+          "baseFont": "Helvetica Neue",
+          "edited": false
+        },
+        "customTheme": {
+          "name": "",
+          "default": "#4B7930",
+          "baseColor": "#4B7930",
+          "baseFont": "Helvetica Neue"
+        },
+        "themeState": {
+          "base-color": {
+            "default": "#0094CE",
+            "value": "#0094CE",
+            "edited": false
+          },
+          "page-titlebar-backgroundColor": {
+            "value": "#0094CE",
+            "edited": false
+          },
+          "page-backgroundColor": {
+            "value": "#fafafa",
+            "edited": false
+          },
+          "page-sidebar-backgroundColor": {
+            "value": "#ffffff",
+            "edited": false
+          },
+          "group-textColor": {
+            "value": "#000000",
+            "edited": false
+          },
+          "group-borderColor": {
+            "value": "#ffffff",
+            "edited": false
+          },
+          "group-backgroundColor": {
+            "value": "#ffffff",
+            "edited": false
+          },
+          "widget-textColor": {
+            "value": "#111111",
+            "edited": false
+          },
+          "widget-backgroundColor": {
+            "value": "#0094ce",
+            "edited": false
+          },
+          "widget-borderColor": {
+            "value": "#ffffff",
+            "edited": false
+          }
+        }
+      },
+      "site": {
+        "name": "Node-RED Dashboard",
+        "hideToolbar": "false",
+        "allowSwipe": "false",
+        "dateFormat": "DD/MM/YYYY",
+        "sizes": {
+          "sx": 48,
+          "sy": 48,
+          "gx": 6,
+          "gy": 6,
+          "cx": 6,
+          "cy": 6,
+          "px": 0,
+          "py": 0
+        }
+      },
+      "_users": [
+
+      ]
     }
   ]
 }

@@ -29,7 +29,7 @@ t = Template.new
 stageTemplate = "helpers/gocd/pipelines/fragment/stage.json"
 jobTemplate = "helpers/gocd/pipelines/fragment/job.json"
 taskTemplate1 = "helpers/gocd/pipelines/fragment/task-fetch.json"
-taskTemplate2 = "helpers/gocd/pipelines/fragment/task-ruby.json"
+taskTemplate2 = "helpers/gocd/pipelines/fragment/task-canzea.json"
 
 root = JSON.parse(t.process "helpers/gocd/pipelines/fragment/pipeline.json", attributes)
 
@@ -51,9 +51,9 @@ params = { "port" => attributes['port'], "name" => attributes['name'] }
 task = JSON.parse(t.process taskTemplate2, {"project" => project, "version" => version, "solution" => "application", "action" => "install-app", "parameters" => JSON.generate(params.to_json) })
 job['tasks'].push (task)
 
-params = { "channel" => "integration", "message" => "#{project} deployed" }
-task = JSON.parse(t.process taskTemplate2, {"project" => project, "version" => version, "solution" => "rocketchat", "action" => "collaboration-send-message", "parameters" => JSON.generate(params.to_json) })
-job['tasks'].push (task)
+# params = { "channel" => "integration", "message" => "#{project} deployed" }
+# task = JSON.parse(t.process taskTemplate2, {"project" => project, "version" => version, "solution" => "rocketchat", "action" => "collaboration-send-message", "parameters" => JSON.generate(params.to_json) })
+# job['tasks'].push (task)
 
 stage['jobs'].push(job)
 

@@ -11,6 +11,10 @@ npm install -g node-red-dashboard
 
 npm install -g node-red-nodes
 
+npm install -g node-red-contrib-join
+
+npm install -g node-red-contrib-batcher
+
 npm install -g node-red-contrib-graphs
 
 npm install -g node-red-contrib-influxdb
@@ -22,6 +26,8 @@ npm install -g node-red-contrib-bigtimer
 npm install -g node-red-contrib-cron
 
 npm install -g node-red-contrib-bigexec
+
+npm install -g node-red-contrib-counter
 
 # npm install -g node-red-node-notify
 

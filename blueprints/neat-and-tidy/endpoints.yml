@@ -18,6 +18,12 @@ consoles:
     remarks: default creds admin,password
 
   -
+    name: nodered dashboard
+    description: Node-Red Dashboard
+    url: https://${domainName}/gw/api/dashboard
+    remarks: no credentials required
+
+  -
     name: gocd
     description: Go.CD Delivery Pipeline
     url: http://${domainName}:8153
