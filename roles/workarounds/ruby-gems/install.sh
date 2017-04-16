@@ -23,7 +23,7 @@ gem install json
 gem install xml-simple
 
 # Used for canzea command line
-gem install cri
+gem install cri -v 2.7.1
 
 gem install selenium-webdriver
 
