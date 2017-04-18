@@ -118,9 +118,9 @@ instructions:
         - step:monitoring:logstash
         - step:monitoring:kibana
         - step:monitoring:statsd
-        - step:documentdatabase:ElasticHQ
+        #- step:documentdatabase:ElasticHQ (removed; need to fix due to changes in Elasticsearch 5.0)
+        #- step:documentdatabase:ElasticHQ-NGINX
         - step:monitoring:grafana
-        - step:documentdatabase:ElasticHQ-NGINX
         - step:monitoring:collectd
         - step:monitoring:filebeat
         - step:audit:auditd

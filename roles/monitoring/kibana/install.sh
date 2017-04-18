@@ -7,12 +7,14 @@ yum install -y kibana
 
 # Upgrade Kibana
 
-(cd ~ && wget https://download.elastic.co/kibana/kibana/kibana-4.6.1-linux-x86_64.tar.gz)
-(cd ~; tar -xf kibana-4*.gz)
+
+
+(cd ~ && wget https://artifacts.elastic.co/downloads/kibana/kibana-5.3.0-linux-x86_64.tar.gz)
+(cd ~; tar -xf kibana-*.gz)
 (cd ~; rm -rf /opt/kibana)
 mkdir /opt/kibana
-(cd ~; yes | cp -R kibana-4*/* /opt/kibana/)
-(cd ~; rm -rf kibana-4*)
+(cd ~; yes | cp -R kibana-*/* /opt/kibana/)
+(cd ~; rm -rf kibana-*)
 
 # popd
 

@@ -2,8 +2,8 @@ cp roles/documentdatabase/elasticsearch/config/elasticsearch.repo /etc/yum.repos
 
 sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
 
-yum install -y elasticsearch
+yum -y install elasticsearch
 
 yum -y install epel-release
 
-yum install -y elasticdump
+yum -y install elasticdump
