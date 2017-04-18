@@ -9,7 +9,7 @@ tar -C /usr/local -xzf go1.8.1.linux-amd64.tar.gz
 
 mkdir -p /opt/fabio
 
-( export GOPATH=/opt/fabio && go get github.com/eBay/fabio )
+( export GOPATH=/opt/fabio && go get github.com/fabiolb/fabio )
 
 # Configure as a service
 canzea --config_git_commit --template=roles/router/fabio/config/fabio.service /etc/systemd/system/multi-user.target.wants/fabio.service
