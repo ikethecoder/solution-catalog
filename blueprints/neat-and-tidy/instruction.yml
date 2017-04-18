@@ -228,6 +228,7 @@ instructions:
         - step:workarounds:sudoers
         - step:monitoring:collectd
         - step:monitoring:filebeat
+        - step:monitoring:metricbeat
         - step:documentdatabase:mongodb
         - step:loadbalancer:nginx
         - step:messaging:rabbitmq
