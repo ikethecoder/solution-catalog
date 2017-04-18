@@ -13,6 +13,13 @@ filebeat:
       document_type: audit
 
     -
+      paths:
+        - /home/pm2user/nodered-gocd-events.log
+
+      input_type: log
+      document_type: pipeline
+
+    -
       # Paths that should be crawled and fetched. Glob based paths.
       # To fetch all ".log" files from a specific level of subdirectories
       # /var/log/*/*.log can be used.
@@ -153,74 +160,75 @@ filebeat:
 
 # Configure what outputs to use when sending the data collected by the beat.
 # Multiple outputs may be used.
-output:
 
-  ### Logstash as output
-  logstash:
-    # The Logstash hosts
-    #hosts: ["localhost:5044"]
-    hosts: ["{{LOGSTASH_ADDRESS}}:{{LOGSTASH_PORT}}"]
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["{{ELASTICSEARCH_ADDRESS}}:{{ELASTICSEARCH_PORT}}"]
 
-    # Number of workers per Logstash host.
-    #worker: 1
+output.logstash:
 
-    # Optional load balance the events between the Logstash hosts
-    #loadbalance: true
+  hosts: ["{{LOGSTASH_ADDRESS}}:{{LOGSTASH_PORT}}"]
 
-    # Optional index name. The default index name depends on the each beat.
-    # For Packetbeat, the default is set to packetbeat, for Topbeat
-    # top topbeat and for Filebeat to filebeat.
-    #index: filebeat
+  # Number of workers per Logstash host.
+  #worker: 1
 
-    # Optional TLS. By default is off.
-    ssl:
-      # List of root certificates for HTTPS server verifications
-      certificate_authorities: ["/etc/pki/tls/certs/logstash-forwarder.crt"]
+  # Optional load balance the events between the Logstash hosts
+  #loadbalance: true
 
-      # List of root certificates for HTTPS server verifications
-      #certificate_authorities: ["/etc/pki/root/ca.pem"]
+  # Optional index name. The default index name depends on the each beat.
+  # For Packetbeat, the default is set to packetbeat, for Topbeat
+  # top topbeat and for Filebeat to filebeat.
+  #index: filebeat
 
-      # Certificate for TLS client authentication
-      #certificate: "/etc/pki/client/cert.pem"
+  # Optional TLS. By default is off.
+  ssl:
+    # List of root certificates for HTTPS server verifications
+    certificate_authorities: ["/etc/pki/tls/certs/logstash-forwarder.crt"]
 
-      # Client Certificate Key
-      #certificate_key: "/etc/pki/client/cert.key"
+    # List of root certificates for HTTPS server verifications
+    #certificate_authorities: ["/etc/pki/root/ca.pem"]
 
-      # Controls whether the client verifies server certificates and host name.
-      # If insecure is set to true, all server host names and certificates will be
-      # accepted. In this mode TLS based connections are susceptible to
-      # man-in-the-middle attacks. Use only for testing.
-      #insecure: true
+    # Certificate for TLS client authentication
+    #certificate: "/etc/pki/client/cert.pem"
 
-      # Configure cipher suites to be used for TLS connections
-      #cipher_suites: []
+    # Client Certificate Key
+    #certificate_key: "/etc/pki/client/cert.key"
 
-      # Configure curve types for ECDHE based cipher suites
-      #curve_types: []
+    # Controls whether the client verifies server certificates and host name.
+    # If insecure is set to true, all server host names and certificates will be
+    # accepted. In this mode TLS based connections are susceptible to
+    # man-in-the-middle attacks. Use only for testing.
+    #insecure: true
 
+    # Configure cipher suites to be used for TLS connections
+    #cipher_suites: []
 
-  ### File as output
-  #file:
-    # Path to the directory where to save the generated files. The option is mandatory.
-    #path: "/tmp/filebeat"
-
-    # Name of the generated files. The default is `filebeat` and it generates files: `filebeat`, `filebeat.1`, `filebeat.2`, etc.
-    #filename: filebeat
-
-    # Maximum size in kilobytes of each file. When this size is reached, the files are
-    # rotated. The default value is 10 MB.
-    #rotate_every_kb: 10000
-
-    # Maximum number of files under path. When this number of files is reached, the
-    # oldest file is deleted and the rest are shifted from last to first. The default
-    # is 7 files.
-    #number_of_files: 7
+    # Configure curve types for ECDHE based cipher suites
+    #curve_types: []
 
 
-  ### Console output
-  # console:
-    # Pretty print json event
-    #pretty: false
+### File as output
+#file:
+  # Path to the directory where to save the generated files. The option is mandatory.
+  #path: "/tmp/filebeat"
+
+  # Name of the generated files. The default is `filebeat` and it generates files: `filebeat`, `filebeat.1`, `filebeat.2`, etc.
+  #filename: filebeat
+
+  # Maximum size in kilobytes of each file. When this size is reached, the files are
+  # rotated. The default value is 10 MB.
+  #rotate_every_kb: 10000
+
+  # Maximum number of files under path. When this number of files is reached, the
+  # oldest file is deleted and the rest are shifted from last to first. The default
+  # is 7 files.
+  #number_of_files: 7
+
+
+### Console output
+# console:
+  # Pretty print json event
+  #pretty: false
 
 
 ############################# Shipper #########################################
@@ -296,5 +304,4 @@ logging:
   # Sets log level. The default log level is error.
   # Available log levels are: critical, error, warning, info, debug
   #level: error
-
 
