@@ -69,9 +69,10 @@ metricbeat.modules:
 # Multiple outputs may be used.
 
 #-------------------------- Elasticsearch output ------------------------------
+
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["localhost:9200"]
+  hosts: ["{{ELASTICSEARCH_ADDRESS}}:{{ELASTICSEARCH_PORT}}"]
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
