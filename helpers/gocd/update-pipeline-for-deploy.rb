@@ -48,7 +48,7 @@ task = JSON.parse(t.process taskTemplate1, {"project" => project, "version" => v
 job['tasks'].push (task)
 
 params = { "port" => attributes['port'], "name" => attributes['name'] }
-task = JSON.parse(t.process taskTemplate2, {"project" => project, "version" => version, "solution" => "application", "action" => "install-app", "parameters" => JSON.generate(params.to_json) })
+task = JSON.parse(t.process taskTemplate2, {"project" => project, "version" => version, "solution" => "application", "action" => "install-app", "parameters" => JSON.generate(params) })
 job['tasks'].push (task)
 
 # params = { "channel" => "integration", "message" => "#{project} deployed" }
