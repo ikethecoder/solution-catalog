@@ -3,15 +3,9 @@
 require 'git'
 require 'json'
 require 'fileutils'
-require 'registry'
 require 'trace-runner'
+require 'canzea/registry'
 require 'canzea/config'
-
-extraConfig = Canzea::config[:config_location] + "/config.json"
-if File.exists?(extraConfig)
-    file = File.read(extraConfig)
-    Canzea::configure JSON.parse(file)
-end
 
 parameters = JSON.parse(ARGV[0])
 
