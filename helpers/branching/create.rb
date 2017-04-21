@@ -44,10 +44,16 @@ r.setKeyValue('applications', app + '/major', major)
 r.setKeyValue('applications', app + '/minor', minor)
 r.setKeyValue('applications', app + '/patch', patch)
 
-newVersion = major+"."+minor+"."+patch
+newVersion = "#{major}.#{minor}.#{patch}"
 prefix = "release"
 if (type == "patch")
     prefix = "hotfix"
+end
+if (type == "major")
+    r.setKeyValue('applications', "#{app}/releases/#{major}/minor", minor)
+end
+if (type == "minor")
+    r.setKeyValue('applications', "#{app}/releases/#{major}.#{minor}/patch", patch)
 end
 
 branch = "develop"
