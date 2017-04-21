@@ -11,7 +11,7 @@
       "--lifecycle=wire",
       "--solution={{solution}}",
       "--action={{action}}",
-      "--args='{{{parameters}}}'"
+      "--args={{{parameters}}}"
     ],
     "working_directory": ""
   }
