@@ -1,25 +1,25 @@
-# ruby helpers/helper-run.rb consul add_keyvalue '{"key":"test/a","value":"value"}'
-
 require 'json'
-require_relative 'connection'
+require 'canzea/registry'
 
 parameters = JSON.parse(ARGV[0])
 
+root = parameters['root']
+
 key = parameters['key']
 value = parameters['value']
-if (parameters.has_key? "file")
-    file = parameters['file']
-    value = File.read(file)
-end
 
-http = Connection.new.prepareHttpPutConnection()
+r = Registry.new
 
-request = Net::HTTP::Put.new("/v1/kv/#{key}")
+if (parameters.has_key? "values")
+    values = parameters['values']
+    values.each do |name, value|
+        r.setKeyValue root, "#{key}/#{name}", value
+    end
+else
+    if (parameters.has_key? "file")
+        file = parameters['file']
+        value = File.read(file)
+    end
 
-res = http.request(request, value)
-
-if ( Integer(res.code) != 200 )
-    puts res.code
-    puts res.body
-    raise("Adding key value configuration failed")
+    r.setKeyValue root, key, value
 end
