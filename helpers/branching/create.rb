@@ -5,6 +5,13 @@ require 'json'
 require 'fileutils'
 require 'registry'
 require 'trace-runner'
+require 'canzea/config'
+
+extraConfig = Canzea::config[:config_location] + "/config.json"
+if File.exists?(extraConfig)
+    file = File.read(extraConfig)
+    Canzea::configure JSON.parse(file)
+end
 
 parameters = JSON.parse(ARGV[0])
 
@@ -33,9 +40,9 @@ else
     raise "Unrecognized type #{type}"
 end
 
-r.register('applications', app + '/major', major)
-r.register('applications', app + '/minor', minor)
-r.register('applications', app + '/patch', patch)
+r.setKeyValue('applications', app + '/major', major)
+r.setKeyValue('applications', app + '/minor', minor)
+r.setKeyValue('applications', app + '/patch', patch)
 
 newVersion = major+"."+minor+"."+patch
 prefix = "release"
@@ -49,7 +56,7 @@ folder = "#{app}"
 
 FileUtils.rm_rf(folder)
 
-g = Git.clone(url, folder, :branch => branch, :path => '.')
+g = Git.clone(url, folder, :path => '.')
 
 n.run "(cd #{folder}; git checkout -b #{prefix}-#{newVersion})", 0, 0
 

@@ -4,11 +4,15 @@ require 'git'
 require 'json'
 require 'fileutils'
 require 'registry'
-require 'trace-runner'
+require 'canzea/config'
+
+extraConfig = Canzea::config[:config_location] + "/config.json"
+if File.exists?(extraConfig)
+    file = File.read(extraConfig)
+    Canzea::configure JSON.parse(file)
+end
 
 parameters = JSON.parse(ARGV[0])
-
-n = RunnerWorker.new
 
 r = Registry.new
 
@@ -18,13 +22,13 @@ major = 1
 minor = 0
 patch = 0
 
-r.register('applications', app + '/major', major)
-r.register('applications', app + '/minor', minor)
-r.register('applications', app + '/patch', patch)
+r.setKeyValue('applications', app + '/major', major)
+r.setKeyValue('applications', app + '/minor', minor)
+r.setKeyValue('applications', app + '/patch', patch)
 
 # Gets incremented when we want a new minor
-r.register('applications', app + '/releases/1/minor', 0)
-r.register('applications', app + '/releases/1.0/patch', 0)
+r.setKeyValue('applications', app + '/releases/1/minor', 0)
+r.setKeyValue('applications', app + '/releases/1.0/patch', 0)
 
 # hello-world-svc-app/
 #   major/1
