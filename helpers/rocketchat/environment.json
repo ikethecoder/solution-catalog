@@ -3,7 +3,8 @@
   ],
 
   "services": [
-    {"name":"rocketchat"}
+    {"name":"rocketchat"},
+    {"name":"phantomjs"}
   ],
   "secrets": [
     {"name":"admin/rocketchat"}
