@@ -1,5 +1,5 @@
 [Unit]
-Description=statsd
+Description=elasticsearch-metrics
 After=network.target
 
 [Service]
