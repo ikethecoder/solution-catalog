@@ -3,8 +3,8 @@
   ],
 
   "services": [
-    {"name":"Rocket.Chat"},
-    {"name":"Vault"}
+    {"name":"rocketchat"},
+    {"name":"vault"}
   ],
   "secrets": [
     {"name":"admin/rocketchat"}
