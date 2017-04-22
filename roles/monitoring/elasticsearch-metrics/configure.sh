@@ -1,5 +1,5 @@
 
-curl -XPUT http://localhost:9200 -d@roles/monitoring/elasticsearch-metrics/config/elasticsearch-metrics.json
+curl -X PUT --data "@roles/monitoring/elasticsearch-metrics/config/elasticsearch-metrics.json" http://localhost:9200/_template/elasticsearch_metrics
 
 systemctl daemon-reload
-systemctl start elasticsearch-metrics
+systemctl restart elasticsearch-metrics

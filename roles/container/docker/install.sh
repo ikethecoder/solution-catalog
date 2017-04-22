@@ -4,8 +4,3 @@
 
 yum -y install docker
 
-
-chkconfig docker on
-
-sudo service docker start
-

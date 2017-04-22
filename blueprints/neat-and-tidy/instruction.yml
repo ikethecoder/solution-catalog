@@ -83,9 +83,10 @@ instructions:
         - step:deploy:gocd-agent
         - step:adhoc:nodered
         - step:adhoc:nodered-oauth
-        - step:container:docker
         - step:loadbalancer:nginx-consul
         - step:workarounds:iptables
+        - step:container:docker
+        - step:collaboration:rocketchat
         - wire:digitalocean:image
         - wire:digitalocean:teardown
 
@@ -123,6 +124,7 @@ instructions:
         - step:monitoring:grafana
         - step:monitoring:collectd
         - step:monitoring:filebeat
+        - step:monitoring:elasticsearch-metrics
         - step:audit:auditd
         - wire:digitalocean:image
         - wire:digitalocean:teardown
@@ -235,6 +237,7 @@ instructions:
         - step:audit:auditd
         - step:workarounds:golang
         - step:router:fabio
+        - step:deploy:gocd-agent
         - step:application:user
         - wire:digitalocean:image
         - wire:digitalocean:teardown
