@@ -5,7 +5,7 @@ git clone https://github.com/trevorndodds/elasticsearch-metrics
 
 mkdir /opt/elasticsearch-metrics
 
-cp -r elasticsearch-metrics /opt/elasticsearch-metrics/.
+cp -r elasticsearch-metrics/* /opt/elasticsearch-metrics/.
 
 yes | rm -rf elasticsearch-metrics
 
