@@ -1,0 +1,10 @@
+[Unit]
+Description=statsd
+After=network.target
+
+[Service]
+Restart=always
+ExecStart=/opt/elasticsearch-metrics/bin/entrypoint.sh
+
+[Install]
+WantedBy=local.target
