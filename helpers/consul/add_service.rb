@@ -29,6 +29,8 @@
 # 198.199.91.125 , 8188
 require 'json'
 require 'net/http'
+require_relative 'connection'
+
 parameters = JSON.parse(ARGV[0])
 
 
