@@ -8,7 +8,9 @@ curl -X PUT -d @roles/configdb/sample/node.json -v http://localhost:8500/v1/cata
 curl -X PUT -d @roles/configdb/sample/service.json -v http://localhost:8500/v1/agent/service/register
 
 
-curl -X PUT -d 50 http://localhost:8500/v1/kv
+curl -X PUT -d 50 http://localhost:8500/v1/kv/a
+
+curl -X GET http://localhost:8500/v1/kv/a
 
 # https://github.com/JoergM/consul-examples/tree/master/http_api
 
