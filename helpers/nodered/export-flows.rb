@@ -24,7 +24,7 @@ headers = {
 uri = URI(ENV['NODERED_URL'] + '/admin/flows')
 
 http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true
+#http.use_ssl = true
 
 res = http.get("#{uri.path}", headers)
 
@@ -43,7 +43,7 @@ content['flows'].each do | flow |
         uri = URI(ENV['NODERED_URL'] + "/admin/flow/#{flow['id']}")
 
         http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
+        #http.use_ssl = true
 
         res = http.get("#{uri.path}", headers)
 
