@@ -41,6 +41,8 @@ npm install -g node-red-contrib-json-schema
 
 npm install -g node-red-contrib-chatbot
 
+npm install -g node-red-contrib-auth
+
 npm install -g pm2
 
 # For SSL

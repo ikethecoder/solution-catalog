@@ -65,8 +65,8 @@ begin
 
     driver.find_element(:name, "name").send_keys "admin"
     driver.find_element(:name, "email").send_keys "aidan.cope@gmail.com"
-    driver.find_element(:name, "pass").send_keys "admin1admin"
-    driver.find_element(:name, "confirm-pass").send_keys "admin1admin"
+    driver.find_element(:name, "pass").send_keys ENV['ADMIN_ROCKETCHAT_PASSWORD']
+    driver.find_element(:name, "confirm-pass").send_keys ENV['ADMIN_ROCKETCHAT_PASSWORD']
 #    driver.save_screenshot('/usr/share/nginx/html/screenshot.png')
 
     driver.find_element(:class, "primary").click

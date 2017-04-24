@@ -3,6 +3,12 @@
         {
             "name":"nodered",
             "listener":"pub",
+            "port":8000,
+            "ssl":false
+        },
+        {
+            "name":"nodered-oem",
+            "listener":"pub",
             "port":1880,
             "ssl":false
         }
