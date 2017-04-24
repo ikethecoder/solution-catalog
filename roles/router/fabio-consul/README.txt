@@ -8,7 +8,7 @@ curl -X PUT -d @roles/configdb/sample/node.json -v http://localhost:8500/v1/cata
 curl -X PUT -d @roles/configdb/sample/service.json -v http://localhost:8500/v1/agent/service/register
 
 
-curl -X PUT -d 50 http://localhost:8500/v1/kv/a
+curl -X PUT -d 50 http://10.136.17.79:8500/v1/kv/a
 
 curl -X GET http://localhost:8500/v1/kv/a
 
