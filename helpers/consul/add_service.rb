@@ -59,7 +59,8 @@ payload = {
         "Name" => serviceName, "Service" => serviceName, "Address" => address, "Port" => port, "Tags" => tags, "Check" => check
 }
 
-http = Net::HTTP.new(uri.host, uri.port)
+http = Connection.new.prepareHttpPutConnection()
+
 res = http.post('/v1/agent/service/register', payload.to_json, headers)
 
 if ( Integer(res.code) != 200 )

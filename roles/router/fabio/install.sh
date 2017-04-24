@@ -1,9 +1,24 @@
 #yum -y install go
 
 
-mkdir -p /opt/fabio
+#
+# GET THE LATEST CONSUL API TO SUPPORT TLS WITH FABIO
+#
+mkdir -p /opt/go
+(export GOPATH=/opt/go && go get -u github.com/kardianos/govendor)
+(export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && cd $GOPATH && go get github.com/fabiolb/fabio)
+canzea --config_git_commit --template=roles/router/fabio/patch/vendor.json /opt/go/src/github.com/fabiolb/fabio/vendor/vendor.json
+(export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && go get -u github.com/kardianos/govendor)
+(export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && govendor fetch github.com/hashicorp/consul/api)
+# (export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && go get github.com/hashicorp/consul/api)
+# (export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && cd /opt/go/src/github.com/hashicorp/consul && go install)
+(export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && cd /opt/go/src/github.com/fabiolb/fabio && go install)
 
-( export GOPATH=/opt/fabio && go get github.com/fabiolb/fabio )
+
+mkdir -p /opt/fabio/bin
+
+cp /opt/go/bin/fabio /opt/fabio/bin/.
+
 
 # Configure as a service
 canzea --config_git_commit --template=roles/router/fabio/config/fabio.service /etc/systemd/system/multi-user.target.wants/fabio.service
@@ -21,4 +36,4 @@ canzea --config_git_commit --template=roles/router/fabio/config/fabio.service /e
 # yes | cp -f /opt/fabio/src/github.com/eBay/fabio/fabio /opt/fabio/bin/.
 
 
-( export GOPATH=/opt/fabio && go get github.com/rcrowley/go-metrics )
+( export GOPATH=/opt/go && go get github.com/rcrowley/go-metrics )
