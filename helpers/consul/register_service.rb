@@ -4,7 +4,6 @@ require_relative 'connection'
 parameters = JSON.parse(ARGV[0])
 
 listener = parameters['listener']
-checkPath = parameters['checkPath']
 
 http = Connection.new.prepareHttpPutConnection()
 
@@ -35,6 +34,12 @@ payload = {
         "Address" => address
     }
 }
+
+
+if (parameters.has_key? "check")
+    parameters['check']['http'] = "http://#{address}:#{port}#{parameters['check']['path']}"
+    payload[:Check] = parameters['check']
+end
 
 request = Net::HTTP::Put.new("/v1/agent/service/register")
 
