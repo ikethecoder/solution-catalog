@@ -39,7 +39,7 @@ address = parameters['address']
 listener = parameters['listener']
 port = Integer(parameters['port'])
 prefix = parameters['prefix']
-check = parameters['check']
+
 tags = ["urlprefix-#{prefix}", "app"]
 
 if (listener == 'pub')
@@ -58,8 +58,12 @@ headers = {
 }
 
 payload = {
-        "Name" => serviceName, "Service" => serviceName, "Address" => address, "Port" => port, "Tags" => tags, "Check" => check
+        "Name" => serviceName, "Service" => serviceName, "Address" => address, "Port" => port, "Tags" => tags
 }
+if (parameters.has_key? "check")
+    parameters['check']['http'] = "http://#{address}:#{port}#{parameters['check']['path']}"
+    payload[:Check] = parameters['check']
+end
 
 http = Connection.new.prepareHttpPutConnection()
 

@@ -11,6 +11,7 @@
             "checks": [
                 {
                     "http": "http://{{prv}}:9200/_cluster/health",
+                    "path": "/_cluster/health",
                     "interval": "10s",
                     "timeout": "1s"
                 }
