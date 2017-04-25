@@ -35,7 +35,9 @@ payload = {
 
 
 if (parameters.has_key? "check")
-    parameters['check']['http'] = "http://#{address}:#{port}#{parameters['check']['path']}"
+    if (parameters['check'].has_key? "path")
+        parameters['check']['http'] = "http://#{address}:#{port}#{parameters['check']['path']}"
+    end
     payload[:Check] = parameters['check']
 end
 

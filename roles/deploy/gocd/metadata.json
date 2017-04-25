@@ -6,5 +6,12 @@
             "port":8153,
             "ssl":false
         }
+    ],
+    "checks": [
+        {
+            "script":"curl https://localhost:8153/go/api/version -H 'Accept: application/vnd.go.cd.v1+json'",
+            "interval": "10s",
+            "timeout": "1s"
+        }
     ]
 }
