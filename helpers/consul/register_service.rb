@@ -40,7 +40,8 @@ payload = {
 
 if (parameters.has_key? "check")
     parameters['check']['http'] = "http://#{address}:#{port}#{parameters['check']['path']}"
-    payload[:Service][:Check] = parameters['check']
+    svc = payload[:Service]
+    svc[:Check] = parameters['check']
 end
 
 request = Net::HTTP::Put.new("/v1/agent/service/register")
