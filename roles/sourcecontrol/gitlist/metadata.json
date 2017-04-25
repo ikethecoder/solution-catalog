@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"gitlist",
+            "listener":"pub",
+            "port":851,
+            "ssl":false
+        }
+    ]
+}
