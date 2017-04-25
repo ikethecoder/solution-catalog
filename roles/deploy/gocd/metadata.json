@@ -5,7 +5,7 @@
             "listener":"pub",
             "port":8153,
             "ssl":false,
-            "checks": [
+            "_tmp_checks": [
                 {
                     "script":"curl https://localhost:8153/go/api/version -H 'Accept: application/vnd.go.cd.v1+json'",
                     "interval": "10s",
