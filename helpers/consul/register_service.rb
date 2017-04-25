@@ -23,6 +23,8 @@ serviceId = "#{parameters['service']}"
 
 # check = { "http" => "http://#{address}:#{port}#{checkPath}" , "interval" => "10s", "timeout" => "1s" }
 
+port = parameters['port']
+
 payload = {
     "Node" => node,
     "Address" => privateAddress,
@@ -30,7 +32,7 @@ payload = {
         "ID" => serviceId,
         "Name" => serviceId,
         "Tags" => parameters['tags'],
-        "Port" => parameters['port'],
+        "Port" => port,
         "Address" => address
     }
 }
