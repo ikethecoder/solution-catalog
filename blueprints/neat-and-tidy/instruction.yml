@@ -87,6 +87,7 @@ instructions:
         - step:workarounds:iptables
         - step:container:docker
         - step:collaboration:rocketchat
+        - step:sourcecontrol:gitlist
         - wire:digitalocean:image
         - wire:digitalocean:teardown
 

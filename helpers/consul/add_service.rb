@@ -39,7 +39,7 @@ address = parameters['address']
 listener = parameters['listener']
 port = Integer(parameters['port'])
 prefix = parameters['prefix']
-checkPath = parameters['check']
+check = parameters['check']
 tags = ["urlprefix-#{prefix}", "app"]
 
 if (listener == 'pub')
@@ -49,7 +49,7 @@ elsif (listener == 'prv')
 elsif (listener == 'loc')
     address = "localhost"
 end
-check = { "http" => "http://#{address}:#{port}#{checkPath}" , "interval" => "10s", "timeout" => "1s" }
+#check = { "http" => "http://#{address}:#{port}#{checkPath}" , "interval" => "10s", "timeout" => "1s" }
 
 # Get the authtoken and userId
 uri = URI(ENV['CONSUL_URL'])
