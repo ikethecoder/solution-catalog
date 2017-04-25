@@ -26,27 +26,22 @@ serviceId = "#{parameters['service']}"
 port = parameters['port']
 
 payload = {
-    "Node" => node,
-    "Address" => privateAddress,
-    "Service" => {
-        "ID" => serviceId,
-        "Name" => serviceId,
-        "Tags" => parameters['tags'],
-        "Port" => port,
-        "Address" => address
-    }
+    "ID" => serviceId,
+    "Name" => serviceId,
+    "Tags" => parameters['tags'],
+    "Port" => port,
+    "Address" => address
 }
 
 
 if (parameters.has_key? "check")
     parameters['check']['http'] = "http://#{address}:#{port}#{parameters['check']['path']}"
-    svc = payload[:Service]
-    svc[:Check] = parameters['check']
+    payload[:Check] = parameters['check']
 end
 
 request = Net::HTTP::Put.new("/v1/agent/service/register")
 
-res = http.request(request, payload['Service'].to_json)
+res = http.request(request, payload.to_json)
 
 puts res.body
 
