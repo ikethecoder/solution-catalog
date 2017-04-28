@@ -5,6 +5,7 @@
 
 require 'json'
 require 'template-runner'
+require 'canzea/config'
 require 'canzea/registry'
 
 parameters = JSON.parse(ARGV[0])
@@ -36,5 +37,5 @@ end
 
 outFile = "segment-#{parameters['name']}.tf"
 
-t.processAndWriteToFile 'helpers/terraform/templates/segment.tf.templ', outFile, params
+t.processAndWriteToFile "#{Canzea::config[:catalog_location]}/helpers/terraform/templates/segment.tf.templ", outFile, params
 
