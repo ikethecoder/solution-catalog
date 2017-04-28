@@ -1,6 +1,8 @@
 
 yum -y erase go
 
+rm -rf /usr/local/bin/go
+
 # Remove any previous version
 rm -rf /usr/local/go
 

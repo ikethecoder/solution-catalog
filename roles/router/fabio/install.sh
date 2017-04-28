@@ -9,11 +9,10 @@ mkdir -p /opt/go
 (export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && cd $GOPATH && go get github.com/fabiolb/fabio)
 canzea --config_git_commit --template=roles/router/fabio/patch/vendor.json /opt/go/src/github.com/fabiolb/fabio/vendor/vendor.json
 (export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && go get -u github.com/kardianos/govendor)
-# (export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && govendor fetch github.com/hashicorp/consul/api)
+(export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && cd /opt/go/src/github.com/fabiolb/fabio && govendor fetch github.com/hashicorp/consul/api)
 # (export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && go get github.com/hashicorp/consul/api)
 # (export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && cd /opt/go/src/github.com/hashicorp/consul && go install)
 (export PATH=$PATH:/opt/go/bin && export GOPATH=/opt/go && cd /opt/go/src/github.com/fabiolb/fabio && go install)
-
 
 mkdir -p /opt/fabio/bin
 
