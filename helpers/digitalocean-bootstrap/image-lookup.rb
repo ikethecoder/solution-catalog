@@ -20,13 +20,13 @@ response.each do |dropitem|
 
     images.each { | image |
         if (image['public'] == false and image['name'] == "#{dropitem['name']}-snapshot")
-            puts "Potential match!"
-            puts image['id']
-            puts image['name']
-            puts image['type']
-            puts image.to_json
+            # puts "--" + "Potential match!"
+            # puts "--" + image['id']
+            # puts "--" + image['name']
+            # puts "--" + image['type']
 
             File.open("#{Canzea::config[:pwd]}/vps-#{dropitem['name']}-snapshot-active.json", 'w') { |file| file.write(image.to_json) }
+            puts image.to_json
         end
     }
 end
