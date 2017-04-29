@@ -18,11 +18,6 @@ response.each do |dropitem|
 
     item = client.droplet_actions.shutdown(droplet_id: did)
 
-    File.open("#{Canzea::config[:pwd]}/vps-#{dropitem['name']}-image.json", 'w') { |file| file.write(item.to_json) }
-
-#    puts "#{item['id']} #{item['status']}"
-
-
     active = false
     while active == false
 
