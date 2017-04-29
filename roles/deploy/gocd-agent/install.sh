@@ -8,3 +8,5 @@ wget https://download.gocd.io/binaries/17.3.0-4704/rpm/go-agent-17.3.0-4704.noar
 yum -y localinstall go-agent-17.3.0-4704.noarch.rpm
 
 chown -R go:go /var/go
+
+ls -l /etc/default
