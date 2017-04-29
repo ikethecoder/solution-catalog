@@ -29,7 +29,7 @@ token=ENV["DIGITALOCEAN_TOKEN"]
 
 client = DropletKit::Client.new(access_token: token)
 
-userData = Template.new.process "#{ENV['CATALOG_LOCATION']}/helpers/digitalocean-bootstrap/config/user-data.txt", {"ECOSYSTEM":ecosystem,"CLOUD_TOKEN":cloudToken}
+# userData = Template.new.process "#{ENV['CATALOG_LOCATION']}/helpers/digitalocean-bootstrap/config/user-data.txt", {"ECOSYSTEM":ecosystem,"CLOUD_TOKEN":cloudToken}
 
 payload = {
     names: ary,
@@ -39,7 +39,6 @@ payload = {
     image: image,
     private_networking: true,
     ipv6: false,
-    user_data: userData,
     tags: parameters['tags']
 }
 
