@@ -1,7 +1,7 @@
 # canzea --config=../cli/config.json --lifecycle=wire --solution=terraform --action=generate --args='{"imagePaasId":"12321", "name":"abcd", "region":"nyc1"}'
 # canzea --config=../cli/config.json --lifecycle=wire --solution=terraform --action=generate --args='{"imageCode":"EEED", "name":"abcd2", "region":"nyc1"}'
 
-# canzea --config=config.json --lifecycle=wire --solution=terraform --action=generate --args='{"imagePaasId":"24485506", "name":"escd27-perf-app", "region":"nyc1"}'
+# canzea --config=config.json --lifecycle=wire --solution=terraform --action=generate --args='{"imagePaasId":"24485506", "name":"escd27-perf-app-1", "region":"nyc1"}'
 
 require 'json'
 require 'template-runner'
@@ -35,7 +35,8 @@ else
     params[:imageText] = "\"#{parameters['imageCode']}\""
 end
 
+template = "#{Canzea::config[:catalog_location]}/helpers/terraform/templates/segment.tf.templ"
+
 outFile = "segment-#{parameters['name']}.tf"
 
-t.processAndWriteToFile "#{Canzea::config[:catalog_location]}/helpers/terraform/templates/segment.tf.templ", outFile, params
-
+t.processAndWriteToFile template, outFile, params
