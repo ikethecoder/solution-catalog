@@ -1,6 +1,6 @@
  {
      backends: [ 'statsd-elasticsearch-backend'],
-     debug: true,
+     debug: false,
      flushInterval: 30000,
      elasticsearch: {
          port:          {{ELASTICSEARCH_PORT}},
