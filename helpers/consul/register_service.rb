@@ -19,7 +19,7 @@ elsif (listener == 'loc')
     address = "localhost"
 end
 # -#{node}-#{parameters['port']}
-serviceId = "#{parameters['service']}"
+serviceId = "#{parameters['id']}"
 serviceName = "#{parameters['name']}"
 
 # check = { "http" => "http://#{address}:#{port}#{checkPath}" , "interval" => "10s", "timeout" => "1s" }
