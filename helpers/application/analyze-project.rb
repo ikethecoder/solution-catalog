@@ -24,7 +24,7 @@ g = Git.clone(url, name, :branch => branch, :path => '.')
 
 if (File.exists? "#{name}/pom.xml")
     puts JavaMavenProject.new.createDetails name
-else if (File.exists? "#{name}/package.json")
+elsif (File.exists? "#{name}/package.json")
     puts JavascriptProject.new.createDetails name
 else
     raise "Unable to identify project type"
