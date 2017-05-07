@@ -9,6 +9,7 @@ require 'fileutils'
 require 'canzea/registry'
 require_relative 'types/java-maven/java-maven-project'
 require_relative 'types/js-npm/js-npm-project'
+require_relative 'types/ruby/ruby-project'
 
 parameters = JSON.parse(ARGV[0])
 
@@ -31,6 +32,8 @@ if (File.exists? "#{name}/pom.xml")
     puts JavaMavenProject.new.createDetails name
 elsif (File.exists? "#{name}/package.json")
     puts JavascriptProject.new.createDetails name
+elsif (File.exists? "#{name}/Rakefile")
+    puts RubyProject.new.createDetails name
 else
     raise "Unable to identify project type"
 end
