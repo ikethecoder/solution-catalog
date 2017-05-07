@@ -3,6 +3,7 @@
   ],
 
   "services": [
+    {"name":"vault"},
     {"name":"archiva"},
     {"name":"gitlab"}
   ],
