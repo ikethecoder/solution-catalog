@@ -21,7 +21,9 @@ if (parameters.has_key? 'credential_resource')
     creds = Registry.new.getSecret credentialResource
 end
 
-FileUtils.remove_dir(name)
+if (File.exists? name)
+    FileUtils.remove_dir(name)
+end
 
 g = Git.clone(url, name, :branch => branch, :path => '.')
 
