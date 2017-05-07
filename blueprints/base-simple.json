@@ -1,0 +1,16 @@
+{
+  "config": {
+    "background_color": "white",
+    "paper_width": 500,
+    "preferred_ratio": 1.366,
+    "fixed_width": false,
+    "pan_and_zoom": false
+  },
+  "nodes":[
+  ],
+  "links": [
+  ],
+  "zones": [
+    { "type" : "default", "rectangle": [10, 10, "viewWidth-20", "viewHeight-20"]}
+  ]
+}
