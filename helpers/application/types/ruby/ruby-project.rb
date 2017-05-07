@@ -1,7 +1,7 @@
 require 'json'
 require 'find'
 
-class RubyRakeProject
+class RubyProject
 
     def createDetails(name)
         file = File.read("#{name}/package.json")
