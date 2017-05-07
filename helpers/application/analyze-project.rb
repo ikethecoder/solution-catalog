@@ -7,6 +7,7 @@ require 'xmlsimple'
 require 'java-properties'
 require 'canzea/registry'
 require_relative 'types/java-maven/java-maven-project'
+require_relative 'types/js-npm/js-npm-project'
 
 parameters = JSON.parse(ARGV[0])
 
@@ -23,6 +24,8 @@ g = Git.clone(url, name, :branch => branch, :path => '.')
 
 if (File.exists? "#{name}/pom.xml")
     puts JavaMavenProject.new.createDetails name
+else if (File.exists? "#{name}/package.json")
+    puts JavascriptProject.new.createDetails name
 else
     raise "Unable to identify project type"
 end
