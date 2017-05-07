@@ -5,6 +5,7 @@ require 'git'
 require 'json'
 require 'xmlsimple'
 require 'java-properties'
+require 'fileutils'
 require 'canzea/registry'
 require_relative 'types/java-maven/java-maven-project'
 require_relative 'types/js-npm/js-npm-project'
@@ -20,6 +21,7 @@ if (parameters.has_key? 'credential_resource')
     creds = Registry.new.getSecret credentialResource
 end
 
+FileUtils.remove_dir(name)
 
 g = Git.clone(url, name, :branch => branch, :path => '.')
 

@@ -9,6 +9,7 @@ class JavascriptProject
         content = {
           "type" => "js-npm",
           "name" => package['name'],
+          "author" => package['author'],
           "version" => package['version']
         }
         File.write("artifact-#{name}.json", JSON.pretty_generate(content))
