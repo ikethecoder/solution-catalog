@@ -3,7 +3,8 @@ require 'json'
 class JavascriptProject
 
     def createDetails(name)
-        package = JSON.parse(name + "/package.json")
+        file = File.read("#{name}/package.json")
+        package = JSON.parse(file)
 
         content = {
           "type" => "js-npm",
