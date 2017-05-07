@@ -15,10 +15,11 @@ url = parameters['sourceRepo']
 branch = parameters['branch']
 name = parameters['name']
 
-credentialResource = parameters['credential_resource']
+if (parameters.has_key? 'credential_resource')
+    credentialResource = parameters['credential_resource']
+    creds = Registry.new.getSecret credentialResource
+end
 
-creds = Registry.new.getSecret credentialResource
-puts creds
 
 g = Git.clone(url, name, :branch => branch, :path => '.')
 
