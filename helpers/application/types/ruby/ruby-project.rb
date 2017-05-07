@@ -4,7 +4,6 @@ require 'find'
 class RubyProject
 
     def createDetails(name)
-        file = File.read("#{name}/package.json")
         Find.find("#{name}") do |path|
             if (path.ends_with? ".gemspec")
                 package = Gem::Specification.load("#{name}/#{path}")
