@@ -5,14 +5,15 @@ class RubyProject
 
     def createDetails(name)
         Find.find("#{name}") do |path|
-            if (path.ends_with? ".gemspec")
-                package = Gem::Specification.load("#{name}/#{path}")
+            if (File.basename(path).end_with? ".gemspec")
+
+                p = Gem::Specification.load("#{path}")
 
                 content = {
                   "type" => "ruby",
-                  "name" => package['name'],
-                  "author" => package['author'],
-                  "version" => package['version']
+                  "name" => p.name,
+                  "author" => p.author,
+                  "version" => p.version
                 }
                 File.write("artifact-#{name}.json", JSON.pretty_generate(content))
                 puts JSON.pretty_generate(content)

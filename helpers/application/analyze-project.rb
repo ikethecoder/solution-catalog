@@ -26,7 +26,11 @@ if (File.exists? name)
     FileUtils.remove_dir(name)
 end
 
-g = Git.clone(url, name, :branch => branch, :path => '.')
+if (parameters.has_key? 'branch')
+    g = Git.clone(url, name, :branch => branch, :path => '.')
+else
+    g = Git.clone(url, name, :path => '.')
+end
 
 if (File.exists? "#{name}/pom.xml")
     puts JavaMavenProject.new.createDetails name
