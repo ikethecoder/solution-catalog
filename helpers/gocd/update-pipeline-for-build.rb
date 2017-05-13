@@ -50,7 +50,10 @@ task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project']})
 job['tasks'].push (task)
 
 params = { "ecosystem" => "XXXXX" }
-task = JSON.parse(t.process taskTemplate3, {"project" => attributes['project'], "solution" => "sample", "action" => "info", "parameters" => JSON.generate(params.to_json) })
+params = JSON.generate(params.to_json)
+params = params.slice(1,params.length - 2)
+
+task = JSON.parse(t.process taskTemplate3, {"project" => attributes['project'], "solution" => "sample", "action" => "info", "parameters" => params })
 job['tasks'].push (task)
 
 if (attributes.has_key? "module")
