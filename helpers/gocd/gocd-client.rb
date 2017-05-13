@@ -3,6 +3,10 @@ require 'net/http'
 
 class GoCDClient
 
+    def initialize (api = '/go/api')
+        @api = api
+    end
+
     def findObject (version, type, name)
         headers = {
           'Content-Type' => 'application/json',
@@ -11,7 +15,7 @@ class GoCDClient
 
         http = Net::HTTP.new("localhost",8153)
         http.use_ssl = false
-        res = http.get("/go/api/#{type}", headers)
+        res = http.get("#{@api}/#{type}", headers)
 
         if ( Integer(res.code) != 200 )
             puts res.body
@@ -40,7 +44,7 @@ class GoCDClient
 
         http = Net::HTTP.new("localhost",8153)
         http.use_ssl = false
-        res = http.get("/go/api/#{type}/#{id}", headers)
+        res = http.get("#{@api}/#{type}/#{id}", headers)
 
         if ( Integer(res.code) != 200 )
             puts res.body
@@ -71,7 +75,7 @@ class GoCDClient
         }
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
-        res = http.put("/go/api/#{type}/#{id}", payload.to_json, headers)
+        res = http.put("#{@api}/#{type}/#{id}", payload.to_json, headers)
 
         if ( Integer(res.code) != 200 )
             puts res.body
@@ -92,7 +96,7 @@ class GoCDClient
         }
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
-        res = http.patch("/go/api/#{type}/#{id}", payload.to_json, headers)
+        res = http.patch("#{@api}/#{type}/#{id}", payload.to_json, headers)
 
         if ( Integer(res.code) != 200 )
             puts res.body
