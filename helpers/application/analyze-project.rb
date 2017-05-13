@@ -36,7 +36,7 @@ branch = g.current_branch
 commit = g.log[0]
 
 if (File.exists? "#{name}/pom.xml")
-    puts JavaMavenProject.new.createDetails name
+    puts JavaMavenProject.new.createDetails branch, commit, name
 elsif (File.exists? "#{name}/package.json")
     puts JavascriptProject.new.createDetails branch, commit, name
 elsif (File.exists? "#{name}/Rakefile")

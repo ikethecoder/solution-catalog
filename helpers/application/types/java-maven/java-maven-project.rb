@@ -4,7 +4,7 @@ require 'java-properties'
 
 class JavaMavenProject
 
-    def createDetails(name)
+    def createDetails(branch, commitRevision, name)
         pom = XmlSimple.xml_in(name + "/pom.xml")
 
         groupId = pom['groupId'][0]
@@ -15,7 +15,9 @@ class JavaMavenProject
           "type" => "java-maven",
           "groupId" => groupId,
           "artifactId" => artifactId,
-          "version" => version
+          "version" => version,
+          "branch" => branch,
+          "commitRevision" => commitRevision
         }
 
         File.write("artifact-#{name}.json", JSON.pretty_generate(content))
