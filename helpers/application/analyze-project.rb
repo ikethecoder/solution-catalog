@@ -32,10 +32,13 @@ else
     g = Git.clone(url, name, :path => '.')
 end
 
+branch = g.current_branch
+commit = g.log[0]
+
 if (File.exists? "#{name}/pom.xml")
     puts JavaMavenProject.new.createDetails name
 elsif (File.exists? "#{name}/package.json")
-    puts JavascriptProject.new.createDetails name
+    puts JavascriptProject.new.createDetails branch, commit, name
 elsif (File.exists? "#{name}/Rakefile")
     puts RubyProject.new.createDetails name
 else

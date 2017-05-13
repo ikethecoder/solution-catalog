@@ -17,6 +17,7 @@ class JavaMavenProject
           "artifactId" => artifactId,
           "version" => version
         }
+
         File.write("artifact-#{name}.json", JSON.pretty_generate(content))
         puts JSON.pretty_generate(content)
     end
