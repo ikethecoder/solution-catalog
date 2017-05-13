@@ -1,5 +1,10 @@
+# canzea --lifecycle=wire --solution=application --action=copy-project --args='{"sourceRepo":"https://gitlab.com/ikethecoder/hello-world-svc-app.git","branch":"master","name":"a"}'
+
+require 'json'
 require 'git'
 require 'fileutils'
+
+parameters = JSON.parse(ARGV[0])
 
 class CopyProject
     def copy (parameters, folder, projectName)
@@ -26,3 +31,4 @@ class CopyProject
     end
 end
 
+CopyProject.new.copy (parameters, "xyz", 'project1')
