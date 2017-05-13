@@ -1,14 +1,28 @@
-require 'json'
-require 'net/http'
-require_relative '../../roles/application/copy-project'
-require_relative '../../roles/sourcecontrol/gitlab/bulk-setup-project'
+require 'git'
+require 'fileutils'
 
-parameters = JSON.parse(ARGV[0])
+class CopyProject
+    def copy (parameters, folder, projectName)
 
-sp = SetupProject.new
-sp.create parameters['name']
+        url = parameters["url"]
+        branch = parameters["branch"]
 
-n = CopyProject.new
-n.copy parameters, parameters['targetName'], parameters['name']
+        FileUtils.rm_rf(folder)
 
+        g = Git.clone(url, folder, :branch => branch, :path => '.')
+
+        g.remote('origin').remove
+
+        user = "root"
+        pass = "admin1admin1"
+        gitUrl = ENV['GITLAB_ADDRESS'] + ":" + ENV['GITLAB_PORT']
+        r = g.add_remote('origin', "http://#{user}:#{pass}@#{gitUrl}/root/#{projectName}.git")
+
+        g.add(:all=>true)
+
+        g.push(remote = 'origin', branch = branch)
+
+        FileUtils.rm_rf(folder)
+    end
+end
 

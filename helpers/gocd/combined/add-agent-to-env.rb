@@ -20,7 +20,7 @@ uuid = json['uuid']
 
 cli = GoCDClient.new '/go/api/admin'
 
-changes = { "agents" => [ { "uuid" => uuid } ] }
+changes = { "agents" => { "add" => [uuid] } }
 
 cli.getObject '2', 'environments', env
 cli.patchObject '2', 'environments', env, changes

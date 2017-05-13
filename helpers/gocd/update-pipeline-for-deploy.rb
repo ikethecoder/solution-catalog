@@ -36,8 +36,8 @@ root = JSON.parse(t.process "helpers/gocd/pipelines/fragment/pipeline.json", att
 material = JSON.parse(t.process "helpers/gocd/pipelines/fragment/material-pipeline.json", attributes)
 root['pipeline']['materials'].push (material)
 
-material = JSON.parse(t.process "helpers/gocd/pipelines/fragment/material-environment.json", attributes)
-root['pipeline']['materials'].push (material)
+# material = JSON.parse(t.process "helpers/gocd/pipelines/fragment/material-environment.json", attributes)
+# root['pipeline']['materials'].push (material)
 
 
 stage = JSON.parse(t.process stageTemplate, {"name" => "Deploy"})
