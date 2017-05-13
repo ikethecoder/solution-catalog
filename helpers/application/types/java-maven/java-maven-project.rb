@@ -16,6 +16,7 @@ class JavaMavenProject
           "groupId" => groupId,
           "artifactId" => artifactId,
           "version" => version,
+          "build_pipeline" => "#{artifactId}-#{branch}-build",
           "branch" => branch,
           "commitRevision" => commitRevision
         }

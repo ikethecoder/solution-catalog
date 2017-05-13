@@ -9,9 +9,9 @@ class JavascriptProject
         content = {
           "type" => "js-npm",
           "name" => package['name'],
-          "build_pipeline" => "#{package['name']}-#{branch}-build",
           "author" => package['author'],
           "version" => package['version'],
+          "build_pipeline" => "#{package['name']}-#{branch}-build",
           "branch" => branch,
           "commitRevision" => commitRevision
         }
