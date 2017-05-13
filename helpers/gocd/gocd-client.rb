@@ -87,7 +87,8 @@ class GoCDClient
 
         headers = {
           'Accept' => "application/vnd.go.cd.v#{version}+json",
-          'Content-Type' => 'application/json'
+          'Content-Type' => 'application/json',
+          'If-Match' => etag
         }
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])

@@ -7,9 +7,10 @@ cli.findObject '4', 'agents', 'escd27-perf-app-01'
 
 json = cli.retrieveObject 'agents', 'escd27-perf-app-01'
 
-cli.getObject '4', 'agents', json['uuid']
+uuid = json['uuid']
 
-json = cli.retrieveObject 'agents', 'escd27-perf-app-01'
-json['agent_config_state'] = 'Enabled'
+cli.getObject '4', 'agents', uuid
 
-cli.putObject '4', 'agents', 'escd27-perf-app-01', json
+changes = {'agent_config_state' => 'Enabled'}
+
+cli.patchObject '4', 'agents', uuid, changes
