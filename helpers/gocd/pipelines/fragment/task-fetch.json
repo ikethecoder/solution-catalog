@@ -5,7 +5,7 @@
       "passed"
     ],
     "on_cancel": null,
-    "pipeline": "{{project}}-{{branch}}-Build",
+    "pipeline": "{{build_pipeline}}",
     "stage": "Build",
     "job": "defaultJob",
     "is_source_a_file": false,
