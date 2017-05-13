@@ -1,4 +1,4 @@
-# canzea --lifecycle=wire --solution=gocd --action=combined/add-agent-to-env --args='{"environment":"perf", ""agent":"escd27-perf-app-01"}'
+# canzea --lifecycle=wire --solution=gocd --action=combined/add-agent-to-env --args='{"environment":"perf", "agent":"escd27-perf-app-01"}'
 
 require 'json'
 require_relative '../gocd-client'
@@ -20,6 +20,7 @@ uuid = json['uuid']
 
 cli = GoCDClient.new '/go/api/admin'
 
-changes = "agents" : [ { "uuid" : uuid } ]
+changes = { "agents" => [ { "uuid" => uuid } ] }
 
+cli.getObject '2', 'environments', env
 cli.patchObject '2', 'environments', env, changes
