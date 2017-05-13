@@ -17,9 +17,9 @@ type = parameters['type']
 app = parameters['app']
 url = parameters['url']
 
-major = r.getKeyValue ('applications/' + app + '/major')
-minor = r.getKeyValue ('applications/' + app + '/minor')
-patch = r.getKeyValue ('applications/' + app + '/patch')
+major = r.getKeyValue ('components/' + app + '/versioning/major')
+minor = r.getKeyValue ('components/' + app + '/versioning/minor')
+patch = r.getKeyValue ('components/' + app + '/versioning/patch')
 
 if (type == "major")
     major = major.next
@@ -34,9 +34,9 @@ else
     raise "Unrecognized type #{type}"
 end
 
-r.setKeyValue('applications', app + '/major', major)
-r.setKeyValue('applications', app + '/minor', minor)
-r.setKeyValue('applications', app + '/patch', patch)
+r.setKeyValue('components', app + '/versioning/major', major)
+r.setKeyValue('components', app + '/versioning/minor', minor)
+r.setKeyValue('components', app + '/versioning/patch', patch)
 
 newVersion = "#{major}.#{minor}.#{patch}"
 prefix = "release"
@@ -44,10 +44,10 @@ if (type == "patch")
     prefix = "hotfix"
 end
 if (type == "major")
-    r.setKeyValue('applications', "#{app}/releases/#{major}/minor", minor)
+    r.setKeyValue('components', "#{app}/versioning/releases/#{major}/minor", minor)
 end
 if (type == "minor")
-    r.setKeyValue('applications', "#{app}/releases/#{major}.#{minor}/patch", patch)
+    r.setKeyValue('components', "#{app}/versioning/releases/#{major}.#{minor}/patch", patch)
 end
 
 branch = "develop"

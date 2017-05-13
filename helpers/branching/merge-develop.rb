@@ -17,9 +17,9 @@ type = parameters['type']
 app = parameters['app']
 url = parameters['url']
 
-major = r.getKeyValue ('applications/' + app + '/major')
-minor = r.getKeyValue ('applications/' + app + '/minor')
-patch = r.getKeyValue ('applications/' + app + '/patch')
+major = r.getKeyValue ('components/' + app + '/versioning/major')
+minor = r.getKeyValue ('components/' + app + '/versioning/minor')
+patch = r.getKeyValue ('components/' + app + '/versioning/patch')
 
 newVersion = major+"."+minor+"."+patch
 prefix = "release"

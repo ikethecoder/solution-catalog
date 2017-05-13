@@ -16,13 +16,13 @@ major = 1
 minor = 0
 patch = 0
 
-r.setKeyValue('applications', app + '/major', major)
-r.setKeyValue('applications', app + '/minor', minor)
-r.setKeyValue('applications', app + '/patch', patch)
+r.setKeyValue('components', app + '/versioning/major', major)
+r.setKeyValue('components', app + '/versioning/minor', minor)
+r.setKeyValue('components', app + '/versioning/patch', patch)
 
 # Gets incremented when we want a new minor
-r.setKeyValue('applications', app + '/releases/1/minor', 0)
-r.setKeyValue('applications', app + '/releases/1.0/patch', 0)
+r.setKeyValue('components', app + '/versioning/releases/1/minor', 0)
+r.setKeyValue('components', app + '/versioning/releases/1.0/patch', 0)
 
 # hello-world-svc-app/
 #   major/1
