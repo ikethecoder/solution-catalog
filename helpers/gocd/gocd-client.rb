@@ -24,7 +24,7 @@ class GoCDClient
             puts agent['hostname']
             if (agent['hostname'] == name)
                 File.write("#{type}-#{name}.json", JSON.pretty_generate(agent))
-                exit
+                return
             end
         end
 
