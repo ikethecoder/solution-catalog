@@ -23,7 +23,7 @@ class JavaMavenProject
 
         if (pom.has_key? 'modules')
             mods = pom['modules']
-            content['modules'] = mods['module']
+            content['modules'] = mods[0]['module']
         end
         File.write("artifact-#{name}.json", JSON.pretty_generate(content))
         puts JSON.pretty_generate(content)
