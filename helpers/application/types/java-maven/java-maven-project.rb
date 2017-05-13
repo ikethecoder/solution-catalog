@@ -21,6 +21,10 @@ class JavaMavenProject
           "commitRevision" => commitRevision
         }
 
+        if (pom.has_key? 'modules')
+            mods = pom['modules']
+            content['module'] = mods[mods.length-1]
+        end
         File.write("artifact-#{name}.json", JSON.pretty_generate(content))
         puts JSON.pretty_generate(content)
     end

@@ -1,4 +1,21 @@
-# canzea --lifecycle=wire --solution=application --action=copy-project --args='{"sourceRepo":"https://gitlab.com/ikethecoder/hello-world-svc-app.git","branch":"master","name":"a"}'
+# canzea --lifecycle=wire --solution=application --action=copy-project --args='{"url":"https://gitlab.com/ikethecoder/hello-world-svc-app.git","branch":"master","name":"a"}'
+
+# mkdir newproject.git
+# cd newproject.git && git init --bare
+
+# git clone git@localhost:/home/git/newproject.git
+# cd newproject
+# touch README.md
+# git add README.md
+# git commit -m "add README"
+# git push -u origin master
+
+# git clone --bare https://gitlab.com/ikethecoder/hello-world-svc-app.git
+
+# cd hello-world-svc-app.git && git push --mirror git@localhost:/home/git/newproject.git
+
+# cat /home/pm2user/.ssh/id_rsa.pub | ssh git@localhost "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
+
 
 require 'json'
 require 'git'
