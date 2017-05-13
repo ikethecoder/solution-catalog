@@ -7,7 +7,8 @@ parameters = JSON.parse(ARGV[0])
 
 name = parameters['name']
 
-File.write("environments-#{name}.json", "{\"name\":\"#{name}\"}")
+payload = {"name" => name}
 
-cli = GoCDClient.new
+cli = GoCDClient.new('/go/api/admin')
 
+cli.postObject 4, 'environments', name, payload

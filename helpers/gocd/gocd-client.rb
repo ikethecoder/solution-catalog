@@ -63,7 +63,7 @@ class GoCDClient
         return JSON.parse(payload)
    end
 
-   def postObject (version, type, id, payload)
+   def postObject (version, type, payload)
 
         headers = {
           'Accept' => "application/vnd.go.cd.v#{version}+json",
@@ -71,7 +71,7 @@ class GoCDClient
         }
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
-        res = http.post("#{@api}/#{type}/#{id}", payload.to_json, headers)
+        res = http.post("#{@api}/#{type}", payload.to_json, headers)
 
         if ( Integer(res.code) != 200 )
             puts res.body
