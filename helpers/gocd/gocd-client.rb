@@ -63,6 +63,23 @@ class GoCDClient
         return JSON.parse(payload)
    end
 
+   def postObject (version, type, id, payload)
+
+        headers = {
+          'Accept' => "application/vnd.go.cd.v#{version}+json",
+          'Content-Type' => 'application/json'
+        }
+
+        http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
+        res = http.post("#{@api}/#{type}/#{id}", payload.to_json, headers)
+
+        if ( Integer(res.code) != 200 )
+            puts res.body
+            raise("Updating #{type} #{id} failed")
+        end
+
+   end
+
    def putObject (version, type, id, payload)
 
         file = File.open("#{type}-#{id}-etag.txt", "rb")

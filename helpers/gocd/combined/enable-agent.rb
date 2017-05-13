@@ -1,11 +1,18 @@
+# canzea --lifecycle=wire --solution=gocd --action=combined/enable-agent --args='{"agent":"escd27-perf-app-01"}'
+
+require 'json'
 require_relative '../gocd-client'
+
+parameters = JSON.parse(ARGV[0])
+
+id = parameters['agent']
 
 cli = GoCDClient.new
 
-cli.findObject '4', 'agents', 'escd27-perf-app-01'
+cli.findObject '4', 'agents', id
 
 
-json = cli.retrieveObject 'agents', 'escd27-perf-app-01'
+json = cli.retrieveObject 'agents', id
 
 uuid = json['uuid']
 

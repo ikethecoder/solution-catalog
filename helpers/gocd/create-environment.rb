@@ -1,3 +1,5 @@
+# canzea --lifecycle=wire --solution=gocd --action=create-environment --args='{"name":"blunt"}'
+
 require 'json'
 require_relative './gocd-client'
 
