@@ -11,6 +11,8 @@ parameters = JSON.parse(ARGV[0])
 r = Registry.new
 
 app = parameters['name']
+version = parameters['version']
+branch = parameters['branch']
 
 major = 1
 minor = 0
@@ -20,9 +22,13 @@ r.setKeyValue('components', app + '/versioning/major', major)
 r.setKeyValue('components', app + '/versioning/minor', minor)
 r.setKeyValue('components', app + '/versioning/patch', patch)
 
+r.setKeyValue('components', app + "/versioning/branch/#{branch}", version)
+
+versionBits = version.split('.')
+
 # Gets incremented when we want a new minor
-r.setKeyValue('components', app + '/versioning/releases/1/minor', 0)
-r.setKeyValue('components', app + '/versioning/releases/1.0/patch', 0)
+r.setKeyValue('components', app + "#{app}/versioning/releases/#{versionBits[0]}/minor", versionBits[1])
+r.setKeyValue('components', app + "#{app}/versioning/releases/#{versionBits[0]}.#{versionBits[1]}/patch", versionBits[2])
 
 # hello-world-svc-app/
 #   major/1
