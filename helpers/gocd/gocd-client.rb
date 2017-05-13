@@ -75,7 +75,7 @@ class GoCDClient
 
         if ( Integer(res.code) != 200 )
             puts res.body
-            raise("Updating #{type} #{id} failed")
+            raise("Creating #{type} failed")
         end
 
    end

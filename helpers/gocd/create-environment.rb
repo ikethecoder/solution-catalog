@@ -11,4 +11,4 @@ payload = {"name" => name}
 
 cli = GoCDClient.new('/go/api/admin')
 
-cli.postObject 4, 'environments', name, payload
+cli.postObject 2, 'environments', payload
