@@ -1,5 +1,5 @@
 {
-  "source": "{{project}}/target/maven-archiver/pom.properties",
+  "source": "{{project}}/{{module}}/target/maven-archiver/pom.properties",
   "destination": "maven-archiver",
   "type": "build"
 }

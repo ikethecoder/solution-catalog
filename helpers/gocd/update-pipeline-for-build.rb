@@ -28,15 +28,15 @@ jobTemplate = "helpers/gocd/pipelines/fragment/job.json"
 artifactTemplate = "helpers/gocd/pipelines/fragment/artifact.json"
 taskTemplate1 = "helpers/gocd/pipelines/fragment/task-mvn-install.json"
 taskTemplate2 = "helpers/gocd/pipelines/fragment/task-mvn-deploy.json"
-taskTemplate3 = "helpers/gocd/pipelines/fragment/task-ruby.json"
+taskTemplate3 = "helpers/gocd/pipelines/fragment/task-canzea.json"
 
 root = JSON.parse(t.process "helpers/gocd/pipelines/fragment/pipeline.json", attributes)
 
 material = JSON.parse(t.process "helpers/gocd/pipelines/fragment/material.json", attributes)
 root['pipeline']['materials'].push (material)
 
-material = JSON.parse(t.process "helpers/gocd/pipelines/fragment/material-environment.json", attributes)
-root['pipeline']['materials'].push (material)
+# material = JSON.parse(t.process "helpers/gocd/pipelines/fragment/material-environment.json", attributes)
+# root['pipeline']['materials'].push (material)
 
 
 stage = JSON.parse(t.process stageTemplate, {"name" => "Build"})
@@ -49,12 +49,14 @@ job['tasks'].push (task)
 task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project']})
 job['tasks'].push (task)
 
-params = { "ecosystem" => "ESECC-01" }
+params = { "ecosystem" => "XXXXX" }
 task = JSON.parse(t.process taskTemplate3, {"project" => attributes['project'], "solution" => "sample", "action" => "info", "parameters" => JSON.generate(params.to_json) })
 job['tasks'].push (task)
 
-artifact = JSON.parse(t.process artifactTemplate, attributes)
-job['artifacts'].push (artifact)
+if (attributes.has_key? "module")
+    artifact = JSON.parse(t.process artifactTemplate, attributes)
+    job['artifacts'].push (artifact)
+end
 
 stage['jobs'].push(job)
 
