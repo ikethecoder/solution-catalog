@@ -47,6 +47,14 @@ consoles:
     logo: https://avatars3.githubusercontent.com/u/12508788?v=3&s=200
 
   -
+    segment: app
+    name: fabio
+    description: A fast, modern, zero-conf load balancing HTTP(S) router
+    url: http://${domainName}:9998
+    remarks: none
+    logo: https://avatars3.githubusercontent.com/u/25439951?v=3&s=200
+
+  -
     segment: mon
     name: Kibana
     description: Kibana
