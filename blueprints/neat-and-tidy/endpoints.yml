@@ -5,6 +5,7 @@ consoles:
     name: consul-ui
     description: Consul Console
     url: http://${domainName}:81/ui
+    secure: https://${secureDomain}/ui
     remarks: default creds admin,admin1admin
     logo: /styles/img/partners/consul.svg
 
@@ -13,6 +14,7 @@ consoles:
     name: gitlist
     description: An elegant and modern git repository viewer
     url: http://${domainName}:851
+    secure: https://${secureDomain}/sc
     remarks: none
     logo: https://git-scm.com/images/logos/2color-lightbg@2x.png
 
@@ -21,6 +23,7 @@ consoles:
     name: archiva
     description: Archiva Package Repository
     url: http://${domainName}:9080
+    secure: https://${secureDomain}/archiva
     logo: /styles/img/partners/archiva.png
 
   -
@@ -28,6 +31,7 @@ consoles:
     name: nodered
     description: Node-Red Wiring Gateway
     url: http://${domainName}:8000/admin/
+    secure: https://${secureDomain}/gw/admin
     remarks: default creds admin,password
     logo: /styles/img/partners/nodered.png
 
@@ -36,6 +40,7 @@ consoles:
     name: gocd
     description: Go.CD Delivery Pipeline
     url: http://${domainName}:8153
+    secure: https://${secureDomain}/go/pipelines
     logo_bk: /styles/img/partners/gocd.png
     logo: https://avatars3.githubusercontent.com/u/6099846?v=3&s=200
 
@@ -66,10 +71,11 @@ consoles:
     name: Grafana
     description: Grafana
     url: http://${domainName}:3000
+    secure: https://${secureDomain}/grafana
     logo: https://avatars2.githubusercontent.com/u/7195757?v=3&s=200
 
   -
-    segment: mon
+    segment: inactive
     name: elastichq
     description: ElasticHQ
     url: http://${domainName}:81/_plugin/hq
