@@ -19,7 +19,7 @@ consoles:
     segment: ci
     name: nodered
     description: Node-Red Wiring Gateway
-    url: https://${domainName}/gw/admin/
+    url: http://${domainName}:8000/admin/
     remarks: default creds admin,password
     logo: /styles/img/partners/nodered.png
 
