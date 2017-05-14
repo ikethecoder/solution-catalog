@@ -5,34 +5,42 @@ consoles:
     description: Consul Console
     url: http://${domainName}:81/ui
     remarks: default creds admin,admin1admin
+    logo: /styles/img/partners/consul.svg
 
   -
     name: archiva
     description: Archiva Package Repository
     url: http://${domainName}:9080
+    logo: /styles/img/partners/archiva.png
 
   -
     name: nodered
     description: Node-Red Wiring Gateway
     url: https://${domainName}/gw/admin/
     remarks: default creds admin,password
+    logo: /styles/img/partners/nodered.png
 
   -
     name: nodered dashboard
     description: Node-Red Dashboard
     url: https://${domainName}/gw/api/dashboard
     remarks: no credentials required
+    logo_bk: /styles/img/partners/nodered.png
+    logo: https://avatars1.githubusercontent.com/u/5375661?v=3&s=200
 
   -
     name: gocd
     description: Go.CD Delivery Pipeline
     url: http://${domainName}:8153
+    logo_bk: /styles/img/partners/gocd.png
+    logo: https://avatars3.githubusercontent.com/u/6099846?v=3&s=200
 
   -
     segment: E
     name: rocketchat
     description: Rocket.Chat Real-Time Chat and Collaboration
     url: http://${domainName}:8780
+    logo: https://avatars3.githubusercontent.com/u/12508788?v=3&s=200
 
   -
     segment: E
@@ -51,42 +59,42 @@ consoles:
     name: Kibana
     description: Kibana
     url: http://${domainName}:5601
+    logo: https://avatars2.githubusercontent.com/u/6764390?v=3&s=200
 
   -
     segment: mon
     name: Grafana
     description: Grafana
     url: http://${domainName}:3000
+    logo: https://avatars2.githubusercontent.com/u/7195757?v=3&s=200
 
   -
     segment: mon
     name: elastichq
     description: ElasticHQ
     url: http://${domainName}:81/_plugin/hq
-
-  -
-    segment: col
-    name: rocketchat
-    description: Rocket.Chat (register first user)
-    url: http://${domainName}:8780
+    logo: /styles/img/partners/elastichq.png
 
   -
     segment: col
     name: taiga
     description: Taiga Agile Project Management (admin/123123)
     url: http://${domainName}:85
+    logo: https://avatars2.githubusercontent.com/u/6905422?v=3&s=200
 
   -
     segment: col
     name: helpy
     description: Helpy Support (admin@test.com / 12345678)
     url: http://${domainName}:4444
+    logo: https://avatars0.githubusercontent.com/u/17730784?v=3&s=200
 
   -
     segment: col
     name: pgadmin
     description: Postgresql Admin 4
     url: http://${domainName}:5050
+    logo: https://avatars2.githubusercontent.com/u/177543?v=3&s=200
 
 services:
   -
