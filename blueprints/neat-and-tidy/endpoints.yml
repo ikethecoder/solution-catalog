@@ -14,7 +14,7 @@ consoles:
     name: gitlist
     description: An elegant and modern git repository viewer
     url: http://${domainName}:851
-    secure: https://${secureDomain}/sc
+    notworking_secure: https://${secureDomain}/sc
     remarks: none
     logo: https://git-scm.com/images/logos/2color-lightbg@2x.png
 
@@ -31,7 +31,7 @@ consoles:
     name: nodered
     description: Node-Red Wiring Gateway
     url: http://${domainName}:8000/admin/
-    secure: https://${secureDomain}/gw/admin
+    secure: https://${secureDomain}/gw/admin/
     remarks: default creds admin,password
     logo: /styles/img/partners/nodered.png
 

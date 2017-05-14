@@ -48,10 +48,24 @@ resource "digitalocean_droplet" "{{name}}" {
 
     # Pass the Digital Ocean key to the newly created instance and store in the DO_KEY file
     # The encrypted value is created using the public key from the root user on the image (es15d3-cd-ci-active-id_rsa.pem.pub)
+
+    # Patches
     provisioner "remote-exec" {
         inline = [
-            "canzea -v --reset"
+            "gem install canzea",
+            "mkdir -p /etc/consul.d/ssl",
+            "cp consul.* /etc/consul.d/ssl/.",
+            "cp ca.cert /etc/consul.d/ssl/.",
+            "cp vault.* /etc/consul.d/ssl/.",
+            "echo 'nameserver 10.136.61.9' > /etc/resolv.conf",
+            "echo '{"consul_tls":true}' > /root/.ecosystem-catalog/config.json",
+            "export VAULT_TOKEN=a1d51eb2-116e-51ba-b8bc-e8b1d49fb496",
+            "export CONSUL_URL=https://consul.service.dc1.consul:8080",
+            "export HOSTNAME=`curl -s http://169.254.169.254/metadata/v1/hostname`",
+            "export PUBLIC_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address`",
+            "export PRIVATE_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address`",
+            "canzea --util=apply-config --test",
+            "canzea --util=apply-config"
         ]
     }
-
 }
