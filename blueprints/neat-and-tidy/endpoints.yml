@@ -10,6 +10,14 @@ consoles:
 
   -
     segment: ci
+    name: gitlist
+    description: An elegant and modern git repository viewer
+    url: http://${domainName}:851
+    remarks: none
+    logo: https://git-scm.com/images/logos/2color-lightbg@2x.png
+
+  -
+    segment: ci
     name: archiva
     description: Archiva Package Repository
     url: http://${domainName}:9080
