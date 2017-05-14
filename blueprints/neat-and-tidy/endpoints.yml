@@ -1,6 +1,7 @@
 
 consoles:
   -
+    segment: ci
     name: consul-ui
     description: Consul Console
     url: http://${domainName}:81/ui
@@ -8,12 +9,14 @@ consoles:
     logo: /styles/img/partners/consul.svg
 
   -
+    segment: ci
     name: archiva
     description: Archiva Package Repository
     url: http://${domainName}:9080
     logo: /styles/img/partners/archiva.png
 
   -
+    segment: ci
     name: nodered
     description: Node-Red Wiring Gateway
     url: https://${domainName}/gw/admin/
@@ -21,14 +24,7 @@ consoles:
     logo: /styles/img/partners/nodered.png
 
   -
-    name: nodered dashboard
-    description: Node-Red Dashboard
-    url: https://${domainName}/gw/api/dashboard
-    remarks: no credentials required
-    logo_bk: /styles/img/partners/nodered.png
-    logo: https://avatars1.githubusercontent.com/u/5375661?v=3&s=200
-
-  -
+    segment: ci
     name: gocd
     description: Go.CD Delivery Pipeline
     url: http://${domainName}:8153
@@ -36,23 +32,11 @@ consoles:
     logo: https://avatars3.githubusercontent.com/u/6099846?v=3&s=200
 
   -
-    segment: E
+    segment: ci
     name: rocketchat
     description: Rocket.Chat Real-Time Chat and Collaboration
     url: http://${domainName}:8780
     logo: https://avatars3.githubusercontent.com/u/12508788?v=3&s=200
-
-  -
-    segment: E
-    name: helpy
-    description: Helpy Incident Ticketing System
-    url: http://${domainName}:4444
-
-  -
-    segment: E
-    name: taiga
-    description: Taiga Agile Project Management
-    url: http://${domainName}:8000
 
   -
     segment: mon
@@ -85,7 +69,7 @@ consoles:
   -
     segment: col
     name: helpy
-    description: Helpy Support (admin@test.com / 12345678)
+    description: Helpy Incident Ticketing System (admin@test.com / 12345678)
     url: http://${domainName}:4444
     logo: https://avatars0.githubusercontent.com/u/17730784?v=3&s=200
 
@@ -95,6 +79,16 @@ consoles:
     description: Postgresql Admin 4
     url: http://${domainName}:5050
     logo: https://avatars2.githubusercontent.com/u/177543?v=3&s=200
+
+  -
+    segment: inactive
+    name: nodered dashboard
+    description: Node-Red Dashboard
+    url: https://${domainName}/gw/api/dashboard
+    remarks: no credentials required
+    logo_bk: /styles/img/partners/nodered.png
+    logo: https://avatars1.githubusercontent.com/u/5375661?v=3&s=200
+
 
 services:
   -
