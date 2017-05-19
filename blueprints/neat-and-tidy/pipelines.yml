@@ -21,7 +21,7 @@ pipelines:
   -
     name: some_build_pipeline
     type: build
-    environment: live
+    environment: cd
     state: inactive
 
   -

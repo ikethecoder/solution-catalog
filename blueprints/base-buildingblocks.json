@@ -1,0 +1,24 @@
+{
+  "config": {
+    "background_color": "white",
+    "paper_width": 500,
+    "preferred_ratio": 0.4,
+    "fixed_width": false,
+    "pan_and_zoom": false
+  },
+  "nodes":[
+  ],
+  "links": [
+  ],
+  "zones": [
+    { "type" : "section-bottom", "rectangle": [340, 360, 200, 160], "title": "Bottom" },
+    { "type" : "vertical-label", "layout": {"seg":"CI1"}, "label":"CI" },
+    { "type" : "vertical-label", "layout": {"seg":"CI2"}, "label":"Registries" },
+    { "type" : "vertical-label", "layout": {"seg":"CI3"}, "label":"Collaboration" },
+    { "type" : "vertical-label", "layout": {"seg":"Security"}, "label":"Security" },
+    { "type" : "vertical-label", "layout": {"seg":"Database"}, "label":"Data" },
+    { "type" : "vertical-label", "layout": {"seg":"Config"}, "label":"Networking" },
+    { "type" : "vertical-label", "layout": {"seg":"Runtime"}, "label":"Process Mgrs" },
+    { "type" : "vertical-label", "layout": {"seg":"Monitoring"}, "label":"Monitoring" }
+  ]
+}

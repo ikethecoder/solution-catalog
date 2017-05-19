@@ -43,6 +43,12 @@ components:
      state: inactive
 
    -
+     name: rocketchat
+     icon: th
+     segment: cd-ci-1
+     state: inactive
+
+   -
      name: gitlab
      icon: th
      segment: cd-sc-1
@@ -55,7 +61,7 @@ components:
      state: inactive
 
    -
-     name: esearch
+     name: elasticsearch
      icon: database
      segment: mon-mon-1
      state: inactive
@@ -121,17 +127,10 @@ components:
      state: inactive
 
    -
-     name: vault
+     name: fabio
      icon: th
      segment: live-app-1
      state: inactive
-
-   -
-     name: Hello-World
-     icon: th
-     segment: live-app-1
-     state: inactive
-
 
    -
      name: consul
@@ -152,13 +151,7 @@ components:
      state: inactive
 
    -
-     name: vault
-     icon: th
-     segment: uat-app-1
-     state: inactive
-
-   -
-     name: Hello-World
+     name: fabio
      icon: th
      segment: uat-app-1
      state: inactive
@@ -183,13 +176,7 @@ components:
      state: inactive
 
    -
-     name: vault
-     icon: th
-     segment: perf-app-1
-     state: inactive
-
-   -
-     name: Hello-World
+     name: fabio
      icon: th
      segment: perf-app-1
      state: inactive
@@ -214,13 +201,8 @@ components:
      state: inactive
 
    -
-     name: vault
+     name: fabio
      icon: th
      segment: intg-app-1
      state: inactive
 
-   -
-     name: Hello-World
-     icon: th
-     segment: intg-app-1
-     state: inactive

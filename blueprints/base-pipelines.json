@@ -2,7 +2,7 @@
   "config": {
     "background_color": "white",
     "paper_width": 500,
-    "preferred_ratio": 1,
+    "preferred_ratio": 0.3,
     "fixed_width": false,
     "pan_and_zoom": false
   },
@@ -11,6 +11,6 @@
   "links": [
   ],
   "zones": [
-    { "type" : "default", "rectangle": [10, 10, "viewWidth-20", "viewHeight-20"]}
+    { "type" : "invisible", "rectangle": [10, 10, "viewWidth-20", "viewHeight-20"]}
   ]
 }

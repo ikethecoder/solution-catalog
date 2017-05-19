@@ -11,6 +11,6 @@
   "links": [
   ],
   "zones": [
-    { "type" : "default", "rectangle": [10, 10, "viewWidth-20", "viewHeight-20"]}
+    { "type" : "invisible", "rectangle": [10, 10, "viewWidth-20", "viewHeight-20"]}
   ]
 }
