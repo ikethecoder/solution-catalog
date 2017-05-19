@@ -266,7 +266,6 @@ instructions:
         - step:workarounds:network
         - step:workarounds:zip
         - step:workarounds:expect
-        - step:workarounds:npm
         - step:virtualmachine:java
         - step:workarounds:securerandom
         - step:workarounds:sudoers
@@ -276,6 +275,7 @@ instructions:
         - step:audit:auditd
         - step:workarounds:golang
         - step:deploy:gocd-agent
+        - step:workarounds:npm
         - wire:digitalocean:image
         - wire:digitalocean:teardown
 
