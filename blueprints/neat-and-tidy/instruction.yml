@@ -267,6 +267,7 @@ instructions:
         - step:workarounds:network
         - step:workarounds:zip
         - step:workarounds:expect
+        - step:workarounds:npm
         - step:virtualmachine:java
         - step:workarounds:securerandom
         - step:workarounds:sudoers
