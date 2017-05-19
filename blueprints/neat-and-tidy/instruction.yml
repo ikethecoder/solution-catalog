@@ -242,7 +242,40 @@ instructions:
         - step:application:user
         - wire:digitalocean:image
         - wire:digitalocean:teardown
-
       settings:
         step:monitoring:collectd:
           port: 8500
+
+    builder:
+      abbreviation: builder
+      label: Builder
+      description: Go.CD Agent
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-2-x64
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
+        - step:audit:auditd
+        - step:workarounds:golang
+        - step:deploy:gocd-agent
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+
