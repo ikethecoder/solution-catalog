@@ -9,21 +9,25 @@ environments:
         order:
           -
             product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
             qty: 1
             segment: "ci"
             label: "Pipeline Mgmt"
           -
             product: "M2GB_D40GB"
+            image: "centos-7-2-x64"
             qty: 1
             segment: "builder"
             label: "Builder"
           -
             product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
             qty: 1
             segment: "col"
             label: "Collaboration"
           -
             product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
             qty: 1
             segment: "sc"
             label: "GitLab"
@@ -37,6 +41,7 @@ environments:
         order:
           -
             product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
             qty: 1
             segment: "mon"
             label: "Monitoring"
@@ -50,11 +55,13 @@ environments:
         order:
           -
             product: "M2GB_D40GB"
+            image: "centos-7-2-x64"
             qty: 3
             segment: "db"
             label: "DB"
           -
             product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
             qty: 1
             segment: "app"
             label: "App"
@@ -68,11 +75,13 @@ environments:
         order:
           -
             product: "M2GB_D40GB"
+            image: "centos-7-2-x64"
             qty: 3
             segment: "db"
             label: "DB"
           -
             product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
             qty: 1
             segment: "app"
             label: "App"
@@ -85,11 +94,13 @@ environments:
         order:
           -
             product: "M2GB_D40GB"
+            image: "centos-7-2-x64"
             qty: 3
             segment: "db"
             label: "DB"
           -
             product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
             qty: 1
             segment: "app"
             label: "App"
@@ -102,11 +113,13 @@ environments:
         order:
           -
             product: "M2GB_D40GB"
+            image: "centos-7-2-x64"
             qty: 3
             segment: "db"
             label: "DB"
           -
             product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
             qty: 1
             segment: "app"
             label: "App"
