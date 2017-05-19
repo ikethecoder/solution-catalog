@@ -18,7 +18,7 @@ environments:
             image: "centos-7-2-x64"
             qty: 1
             segment: "builder"
-            label: "Builder"
+            label: "Builders"
           -
             product: "M4GB_D60GB"
             image: "centos-7-2-x64"

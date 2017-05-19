@@ -23,11 +23,9 @@ t = Template.new
 #          "imagePaasId": "24485506"
 #        }
 
-params = {
-    "name" => parameters['name'],
-    "region" => parameters['region'],
-    "imageText" => "\"image\""
-}
+params = parameters
+
+params['imageText'] = "\"image\""
 
 if (parameters.has_key? "imagePaasId")
     params[:imageText] = parameters['imagePaasId'].to_i

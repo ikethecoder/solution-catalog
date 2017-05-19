@@ -80,7 +80,6 @@ instructions:
         - step:deploy:ansible
         - step:deploy:gocd
         - step:deploy:gocd-plugins
-        - step:deploy:gocd-agent
         - step:adhoc:nodered
         - step:adhoc:nodered-oauth
         - step:loadbalancer:nginx-consul
