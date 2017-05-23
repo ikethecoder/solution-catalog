@@ -14,6 +14,7 @@ class InstallProject
         installExtended repoPost, repoPort, pomPropertiesFile, attributes
     end
 
+
     def installExtended (repoHost, repoPort, pomPropertiesFile, attributes)
 
         sess = Patron::Session.new
