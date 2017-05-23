@@ -32,7 +32,7 @@ if (parameters['type'] == 'js-npm')
 
     ip = InstallProject.new
 
-    ip.retrieveArtifact ENV['ARCHIVA_ADDRESS'], ENV['ARCHIVA_PORT'], "maven-archiver/pom.xml", parameters
+    ip.retrieveArtifact ENV['ARCHIVA_ADDRESS'], ENV['ARCHIVA_PORT'], "maven-archiver/pom.xml"
 
 else
     ip = InstallProject.new

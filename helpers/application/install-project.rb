@@ -29,17 +29,17 @@ class InstallProject
         sess.base_url = "http://#{repoHost}:#{repoPort}"
 
         # properties = JavaProperties.load(pomPropertiesFile)
-        project = hash['project']
+        properties = hash['project']
 
-        projectName = attributes['groupId']
+        projectName = properties['artifactId']
 
-        groupId = properties[:groupId]
-        artifactId = properties[:artifactId]
-        version = properties[:version]
+        groupId = properties['groupId']
+        artifactId = properties['artifactId']
+        version = properties['version']
 
         groupIdPath = groupId.tr(".","/")
 
-        url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{version}.jar"
+        url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{version}-bin.zip"
 
         puts url
 
@@ -48,7 +48,12 @@ class InstallProject
         File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.zip", resp.body)
 
 
-        result = system "mkdir /opt/applications/#{projectName} && unzip "/opt/applications/#{projectName}-#{artifactId}-#{version}.zip /opt/applications/#{projectName}"
+        result = system "mkdir -p /opt/applications/static/#{projectName} && unzip /opt/applications/#{projectName}-#{artifactId}-#{version}.zip -d /opt/applications/static/#{projectName}"
+        if (result == false)
+            raise("Failed registering service")
+        end
+
+        result = system "cp -r /opt/applications/static/#{projectName}/#{artifactId}-#{version}/* /opt/applications/static/#{projectName}/."
         if (result == false)
             raise("Failed registering service")
         end
