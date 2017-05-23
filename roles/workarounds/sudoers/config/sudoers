@@ -114,8 +114,6 @@ root	ALL=(ALL) 	ALL
 ## Allows members of the users group to shutdown this system
 # %users  localhost=/sbin/shutdown -h now
 
-%go  ALL=(ALL)       NOPASSWD: ALL
-
 ## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
 ## includedir /etc/sudoers.d
 ##
