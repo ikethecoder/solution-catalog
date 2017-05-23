@@ -16,8 +16,8 @@ config = {
     "version" => data['version']
 }
 
-t.processAndWriteToFile "helpers/gocd/builders/assembly.xml" "assembly.xml" config
-t.processAndWriteToFile "helpers/gocd/builders/pom.xml" "pom.xml" config
+t.processAndWriteToFile "#{Canzea::Config['catalog_location']}/helpers/gocd/builders/assembly.xml", "assembly.xml", config
+t.processAndWriteToFile "#{Canzea::Config['catalog_location']}/helpers/gocd/builders/pom.xml", "pom.xml", config
 
 # canzea --lifecycle=wire --solution=gocd --action=prep-build
 
