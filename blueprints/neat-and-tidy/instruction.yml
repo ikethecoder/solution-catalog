@@ -269,6 +269,7 @@ instructions:
         - step:virtualmachine:java
         - step:workarounds:securerandom
         - step:workarounds:sudoers
+        - step:build:maven
         - step:monitoring:collectd
         - step:monitoring:filebeat
         - step:monitoring:metricbeat
