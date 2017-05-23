@@ -1,12 +1,16 @@
+# canzea --lifecycle=wire --solution=application --action=install-app --args='{"type":"js-npm", "project":"console-ui","port":5505}'
+
 require 'json'
 require 'net/http'
 require 'template-runner'
+require 'canzea/config'
 require_relative 'install-project'
 
 parameters = JSON.parse(ARGV[0])
 
 project = parameters['project']
 
+catalog = Canzea::config[:catalog_location]
 
 # For static files, we need to update config file under NGINX
 if (parameters['type'] == 'js-npm')
@@ -21,7 +25,15 @@ if (parameters['type'] == 'js-npm')
         raise("Failed registering service")
     end
 
-    system "sudo nginx -s reload"
+    result = system "sudo nginx -s reload"
+    if (result == false)
+        raise("Failed reloading nginx")
+    end
+
+    ip = InstallProject.new
+
+    ip.retrieveArtifact ENV['ARCHIVA_ADDRESS'], ENV['ARCHIVA_PORT'], "maven-archiver/pom.xml", parameters
+
 else
     ip = InstallProject.new
 

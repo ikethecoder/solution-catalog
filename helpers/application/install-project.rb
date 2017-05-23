@@ -3,6 +3,7 @@ require 'fileutils'
 require 'java-properties'
 require 'patron'
 require 'mustache'
+require 'crack/xml'
 
 class Template < Mustache
   self.template_file = "#{ENV['CATALOG_LOCATION']}/roles/application/conf/service.template"
@@ -14,6 +15,45 @@ class InstallProject
         installExtended repoPost, repoPort, pomPropertiesFile, attributes
     end
 
+
+    def retrieveArtifact (repoHost, repoPort, pomXmlFile)
+        hash = Crack::XML.parse(File.read(pomXmlFile))
+
+        # Get the project, artifact, version details from the pom.xml
+        # And use that to get the artifact.
+
+
+
+        sess = Patron::Session.new
+        sess.timeout = 10
+        sess.base_url = "http://#{repoHost}:#{repoPort}"
+
+        # properties = JavaProperties.load(pomPropertiesFile)
+        project = hash['project']
+
+        projectName = attributes['groupId']
+
+        groupId = properties[:groupId]
+        artifactId = properties[:artifactId]
+        version = properties[:version]
+
+        groupIdPath = groupId.tr(".","/")
+
+        url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{version}.jar"
+
+        puts url
+
+        resp = sess.get(url)
+
+        File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.zip", resp.body)
+
+
+        result = system "mkdir /opt/applications/#{projectName} && unzip "/opt/applications/#{projectName}-#{artifactId}-#{version}.zip /opt/applications/#{projectName}"
+        if (result == false)
+            raise("Failed registering service")
+        end
+
+    end
 
     def installExtended (repoHost, repoPort, pomPropertiesFile, attributes)
 

@@ -1,5 +1,6 @@
 
-
+# XML to JSON parser
+gem install crack
 
 # For standard CURL functionality
 gem install patron
