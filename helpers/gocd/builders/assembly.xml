@@ -7,7 +7,7 @@
     </formats>
     <fileSets>
         <fileSet>
-            <directory>${project.basedir}/web/build</directory>
+            <directory>${project.basedir}/web</directory>
         </fileSet>
     </fileSets>
 </assembly>
