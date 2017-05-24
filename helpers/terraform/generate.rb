@@ -33,7 +33,7 @@ else
     params[:imageText] = "\"#{parameters['imageCode']}\""
 end
 
-template = "#{Canzea::config[:catalog_location]}/helpers/terraform/templates/segment.tf.templ"
+template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/segment.tf.templ"
 
 outFile = "segment-#{parameters['name']}.tf"
 
