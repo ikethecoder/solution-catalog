@@ -2,6 +2,9 @@ require 'json'
 require 'git'
 require 'canzea/config'
 
+file = File.read('config.json')
+Canzea::configure JSON.parse(file)
+
 g = Git.open(Canzea::config[:catalog_location])
 
 branch = g.current_branch
