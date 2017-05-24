@@ -3,7 +3,8 @@
   ],
 
   "services": [
-    {"name":"gocd"}
+    {"name":"gocd"},
+    {"name":"archiva"}
   ],
   "secrets": [
   ]

@@ -95,6 +95,7 @@ class InstallProject
         s[:service] = "#{projectName}-#{artifactId}"
         s[:base] = "/opt/applications"
         s[:port] = attributes['port']
+        s[:env] = attributes['env']
 
         File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.service", s.render)
 

@@ -47,7 +47,7 @@ job = JSON.parse(t.process jobTemplate, attributes)
 task = JSON.parse(t.process taskTemplate1, {"project" => project, "version" => version})
 job['tasks'].push (task)
 
-params = { "port" => attributes['port'], "name" => attributes['name'] }
+params = { "port" => attributes['port'], "env" => attributes['env'], "name" => attributes['name'] }
 params = JSON.generate(params.to_json)
 params = params.slice(1,params.length - 2)
 
