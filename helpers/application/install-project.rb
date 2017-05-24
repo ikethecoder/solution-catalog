@@ -47,6 +47,10 @@ class InstallProject
 
         File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.zip", resp.body)
 
+        result = system "yes | rm -rf /opt/applications/static/#{projectName}"
+        if (result == false)
+            raise("Failed registering service")
+        end
 
         result = system "mkdir -p /opt/applications/static/#{projectName} && unzip /opt/applications/#{projectName}-#{artifactId}-#{version}.zip -d /opt/applications/static/#{projectName}"
         if (result == false)
