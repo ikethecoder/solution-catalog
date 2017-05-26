@@ -32,7 +32,17 @@ if (parameters['type'] == 'js-npm')
 
     ip = InstallProject.new
 
-    ip.retrieveArtifact ENV['ARCHIVA_ADDRESS'], ENV['ARCHIVA_PORT'], "maven-archiver/pom.xml"
+    info = ip.retrieveArtifact ENV['ARCHIVA_ADDRESS'], ENV['ARCHIVA_PORT'], "maven-archiver/pom.xml"
+
+
+    staticPath = info['staticPath']
+
+    content = "";
+    parameters['config'].each do | key, val |
+        content.concat("config.#{key} = '#{val}'; ")
+    end
+
+    File.write("#{staticPath}/web/config.js", content);
 
 else
     ip = InstallProject.new

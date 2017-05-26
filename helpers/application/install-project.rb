@@ -58,6 +58,9 @@ class InstallProject
             raise("Failed registering service")
         end
 
+        return {
+            "staticPath" => "/opt/applications/static/#{projectName}"
+        }
     end
 
     def installExtended (repoHost, repoPort, pomPropertiesFile, attributes)
