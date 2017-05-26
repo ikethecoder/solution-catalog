@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=appuser
 WorkingDirectory=/opt/applications/working
-ExecStart={{JAVA_HOME}}/bin/java -Xms200M -Xmx200M -Denv={{env}} {{custom}} -D-Dserver.port={{port}} -jar {{base}}/{{jar}}
+ExecStart={{JAVA_HOME}}/bin/java -Xms200M -Xmx200M -Denv={{env}} {{custom}} -Dserver.port={{port}} -jar {{base}}/{{jar}}
 # SuccessExitStatus=143
 
 [Install]

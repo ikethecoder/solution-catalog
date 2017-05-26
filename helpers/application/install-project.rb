@@ -91,13 +91,18 @@ class InstallProject
         # puts system "chown appuser:appuser /opt/applications/#{artifactId}-#{version}.jar"
 
         s = Template.new
-        s[:jar] = "#{projectName}-#{artifactId}-#{version}.jar"
-        s[:service] = "#{projectName}-#{artifactId}"
-        s[:base] = "/opt/applications"
-        s[:port] = attributes['port']
-        s[:env] = attributes['env']
 
-        File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.service", s.render)
+        attrs = {
+            "jar" => "#{projectName}-#{artifactId}-#{version}.jar",
+            "service" => "#{projectName}-#{artifactId}",
+            "base" => "/opt/applications",
+            "port" => attributes['port'],
+            "env" => attributes['env'],
+            "custom" => attributes['custom']
+        }
+
+        # File.write("/etc/systemd/system/multi-user.target.wants/#{projectName}-#{artifactId}-#{version}.service", s.render)
+        File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.service", s.process('roles/application/conf/service.template', attrs))
 
         result = system "sudo /opt/canzea-utils/register_service.sh #{projectName}-#{artifactId} /opt/applications/#{projectName}-#{artifactId}-#{version}.service"
         if (result == false)
