@@ -39,7 +39,7 @@ if (parameters['type'] == 'js-npm')
 
     content = "";
     parameters['config'].each do | key, val |
-        content.concat("config.#{key} = '#{val}'; ")
+        content.concat("#{key} = '#{val}'; ")
     end
 
     File.write("#{staticPath}/web/config.js", content);
