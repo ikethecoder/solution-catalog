@@ -7,7 +7,9 @@ mkdir -p /opt/applications/working/logs
 chown -R go:appgrp /opt/applications
 chown -R appuser:appgrp /opt/applications/working
 
+# Defect #02 : Java Home is not getting set globally
 
+cp ./java.sh /etc/profile.d/.
 
 # Defect #03 : droplet kit was missed from the image
 
@@ -30,4 +32,5 @@ cp ./config.json /var/go/.ecosystem-catalog/.
 cp ./env.json /var/go/.ecosystem-catalog/.
 
 chown -R go:go /var/go/.ecosystem-catalog
+
 

@@ -3,6 +3,7 @@ require 'fileutils'
 require 'java-properties'
 require 'patron'
 require 'mustache'
+require 'template-runner'
 
 class Template < Mustache
   self.template_file = 'roles/application/conf/service.template'
@@ -40,18 +41,16 @@ class InstallProject
 
         # puts system "chown appuser:appuser /opt/applications/#{artifactId}-#{version}.jar"
 
-        s = Template.new
-        s[:jar] = "#{projectName}-#{artifactId}-#{version}.jar"
-        s[:service] = "#{projectName}-#{artifactId}"
-        s[:base] = "/opt/applications"
-        s[:port] = attributes['port']
-
-        customParams = ""
-
-        s[:custom] = attributes['custom']
+        attributes = {
+            "jar" => "#{projectName}-#{artifactId}-#{version}.jar",
+            "service" => "#{projectName}-#{artifactId}",
+            "base" => "/opt/applications",
+            "port" => attributes['port']
+            "custom" => attributes['custom']
+        }
 
         # File.write("/etc/systemd/system/multi-user.target.wants/#{projectName}-#{artifactId}-#{version}.service", s.render)
-        File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.service", s.render)
+        File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.service", s.process('roles/application/conf/service.template', attributes))
 
         result = system "sudo /opt/canzea-utils/register_service.sh #{projectName}-#{artifactId} /opt/applications/#{projectName}-#{artifactId}-#{version}.service"
         if (result == false)
