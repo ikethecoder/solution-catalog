@@ -13,5 +13,7 @@ mkdir -p /opt/applications/working
 groupadd appgrp
 
 # Have go:go as the primary user
-chown -R appuser:appgrp /opt/applications
+chown -R go:appgrp /opt/applications
+
+chown -R appuser:appgrp /opt/applications/working
 
