@@ -46,6 +46,10 @@ class InstallProject
         s[:base] = "/opt/applications"
         s[:port] = attributes['port']
 
+        customParams = ""
+
+        s[:custom] = attributes['custom']
+
         # File.write("/etc/systemd/system/multi-user.target.wants/#{projectName}-#{artifactId}-#{version}.service", s.render)
         File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.service", s.render)
 
