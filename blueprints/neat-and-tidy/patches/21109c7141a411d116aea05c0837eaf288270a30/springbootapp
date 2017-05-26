@@ -1,0 +1,7 @@
+#!/bin/bash -l
+
+# shopt login_shell
+# . /etc/bashrc
+# ruby -v
+
+exec $*
