@@ -36,14 +36,10 @@ chown -R go:go /var/go/.ecosystem-catalog
 
 # Defect #06 : Ruby version wasn't getting picked up during systemd service start
 
-cp ./springbootapp /usr/local/bin/springbootapp
+# FIX: Changed the console-app to make CLI location configurable
 
-chmod +x /usr/local/bin/springbootapp
+cp ./canzea /home/appuser/canzea
+chmod +x /home/appuser/canzea
+chown appuser:appgrp /home/appuser/canzea
 
-# (doesn't really work - getting error "/usr/bin/env: ruby_executable_hooks ; file not found error")
-
-# Defect 07 : Not getting right version; but springbootapp is giving a weird "/usr/bin/env: ruby_executable_hooks" error
-
-curl -sSL https://get.rvm.io | sudo bash -s stable --ruby
-
-source /usr/local/rvm/scripts/rvm
+# NOTE: springbootapp is a BUST
