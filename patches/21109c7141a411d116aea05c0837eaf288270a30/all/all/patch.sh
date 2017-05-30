@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo $SCRIPT_PATH
+
 # Defect #01 : go/appuser need access to the same location
 
 mkdir -p /opt/applications/working/logs
@@ -9,7 +11,7 @@ chown -R appuser:appgrp /opt/applications/working
 
 # Defect #02 : Java Home is not getting set globally
 
-cp ./java.sh /etc/profile.d/.
+cp $SCRIPT_PATH/java.sh /etc/profile.d/.
 
 # Defect #03 : droplet kit was missed from the image
 
@@ -28,8 +30,8 @@ chown -R go:go /var/go/ssl
 # Defect #05 : Go needs settings set to configure TLS for consul and the vault
 
 mkdir -p /var/go/.ecosystem-catalog
-cp ./config.json /var/go/.ecosystem-catalog/.
-cp ./env.json /var/go/.ecosystem-catalog/.
+cp $SCRIPT_PATH/config.json /var/go/.ecosystem-catalog/.
+cp $SCRIPT_PATH/env.json /var/go/.ecosystem-catalog/.
 
 chown -R go:go /var/go/.ecosystem-catalog
 
@@ -38,7 +40,7 @@ chown -R go:go /var/go/.ecosystem-catalog
 
 # FIX: Changed the console-app to make CLI location configurable
 
-cp ./canzea /home/appuser/canzea
+cp $SCRIPT_PATH/canzea /home/appuser/canzea
 chmod +x /home/appuser/canzea
 chown appuser:appgrp /home/appuser/canzea
 
