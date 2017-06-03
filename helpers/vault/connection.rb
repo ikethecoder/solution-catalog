@@ -7,7 +7,7 @@ class Connection
         pemCert = File.read(ENV['VAULT_CLIENT_CERT'])
             pemKey = File.read(ENV['VAULT_CLIENT_KEY'])
 
-        uri = URI.parse(ENV["VAULT_ADDR"])
+        uri = URI.parse(ENV["VAULT_URL"])
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
         http.ca_file = ENV['VAULT_CACERT']
