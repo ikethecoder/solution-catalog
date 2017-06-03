@@ -1,6 +1,6 @@
 
 #// Add the keyvalue for secure host
-canzea --lifecycle=wire --solution=consul --action=add_keyvalue --args='{"key":"nodes/build-a-01/secure_host","value":"{{ECOSYSTEM}}.canzea.cc"}'
+canzea --lifecycle=wire --solution=consul --action=add_keyvalue --args='{"root":"nodes", "key":"build-a-01/secure_host","value":"{{ECOSYSTEM}}.canzea.cc"}'
 
 #// Initialize and Unseal the vault
 #// Injects the VAULT_URL and VAULT_TOKEN (see /helpers/vault/environment.json)
