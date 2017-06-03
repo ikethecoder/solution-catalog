@@ -9,7 +9,7 @@ name = parameters['name']
 
 folder = "/home/#{name}"
 
-n = RunnerWorker.new
+n = RunnerWorker.new(false)
 
 n.run "adduser -m #{name}", 0, 0
 
