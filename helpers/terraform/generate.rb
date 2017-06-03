@@ -33,7 +33,9 @@ else
     params[:imageText] = "\"#{parameters['imageCode']}\""
 end
 
-template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/segment.tf.templ"
+tfTemplate = "segment.tf.#{parameters['template']}.templ"
+
+template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/#{tfTemplate}"
 
 outFile = "segment-#{parameters['name']}.tf"
 
