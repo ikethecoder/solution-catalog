@@ -9,7 +9,7 @@ name = parameters['name']
 key = parameters['key']
 folder = parameters['home']
 
-n = RunnerWorker.new
+n = RunnerWorker.new(false)
 
 n.run "(cd #{folder}; mkdir .ssh; rm -f .ssh/id_rsa_#{key}*; ssh-keygen -t rsa -f #{folder}/.ssh/id_rsa_#{key} -P ''; ssh-keygen -f #{folder}/.ssh/id_rsa.pub -e -m PKCS8 > #{folder}/.ssh/id_rsa.pem.pub)", 0, 0
 
