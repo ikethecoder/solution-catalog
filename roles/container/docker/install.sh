@@ -4,3 +4,5 @@
 
 yum -y install docker
 
+# Need to start during install phase as there may be "docker create" commands used
+sudo service docker start
