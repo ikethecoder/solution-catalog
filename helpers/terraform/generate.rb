@@ -40,3 +40,8 @@ template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/#{tfTemplate}
 outFile = "segment-#{parameters['name']}.tf"
 
 t.processAndWriteToFile template, outFile, params
+
+# If provider.tf does not exist, add it
+
+providerFile = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/provider.tf"
+t.processAndWriteToFile providerFile, 'provider.tf', params
