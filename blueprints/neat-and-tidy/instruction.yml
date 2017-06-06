@@ -57,7 +57,7 @@ instructions:
         - wire:digitalocean:set-public-ip
         - init
         - step:workarounds:cloud-profile
-        - step:workarounds:ruby-upgrade
+        - step:workarounds:ruby
         - step:workarounds:ruby-gems
         - step:workarounds:canzea
         - step:provisioning:digitalocean
@@ -73,8 +73,6 @@ instructions:
         - step:virtualmachine:java
         - step:workarounds:sudoers
         - step:build:maven
-        - step:testsuite:phantomjs
-        - step:testsuite:selenium
         - step:certprovider:letsencrypt
         - step:registry:archiva
         - step:deploy:ansible
