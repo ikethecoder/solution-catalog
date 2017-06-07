@@ -1,4 +1,3 @@
-require 'droplet_kit'
 require 'json'
 require_relative 'client'
 
