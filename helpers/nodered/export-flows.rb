@@ -39,7 +39,7 @@ content['flows'].push({"type" => "tab", "id" => "global"})
 content['flows'].each do | flow |
     puts "FLOW: #{flow.to_s}"
 
-    if (flow['type'] == 'tab')
+    if (flow['type'] == 'tab' || flow['type'] == 'subflow')
         uri = URI(ENV['NODERED_URL'] + "/admin/flow/#{flow['id']}")
 
         http = Net::HTTP.new(uri.host, uri.port)
@@ -54,7 +54,7 @@ content['flows'].each do | flow |
         end
 
         content = JSON.parse(res.body)
-        outFile = "nr-#{flow['id']}.flow"
+        outFile = "nr-#{flow['type']}-'#{flow['id']}.flow"
         puts "Writing flow to #{outFile}"
         File.write(outFile, JSON.pretty_generate(content))
     end
