@@ -72,6 +72,8 @@ instructions:
         - step:virtualmachine:java
         - step:workarounds:sudoers
         - step:build:maven
+        - step:testsuite:phantomjs
+        - step:testsuite:selenium
         - step:certprovider:letsencrypt
         - step:registry:archiva
         - step:deploy:ansible
