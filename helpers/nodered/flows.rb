@@ -3,7 +3,7 @@ require 'json'
 require 'net/http'
 parameters = JSON.parse(ARGV[0])
 
-name = parameters['name']
+file = parameters['file']
 
 # Get the authtoken and userId
 uri = URI(ENV['NODERED_URL'] + '/admin/auth/token')
@@ -26,15 +26,7 @@ uri = URI(ENV['NODERED_URL'] + '/admin/flows')
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 
-payload = {
-    "flows" => [
-     {
-            "type"=> "tab",
-            "id"=> "396c2376.c693dc",
-            "label"=> "Sheet 1"
-          }
-    ]
-}
+payload = File.read(file)
 
 res = http.post("#{uri.path}", payload.to_json, headers)
 
