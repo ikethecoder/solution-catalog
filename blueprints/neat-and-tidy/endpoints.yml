@@ -40,7 +40,7 @@ consoles:
     name: gocd
     description: Go.CD Delivery Pipeline
     url: http://${domainName}:8153
-    secure: https://${secureDomain}/go/pipelines
+    secure: https://${secureDomain}/go/admin/pipelines
     logo_bk: /styles/img/partners/gocd.png
     logo: https://avatars3.githubusercontent.com/u/6099846?v=3&s=200
 
