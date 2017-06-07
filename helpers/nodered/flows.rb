@@ -21,19 +21,16 @@ headers = {
   'Content-Type' => 'application/json'
 }
 
-uri = URI(ENV['NODERED_URL'] + '/admin/flows')
+uri = URI(ENV['NODERED_URL'] + '/admin/flow')
 
 http = Net::HTTP.new(uri.host, uri.port)
 
 Dir.glob("#{file}") do | path |
     payload = File.read(path)
-    payload = {
-            "flows" => [
-                    payload.to_json
-            ]
-    }
 
-    res = http.post("#{uri.path}", payload.to_json, headers)
+    f = JSON.parse(payload)
+
+    res = http.post("#{uri.path}", JSON.generate(f), headers)
 
     if ( Integer(res.code) != 200 )
         puts res.code

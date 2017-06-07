@@ -64,4 +64,7 @@ content['flows'].each do | flow |
         puts "Writing subflow to #{outFile}"
         File.write(outFile, JSON.pretty_generate(flow))
     end
+    outFile = "nf-#{flow['type']}-#{flow['id']}.flow"
+    puts "Writing #{flow['type']} to #{outFile}"
+    File.write(outFile, JSON.pretty_generate(flow))
 end
