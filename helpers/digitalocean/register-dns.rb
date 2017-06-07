@@ -17,10 +17,7 @@ payload = {
             "type" => "A",
             "name" => domain,
             "data" => ip,
-            "priority" => null,
-            "port" => null,
-            "ttl" => 1800,
-            "weight" => null
+            "ttl" => 1800
           };
 
 response = client.post("domains/#{rootHost}/records", payload)
@@ -30,10 +27,7 @@ payload = {
             "type" => "CNAME",
             "name" => "*.#{domain}",
             "data" => "#{domain}.#{rootHost}.",
-            "priority" => null,
-            "port" => null,
-            "ttl" => 1800,
-            "weight" => null
+            "ttl" => 1800
           };
 response = client.post("domains/#{rootHost}/records", payload)
 result.push(response)
