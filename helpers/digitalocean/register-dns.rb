@@ -20,7 +20,7 @@ payload = {
             "ttl" => 1800
           };
 
-response = client.post("domains/#{rootHost}/records", payload)
+response = client.post("domains/#{rootHost}/records", payload.to_json)
 result.push(response)
 
 payload = {
@@ -29,7 +29,7 @@ payload = {
             "data" => "#{domain}.#{rootHost}.",
             "ttl" => 1800
           };
-response = client.post("domains/#{rootHost}/records", payload)
+response = client.post("domains/#{rootHost}/records", payload.to_json)
 result.push(response)
 
 puts result.to_json
