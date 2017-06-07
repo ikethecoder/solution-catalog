@@ -10,7 +10,12 @@ configFile = "/etc/nginx/conf.d/ssl.conf"
 
 t = Template.new
 
-partConfig = t.process "helpers/nginx/templates/service.tmpl", parameters
+template = "service.tmpl"
+
+if (parameters.has_key? 'template')
+    template = parameters['template']
+end
+partConfig = t.process "helpers/nginx/templates/#{template}", parameters
 
 sslConfig = File.read(configFile)
 
