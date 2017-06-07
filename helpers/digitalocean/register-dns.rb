@@ -1,5 +1,6 @@
 require 'droplet_kit'
 require 'json'
+require_relative 'client'
 
 token=ENV["DIGITALOCEAN_TOKEN"]
 
@@ -9,17 +10,33 @@ domain = parameters["domain"]
 ip = parameters["ip"]
 rootHost = parameters["rootHost"]
 
-client = DropletKit::Client.new(access_token: token)
+client = DOClient.new
 
 result = []
 
-# Needs the ecosystem reference id and the environment information
-record = DropletKit::DomainRecord.new(type: 'A', name: domain, data: ip)
-response = client.domain_records.create(record, for_domain: rootHost)
+payload = {
+            "type": "A",
+            "name": domain,
+            "data": ip,
+            "priority": null,
+            "port": null,
+            "ttl": 1800,
+            "weight": null
+          };
+
+response = client.post("domains/#{rootHost}/records", payload)
 result.push(response)
 
-record = DropletKit::DomainRecord.new(type: 'CNAME', name: "*.#{domain}", data: "#{domain}.#{rootHost}.")
-response = client.domain_records.create(record, for_domain: rootHost)
+payload = {
+            "type": "CNAME",
+            "name": "*.#{domain}",
+            "data": "#{domain}.#{rootHost}.",
+            "priority": null,
+            "port": null,
+            "ttl": 1800,
+            "weight": null
+          };
+response = client.post("domains/#{rootHost}/records", payload)
 result.push(response)
 
 puts result.to_json
