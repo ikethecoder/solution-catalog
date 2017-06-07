@@ -12,7 +12,7 @@ canzea --util=add-env-secret VAULT_TOKEN `cat vault-token`
 echo $DIGITALOCEAN_TOKEN
 
 #// Add Digital Ocean secret
-canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key":"digitalocean","data":{"token":"{{DIGITALOCEAN_TOKEN}}"}}'
+export DATA=`canzea --decrypt --privateKey=/root/.ssh/id_rsa $ES_ENC_DATA` && export ARGS='{"key":"digitalocean","data":'$DATA'}' && canzea --lifecycle=wire --solution=vault --action=register-secret --args=$ARGS
 
 #// DNS Registration
 canzea --lifecycle=wire --solution=digitalocean --action=register-dns --args='{"domain":"{{ECOSYSTEM}}","ip":"{{PUBLIC_IPV4}}","rootHost":"canzea.cc"}'
