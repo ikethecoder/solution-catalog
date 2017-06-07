@@ -4,16 +4,18 @@ require 'template-runner'
 
 parameters = JSON.parse(ARGV[0])
 
-// parameters: location and passthrough
+# parameters: location and passthrough
+
+configFile = "/etc/nginx/conf.d/ssl.conf"
 
 t = Template.new
 
-partConfig = t.process "helpers/nginx/templates/service.templ", parameters
+partConfig = t.process "helpers/nginx/templates/service.tmpl", parameters
 
-sslConfig = File.read("/etc/nginx/conf.d/ssl.conf")
+sslConfig = File.read(configFile)
 
 index = sslConfig.rindex '}'
 
 sslConfig.insert index, partConfig
 
-puts sslConfig
+File.write(configFile, sslConfig)
