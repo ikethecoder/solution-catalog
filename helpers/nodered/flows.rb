@@ -24,16 +24,22 @@ headers = {
 uri = URI(ENV['NODERED_URL'] + '/admin/flows')
 
 http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true
 
-payload = File.read(file)
+Dir.glob("#{file}") do | path |
+    payload = File.read(path)
+    payload = {
+            "flows" => [
+                    payload.to_json
+            ]
+    }
 
-res = http.post("#{uri.path}", payload.to_json, headers)
+    res = http.post("#{uri.path}", payload.to_json, headers)
 
-if ( Integer(res.code) != 200 )
-    puts res.code
+    if ( Integer(res.code) != 200 )
+        puts res.code
+        puts res.body
+        raise("Adding flow failed")
+    end
+
     puts res.body
-    raise("Adding flow failed")
 end
-
-puts res.body
