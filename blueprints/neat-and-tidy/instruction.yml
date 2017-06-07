@@ -60,7 +60,6 @@ instructions:
         - step:workarounds:ruby
         - step:workarounds:ruby-gems
         - step:workarounds:canzea
-        - step:provisioning:digitalocean
         - step:workarounds:sshd
         - step:workarounds:network
         - step:workarounds:zip
