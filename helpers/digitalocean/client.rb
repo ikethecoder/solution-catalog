@@ -9,6 +9,7 @@ class DOClient
 
     def post (type, payload)
         headers = {
+          'Content-Type' => 'application/json',
           'Authorization' => "Bearer #{ENV['DIGITALOCEAN_TOKEN']}"
         }
 
