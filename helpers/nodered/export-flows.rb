@@ -59,22 +59,9 @@ content['flows'].each do | flow |
         File.write(outFile, JSON.pretty_generate(content))
     end
     if (flow['type'] == 'subflow')
-        uri = URI(ENV['NODERED_URL'] + "/admin/node/#{flow['id']}")
 
-        http = Net::HTTP.new(uri.host, uri.port)
-        #http.use_ssl = true
-
-        res = http.get("#{uri.path}", headers)
-
-        if ( Integer(res.code) != 200 )
-            puts res.code
-            puts res.body
-            raise("Connection to NodeRed Failed")
-        end
-
-        content = JSON.parse(res.body)
         outFile = "nr-#{flow['type']}-#{flow['id']}.flow"
-        puts "Writing flow to #{outFile}"
-        File.write(outFile, JSON.pretty_generate(content))
+        puts "Writing subflow to #{outFile}"
+        File.write(outFile, JSON.pretty_generate(flow))
     end
 end
