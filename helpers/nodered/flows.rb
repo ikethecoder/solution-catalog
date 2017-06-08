@@ -30,7 +30,14 @@ Dir.glob("#{file}") do | path |
 
     f = JSON.parse(payload)
 
-    res = http.post("#{uri.path}", JSON.generate(f), headers)
+    if (f['id'] == 'global')
+        uri = URI(ENV['NODERED_URL'] + '/admin/flow/global')
+        res = http.put("#{uri.path}", JSON.generate(f), headers)
+    else
+        uri = URI(ENV['NODERED_URL'] + '/admin/flow')
+        res = http.post("#{uri.path}", JSON.generate(f), headers)
+    end
+
 
     if ( Integer(res.code) != 200 )
         puts res.code
