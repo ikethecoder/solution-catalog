@@ -7,7 +7,7 @@ flow_id = parameters['flow_id']
 out_file = parameters['out_file']
 
 # Get the authtoken and userId
-uri = URI(ENV['NODERED_URL'] + '/admin/auth/token')
+uri = URI(ENV['NODERED_URL'] + '/oauth/token')
 
 res = Net::HTTP.post_form(uri , 'client_id' => 'thom', 'client_secret' => 'nightworld', 'grant_type' => 'password', 'scope' => '*', 'username' => 'thomseddon', 'password' => 'nightworld')
 
