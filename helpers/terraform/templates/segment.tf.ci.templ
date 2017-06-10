@@ -32,11 +32,13 @@ resource "digitalocean_droplet" "{{name}}" {
 
     #if ( $patches )
         #foreach ( $p in $patches )
+            /*
             provisioner "remote-exec" {
                 inline = [
-                    "${p}",
+                    "${p.command}",
                 ]
             }
+            */
         #end
 
     #end
