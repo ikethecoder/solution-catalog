@@ -4,6 +4,7 @@
 # canzea --config=config.json --lifecycle=wire --solution=terraform --action=generate --args='{"imagePaasId":"24485506", "name":"escd27-perf-app-1", "region":"nyc1"}'
 
 require 'json'
+require 'base64'
 require 'template-runner'
 require 'canzea/config'
 require 'canzea/registry'
@@ -27,6 +28,9 @@ t = Template.new
 params = parameters
 
 params['imageText'] = "\"image\""
+
+patches = Base64.decode64(params['patches'])
+params['patches'] = JSON.parse(patches)
 
 if (parameters.has_key? "imagePaasId")
     params[:imageText] = parameters['imagePaasId'].to_i
