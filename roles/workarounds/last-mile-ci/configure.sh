@@ -38,14 +38,15 @@ chown -R pm2user:pm2user /home/pm2user/ssl
 
 mkdir -p /home/pm2user/.ecosystem-catalog
 
+su pm2user -c 'canzea --reset'
+
 cp roles/workarounds/last-mile-ci/config/config.json /home/pm2user/.ecosystem-catalog/.
 
 cp roles/workarounds/last-mile-ci/config/env.json /home/pm2user/.ecosystem-catalog/.
 
 chown -R pm2user:pm2user /home/pm2user/.ecosystem-catalog
 
-cp roles/workarounds/last-mile-ci/config/canzea.sh /home/pm2user/.
 
-chown -R pm2user:pm2user /home/pm2user/canzea.sh
+su pm2user -c 'cp roles/workarounds/last-mile-ci/config/canzea.sh /home/pm2user/.'
 
 chmod +x /home/pm2user/canzea.sh
