@@ -20,7 +20,8 @@ t = Template.new
 #          "segment": "app",
 #          "region": "nyc1",
 #          "imageCode": "centos-7-2-x64",
-#          "imagePaasId": "24485506"
+#          "imagePaasId": "24485506",
+#          "patches": []
 #        }
 
 params = parameters

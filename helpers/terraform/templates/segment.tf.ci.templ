@@ -29,4 +29,15 @@ resource "digitalocean_droplet" "{{name}}" {
             "canzea --util=apply-config"
         ]
     }
+
+    #if ( $patches )
+        #foreach ( $p in $patches )
+            provisioner "remote-exec" {
+                inline = [
+                    "${p}",
+                ]
+            }
+        #end
+
+    #end
 }
