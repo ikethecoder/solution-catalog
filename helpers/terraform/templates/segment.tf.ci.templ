@@ -31,13 +31,13 @@ resource "digitalocean_droplet" "{{name}}" {
     }
 
     {{#patches}}
-            /*
+
             provisioner "remote-exec" {
                 inline = [
                     "{{command}}",
                 ]
             }
-            */
+
     {{/patches}}
 
 }
