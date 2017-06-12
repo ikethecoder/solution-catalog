@@ -11,7 +11,7 @@ canzea --config_git_commit --template=roles/monitoring/logstash/config/logstash/
 
 base64 /etc/pki/tls/certs/logstash-forwarder.crt > /etc/pki/tls/certs/logstash-forwarder.crt64
 
-canzea --lifecycle=wire --solution=consul --action=add_keyvalue --args='{"key":"certs/logstash","file":"/etc/pki/tls/certs/logstash-forwarder.crt64"}'
+canzea --lifecycle=wire --solution=consul --action=add_keyvalue --args='{"root":"certs", "key":"logstash","file":"/etc/pki/tls/certs/logstash-forwarder.crt64"}'
 # curl -v -X PUT -H "Content-Type: text/plain" -d @/etc/pki/tls/certs/logstash-forwarder.crt64 $CONSUL_URL/v1/kv/certs/logstash
 
 # curl $CONSUL_URL/v1/kv/certs/logstash
