@@ -49,3 +49,14 @@ chown -R pm2user:pm2user /home/pm2user/.ecosystem-catalog
 su pm2user -c 'cp roles/workarounds/last-mile-ci/config/canzea.sh /home/pm2user/.'
 
 chmod +x /home/pm2user/canzea.sh
+
+
+
+canzea --util=set-key-value components flag true
+
+
+# export VAULT_CLIENT_KEY=/etc/consul.d/ssl/vault.key
+# export VAULT_CLIENT_CERT=/etc/consul.d/ssl/vault.cert
+# export VAULT_CACERT=/etc/consul.d/ssl/ca.cert
+# export VAULT_ADDR=https://vault.service.dc1.consul:8200
+# export VAULT_TOKEN=43615528-b9fb-d969-2ebd-19db1e32d32d
