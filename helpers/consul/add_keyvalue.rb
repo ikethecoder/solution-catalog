@@ -1,6 +1,9 @@
 require 'json'
 require 'canzea/registry'
 
+file = File.read('config.json')
+Canzea::configure JSON.parse(file)
+
 parameters = JSON.parse(ARGV[0])
 
 root = parameters['root']
