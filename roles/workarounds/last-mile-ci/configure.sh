@@ -55,6 +55,18 @@ chmod +x /home/pm2user/canzea.sh
 canzea --util=set-key-value components flag true
 
 
+# configure a TOKEN for PM2USER
+(su - pm2user -c 'canzea --util=add-env-secret VAULT_TOKEN '`cat vault-token`)
+
+# Ideally, we want to create a policy + token, and use that new one
+
+#    vault policy-write flows_gateway::read roles/workarounds/last-mile-ci/config/policies/flows_gateway.hcl
+#    vault token-create -policy="flows_gateway::read" > NEW_TOKEN
+
+
+
+
+
 # export VAULT_CLIENT_KEY=/etc/consul.d/ssl/vault.key
 # export VAULT_CLIENT_CERT=/etc/consul.d/ssl/vault.cert
 # export VAULT_CACERT=/etc/consul.d/ssl/ca.cert
