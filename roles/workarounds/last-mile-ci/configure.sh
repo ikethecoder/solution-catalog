@@ -82,7 +82,7 @@ canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key"
 
 
 # export VAULT_CLIENT_KEY=/etc/consul.d/ssl/vault.key
-# export VAULT_CLIENT_CERT=/etc/consul.d/ssl/vault.cert
-# export VAULT_CACERT=/etc/consul.d/ssl/ca.cert
-# export VAULT_ADDR=https://vault.service.dc1.consul:8200
-# export VAULT_TOKEN=43615528-b9fb-d969-2ebd-19db1e32d32d
+export VAULT_CLIENT_CERT=/etc/consul.d/ssl/vault.cert
+export VAULT_CACERT=/etc/consul.d/ssl/ca.cert
+export VAULT_ADDR=https://vault.service.dc1.consul:8200
+export VAULT_TOKEN=43615528-b9fb-d969-2ebd-19db1e32d32d
