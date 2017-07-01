@@ -1,11 +1,7 @@
 require 'json'
 require 'git'
-require 'canzea/config'
 
-file = File.read('config.json')
-Canzea::configure JSON.parse(file)
-
-g = Git.open(Canzea::config[:catalog_location])
+g = Git.open(ENV['CATALOG_LOCATION'])
 
 branch = g.current_branch
 commit = g.log[0]
