@@ -6,7 +6,7 @@ require 'trace-runner'
 
 parameters = JSON.parse(ARGV[0])
 
-n = RunnerWorker.new
+n = RunnerWorker.new true
 
 folder = '/root'
 
