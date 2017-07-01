@@ -11,3 +11,5 @@ n = RunnerWorker.new true
 folder = '/root'
 
 n.run "(cd #{folder}; yum list > yum-list.txt)", 0, 0
+
+n.run "(cd #{folder}; gem list > gem-list.txt)", 0, 0

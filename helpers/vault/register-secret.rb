@@ -17,6 +17,7 @@ payload = parameters['data']
 
 if (parameters.has_key? "file")
     file = parameters['file']
+    file = Template.new.processString(file, {})
     value = File.read(file)
     payload = {"data" => value}
 else
