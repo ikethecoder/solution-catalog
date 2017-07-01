@@ -6,31 +6,24 @@ parameters = JSON.parse(ARGV[0])
 
 token=ENV["DIGITALOCEAN_TOKEN"]
 
+did = parameters['dropletId']
+
 client = DropletKit::Client.new(access_token: token)
 
-file = File.read("#{Canzea::config[:pwd]}/#{parameters['metadata']}")
-response = JSON.parse(file)
+item = client.droplet_actions.shutdown(droplet_id: did)
 
-response.each do |dropitem|
-    puts dropitem['name']
+active = false
+while active == false
 
-    did = dropitem['id']
+    puts "Looking up: #{item['id']}"
 
-    item = client.droplet_actions.shutdown(droplet_id: did)
+    image = client.droplet_actions.find(droplet_id: item['resource_id'], id: item['id'])
 
-    active = false
-    while active == false
+    puts image.to_json
 
-        puts "Looking up: #{item['id']}"
-
-        image = client.droplet_actions.find(droplet_id: item['resource_id'], id: item['id'])
-
-        puts image.to_json
-
-        if image.status == "in-progress"
-            sleep(10.seconds)
-        else
-            active = true
-        end
+    if image.status == "in-progress"
+        sleep(10.seconds)
+    else
+        active = true
     end
 end
