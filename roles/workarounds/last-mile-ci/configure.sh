@@ -67,8 +67,8 @@ canzea --util=set-key-value components flag true
 
 # These currently fail
 
-canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key":"certs/letsencrypt/privkey", "file":"/etc/letsencrypt/archive/$ECOSYSTEM.canzea.cc/privkey1.pem"}'
-canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key":"certs/letsencrypt/fullchain", "file":"/etc/letsencrypt/archive/$ECOSYSTEM.canzea.cc/fullchain1.pem"}'
+canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key":"certs/letsencrypt/privkey", "file":"/etc/letsencrypt/archive/{{ECOSYSTEM}}.canzea.cc/privkey1.pem"}'
+canzea --lifecycle=wire --solution=vault --action=register-secret --args='{"key":"certs/letsencrypt/fullchain", "file":"/etc/letsencrypt/archive/{{ECOSYSTEM}}.canzea.cc/fullchain1.pem"}'
 
 # canzea --util=set-key-value certs letsencrypt/privkey `cat /etc/letsencrypt/archive/*/privkey1.pem | base64`
 # canzea --util=set-key-value certs letsencrypt/fullchain `base64 < /etc/letsencrypt/archive/*/fullchain1.pem`
