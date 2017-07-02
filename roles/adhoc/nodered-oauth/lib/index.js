@@ -72,7 +72,7 @@ app.use(settings.httpNodeRoot,app.oauth.authorise(), RED.httpNode);
 
 app.use(settings.httpNodeRoot,app.oauth.errorHandler());
 
-server.listen(8000);
+server.listen(8005);
 
 // Start the runtime
 RED.start();
