@@ -1,5 +1,6 @@
 
-sudo service logstash configtest
+# Version 5.5 on CentOS does not support configtest
+# sudo service logstash configtest
 
 sudo chkconfig logstash on
 
