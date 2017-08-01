@@ -66,8 +66,9 @@ resource "digitalocean_droplet" "{{name}}" {
             "export PRIVATE_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address`",
             "canzea --util=apply-config --test",
             "canzea --util=apply-config",
-            "canzea --reset",
-            "canzea --lifecycle=patch --commit=21109c7141a411d116aea05c0837eaf288270a30 --solution=all"
+            "canzea --reset"
         ]
     }
 }
+
+# "canzea --lifecycle=patch --commit=21109c7141a411d116aea05c0837eaf288270a30 --solution=all"
