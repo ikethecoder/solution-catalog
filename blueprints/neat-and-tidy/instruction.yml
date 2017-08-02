@@ -51,10 +51,10 @@ instructions:
         size: 4gb
         image: centos-7-2-x64
       image:
-        - wire:digitalocean:expand
-        - wire:digitalocean:consul-update
-        - wire:digitalocean:health-check
-        - wire:digitalocean:set-public-ip
+        - wireX:digitalocean:expand
+        - wireX:digitalocean:consul-update
+        - wireX:digitalocean:health-check
+        - wireX:digitalocean:set-public-ip
         - init
         - step:workarounds:cloud-profile
         - step:workarounds:ruby
@@ -89,8 +89,21 @@ instructions:
         - step:container:docker
         - step:collaboration:rocketchat
         - step:sourcecontrol:gitlist
-        - wire:digitalocean:image
-        - wire:digitalocean:teardown
+        - wireX:digitalocean:image
+        - wireX:digitalocean:teardown
+      wiring:
+        - rocketchat:first-login
+        - rocketchat:setup-site-url
+        - ssl-route:gitlist
+        - ssl-route:gocd
+        - ssl-route:archiva
+        - ssl-route:consul
+        - archiva:first-login
+        - flows-gateway:import-flows
+        - vault-tls:user:pm2user
+        - consul-tls:user:pm2user
+        - canzea:user:pm2user
+        - letsencrypt:register-certificate
 
     mon:
       abbreviation: metrics
