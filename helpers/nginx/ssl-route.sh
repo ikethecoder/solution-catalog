@@ -1,3 +1,3 @@
 
-canzea --lifecycle=wire --solution=nginx --action=add_service --args='{"location":"/sc/", "passthrough":"http://localhost:851/"}'
+(cd $CATALOG_LOCATION && canzea --lifecycle=wire --solution=nginx --action=add_service --args='{"location":"/sc/", "passthrough":"http://localhost:851/"}')
 
