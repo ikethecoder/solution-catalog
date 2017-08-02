@@ -21,3 +21,4 @@ done
 
 (cd $CATALOG_LOCATION && canzea --lifecycle=wire --solution=nginx --action=add_service --args='{"location":"{{LOCATION}}", "passthrough":"{{PASSTHROUGH}}"}')
 
+systemctl restart nginx

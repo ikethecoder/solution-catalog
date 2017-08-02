@@ -94,16 +94,34 @@ instructions:
       wiring:
         - rocketchat:first-login
         - rocketchat:setup-site-url
-        - ssl-route:gitlist
-        - ssl-route:gocd
-        - ssl-route:archiva
-        - ssl-route:consul
+        -
+          wire: "nginx:ssl-route:gitlist"
+          location: "/sc/"
+          passthrough: "http://localhost:851/"
+        -
+          wire: "nginx:ssl-route:gocd"
+          location: "/go"
+          passthrough: "http://localhost:8153"
+        -
+          wire: "nginx:ssl-route:archiva"
+          location: "/archiva"
+          passthrough: "http://localhost:9080/"
+        -
+          wire: "nginx:ssl-route:rocketchat"
+          location: "/chat"
+          passthrough: "http://localhost:8780"
+        -
+          wire: "nginx:ssl-route:consul-ui"
+          location: "/ui"
+          passthrough: "https://consul.service.dc1.consul:8080"
+        -
+          wire: "nginx:ssl-route:consul-v1"
+          location: "/v1"
+          passthrough: "https://consul.service.dc1.consul:8080"
         - archiva:first-login
-        - flows-gateway:import-flows
-        - vault-tls:user:pm2user
-        - consul-tls:user:pm2user
-        - canzea:user:pm2user
-        - letsencrypt:register-certificate
+        - nodered:upgrade-flows
+        - users:configure-pm2user
+        - letsencrypt:register-ssl
 
     mon:
       abbreviation: metrics
@@ -268,12 +286,9 @@ instructions:
         region: nyc1
         size: 2gb
         image: centos-7-2-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
       image:
-        - wire:digitalocean:expand
-        - wire:digitalocean:consul-update
-        - wire:digitalocean:health-check
-        - wire:digitalocean:set-public-ip
-        - init
         - step:workarounds:cloud-profile
         - step:workarounds:ruby
         - step:workarounds:ruby-gems
@@ -292,6 +307,6 @@ instructions:
         - step:workarounds:golang
         - step:deploy:gocd-agent
         - step:workarounds:npm
-        - wire:digitalocean:image
-        - wire:digitalocean:teardown
+      wiring:
+        - sample:python-script
 
