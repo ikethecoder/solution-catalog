@@ -57,7 +57,7 @@ resource "digitalocean_droplet" "{{name}}" {
             "cp consul.* /etc/consul.d/ssl/.",
             "cp ca.cert /etc/consul.d/ssl/.",
             "cp vault.* /etc/consul.d/ssl/.",
-            "echo 'nameserver 10.136.35.107' > /etc/resolv.conf",
+            "echo 'nameserver {{nameserver}}' > /etc/resolv.conf",
             "echo '{\"consul_tls\":true}' > /root/.ecosystem-catalog/config.json",
             "export VAULT_TOKEN=a1d51eb2-116e-51ba-b8bc-e8b1d49fb496",
             "export CONSUL_URL=https://consul.service.dc1.consul:8080",

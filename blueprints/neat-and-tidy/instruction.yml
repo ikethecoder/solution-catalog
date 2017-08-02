@@ -131,6 +131,9 @@ instructions:
         region: nyc1
         size: 2gb
         image: centos-7-2-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+        monitorServer: "$!{ecosystem.lookupInstanceByName('mon-mon-01').privateIp}"
       image:
         - wire:digitalocean:expand
         - wire:digitalocean:consul-update
@@ -161,6 +164,12 @@ instructions:
         - step:audit:auditd
         - wire:digitalocean:image
         - wire:digitalocean:teardown
+      wiring:
+        -
+          instance: "cd-ci-01"
+          wire: "nginx:ssl-route:grafana"
+          location: "/grafana/"
+          passthrough: "http://${monitorServer}:3000/"
 
     sc:
       abbreviation: sourcecontrol
@@ -245,6 +254,8 @@ instructions:
         region: nyc1
         size: 4gb
         image: centos-7-2-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
       image:
         - wire:digitalocean:expand
         - wire:digitalocean:consul-update
@@ -274,6 +285,8 @@ instructions:
         - step:application:user
         - wire:digitalocean:image
         - wire:digitalocean:teardown
+      wiring:
+        - users:configure-go
       settings:
         step:monitoring:collectd:
           port: 8500
@@ -309,4 +322,5 @@ instructions:
         - step:workarounds:npm
       wiring:
         - sample:python-script
+        - users:configure-go
 
