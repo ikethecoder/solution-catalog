@@ -1,3 +1,5 @@
+#!/bin/bash
+
 mkdir /var/go/ssl
 cp /etc/consul.d/ssl/ca.cert /var/go/ssl/ca.cert
 cp /etc/consul.d/ssl/consul.cert /var/go/ssl/consul.cert
