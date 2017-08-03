@@ -1,0 +1,12 @@
+apps:
+  - script   : app.js
+    name     : flows-gateway
+    instances: 1
+    exec_mode: fork
+    watch: true
+    env:
+      NODE_ENV: development
+      PORT: 8000
+    env_production:
+      NODE_ENV: production
+      PORT: 8000

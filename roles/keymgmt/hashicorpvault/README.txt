@@ -49,9 +49,19 @@ curl \
 #
 
 curl \
+    -v \
     -H "X-Vault-Token:$VAULT_TOKEN" \
     -H 'Content-type: application/json' \
-    http://127.0.0.1:8200/v1/secret/rocketchat/root
+    https://127.0.0.1:8200/v1/secret/rocketchat/root
+
+curl \
+    -v \
+    --cacert "$VAULT_TLS_CA_CERT" \
+    --key "$VAULT_TLS_KEY" \
+    --cert "$VAULT_TLS_CERT" \
+    -H "X-Vault-Token:$VAULT_TOKEN" \
+    -H 'Content-type: application/json' \
+    https://vault.service.dc1.consul:8200/v1/secret/digitalocean
 
 
 curl \
@@ -60,6 +70,8 @@ curl \
     -H 'Content-type: application/json' \
     -d '{"password":"1234"}' \
     http://127.0.0.1:8200/v1/secret/rocketchat/root
+
+
 
 
 export VAULT_CLIENT_CERT=/etc/consul.d/ssl/vault.cert
