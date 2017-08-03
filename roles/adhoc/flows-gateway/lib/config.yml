@@ -8,5 +8,12 @@ apps:
       NODE_ENV: development
       PORT: 8000
     env_production:
-      NODE_ENV: production
-      PORT: 8000
+      NODE_ENV          : production
+      PORT              : 8000
+      VAULT_TLS_KEY     : /home/pm2user/ssl/vault.key
+      VAULT_TLS_CERT    : /home/pm2user/ssl/vault.cert
+      VAULT_TLS_CA_CERT : /home/pm2user/ssl/ca.cert
+      VAULT_URI         : https://vault.service.dc1.consul:8200
+      SECRETS_FILE      : /home/pm2user/.ecosystem-catalog/env.json
+
+
