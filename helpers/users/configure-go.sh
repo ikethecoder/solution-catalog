@@ -7,6 +7,7 @@ cp /etc/consul.d/ssl/vault.key /var/go/ssl/vault.key
 
 chown -R go:go /var/go/ssl
 
+su -l go -c 'canzea --reset'
 
 cp $CATALOG_LOCATION/helpers/users/config/go-config.json /var/go/.ecosystem-catalog/config.json
 
