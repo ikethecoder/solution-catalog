@@ -5,10 +5,17 @@ require_relative './gocd-client'
 
 parameters = JSON.parse(ARGV[0])
 
-name = parameters['name']
+env = parameters['name']
 
-payload = {"name" => name}
+env = env.gsub!(' ', '-')
+
+payload = {"name" => env}
 
 cli = GoCDClient.new('/go/api/admin')
 
-cli.postObject 2, 'environments', payload
+# If it already exists, then gracefully return
+begin
+  cli.getObject '2', 'environments', env
+rescue
+  cli.postObject 2, 'environments', payload
+end

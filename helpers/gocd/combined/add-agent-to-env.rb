@@ -7,6 +7,9 @@ parameters = JSON.parse(ARGV[0])
 
 env = parameters['environment']
 
+# Make sure there are no spaces in the name of the environment
+env = env.gsub!(' ', '-')
+
 id = parameters['agent']
 
 cli = GoCDClient.new
