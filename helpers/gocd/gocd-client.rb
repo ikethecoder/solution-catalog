@@ -101,6 +101,25 @@ class GoCDClient
 
    end
 
+
+   def deleteObject (version, type, id)
+
+        headers = {
+          'Accept' => "application/vnd.go.cd.v#{version}+json",
+          'Content-Type' => 'application/json',
+          'If-Match' => etag
+        }
+
+        http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
+        res = http.delete("#{@api}/#{type}/#{id}", headers)
+
+        if ( Integer(res.code) != 200 )
+            puts res.body
+            raise("Deleting #{type} #{id} failed")
+        end
+
+   end
+
    def patchObject (version, type, id, payload)
 
         file = File.open("#{type}-#{id}-etag.txt", "rb")
