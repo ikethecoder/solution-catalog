@@ -66,6 +66,10 @@ content['flows'].each do | flow |
         outFile = "nr-#{flow['type']}-#{clean(flow['label'])}.flow"
         puts "Writing flow to #{outFile}"
         File.write(outFile, JSON.pretty_generate(content))
+    else
+        outFile = "nf-#{flow['type']}-#{clean(flow['label'])}.flow"
+        puts "Writing #{flow['type']} to #{outFile}"
+        File.write(outFile, JSON.pretty_generate(flow))
     end
 
 #    if (flow['type'] == 'subflow')
@@ -75,7 +79,4 @@ content['flows'].each do | flow |
 #        File.write(outFile, JSON.pretty_generate(flow))
 #    end
 #
-    outFile = "nf-#{flow['type']}-#{clean(flow['label'])}.flow"
-    puts "Writing #{flow['type']} to #{outFile}"
-    File.write(outFile, JSON.pretty_generate(flow))
 end
