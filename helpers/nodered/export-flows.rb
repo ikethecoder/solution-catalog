@@ -86,20 +86,8 @@ content['flows'].each do | flow |
             "id" => flow['id'],
             "digest" => sha256
         })
-
-    else
-        # outFile = "nf-#{flow['type']}-id-#{clean(flow['id'])}.flow"
-        # puts "Writing #{flow['type']} to #{outFile}"
-        # File.write(outFile, JSON.pretty_generate(flow))
     end
 
-#    if (flow['type'] == 'subflow')
-#
-#        outFile = "nr-#{flow['type']}-#{flow['id']}.flow"
-#        puts "Writing subflow to #{outFile}"
-#        File.write(outFile, JSON.pretty_generate(flow))
-#    end
-#
 end
 
 
