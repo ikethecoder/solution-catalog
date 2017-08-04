@@ -8,6 +8,7 @@ qualifier = parameters['qualifier']
 
 attributes = parameters
 
+type = attributes['type']
 project = attributes['name']
 version = attributes['version']
 pattern = attributes[qualifier]['pattern']
@@ -56,7 +57,12 @@ params = params.slice(1,params.length - 2)
 task = JSON.parse(t.process taskTemplate3, {"project" => attributes['project'], "solution" => "sample", "action" => "info", "parameters" => params })
 job['tasks'].push (task)
 
-if (attributes.has_key? "module")
+if (type == "java-maven")
+    if (attributes.has_key? "module")
+        attributes['projectModule'] = "#{project}/#{attributes['module']}"
+    else
+        attributes['projectModule'] = "#{project}"
+    end
     artifact = JSON.parse(t.process artifactTemplate, attributes)
     job['artifacts'].push (artifact)
 end
