@@ -110,6 +110,19 @@ data = JSON.parse(data)
 data['subflows'].each do | flow |
     fileName = "global-#{flow['type']}-#{clean(flow['name'])}.flow"
     File.write(fileName, JSON.pretty_generate(flow))
+
+    sha256 = Digest::SHA256.file fileName
+    sha256.hexdigest
+    puts "#{fileName} : #{sha256}"
+
+    report.push( {
+        "filename" => fileName,
+        "group" => 'subflows',
+        "type" => flow['type'],
+        "id" => flow['id'],
+        "digest" => sha256
+    })
+
 end
 
 data['configs'].each do | conf |
@@ -126,7 +139,7 @@ data['configs'].each do | conf |
 
     report.push( {
         "filename" => fileName,
-        "group" => 'config',
+        "group" => 'configs',
         "type" => conf['type'],
         "id" => conf['id'],
         "digest" => sha256
