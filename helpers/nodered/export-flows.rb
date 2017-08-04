@@ -1,6 +1,8 @@
 # ruby helpers/helper-run.rb rocketchat collaboration-new-channel '{"name":"test5"}'
 require 'json'
 require 'net/http'
+require 'digest'
+
 parameters = JSON.parse(ARGV[0])
 
 name = parameters['name']
@@ -71,9 +73,9 @@ content['flows'].each do | flow |
         puts "Writing flow to #{outFile}"
         File.write(outFile, JSON.pretty_generate(content))
     else
-        outFile = "nf-#{flow['type']}-id-#{clean(flow['id'])}.flow"
-        puts "Writing #{flow['type']} to #{outFile}"
-        File.write(outFile, JSON.pretty_generate(flow))
+        # outFile = "nf-#{flow['type']}-id-#{clean(flow['id'])}.flow"
+        # puts "Writing #{flow['type']} to #{outFile}"
+        # File.write(outFile, JSON.pretty_generate(flow))
     end
 
 #    if (flow['type'] == 'subflow')
@@ -88,6 +90,8 @@ end
 report = []
 
 data = File.read("nr-tab-id-global.flow")
+
+data = JSON.parse(data)
 
 data['subflows'].each do | flow |
     fileName = "global-#{flow['type']}-#{clean(flow['name'])}.flow"
