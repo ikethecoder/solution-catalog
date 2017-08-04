@@ -33,6 +33,15 @@ if ( Integer(res.code) != 200 )
     raise("Connection to NodeRed Failed")
 end
 
+def clean (a)
+    a = a.clone
+    a.gsub!(' / ', '-')
+    a.gsub!(' ', '-')
+    a.gsub!('_', '-')
+    a.gsub!('.', '-')
+    return a.downcase
+end
+
 content = JSON.parse(res.body)
 content['flows'].push({"type" => "tab", "id" => "global"})
 
@@ -54,18 +63,19 @@ content['flows'].each do | flow |
         end
 
         content = JSON.parse(res.body)
-        outFile = "nr-#{flow['type']}-#{flow['id']}.flow"
+        outFile = "nr-#{flow['type']}-#{clean(flow['label'])}.flow"
         puts "Writing flow to #{outFile}"
         File.write(outFile, JSON.pretty_generate(content))
     end
-    if (flow['type'] == 'subflow')
 
-        outFile = "nr-#{flow['type']}-#{flow['id']}.flow"
-        puts "Writing subflow to #{outFile}"
-        File.write(outFile, JSON.pretty_generate(flow))
-    end
-
-    outFile = "nf-#{flow['type']}-#{flow['id']}.flow"
+#    if (flow['type'] == 'subflow')
+#
+#        outFile = "nr-#{flow['type']}-#{flow['id']}.flow"
+#        puts "Writing subflow to #{outFile}"
+#        File.write(outFile, JSON.pretty_generate(flow))
+#    end
+#
+    outFile = "nf-#{flow['type']}-#{clean(flow['label'])}.flow"
     puts "Writing #{flow['type']} to #{outFile}"
     File.write(outFile, JSON.pretty_generate(flow))
 end
