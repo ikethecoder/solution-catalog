@@ -63,11 +63,15 @@ content['flows'].each do | flow |
         end
 
         content = JSON.parse(res.body)
-        outFile = "nr-#{flow['type']}-#{clean(flow['label'])}.flow"
+        if flow['label'] == nil
+            outFile = "nr-#{flow['type']}-id-#{flow['id']}.flow"
+        else
+            outFile = "nr-#{flow['type']}-#{clean(flow['label'])}.flow"
+        end
         puts "Writing flow to #{outFile}"
         File.write(outFile, JSON.pretty_generate(content))
     else
-        outFile = "nf-#{flow['type']}-#{clean(flow['label'])}.flow"
+        outFile = "nf-#{flow['type']}-id-#{clean(flow['id'])}.flow"
         puts "Writing #{flow['type']} to #{outFile}"
         File.write(outFile, JSON.pretty_generate(flow))
     end
