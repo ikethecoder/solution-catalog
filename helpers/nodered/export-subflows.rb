@@ -59,3 +59,4 @@ content['flows'].each do | flow |
         File.write(outFile, JSON.pretty_generate(content))
     end
 end
+

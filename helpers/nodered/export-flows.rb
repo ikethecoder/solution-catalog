@@ -84,3 +84,36 @@ content['flows'].each do | flow |
 #    end
 #
 end
+
+report = []
+
+data = File.read("nr-tab-id-global.flow")
+
+data['subflows'].each do | flow |
+    fileName = "global-#{flow['type']}-#{clean(flow['name'])}.flow"
+    File.write(fileName, JSON.pretty_generate(flow))
+end
+
+data['configs'].each do | conf |
+    if conf['name'] == nil
+        fileName = "global-configs-#{clean(conf['type'])}.flow"
+    else
+        fileName = "global-configs-#{clean(conf['type'])}-#{clean(conf['name'])}.flow"
+    end
+    File.write(fileName, JSON.pretty_generate(conf))
+
+    sha256 = Digest::SHA256.file fileName
+    sha256.hexdigest
+    puts "#{fileName} : #{sha256}"
+
+    report.push( {
+        "filename" => fileName,
+        "type" => conf['type'],
+        "id" => conf['id'],
+        "digest" => sha256
+    })
+end
+
+File.write("global-configs.flow", JSON.pretty_generate(data['configs']))
+
+File.write("global-report.json", JSON.pretty_generate(report))
