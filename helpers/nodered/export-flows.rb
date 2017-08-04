@@ -44,6 +44,8 @@ def clean (a)
     return a.downcase
 end
 
+report = []
+
 content = JSON.parse(res.body)
 content['flows'].push({"type" => "tab", "id" => "global"})
 
@@ -72,6 +74,19 @@ content['flows'].each do | flow |
         end
         puts "Writing flow to #{outFile}"
         File.write(outFile, JSON.pretty_generate(content))
+
+        sha256 = Digest::SHA256.file outFile
+        sha256.hexdigest
+        puts "#{outFile} : #{sha256}"
+
+        report.push( {
+            "filename" => outFile,
+            "group" => 'flows',
+            "type" => flow['type'],
+            "id" => flow['id'],
+            "digest" => sha256
+        })
+
     else
         # outFile = "nf-#{flow['type']}-id-#{clean(flow['id'])}.flow"
         # puts "Writing #{flow['type']} to #{outFile}"
@@ -87,7 +102,6 @@ content['flows'].each do | flow |
 #
 end
 
-report = []
 
 data = File.read("nr-tab-id-global.flow")
 
@@ -112,6 +126,7 @@ data['configs'].each do | conf |
 
     report.push( {
         "filename" => fileName,
+        "group" => 'config',
         "type" => conf['type'],
         "id" => conf['id'],
         "digest" => sha256
