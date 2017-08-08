@@ -4,6 +4,7 @@ require 'net/http'
 require 'digest'
 require 'zip'
 require 'fileutils'
+require 'securerandom'
 
 parameters = JSON.parse(ARGV[0])
 
@@ -149,7 +150,7 @@ Zip::File.open("flows-#{rootPath}.zip", Zip::File::CREATE) do |zip|
         if File.directory?(file) == false
             puts "Adding to zip: #{file}"
             name = File.basename file
-            zip.add "#{name}", file
+            zip.add "#{name}", "#{rootPath}/#{file}"
         end
     }
 end
