@@ -137,3 +137,11 @@ end
 File.write("global-configs.flow", JSON.pretty_generate(data['configs']))
 
 File.write("global-report.json", JSON.pretty_generate(report))
+
+Zip::ZipFile.open(path, Zip::ZipFile::CREATE) do |zip|
+    Dir.foreach(".") { |file|
+        puts "Got #{file}"
+        name = File.basename file
+        zip.add "#{name}", file
+    }
+end
