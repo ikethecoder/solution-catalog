@@ -3,10 +3,15 @@ require 'json'
 require 'net/http'
 require 'digest'
 require 'zip'
+require 'fileutils'
 
 parameters = JSON.parse(ARGV[0])
 
 name = parameters['name']
+
+rootPath = SecureRandom.hex
+
+Dir.mkdir rootPath
 
 # Get the authtoken and userId
 uri = URI(ENV['NODERED_URL'] + '/admin/auth/token')
@@ -74,7 +79,7 @@ content['flows'].each do | flow |
             outFile = "nr-#{flow['type']}-#{clean(flow['label'])}.flow"
         end
         puts "Writing flow to #{outFile}"
-        File.write(outFile, JSON.pretty_generate(content))
+        File.write("#{rootPath}/#{outFile}, JSON.pretty_generate(content))
 
         sha256 = Digest::SHA256.file outFile
         sha256.hexdigest
@@ -92,13 +97,13 @@ content['flows'].each do | flow |
 end
 
 
-data = File.read("nr-tab-id-global.flow")
+data = File.read("#{rootPath}/nr-tab-id-global.flow")
 
 data = JSON.parse(data)
 
 data['subflows'].each do | flow |
     fileName = "global-#{flow['type']}-#{clean(flow['name'])}.flow"
-    File.write(fileName, JSON.pretty_generate(flow))
+    File.write("#{rootPath}/#{fileName}", JSON.pretty_generate(flow))
 
     sha256 = Digest::SHA256.file fileName
     sha256.hexdigest
@@ -120,7 +125,7 @@ data['configs'].each do | conf |
     else
         fileName = "global-configs-#{clean(conf['type'])}-#{clean(conf['name'])}.flow"
     end
-    File.write(fileName, JSON.pretty_generate(conf))
+    File.write("#{rootPath}/#{fileName}", JSON.pretty_generate(conf))
 
     sha256 = Digest::SHA256.file fileName
     sha256.hexdigest
@@ -135,12 +140,12 @@ data['configs'].each do | conf |
     })
 end
 
-File.write("global-configs.flow", JSON.pretty_generate(data['configs']))
+File.write("#{rootPath}/global-configs.flow", JSON.pretty_generate(data['configs']))
 
-File.write("global-report.json", JSON.pretty_generate(report))
+File.write("#{rootPath}/global-report.json", JSON.pretty_generate(report))
 
-Zip::Zip.open("flows.zip", Zip::Zip::CREATE) do |zip|
-    Dir.foreach(".") { |file|
+Zip::File.open("flows-#{rootPath}.zip", Zip::File::CREATE) do |zip|
+    Dir.foreach("#{rootPath}") { |file|
         if File.directory?(file) == false
             puts "Adding to zip: #{file}"
             name = File.basename file
@@ -148,3 +153,5 @@ Zip::Zip.open("flows.zip", Zip::Zip::CREATE) do |zip|
         end
     }
 end
+
+FileUtils.remove_dir(rootPath)
