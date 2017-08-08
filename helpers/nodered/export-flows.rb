@@ -79,9 +79,9 @@ content['flows'].each do | flow |
             outFile = "nr-#{flow['type']}-#{clean(flow['label'])}.flow"
         end
         puts "Writing flow to #{outFile}"
-        File.write("#{rootPath}/#{outFile}, JSON.pretty_generate(content))
+        File.write("#{rootPath}/#{outFile}", JSON.pretty_generate(content))
 
-        sha256 = Digest::SHA256.file outFile
+        sha256 = Digest::SHA256.file "#{rootPath}/#{outFile}"
         sha256.hexdigest
         puts "#{outFile} : #{sha256}"
 
@@ -105,7 +105,7 @@ data['subflows'].each do | flow |
     fileName = "global-#{flow['type']}-#{clean(flow['name'])}.flow"
     File.write("#{rootPath}/#{fileName}", JSON.pretty_generate(flow))
 
-    sha256 = Digest::SHA256.file fileName
+    sha256 = Digest::SHA256.file "#{rootPath}/#{fileName}"
     sha256.hexdigest
     puts "#{fileName} : #{sha256}"
 
@@ -127,7 +127,7 @@ data['configs'].each do | conf |
     end
     File.write("#{rootPath}/#{fileName}", JSON.pretty_generate(conf))
 
-    sha256 = Digest::SHA256.file fileName
+    sha256 = Digest::SHA256.file "#{rootPath}/#{fileName}"
     sha256.hexdigest
     puts "#{fileName} : #{sha256}"
 
