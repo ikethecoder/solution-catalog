@@ -18,7 +18,6 @@ Dir.mkdir rootPath
 uri = URI(ENV['NODERED_URL'] + '/admin/auth/token')
 
 res = Net::HTTP.post_form(uri , 'client_id' => 'node-red-admin', 'grant_type' => 'password', 'scope' => '*', 'username' => 'admin', 'password' => 'password')
-puts res.body
 
 data = JSON.parse(res.body)
 
@@ -57,7 +56,6 @@ content = JSON.parse(res.body)
 content['flows'].push({"type" => "tab", "id" => "global"})
 
 content['flows'].each do | flow |
-    puts "FLOW: #{flow.to_s}"
 
     if (flow['type'] == 'tab')
         uri = URI(ENV['NODERED_URL'] + "/admin/flow/#{flow['id']}")
@@ -79,12 +77,12 @@ content['flows'].each do | flow |
         else
             outFile = "nr-#{flow['type']}-#{clean(flow['label'])}.flow"
         end
-        puts "Writing flow to #{outFile}"
+
         File.write("#{rootPath}/#{outFile}", JSON.pretty_generate(content))
 
         sha256 = Digest::SHA256.file "#{rootPath}/#{outFile}"
         sha256.hexdigest
-        puts "#{outFile} : #{sha256}"
+
 
         report.push( {
             "filename" => outFile,
@@ -108,7 +106,7 @@ data['subflows'].each do | flow |
 
     sha256 = Digest::SHA256.file "#{rootPath}/#{fileName}"
     sha256.hexdigest
-    puts "#{fileName} : #{sha256}"
+
 
     report.push( {
         "filename" => fileName,
@@ -130,7 +128,7 @@ data['configs'].each do | conf |
 
     sha256 = Digest::SHA256.file "#{rootPath}/#{fileName}"
     sha256.hexdigest
-    puts "#{fileName} : #{sha256}"
+
 
     report.push( {
         "filename" => fileName,
@@ -148,7 +146,6 @@ File.write("#{rootPath}/global-report.json", JSON.pretty_generate(report))
 Zip::File.open("flows-#{rootPath}.zip", Zip::File::CREATE) do |zip|
     Dir.foreach("#{rootPath}") { |file|
         if File.directory?(file) == false
-            puts "Adding to zip: #{file}"
             name = File.basename file
             zip.add "#{name}", "#{rootPath}/#{file}"
         end
@@ -156,3 +153,5 @@ Zip::File.open("flows-#{rootPath}.zip", Zip::File::CREATE) do |zip|
 end
 
 FileUtils.remove_dir(rootPath)
+
+puts rootPath
