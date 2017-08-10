@@ -7,6 +7,7 @@ parameters = JSON.parse(ARGV[0])
 
 env = parameters['name']
 
+env.gsub!(' & ', '-')
 env.gsub!(' ', '-')
 
 payload = {"name" => env}
