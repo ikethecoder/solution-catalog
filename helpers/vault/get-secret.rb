@@ -8,4 +8,6 @@ key = parameters['key']
 
 r = Registry.new
 
-puts r.getSecret key
+secretData = r.getSecret key
+
+puts JSON.generate(secretData)
