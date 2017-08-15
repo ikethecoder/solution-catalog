@@ -1,0 +1,12 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "on_cancel": null,
+    "command": "npm",
+    "arguments": {{arguments}},
+    "working_directory": "{{project}}"
+  }
+}
