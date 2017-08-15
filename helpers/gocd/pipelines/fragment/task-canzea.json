@@ -13,6 +13,6 @@
       "--action={{action}}",
       "--args={{{parameters}}}"
     ],
-    "working_directory": ""
+    "working_directory": "{{project}}"
   }
 }
