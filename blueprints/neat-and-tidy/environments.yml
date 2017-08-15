@@ -45,12 +45,6 @@ environments:
             qty: 1
             segment: "mon"
             label: "Monitoring"
-          -
-            product: "M4GB_D60GB"
-            image: "centos-7-2-x64"
-            qty: 1
-            segment: "kib"
-            label: "Kibana Analysis"
 
    -
       name: "intg"
