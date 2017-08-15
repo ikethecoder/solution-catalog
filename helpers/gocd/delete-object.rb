@@ -14,6 +14,12 @@ else
     name = parameters[qualifier]['name']
 end
 
+version = v2
+
+if parameters.has_key? "version"
+    version = parameters['version']
+end
+
 headers = {
   'Accept' => 'application/vnd.go.cd.v2+json',
   'Content-Type' => 'application/json'
