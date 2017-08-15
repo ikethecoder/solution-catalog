@@ -93,6 +93,25 @@ environments:
             label: "App"
 
    -
+      name: "uat"
+      title:
+        label: "Acceptance"
+        pipeline: true
+        provision: false
+        order:
+          -
+            product: "M2GB_D40GB"
+            image: "centos-7-2-x64"
+            qty: 3
+            segment: "db"
+            label: "DB"
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
+            qty: 1
+            segment: "app"
+            label: "App"
+   -
       name: "live"
       title:
         label: "Live"
