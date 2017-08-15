@@ -5,7 +5,7 @@
       "passed"
     ],
     "on_cancel": null,
-    "command": "npm",
+    "command": "node_modules/bower/bin/bower",
     "arguments": {{{arguments}}},
     "working_directory": "{{project}}"
   }

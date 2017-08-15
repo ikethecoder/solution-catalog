@@ -4,9 +4,8 @@
     "run_if": [
       "passed"
     ],
-    "on_cancel": null,
-    "command": "npm",
-    "arguments": {{{arguments}}},
+    "command": "mvn",
+    "arguments": [ "clean", "package" ],
     "working_directory": "{{project}}"
   }
 }
