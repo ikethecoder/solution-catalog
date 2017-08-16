@@ -112,10 +112,6 @@ if (type == "js-npm")
     task = JSON.parse(t.process taskTemplateCanzea, {"project" => attributes['project'], "solution" => "gocd", "action" => "prep-build", "parameters" => params })
     job['tasks'].push (task)
 
-    task = JSON.parse(t.process taskTemplateCanzea, {"project" => attributes['project'], "solution" => "gocd", "action" => "prep-build", "parameters" => params })
-    job['tasks'].push (task)
-
-
     taskTemplate = "helpers/gocd/pipelines/fragment/task-mvn-package.json"
     task = JSON.parse(t.process taskTemplate, {"project" => attributes['project']})
     job['tasks'].push (task)
