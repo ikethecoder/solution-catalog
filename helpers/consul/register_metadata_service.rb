@@ -8,7 +8,7 @@ file = parameters['metadata']
 
 metadata = JSON.parse(File.read(file))
 
-metadata.services.each do | service |
+metadata['services'].each do | service |
 
     listener = service['listener']
 
@@ -46,7 +46,9 @@ metadata.services.each do | service |
         if (service['check'].has_key? "path")
             service['check']['http'] = "http://#{address}:#{port}#{service['check']['path']}"
         end
-        service['check']['http'] = Template.new.processString service['check']['http'] { "address" : "http://#{address}:#{port}" }
+        protocol = service['ssl'] ? "https":"http"
+        attrs = {"address"=>"#{protocol}://#{address}:#{port}"}
+        service['check']['http'] = Template.new.processString(service['check']['http'],attrs)
         payload[:Check] = service['check']
     end
 

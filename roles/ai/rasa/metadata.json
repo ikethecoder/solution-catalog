@@ -6,7 +6,7 @@
             "port":5000,
             "ssl":false,
             "check": {
-                "http":"${address}/parse?q=hello",
+                "http":"{{address}}/parse?q=hello",
                 "interval":"10s",
                 "timeout":"10s"
             }

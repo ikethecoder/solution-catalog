@@ -6,7 +6,7 @@
             "port":8888,
             "ssl":false,
             "check": {
-                "http":"${address}",
+                "http":"{{address}}",
                 "interval":"10s",
                 "timeout":"10s"
             }
