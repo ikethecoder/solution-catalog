@@ -1,0 +1,15 @@
+{
+    "services":[
+        {
+            "name":"anaconda",
+            "listener":"pub",
+            "port":8889,
+            "ssl":false,
+            "check": {
+                "http":"${address}",
+                "interval":"10s",
+                "timeout":"10s"
+            }
+        }
+    ]
+}
