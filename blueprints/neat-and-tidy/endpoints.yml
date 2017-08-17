@@ -89,6 +89,27 @@ consoles:
     logo: https://avatars1.githubusercontent.com/u/7388996?v=4&s=200
 
   -
+    segment: tools
+    name: anaconda
+    description: Anaconda
+    url: http://${domainName}:8889
+    logo: https://avatars2.githubusercontent.com/u/1158637?v=4&s=200
+
+  -
+    segment: tools
+    name: rasa
+    description: RASA Natural Language Processing
+    url: http://${domainName}:5000
+    logo: https://avatars0.githubusercontent.com/u/21214473?v=4&s=200
+
+  -
+    segment: tools
+    name: rasa-trainer
+    description: RASA Natural Language Trainer
+    url: http://${domainName}:5001
+    logo: https://avatars0.githubusercontent.com/u/21214473?v=4&s=200
+
+  -
     segment: col
     name: taiga
     description: Taiga Agile Project Management (admin/123123)
