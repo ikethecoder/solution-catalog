@@ -353,4 +353,6 @@ instructions:
         - step:audit:auditd
         - step:workarounds:golang
         - step:deploy:gocd-agent
+        - step:datascience:anaconda
+        - step:datascience:jupyter
 
