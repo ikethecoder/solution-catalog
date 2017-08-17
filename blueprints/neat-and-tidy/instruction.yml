@@ -349,4 +349,8 @@ instructions:
         - step:container:docker
         - step:monitoring:collectd
         - step:monitoring:filebeat
+        - step:monitoring:metricbeat
         - step:audit:auditd
+        - step:workarounds:golang
+        - step:deploy:gocd-agent
+
