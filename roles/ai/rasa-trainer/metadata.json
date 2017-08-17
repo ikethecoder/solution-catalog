@@ -1,0 +1,15 @@
+{
+    "services":[
+        {
+            "name":"rasa_trainer",
+            "listener":"pub",
+            "port":5001,
+            "ssl":false,
+            "check": {
+                "http":"{{address}}",
+                "interval":"10s",
+                "timeout":"10s"
+            }
+        }
+    ]
+}
