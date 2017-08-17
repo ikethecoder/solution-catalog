@@ -332,6 +332,8 @@ instructions:
         region: nyc1
         size: 4gb
         image: centos-7-2-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
       image:
         - step:workarounds:cloud-profile
         - step:workarounds:ruby
