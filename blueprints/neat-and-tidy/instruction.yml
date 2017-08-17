@@ -324,3 +324,27 @@ instructions:
         - sample:python-script
         - users:configure-go
 
+    tool:
+      abbreviation: tool
+      label: tools
+      description: Rocket.Chat, Helpy, Taiga
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-2-x64
+      image:
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:loadbalancer:nginx
+        - step:container:docker
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:audit:auditd
