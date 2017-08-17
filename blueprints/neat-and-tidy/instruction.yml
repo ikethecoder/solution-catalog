@@ -355,6 +355,7 @@ instructions:
         - step:deploy:gocd-agent
         - step:datascience:anaconda
         - step:datascience:jupyter
+        - step:ai:rasa-trainer
         - step:ai:rasa
         - step:housekeeping:wetty
         - step:virtualmachine:mono
