@@ -1,0 +1,68 @@
+resource "digitalocean_droplet" "{{name}}" {
+    image = {{{imageText}}}
+    name = "{{name}}"
+    region = "{{region}}"
+    size = "{{size}}"
+    private_networking = true
+    ssh_keys = [
+        "${var.ssh_fingerprint}"
+    ]
+
+    connection {
+        user = "root"
+        type = "ssh"
+        private_key = "${file(var.pvt_key)}"
+        timeout = "2m"
+    }
+
+    provisioner "remote-exec" {
+        inline = [
+            "mkdir -p /etc/consul.d/ssl"
+        ]
+    }
+
+    provisioner "file" {
+        source = "consul.cert"
+        destination = "/etc/consul.d/ssl/consul.cert"
+    }
+
+    provisioner "file" {
+            source = "consul.key"
+            destination = "/etc/consul.d/ssl/consul.key"
+    }
+
+    provisioner "file" {
+            source = "ca.cert"
+            destination = "/etc/consul.d/ssl/ca.cert"
+    }
+
+    provisioner "file" {
+            source = "vault.cert"
+            destination = "/etc/consul.d/ssl/vault.cert"
+    }
+
+    provisioner "file" {
+            source = "vault.key"
+            destination = "/etc/consul.d/ssl/vault.key"
+    }
+
+
+    provisioner "remote-exec" {
+        inline = [
+            "gem install canzea",
+            "mkdir -p /etc/consul.d/ssl",
+            "cp consul.* /etc/consul.d/ssl/.",
+            "cp ca.cert /etc/consul.d/ssl/.",
+            "cp vault.* /etc/consul.d/ssl/.",
+            "echo 'nameserver {{nameserver}}' > /etc/resolv.conf",
+            "echo '{\"consul_tls\":true}' > /root/.ecosystem-catalog/config.json",
+            "export VAULT_TOKEN=07c15fd4-b1cb-b476-592c-1fdc53d21922",
+            "export CONSUL_URL=https://consul.service.dc1.consul:8080",
+            "export HOSTNAME=`curl -s http://169.254.169.254/metadata/v1/hostname`",
+            "export PUBLIC_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address`",
+            "export PRIVATE_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address`",
+            "canzea --util=apply-config --test",
+            "canzea --util=apply-config"
+        ]
+    }
+}
