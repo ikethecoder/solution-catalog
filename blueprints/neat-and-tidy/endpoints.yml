@@ -82,6 +82,13 @@ consoles:
     logo: /styles/img/partners/elastichq.png
 
   -
+    segment: tools
+    name: jupyter
+    description: Jupyter
+    url: http://${domainName}:8888
+    logo: https://avatars1.githubusercontent.com/u/7388996?v=4&s=200
+
+  -
     segment: col
     name: taiga
     description: Taiga Agile Project Management (admin/123123)
