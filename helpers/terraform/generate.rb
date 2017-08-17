@@ -42,6 +42,10 @@ tfTemplate = "segment.tf.#{parameters['template']}.templ"
 
 template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/#{tfTemplate}"
 
+if File.exist?(template) == false
+    template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/segment.tf.default.templ"
+end
+
 outFile = "segment-#{parameters['name']}.tf"
 
 t.processAndWriteToFile template, outFile, params
