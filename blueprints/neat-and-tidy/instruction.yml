@@ -324,8 +324,8 @@ instructions:
         - sample:python-script
         - users:configure-go
 
-    tool:
-      abbreviation: tool
+    tools:
+      abbreviation: tools
       label: tools
       description: Rocket.Chat, Helpy, Taiga
       provision:
