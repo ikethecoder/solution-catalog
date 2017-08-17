@@ -1,4 +1,4 @@
-yes | cp -f roles/ai/rasa/config/rasa_trainer.service /etc/systemd/system/multi-user.target.wants/.
+yes | cp -f roles/ai/rasa-trainer/config/rasa_trainer.service /etc/systemd/system/multi-user.target.wants/.
 
 systemctl daemon-reload
 
