@@ -1,0 +1,15 @@
+{
+    "services":[
+        {
+            "name":"wetty",
+            "listener":"pub",
+            "port":5000,
+            "ssl":false,
+            "check": {
+                "http":"{{address}}",
+                "interval":"10s",
+                "timeout":"10s"
+            }
+        }
+    ]
+}
