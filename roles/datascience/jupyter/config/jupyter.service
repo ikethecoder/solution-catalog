@@ -1,0 +1,12 @@
+[Unit]
+Description=Jupyter container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a jupyter
+ExecStop=/usr/bin/docker stop -t 2 jupyter
+
+[Install]
+WantedBy=local.target
