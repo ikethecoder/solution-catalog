@@ -5,8 +5,8 @@ After=docker.service
 
 [Service]
 Restart=always
-ExecStart=/usr/bin/docker start -a continuumio/anaconda
-ExecStop=/usr/bin/docker stop -t 2 continuumio/anaconda
+ExecStart=/usr/bin/docker start -a anaconda
+ExecStop=/usr/bin/docker stop -t 2 anaconda
 
 [Install]
 WantedBy=local.target
