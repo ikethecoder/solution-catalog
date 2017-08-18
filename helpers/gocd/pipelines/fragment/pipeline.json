@@ -20,6 +20,11 @@
         "value": "/usr/lib/jvm/java"
       },
       {
+        "secure": false,
+        "name": "JAVA_COMMAND",
+        "value": "/etc/alternatives/java"
+      },
+      {
         "secure": true,
         "name": "VAULT_TOKEN",
         "value": "{{VAULT_TOKEN}}"
