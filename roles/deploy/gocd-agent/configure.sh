@@ -11,3 +11,7 @@ chmod +x /opt/canzea-utils/register_service.sh
 
 
 # chown -R go /opt/applications/
+
+
+usermod -aG docker go
+

@@ -281,6 +281,7 @@ instructions:
         - step:audit:auditd
         - step:workarounds:golang
         - step:router:fabio
+        - step:container:docker
         - step:deploy:gocd-agent
         - step:application:user
         - wire:digitalocean:image
@@ -317,6 +318,7 @@ instructions:
         - step:monitoring:filebeat
         - step:monitoring:metricbeat
         - step:audit:auditd
+        - step:container:docker
         - step:workarounds:golang
         - step:deploy:gocd-agent
         - step:workarounds:npm
