@@ -16,7 +16,7 @@ consoles:
     url: http://${domainName}:851
     notworking_secure: https://${secureDomain}/sc
     remarks: none
-    logo: https://git-scm.com/images/logos/2color-lightbg@2x.png
+    logo: https://avatars3.githubusercontent.com/u/18133?v=4&s=200
 
   -
     segment: ci
@@ -33,7 +33,7 @@ consoles:
     url: http://${domainName}:8000/admin/
     secure: https://${secureDomain}/gw/admin/
     remarks: default creds admin,password
-    logo: /styles/img/partners/nodered.png
+    logo: https://avatars3.githubusercontent.com/u/5375661?v=4&s=200
 
   -
     segment: ci
