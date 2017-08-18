@@ -8,6 +8,8 @@ require_relative 'install-project'
 
 parameters = JSON.parse(ARGV[0])
 
+container = parameters['container']
+
 catalog = ENV['CATALOG_LOCATION']
 
 t = Template.new
