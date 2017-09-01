@@ -56,12 +56,12 @@ consoles:
 
   -
     segment: mon
-    name: Kibana
+    name: kibana
     url: http://${domainName}:5601
 
   -
     segment: mon
-    name: Grafana
+    name: grafana
     url: http://${domainName}:3000
     secure: https://${secureDomain}/grafana
 
