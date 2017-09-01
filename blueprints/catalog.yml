@@ -111,6 +111,7 @@ buildingBlocks:
 
   notebook:
     description: Jupyter Notebook
+    logo: https://avatars1.githubusercontent.com/u/7388996?v=4&s=200
     roles: [ "Interactive Computing" ]
     resources: [ "notebooks" ]
     type: service
