@@ -1,0 +1,143 @@
+
+organization:
+  digitalocean:
+    name: Digital Ocean
+    website: https://www.digitalocean.com
+    logo: https://avatars3.githubusercontent.com/u/4650108?v=4&s=200
+
+  hashicorp:
+    name: HashiCorp
+    website: https://www.hashicorp.com
+    logo: https://avatars2.githubusercontent.com/u/761456?v=4&s=200
+
+  thoughtworks:
+    name: ThoughtWorks Inc.
+    website: http://www.thoughtworks.com
+    logo: https://avatars0.githubusercontent.com/u/18878?v=4&s=200
+
+  elastic:
+    name: Elastic
+    website: https://www.elastic.co
+    logo: https://avatars0.githubusercontent.com/u/6764390?v=4&s=200
+
+  jupyter:
+    name: Jupyter
+    website: https://www.jupyter.org
+    logo: https://avatars1.githubusercontent.com/u/7388996?v=4&s=200
+
+  continuum:
+    name: Continuum Analytics, Inc.
+    website: http://continuum.io
+    logo: https://avatars2.githubusercontent.com/u/1158637?v=4&s=200
+
+building-blocks:
+  digitalocean:
+    description: Cloud computing, designed for developers.
+    url: https://cloud.digitalocean.com/droplets
+    logo: https://avatars3.githubusercontent.com/u/4650108?v=4&s=200
+    roles: [ "cloud_hosting" ]
+    resources: [ "droplets" ]
+    authentication: token
+    type: service
+    organization: digitalocean
+
+  consul:
+    description: Service Discovery and Configuration Made Easy
+    logo: /styles/img/partners/consul.svg
+    roles: [ "service_discovery" ]
+    resources: [ "services", "nodes", "keyvalues" ]
+    authentication: token
+    type: service
+    organization: hashicorp
+
+  terraform:
+    description: Terraform is a tool for building, changing, and combining infrastructure safely and efficiently.
+    type: cli
+    organization: hashicorp
+
+  gogs:
+    description: Painless self-hosted Git service
+    logo: https://avatars2.githubusercontent.com/u/6656686?v=4&s=200
+    roles: [ "source_control" ]
+    resources: [ "files", "branches", "issues", "pull_requests" ]
+    authentication: token
+    type: service
+
+  archiva:
+    description: Archiva Package Repository
+    logo: /styles/img/partners/archiva.png
+    roles: [ "artifact_repository" ]
+    resources: [ "artifacts", "repositories" ]
+    authentication: token
+    type: service
+
+  gocd:
+    description: Go.CD Delivery Pipeline
+    logo: https://avatars3.githubusercontent.com/u/6099846?v=3&s=200
+    roles: [ "continuous_delivery" ]
+    resources: [ "agents", "pipelines", "environments" ]
+    type: service
+    organization: thoughtworks
+
+  rocketchat:
+    description: Rocket.Chat Real-Time Chat and Collaboration
+    logo: https://avatars3.githubusercontent.com/u/12508788?v=3&s=200
+    roles: [ "collaboration" ]
+    resources: [ "channels", "messages" ]
+    type: service
+
+  fabio:
+    description: A fast, modern, zero-conf load balancing HTTP(S) router
+    logo: https://avatars3.githubusercontent.com/u/25439951?v=3&s=200
+    roles: [ "api_gateway" ]
+    resources: [ "services" ]
+    type: service
+
+  kibana:
+    description: Kibana
+    logo: https://avatars2.githubusercontent.com/u/6764390?v=3&s=200
+    roles: [ "analytics" ]
+    resources: [ "dashboards", "queries" ]
+    type: service
+    organization: elastic
+
+  grafana:
+    description: Grafana
+    logo: https://avatars2.githubusercontent.com/u/7195757?v=3&s=200
+    roles: [ "monitoring" ]
+    resources: [ "dashboards", "queries" ]
+    type: service
+
+  notebook:
+    description: Jupyter Notebook
+    roles: [ "Interactive Computing" ]
+    resources: [ "notebooks" ]
+    type: service
+
+  anaconda:
+    description: Anaconda
+    logo: https://avatars2.githubusercontent.com/u/10549274?v=4&s=200
+    roles: [ "Data Science Platform" ]
+    organization: continuum
+    type: service
+
+  nodered:
+    description: Node-Red
+    logo: https://avatars3.githubusercontent.com/u/5375661?v=4&s=200
+    roles: [ "Ecosystem Management" ]
+    resources: [ "flows" ]
+    type: service
+
+  gitlab:
+    description: GitLab unifies issues, code review, CI and CD into a single UI
+    logo: https://avatars0.githubusercontent.com/u/1086321?v=4&s=200
+    roles: [ "source_control" ]
+    resources: [ "files" ]
+    type: service
+
+  gitlist:
+    description: An elegant and modern git repository viewer
+    logo: https://avatars3.githubusercontent.com/u/18133?v=4&s=200
+    roles: [ "source_control_viewer" ]
+    resources: [ "files" ]
+    type: service
