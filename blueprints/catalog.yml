@@ -142,3 +142,15 @@ buildingBlocks:
     roles: [ "source_control_viewer" ]
     resources: [ "files" ]
     type: service
+
+  rasa:
+    description: RASA Natural Language Processing
+    logo: https://avatars0.githubusercontent.com/u/21214473?v=4&s=200
+    roles: [ "natural language processing" ]
+    type: service
+
+  rasa-trainer:
+    description: RASA Natural Language Trainer
+    logo: https://avatars0.githubusercontent.com/u/21214473?v=4&s=200
+    roles: [ "natural language trainer" ]
+    type: service
