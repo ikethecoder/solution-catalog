@@ -2,6 +2,13 @@
 consoles:
   -
     segment: ci
+    name: digitalocean
+    description: Cloud computing, designed for developers.
+    url: https://www.digitalocean.com
+    logo: https://avatars3.githubusercontent.com/u/4650108?v=4&s=200
+
+  -
+    segment: ci
     name: consul-ui
     description: Consul Console
     url: http://${domainName}:81/ui
@@ -17,6 +24,13 @@ consoles:
     notworking_secure: https://${secureDomain}/sc
     remarks: none
     logo: https://avatars3.githubusercontent.com/u/18133?v=4&s=200
+
+  -
+    segment: ci
+    name: gogs
+    description: Painless self-hosted Git service
+    url: http://${domainName}:10080
+    logo: https://avatars2.githubusercontent.com/u/6656686?v=4&s=200
 
   -
     segment: ci
@@ -50,13 +64,6 @@ consoles:
     description: Rocket.Chat Real-Time Chat and Collaboration
     url: http://${domainName}:8780
     logo: https://avatars3.githubusercontent.com/u/12508788?v=3&s=200
-
-  -
-    segment: ci
-    name: gogs
-    description: Painless self-hosted Git service
-    url: http://${domainName}:10080
-    logo: https://avatars2.githubusercontent.com/u/6656686?v=4&s=200
 
 
   -
