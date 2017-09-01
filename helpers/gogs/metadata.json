@@ -1,0 +1,61 @@
+{
+  "variables": {
+    "RANDOM_PASSWORD": "",
+    "ADMIN_EMAIL": ""
+  },
+  "resources": [
+    {
+      "source_control_user": {
+        "id": "root",
+        "user_name": "root",
+        "password": "{{RANDOM_PASSWORD}}",
+        "retype": "{{RANDOM_PASSWORD}}",
+        "email": "{{ADMIN_EMAIL}}"
+      }
+    },
+    {
+      "source_control_repository": {
+        "id": "ecosystem-config",
+        "name": "ecosystem-config",
+        "description": "Configuration for the ecosystem."
+      }
+    },
+    {
+      "source_control_token": {
+        "id": "root",
+        "user_name": "root",
+        "password": "{{RANDOM_PASSWORD}}"
+      }
+    },
+    {
+      "vault_secret": {
+        "id" : "/service/gogs/root/credentials",
+        "key" : "/service/gogs/root/credentials",
+        "value" : {"user_name": "root", "password": "{{RANDOM_PASSWORD}}"}
+      }
+    },
+    {
+      "vault_secret": {
+        "id" : "/service/gogs/root/token",
+        "key" : "/service/gogs/root/token",
+        "value" : {"token": "{{source_control_token.sha1}}"}
+      }
+    },
+    {
+      "vault_policy": {
+        "id" : "gogs::root::credentials::read",
+        "name" : "gogs::root::credentials::read",
+        "path" : "/service/gogs/root/*",
+        "capabilities": ["read"]
+      }
+    },
+    {
+      "vault_policy": {
+        "id" : "gogs::root::credentials::write",
+        "name" : "gogs::root::credentials::write",
+        "path" : "/service/gogs/root/*",
+        "capabilities": ["create", "update", "delete", "read", "list"]
+      }
+    }
+  ]
+}

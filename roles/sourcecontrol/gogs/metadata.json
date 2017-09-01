@@ -12,5 +12,13 @@
             "port":10022,
             "ssl":false
         }
+    ],
+    "logging": [
+        {
+            "location": "/var/gogs/gogs/log/gogs.log"
+        }
+    ],
+    "policies": [
+
     ]
 }
