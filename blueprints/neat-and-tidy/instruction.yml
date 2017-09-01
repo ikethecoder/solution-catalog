@@ -66,6 +66,7 @@ instructions:
         - step:workarounds:expect
         - step:workarounds:journald
         - step:sourcecontrol:git
+        - step:sourcecontrol:gogs
         - step:configdb:consul
         - step:keymgmt:hashicorpvault
         - step:workarounds:ecosystem-bootstrap
