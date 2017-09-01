@@ -4,7 +4,7 @@ consoles:
     segment: ci
     name: digitalocean
     description: Cloud computing, designed for developers.
-    url: https://www.digitalocean.com
+    url: https://cloud.digitalocean.com/droplets
     logo: https://avatars3.githubusercontent.com/u/4650108?v=4&s=200
 
   -
