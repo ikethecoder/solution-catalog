@@ -52,6 +52,14 @@ consoles:
     logo: https://avatars3.githubusercontent.com/u/12508788?v=3&s=200
 
   -
+    segment: ci
+    name: gogs
+    description: Painless self-hosted Git service
+    url: http://${domainName}:10080
+    logo: https://avatars2.githubusercontent.com/u/6656686?v=4&s=200
+
+
+  -
     segment: app
     name: fabio
     description: A fast, modern, zero-conf load balancing HTTP(S) router
