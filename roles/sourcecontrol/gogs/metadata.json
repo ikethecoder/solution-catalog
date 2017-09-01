@@ -1,0 +1,16 @@
+{
+    "services":[
+        {
+            "name":"gogs",
+            "listener":"pub",
+            "port":10080,
+            "ssl":false
+        },
+        {
+            "name":"gogs-ssh",
+            "listener":"pub",
+            "port":10022,
+            "ssl":false
+        }
+    ]
+}
