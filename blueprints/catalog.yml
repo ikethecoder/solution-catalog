@@ -1,5 +1,5 @@
 
-organization:
+organizations:
   digitalocean:
     name: Digital Ocean
     website: https://www.digitalocean.com
@@ -30,7 +30,7 @@ organization:
     website: http://continuum.io
     logo: https://avatars2.githubusercontent.com/u/1158637?v=4&s=200
 
-building-blocks:
+buildingBlocks:
   digitalocean:
     description: Cloud computing, designed for developers.
     url: https://cloud.digitalocean.com/droplets
