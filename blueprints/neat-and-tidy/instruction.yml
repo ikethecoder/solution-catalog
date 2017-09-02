@@ -78,7 +78,6 @@ instructions:
         - step:testsuite:selenium
         - step:certprovider:letsencrypt
         - step:registry:archiva
-        - step:deploy:ansible
         - step:deploy:gocd
         - step:deploy:gocd-plugins
         - step:adhoc:nodered
@@ -87,6 +86,8 @@ instructions:
         - step:loadbalancer:nginx-consul
         - step:workarounds:iptables
         - step:provisioning:terraform
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
         - step:container:docker
         - step:collaboration:rocketchat
         - step:sourcecontrol:gitlist
