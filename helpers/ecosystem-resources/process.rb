@@ -16,39 +16,31 @@ fileList = parameters['files']
 
 # The results will be logged by the Gateway
 
+files.each do | file |
 
-payload = {
-    "resources" => [
-          {
-            "vault_secret": {
-                "rocketchat/admin": {
-                    "username" : "admin",
-                    "password" : "admin1admin"
-                }
-            }
-          }
+    data = File.read(file)
 
-    ]
-}
+    payload = JSON.parse(data)
 
-headers = {
-  'Authorization' => "Bearer #{ENV['NODERED_CANZEA_CONSOLE_TOKEN']}",
-  'Node-RED-API-Version' => 'v2',
-  'Content-Type' => 'application/json'
-}
+    headers = {
+      'Authorization' => "Bearer #{ENV['NODERED_CANZEA_CONSOLE_TOKEN']}",
+      'Node-RED-API-Version' => 'v2',
+      'Content-Type' => 'application/json'
+    }
 
-uri = URI(ENV['NODERED_URL'] + '/api/bulk')
+    uri = URI(ENV['NODERED_URL'] + '/api/bulk')
 
-http = Net::HTTP.new(uri.host, uri.port)
-#http.use_ssl = true
+    http = Net::HTTP.new(uri.host, uri.port)
+    #http.use_ssl = true
 
-res = http.post("#{uri.path}", payload.to_json, headers)
+    res = http.post("#{uri.path}", payload.to_json, headers)
 
-if ( Integer(res.code) != 200 )
-    puts res.body
-    raise("Connection to NodeRed Failed")
+    if ( Integer(res.code) >= 300 )
+        puts res.body
+        raise("Connection to NodeRed Failed")
+    end
+
+    # content = JSON.parse(res.body)
+
+    # puts content
 end
-
-content = JSON.parse(res.body)
-
-puts content
