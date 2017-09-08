@@ -3,11 +3,12 @@
   ],
 
   "services": [
-    {"name":"nodered"},
+    {"name":"nodered"}
   ],
   "secrets": [
     {"name":"nodered/canzea_console"}
   ],
   "environment": [
+    {"name":"VAULT_URL", "value":"https://vault.service.dc1.consul:8200"}
   ]
 }

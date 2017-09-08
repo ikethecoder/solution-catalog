@@ -1,6 +1,8 @@
 
 require 'git'
 require 'json'
+require 'net/http'
+require 'uri'
 
 parameters = JSON.parse(ARGV[0])
 
@@ -16,7 +18,17 @@ fileList = parameters['files']
 
 
 payload = {
-    "resources": []
+    "resources" => [
+          {
+            "vault_secret": {
+                "rocketchat/admin": {
+                    "username" : "admin",
+                    "password" : "admin1admin"
+                }
+            }
+          }
+
+    ]
 }
 
 headers = {
@@ -30,7 +42,7 @@ uri = URI(ENV['NODERED_URL'] + '/api/bulk')
 http = Net::HTTP.new(uri.host, uri.port)
 #http.use_ssl = true
 
-res = http.post("#{uri.path}", headers, payload)
+res = http.post("#{uri.path}", payload.to_json, headers)
 
 if ( Integer(res.code) != 200 )
     puts res.body
