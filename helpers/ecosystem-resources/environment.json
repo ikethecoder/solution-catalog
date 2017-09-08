@@ -1,0 +1,13 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"nodered"},
+  ],
+  "secrets": [
+    {"name":"nodered/canzea_console"}
+  ],
+  "environment": [
+  ]
+}
