@@ -14,13 +14,6 @@
       }
     },
     {
-      "source_control_repository": {
-        "id": "ecosystem-config",
-        "name": "ecosystem-config",
-        "description": "Configuration for the ecosystem."
-      }
-    },
-    {
       "source_control_token": {
         "id": "root",
         "user_name": "root",
@@ -55,6 +48,13 @@
         "name" : "gogs::root::credentials::write",
         "path" : "/service/gogs/root/*",
         "capabilities": ["create", "update", "delete", "read", "list"]
+      }
+    },
+    {
+      "source_control_repository": {
+        "ecosystem-config" : {
+          "description": "Configuration for the ecosystem."
+        }
       }
     }
   ]

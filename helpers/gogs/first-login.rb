@@ -11,10 +11,14 @@ driver.navigate.to "#{ENV["GOGS_URL"]}/user/sign_up"
 
 sleep 5
 
-driver.find_element(:id, "user_name").send_keys "root"
-driver.find_element(:id, "email").send_keys "admin@canzea.com"
-driver.find_element(:id, "password").send_keys "admin1admin"
-driver.find_element(:id, "retype").send_keys "admin1admin"
+user = ENV['SERVICE_GOGS_ROOT_CREDENTIALS_USERNAME']
+pass = ENV['SERVICE_GOGS_ROOT_CREDENTIALS_PASSWORD']
+email = ENV['SERVICE_GOGS_ROOT_CREDENTIALS_EMAIL']
+
+driver.find_element(:id, "user_name").send_keys user
+driver.find_element(:id, "email").send_keys email
+driver.find_element(:id, "password").send_keys pass
+driver.find_element(:id, "retype").send_keys pass
 
 driver.find_element(:class, "button").click
 
