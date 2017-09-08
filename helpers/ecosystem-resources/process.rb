@@ -6,15 +6,7 @@ require 'uri'
 
 parameters = JSON.parse(ARGV[0])
 
-fileList = parameters['files']
-
-# Open up the list of resource files and run them one by one, calling the Gateway
-
-# The gateway itself will need to be configured appropriately
-
-# There may be special steps needed to interact with the service via the UI, rather than the API.
-
-# The results will be logged by the Gateway
+files = parameters['files']
 
 files.each do | file |
 
