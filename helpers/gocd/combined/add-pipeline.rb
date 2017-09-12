@@ -136,4 +136,4 @@ pipelineName = parameters['name']
 cli = GoCDClient.new '/go/api/admin'
 
 
-cli.postObject '4', 'pipelines', attributes['pipeline'], output
+cli.postObject '3', 'pipelines', output
