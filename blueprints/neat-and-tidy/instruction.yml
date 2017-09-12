@@ -187,11 +187,6 @@ instructions:
         nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
         monitorServer: "$!{ecosystem.lookupInstanceByName('mon-mon-01').privateIp}"
       image:
-        - wire:digitalocean:expand
-        - wire:digitalocean:consul-update
-        - wire:digitalocean:health-check
-        - wire:digitalocean:set-public-ip
-        - init
         - step:workarounds:cloud-profile
         - step:workarounds:ruby
         - step:workarounds:ruby-gems
@@ -207,9 +202,7 @@ instructions:
         - step:monitoring:filebeat
         - step:monitoring:metricbeat
         - step:audit:auditd
-        - step:workarounds:iptables
-        - wire:digitalocean:image
-        - wire:digitalocean:teardown
+        - step:workarounds:nameservers
       wiring:
 
 
