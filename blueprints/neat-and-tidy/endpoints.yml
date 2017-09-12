@@ -55,7 +55,7 @@ consoles:
     remarks: none
 
   -
-    segment: mon
+    segment: kib
     name: kibana
     url: http://${domainName}:5601
 
