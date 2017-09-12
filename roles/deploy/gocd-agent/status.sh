@@ -1,2 +1,2 @@
 
-yum -q list go-agent
+yum list go-agent | grep go-agent | tr -s " " | tr " " ","
