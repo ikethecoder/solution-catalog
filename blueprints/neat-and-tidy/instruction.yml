@@ -204,8 +204,8 @@ instructions:
         - step:workarounds:sudoers
         - step:monitoring:kibana
         - step:monitoring:collectd
-        - step:monitoring:metricbeat
         - step:monitoring:filebeat
+        - step:monitoring:metricbeat
         - step:audit:auditd
         - step:workarounds:iptables
         - wire:digitalocean:image
