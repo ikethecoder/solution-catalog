@@ -45,6 +45,12 @@ environments:
             qty: 1
             segment: "tools"
             label: "Tools"
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
+            qty: 1
+            segment: "nifi"
+            label: "Apache NIFI"
 
 
    -
