@@ -52,6 +52,31 @@ environments:
             segment: "nifi"
             label: "Apache NIFI"
 
+   -
+      name: "datagov"
+      title:
+        label: "Data Governance"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
+            qty: 1
+            segment: "nifi"
+            label: "Apache NIFI"
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-2-x64"
+            qty: 1
+            segment: "atlas"
+            label: "Apache Atlas"
+          -
+            product: "M8GB_D80GB"
+            image: "centos-7-2-x64"
+            qty: 1
+            segment: "hive"
+            label: "Apache HIVE"
 
    -
       name: "mon"

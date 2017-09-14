@@ -430,3 +430,38 @@ instructions:
         - step:monitoring:metricbeat
         - step:audit:auditd
         - step:workarounds:golang
+        - step:deploy:gocd-agent
+        - step:build:maven
+        - step:virtualmachine:jdk
+
+    hive:
+      abbreviation: nifi
+      label: nifi
+      description: Apache NIFI
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-2-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+      image:
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:loadbalancer:nginx
+        - step:container:docker
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
+        - step:audit:auditd
+        - step:workarounds:golang
+        - step:deploy:gocd-agent
+        - step:build:maven
+        - step:virtualmachine:jdk
