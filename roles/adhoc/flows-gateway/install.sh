@@ -1,3 +1,11 @@
+
+canzea --util=gen-user pm2user
+
+groupadd pm2grp
+
+usermod -a -G pm2grp pm2user
+
+
 su -l pm2user -c "mkdir -p /home/pm2user/flows-gateway"
 
 su -l pm2user -c "(cd flows-gateway && npm install flows-gateway)"

@@ -1,10 +1,4 @@
 
-canzea --util=gen-user pm2user
-
-groupadd pm2grp
-
-usermod -a -G pm2grp pm2user
-
 (cd /home/pm2user && sudo su -c "env PATH=$PATH:/usr/bin pm2 startup systemd -u pm2user --hp /home/pm2user")
 
 # Sleep for a bit to see if the next command stops locking up
