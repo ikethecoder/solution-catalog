@@ -8,7 +8,7 @@ rm -rf ~/apache-archiva-*
 # wget -P ~/ -nv http://apache.mirror.vexxhost.com/archiva/2.2.1/binaries/apache-archiva-2.2.1-bin.zip
 # wget -P ~/ -nv http://mirror.csclub.uwaterloo.ca/apache/archiva/2.2.1/binaries/apache-archiva-2.2.1-bin.zip
 
-curl -L -s -O http://mirror.csclub.uwaterloo.ca/apache/archiva/2.2.1/binaries/apache-archiva-2.2.1-bin.zip
+(cd ~/ && curl -L -s -O http://mirror.csclub.uwaterloo.ca/apache/archiva/2.2.1/binaries/apache-archiva-2.2.1-bin.zip)
 
 mkdir -p /opt/archiva
 
