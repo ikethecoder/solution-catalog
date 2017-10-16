@@ -1,5 +1,5 @@
 
-curl -O https://releases.hashicorp.com/consul/0.8.1/consul_0.8.1_linux_amd64.zip
+curl -s -O https://releases.hashicorp.com/consul/0.8.1/consul_0.8.1_linux_amd64.zip
 
 unzip -q -o consul_0.8.1_linux_amd64.zip
 

@@ -1,6 +1,6 @@
 
 
-wget -nv --no-cookies --no-check-certificate https://releases.hashicorp.com/vault/0.7.0/vault_0.7.0_linux_amd64.zip
+curl -s -O https://releases.hashicorp.com/vault/0.7.0/vault_0.7.0_linux_amd64.zip
 
 unzip -q vault_0.7.0_linux_amd64.zip
 
