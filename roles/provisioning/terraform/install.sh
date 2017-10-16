@@ -1,4 +1,4 @@
-wget -nv --no-cookies --no-check-certificate https://releases.hashicorp.com/terraform/0.7.11/terraform_0.7.11_linux_amd64.zip
+curl -L -s -O https://releases.hashicorp.com/terraform/0.7.11/terraform_0.7.11_linux_amd64.zip
 
 unzip -q terraform_0.7.11_linux_amd64.zip
 
