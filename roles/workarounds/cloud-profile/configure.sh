@@ -1,2 +1,3 @@
 
-echo "export ECOSYSTEM=$ECOSYSTEM" >> /root/.bash_profile
+# Make the ECOSYSTEM variable universally available
+echo "export ECOSYSTEM=$ECOSYSTEM" >> /etc/profile.d/ecosystem.sh
