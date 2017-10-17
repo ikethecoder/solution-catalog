@@ -87,8 +87,6 @@ instructions:
         - step:loadbalancer:nginx-consul
         - step:workarounds:iptables
         - step:provisioning:terraform
-        - step:monitoring:filebeat
-        - step:monitoring:metricbeat
         - step:collaboration:rocketchat
         - step:sourcecontrol:gitlist
         - wireX:digitalocean:image
@@ -435,12 +433,12 @@ instructions:
         - step:virtualmachine:jdk
 
     hive:
-      abbreviation: nifi
-      label: nifi
-      description: Apache NIFI
+      abbreviation: hive
+      label: hive
+      description: Apache HIVE
       provision:
         region: nyc1
-        size: 4gb
+        size: 8gb
         image: centos-7-2-x64
       variables:
         nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
