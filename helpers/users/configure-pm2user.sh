@@ -16,7 +16,8 @@ cp $CATALOG_LOCATION/roles/workarounds/last-mile-ci/config/env.json /home/pm2use
 
 chown -R pm2user:pm2user /home/pm2user/.ecosystem-catalog
 
+cp $CATALOG_LOCATION/roles/workarounds/last-mile-ci/config/canzea.sh /home/pm2user/.
 
-su pm2user -c "cp $CATALOG_LOCATION/roles/workarounds/last-mile-ci/config/canzea.sh /home/pm2user/."
+chown -R pm2user:pm2user /home/pm2user
 
 chmod +x /home/pm2user/canzea.sh
