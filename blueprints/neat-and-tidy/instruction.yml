@@ -85,7 +85,6 @@ instructions:
         - step:adhoc:nodered-oauth
         - step:adhoc:flows-gateway
         - step:loadbalancer:nginx-consul
-        - step:workarounds:iptables
         - step:provisioning:terraform
         - step:collaboration:rocketchat
         - step:sourcecontrol:gitlist
