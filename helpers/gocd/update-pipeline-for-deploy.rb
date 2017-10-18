@@ -51,11 +51,11 @@ params = { "port" => attributes['port'], "env" => attributes['env'], "name" => a
 params = params.to_json.to_json
 params = params.slice(1,params.length - 2)
 
-task = JSON.parse(t.process taskTemplate2, {"project" => project, "version" => version, "solution" => "application", "action" => "install-app", "parameters" => params })
+task = JSON.parse(t.process taskTemplate2, {"workingdir":"", "project" => project, "version" => version, "solution" => "application", "action" => "install-app", "parameters" => params })
 job['tasks'].push (task)
 
 # params = { "channel" => "integration", "message" => "#{project} deployed" }
-# task = JSON.parse(t.process taskTemplate2, {"project" => project, "version" => version, "solution" => "rocketchat", "action" => "collaboration-send-message", "parameters" => JSON.generate(params.to_json) })
+# task = JSON.parse(t.process taskTemplate2, {"workingdir":"", "project" => project, "version" => version, "solution" => "rocketchat", "action" => "collaboration-send-message", "parameters" => JSON.generate(params.to_json) })
 # job['tasks'].push (task)
 
 stage['jobs'].push(job)
