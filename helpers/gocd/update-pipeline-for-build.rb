@@ -54,8 +54,9 @@ if (type == "java-maven")
     task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project']})
     job['tasks'].push (task)
 
+    # Need to get the escaping properly handled
     params = { "ecosystem" => "XXXXX" }
-    params = JSON.generate(params.to_json)
+    params = params.to_json.to_json
     params = params.slice(1,params.length - 2)
 
     task = JSON.parse(t.process taskTemplateCanzea, {"project" => attributes['project'], "solution" => "sample", "action" => "info", "parameters" => params })
