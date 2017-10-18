@@ -321,6 +321,7 @@ instructions:
         - step:deploy:gocd-agent
         - step:application:user
         - step:workarounds:iptables
+        - step:workarounds:selinux
         - wire:digitalocean:image
         - wire:digitalocean:teardown
       wiring:
