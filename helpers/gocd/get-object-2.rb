@@ -17,7 +17,7 @@ headers = {
 
 http = Net::HTTP.new("localhost",8153)
 http.use_ssl = false
-res = http.get("/go/api/#{type}/#{name}", headers)
+res = http.get("/go/api/admin/#{type}/#{name}", headers)
 
 if ( Integer(res.code) != 200 )
     puts res.body
