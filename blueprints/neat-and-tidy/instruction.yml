@@ -105,7 +105,7 @@ instructions:
           passthrough: "http://localhost:8153"
         -
           wire: "nginx:ssl-route:archiva"
-          location: "/archiva"
+          location: "/archiva/"
           passthrough: "http://localhost:9080/"
         -
           wire: "nginx:ssl-route:rocketchat"
