@@ -166,6 +166,7 @@ instructions:
         - step:monitoring:filebeat
         - step:monitoring:elasticsearch-metrics
         - step:audit:auditd
+        - step:workarounds:selinux
         - step:workarounds:iptables
         - wire:digitalocean:image
         - wire:digitalocean:teardown
@@ -204,6 +205,7 @@ instructions:
         - step:monitoring:metricbeat
         - step:audit:auditd
         - step:workarounds:nameservers
+        - step:workarounds:selinux
       wiring:
 
 
