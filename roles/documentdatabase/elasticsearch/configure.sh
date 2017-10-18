@@ -3,8 +3,8 @@ canzea --config_git_commit --template=roles/documentdatabase/elasticsearch/confi
 
 systemctl start elasticsearch
 
-# Try 5 times to connect to Elasticsearch
-cmd="curl -XGET "$ELASTICSEARCH_URL"/_cat/health"; for i in {1..6}; do if $cmd; then echo "OK"; break; else echo "Retrying $i"; sleep 10; fi; if [ $i = 5 ]; then echo "FAILED"; exit 1; fi done
+# Try 15 times to connect to Elasticsearch
+cmd="curl -XGET "$ELASTICSEARCH_URL"/_cat/health"; for i in {1..15}; do if $cmd; then echo "OK"; break; else echo "Retrying $i"; sleep 10; fi; if [ $i = 5 ]; then echo "FAILED"; exit 1; fi done
 
 # Custom template for Elasticsearch
 roles/documentdatabase/elasticsearch/custom_template.atomic.sh
