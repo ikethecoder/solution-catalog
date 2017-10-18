@@ -157,12 +157,13 @@ instructions:
         - step:workarounds:sudoers
         - step:documentdatabase:elasticsearch
         - step:monitoring:logstash
-        - step:monitoring:kibana
+        #- step:monitoring:kibana
         - step:monitoring:statsd
         #- step:documentdatabase:ElasticHQ (removed; need to fix due to changes in Elasticsearch 5.0)
         #- step:documentdatabase:ElasticHQ-NGINX
         - step:monitoring:grafana
         - step:monitoring:collectd
+        - step:monitoring:metricbeat
         - step:monitoring:filebeat
         - step:monitoring:elasticsearch-metrics
         - step:audit:auditd
