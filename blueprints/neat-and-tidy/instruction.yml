@@ -114,10 +114,12 @@ instructions:
         -
           wire: "nginx:ssl-route:consul-ui"
           location: "/ui"
+          template: "consul.tmpl"
           passthrough: "https://consul.service.dc1.consul:8080"
         -
           wire: "nginx:ssl-route:consul-v1"
           location: "/v1"
+          template: "consul.tmpl"
           passthrough: "https://consul.service.dc1.consul:8080"
         - archiva:first-login
         - nodered:upgrade-flows
@@ -358,6 +360,7 @@ instructions:
         - step:deploy:gocd-agent
         - step:workarounds:npm
         - step:workarounds:iptables
+        - step:workarounds:selinux
       wiring:
         - sample:python-script
         - users:configure-go
