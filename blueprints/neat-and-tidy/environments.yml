@@ -55,7 +55,7 @@ environments:
             product: "M4GB_D60GB"
             image: "centos-7-x64"
             qty: 1
-            segment: "ci_2"
+            segment: "ci-b"
             label: "CI Next Gen"
 
    -

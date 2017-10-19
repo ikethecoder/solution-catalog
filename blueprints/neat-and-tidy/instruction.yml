@@ -472,8 +472,8 @@ instructions:
         - step:build:maven
         - step:virtualmachine:jdk
 
-    ci_2:
-      abbreviation: ci_2
+    ci-b:
+      abbreviation: ci-b
       label: CI Version 2
       description: New version of the CI segment
       provision:
