@@ -30,7 +30,7 @@ File.open(@log).each do | line |
                 buffer.push (l)
             end
             if (l['task'] == "status")
-                pc.write "#{params['ES_SOLUTION']}/status.json", JSON.pretty_generate(l)
+                pc.write "#{params['ES_SOLUTION']}/version", l['result']
             end
         end
     end
