@@ -498,6 +498,4 @@ instructions:
         - step:workarounds:iptables
         - step:workarounds:selinux
         - step:container:docker
-      wiring:
-        - users:configure-go
 
