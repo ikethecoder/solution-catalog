@@ -46,7 +46,10 @@ resource "digitalocean_droplet" "{{name}}" {
             destination = "/etc/consul.d/ssl/vault.key"
     }
 
+    # Pass the Digital Ocean key to the newly created instance and store in the DO_KEY file
+    # The encrypted value is created using the public key from the root user on the image (es15d3-cd-ci-active-id_rsa.pem.pub)
 
+    # Patches
     provisioner "remote-exec" {
         inline = [
             "gem install canzea",
