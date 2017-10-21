@@ -60,7 +60,7 @@ buildingBlocks:
     description: Painless self-hosted Git service
     logo: https://avatars2.githubusercontent.com/u/6656686?v=4&s=200
     roles: [ "source_control" ]
-    resources: [ "files", "branches", "issues", "pull_requests" ]
+    resources: [ "repositories", "files", "branches", "issues", "pull_requests" ]
     authentication: token
     type: service
 
@@ -154,4 +154,19 @@ buildingBlocks:
     description: RASA Natural Language Trainer
     logo: https://avatars0.githubusercontent.com/u/21214473?v=4&s=200
     roles: [ "natural language trainer" ]
+    type: service
+
+  taiga:
+    description: TAIGA
+    roles: [ ]
+    type: service
+
+  helpy:
+    description: Helpy
+    roles: [ ]
+    type: service
+
+  pgadmin:
+    description: PGAdmin
+    roles: [ ]
     type: service
