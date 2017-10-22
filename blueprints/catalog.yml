@@ -170,3 +170,33 @@ buildingBlocks:
     description: PGAdmin
     roles: [ ]
     type: service
+
+  mongodb:
+    description: Mongodb
+    roles: [  ]
+    resources: [  ]
+    type: console
+
+  logstash:
+    description: Logstash
+    roles: [  ]
+    resources: [  ]
+    type: console
+
+  elasticsearch:
+    description: Elasticsearch
+    roles: [  ]
+    resources: [  ]
+    type: console
+
+  vault:
+    description: Vault
+    roles: [  ]
+    resources: [  ]
+    type: console
+
+  phantomjs:
+    description: PhantomJS
+    roles: [  ]
+    resources: [  ]
+    type: console
