@@ -132,27 +132,32 @@ services:
     nodes: build/a/1-4
 
   -
+    segment: ci
     name: phantomjs
     description: PhantomJS Headless Browser
     url: http://${domainName}:8001
 
   -
+    segment: ci
     name: vault
     description: Hashicorp Vault Secrets Management
     url: http://${domainName}:8200
 
   -
+    segment: app
     name: postgresql
     description: Postgresql Relational Database
     url: http://${domainName}:5432
     nodes: build/e/*
 
   -
+    segment: mon
     name: logstash
     description: Logstash
     url: http://${domainName}:5044
 
   -
+    segment: mon
     name: elasticsearch
     description: Elasticsearch
     url: http://${domainName}:9200
