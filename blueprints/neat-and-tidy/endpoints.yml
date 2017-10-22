@@ -151,6 +151,13 @@ services:
     nodes: build/e/*
 
   -
+    segment: app
+    name: mongodb
+    description: MongoDB Database
+    url: http://${domainName}:5432
+    nodes: build/e/*
+
+  -
     segment: mon
     name: logstash
     description: Logstash

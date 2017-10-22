@@ -147,3 +147,9 @@ buildingBlocks:
      solution: Grafana
      role: Data Visualisation
      category: Monitoring
+
+   -
+     id: postgresql
+     solution: Postgresql
+     role: Database
+     category: Monitoring
