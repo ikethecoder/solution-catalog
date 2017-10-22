@@ -171,6 +171,12 @@ buildingBlocks:
     roles: [ ]
     type: service
 
+  postgresql:
+    description: Postgresql
+    roles: [  ]
+    resources: [  ]
+    type: console
+
   mongodb:
     description: Mongodb
     roles: [  ]
