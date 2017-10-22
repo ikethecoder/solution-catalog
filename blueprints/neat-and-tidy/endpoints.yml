@@ -50,6 +50,13 @@ consoles:
 
   -
     segment: app
+    name: consul
+    url: http://${domainName}:81/ui
+    secure: https://${secureDomain}/ui
+    remarks: default creds admin,admin1admin
+
+  -
+    segment: app
     name: fabio
     url: http://${domainName}:9998
     remarks: none
