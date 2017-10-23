@@ -493,8 +493,6 @@ instructions:
         - step:monitoring:filebeat
         - step:monitoring:metricbeat
         - step:audit:auditd
-        - step:configdb:consul
-        - step:keymgmt:hashicorpvault
         - step:workarounds:iptables
         - step:workarounds:selinux
         - step:container:docker
