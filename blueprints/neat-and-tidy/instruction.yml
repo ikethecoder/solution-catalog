@@ -481,7 +481,7 @@ instructions:
         size: 4gb
         image: centos-7-x64
       variables:
-        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-b-01').privateIp}"
       image:
         - step:workarounds:cloud-profile
         - step:workarounds:ruby
