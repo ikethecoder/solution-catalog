@@ -82,6 +82,9 @@ instructions:
         - step:deploy:gocd
         - step:deploy:gocd-plugins
         - step:adhoc:flows-gateway
+        - step:adhoc:nodered
+        - step:adhoc:nodered-oauth
+        - step:adhoc:flows-gateway
         - step:loadbalancer:nginx-consul
         - step:workarounds:selinux
         - step:workarounds:iptables
@@ -479,7 +482,7 @@ instructions:
         size: 4gb
         image: centos-7-x64
       variables:
-        nameserver: "$!{ecosystem.lookupInstanceByName('play-ci-b-01').privateIp}"
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
       image:
         - step:workarounds:cloud-profile
         - step:workarounds:ruby
@@ -493,6 +496,8 @@ instructions:
         - step:monitoring:filebeat
         - step:monitoring:metricbeat
         - step:audit:auditd
+        - step:configdb:consul
+        - step:keymgmt:hashicorpvault
         - step:workarounds:iptables
         - step:workarounds:selinux
         - step:container:docker
