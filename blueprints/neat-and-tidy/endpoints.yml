@@ -14,13 +14,6 @@ consoles:
 
   -
     segment: ci
-    name: gitlist
-    url: http://${domainName}:851
-    notworking_secure: https://${secureDomain}/sc
-    remarks: none
-
-  -
-    segment: ci
     name: gogs
     url: http://${domainName}:10080
 
