@@ -82,9 +82,6 @@ instructions:
         - step:deploy:gocd
         - step:deploy:gocd-plugins
         - step:adhoc:flows-gateway
-        - step:adhoc:nodered
-        - step:adhoc:nodered-oauth
-        - step:adhoc:flows-gateway
         - step:loadbalancer:nginx-consul
         - step:workarounds:selinux
         - step:workarounds:iptables
