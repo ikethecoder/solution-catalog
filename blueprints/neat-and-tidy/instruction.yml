@@ -51,11 +51,6 @@ instructions:
         size: 4gb
         image: centos-7-x64
       image:
-        - wireX:digitalocean:expand
-        - wireX:digitalocean:consul-update
-        - wireX:digitalocean:health-check
-        - wireX:digitalocean:set-public-ip
-        - init
         - step:workarounds:cloud-profile
         - step:workarounds:ruby
         - step:workarounds:ruby-gems
@@ -82,14 +77,9 @@ instructions:
         - step:deploy:gocd
         - step:deploy:gocd-plugins
         - step:adhoc:flows-gateway
-        - step:loadbalancer:nginx-consul
         - step:workarounds:selinux
         - step:workarounds:iptables
-        - step:provisioning:terraform
         - step:collaboration:rocketchat
-        - step:sourcecontrol:gitlist
-        - wireX:digitalocean:image
-        - wireX:digitalocean:teardown
       wiring:
         - rocketchat:first-login
         - rocketchat:setup-site-url
