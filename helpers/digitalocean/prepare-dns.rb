@@ -6,7 +6,7 @@ params = JSON.parse(ARGV[0])
 
 pc = PushConfig.new
 
-buffer = File.read("#{ENV['CATALOG_LOCATION']}/helpers/ecosystem/templates/dns.templ")
+buffer = File.read("#{ENV['CATALOG_LOCATION']}/helpers/digitalocean/templates/dns.templ")
 
 pc.write "terraform/#{params['domain'].tf", buffer
 
