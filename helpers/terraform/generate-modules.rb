@@ -16,6 +16,8 @@ t = Template.new
 
 params = parameters
 
+template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/module.templ"
+
 output = ""
 params['modules'].each do | mod |
     out = t.process template, {"module" => mod}
