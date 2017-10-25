@@ -18,7 +18,8 @@ params = parameters
 
 output = ""
 params['modules'].each do | mod |
-    outputt << process template, {"module" => mod}
+    out = t.process template, {"module" => mod}
+    output << out
 end
 
 outFile = "modules.tf"
