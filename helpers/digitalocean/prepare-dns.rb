@@ -11,7 +11,7 @@ t = Template.new
 
 template = "#{ENV['CATALOG_LOCATION']}/helpers/digitalocean/templates/dns.templ"
 
-buffer = t.process template, params)
+buffer = t.process template, params
 
 pc.write "terraform/#{params['domain']}.tf", buffer
 
