@@ -22,27 +22,27 @@ resource "digitalocean_droplet" "{{name}}" {
     }
 
     provisioner "file" {
-        source = "consul.cert"
+        source = "../../consul.cert"
         destination = "/etc/consul.d/ssl/consul.cert"
     }
 
     provisioner "file" {
-            source = "consul.key"
+            source = "../../consul.key"
             destination = "/etc/consul.d/ssl/consul.key"
     }
 
     provisioner "file" {
-            source = "ca.cert"
+            source = "../../ca.cert"
             destination = "/etc/consul.d/ssl/ca.cert"
     }
 
     provisioner "file" {
-            source = "vault.cert"
+            source = "../../vault.cert"
             destination = "/etc/consul.d/ssl/vault.cert"
     }
 
     provisioner "file" {
-            source = "vault.key"
+            source = "../../vault.key"
             destination = "/etc/consul.d/ssl/vault.key"
     }
 
