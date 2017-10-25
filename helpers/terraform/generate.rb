@@ -5,6 +5,7 @@
 
 require 'json'
 require 'base64'
+require 'fileutils'
 require 'template-runner'
 require 'canzea/config'
 require 'canzea/registry'
@@ -46,7 +47,10 @@ if File.exist?(template) == false
     template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/segment.tf.default.templ"
 end
 
-outFile = "segment-#{parameters['name']}.tf"
+rootPath = "modules/#{params['environment']}"
+FileUtils.mkdir_p(rootPath)
+
+outFile = "#{rootPath}/segment-#{parameters['name']}.tf"
 
 t.processAndWriteToFile template, outFile, params
 
