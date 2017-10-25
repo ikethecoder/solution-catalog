@@ -18,6 +18,8 @@ params = parameters
 
 template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/module.templ"
 
+vars = File.read("#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/vars.templ")
+
 output = ""
 params['modules'].each do | mod |
     out = t.process template, {"module" => mod}
@@ -26,7 +28,7 @@ params['modules'].each do | mod |
     FileUtils.mkdir_p("terraform/modules/#{mod}")
 
     if File.exists?("terraform/modules/#{mod}/variables.tf") == false
-        File.write("terraform/modules/#{mod}/variables.tf", "")
+        File.write("terraform/modules/#{mod}/variables.tf", vars)
     end
 end
 
