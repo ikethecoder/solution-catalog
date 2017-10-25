@@ -50,8 +50,8 @@ end
 rootPath = "terraform/modules/#{params['environment']}"
 FileUtils.mkdir_p(rootPath)
 
-puts outFile
 outFile = "#{rootPath}/segment-#{parameters['name']}.tf"
+puts outFile
 
 t.processAndWriteToFile template, outFile, params
 
