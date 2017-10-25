@@ -109,7 +109,7 @@ environments:
       title:
         label: "Integration"
         pipeline: true
-        provision: true
+        provision: false
         order:
           -
             product: "M2GB_D40GB"
