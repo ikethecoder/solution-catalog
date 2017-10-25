@@ -59,7 +59,7 @@ if (type == "java-maven")
     params = params.to_json.to_json
     params = params.slice(1,params.length - 2)
 
-    task = JSON.parse(t.process taskTemplateCanzea, {"workingdir":attributes['project'], "project" => attributes['project'], "solution" => "sample", "action" => "info", "parameters" => params })
+    task = JSON.parse(t.process taskTemplateCanzea, {"workingdir" => attributes['project'], "project" => attributes['project'], "solution" => "sample", "action" => "info", "parameters" => params })
     job['tasks'].push (task)
 
 
@@ -110,7 +110,7 @@ if (type == "js-npm")
     params = JSON.generate(params.to_json)
     params = params.slice(1,params.length - 2)
 
-    task = JSON.parse(t.process taskTemplateCanzea, {"workingdir":attributes['project'], "project" => attributes['project'], "solution" => "gocd", "action" => "prep-build", "parameters" => params })
+    task = JSON.parse(t.process taskTemplateCanzea, {"workingdir" => attributes['project'], "project" => attributes['project'], "solution" => "gocd", "action" => "prep-build", "parameters" => params })
     job['tasks'].push (task)
 
     taskTemplate = "helpers/gocd/pipelines/fragment/task-mvn-package.json"
