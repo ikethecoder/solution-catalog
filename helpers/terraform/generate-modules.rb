@@ -25,7 +25,9 @@ params['modules'].each do | mod |
 
     FileUtils.mkdir_p("terraform/modules/#{mod}")
 
-    File.write("terraform/modules/#{mod}/variables.tf", "")
+    if File.exists?("terraform/modules/#{mod}/variables.tf") == false
+        File.write("terraform/modules/#{mod}/variables.tf", "")
+    end
 end
 
 
