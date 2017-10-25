@@ -24,6 +24,8 @@ params['modules'].each do | mod |
     output << out
 
     FileUtils.mkdir_p("terraform/modules/#{mod}")
+
+    File.write("terraform/modules/#{mod}/variables.tf", "")
 end
 
 
