@@ -22,7 +22,10 @@ output = ""
 params['modules'].each do | mod |
     out = t.process template, {"module" => mod}
     output << out
+
+    FileUtils.mkdir_p("modules/#{mod}")
 end
+
 
 outFile = "modules.tf"
 
