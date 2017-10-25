@@ -47,7 +47,7 @@ if File.exist?(template) == false
     template = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/templates/segment.tf.default.templ"
 end
 
-rootPath = "modules/#{params['environment']}"
+rootPath = "terraform/modules/#{params['environment']}"
 FileUtils.mkdir_p(rootPath)
 
 outFile = "#{rootPath}/segment-#{parameters['name']}.tf"
@@ -57,4 +57,4 @@ t.processAndWriteToFile template, outFile, params
 # If provider.tf does not exist, add it
 
 providerFile = "#{ENV['CATALOG_LOCATION']}/helpers/terraform/provider.tf"
-t.processAndWriteToFile providerFile, 'provider.tf', params
+t.processAndWriteToFile providerFile, 'terraform/provider.tf', params

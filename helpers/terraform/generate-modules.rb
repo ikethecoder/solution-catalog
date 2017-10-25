@@ -23,10 +23,10 @@ params['modules'].each do | mod |
     out = t.process template, {"module" => mod}
     output << out
 
-    FileUtils.mkdir_p("modules/#{mod}")
+    FileUtils.mkdir_p("terraform/modules/#{mod}")
 end
 
 
-outFile = "modules.tf"
+outFile = "terraform/modules.tf"
 
 File.write(outFile, output)
