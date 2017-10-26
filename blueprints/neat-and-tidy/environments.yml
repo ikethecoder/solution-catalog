@@ -33,20 +33,6 @@ environments:
             label: "GitLab"
 
    -
-      name: "play"
-      title:
-        label: "Playground"
-        pipeline: false
-        provision: false
-        order:
-          -
-            product: "M4GB_D60GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "tools"
-            label: "Tools"
-
-   -
       name: "mon"
       title:
         label: "Monitoring & Analytics"
