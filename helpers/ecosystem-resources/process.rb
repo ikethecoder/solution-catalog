@@ -17,7 +17,7 @@ files.each do | file |
     headers = {
       'Authorization' => "Bearer #{ENV['NODERED_CANZEA_CONSOLE_TOKEN']}",
       'Node-RED-API-Version' => 'v2',
-      'X-Vault-Token' => ENV['X_VAULT_TOKEN'],
+      'X-Vault-Token' => ENV['VAULT_TOKEN'],
       'Content-Type' => 'application/json'
     }
 
