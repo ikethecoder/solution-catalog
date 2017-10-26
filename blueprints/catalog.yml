@@ -158,28 +158,28 @@ buildingBlocks:
 
   taiga:
     description: TAIGA
-    roles: [ ]
+    roles: [ "agile_pm" ]
     type: service
 
   helpy:
     description: Helpy
-    roles: [ ]
+    roles: [ "incident_mgmt" ]
     type: service
 
   pgadmin:
     description: PGAdmin
-    roles: [ ]
+    roles: [ "db_admin" ]
     type: service
 
   postgresql:
     description: Postgresql
-    roles: [  ]
+    roles: [ "relational_database" ]
     resources: [  ]
     type: console
 
   mongodb:
     description: Mongodb
-    roles: [  ]
+    roles: [ "document_database" ]
     resources: [  ]
     type: console
 
@@ -191,18 +191,18 @@ buildingBlocks:
 
   elasticsearch:
     description: Elasticsearch
-    roles: [  ]
+    roles: [ "document_database" ]
     resources: [  ]
     type: console
 
   vault:
     description: Vault
-    roles: [  ]
+    roles: [ "secret_mgmt" ]
     resources: [  ]
     type: console
 
   phantomjs:
     description: PhantomJS
-    roles: [  ]
+    roles: [ "headless_browser" ]
     resources: [  ]
     type: console
