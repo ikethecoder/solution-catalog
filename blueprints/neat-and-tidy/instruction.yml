@@ -84,9 +84,9 @@ instructions:
         - rocketchat:first-login
         - rocketchat:setup-site-url
         -
-          wire: "nginx:ssl-route:gitlist"
-          location: "/sc/"
-          passthrough: "http://localhost:851/"
+          wire: "nginx:ssl-route:gw"
+          location: "/gw/"
+          passthrough: "http://localhost:8000/"
         -
           wire: "nginx:ssl-route:gocd"
           location: "/go"
