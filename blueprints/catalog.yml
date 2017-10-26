@@ -185,7 +185,7 @@ buildingBlocks:
 
   logstash:
     description: Logstash
-    roles: [  ]
+    roles: [ "data_aggregator" ]
     resources: [  ]
     type: console
 
