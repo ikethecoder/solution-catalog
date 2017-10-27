@@ -13,7 +13,7 @@ class GoCDClient
           'Accept' => "application/vnd.go.cd.v#{version}+json"
         }
 
-        http = Net::HTTP.new("localhost",8153)
+        http = Net::HTTP.new("#{ENV['GOCD_ADDRESS']}",8153)
         http.use_ssl = false
         res = http.get("#{@api}/#{type}", headers)
 
@@ -42,7 +42,7 @@ class GoCDClient
           'Content-Type' => 'application/json'
         }
 
-        http = Net::HTTP.new("localhost",8153)
+        http = Net::HTTP.new("#{ENV['GOCD_ADDRESS']}",8153)
         http.use_ssl = false
         res = http.get("#{@api}/#{type}/#{id}", headers)
 
