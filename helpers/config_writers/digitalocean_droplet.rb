@@ -1,0 +1,59 @@
+require 'json'
+require 'commands/push-config'
+require 'template-runner'
+
+t = Template.new
+pc = PushConfig.new
+
+template = %{
+
+    resource "digitalocean_droplet" "{{name}}" {
+        image = {{{image}}}
+        name = "{{name}}"
+        region = "{{region}}"
+        size = "{{size}}"
+        private_networking = true
+        ssh_keys = [
+            "${var.ssh_fingerprint}"
+        ]
+
+        connection {
+            user = "root"
+            type = "ssh"
+            private_key = "${file(var.pvt_key)}"
+            timeout = "2m"
+        }
+
+        provisioner "remote-exec" {
+            inline = [
+                "gem install canzea",
+                "export ES_ENC_DATA={{encdata}}",
+                "export ECOSYSTEM={{ecosystem}}",
+                "export ECOSYSTEM_ENV=production",
+                "export VAULT_URL=https://vault.service.dc1.consul:8080",
+                "export HOSTNAME=`curl -s http://169.254.169.254/metadata/v1/hostname`",
+                "export PUBLIC_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address`",
+                "export PRIVATE_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address`",
+                "canzea --reset",
+                "canzea --util=apply-config --test",
+                "canzea --util=apply-config",
+            ]
+        }
+    }
+
+}
+
+if ARGV[0].start_with? "@"
+    params = JSON.parse(File.read(ARGV[0][1,100]))
+else
+    params = JSON.parse(ARGV[0])
+end
+
+resourceId = params.keys[0]
+properties = params[resourceId]
+properties['name'] = resourceId;
+
+output = t.processString template, properties
+
+puts output
+pc.write "terraform/modules/#{properties['environment']}/#{resourceId}.tf", output

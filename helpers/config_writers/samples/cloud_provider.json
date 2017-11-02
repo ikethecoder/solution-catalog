@@ -1,0 +1,10 @@
+{
+  "digitalocean": {
+    "variables": [
+      {"name":"do_token", "value":"${var.do_token}"},
+      {"name":"pub_key", "value":"${var.pub_key}"},
+      {"name":"pvt_key", "value":"${var.pvt_key}"},
+      {"name":"ssh_fingerprint", "value":"${var.ssh_fingerprint}"}
+    ]
+  }
+}
