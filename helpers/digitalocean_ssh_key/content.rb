@@ -5,4 +5,6 @@ pc = PushConfig.new
 
 params = JSON.parse(ARGV[0])
 
-pc.write "terraform/modules/digitalocean_ssh_key/#{params['name']}.tf", JSON.pretty_generate(params)
+obj = params[params.keys[0]]
+
+pc.write "terraform/modules/digitalocean_ssh_key/#{obj['name']}.tf", JSON.pretty_generate(params)
