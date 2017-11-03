@@ -1,0 +1,12 @@
+[Unit]
+Description=Archiva
+# After=syslog.target
+
+[Service]
+User=root
+WorkingDirectory=/root
+ExecStart=/opt/archiva/bin/archiva console
+# SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
