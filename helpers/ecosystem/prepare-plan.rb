@@ -5,6 +5,9 @@ require 'plan-step-class'
 require 'yaml'
 require 'canzea/config'
 
+params = JSON.parse(ARGV[0])
+
+
 class PreparePlan
     def initialize ()
         @log = Logger.new(Canzea::config[:logging_root] + '/plans.log')
@@ -66,5 +69,4 @@ end
 
 pp = PreparePlan.new
 
-
-pp.do 'neat-and-tidy', 'ci', 1, nil, true
+pp.do params['blueprint'], params['segment'], 1, nil, false
