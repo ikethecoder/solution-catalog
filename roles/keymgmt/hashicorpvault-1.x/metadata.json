@@ -1,0 +1,10 @@
+{
+    "services":[
+        {
+            "name":"vault",
+            "listener":"prv",
+            "port":8200,
+            "ssl":false
+        }
+    ]
+}
