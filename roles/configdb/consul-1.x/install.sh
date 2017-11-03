@@ -1,14 +1,11 @@
 
-# curl -s -O https://releases.hashicorp.com/consul/1.0.0/consul_1.0.0_linux_amd64.zip
-#unzip -q -o consul_1.0.0_linux_amd64.zip
+curl -s -O https://releases.hashicorp.com/consul/1.0.0/consul_1.0.0_linux_amd64.zip
+unzip -q -o consul_1.0.0_linux_amd64.zip
 
-curl -s -O https://releases.hashicorp.com/consul/0.8.1/consul_0.8.1_linux_amd64.zip
-
-unzip -q -o consul_0.8.1_linux_amd64.zip
 
 cp consul /usr/local/bin/.
 
-yes | rm -f consul_0.8.1_linux_amd64.zip
+yes | rm -f consul_1.0.0_linux_amd64.zip
 
 #// Binary execution rights and user running the daemon
 
