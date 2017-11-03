@@ -1,0 +1,18 @@
+{
+    "log_level": "INFO",
+    "ports": {
+        "dns": 8600,
+        "https": 8080
+    },
+    "addresses": {
+        "https": "0.0.0.0",
+        "dns": "0.0.0.0"
+    },
+    "recursors": ["8.8.8.8","8.8.4.4"],
+    "ca_file": "/etc/consul.d/ssl/ca.cert",
+    "cert_file": "/etc/consul.d/ssl/consul.cert",
+    "key_file": "/etc/consul.d/ssl/consul.key",
+    "verify_incoming": true,
+    "verify_outgoing": true,
+    "disable_remote_exec": true
+}
