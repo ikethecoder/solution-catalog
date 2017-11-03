@@ -37,13 +37,13 @@ class PreparePlan
 
                     if (test == false)
                         if (task == nil)
-                              ps.runPhaseInstall parts[1], parts[2], test, task
+                              ps.runPhaseInstall parts[1], parts[2], test, 1
                         else
-                              ps.runPhaseInstall parts[1], parts[2], test, task
+                              ps.runPhaseInstall parts[1], parts[2], test, Integer(task)
                         end
                         # Keep track of what we have done; parsing the response and looking at the JSON
                     else
-                          ps.runPhaseInstall parts[1], parts[2], test, task
+                          ps.runPhaseInstall parts[1], parts[2], test, Integer(task)
                     end
 
                     if first == true
