@@ -57,7 +57,6 @@ instructions:
         - step:workarounds:canzea
         - step:workarounds:zip
         - step:workarounds:expect
-        - step:workarounds:journald
         - step:sourcecontrol:git
         - step:configdb:consul
         - step:keymgmt:hashicorpvault
