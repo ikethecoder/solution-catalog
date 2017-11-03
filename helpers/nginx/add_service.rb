@@ -12,6 +12,10 @@ t = Template.new
 
 template = "service.tmpl"
 
+if (parameters.has_key? 'configFile')
+    configFile = parameters['configFile']
+end
+
 if (parameters.has_key? 'template')
     template = parameters['template']
 end
