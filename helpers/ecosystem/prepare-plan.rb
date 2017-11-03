@@ -12,7 +12,7 @@ class PreparePlan
     end
 
     def do (blueprint, segment, step, task, test)
-        planStep = PlanStep.new
+        ps = PlanStep.new
 
         log "Processing configure.json for #{segment} in #{blueprint} from #{@basePath}"
 
