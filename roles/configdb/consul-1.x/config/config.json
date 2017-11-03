@@ -1,7 +1,7 @@
 {
     "log_level": "INFO",
     "ports": {
-        "dns": 8600,
+        "dns": 53,
         "https": 8080
     },
     "addresses": {
