@@ -1,0 +1,490 @@
+
+instructions:
+  members:
+  components:
+    remove:
+    version:
+    add:
+      providers:
+        -
+          provider: consul
+          steps:
+            - helper:v2:branching:new-application
+            - helper:v2:application:analyze-project
+            - helper:v2:application:application-add-prepare-context
+            - helper:v2:application:copy-project
+            - helper:v2:application:register-on-environment
+        -
+          provider: gocd
+          steps:
+            - helper:v2:gocd:update-pipeline-for-build:build_pipeline
+            - helper:v2:gocd:post-object:build_pipeline
+            - helper:v2:gocd:get-object:build_environment
+            - helper:v2:gocd:add-pipeline-to-environment:build_environment
+            - helper:v2:gocd:put-object:build_environment
+            - helper:v2:gocd:unpause:build_pipeline
+
+            - helper:v2:gocd:update-pipeline-for-deploy:deploy_pipeline
+            - helper:v2:gocd:post-object:deploy_pipeline
+            - helper:v2:gocd:get-object:deploy_environment
+            - helper:v2:gocd:add-pipeline-to-environment:deploy_environment
+            - helper:v2:gocd:put-object:deploy_environment
+            - helper:v2:gocd:unpause:deploy_pipeline
+            - helper:v2:gocd:schedule:build_pipeline
+        -
+          provider: git
+          steps:
+            - helper:v2:gitlab:add-hook
+        -
+          provider: consul
+          steps:
+            - helper:v2:consul:add_service
+            - reporting:v2:application:metrics
+
+  segments:
+    ci:
+      abbreviation: foundation
+      label: foundation
+      description: Go.CD, Vault, Consul, Nodered
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-x64
+      image:
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:canzea
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:workarounds:journald
+        - step:sourcecontrol:git
+        - step:configdb:consul
+        - step:keymgmt:hashicorpvault
+        - step:workarounds:ecosystem-bootstrap
+        - step:container:docker
+        - step:sourcecontrol:gogs
+        - step:loadbalancer:nginx
+        - step:virtualmachine:java
+        - step:workarounds:sudoers
+        - step:build:maven
+        - step:testsuite:phantomjs
+        - step:testsuite:selenium
+        - step:certprovider:letsencrypt
+        - step:registry:archiva
+        - step:deploy:gocd
+        - step:deploy:gocd-plugins
+        - step:adhoc:flows-gateway
+        - step:workarounds:selinux
+        - step:workarounds:iptables
+        - step:collaboration:rocketchat
+      wiring:
+        - rocketchat:first-login
+        - rocketchat:setup-site-url
+        -
+          wire: "nginx:ssl-route:gw"
+          location: "/gw/"
+          passthrough: "http://localhost:8000/"
+        -
+          wire: "nginx:ssl-route:gocd"
+          location: "/go"
+          passthrough: "http://localhost:8153"
+        -
+          wire: "nginx:ssl-route:archiva"
+          location: "/archiva/"
+          passthrough: "http://localhost:9080/"
+        -
+          wire: "nginx:ssl-route:rocketchat"
+          location: "/chat"
+          passthrough: "http://localhost:8780"
+        -
+          wire: "nginx:ssl-route:consul-ui"
+          location: "/ui"
+          template: "consul.tmpl"
+          passthrough: "https://consul.service.dc1.consul:8080"
+        -
+          wire: "nginx:ssl-route:consul-v1"
+          location: "/v1"
+          template: "consul.tmpl"
+          passthrough: "https://consul.service.dc1.consul:8080"
+        - archiva:first-login
+        - nodered:upgrade-flows
+        - users:configure-pm2user
+        - gogs:first-login
+        - letsencrypt:register-ssl
+
+    mon:
+      abbreviation: metrics
+      label: metrics and analytics
+      description: ELK Stack, Grafana
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+        monitorServer: "$!{ecosystem.lookupInstanceByName('mon-mon-01').privateIp}"
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:loadbalancer:nginx
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:documentdatabase:elasticsearch
+        - step:monitoring:logstash
+        #- step:monitoring:kibana
+        - step:monitoring:statsd
+        #- step:documentdatabase:ElasticHQ (removed; need to fix due to changes in Elasticsearch 5.0)
+        #- step:documentdatabase:ElasticHQ-NGINX
+        - step:monitoring:grafana
+        - step:monitoring:collectd
+        - step:monitoring:metricbeat
+        - step:monitoring:filebeat
+        - step:monitoring:elasticsearch-metrics
+        - step:audit:auditd
+        - step:workarounds:selinux
+        - step:workarounds:iptables
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+      wiring:
+        -
+          instance: "cd-ci-01"
+          wire: "nginx:ssl-route:grafana"
+          location: "/grafana/"
+          passthrough: "http://${monitorServer}:3000/"
+
+    kib:
+      abbreviation: kibana
+      label: kibana analyzer
+      description: Kibana
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+        monitorServer: "$!{ecosystem.lookupInstanceByName('mon-mon-01').privateIp}"
+      image:
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:monitoring:kibana
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
+        - step:audit:auditd
+        - step:workarounds:nameservers
+        - step:workarounds:selinux
+      wiring:
+
+
+    sc:
+      abbreviation: sourcecontrol
+      label: sourcecontrol
+      description: Gitlab
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-x64
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:sourcecontrol:gitlab
+        - step:sourcecontrol:gitlab-configuration
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:audit:auditd
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+
+    col:
+      abbreviation: collaboration
+      label: collaboration
+      description: Rocket.Chat, Helpy, Taiga
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-x64
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:workarounds:swap
+        - step:loadbalancer:nginx
+        - step:container:docker
+        - step:collaboration:rocketchat
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:audit:auditd
+        - step:relationaldatabase:postgresql
+        - step:relationaldatabase:pgadmin
+        - step:incidentmgmt:rails
+        - step:incidentmgmt:helpy
+        - step:agilepm:package-upgrade
+        - step:agilepm:python35
+        - step:agilepm:taiga
+        - step:agilepm:taiga-frontend
+        - step:agilepm:taiga-circus
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+
+    app:
+      abbreviation: application
+      label: application
+      description: MongoDB, Fabio, RabbitMQ
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+      image:
+        - wire:digitalocean:expand
+        - wire:digitalocean:consul-update
+        - wire:digitalocean:health-check
+        - wire:digitalocean:set-public-ip
+        - init
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
+        - step:documentdatabase:mongodb
+        - step:loadbalancer:nginx
+        - step:messaging:rabbitmq
+        - step:audit:auditd
+        - step:workarounds:golang
+        - step:router:fabio
+        - step:container:docker
+        - step:deploy:gocd-agent
+        - step:application:user
+        - step:workarounds:iptables
+        - step:workarounds:selinux
+        - wire:digitalocean:image
+        - wire:digitalocean:teardown
+      wiring:
+        - users:configure-go
+      settings:
+        step:monitoring:collectd:
+          port: 8500
+
+    builder:
+      abbreviation: builder
+      label: Builder
+      description: Go.CD Agent
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+      image:
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:build:maven
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
+        - step:audit:auditd
+        - step:container:docker
+        - step:workarounds:golang
+        - step:deploy:gocd-agent
+        - step:workarounds:npm
+        - step:workarounds:iptables
+        - step:workarounds:selinux
+      wiring:
+        - sample:python-script
+        - users:configure-go
+
+    tools:
+      abbreviation: tools
+      label: tools
+      description: Rocket.Chat, Helpy, Taiga
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+      image:
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:loadbalancer:nginx
+        - step:container:docker
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
+        - step:audit:auditd
+        - step:workarounds:golang
+        - step:deploy:gocd-agent
+        - step:datascience:anaconda
+        - step:datascience:jupyter
+        - step:ai:rasa-trainer
+        - step:ai:rasa
+        - step:housekeeping:wetty
+        - step:virtualmachine:mono
+        - step:ocr:tesseract
+        - step:video:ffmpeg
+        - step:testsuite:sikuli
+
+    nifi:
+      abbreviation: nifi
+      label: nifi
+      description: Apache NIFI
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+      image:
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:loadbalancer:nginx
+        - step:container:docker
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
+        - step:audit:auditd
+        - step:workarounds:golang
+        - step:deploy:gocd-agent
+        - step:build:maven
+        - step:virtualmachine:jdk
+
+    hive:
+      abbreviation: hive
+      label: hive
+      description: Apache HIVE
+      provision:
+        region: nyc1
+        size: 8gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+      image:
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:expect
+        - step:virtualmachine:java
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:loadbalancer:nginx
+        - step:container:docker
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
+        - step:audit:auditd
+        - step:workarounds:golang
+        - step:deploy:gocd-agent
+        - step:build:maven
+        - step:virtualmachine:jdk
+
+    ci-b:
+      abbreviation: ci-b
+      label: CI Version 2
+      description: New version of the CI segment
+      provision:
+        region: nyc1
+        size: 4gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+      image:
+        - step:workarounds:cloud-profile
+        - step:workarounds:ruby
+        - step:workarounds:ruby-gems
+        - step:workarounds:sshd
+        - step:workarounds:network
+        - step:workarounds:zip
+        - step:workarounds:securerandom
+        - step:workarounds:sudoers
+        - step:monitoring:collectd
+        - step:monitoring:filebeat
+        - step:monitoring:metricbeat
+        - step:audit:auditd
+        - step:configdb:consul
+        - step:keymgmt:hashicorpvault
+        - step:workarounds:iptables
+        - step:workarounds:selinux
+        - step:container:docker
+        - step:adhoc:flows-gateway
+
