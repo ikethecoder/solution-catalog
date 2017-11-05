@@ -17,16 +17,18 @@ n = RunnerWorker.new(false)
 
 json['resources'].each do | resource |
     rtype = resource.keys[0]
-    rid = resource[rtype].keys[0]
-    puts rtype
-    puts "   #{rid}"
 
-    args = resource[rtype].to_json
+    resource[rtype].keys.each do | rid
+        puts rtype
+        puts "   #{rid}"
 
-    n.run "ruby #{ENV['CATALOG_LOCATION']}/helpers/config_writers/#{rtype}.rb '#{args}'", 0, 0
+
+        args = { rtype => { rid => resource[rtype][rid] } }
+
+        n.run "ruby #{ENV['CATALOG_LOCATION']}/helpers/config_writers/#{rtype}.rb '#{args.to_json}'", 0, 0
+    end
 
 end
-
 
 pc.commit ("Resource update")
 
