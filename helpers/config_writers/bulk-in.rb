@@ -23,7 +23,7 @@ json['resources'].each do | resource |
 
     args = resource[rtype].to_json
 
-    n.run "ruby #{rtype}.rb '#{args}'", 0, 0
+    n.run "ruby #{ENV['CATALOG_LOCATION']}/helpers/config_writers/#{rtype}.rb '#{args}'", 0, 0
 
 end
 
