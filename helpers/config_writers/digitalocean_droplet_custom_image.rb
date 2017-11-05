@@ -8,7 +8,7 @@ pc = PushConfig.new
 template = %{
 
     resource "digitalocean_droplet" "{{name}}" {
-        image = {{{imageText}}}
+        image = {{{image}}}
         name = "{{name}}"
         region = "{{region}}"
         size = "{{size}}"
@@ -26,16 +26,21 @@ template = %{
 
         provisioner "remote-exec" {
             inline = [
+                "gem install canzea",
                 "export ES_ENC_DATA={{encdata}}",
                 "export ECOSYSTEM={{ecosystem}}",
                 "export ECOSYSTEM_ENV=production",
                 "export VAULT_URL=https://vault.service.dc1.consul:8080",
                 "export HOSTNAME=`curl -s http://169.254.169.254/metadata/v1/hostname`",
                 "export PUBLIC_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address`",
-                "export PRIVATE_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address`"
+                "export PRIVATE_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address`",
+                "canzea --reset",
+                "canzea --util=apply-config --test",
+                "canzea --util=apply-config",
             ]
         }
     }
+
 }
 
 if ARGV[0].start_with? "@"
@@ -47,13 +52,6 @@ end
 resourceId = params.keys[0]
 properties = params[resourceId]
 properties['name'] = resourceId;
-
-if (properties.has_key? "imagePaasId")
-    properties[:imageText] = properties['imagePaasId'].to_i
-else
-    properties[:imageText] = "\"#{properties['imageCode']}\""
-end
-
 
 output = t.processString template, properties
 

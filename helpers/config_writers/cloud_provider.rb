@@ -5,11 +5,18 @@ require 'template-runner'
 t = Template.new
 pc = PushConfig.new
 
+tfvars  = %{
+
+    pvt_key=".es/id_rsa_master_key"
+    pub_key=".es/id_rsa_master_key.pub"
+
+}
+
 template = %{
 
-  {{#props.globals}}
+  {{#globals}}
     variable "{{name}}" {}
-  {{/props.globals}}
+  {{/globals}}
 
     provider "{{rid}}" {
       {{#variables}}
@@ -29,7 +36,10 @@ properties = params[resourceId]
 properties['rid'] = resourceId;
 
 output = t.processString template, properties
+puts "terraform/provider-#{resourceId}.tf",output
+pc.write "terraform/provider-#{resourceId}.tf", output
 
-puts output
+output2 = t.processString tfvars, properties
+puts "terraform/terraform.tfvars", output2
+pc.write "terraform/terraform.tfvars", output2
 
-pc.write "terraform/modules/module-{{resourceId}}.tf", output

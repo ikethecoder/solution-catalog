@@ -41,5 +41,5 @@ output = t.processString module_vars_tmpl, properties
 
 puts "terraform/modules/#{resourceId}/variables.tf", output
 
-pc.write "terraform/modules/module-#{resourceId}.tf", output0
+pc.write "terraform/module-#{resourceId}.tf", output0
 pc.write "terraform/modules/#{resourceId}/variables.tf", output

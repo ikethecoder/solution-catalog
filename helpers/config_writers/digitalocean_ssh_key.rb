@@ -6,9 +6,13 @@ t = Template.new
 pc = PushConfig.new
 
 template = %{
-    resource "digitalocean_ssh_key" "{{name}}" {
-      name       = "{{name}}"
-      public_key = "${file("{{props.pub_file}}")}"
+    resource "digitalocean_ssh_key" "{{rid}}" {
+      name       = "{{rid}}"
+      public_key = "${file(var.{{pub_file}})}"
+    }
+
+    output "ssh_fingerprint" {
+        value = "${digitalocean_ssh_key.{{rid}}.fingerprint}"
     }
 }
 
@@ -20,8 +24,9 @@ end
 
 resourceId = params.keys[0]
 properties = params[resourceId]
+properties['rid'] = resourceId;
 
-output = t.processString template, {"name":params.keys[0], "props": properties}
+output = t.processString template, properties
 
 puts output
-pc.write "terraform/modules/other/#{params.keys[0]}.tf", output
+pc.write "terraform/modules/common/#{params.keys[0]}.tf", output
