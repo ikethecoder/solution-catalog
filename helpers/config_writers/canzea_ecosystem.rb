@@ -15,5 +15,5 @@ key = resourceId
 
 n = RunnerWorker.new(false)
 
-pw.write("README.md", "# Ecosystem\n\n````\n" + JSON.pretty_generate(params) + "\n\n````")
+pc.write("README.md", "# Ecosystem\n\n````\n" + JSON.pretty_generate(params) + "\n\n````")
 
