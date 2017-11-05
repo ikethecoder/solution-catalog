@@ -18,7 +18,7 @@ n = RunnerWorker.new(false)
 json['resources'].each do | resource |
     rtype = resource.keys[0]
 
-    resource[rtype].keys.each do | rid
+    resource[rtype].keys.each do | rid |
         puts rtype
         puts "   #{rid}"
 
