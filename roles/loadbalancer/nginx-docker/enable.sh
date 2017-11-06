@@ -1,4 +1,4 @@
 
 systemctl daemon-reload
 
-systemctl start consul
+systemctl start nginx
