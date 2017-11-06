@@ -1,6 +1,4 @@
-#!/bin/bash
-
-set -e
+# set -e
 
 # ruby -e "puts 'Sleeping 2 seconds...'"
 
