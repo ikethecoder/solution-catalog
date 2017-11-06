@@ -7,6 +7,9 @@ parameters = JSON.parse(ARGV[0])
 # parameters: location and passthrough
 
 configFile = "/etc/nginx/conf.d/ssl.conf"
+if parameters.has_key? 'config'
+    configFile = parameters['config']
+end
 
 t = Template.new
 
