@@ -7,10 +7,6 @@
   "secrets": [
   ],
   "environment": [
-    {"name":"CONSUL_CLIENT_CERT", "value":"/etc/consul.d/ssl/consul.cert"},
-    {"name":"CONSUL_ADDR", "value":"https://consul.service.dc1.consul:8080"},
-    {"name":"CONSUL_CLIENT_KEY", "value":"/etc/consul.d/ssl/consul.key"},
-    {"name":"CONSUL_CACERT", "value":"/etc/consul.d/ssl/ca.cert"}
   ]
 }
 
