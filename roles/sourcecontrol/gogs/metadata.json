@@ -18,7 +18,33 @@
             "location": "/var/gogs/gogs/log/gogs.log"
         }
     ],
-    "policies": [
+    "resources": [
 
+        {
+            "vault_secret": {
+                "service/gogs/root/credentials": {
+                    "user_name": "root",
+                    "password": "admin1admin1",
+                    "email": "aidan@canzea.com"
+                }
+            }
+        }
+    ],
+    "notes" : [
+        {
+            "service_discovery_service": {
+                "cd-ci-01-gogs": {
+                    "Name": "gogs_old",
+                    "Address": "174.138.36.126",
+                    "Port": 10080,
+                    "Tags" : []
+                }
+            }
+        },
+        "resources for self-hosted services",
+        "vault_secret (gogs/admin)",
+        "vault_policy (gogs/admin READ_PUB, READ_PRIV, UPDATE, CREATE, LIST",
+        "vault_user_policy (canzea_console, policies: gogs::admin)",
+        "file_stream (mon-mon-01/gogs.log)"
     ]
 }

@@ -1,0 +1,12 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"gogs"},
+    {"name":"phantomjs"}
+  ],
+  "secrets": [
+    {"name": "service/gogs/root/credentials"}
+  ]
+}
