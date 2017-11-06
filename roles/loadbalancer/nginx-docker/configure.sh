@@ -5,3 +5,4 @@ canzea --config_git_commit --template=roles/loadbalancer/nginx-docker/config/ngi
 canzea --config_git_commit --template=roles/loadbalancer/nginx-docker/config/nginx.conf /var/local/nginx/default.conf
 
 
+mkdir -p /var/local/nginx/conf.d
