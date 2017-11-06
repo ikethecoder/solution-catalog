@@ -23,7 +23,7 @@ json['resources'].each do | resource |
         puts "   #{rid}"
 
 
-        args = { rtype => { rid => resource[rtype][rid] } }
+        args = { rid => resource[rtype][rid] }
 
         n.run "ruby #{ENV['CATALOG_LOCATION']}/helpers/config_writers/#{rtype}.rb '#{args.to_json}'", 0, 0
     end
