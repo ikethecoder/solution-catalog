@@ -1,12 +1,12 @@
 [Unit]
-Description=PhantomJS container
+Description=GoCD container
 Requires=docker.service
 After=docker.service
 
 [Service]
 Restart=always
-ExecStart=/usr/bin/docker start -a phantomjs
-ExecStop=/usr/bin/docker stop -t 2 phantomjs
+ExecStart=/usr/bin/docker start -a gocd
+ExecStop=/usr/bin/docker stop -t 2 gocd
 
 [Install]
 WantedBy=local.target
