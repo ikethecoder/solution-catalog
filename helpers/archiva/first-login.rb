@@ -2,12 +2,12 @@ require "selenium-webdriver"
 
 wait = Selenium::WebDriver::Wait.new(:timeout => 5)
 
-driver = Selenium::WebDriver.for :phantomjs
+driver = Selenium::WebDriver.for :remote, url: ENV['PHANTOMJS_URL']
 
 target_size = Selenium::WebDriver::Dimension.new(1024, 768)
 driver.manage.window.size = target_size
 
-driver.navigate.to "http://localhost:9080"
+driver.navigate.to "#{ENV["ARCHIVA_URL"]}"
 
 sleep 5
 
