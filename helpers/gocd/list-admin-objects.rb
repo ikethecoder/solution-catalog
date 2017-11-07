@@ -15,7 +15,7 @@ headers = {
   'Accept' => "application/vnd.go.cd.v#{version}+json"
 }
 
-http = Net::HTTP.new("localhost",8153)
+http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 http.use_ssl = false
 res = http.get("/go/api/admin/#{type}", headers)
 
