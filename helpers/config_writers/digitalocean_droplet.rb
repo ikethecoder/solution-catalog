@@ -58,7 +58,7 @@ template = %{
   {{#_nameserver}}
         provisioner "remote-exec" {
             inline = [
-                "printf \"nameserver {{_nameserver}}\nsearch localdomain\n" > /etc/resolv.conf"
+                "printf \"nameserver {{_nameserver}}\\nsearch localdomain\\n" > /etc/resolv.conf"
             ]
         }
   {{/_nameserver}}
