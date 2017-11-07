@@ -33,7 +33,23 @@ COPY lib/config.yml .
 
 # COPY lib/settings.js /home/pm2user/.node-red/settings.js
 
+COPY config/canzea.sh /home/pm2user/
+
+USER root
+RUN chmod +x /home/pm2user/canzea.sh
+
+RUN apt-get update
+
+RUN apt-get install -y ruby-full
+
+RUN gem install cri -v 2.4.1
+RUN gem install canzea -v 0.1.148
+RUN gem install xmlsimple java-properties
+
+USER pm2user
+
 ENV PORT=8000
 ENV NODE_ENV=development
 
 CMD ["node", "app.js"]
+
