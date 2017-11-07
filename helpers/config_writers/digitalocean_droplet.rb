@@ -2,6 +2,8 @@ require 'json'
 require 'commands/push-config'
 require 'template-runner'
 
+is_plus = (ARGV[1] == 'PLUS')
+
 t = Template.new
 pc = PushConfig.new
 
@@ -54,8 +56,11 @@ else
     properties[:imageText] = "\"#{properties['imageCode']}\""
 end
 
+if is_plus
+    output = t.processString template, properties
 
-output = t.processString template, properties
-
-puts "terraform/modules/#{properties['environment']}/#{resourceId}.tf", output
-pc.write "terraform/modules/#{properties['environment']}/#{resourceId}.tf", output
+    puts "terraform/modules/#{properties['environment']}/#{resourceId}.tf", output
+    pc.write "terraform/modules/#{properties['environment']}/#{resourceId}.tf", output
+else
+    pc.backupAndRemove "terraform/modules/#{properties['environment']}/#{resourceId}.tf"
+end

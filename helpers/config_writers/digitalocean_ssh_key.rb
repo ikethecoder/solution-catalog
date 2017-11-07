@@ -2,6 +2,8 @@ require 'json'
 require 'commands/push-config'
 require 'template-runner'
 
+is_plus = (ARGV[1] == 'PLUS')
+
 t = Template.new
 pc = PushConfig.new
 
@@ -26,7 +28,11 @@ resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId;
 
-output = t.processString template, properties
+if is_plus
+    output = t.processString template, properties
 
-puts output
-pc.write "terraform/modules/common/#{params.keys[0]}.tf", output
+    puts output
+    pc.write "terraform/modules/common/#{params.keys[0]}.tf", output
+else
+    pc.backupAndRemove "terraform/modules/common/#{params.keys[0]}.tf"
+end

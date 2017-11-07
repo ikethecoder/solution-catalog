@@ -2,6 +2,8 @@ require 'json'
 require 'commands/push-config'
 require 'template-runner'
 
+is_plus = (ARGV[1] == 'PLUS')
+
 t = Template.new
 pc = PushConfig.new
 
@@ -35,11 +37,15 @@ resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId;
 
-output = t.processString template, properties
-puts "terraform/provider-#{resourceId}.tf",output
-pc.write "terraform/provider-#{resourceId}.tf", output
+if is_plus
+    output = t.processString template, properties
+    puts "terraform/provider-#{resourceId}.tf",output
+    pc.write "terraform/provider-#{resourceId}.tf", output
 
-output2 = t.processString tfvars, properties
-puts "terraform/terraform.tfvars", output2
-pc.write "terraform/terraform.tfvars", output2
-
+    output2 = t.processString tfvars, properties
+    puts "terraform/terraform.tfvars", output2
+    pc.write "terraform/terraform.tfvars", output2
+else
+    pc.backupAndRemove "terraform/provider-#{resourceId}.tf"
+    pc.backupAndRemove "terraform/terraform.tfvars"
+end
