@@ -33,7 +33,7 @@ FileUtils.cp_r "sc", "sc_bk"
 
 FileUtils.rm_r "sc"
 
-FileUtils.mkdir_p "sc/ecosystems/#{parameters['ecosystem']}/terraform/.es
+FileUtils.mkdir_p "sc/ecosystems/#{parameters['ecosystem']}/terraform/.es"
 FileUtils.cp_r "sc_bk/ecosystems/#{parameters['ecosystem']}/terraform/.es/id_rsa_root_ecosystem", "sc/ecosystems/#{parameters['ecosystem']}/terraform/.es/id_rsa_root_ecosystem"
 
 g = Git.clone(ENV['ECOSYSTEM_CONFIG_GIT'], "sc", :path => '.')
