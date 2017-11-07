@@ -1,0 +1,13 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"archiva"},
+    {"name":"phantomjs"}
+  ],
+  "secrets": [
+  ],
+  "environment": [
+  ]
+}
