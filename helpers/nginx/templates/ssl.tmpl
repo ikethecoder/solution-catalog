@@ -1,10 +1,10 @@
 server {
         listen 443 ssl;
 
-        server_name canzea.com;
+        server_name {{domainName}};
 
-        ssl_certificate /etc/nginx/ssl/canzea.com.bundle;
-        ssl_certificate_key /etc/nginx/ssl/canzea.com.key;
+        ssl_certificate /etc/letsencrypt/live/{{domainName}}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/{{domainName}}/privkey.pem;
 
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
         ssl_prefer_server_ciphers on;

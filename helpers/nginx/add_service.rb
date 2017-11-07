@@ -22,7 +22,7 @@ end
 if (parameters.has_key? 'template')
     template = parameters['template']
 end
-partConfig = t.process "helpers/nginx/templates/#{template}", parameters
+partConfig = t.process "#{ENV['CATALOG_LOCATION']}/helpers/nginx/templates/#{template}", parameters
 
 sslConfig = File.read(configFile)
 
