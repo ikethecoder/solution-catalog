@@ -1,0 +1,14 @@
+server {
+        listen 80;
+
+        server_name {{domainName}};
+
+        location ~ /.well-known {
+                allow all;
+        }
+
+        # The rest of your server block
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+
+}
