@@ -55,6 +55,14 @@ template = %{
         }
   {{/tls_setup}}
 
+  {{#_nameserver}}
+        provisioner "remote-exec" {
+            inline = [
+                "printf \"nameserver {{_nameserver}}\nsearch localdomain\n" > /etc/resolv.conf"
+            ]
+        }
+  {{/_nameserver}}
+
         provisioner "remote-exec" {
             inline = [
                 "export ES_ENC_DATA={{encdata}}",
