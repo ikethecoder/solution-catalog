@@ -22,12 +22,13 @@ COPY lib/app.js .
 RUN npm install pm2
 
 RUN git clone https://github.com/ikethecoder/node-red-contrib-canzea-elasticsearch.git
-
 RUN npm install ./node-red-contrib-canzea-elasticsearch
 
 RUN git clone https://github.com/ikethecoder/node-red-biglib.git
-
 RUN npm install ./node-red-biglib
+
+RUN git clone https://github.com/ikethecoder/node-red-contrib-canzea-vars.git
+RUN npm install ./node-red-contrib-canzea-vars
 
 COPY lib/config.yml .
 
