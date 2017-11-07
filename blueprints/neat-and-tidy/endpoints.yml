@@ -15,7 +15,7 @@ consoles:
   -
     segment: ci
     name: gogs
-    url: http://${domainName}:10080
+    secure: https://${secureDomain}/gogs
 
   -
     segment: ci
@@ -39,7 +39,7 @@ consoles:
   -
     segment: ci
     name: rocketchat
-    url: http://${domainName}:8780
+    secure: https://chat.${secureDomain}
 
   -
     segment: app
