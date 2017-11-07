@@ -8,7 +8,7 @@ params = JSON.parse(ARGV[0])
 
 is_plus = (ARGV[1] == 'PLUS')
 
-pc = PushConfig.new
+pc = PushConfig.new "/"
 
 resourceId = params.keys[0]
 properties = params[resourceId]
@@ -26,7 +26,7 @@ if is_plus
         pc.write "terraform/.es/id_rsa_#{key}", File.read("id_rsa_#{key}")
         pc.write "terraform/.es/id_rsa_#{key}.pub", File.read("id_rsa_#{key}.pub")
 
-        File.delete "id_rsa_#{key}", "id_rsa_#{key}.pub"
+        File.delete "id_rsa_#{key}"
     end
 else
     pc.backupAndRemove "terraform/.es/id_rsa_#{key}"

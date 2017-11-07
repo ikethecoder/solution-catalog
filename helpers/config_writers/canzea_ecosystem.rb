@@ -8,7 +8,7 @@ is_plus = (ARGV[1] == 'PLUS')
 
 params = JSON.parse(ARGV[0])
 
-pc = PushConfig.new
+pc = PushConfig.new "/"
 
 resourceId = params.keys[0]
 properties = params[resourceId]

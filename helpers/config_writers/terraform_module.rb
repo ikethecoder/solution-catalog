@@ -6,7 +6,7 @@ require 'template-runner'
 is_plus = (ARGV[1] == 'PLUS')
 
 t = Template.new
-pc = PushConfig.new
+pc = PushConfig.new "/"
 
 module_vars_tmpl = %{
   {{#variables}}
