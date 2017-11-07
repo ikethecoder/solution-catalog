@@ -39,5 +39,5 @@ FileUtils.rm_r "sc"
 FileUtils.mv "sc_temp", "sc"
 
 FileUtils.mkdir_p "sc/ecosystems/#{parameters['ecosystem']}/terraform/.es"
-FileUtils.cp_r "sc_bk/ecosystems/#{parameters['ecosystem']}/terraform/.es", "sc/ecosystems/#{parameters['ecosystem']}/terraform/.es"
+FileUtils.cp_r "sc_bk/ecosystems/#{parameters['ecosystem']}/terraform/.es", "sc/ecosystems/#{parameters['ecosystem']}/terraform"
 
