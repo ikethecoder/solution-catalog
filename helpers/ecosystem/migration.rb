@@ -31,10 +31,13 @@ pc.commit "Migrated to ecosystems repository."
 
 FileUtils.cp_r "sc", "sc_bk"
 
+
+g = Git.clone(ENV['ECOSYSTEM_CONFIG_GIT'], "sc_temp", :path => '.')
+
 FileUtils.rm_r "sc"
 
-FileUtils.mkdir_p "sc/ecosystems/#{parameters['ecosystem']}/terraform/.es"
-FileUtils.cp_r "sc_bk/ecosystems/#{parameters['ecosystem']}/terraform/.es/id_rsa_root_ecosystem", "sc/ecosystems/#{parameters['ecosystem']}/terraform/.es/id_rsa_root_ecosystem"
+FileUtils.mv "sc_temp", "sc"
 
-g = Git.clone(ENV['ECOSYSTEM_CONFIG_GIT'], "sc", :path => '.')
+FileUtils.mkdir_p "sc/ecosystems/#{parameters['ecosystem']}/terraform/.es"
+FileUtils.cp_r "sc_bk/ecosystems/#{parameters['ecosystem']}/terraform/.es", "sc/ecosystems/#{parameters['ecosystem']}/terraform/.es"
 
