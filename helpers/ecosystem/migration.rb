@@ -27,3 +27,11 @@ ssh_config = %{
 pc.write "ssh/config", t.processString(ssh_config, parameters)
 
 pc.commit "Migrated to ecosystems repository."
+
+
+FileUtils.cp_r "sc", "sc_bk"
+
+FileUtils.rm_r "sc"
+
+g = Git.clone(ENV['ECOSYSTEM_CONFIG_GIT'], "sc", :path => '.')
+
