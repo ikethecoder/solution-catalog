@@ -26,6 +26,35 @@ template = %{
             timeout = "2m"
         }
 
+  {{#tls_setup}}
+        provisioner "remote-exec" {
+            inline = [
+                "mkdir -p /var/local/consul/ssl"
+            ]
+        }
+
+        provisioner "file" {
+            source = "./.es/consul.cert"
+            destination = "/var/local/consul/ssl/consul.cert"
+        }
+        provisioner "file" {
+            source = "./.es/consul.key"
+            destination = "/var/local/consul/ssl/consul.key"
+        }
+        provisioner "file" {
+            source = "./.es/ca.cert"
+            destination = "/var/local/consul/ssl/ca.cert"
+        }
+        provisioner "file" {
+            source = "./.es/vault.cert"
+            destination = "/var/local/consul/ssl/vault.cert"
+        }
+        provisioner "file" {
+            source = "./.es/vault.key"
+            destination = "/var/local/consul/ssl/vault.key"
+        }
+  {{/tls_setup}}
+
         provisioner "remote-exec" {
             inline = [
                 "export ES_ENC_DATA={{encdata}}",
@@ -54,6 +83,10 @@ if (properties.has_key? "imagePaasId")
     properties[:imageText] = properties['imagePaasId'].to_i
 else
     properties[:imageText] = "\"#{properties['imageCode']}\""
+end
+
+if properties.has_key? "tls_setup"
+    properties['tls_setup'] = ["-dummy-"]
 end
 
 if is_plus
