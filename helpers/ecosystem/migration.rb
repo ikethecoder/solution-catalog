@@ -7,9 +7,11 @@ require 'commands/push-config'
 
 parameters = JSON.parse(ARGV[0])
 
+ENV['ECOSYSTEM'] = parameters['ecosystem']
+
 sourcePath = parameters['sourcePath']
 
-pc = PushConfig.new
+pc = PushConfig.new "/"
 
 pc.cp sourcePath, "."
 
