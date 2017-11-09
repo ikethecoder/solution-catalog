@@ -28,7 +28,7 @@ if is_plus
 
         File.delete "id_rsa_#{key}"
 
-        FileUtils.chmod 0600, "ecosystems/#{ENV['ECOSYSTEM']}/terraform/.es/id_rsa_#{key}"
+        FileUtils.chmod 0600, "sc/ecosystems/#{ENV['ECOSYSTEM']}/terraform/.es/id_rsa_#{key}"
     end
 else
     pc.backupAndRemove "terraform/.es/id_rsa_#{key}"
