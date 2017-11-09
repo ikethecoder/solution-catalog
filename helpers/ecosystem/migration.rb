@@ -15,8 +15,6 @@ sourcePath = parameters['sourcePath']
 t = Template.new
 pc = PushConfig.new "/"
 
-pc.cp sourcePath, "."
-
 ssh_config = %{
    host {{ecosystem}}.canzea.cc
      User root
@@ -26,6 +24,8 @@ ssh_config = %{
 
 FileUtils.mkdir_p "ssh"
 File.write "ssh/config", t.processString(ssh_config, parameters)
+
+pc.cp sourcePath, "."
 
 pc.write "ssh/config", t.processString(ssh_config, parameters)
 
