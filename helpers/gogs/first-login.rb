@@ -7,7 +7,7 @@ driver = Selenium::WebDriver.for :remote, url: ENV['PHANTOMJS_URL']
 target_size = Selenium::WebDriver::Dimension.new(1024, 768)
 # driver.manage.window.size = target_size
 
-driver.navigate.to "#{ENV["GOGS_URL"]}/user/sign_up"
+driver.navigate.to "#{ENV["SERVICE_GOGS_ROOT_CREDENTIALS_URL"]}/user/sign_up"
 
 sleep 5
 
