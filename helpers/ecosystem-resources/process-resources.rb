@@ -7,7 +7,7 @@ require 'uri'
 parameters = JSON.parse(ARGV[0])
 
 payload = {
-    "resources": parameters['resources']
+    "resources" => parameters['resources']
 }
 
 headers = {
