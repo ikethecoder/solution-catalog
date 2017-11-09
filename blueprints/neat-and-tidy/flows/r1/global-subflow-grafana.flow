@@ -1,0 +1,602 @@
+{
+  "id": "811542a8.5ac78",
+  "type": "subflow",
+  "name": "Grafana",
+  "info": "",
+  "in": [
+    {
+      "x": 60,
+      "y": 60,
+      "wires": [
+        {
+          "id": "2f2d391b.37c226"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 932.5,
+      "y": 421,
+      "wires": [
+        {
+          "id": "dd593ed3.d54e4",
+          "port": 0
+        },
+        {
+          "id": "ce6df830.fc0b48",
+          "port": 0
+        },
+        {
+          "id": "96fc9ea4.276e5",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "3d9848a8.843468",
+      "type": "http request",
+      "z": "811542a8.5ac78",
+      "name": "POST",
+      "method": "POST",
+      "ret": "obj",
+      "url": "{{{envs.GRAFANA_URL}}}/api/dashboards/db",
+      "tls": "",
+      "x": 470,
+      "y": 320,
+      "wires": [
+        [
+          "375f7d6f.7965f2"
+        ]
+      ]
+    },
+    {
+      "id": "face2f6d.bc923",
+      "type": "function",
+      "z": "811542a8.5ac78",
+      "name": "",
+      "func": "if (msg.payload.definition && msg.payload.definition.contents) {\n    msg.payload = {\n        \"dashboard\" : msg.payload.definition.contents,\n        \"overwrite\" : true\n    }\n    \n} else {\n    msg.payload = {\n        \"dashboard\" : msg.payload,\n        \"overwrite\" : true\n    }\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 341,
+      "y": 321,
+      "wires": [
+        [
+          "3d9848a8.843468"
+        ]
+      ]
+    },
+    {
+      "id": "d7519b62.f9dbe8",
+      "type": "switch",
+      "z": "811542a8.5ac78",
+      "name": "DASHBOARD",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:monitoring_dashboard",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:monitoring_dashboard",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:monitoring_dashboard",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "list:monitoring_dashboard",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:grafana_auth_key",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 6,
+      "x": 175.5,
+      "y": 349,
+      "wires": [
+        [
+          "face2f6d.bc923"
+        ],
+        [
+          "d3e8a97a.81e188"
+        ],
+        [
+          "a134a82e.20d198"
+        ],
+        [
+          "e79ab70f.a51998"
+        ],
+        [
+          "fb560ba0.962c68"
+        ],
+        [
+          "96fc9ea4.276e5"
+        ]
+      ]
+    },
+    {
+      "id": "d3e8a97a.81e188",
+      "type": "http request",
+      "z": "811542a8.5ac78",
+      "name": "DELETE",
+      "method": "DELETE",
+      "ret": "obj",
+      "url": "{{{envs.GRAFANA_URL}}}/api/dashboards/db/{{key}}",
+      "tls": "",
+      "x": 476.5,
+      "y": 356,
+      "wires": [
+        [
+          "375f7d6f.7965f2"
+        ]
+      ]
+    },
+    {
+      "id": "a134a82e.20d198",
+      "type": "http request",
+      "z": "811542a8.5ac78",
+      "name": "GET",
+      "method": "GET",
+      "ret": "obj",
+      "url": "{{{envs.GRAFANA_URL}}}/api/dashboards/db/{{{key}}}",
+      "tls": "",
+      "x": 468.5,
+      "y": 391,
+      "wires": [
+        [
+          "375f7d6f.7965f2"
+        ]
+      ]
+    },
+    {
+      "id": "375f7d6f.7965f2",
+      "type": "switch",
+      "z": "811542a8.5ac78",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 623.5,
+      "y": 357,
+      "wires": [
+        [
+          "dd593ed3.d54e4"
+        ],
+        [
+          "ce6df830.fc0b48"
+        ]
+      ]
+    },
+    {
+      "id": "dd593ed3.d54e4",
+      "type": "function",
+      "z": "811542a8.5ac78",
+      "name": "Success",
+      "func": "//msg.payload = (msg.payload ? msg.payload.data:\"\");\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 765.5,
+      "y": 329,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "ce6df830.fc0b48",
+      "type": "function",
+      "z": "811542a8.5ac78",
+      "name": "Error",
+      "func": "return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 753,
+      "y": 363,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "c9e6186b.7a2788",
+      "type": "vars",
+      "z": "811542a8.5ac78",
+      "name": "CONSUL",
+      "property": "payload",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://es110c.canzea.cc/gw/admin/#flow/4fc6c84.9271b38",
+            "ancestorOrigins": {
+            },
+            "origin": "https://es110c.canzea.cc",
+            "protocol": "https:",
+            "host": "es110c.canzea.cc",
+            "hostname": "es110c.canzea.cc",
+            "port": "",
+            "pathname": "/gw/admin/",
+            "search": "",
+            "hash": "#flow/4fc6c84.9271b38"
+          },
+          "jQuery111305858287869232": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "service",
+          "v": "grafana",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "c792be07.29d4",
+      "url": "https://consul.service.dc1.consul:8080",
+      "x": 440,
+      "y": 220,
+      "wires": [
+        [
+          "d7519b62.f9dbe8"
+        ]
+      ]
+    },
+    {
+      "id": "36c3fb5.aeb7404",
+      "type": "function",
+      "z": "811542a8.5ac78",
+      "name": "Set Header",
+      "func": "msg.headers = {\n    'Accept': 'application/json',\n    'Content-Type' : 'application/json',\n    'Authorization': 'Bearer ' + msg.envs.GRAFANA_EDIT_TOKEN\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 750,
+      "y": 60,
+      "wires": [
+        [
+          "c9e6186b.7a2788"
+        ]
+      ]
+    },
+    {
+      "id": "96fc9ea4.276e5",
+      "type": "function",
+      "z": "811542a8.5ac78",
+      "name": "Invalid Topic",
+      "func": "msg.payload = {\n    \"error\": \"Unknown topic \" + msg.topic\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 488.5,
+      "y": 466,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "e79ab70f.a51998",
+      "type": "http request",
+      "z": "811542a8.5ac78",
+      "name": "LIST",
+      "method": "GET",
+      "ret": "obj",
+      "url": "{{{envs.GRAFANA_URL}}}/api/search",
+      "tls": "",
+      "x": 469.5,
+      "y": 429,
+      "wires": [
+        [
+          "375f7d6f.7965f2"
+        ]
+      ]
+    },
+    {
+      "id": "e4171429.5229d8",
+      "type": "http request",
+      "z": "811542a8.5ac78",
+      "name": "POST",
+      "method": "POST",
+      "ret": "obj",
+      "url": "{{{envs.GRAFANA_URL}}}/api/auth/keys",
+      "tls": "",
+      "x": 482.5,
+      "y": 545,
+      "wires": [
+        [
+          "375f7d6f.7965f2"
+        ]
+      ]
+    },
+    {
+      "id": "fb560ba0.962c68",
+      "type": "function",
+      "z": "811542a8.5ac78",
+      "name": "",
+      "func": "msg.payload['name'] = msg.key;\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 302.5,
+      "y": 545,
+      "wires": [
+        [
+          "e4171429.5229d8"
+        ]
+      ]
+    },
+    {
+      "id": "2f2d391b.37c226",
+      "type": "switch",
+      "z": "811542a8.5ac78",
+      "name": "Auth Choice",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:grafana_auth_key",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 230,
+      "y": 80,
+      "wires": [
+        [
+          "e66526db.49ea28"
+        ],
+        [
+          "138e59.c6ee91a7"
+        ]
+      ]
+    },
+    {
+      "id": "81b474e.4d86d88",
+      "type": "function",
+      "z": "811542a8.5ac78",
+      "name": "CREDS",
+      "func": "username = msg.envs['SERVICE_GRAFANA_ADMIN_CREDENTIALS_USER_NAME'];\npassword = msg.envs['SERVICE_GRAFANA_ADMIN_CREDENTIALS_PASSWORD'];\n\nup = new Buffer(username + \":\" + password).toString('base64');\n\nmsg.headers = {\n    'Authorization': 'Basic ' + up\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 576.5,
+      "y": 17,
+      "wires": [
+        [
+          "c9e6186b.7a2788",
+          "2c4b779b.45a678"
+        ]
+      ]
+    },
+    {
+      "id": "b5640c37.19e05",
+      "type": "vars",
+      "z": "811542a8.5ac78",
+      "name": "",
+      "property": "payload",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://es5ab5.canzea.cc/gw/admin/#flow/811542a8.5ac78",
+            "ancestorOrigins": {
+            },
+            "origin": "https://es5ab5.canzea.cc",
+            "protocol": "https:",
+            "host": "es5ab5.canzea.cc",
+            "hostname": "es5ab5.canzea.cc",
+            "port": "",
+            "pathname": "/gw/admin/",
+            "search": "",
+            "hash": "#flow/811542a8.5ac78"
+          },
+          "jQuery1113034684408510297815": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "secret",
+          "v": "service/grafana/admin/credentials",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "94073df5.ac54f",
+      "url": "https://vault.service.dc1.consul:8200",
+      "x": 429,
+      "y": 18,
+      "wires": [
+        [
+          "81b474e.4d86d88"
+        ]
+      ]
+    },
+    {
+      "id": "138e59.c6ee91a7",
+      "type": "vars",
+      "z": "811542a8.5ac78",
+      "name": "",
+      "property": "payload",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://es5ab5.canzea.cc/gw/admin/#flow/811542a8.5ac78",
+            "ancestorOrigins": {
+            },
+            "origin": "https://es5ab5.canzea.cc",
+            "protocol": "https:",
+            "host": "es5ab5.canzea.cc",
+            "hostname": "es5ab5.canzea.cc",
+            "port": "",
+            "pathname": "/gw/admin/",
+            "search": "",
+            "hash": "#flow/811542a8.5ac78"
+          },
+          "jQuery1113034684408510297815": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "secret",
+          "v": "grafana/edit",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "94073df5.ac54f",
+      "url": "https://vault.service.dc1.consul:8200",
+      "x": 426.5,
+      "y": 57,
+      "wires": [
+        [
+          "7624f99f.a36378"
+        ]
+      ]
+    },
+    {
+      "id": "7624f99f.a36378",
+      "type": "function",
+      "z": "811542a8.5ac78",
+      "name": "CREDS",
+      "func": "token = msg.envs['GOGS_ADMIN_TOKEN'];\nmsg.headers = {\n    'Authorization': 'token ' + token\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 576.5,
+      "y": 57,
+      "wires": [
+        [
+          "36c3fb5.aeb7404"
+        ]
+      ]
+    },
+    {
+      "id": "e66526db.49ea28",
+      "type": "function",
+      "z": "811542a8.5ac78",
+      "name": "",
+      "func": "msg.secretKey = \"service/grafana/{{msg.key}}/credentials\";\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 292,
+      "y": 16,
+      "wires": [
+        [
+          "b5640c37.19e05"
+        ]
+      ]
+    },
+    {
+      "id": "2c4b779b.45a678",
+      "type": "debug",
+      "z": "811542a8.5ac78",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 731.5,
+      "y": 20,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "f981e00c.61b88",
+      "type": "switch",
+      "z": "811542a8.5ac78",
+      "name": "Data Sources",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:monitoring_dashboard",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:monitoring_dashboard",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:monitoring_dashboard",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "list:monitoring_dashboard",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:grafana_auth_key",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 6,
+      "x": 160,
+      "y": 640,
+      "wires": [
+        [
+
+        ],
+        [
+
+        ],
+        [
+
+        ],
+        [
+
+        ],
+        [
+
+        ],
+        [
+
+        ]
+      ]
+    }
+  ]
+}

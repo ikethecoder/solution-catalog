@@ -1,0 +1,150 @@
+{
+  "id": "d8491633.ad8e18",
+  "type": "subflow",
+  "name": "Vault READ",
+  "info": "",
+  "in": [
+    {
+      "x": 50,
+      "y": 30,
+      "wires": [
+        {
+          "id": "7ad0842f.de8a4c"
+        },
+        {
+          "id": "c8ef3dae.04646"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 910,
+      "y": 200,
+      "wires": [
+        {
+          "id": "f9a7b523.867e18",
+          "port": 0
+        },
+        {
+          "id": "dd5d56cb.a62df8",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "7ad0842f.de8a4c",
+      "type": "function",
+      "z": "d8491633.ad8e18",
+      "name": "Set Token",
+      "func": "if (msg.req.headers.hasOwnProperty(\"x-vault-token\") === false) {\n        throw new Error(\"Vault Token Missing\");\n}\n\nmsg.headers = {\n    \"X-Vault-Token\":msg.req.headers['x-vault-token']\n};\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 200,
+      "y": 191,
+      "wires": [
+        [
+          "56c8fd71.86e484"
+        ]
+      ]
+    },
+    {
+      "id": "56c8fd71.86e484",
+      "type": "http request",
+      "z": "d8491633.ad8e18",
+      "name": "Get Secret",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/secret/{{{payload}}}",
+      "tls": "94073df5.ac54f",
+      "x": 381,
+      "y": 192,
+      "wires": [
+        [
+          "3f1e28c4.56c508"
+        ]
+      ]
+    },
+    {
+      "id": "f9a7b523.867e18",
+      "type": "function",
+      "z": "d8491633.ad8e18",
+      "name": "Success",
+      "func": "msg.payload = (msg.payload ? msg.payload.data:\"\");\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 723.5,
+      "y": 184,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "3f1e28c4.56c508",
+      "type": "switch",
+      "z": "d8491633.ad8e18",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 583,
+      "y": 191,
+      "wires": [
+        [
+          "f9a7b523.867e18"
+        ],
+        [
+          "dd5d56cb.a62df8"
+        ]
+      ]
+    },
+    {
+      "id": "dd5d56cb.a62df8",
+      "type": "function",
+      "z": "d8491633.ad8e18",
+      "name": "Error",
+      "func": "throw new Error(\"Secret not found\")",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 714,
+      "y": 222,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "c8ef3dae.04646",
+      "type": "debug",
+      "z": "d8491633.ad8e18",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 173.5,
+      "y": 50,
+      "wires": [
+
+      ]
+    }
+  ]
+}

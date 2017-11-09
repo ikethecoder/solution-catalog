@@ -1,0 +1,281 @@
+{
+  "id": "f5f2fef8.e2f79",
+  "label": "Play Area",
+  "nodes": [
+    {
+      "id": "8b2e796.d16f788",
+      "type": "subflow:811542a8.5ac78",
+      "z": "f5f2fef8.e2f79",
+      "x": 447.5,
+      "y": 271,
+      "wires": [
+        [
+          "e10487e3.bc0768"
+        ]
+      ],
+      "subflow": "811542a8.5ac78"
+    },
+    {
+      "id": "22c71c06.26ef84",
+      "type": "inject",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 104.5,
+      "y": 148,
+      "wires": [
+        [
+          "230fb1c1.4d8cae"
+        ]
+      ]
+    },
+    {
+      "id": "e10487e3.bc0768",
+      "type": "debug",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "payload",
+      "x": 641.5,
+      "y": 274,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "230fb1c1.4d8cae",
+      "type": "function",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "func": "msg.topic = 'plus:monitoring_dashboard';\nmsg.key = 'platform-overview';\nmsg.req = {\n    \"headers\": {\n        \"X-Vault-Token\": \"990cc0fc-fec8-e0dc-b8f9-817e63b58565\"\n    }\n}\nmsg.payload = \n{\n    \"id\": msg.key,\n    \"title\": \"Production Overview\",\n    \"tags\": [ \"templated\" ],\n    \"timezone\": \"browser\",\n    \"rows\": [\n      {\n      }\n    ],\n    \"schemaVersion\": 6,\n    \"version\": 0\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 228.5,
+      "y": 204,
+      "wires": [
+        [
+          "8b2e796.d16f788"
+        ]
+      ]
+    },
+    {
+      "id": "102125f.c6fcdda",
+      "type": "function",
+      "z": "f5f2fef8.e2f79",
+      "name": "MINUS",
+      "func": "msg.topic = 'minus:monitoring_dashboard';\nmsg.key = 'production-overview';\nmsg.req = {\n    \"headers\": {\n        \"X-Vault-Token\": \"990cc0fc-fec8-e0dc-b8f9-817e63b58565\"\n    }\n}\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 268,
+      "y": 345,
+      "wires": [
+        [
+          "8b2e796.d16f788"
+        ]
+      ]
+    },
+    {
+      "id": "b7791da9.2508d",
+      "type": "inject",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 102,
+      "y": 349,
+      "wires": [
+        [
+          "102125f.c6fcdda"
+        ]
+      ]
+    },
+    {
+      "id": "f79990e3.c9165",
+      "type": "subflow:d8491633.ad8e18",
+      "z": "f5f2fef8.e2f79",
+      "x": 471.5,
+      "y": 455,
+      "wires": [
+        [
+          "f23f5de9.0bc53"
+        ]
+      ],
+      "subflow": "d8491633.ad8e18"
+    },
+    {
+      "id": "34dbe42.36e271c",
+      "type": "inject",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 90,
+      "y": 458,
+      "wires": [
+        [
+          "7ef75112.f7adf"
+        ]
+      ]
+    },
+    {
+      "id": "7ef75112.f7adf",
+      "type": "function",
+      "z": "f5f2fef8.e2f79",
+      "name": "SET",
+      "func": "msg.req = {\n    \"headers\": {\n        \"x-vault-token\":\"p990cc0fc-fec8-e0dc-b8f9-817e63b58565\"\n    }\n}\nmsg.payload = 'github/ikethecoder/hello-world-svc-app';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 266,
+      "y": 457,
+      "wires": [
+        [
+          "f79990e3.c9165"
+        ]
+      ]
+    },
+    {
+      "id": "fc7356b6.a660e8",
+      "type": "debug",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "active": false,
+      "console": "false",
+      "complete": "true",
+      "x": 721,
+      "y": 459,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "4bde04c2.9d3bec",
+      "type": "subflow:cc909323.1bc6b",
+      "z": "f5f2fef8.e2f79",
+      "x": 340.5,
+      "y": 563,
+      "wires": [
+        [
+
+        ]
+      ],
+      "subflow": "cc909323.1bc6b"
+    },
+    {
+      "id": "d6c81063.bdde7",
+      "type": "function",
+      "z": "f5f2fef8.e2f79",
+      "name": "SET",
+      "func": "msg.req = {\n    \"headers\": {\n        \"x-vault-token\":\"p990cc0fc-fec8-e0dc-b8f9-817e63b58565\"\n    }\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 150,
+      "y": 564,
+      "wires": [
+        [
+          "4bde04c2.9d3bec"
+        ]
+      ]
+    },
+    {
+      "id": "af170359.2134a",
+      "type": "catch",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "scope": null,
+      "x": 336.5,
+      "y": 669,
+      "wires": [
+        [
+          "91e2f41c.b80fe8"
+        ]
+      ]
+    },
+    {
+      "id": "bfdb1167.c00a5",
+      "type": "debug",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 617.5,
+      "y": 668,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "f23f5de9.0bc53",
+      "type": "function",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "func": "node.warn (\"Got here\")\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 642.5,
+      "y": 412,
+      "wires": [
+        [
+          "fc7356b6.a660e8"
+        ]
+      ]
+    },
+    {
+      "id": "91e2f41c.b80fe8",
+      "type": "function",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "func": "msg.payload = \"Catch all - unable to process\";\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 485.5,
+      "y": 628,
+      "wires": [
+        [
+          "bfdb1167.c00a5"
+        ]
+      ]
+    },
+    {
+      "id": "8205995d.d43ee8",
+      "type": "http in",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "url": "/playground/mirror",
+      "method": "post",
+      "swaggerDoc": "",
+      "x": 188.5,
+      "y": 68,
+      "wires": [
+        [
+          "f5885fa3.3324a"
+        ]
+      ]
+    },
+    {
+      "id": "f5885fa3.3324a",
+      "type": "http response",
+      "z": "f5f2fef8.e2f79",
+      "name": "",
+      "x": 379.5,
+      "y": 69,
+      "wires": [
+
+      ]
+    }
+  ]
+}
