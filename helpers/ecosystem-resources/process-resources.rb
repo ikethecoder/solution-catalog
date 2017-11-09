@@ -32,7 +32,7 @@ end
 data = JSON.parse(res.body)
 
 data.each { | request |
-    if request.statusCode >= 300
+    if Integer(request['statusCode']) >= 300
         raise(res.body)
     end
 }
