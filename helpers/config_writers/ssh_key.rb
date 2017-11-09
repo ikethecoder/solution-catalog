@@ -27,6 +27,8 @@ if is_plus
         pc.write "terraform/.es/id_rsa_#{key}.pub", File.read("id_rsa_#{key}.pub")
 
         File.delete "id_rsa_#{key}"
+
+        FileUtils.chmod 0600, "terraform/.es/id_rsa_#{key}"
     end
 else
     pc.backupAndRemove "terraform/.es/id_rsa_#{key}"
