@@ -22,7 +22,9 @@ if (parameters.has_key? "file")
     payload = {"data" => value}
 else
     payload.each_pair do |k, v|
-        payload[k] = Template.new.processString(v, {})
+        if v.is_a? String
+            payload[k] = Template.new.processString(v, {})
+        end
     end
 end
 
