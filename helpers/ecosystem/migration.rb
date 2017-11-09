@@ -24,6 +24,9 @@ ssh_config = %{
      IdentityFile ./sc/ecosystems/{{ecosystem}}/terraform/.es/id_rsa_root_ecosystem
 }
 
+FileUtils.mkdir_p "ssh"
+File.write "ssh/config", t.processString(ssh_config, parameters)
+
 pc.write "ssh/config", t.processString(ssh_config, parameters)
 
 pc.commit "Migrated to ecosystems repository."
