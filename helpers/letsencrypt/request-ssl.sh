@@ -16,4 +16,6 @@ do
   shift
 done
 
+systemctl start nginx
+
 docker exec nginx certbot certonly -q --standalone --email $EMAIL --text --agree-tos --rsa-key-size 4096 -d $DOMAIN
