@@ -29,3 +29,4 @@ if ( Integer(res.code) >= 300 )
     raise("Connection to NodeRed Failed")
 end
 
+puts res.body
