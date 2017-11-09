@@ -33,7 +33,7 @@ data = JSON.parse(res.body)
 
 data.each { | request |
     if Integer(request['statusCode']) >= 300
-        raise(res.body)
+        raise("Atleast one resource request failed. " + res.body)
     end
 }
 puts res.body
