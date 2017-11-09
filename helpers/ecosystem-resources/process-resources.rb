@@ -29,4 +29,9 @@ if ( Integer(res.code) >= 300 )
     raise("Connection to NodeRed Failed")
 end
 
+res.body.to_json.each { | request |
+    if request.statusCode >= 300
+        raise(res.body)
+    end
+}
 puts res.body
