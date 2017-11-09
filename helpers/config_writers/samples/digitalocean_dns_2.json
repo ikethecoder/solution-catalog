@@ -1,0 +1,12 @@
+{
+  "e0008": {
+    "environment": "cd",
+    "droplet": "e0008-cd-ci-01",
+    "domain-id": "e0008-canzea-cc",
+    "domain": "e0008.canzea.cc",
+    "a": {
+      "name": "chat",
+      "address": "${digitalocean_droplet.e0008-cd-ci-01.ipv4_address}"
+    }
+  }
+}
