@@ -3,8 +3,7 @@
   ],
 
   "services": [
-    {"name":"elasticsearch"},
-    {"name":"logstash"}
+    {"name":"elasticsearch"}
   ],
   "secrets": [
   ]
