@@ -717,6 +717,19 @@
           "privateKey": "master_key"
         }
       }
+    },
+
+    {
+      "vault_secret": {
+        "shell/commands/bash": {
+          "user": "root",
+          "host": "${es.id}.canzea.cc",
+          "auth": "publickey",
+          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
+          "command": "bash",
+          "interactive": true
+        }
+      }
     }
   ]
 }
