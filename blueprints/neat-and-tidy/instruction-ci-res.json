@@ -1,0 +1,722 @@
+{
+  "resources": [
+    {
+      "building_block": {
+        "docker": {
+          "role": "container",
+          "solution": "docker",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "ruby": {
+          "role": "workarounds",
+          "solution": "ruby",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "ruby-gems": {
+          "role": "workarounds",
+          "solution": "ruby-gems",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "git-core": {
+          "role": "sourcecontrol",
+          "solution": "git-core",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : true
+        }
+      }
+    },
+
+    {
+      "building_block": {
+        "cloud-profile-r2": {
+          "role": "workarounds",
+          "solution": "cloud-profile-r2",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "canzea": {
+          "role": "workarounds",
+          "solution": "canzea",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "selinux": {
+          "role": "workarounds",
+          "solution": "selinux",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "consul-docker": {
+          "role": "configdb",
+          "solution": "consul-docker",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "hashicorpvault-docker": {
+          "role": "keymgmt",
+          "solution": "hashicorpvault-docker",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "ecosystem-bootstrap-r2": {
+          "role": "workarounds",
+          "solution": "ecosystem-bootstrap-r2",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "flows-gateway": {
+          "role": "adhoc",
+          "solution": "flows-gateway",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "gogs": {
+          "role": "sourcecontrol",
+          "solution": "gogs",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "archiva": {
+          "role": "registry",
+          "solution": "archiva-docker",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "rocketchat": {
+          "role": "collaboration",
+          "solution": "rocketchat",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "phantomjs-docker": {
+          "role": "testsuite",
+          "solution": "phantomjs-docker",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "gocd-docker": {
+          "role": "deploy",
+          "solution": "gocd-docker",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+
+
+    {
+      "tls_key_pair": {
+        "hashicorp-ca": {
+          "files": ["ca.cert"]
+        },
+        "consul-tls": {
+          "files": ["consul.cert", "consul.key"]
+        },
+        "vault-tls": {
+          "files": ["vault.cert", "vault.key"]
+        }
+      }
+    },
+
+    {
+      "service_discovery_service": {
+        "flows-gateway": {
+          "role": "adhoc",
+          "solution": "flows-gateway",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+    {
+      "canzea_gateway_flow": {
+        "all": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "blueprint": "neat-and-tidy"
+        }
+      }
+    },
+    {
+      "building_block": {
+        "unzip": {
+          "role": "workarounds",
+          "solution": "zip",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "hashicorpvault-cli": {
+          "role": "keymgmt",
+          "solution": "hashicorpvault-cli",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+
+
+    {
+      "boot:vault_secret": {
+        "service/vault": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "wire": "ecosystem:register-secret-flows-gateway"
+        }
+      }
+    },
+
+    {
+      "building_block": {
+        "nginx": {
+          "role": "loadbalancer",
+          "solution": "nginx-docker",
+          "droplet" : "${es.id}-cd-ci-01",
+          "commands" : false
+        }
+      }
+    },
+
+    {
+      "proxy_ssl_virtual_host": {
+        "default": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "domainName": "${es.id}.canzea.cc",
+          "email": "aidan.cope+certbot@gmail.com"
+        }
+      }
+    },
+
+    {
+      "proxy_service": {
+        "flows-gateway/gw": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/gw/",
+          "passthrough": "http://localhost:8000/"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "flows-gateway/wetty": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/wetty/",
+          "passthrough": "http://localhost:8000"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "flows-gateway/shell": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/shell/",
+          "passthrough": "http://localhost:8000"
+        }
+      }
+    },
+
+    {
+      "boot:vault_secret": {
+        "oauth/clients/saas_express": {
+          "wire": "vault:register-secret",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "key": "oauth/clients/0000-0000-0000-0001",
+          "data": {
+            "label": "Canzea SaaS Express",
+            "client_secret": "1111-0000-0000-0001",
+            "grants": [ "password", "authorization_code", "refresh_token" ],
+            "redirectUris": [ "https://canzea.com/saas/_oauth/callback" ]
+          }
+        }
+      }
+    },
+
+    {
+      "boot:ecosystem_user": {
+        "saas_express_user": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "data" : {
+            "password": "1234",
+            "email": "aidan@gmail.com"
+          }
+        }
+      }
+    },
+
+    {
+      "auto_auth": {
+        "applications/flows_gateway": {
+          "client_id": "0000-0000-0000-0001",
+          "client_secret": "1111-0000-0000-0001",
+          "username": "saas_express_user",
+          "password": "1234"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "gocd": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/go/",
+          "passthrough": "http://localhost:8153"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "gogs": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/gogs/",
+          "passthrough": "http://localhost:10080/"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "archiva": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/archiva/",
+          "passthrough": "http://localhost:9080/"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "consul-ui": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/ui/",
+          "passthrough": "https://consul.service.dc1.consul:8080",
+          "template": "consul.tmpl"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "consul-v2": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/v2/",
+          "passthrough": "https://consul.service.dc1.consul:8080",
+          "template": "consul.tmpl"
+        }
+      }
+    },
+
+    {
+      "digitalocean_dns" : {
+        "chat": {
+          "environment": "cd",
+          "droplet": "${es.id}-cd-ci-01",
+          "domain-id": "${es.id}-canzea-cc",
+          "domain": "${es.id}.canzea.cc",
+          "a": {
+            "name": "chat",
+            "address": "${dollar}{digitalocean_droplet.${es.id}-cd-ci-01.ipv4_address}"
+          }
+        }
+      }
+    },
+
+    {
+      "proxy_ssl_virtual_host": {
+        "chat": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "domainName": "chat.${es.id}.canzea.cc",
+          "email": "aidan.cope+certbot@gmail.com"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "rocketchat": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "chat",
+          "location": "/",
+          "passthrough": "http://localhost:8780"
+        }
+      }
+    },
+
+    {
+      "service_discovery_service": {
+        "phantomjs": {
+          "role": "testsuite",
+          "solution": "phantomjs",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+    {
+      "service_discovery_service": {
+        "rocketchat": {
+          "role": "collaboration",
+          "solution": "rocketchat",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+
+    {
+      "boot:vault_secret": {
+        "admin/rocketchat": {
+          "wire": "vault:register-secret",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "key": "admin/rocketchat",
+          "data": {
+            "password": "admin1admin"
+          }
+        }
+      }
+    },
+    {
+      "boot:first-login": {
+        "rocketchat": {
+          "wire": "rocketchat:first-login",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+
+    {
+      "service_discovery_service": {
+        "gogs": {
+          "role": "sourcecontrol",
+          "solution": "gogs",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+    {
+      "boot:vault_secret": {
+        "service/gogs/root/credentials": {
+          "wire": "vault:register-secret",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "key": "service/gogs/root/credentials",
+          "data": {
+            "user_name": "root",
+            "password": "admin1admin",
+            "email": "aidan@gmail.com",
+            "url": "https://${es.id}.canzea.cc/gogs"
+          }
+        }
+      }
+    },
+    {
+      "boot:first-login": {
+        "gogs": {
+          "wire": "gogs:first-login",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+
+
+    {
+      "boot:vault_secret": {
+        "nodered/canzea_console": {
+          "wire": "vault:register-secret",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "key" : "nodered/canzea_console",
+          "data": {
+            "token": "${secrets['applications/flows_gateway'].token}"
+          }
+        }
+      }
+    },
+
+    {
+      "boot:source_control_token": {
+        "admin": {
+          "wire": "ecosystem-resources:process-resources",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "saveData": true,
+          "resources": [
+            {
+              "source_control_token": {
+                "admin": {
+                  "Name": "admin"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "boot:vault_token": {
+        "admin": {
+          "wire": "ecosystem-resources:process-resources",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "resources": [
+            {
+              "vault_secret": {
+                "gogs/admin": {
+                  "token": "${db['source_control_token-admin'].sha1}"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "boot:source_control_repository": {
+        "ecosystems": {
+          "wire": "ecosystem-resources:process-resources",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "resources": [
+            {
+              "source_control_repository": {
+                "ecosystems": {
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+
+
+    {
+      "ssh_key": {
+        "root_ecosystem": {
+        }
+      }
+    },
+
+    {
+      "boot:source_control_public_key": {
+        "rpk": {
+          "wire": "ecosystem-resources:process-resources",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "resources": [
+            {
+              "source_control_public_key": {
+                "rpk": {
+                  "title": "root_pk",
+                  "key": "${db['root_ecosystem'].public}"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "migrate": {
+        "ecosystem": {
+          "ecosystem":"${es.id}",
+          "sourcePath":"sc/ecosystems/${es.id}"
+        }
+      }
+    },
+
+
+    {
+      "service_discovery_service": {
+        "archiva": {
+          "role": "registry",
+          "solution": "archiva",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+    {
+      "boot:vault_secret": {
+        "service/archiva/admin/credentials": {
+          "wire": "vault:register-secret",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "key": "service/archiva/admin/credentials",
+          "data": {
+            "user_name": "admin",
+            "password": "admin1admin",
+            "email": "aidan@gmail.com"
+          }
+        }
+      }
+    },
+    {
+      "boot:first-login": {
+        "archiva": {
+          "wire": "archiva:first-login",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+
+    {
+      "service_discovery_service": {
+        "gocd": {
+          "role": "deploy",
+          "solution": "gocd",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    }
+  ]
+}
