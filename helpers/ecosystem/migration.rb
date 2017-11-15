@@ -15,11 +15,13 @@ sourcePath = parameters['sourcePath']
 t = Template.new
 pc = PushConfig.new "/"
 
+parameters['pwd'] = Dir.pwd
+
 ssh_config = %{
    host {{ecosystem}}.canzea.cc
      User root
      Port 10022
-     IdentityFile ./sc/ecosystems/{{ecosystem}}/terraform/.es/id_rsa_root_ecosystem
+     IdentityFile {{pwd}}/sc/ecosystems/{{ecosystem}}/terraform/.es/id_rsa_root_ecosystem
 }
 
 FileUtils.mkdir_p "ssh"
