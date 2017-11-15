@@ -165,9 +165,9 @@ output.elasticsearch:
   # Array of hosts to connect to.
   hosts: ["{{ELASTICSEARCH_ADDRESS}}:{{ELASTICSEARCH_PORT}}"]
 
-output.logstash:
+# output.logstash:
 
-  hosts: ["{{LOGSTASH_ADDRESS}}:{{LOGSTASH_PORT}}"]
+#   hosts: ["{{LOGSTASH_ADDRESS}}:{{LOGSTASH_PORT}}"]
 
   # Number of workers per Logstash host.
   #worker: 1
@@ -181,9 +181,9 @@ output.logstash:
   #index: filebeat
 
   # Optional TLS. By default is off.
-  ssl:
+#   ssl:
     # List of root certificates for HTTPS server verifications
-    certificate_authorities: ["/etc/pki/tls/certs/logstash-forwarder.crt"]
+#     certificate_authorities: ["/etc/pki/tls/certs/logstash-forwarder.crt"]
 
     # List of root certificates for HTTPS server verifications
     #certificate_authorities: ["/etc/pki/root/ca.pem"]
