@@ -201,16 +201,16 @@
 
     {
       "pipeline_agent": {
-        "intg-app-01": {
+        "${instanceName}": {
           "agent" : "${instanceName}",
-          "environment" : "Integration"
+          "environment" : "${environmentLabel}"
         }
       }
     },
 
     {
       "collaboration_channel" : {
-        "Integration": {}
+        "${environmentLabel}": {}
       }
     }
 
