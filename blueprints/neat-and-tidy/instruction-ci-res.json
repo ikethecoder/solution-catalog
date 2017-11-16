@@ -403,7 +403,7 @@
           "segment": "ci",
           "privateKey": "master_key",
           "proxy_ssl_virtual_host": "default",
-          "location": "/v2/",
+          "location": "/v1/",
           "passthrough": "https://consul.service.dc1.consul:8080",
           "template": "consul.tmpl"
         }
