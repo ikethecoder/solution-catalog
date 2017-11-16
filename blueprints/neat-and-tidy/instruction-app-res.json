@@ -194,7 +194,7 @@
     },
     {
       "pipeline_environment": {
-        "Integration": {
+        "${environmentLabel}": {
         }
       }
     },
