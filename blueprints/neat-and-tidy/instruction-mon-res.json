@@ -186,6 +186,18 @@
           "passthrough": "http://$!{ecosystem.lookupInstanceByName('mon-mon-01').privateIp}:3000/"
         }
       }
+    },
+
+    {
+      "vault_secret": {
+        "service/grafana/admin/credentials": {
+          "key": "service/archiva/admin/credentials",
+          "data": {
+            "user_name": "admin",
+            "password": "admin"
+          }
+        }
+      }
     }
   ]
 }
