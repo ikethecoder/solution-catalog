@@ -5,7 +5,7 @@
         "docker": {
           "role": "container",
           "solution": "docker",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
@@ -15,7 +15,7 @@
         "ruby": {
           "role": "workarounds",
           "solution": "ruby",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
@@ -25,7 +25,7 @@
         "ruby-gems": {
           "role": "workarounds",
           "solution": "ruby-gems",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
@@ -35,7 +35,7 @@
         "git-core": {
           "role": "sourcecontrol",
           "solution": "git-core",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
@@ -46,7 +46,7 @@
         "cloud-profile-r2": {
           "role": "workarounds",
           "solution": "cloud-profile-r2",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -56,7 +56,7 @@
         "canzea": {
           "role": "workarounds",
           "solution": "canzea",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -66,7 +66,7 @@
         "selinux": {
           "role": "workarounds",
           "solution": "selinux",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -77,7 +77,7 @@
         "java": {
           "role": "virtualmachine",
           "solution": "java",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -87,7 +87,7 @@
         "filebeat": {
           "role": "monitoring",
           "solution": "filebeat",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -97,7 +97,7 @@
         "metricbeat": {
           "role": "monitoring",
           "solution": "metricbeat",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -107,7 +107,7 @@
         "auditd": {
           "role": "audit",
           "solution": "auditd",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -117,7 +117,7 @@
         "golang": {
           "role": "workarounds",
           "solution": "golang",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -127,7 +127,7 @@
         "mongodb": {
           "role": "documentdatabase",
           "solution": "mongodb",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -137,7 +137,7 @@
         "nginx": {
           "role": "loadbalancer",
           "solution": "nginx",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -147,7 +147,7 @@
         "rabbitmq": {
           "role": "messaging",
           "solution": "rabbitmq",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -157,7 +157,7 @@
         "fabio": {
           "role": "router",
           "solution": "fabio",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -167,7 +167,7 @@
         "nginx": {
           "role": "workarounds",
           "solution": "sudoers",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -177,7 +177,7 @@
         "gocd-agent": {
           "role": "deploy",
           "solution": "gocd-agent",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -187,7 +187,7 @@
         "maven": {
           "role": "build",
           "solution": "maven",
-          "droplet" : "${es.id}-intg-app-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -202,7 +202,7 @@
     {
       "pipeline_agent": {
         "intg-app-01": {
-          "agent" : "${es.id}-intg-app-01",
+          "agent" : "${instanceName}",
           "environment" : "Integration"
         }
       }
