@@ -112,12 +112,12 @@ under the License.
         <server>
             <id>snapshotRepository</id>
             <username>admin</username>
-            <password>admin1admin1</password>
+            <password>admin1admin</password>
         </server>
         <server>
             <id>releaseRepository</id>
             <username>admin</username>
-            <password>admin1admin1</password>
+            <password>admin1admin</password>
         </server>
 
         <!-- server
