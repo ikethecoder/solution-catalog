@@ -1,0 +1,191 @@
+{
+  "resources": [
+    {
+      "building_block": {
+        "docker": {
+          "role": "container",
+          "solution": "docker",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "ruby": {
+          "role": "workarounds",
+          "solution": "ruby",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "ruby-gems": {
+          "role": "workarounds",
+          "solution": "ruby-gems",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "git-core": {
+          "role": "sourcecontrol",
+          "solution": "git-core",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : true
+        }
+      }
+    },
+
+    {
+      "building_block": {
+        "cloud-profile-r2": {
+          "role": "workarounds",
+          "solution": "cloud-profile-r2",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "canzea": {
+          "role": "workarounds",
+          "solution": "canzea",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "selinux": {
+          "role": "workarounds",
+          "solution": "selinux",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+
+    {
+      "building_block": {
+        "java": {
+          "role": "virtualmachine",
+          "solution": "java",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "elasticsearch": {
+          "role": "documentdatabase",
+          "solution": "elasticsearch",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "logstash": {
+          "role": "monitoring",
+          "solution": "logstash",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "statsd": {
+          "role": "monitoring",
+          "solution": "statsd",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "grafana": {
+          "role": "monitoring",
+          "solution": "grafana",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "collectd": {
+          "role": "monitoring",
+          "solution": "collectd",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+
+
+    {
+      "building_block": {
+        "filebeat": {
+          "role": "monitoring",
+          "solution": "filebeat",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "metricbeat": {
+          "role": "monitoring",
+          "solution": "metricbeat",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "auditd": {
+          "role": "audit",
+          "solution": "auditd",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "elasticsearch-metrics": {
+          "role": "monitoring",
+          "solution": "elasticsearch-metrics",
+          "droplet" : "${es.id}-mon-mon-01",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "grafana": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/grafana/",
+          "passthrough": "http://$!{ecosystem.lookupInstanceByName('mon-mon-01').privateIp}:3000/"
+        }
+      }
+    }
+  ]
+}
