@@ -191,12 +191,28 @@
     {
       "vault_secret": {
         "service/grafana/admin/credentials": {
-          "key": "service/archiva/admin/credentials",
-          "data": {
-            "user_name": "admin",
-            "password": "admin"
-          }
+          "user_name": "admin",
+          "password": "admin"
         }
+      }
+    },
+    {
+      "grafana_auth_key": {
+        "admin": {
+          "Role": "Admin"
+        }
+      }
+    },
+    {
+      "vault_secret": {
+        "grafana/edit": {
+          "token": "${db['grafana_auth_key-admin'].key}"
+        }
+      }
+    },
+    {
+      "collaboration_channel" : {
+        "Monitoring_Analytics": {}
       }
     }
   ]

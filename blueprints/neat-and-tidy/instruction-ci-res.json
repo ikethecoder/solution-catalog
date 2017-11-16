@@ -730,6 +730,13 @@
           "interactive": true
         }
       }
+    },
+
+    {
+      "collaboration_channel" : {
+        "Continuous-Delivery": {}
+      }
     }
+
   ]
 }

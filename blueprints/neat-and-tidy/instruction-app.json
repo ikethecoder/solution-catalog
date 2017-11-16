@@ -1,0 +1,323 @@
+[
+  {
+    "state": "PENDING",
+    "label": "buildingblock_install/docker",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/install/container/docker",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "buildingblock_install/ruby",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/install/workarounds/ruby",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "buildingblock_install/ruby-gems",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/install/workarounds/ruby-gems",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "buildingblock_install/git-core",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/install/sourcecontrol/git-core",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/cloud_profile",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/workarounds/cloud-profile-r2",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/canzea",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/workarounds/canzea",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/selinux",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/workarounds/selinux",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/java",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/virtualmachine/java",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/filebeat",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/monitoring/filebeat",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/metricbeat",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/monitoring/metricbeat",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/auditd",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/audit/auditd",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/golang",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/workarounds/golang",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/gocd-agent",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/deploy/gocd-agent",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "environment/Integration",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/flows_gateway/59ffea0dd4c604f7b033a74c/bulk",
+    "context": {
+      "resources": [
+        {
+          "pipeline_environment": {
+            "Integration": {
+
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "enable-agent/es5ab5-intg-app-01",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/legacy_activity/59ffea0dd4c604f7b033a74c/flow:gateway:enable-agent",
+    "context": {
+      "agent": "es5ab5-intg-app-01"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "link-agent-to-environment/es5ab5-intg-app-01",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/legacy_activity/59ffea0dd4c604f7b033a74c/flow:gateway:link-agent-to-environment",
+    "context": {
+      "agent": "es5ab5-intg-app-01",
+      "environment": "Integration"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/maven",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/build/maven",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/mongodb",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/documentdatabase/mongodb",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/nginx",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/loadbalancer/nginx",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/rabbitmq",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/messaging/rabbitmq",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/fabio",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/router/fabio",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  },
+  {
+    "state": "PENDING",
+    "label": "install/sudoers",
+    "owner": "59ffea0dd4c604f7b033a74c",
+    "activityLocation": "/api/plugins/canzea_cli/59ffea0dd4c604f7b033a74c/remote_install/workarounds/sudoers",
+    "context": {
+      "droplet": "es5ab5-intg-app-01",
+      "activity": [
+        "install",
+        "configure",
+        "status"
+      ],
+      "account_id": "597f6d8ad4c6ef50ff9248cf"
+    }
+  }
+]

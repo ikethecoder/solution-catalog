@@ -206,6 +206,13 @@
           "environment" : "Integration"
         }
       }
+    },
+
+    {
+      "collaboration_channel" : {
+        "Integration": {}
+      }
     }
+
   ]
 }
