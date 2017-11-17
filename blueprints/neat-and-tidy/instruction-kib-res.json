@@ -141,7 +141,7 @@
           "privateKey": "master_key",
           "proxy_ssl_virtual_host": "default",
           "location": "/kibana/",
-          "passthrough": "http://$!{ecosystem.lookupInstanceByName(instanceId).privateIp}:5601/"
+          "passthrough": "http://${ecosystem.lookupInstanceByName('mon-kib-01').privateIp}:5601/"
         }
       }
     }
