@@ -39,7 +39,6 @@ template = %{
 }
 
 if is_plus
-    definition = t.process dbFile, properties
     properties['definition'] = JSON.generate(definition)
     output = t.processString template, properties
     puts output
