@@ -39,7 +39,7 @@ template = %{
 }
 
 if is_plus
-    output = t.processString  JSON.generate(definition), properties
+    output = t.processString  JSON.pretty_generate(definition), properties
     properties['definition'] = output
     output = t.processString template, properties
 
