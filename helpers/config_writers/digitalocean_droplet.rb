@@ -55,6 +55,20 @@ template = %{
         }
   {{/tls_setup}}
 
+  {{#gateway_pub}}
+        provisioner "file" {
+            source = "./.es/root_id_rsa.pub"
+            destination = "/root/.ssh/gateway_id_rsa.pub"
+        }
+
+        provisioner "remote-exec" {
+            inline = [
+                "cat /root/.ssh/gateway_id_rsa.pub >> /root/.ssh/authorized_keys"
+            ]
+        }
+
+  {{/gateway_pub}}
+
   {{#_nameserver}}
         provisioner "remote-exec" {
             inline = [
