@@ -24,7 +24,7 @@ dashboardTemplate = properties['template']
 dbFile = "#{ENV['CATALOG_LOCATION']}/blueprints/#{blueprint}/dashboards/#{dashboardTemplate}.json"
 
 definition = JSON.parse(File.read(dbFile))
-definition = definitions['dashboard']
+definition = definition['dashboard']
 definition.delete('id')
 definition['description'] = "{{description}}"
 definition['title'] = "{{title}}"
