@@ -43,13 +43,6 @@ consoles:
 
   -
     segment: app
-    name: consul
-    url: http://${domainName}:81/ui
-    secure: https://${secureDomain}/ui
-    remarks: default creds admin,admin1admin
-
-  -
-    segment: app
     name: fabio
     url: http://${domainName}:9998
     remarks: none
@@ -155,6 +148,13 @@ services:
     name: mongodb
     description: MongoDB Database
     url: http://${domainName}:5432
+    nodes: build/e/*
+
+  -
+    segment: app
+    name: rabbitmq
+    description: RabbitMQ Messaging
+    url: http://${domainName}:5672
     nodes: build/e/*
 
   -

@@ -183,6 +183,13 @@ buildingBlocks:
     resources: [  ]
     type: console
 
+  rabbitmq:
+    description: RabbitMQ is the most widely deployed open source message broker
+    logo: https://avatars0.githubusercontent.com/u/96669?s=200&v=4
+    roles: [ "messaging" ]
+    resources: [ "topics", "channels" ]
+    type: console
+
   logstash:
     description: Logstash
     roles: [ "data_aggregator" ]
