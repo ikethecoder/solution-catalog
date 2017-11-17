@@ -222,6 +222,17 @@
           "privateKey" : "master_key"
         }
       }
+    },
+
+    {
+      "monitoring_dashboard": {
+        "${environmentLabel}-environment": {
+          "blueprint": "neat-and-tidy",
+          "template": "monitoring_dashboard-integration-environment",
+          "title": "${environmentLabel} Environment",
+          "description": "System Metrics for the ${environmentLabel}"
+        }
+      }
     }
 
   ]
