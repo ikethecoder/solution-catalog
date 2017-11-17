@@ -239,7 +239,7 @@
       "vault_secret": {
         "shell/commands/${instanceId}-bash": {
           "user": "root",
-          "host": "${dollar}{ecosystem.lookupInstanceByName(${instanceId}).privateIp}",
+          "host": "${dollar}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
           "auth": "publickey",
           "identity": "/home/pm2user/ssl/keys/root_id_rsa",
           "command": "bash",
