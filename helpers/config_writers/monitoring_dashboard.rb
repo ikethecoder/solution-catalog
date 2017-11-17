@@ -39,8 +39,10 @@ template = %{
 }
 
 if is_plus
-    properties['definition'] = JSON.generate(definition)
+    output = t.processString  JSON.generate(definition), properties
+    properties['definition'] = output
     output = t.processString template, properties
+
     puts output
     pc.write "resources/monitoring_dashboard/#{params.keys[0]}.es", output
 else
