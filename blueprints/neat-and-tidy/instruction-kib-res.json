@@ -144,7 +144,21 @@
           "passthrough": "http://${ecosystem.lookupInstanceByName('mon-kib-01').privateIp}:5601/"
         }
       }
+    },
+
+    {
+      "vault_secret": {
+        "shell/commands/${instanceId}-bash": {
+          "user": "root",
+          "host": "${dollar}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
+          "auth": "publickey",
+          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
+          "command": "bash",
+          "interactive": true
+        }
+      }
     }
+
 
   ]
 }

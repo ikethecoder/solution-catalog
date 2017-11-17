@@ -214,6 +214,57 @@
       "collaboration_channel" : {
         "Monitoring_Analytics": {}
       }
+    },
+
+    {
+      "monitoring_datasource": {
+        "metricbeat": {
+          "blueprint": "neat-and-tidy",
+          "template": "monitoring_datasource-elasticsearch",
+          "database": "[metricbeat-]YYYY.MM.DD"
+        }
+      }
+    },
+    {
+      "monitoring_datasource": {
+        "filebeat": {
+          "blueprint": "neat-and-tidy",
+          "template": "monitoring_datasource-elasticsearch",
+          "database": "[filebeat-]YYYY.MM.DD"
+        }
+      }
+    },
+    {
+      "monitoring_datasource": {
+        "elasticsearch": {
+          "blueprint": "neat-and-tidy",
+          "template": "monitoring_datasource-elasticsearch",
+          "database": "[metricbeat-]YYYY.MM.DD"
+        }
+      }
+    },
+    {
+      "monitoring_datasource": {
+        "logstash": {
+          "blueprint": "neat-and-tidy",
+          "template": "monitoring_datasource-elasticsearch",
+          "database": "[logstash-]YYYY.MM.DD"
+        }
+      }
+    },
+
+    {
+      "vault_secret": {
+        "shell/commands/${instanceId}-bash": {
+          "user": "root",
+          "host": "${dollar}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
+          "auth": "publickey",
+          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
+          "command": "bash",
+          "interactive": true
+        }
+      }
     }
+
   ]
 }

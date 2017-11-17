@@ -721,9 +721,9 @@
 
     {
       "vault_secret": {
-        "shell/commands/bash": {
+        "shell/commands/${instanceId}-bash": {
           "user": "root",
-          "host": "${es.id}.canzea.cc",
+          "host": "${dollar}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
           "auth": "publickey",
           "identity": "/home/pm2user/ssl/keys/root_id_rsa",
           "command": "bash",
