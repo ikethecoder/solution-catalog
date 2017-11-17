@@ -218,7 +218,7 @@
       "boot:user_config": {
         "go": {
           "wire" : "users:configure-go",
-          "instance" : "live-app-01",
+          "instance" : "${instanceId}",
           "privateKey" : "master_key"
         }
       }
