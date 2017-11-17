@@ -18,27 +18,25 @@ properties = params[resourceId]
 properties['rid'] = resourceId;
 
 blueprint = properties['blueprint']
+
 dashboardTmplate = properties['template']
 
 template = %{
-
  {
       "monitoring_dashboard": {
           "{{rid}}": {
-                {{definition}}
+                {{{definition}}}
           }
       }
   }
-
 }
 
-properties['definition'] = File.read("#{ENV['CATALOG_LOCATION']}/blueprints/#{blueprint}/dashboards/#{dashboardTmplate}")
-
 if is_plus
+    definition = t.process "#{ENV['CATALOG_LOCATION']}/blueprints/#{blueprint}/dashboards/#{dashboardTmplate}.json", properties
+    properties['definition'] = definition
     output = t.processString template, properties
-
     puts output
-    pc.write "config/monitoring_dashboard/#{params.keys[0]}.es", output
+    pc.write "resources/monitoring_dashboard/#{params.keys[0]}.es", output
 else
     pc.backupAndRemove "config/monitoring_dashboard/#{params.keys[0]}.es"
 end
