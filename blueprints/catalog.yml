@@ -44,7 +44,7 @@ buildingBlocks:
 
   consul:
     description: Service Discovery and Configuration Made Easy
-    logo: /styles/img/partners/consul.svg
+    logo: styles/img/partners/consul.svg
     roles: [ "service_discovery" ]
     resources: [ "services", "nodes", "keyvalues" ]
     authentication: token
@@ -66,7 +66,7 @@ buildingBlocks:
 
   archiva:
     description: Archiva Package Repository
-    logo: /styles/img/partners/archiva.png
+    logo: styles/img/partners/archiva.png
     roles: [ "artifact_repository" ]
     resources: [ "artifacts", "repositories" ]
     authentication: token
