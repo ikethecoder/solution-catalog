@@ -16,3 +16,15 @@ cp $CATALOG_LOCATION/helpers/users/config/go-config.json /var/go/.ecosystem-cata
 cp $CATALOG_LOCATION/helpers/users/config/go-env.json /var/go/.ecosystem-catalog/env.json
 
 chown -R go:go /var/go/.ecosystem-catalog
+
+
+mkdir -p /opt/applications/working
+
+adduser -m appuser
+
+groupadd appgrp
+
+# Have go:go as the primary user
+chown -R go:appgrp /opt/applications
+
+chown -R appuser:appgrp /opt/applications/working
