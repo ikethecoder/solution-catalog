@@ -19,7 +19,15 @@ properties['rid'] = resourceId;
 
 blueprint = properties['blueprint']
 
-dashboardTmplate = properties['template']
+dashboardTemplate = properties['template']
+
+dbFile = "#{ENV['CATALOG_LOCATION']}/blueprints/#{blueprint}/dashboards/#{dashboardTemplate}.json"
+
+definition = JSON.parse(File.read(dbFile))
+definition = definitions['dashboard']
+definition.delete('id')
+definition['description'] = "{{description}}"
+definition['title'] = "{{title}}"
 
 template = %{
  {
@@ -31,8 +39,8 @@ template = %{
 }
 
 if is_plus
-    definition = t.process "#{ENV['CATALOG_LOCATION']}/blueprints/#{blueprint}/dashboards/#{dashboardTmplate}.json", properties
-    properties['definition'] = definition
+    definition = t.process dbFile, properties
+    properties['definition'] = JSON.generate(definition)
     output = t.processString template, properties
     puts output
     pc.write "resources/monitoring_dashboard/#{params.keys[0]}.es", output
