@@ -24,9 +24,8 @@ dashboardTmplate = properties['template']
 template = %{
  {
       "monitoring_dashboard": {
-          "{{rid}}": {
+          "{{rid}}":
                 {{{definition}}}
-          }
       }
   }
 }
