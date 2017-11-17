@@ -6,24 +6,32 @@
     "canStar" : true,
     "slug" : "integration-environment",
     "expires" : "0001-01-01T00:00:00Z",
-    "created" : "2017-11-17T02:21:45Z",
-    "updated" : "2017-11-17T02:21:45Z",
-    "updatedBy" : "Anonymous",
+    "created" : "2017-11-17T03:00:30Z",
+    "updated" : "2017-11-17T03:16:04Z",
+    "updatedBy" : "admin",
     "createdBy" : "Anonymous",
-    "version" : 1
+    "version" : 2
   },
   "dashboard" : {
     "annotations" : {
-      "list" : [ ]
+      "list" : [ {
+        "builtIn" : 1,
+        "datasource" : "-- Grafana --",
+        "enable" : true,
+        "hide" : true,
+        "iconColor" : "rgba(0, 211, 255, 1)",
+        "name" : "Annotations & Alerts",
+        "type" : "dashboard"
+      } ]
     },
     "description" : "System Metrics for the Integration environment",
     "editable" : true,
     "gnetId" : 2030,
     "graphTooltip" : 0,
     "hideControls" : false,
-    "id" : 3,
+    "id" : 5,
     "links" : [ ],
-    "refresh" : "5s",
+    "refresh" : "10s",
     "rows" : [ {
       "collapse" : false,
       "height" : 201,
@@ -78,7 +86,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -92,7 +100,7 @@
             "settings" : { },
             "type" : "max"
           } ],
-          "query" : "metricset.module:system",
+          "query" : "metricset.module:system AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -160,7 +168,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -174,7 +182,7 @@
             "settings" : { },
             "type" : "max"
           } ],
-          "query" : "metricset.module:system AND metricset.name:cpu",
+          "query" : "metricset.module:system AND metricset.name:cpu AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -242,7 +250,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -256,7 +264,7 @@
             "settings" : { },
             "type" : "avg"
           } ],
-          "query" : "metricset.module:system AND metricset.name:cpu",
+          "query" : "metricset.module:system AND metricset.name:cpu AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -320,7 +328,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -334,7 +342,7 @@
             "settings" : { },
             "type" : "avg"
           } ],
-          "query" : "metricset.module:system AND metricset.name:memory",
+          "query" : "metricset.module:system AND metricset.name:memory AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -398,7 +406,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -412,7 +420,7 @@
             "settings" : { },
             "type" : "avg"
           } ],
-          "query" : "metricset.module:system AND metricset.name:fsstat",
+          "query" : "metricset.module:system AND metricset.name:fsstat AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -477,7 +485,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -487,16 +495,16 @@
           "metrics" : [ {
             "field" : "system.cpu.idle.pct",
             "id" : "1",
-            "inlineScript" : "1-_value",
+            "inlineScript" : "_value/100",
             "meta" : { },
             "settings" : {
               "script" : {
-                "inline" : "1-_value"
+                "inline" : "_value/100"
               }
             },
             "type" : "max"
           } ],
-          "query" : "metricset.module:system AND metricset.name:cpu",
+          "query" : "metricset.module:system AND metricset.name:cpu AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -571,7 +579,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -581,16 +589,16 @@
           "metrics" : [ {
             "field" : "system.cpu.idle.pct",
             "id" : "1",
-            "inlineScript" : "1-_value",
+            "inlineScript" : "_value/100",
             "meta" : { },
             "settings" : {
               "script" : {
-                "inline" : "1-_value"
+                "inline" : "_value/100"
               }
             },
             "type" : "max"
           } ],
-          "query" : "metricset.module:system AND metricset.name:cpu",
+          "query" : "metricset.module:system AND metricset.name:cpu AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -642,7 +650,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -656,7 +664,7 @@
             "settings" : { },
             "type" : "avg"
           } ],
-          "query" : "metricset.module:system AND metricset.name:cpu",
+          "query" : "metricset.module:system AND metricset.name:cpu AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         }, {
@@ -665,7 +673,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -679,7 +687,7 @@
             "settings" : { },
             "type" : "avg"
           } ],
-          "query" : "metricset.module:system AND metricset.name:cpu",
+          "query" : "metricset.module:system AND metricset.name:cpu AND beat.hostname:$hostname",
           "refId" : "C",
           "timeField" : "@timestamp"
         }, {
@@ -688,7 +696,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -702,7 +710,7 @@
             "settings" : { },
             "type" : "avg"
           } ],
-          "query" : "metricset.module:system AND metricset.name:cpu",
+          "query" : "metricset.module:system AND metricset.name:cpu AND beat.hostname:$hostname",
           "refId" : "D",
           "timeField" : "@timestamp"
         } ],
@@ -787,7 +795,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -797,16 +805,16 @@
           "metrics" : [ {
             "field" : "system.cpu.idle.pct",
             "id" : "3",
-            "inlineScript" : "Math.round((1-_value)*10000)/10000.0",
+            "inlineScript" : "Math.round((_value/100)*10000)/10000.0",
             "meta" : { },
             "settings" : {
               "script" : {
-                "inline" : "Math.round((1-_value)*10000)/10000.0"
+                "inline" : "Math.round((_value/100)*10000)/10000.0"
               }
             },
             "type" : "avg"
           } ],
-          "query" : "metricset.module:system AND metricset.name:cpu",
+          "query" : "metricset.module:system AND metricset.name:cpu AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         }, {
@@ -815,7 +823,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -834,7 +842,7 @@
             },
             "type" : "avg"
           } ],
-          "query" : "metricset.module:system AND metricset.name:memory",
+          "query" : "metricset.module:system AND metricset.name:memory AND beat.hostname:$hostname",
           "refId" : "B",
           "timeField" : "@timestamp"
         } ],
@@ -920,7 +928,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -930,11 +938,16 @@
           "metrics" : [ {
             "field" : "system.memory.used.pct",
             "id" : "1",
+            "inlineScript" : "_value",
             "meta" : { },
-            "settings" : { },
+            "settings" : {
+              "script" : {
+                "inline" : "_value"
+              }
+            },
             "type" : "max"
           } ],
-          "query" : "metricset.module:system AND metricset.name:memory",
+          "query" : "metricset.module:system AND metricset.name:memory AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -1002,7 +1015,7 @@
             "field" : "system.core.id",
             "id" : "3",
             "settings" : {
-              "min_doc_count" : 0,
+              "min_doc_count" : 1,
               "order" : "asc",
               "orderBy" : "_term",
               "size" : "10"
@@ -1012,7 +1025,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -1026,7 +1039,7 @@
             "settings" : { },
             "type" : "avg"
           } ],
-          "query" : "metricset.module:system AND metricset.name:core",
+          "query" : "metricset.module:system AND metricset.name:core AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -1113,7 +1126,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -1127,7 +1140,7 @@
             "settings" : { },
             "type" : "max"
           } ],
-          "query" : "metricset.module:system AND metricset.name:filesystem",
+          "query" : "metricset.module:system AND metricset.name:filesystem AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         } ],
@@ -1183,7 +1196,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -1205,7 +1218,7 @@
             "settings" : { },
             "type" : "derivative"
           } ],
-          "query" : "metricset.module:system AND metricset.name:network",
+          "query" : "metricset.module:system AND metricset.name:network AND beat.hostname:$hostname",
           "refId" : "A",
           "timeField" : "@timestamp"
         }, {
@@ -1214,7 +1227,7 @@
             "field" : "@timestamp",
             "id" : "2",
             "settings" : {
-              "interval" : "auto",
+              "interval" : "10s",
               "min_doc_count" : 0,
               "trimEdges" : 0
             },
@@ -1237,7 +1250,7 @@
             "settings" : { },
             "type" : "derivative"
           } ],
-          "query" : "metricset.module:system AND metricset.name:network",
+          "query" : "metricset.module:system AND metricset.name:network AND beat.hostname:$hostname",
           "refId" : "B",
           "timeField" : "@timestamp"
         } ],
@@ -1285,7 +1298,30 @@
     "style" : "dark",
     "tags" : [ ],
     "templating" : {
-      "list" : [ ]
+      "list" : [ {
+        "allValue" : null,
+        "current" : {
+          "tags" : [ ],
+          "text" : "es0390-cd-builder-01",
+          "value" : "es0390-cd-builder-01"
+        },
+        "datasource" : "Elasticsearch",
+        "hide" : 0,
+        "includeAll" : false,
+        "label" : null,
+        "multi" : false,
+        "name" : "hostname",
+        "options" : [ ],
+        "query" : "{\"find\": \"terms\", \"field\": \"beat.hostname\", \"size\": 1000}",
+        "refresh" : 1,
+        "regex" : "",
+        "sort" : 1,
+        "tagValuesQuery" : "",
+        "tags" : [ ],
+        "tagsQuery" : "",
+        "type" : "query",
+        "useTags" : false
+      } ]
     },
     "time" : {
       "from" : "now-5m",
@@ -1297,6 +1333,6 @@
     },
     "timezone" : "browser",
     "title" : "Integration Environment",
-    "version" : 1
+    "version" : 2
   }
 }
