@@ -212,6 +212,16 @@
       "collaboration_channel" : {
         "${environmentLabel}": {}
       }
+    },
+
+    {
+      "boot:user_config": {
+        "go": {
+          "wire" : "users:configure-go",
+          "instance" : "live-app-01",
+          "privateKey" : "master_key"
+        }
+      }
     }
 
   ]
