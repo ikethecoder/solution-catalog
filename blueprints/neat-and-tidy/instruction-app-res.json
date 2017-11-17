@@ -233,6 +233,19 @@
           "description": "System Metrics for the ${environmentLabel}"
         }
       }
+    },
+
+    {
+      "vault_secret": {
+        "shell/commands/${instanceId}-bash": {
+          "user": "root",
+          "host": "${es.id}.canzea.cc",
+          "auth": "publickey",
+          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
+          "command": "bash",
+          "interactive": true
+        }
+      }
     }
 
   ]
