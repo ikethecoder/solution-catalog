@@ -183,7 +183,7 @@
           "privateKey": "master_key",
           "proxy_ssl_virtual_host": "default",
           "location": "/grafana/",
-          "passthrough": "http://$!{ecosystem.lookupInstanceByName('mon-mon-01').privateIp}:3000/"
+          "passthrough": "http://${ecosystem.lookupInstanceByName('mon-mon-01').privateIp}:3000/"
         }
       }
     },
