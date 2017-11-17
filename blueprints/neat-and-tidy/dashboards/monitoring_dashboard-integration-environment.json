@@ -40,7 +40,7 @@
         "colorBackground" : false,
         "colorValue" : true,
         "colors" : [ "rgba(50, 172, 45, 0.97)", "rgba(237, 129, 40, 0.89)", "rgba(245, 54, 54, 0.9)" ],
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "decimals" : 1,
         "format" : "percentunit",
         "gauge" : {
@@ -119,7 +119,7 @@
         "colorBackground" : false,
         "colorValue" : true,
         "colors" : [ "rgba(245, 54, 54, 0.9)", "rgba(237, 129, 40, 0.89)", "rgba(50, 172, 45, 0.97)" ],
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "format" : "none",
         "gauge" : {
           "maxValue" : 100,
@@ -205,7 +205,7 @@
         "colorBackground" : false,
         "colorValue" : false,
         "colors" : [ "rgba(245, 54, 54, 0.9)", "rgba(237, 129, 40, 0.89)", "rgba(50, 172, 45, 0.97)" ],
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "format" : "none",
         "gauge" : {
           "maxValue" : 100,
@@ -283,7 +283,7 @@
         "colorBackground" : false,
         "colorValue" : false,
         "colors" : [ "rgba(245, 54, 54, 0.9)", "rgba(237, 129, 40, 0.89)", "rgba(50, 172, 45, 0.97)" ],
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "format" : "decbytes",
         "gauge" : {
           "maxValue" : 100,
@@ -361,7 +361,7 @@
         "colorBackground" : false,
         "colorValue" : false,
         "colors" : [ "rgba(245, 54, 54, 0.9)", "rgba(237, 129, 40, 0.89)", "rgba(50, 172, 45, 0.97)" ],
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "format" : "decbytes",
         "gauge" : {
           "maxValue" : 100,
@@ -439,7 +439,7 @@
         "colorBackground" : false,
         "colorValue" : true,
         "colors" : [ "rgba(50, 172, 45, 0.97)", "rgba(237, 129, 40, 0.89)", "rgba(245, 54, 54, 0.9)" ],
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "decimals" : 2,
         "format" : "percentunit",
         "gauge" : {
@@ -533,7 +533,7 @@
         "colorBackground" : false,
         "colorValue" : true,
         "colors" : [ "rgba(50, 172, 45, 0.97)", "rgba(237, 129, 40, 0.89)", "rgba(245, 54, 54, 0.9)" ],
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "decimals" : 2,
         "format" : "percentunit",
         "gauge" : {
@@ -617,7 +617,7 @@
         "bars" : false,
         "dashLength" : 10,
         "dashes" : false,
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "decimals" : 2,
         "fill" : 4,
         "id" : 6,
@@ -754,7 +754,7 @@
         "bars" : false,
         "dashLength" : 10,
         "dashes" : false,
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "decimals" : 2,
         "fill" : 3,
         "id" : 11,
@@ -883,7 +883,7 @@
         "colorBackground" : false,
         "colorValue" : true,
         "colors" : [ "rgba(50, 172, 45, 0.97)", "rgba(237, 129, 40, 0.89)", "rgba(245, 54, 54, 0.9)" ],
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "format" : "percentunit",
         "gauge" : {
           "maxValue" : 1,
@@ -981,7 +981,7 @@
         "bars" : true,
         "dashLength" : 10,
         "dashes" : false,
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "fill" : 1,
         "id" : 12,
         "interval" : ">30s",
@@ -1080,7 +1080,7 @@
         "colorBackground" : false,
         "colorValue" : true,
         "colors" : [ "rgba(50, 172, 45, 0.97)", "rgba(237, 129, 40, 0.89)", "rgba(245, 54, 54, 0.9)" ],
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "decimals" : 1,
         "format" : "percentunit",
         "gauge" : {
@@ -1161,7 +1161,7 @@
         "bars" : false,
         "dashLength" : 10,
         "dashes" : false,
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "fill" : 3,
         "id" : 9,
         "legend" : {
@@ -1305,7 +1305,7 @@
           "text" : "es0390-cd-builder-01",
           "value" : "es0390-cd-builder-01"
         },
-        "datasource" : "Elasticsearch",
+        "datasource" : "elasticsearch",
         "hide" : 0,
         "includeAll" : false,
         "label" : null,
