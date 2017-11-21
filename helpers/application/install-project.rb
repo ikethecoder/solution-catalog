@@ -71,6 +71,7 @@ class InstallProject
 
         properties = JavaProperties.load(pomPropertiesFile)
 
+        branch = attributes['branch']
         projectName = attributes['name']
 
         groupId = properties[:groupId]
@@ -79,20 +80,20 @@ class InstallProject
 
         groupIdPath = groupId.tr(".","/")
 
-        url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{version}.jar"
+        url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{branch}.jar"
 
         puts url
 
         resp = sess.get(url)
 
-        File.write("/opt/applications/#{projectName}-#{version}.jar", resp.body)
+        File.write("/opt/applications/#{projectName}-#{branch}.jar", resp.body)
 
-        # puts system "chown appuser:appuser /opt/applications/#{artifactId}-#{version}.jar"
+        # puts system "chown appuser:appuser /opt/applications/#{artifactId}-#{branch}.jar"
 
         s = Template.new
 
         attrs = {
-            "jar" => "#{projectName}-#{version}.jar",
+            "jar" => "#{projectName}-#{branch}.jar",
             "service" => "#{projectName}",
             "base" => "/opt/applications",
             "port" => attributes['port'],
@@ -100,8 +101,8 @@ class InstallProject
             "custom" => attributes['custom']
         }
 
-        # File.write("/etc/systemd/system/multi-user.target.wants/#{projectName}-#{artifactId}-#{version}.service", s.render)
-        File.write("/opt/applications/#{projectName}-#{version}.service", s.process("#{ENV['CATALOG_LOCATION']}/roles/application/conf/service.template", attrs))
+        # File.write("/etc/systemd/system/multi-user.target.wants/#{projectName}-#{artifactId}-#{branch}.service", s.render)
+        File.write("/opt/applications/#{projectName}-#{branch}.service", s.process("#{ENV['CATALOG_LOCATION']}/roles/application/conf/service.template", attrs))
 
     end
 end
