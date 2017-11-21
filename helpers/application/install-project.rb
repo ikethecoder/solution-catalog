@@ -92,8 +92,8 @@ class InstallProject
         s = Template.new
 
         attrs = {
-            "jar" => "#{projectName}-#{artifactId}-#{version}.jar",
-            "service" => "#{projectName}-#{artifactId}",
+            "jar" => "#{projectName}-#{version}.jar",
+            "service" => "#{projectName}",
             "base" => "/opt/applications",
             "port" => attributes['port'],
             "env" => attributes['env'],
