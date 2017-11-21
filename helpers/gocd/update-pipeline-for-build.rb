@@ -44,7 +44,7 @@ if (type == "java-maven")
     job = JSON.parse(t.process jobTemplate, attributes)
     stage['jobs'].push(job)
 
-    taskTemplate1 = "helpers/gocd/pipelines/fragment/task-mvn-install.json"
+    taskTemplate1 = "helpers/gocd/pipelines/fragment/task-docker-mvn-install.json"
     taskTemplate2 = "helpers/gocd/pipelines/fragment/task-mvn-deploy.json"
     artifactTemplate = "helpers/gocd/pipelines/fragment/artifact.json"
 
