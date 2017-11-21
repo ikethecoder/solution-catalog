@@ -8,6 +8,7 @@ qualifier = parameters['qualifier']
 
 attributes = parameters
 
+branch = attributes['branch']
 project = attributes['name']
 version = attributes['version']
 
@@ -55,7 +56,7 @@ params = params.slice(1,params.length - 2)
 task = JSON.parse(t.process taskTemplate2, {"workingdir" => "", "docker_image" => "canzea/canzea_cli", "project" => project, "version" => version, "solution" => "application", "action" => "install-app", "parameters" => params })
 job['tasks'].push (task)
 
-task = JSON.parse(t.process taskTemplate3, {"workingdir" => "", "project" => "#{project}", "service" => "/opt/applications/#{project}-#{version}.service" })
+task = JSON.parse(t.process taskTemplate3, {"workingdir" => "", "project" => "#{project}", "service" => "/opt/applications/#{project}-#{branch}.service" })
 job['tasks'].push (task)
 
 # params = { "channel" => "integration", "message" => "#{project} deployed" }
