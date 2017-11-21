@@ -25,7 +25,8 @@ attributes['project'] = "#{project}"
 attributes['group'] = "#{project}"
 attributes['pipeline'] = "#{pipelinePrefix}"
 
-attributes['dollar'] = '$';
+attributes['build_pipeline_label'] = "${#{attributes['build_pipeline']}}"
+
 
 t = Template.new
 
