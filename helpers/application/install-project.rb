@@ -85,7 +85,7 @@ class InstallProject
 
         resp = sess.get(url)
 
-        File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.jar", resp.body)
+        File.write("/opt/applications/#{projectName}-#{version}.jar", resp.body)
 
         # puts system "chown appuser:appuser /opt/applications/#{artifactId}-#{version}.jar"
 
@@ -101,12 +101,12 @@ class InstallProject
         }
 
         # File.write("/etc/systemd/system/multi-user.target.wants/#{projectName}-#{artifactId}-#{version}.service", s.render)
-        File.write("/opt/applications/#{projectName}-#{artifactId}-#{version}.service", s.process("#{ENV['CATALOG_LOCATION']}/roles/application/conf/service.template", attrs))
+        File.write("/opt/applications/#{projectName}-#{version}.service", s.process("#{ENV['CATALOG_LOCATION']}/roles/application/conf/service.template", attrs))
 
-        result = system "sudo /opt/canzea-utils/register_service.sh #{projectName}-#{artifactId} /opt/applications/#{projectName}-#{artifactId}-#{version}.service"
-        if (result == false)
-            raise("Failed registering service")
-        end
+        //result = system "sudo /opt/canzea-utils/register_service.sh #{projectName}-#{artifactId} /opt/applications/#{projectName}-#{artifactId}-#{version}.service"
+        //if (result == false)
+        //    raise("Failed registering service")
+        //end
     end
 end
 

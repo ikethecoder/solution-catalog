@@ -1,0 +1,28 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "on_cancel": null,
+    "command": "docker-run",
+    "arguments": [
+      "-v",
+      "/opt/applications:/opt/applications",
+      "-v",
+      "/var/go/ssl:/var/go/ssl",
+      "-v",
+      "/var/go/.ecosystem-catalog:/var/go/.ecosystem-catalog",
+      "--env",
+      "JAVA_COMMAND=/etc/alternatives/java",
+      "{{docker_image}}",
+      "canzea",
+      "--reset",
+      "--lifecycle=wire",
+      "--solution={{solution}}",
+      "--action={{action}}",
+      "--args={{{parameters}}}"
+    ],
+    "working_directory": "{{workingdir}}"
+  }
+}

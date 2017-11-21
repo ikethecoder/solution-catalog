@@ -29,7 +29,8 @@ t = Template.new
 stageTemplate = "helpers/gocd/pipelines/fragment/stage.json"
 jobTemplate = "helpers/gocd/pipelines/fragment/job.json"
 taskTemplate1 = "helpers/gocd/pipelines/fragment/task-fetch.json"
-taskTemplate2 = "helpers/gocd/pipelines/fragment/task-canzea.json"
+taskTemplate2 = "helpers/gocd/pipelines/fragment/task-docker-canzea.json"
+taskTemplate3 = "helpers/gocd/pipelines/fragment/task-sudo-register-service.json"
 
 root = JSON.parse(t.process "helpers/gocd/pipelines/fragment/pipeline.json", attributes)
 
@@ -51,7 +52,10 @@ params = { "port" => attributes['port'], "env" => attributes['env'], "name" => a
 params = params.to_json.to_json
 params = params.slice(1,params.length - 2)
 
-task = JSON.parse(t.process taskTemplate2, {"workingdir" => "", "project" => project, "version" => version, "solution" => "application", "action" => "install-app", "parameters" => params })
+task = JSON.parse(t.process taskTemplate2, {"workingdir" => "", "docker_image" => "canzea/canzea_cli", "project" => project, "version" => version, "solution" => "application", "action" => "install-app", "parameters" => params })
+job['tasks'].push (task)
+
+task = JSON.parse(t.process taskTemplate3, {"workingdir" => "", "project" => "#{project}", "service" => "/opt/applications/#{project}-#{version}.service" })
 job['tasks'].push (task)
 
 # params = { "channel" => "integration", "message" => "#{project} deployed" }
