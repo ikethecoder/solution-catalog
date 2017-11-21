@@ -1,7 +1,7 @@
 {
   "group": "{{group}}",
   "pipeline": {
-    "label_template": "0.${COUNT}-${ {{build_pipeline}} }",
+    "label_template": "0.${COUNT}-${{{build_pipeline}}}",
     "enable_pipeline_locking": true,
     "name": "{{pipeline}}",
     "template": null,
