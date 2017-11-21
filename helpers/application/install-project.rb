@@ -80,7 +80,7 @@ class InstallProject
 
         groupIdPath = groupId.tr(".","/")
 
-        url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{branch}.jar"
+        url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{version}.jar"
 
         puts url
 
