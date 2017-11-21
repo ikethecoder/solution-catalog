@@ -33,7 +33,7 @@ taskTemplate1 = "helpers/gocd/pipelines/fragment/task-fetch.json"
 taskTemplate2 = "helpers/gocd/pipelines/fragment/task-docker-canzea.json"
 taskTemplate3 = "helpers/gocd/pipelines/fragment/task-sudo-register-service.json"
 
-root = JSON.parse(t.process "helpers/gocd/pipelines/fragment/pipeline.json", attributes)
+root = JSON.parse(t.process "helpers/gocd/pipelines/fragment/pipeline-deploy.json", attributes)
 
 material = JSON.parse(t.process "helpers/gocd/pipelines/fragment/material-pipeline.json", attributes)
 root['pipeline']['materials'].push (material)
