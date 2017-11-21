@@ -107,7 +107,7 @@ if (type == "js-npm")
     stage['jobs'].push(job)
 
     params = { }
-    params = JSON.generate(params.to_json)
+    params = params.to_json.to_json
     params = params.slice(1,params.length - 2)
 
     task = JSON.parse(t.process taskTemplateCanzea, {"workingdir" => attributes['project'], "project" => attributes['project'], "solution" => "gocd", "action" => "prep-build", "parameters" => params })
