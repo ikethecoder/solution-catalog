@@ -25,6 +25,8 @@ attributes['project'] = "#{project}"
 attributes['group'] = "#{project}"
 attributes['pipeline'] = "#{pipelinePrefix}"
 
+attributes['dollar'] = '$;
+
 t = Template.new
 
 stageTemplate = "helpers/gocd/pipelines/fragment/stage.json"
