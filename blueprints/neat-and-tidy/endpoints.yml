@@ -1,6 +1,11 @@
 
 consoles:
   -
+    segment: app
+    name: ide
+    secure: https://${secureDomain}/ide/
+
+  -
     segment: ci
     name: digitalocean
     url: https://cloud.digitalocean.com/droplets
