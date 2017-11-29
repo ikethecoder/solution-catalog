@@ -124,6 +124,16 @@
     },
     {
       "building_block": {
+        "networks-nc": {
+          "role": "tools",
+          "solution": "nc",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
         "mongodb": {
           "role": "documentdatabase",
           "solution": "mongodb",
