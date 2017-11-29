@@ -1,0 +1,19 @@
+{
+  "resources": [
+      {
+        "service_discovery_service": {
+          "${instance}-zookeeper": {
+            "Name": "zookeeper",
+            "Address": "10.136.63.192",
+            "Port": 2181,
+            "Tags" : [ "${instance}", "${environment}" ],
+            "Check": {
+               "http": "http://10.136.63.192:2181/",
+               "interval": "10s",
+               "timeout": "1s"
+            }
+          }
+        }
+      }
+    ]
+}
