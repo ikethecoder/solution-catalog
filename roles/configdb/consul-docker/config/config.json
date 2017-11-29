@@ -10,6 +10,7 @@
   "key_file": "/etc/consul.d/ssl/consul.key",
   "verify_incoming": true,
   "verify_outgoing": true,
-  "disable_remote_exec": true
+  "disable_remote_exec": true,
+  "enable_script_checks": true
 }
 
