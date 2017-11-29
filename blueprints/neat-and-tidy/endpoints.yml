@@ -2,7 +2,7 @@
 consoles:
   -
     segment: app
-    name: ide
+    name: eside
     secure: https://${secureDomain}/ide/
 
   -
