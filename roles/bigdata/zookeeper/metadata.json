@@ -8,9 +8,9 @@
             "Port": 2181,
             "Tags" : [ "${instance}", "${environment}" ],
             "Check": {
-               "http": "http://10.136.63.192:2181/",
-               "interval": "10s",
-               "timeout": "1s"
+              "script": "echo stat | nc 10.136.63.192 2181",
+              "interval": "10s",
+              "timeout": "1s"
             }
           }
         }
