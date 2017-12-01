@@ -96,7 +96,7 @@ buildingBlocks:
 
   kibana:
     description: Kibana
-    logo: https://avatars2.githubusercontent.com/u/6764390?v=3&s=200
+    logo: http://www.elastic.co/assets/blt282ae2420e32fc38/icon-kibana-bb.svg
     roles: [ "analytics" ]
     resources: [ "dashboards", "queries" ]
     type: service
