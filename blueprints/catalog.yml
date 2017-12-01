@@ -163,17 +163,17 @@ buildingBlocks:
     type: service
 
   taiga:
-    description: TAIGA
+    description: A project management platform for agile developers & designers
     roles: [ "agile_pm" ]
     type: service
 
   helpy:
-    description: Helpy
+    description: A modern, "mobile-first" helpdesk application
     roles: [ "incident_mgmt" ]
     type: service
 
   pgadmin:
-    description: PGAdmin
+    description: An administration and development platform for PostgreSQL
     roles: [ "db_admin" ]
     type: service
 
