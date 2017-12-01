@@ -99,9 +99,9 @@ environments:
             label: "App"
 
    -
-      name: "perf"
+      name: "stage"
       title:
-        label: "Performance"
+        label: "Staging"
         pipeline: true
         provision: false
         order:
@@ -117,26 +117,19 @@ environments:
             qty: 1
             segment: "app"
             label: "App"
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "perf"
+            label: "Performance"
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "sec"
+            label: "Security"
 
-   -
-      name: "uat"
-      title:
-        label: "Acceptance"
-        pipeline: true
-        provision: false
-        order:
-          -
-            product: "M2GB_D40GB"
-            image: "centos-7-x64"
-            qty: 3
-            segment: "db"
-            label: "DB"
-          -
-            product: "M4GB_D60GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "app"
-            label: "App"
    -
       name: "live"
       title:
