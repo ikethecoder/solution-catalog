@@ -164,27 +164,32 @@ buildingBlocks:
 
   taiga:
     description: A project management platform for agile developers & designers
+    logo: https://avatars0.githubusercontent.com/u/6905422?s=200&v=4
     roles: [ "agile_pm" ]
     type: service
 
   helpy:
     description: A modern, "mobile-first" helpdesk application
+    logo: https://avatars2.githubusercontent.com/u/17730784?s=200&v=4
     roles: [ "incident_mgmt" ]
     type: service
 
   pgadmin:
     description: An administration and development platform for PostgreSQL
+    logo: https://avatars0.githubusercontent.com/u/177543?s=200&v=4
     roles: [ "db_admin" ]
     type: service
 
   postgresql:
-    description: Postgresql
+    description: An object-relational database management system (ORDBMS)
+    logo: https://avatars0.githubusercontent.com/u/177543?s=200&v=4
     roles: [ "relational_database" ]
     resources: [  ]
     type: console
 
   mongodb:
     description: Mongodb
+    logo: https://avatars1.githubusercontent.com/u/45120?s=200&v=4
     roles: [ "document_database" ]
     resources: [  ]
     type: console
@@ -197,13 +202,15 @@ buildingBlocks:
     type: console
 
   logstash:
-    description: Logstash
+    description: A server-side data processing pipeline
+    logo: http://www.elastic.co/assets/blt946bc636d34a70eb/icon-logstash-bb.svg
     roles: [ "data_aggregator" ]
     resources: [  ]
     type: console
 
   elasticsearch:
-    description: Elasticsearch
+    description: A distributed, RESTful search and analytics engine
+    logo: http://www.elastic.co/assets/blt9a26f88bfbd20eb5/icon-elasticsearch-bb.svg
     roles: [ "document_database" ]
     resources: [  ]
     type: console
