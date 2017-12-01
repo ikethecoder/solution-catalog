@@ -223,7 +223,8 @@ buildingBlocks:
     type: console
 
   phantomjs:
-    description: PhantomJS
+    description: A headless WebKit scriptable with a JavaScript API
+    logo: http://phantomjs.org/img/phantomjs-logo.png
     roles: [ "headless_browser" ]
     resources: [  ]
     type: console
