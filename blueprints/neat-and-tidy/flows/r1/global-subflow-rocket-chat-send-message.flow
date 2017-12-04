@@ -2,7 +2,7 @@
   "id": "459ae946.b59388",
   "type": "subflow",
   "name": "Rocket.Chat Send Message",
-  "info": "# Input\n\nmsg.params.channel : channel\n\n# Output\n\nmsg.payload : \"success\"",
+  "info": "# Input\n\n````\nmsg.topic = 'send-message'\nmsg.channel = '#general'\nmsg.payload = {\n    \"text\": \"hello team\"\n}\n````\n\n# Output\n\nmsg.payload : \"success\"",
   "in": [
     {
       "x": 50,

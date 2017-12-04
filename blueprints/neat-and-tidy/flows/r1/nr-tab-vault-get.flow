@@ -1,11 +1,12 @@
 {
-  "id": "58ea1908.3e52d8",
+  "id": "f2e171af.06e6",
   "label": "Vault GET",
   "nodes": [
     {
       "id": "1cebe2dd.8b6d9d",
       "type": "subflow:fcb37b93.778448",
-      "z": "58ea1908.3e52d8",
+      "z": "f2e171af.06e6",
+      "name": "",
       "x": 463.77777099609375,
       "y": 306.1111145019531,
       "wires": [
@@ -18,7 +19,7 @@
     {
       "id": "12e4f08f.af54ef",
       "type": "http in",
-      "z": "58ea1908.3e52d8",
+      "z": "f2e171af.06e6",
       "name": "",
       "url": "/vault",
       "method": "get",
@@ -34,7 +35,7 @@
     {
       "id": "a74bc685.f65058",
       "type": "function",
-      "z": "58ea1908.3e52d8",
+      "z": "f2e171af.06e6",
       "name": "Prep Request",
       "func": "msg.key = msg.req.query.key;\nmsg.topic = 'get-secret';\nreturn msg;",
       "outputs": 1,
@@ -50,7 +51,7 @@
     {
       "id": "76d6a63c.33aef8",
       "type": "http response",
-      "z": "58ea1908.3e52d8",
+      "z": "f2e171af.06e6",
       "name": "Response",
       "x": 609.5,
       "y": 306,
@@ -61,7 +62,7 @@
     {
       "id": "cd12da35.d45e18",
       "type": "http in",
-      "z": "58ea1908.3e52d8",
+      "z": "f2e171af.06e6",
       "name": "",
       "url": "/vault",
       "method": "post",
@@ -77,9 +78,9 @@
     {
       "id": "547ab802.860318",
       "type": "function",
-      "z": "58ea1908.3e52d8",
+      "z": "f2e171af.06e6",
       "name": "Prep Request",
-      "func": "msg.key = msg.req.query.key;\nmsg.topic = 'put-secret';\nreturn msg;",
+      "func": "msg.key = msg.req.query.key;\nmsg.topic = 'plus:vault_secret';\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
       "x": 313.94444274902344,
@@ -93,7 +94,7 @@
     {
       "id": "3ec41697.009aaa",
       "type": "http in",
-      "z": "58ea1908.3e52d8",
+      "z": "f2e171af.06e6",
       "name": "",
       "url": "/vault",
       "method": "delete",
@@ -109,9 +110,9 @@
     {
       "id": "ea93eea.8e6501",
       "type": "function",
-      "z": "58ea1908.3e52d8",
+      "z": "f2e171af.06e6",
       "name": "Prep Request",
-      "func": "msg.key = msg.req.query.key;\nmsg.topic = 'delete-secret';\nreturn msg;",
+      "func": "msg.key = msg.req.query.key;\nmsg.topic = 'minus:vault_secret';\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
       "x": 311.94444274902344,

@@ -1,11 +1,11 @@
 {
-  "id": "df22feb6.d8fcd",
+  "id": "eb8a62e8.5c339",
   "label": "Picture",
   "nodes": [
     {
       "id": "c9b53b9d.9544f8",
       "type": "open-web",
-      "z": "df22feb6.d8fcd",
+      "z": "eb8a62e8.5c339",
       "name": "",
       "browser": "chrome",
       "weburl": "https://ese00c.canzea.cc/grafana/dashboard/db/api-gateway?refresh=10s&orgId=1",
@@ -26,7 +26,7 @@
     {
       "id": "8008fc84.20684",
       "type": "inject",
-      "z": "df22feb6.d8fcd",
+      "z": "eb8a62e8.5c339",
       "name": "",
       "topic": "",
       "payload": "",
@@ -45,7 +45,7 @@
     {
       "id": "7a4f8fea.db15",
       "type": "screenshot",
-      "z": "df22feb6.d8fcd",
+      "z": "eb8a62e8.5c339",
       "name": "",
       "filename": "/home/pm2user/screen.png",
       "selector": "tagName",
@@ -63,7 +63,7 @@
     {
       "id": "74823590.acc36c",
       "type": "debug",
-      "z": "df22feb6.d8fcd",
+      "z": "eb8a62e8.5c339",
       "name": "",
       "active": true,
       "console": "false",
@@ -77,7 +77,7 @@
     {
       "id": "edc454e7.32f858",
       "type": "http in",
-      "z": "df22feb6.d8fcd",
+      "z": "eb8a62e8.5c339",
       "name": "",
       "url": "/screen",
       "method": "get",
@@ -93,7 +93,7 @@
     {
       "id": "b7ebc36a.dc498",
       "type": "http response",
-      "z": "df22feb6.d8fcd",
+      "z": "eb8a62e8.5c339",
       "name": "",
       "x": 688.333324432373,
       "y": 363.3333206176757,
@@ -104,7 +104,7 @@
     {
       "id": "1d987989.28d666",
       "type": "file in",
-      "z": "df22feb6.d8fcd",
+      "z": "eb8a62e8.5c339",
       "name": "",
       "filename": "/home/pm2user/screen.png",
       "format": "",

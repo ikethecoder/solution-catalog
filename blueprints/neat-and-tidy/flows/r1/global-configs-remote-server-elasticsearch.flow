@@ -3,8 +3,9 @@
   "type": "remote-server",
   "z": "",
   "name": "Elasticsearch",
-  "host": "http://10.136.32.198:9200",
+  "host": "http://elasticsearch.service.dc1.consul:9200",
   "_users": [
-    "6039f470.059b3c"
+    "6039f470.059b3c",
+    "7cc08be9.3b68b4"
   ]
 }

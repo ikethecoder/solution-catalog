@@ -1,11 +1,11 @@
 {
-  "id": "71f29ff1.ff5ca",
+  "id": "49ef0b6f.1b1534",
   "label": "Policies",
   "nodes": [
     {
       "id": "c01ca7a.c94cd58",
       "type": "subflow:fcb37b93.778448",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "x": 505.5,
       "y": 173,
       "wires": [
@@ -18,7 +18,7 @@
     {
       "id": "75153709.148b78",
       "type": "function",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "get-policies",
       "func": "msg.topic = 'get-policies'\nreturn msg;",
       "outputs": 1,
@@ -34,7 +34,7 @@
     {
       "id": "be1cb6b3.e92c58",
       "type": "http in",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "",
       "url": "/policies",
       "method": "get",
@@ -50,7 +50,7 @@
     {
       "id": "f3a8d513.86a288",
       "type": "http response",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "",
       "x": 642.5,
       "y": 173,
@@ -61,7 +61,7 @@
     {
       "id": "65c7d186.e56a7",
       "type": "function",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "get-policy",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'get-policy'\nreturn msg;",
       "outputs": 1,
@@ -77,7 +77,7 @@
     {
       "id": "80ee00a4.17989",
       "type": "http in",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "",
       "url": "/policy/:id",
       "method": "get",
@@ -93,7 +93,7 @@
     {
       "id": "9624f510.f7f788",
       "type": "function",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "put-policy",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'put-policy'\nreturn msg;",
       "outputs": 1,
@@ -109,7 +109,7 @@
     {
       "id": "be0363e.67f55a",
       "type": "http in",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "",
       "url": "/policy/:id",
       "method": "put",
@@ -125,7 +125,7 @@
     {
       "id": "d5ba39ca.671d78",
       "type": "function",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "delete-policy",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'delete-policy'\nreturn msg;",
       "outputs": 1,
@@ -141,7 +141,7 @@
     {
       "id": "421bcef2.29f03",
       "type": "http in",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "",
       "url": "/policy/:id",
       "method": "delete",
@@ -157,7 +157,7 @@
     {
       "id": "1ef0db6e.0e38a5",
       "type": "http in",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "",
       "url": "/users",
       "method": "get",
@@ -173,7 +173,7 @@
     {
       "id": "4160b23d.efd4ac",
       "type": "function",
-      "z": "71f29ff1.ff5ca",
+      "z": "49ef0b6f.1b1534",
       "name": "get-users",
       "func": "msg.topic = 'get-users'\nreturn msg;",
       "outputs": 1,

@@ -120,6 +120,11 @@
         },
         {
           "t": "eq",
+          "v": "monitoring_datasource",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
           "v": "grafana_auth_key",
           "vt": "str"
         },
@@ -148,7 +153,7 @@
         }
       ],
       "checkall": "false",
-      "outputs": 16,
+      "outputs": 17,
       "x": 246,
       "y": 209,
       "wires": [
@@ -178,6 +183,9 @@
         ],
         [
           "c581029b.d8734"
+        ],
+        [
+          "c01a6c07.e2379"
         ],
         [
           "c01a6c07.e2379"
@@ -274,6 +282,7 @@
       "id": "218de7de.341c28",
       "type": "subflow:ea5122d7.76e78",
       "z": "9e3e25e6.0e0308",
+      "name": "",
       "x": 409,
       "y": 254,
       "wires": [

@@ -122,7 +122,7 @@
     "disp": true,
     "width": "12",
     "_users": [
-      "485816f6.9ff968"
+
     ]
   },
   {
@@ -144,7 +144,7 @@
     "disp": true,
     "width": "8",
     "_users": [
-      "32b5a6b7.14515a"
+
     ]
   },
   {
@@ -156,7 +156,7 @@
     "disp": true,
     "width": "6",
     "_users": [
-      "110c8355.83f85d"
+
     ]
   },
   {
@@ -175,9 +175,10 @@
     "type": "remote-server",
     "z": "",
     "name": "Elasticsearch",
-    "host": "http://10.136.32.198:9200",
+    "host": "http://elasticsearch.service.dc1.consul:9200",
     "_users": [
-      "6039f470.059b3c"
+      "6039f470.059b3c",
+      "7cc08be9.3b68b4"
     ]
   },
   {

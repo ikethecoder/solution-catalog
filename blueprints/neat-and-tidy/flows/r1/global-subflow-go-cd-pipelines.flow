@@ -616,7 +616,7 @@
       "type": "function",
       "z": "a1cb3587.05ca68",
       "name": "prepare-for-deploy",
-      "func": "pl = msg.payload;\n\nargs = {\n    \"name\": pl.component,\n    \"version\": pl.version,\n    \"qualifier\":\"N\", \n    \"N\":{\n        \"pattern\":\"Deploy\",\n        \"name\": pl.pipelineName\n    }, \n    \"localUrl\": pl.url,\n    \"localBranch\": pl.branch,\n    \"build_pipeline\": pl.build_pipeline,\n    \"port\":pl.port\n};\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = [\n    \"--lifecycle=wire\",\n    \"--solution=gocd\",\n    \"--action=update-pipeline-for-deploy\",\n    \"--args='\" + argsString + \"'\"].join(' ');\n\nreturn msg;\n\n",
+      "func": "pl = msg.payload;\n\nargs = {\n    \"name\": pl.component,\n    \"version\": pl.version,\n    \"branch\" : pl.branch,\n    \"qualifier\":\"N\", \n    \"N\":{\n        \"pattern\":\"Deploy\",\n        \"name\": pl.pipelineName\n    }, \n    \"localUrl\": pl.url,\n    \"localBranch\": pl.branch,\n    \"build_pipeline\": pl.build_pipeline,\n    \"port\":pl.port,\n    \"env\":\"prod\"\n};\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = [\n    \"--lifecycle=wire\",\n    \"--solution=gocd\",\n    \"--action=update-pipeline-for-deploy\",\n    \"--args='\" + argsString + \"'\"].join(' ');\n\nreturn msg;\n\n",
       "outputs": "1",
       "noerr": 0,
       "x": 281,

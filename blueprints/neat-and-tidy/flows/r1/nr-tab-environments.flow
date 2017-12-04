@@ -1,11 +1,11 @@
 {
-  "id": "59e18e3c.e2a6d",
+  "id": "f239b4da.afc098",
   "label": "Environments",
   "nodes": [
     {
       "id": "b3ff6fb2.c48b3",
       "type": "inject",
-      "z": "59e18e3c.e2a6d",
+      "z": "f239b4da.afc098",
       "name": "",
       "topic": "",
       "payload": "",
@@ -24,7 +24,7 @@
     {
       "id": "ebcef51a.0b14c8",
       "type": "function",
-      "z": "59e18e3c.e2a6d",
+      "z": "f239b4da.afc098",
       "name": "Prepare GET Environment",
       "func": "pl = msg.payload;\nname = pl.name;\nmsg0 = {\"payload\":{\"name\":name}, \"filename\":\"/tmp/environments-\" + name + \".json\"};\n\nargs = {\n    \"qualifier\": \"A\",\n    \"A\": {\n        \"type\":\"environments\",\n        \"name\":\"Integration\",\n    }\n};\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = \"--lifecycle=wire --solution=gocd --action=get-object --args='\" + argsString + \"'\";\n\nreturn [msg0, msg];\n\n",
       "outputs": "2",
@@ -43,7 +43,7 @@
     {
       "id": "38e90484.305cbc",
       "type": "inject",
-      "z": "59e18e3c.e2a6d",
+      "z": "f239b4da.afc098",
       "name": "",
       "topic": "",
       "payload": "",
@@ -62,7 +62,7 @@
     {
       "id": "923a61ca.f467d",
       "type": "function",
-      "z": "59e18e3c.e2a6d",
+      "z": "f239b4da.afc098",
       "name": "Prepare PUT Environment",
       "func": "pl = msg.payload;\nname = pl.name;\nmsg0 = {\"payload\":{\"name\":name}, \"filename\":\"/tmp/environments-\" + name + \".json\"};\n\nargs = {\n    \"qualifier\": \"A\",\n    \"A\": {\n        \"type\":\"environments\",\n        \"name\":\"Integration\",\n    }\n};\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = \"--lifecycle=wire --solution=gocd --action=put-object --args='\" + argsString + \"'\";\n\nreturn [msg0, msg];\n\n",
       "outputs": "2",
@@ -81,7 +81,7 @@
     {
       "id": "54483dff.6c6af4",
       "type": "bigexec",
-      "z": "59e18e3c.e2a6d",
+      "z": "f239b4da.afc098",
       "name": "",
       "command": "/home/pm2user/canzea.sh",
       "commandArgs": "",
@@ -111,7 +111,7 @@
     {
       "id": "2e8347e8.6f5b58",
       "type": "bigexec",
-      "z": "59e18e3c.e2a6d",
+      "z": "f239b4da.afc098",
       "name": "",
       "command": "/home/pm2user/canzea.sh",
       "commandArgs": "",

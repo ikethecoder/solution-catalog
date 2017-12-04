@@ -16,6 +16,9 @@
         },
         {
           "id": "34ca5a39.444d36"
+        },
+        {
+          "id": "8374fceb.06d8d"
         }
       ]
     }
@@ -38,7 +41,7 @@
       "type": "remote-server",
       "z": "78d32ab1.ca8c04",
       "name": "mon-elastic",
-      "host": "http://10.136.11.43:9200"
+      "host": "http://elasticsearch.service.dc1.consul:9200"
     }
   ],
   "nodes": [
@@ -117,6 +120,35 @@
       "y": 315,
       "wires": [
 
+      ]
+    },
+    {
+      "id": "42d9b7bf.1aaf68",
+      "type": "subflow:459ae946.b59388",
+      "z": "78d32ab1.ca8c04",
+      "x": 540,
+      "y": 200,
+      "wires": [
+        [
+
+        ]
+      ],
+      "subflow": "459ae946.b59388"
+    },
+    {
+      "id": "8374fceb.06d8d",
+      "type": "function",
+      "z": "78d32ab1.ca8c04",
+      "name": "",
+      "func": "p = msg.payload;\nmsg.channel = 'general';\n\nsuccess = (msg.statusCode >= 200 && msg.statusCode <= 299);\n\nmsg.payload = \"Gateway Call \" + (success ? 'Succeeded':'Failed');\n\ncolor = (success ? '#00ff00' : '#ff0000');\n\ntextmsgs = [\n    \"**> \" + msg.topic + '**',\n    \"** \" + msg.key + '**'\n];\nif (!success) {\n    textmsgs.push ('\\n' + JSON.stringify(JSON.parse(p), null, 2));\n}\nmsg.topic = 'send-message';\nmsg.payload = {\n    \"text\": msg.payload,\n    \"avatar\": \"https://es0390.canzea.cc/images/canzea_gw_icon_es.svg\",\n    \"attachments\": [{\n        \"color\": color,\n        \"text\": textmsgs.join('\\n')\n    }]\n};\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 320,
+      "y": 201,
+      "wires": [
+        [
+          "42d9b7bf.1aaf68"
+        ]
       ]
     }
   ]
