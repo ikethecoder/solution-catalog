@@ -310,6 +310,7 @@
           "data": {
             "label": "Canzea SaaS Express",
             "client_secret": "1111-0000-0000-0001",
+            "accessTokenLifetime": 14515200,
             "grants": [ "password", "authorization_code", "refresh_token" ],
             "redirectUris": [ "https://canzea.com/saas/_oauth/callback" ]
           }
