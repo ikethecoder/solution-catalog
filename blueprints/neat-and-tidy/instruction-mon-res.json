@@ -252,7 +252,16 @@
         }
       }
     },
-
+    {
+      "monitoring_dashboard": {
+        "systems-at-a-glance": {
+          "blueprint": "neat-and-tidy",
+          "template": "at-a-glance",
+          "title": "Systems at a glance",
+          "description": "Systems at a glance"
+        }
+      }
+    },
     {
       "vault_secret": {
         "shell/commands/${instanceId}-bash": {
