@@ -25,9 +25,9 @@ done
 
 
 
-(cd /etc/consul.d/ssl/CA && openssl req -newkey rsa:1024 -nodes -out $NAME.csr -keyout $NAME.key -subj "/C=US/ST=Denial/L=Springfield/O=Canzea/CN=$CN")
+(cd /var/local/consul/ssl/CA && openssl req -newkey rsa:1024 -nodes -out $NAME.csr -keyout $NAME.key -subj "/C=US/ST=Denial/L=Springfield/O=Canzea/CN=$CN")
 
-(cd /etc/consul.d/ssl/CA && openssl ca -batch -config myca.conf -notext -in $NAME.csr -out $NAME.cert)
+(cd /var/local/consul/ssl/CA && openssl ca -batch -config myca.conf -notext -in $NAME.csr -out $NAME.cert)
 
-cp /etc/consul.d/ssl/CA/$NAME.* /etc/consul.d/ssl/.
-rm -f /etc/consul.d/ssl/$NAME.csr
+cp /var/local/consul/ssl/CA/$NAME.* /var/local/consul/ssl/.
+rm -f /var/local/consul/ssl/$NAME.csr
