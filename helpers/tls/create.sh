@@ -1,3 +1,4 @@
+# canzea --lifecycle=wire --solution=tls --action=create --args='{"name":"test", "cn":"332.33.22.11"}'
 
 while [[ $# -gt 1 ]]
 do
@@ -13,8 +14,8 @@ do
   esac
 
   case $key in
-    -d|--dn)
-    DN="$2"
+    -c|--cn)
+    CN="$2"
     shift # past argument
     ;;
   esac
