@@ -738,7 +738,12 @@
         "Continuous-Delivery": {}
       }
     },
-
+    {
+      "pipeline_environment": {
+        "Continuous-Delivery": {
+        }
+      }
+    },
     {
       "remote_ssh_key_pair": {
         "root_id_rsa": {}
