@@ -1,4 +1,5 @@
 {
+  "services": [],
   "resources": [
       {
         "service_discovery_service": {
