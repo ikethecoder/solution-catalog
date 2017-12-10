@@ -20,7 +20,7 @@ headers = {
   'Content-Type' => 'application/json'
 }
 
-uri = URI(ENV['NODERED_URL'] + '/admin/flow')
+uri = URI(ENV['NODERED_URL'] + '/gwa/admin/flow')
 
 http = Net::HTTP.new(uri.host, uri.port)
 
@@ -30,10 +30,10 @@ Dir.glob("#{file}") do | path |
     f = JSON.parse(payload)
 
     if (f['id'] == 'global')
-        uri = URI(ENV['NODERED_URL'] + '/admin/flow/global')
+        uri = URI(ENV['NODERED_URL'] + '/gwa/admin/flow/global')
         res = http.put("#{uri.path}", JSON.generate(f), headers)
     else
-        uri = URI(ENV['NODERED_URL'] + '/admin/flow')
+        uri = URI(ENV['NODERED_URL'] + '/gwa/admin/flow')
         res = http.post("#{uri.path}", JSON.generate(f), headers)
     end
 
