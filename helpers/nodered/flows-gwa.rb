@@ -6,7 +6,7 @@ parameters = JSON.parse(ARGV[0])
 file = parameters['file']
 
 # Get the authtoken and userId
-uri = URI(ENV['NODERED_URL'] + '/gwa/admin/auth/token')
+uri = URI(ENV['NODERED_URL'] + '/gwadmin/auth/token')
 
 res = Net::HTTP.post_form(uri , 'client_id' => 'node-red-admin', 'grant_type' => 'password', 'scope' => '*', 'username' => 'admin', 'password' => 'password')
 
@@ -20,7 +20,7 @@ headers = {
   'Content-Type' => 'application/json'
 }
 
-uri = URI(ENV['NODERED_URL'] + '/gwa/admin/flow')
+uri = URI(ENV['NODERED_URL'] + '/gwadmin/flow')
 
 http = Net::HTTP.new(uri.host, uri.port)
 
@@ -30,10 +30,10 @@ Dir.glob("#{file}") do | path |
     f = JSON.parse(payload)
 
     if (f['id'] == 'global')
-        uri = URI(ENV['NODERED_URL'] + '/gwa/admin/flow/global')
+        uri = URI(ENV['NODERED_URL'] + '/gwadmin/flow/global')
         res = http.put("#{uri.path}", JSON.generate(f), headers)
     else
-        uri = URI(ENV['NODERED_URL'] + '/gwa/admin/flow')
+        uri = URI(ENV['NODERED_URL'] + '/gwadmin/flow')
         res = http.post("#{uri.path}", JSON.generate(f), headers)
     end
 
