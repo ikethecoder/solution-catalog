@@ -267,7 +267,20 @@
           "privateKey": "master_key",
           "proxy_ssl_virtual_host": "default",
           "location": "/gw/",
-          "passthrough": "http://localhost:8000/"
+          "passthrough": "http://localhost:8000"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "flows-gateway/gw": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/gwadmin/",
+          "passthrough": "http://localhost:8000"
         }
       }
     },
