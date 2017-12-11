@@ -31,8 +31,8 @@ consoles:
   -
     segment: ci
     name: nodered
-    url: http://${domainName}:8000/admin/
-    secure: https://${secureDomain}/gw/admin/
+    url: http://${domainName}:8000/gwadmin/
+    secure: https://${secureDomain}/gwadmin/
     remarks: default creds admin,password
 
   -
