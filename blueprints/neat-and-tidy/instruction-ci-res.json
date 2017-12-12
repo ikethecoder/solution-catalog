@@ -273,7 +273,7 @@
     },
     {
       "proxy_service": {
-        "flows-gateway/gw": {
+        "flows-gateway/gwadmin": {
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
