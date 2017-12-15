@@ -5,7 +5,7 @@ require_relative 'pipelines/java-maven-build'
 require_relative 'pipelines/js-npm-build'
 require_relative 'pipelines/deploy'
 
-PrepareEnvironment.new.addToEnv "#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipeline_pipeline_env.json"
+#   PrepareEnvironment.new.addToEnv "#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipeline_pipeline_env.json"
 
 is_plus = (ARGV[1] == 'PLUS')
 
@@ -25,6 +25,7 @@ properties['pipelineName'] = resourceId;
 
 puts "PROCESSING...#{resourceId}"
 
+puts "PATTERN = #{properties['pipelineType']}"
 puts "TYPE = #{properties['type']}"
 if is_plus
     if properties['pipelineType'] == 'deploy'
@@ -36,6 +37,7 @@ if is_plus
     else
         raise("unsupported type #{properties['type']}.")
     end
+    puts "WRITING : es_orchestrator/pipeline_pipeline/#{resourceId}.json"
     pc.write "es_orchestrator/pipeline_pipeline/#{resourceId}.json", output
 else
     pc.backupAndRemove "es_orchestrator/pipeline_pipeline/#{resourceId}.json"

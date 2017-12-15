@@ -1,7 +1,7 @@
 require 'json'
 require 'template-runner'
 
-class JSNpmBuild
+class Deploy
 
     def createPipeline (parameters)
 
@@ -10,7 +10,7 @@ class JSNpmBuild
         type = attributes['type']
         project = attributes['name']
         version = attributes['version']
-        pattern = attributes['pattern']
+        branch = attributes['branch']
 
         attributes['project'] = "#{project}"
         attributes['group'] = "#{project}"
@@ -20,7 +20,6 @@ class JSNpmBuild
 
         attributes['project'] = "#{project}"
         attributes['group'] = "#{project}"
-        attributes['pipeline'] = "#{pipelinePrefix}"
 
         attributes['build_pipeline_label'] = "${#{attributes['build_pipeline']}}"
 

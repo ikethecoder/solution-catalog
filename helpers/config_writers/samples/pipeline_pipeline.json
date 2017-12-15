@@ -31,8 +31,9 @@
           "pipelineName": "gs-actuator-service-master-live-deploy",
           "build_pipeline": "gs-actuator-service-master-build",
           "port": "3334",
-          "version": "0.0.0",
-          "branch": "master",
+          "env": "prod",
+          "version": "1.1-SNAPSHOT",
+          "branch": "develop",
           "url": "https://gitlab.com/ikethecoder/hello-world-svc-app.git"
         }
       }
