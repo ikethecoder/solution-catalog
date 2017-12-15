@@ -3,7 +3,7 @@
   "pipeline": {
     "label_template": "0.${COUNT}-{{build_pipeline_label}}",
     "enable_pipeline_locking": true,
-    "name": "{{pipeline}}",
+    "name": "{{pipelineName}}",
     "template": null,
     "parameters": [
       {"name":"VERSION", "value":"{{version}}"}
