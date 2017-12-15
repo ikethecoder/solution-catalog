@@ -66,7 +66,12 @@ class Deploy
 
         root['pipeline']['stages'].push (stage)
 
-        return JSON.pretty_generate( root)
+        item = {
+            "pipeline_pipeline" => {
+                attributes['rid'] => root
+            }
+        }
+        return JSON.pretty_generate( item )
     end
 
     def getFragmentPath (fileRelativePath)
