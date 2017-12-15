@@ -6,6 +6,7 @@
     "name": "{{pipelineName}}",
     "template": null,
     "parameters": [
+      {"name":"VERSION", "value":"{{version}}"}
     ],
     "environment_variables": [
       {
