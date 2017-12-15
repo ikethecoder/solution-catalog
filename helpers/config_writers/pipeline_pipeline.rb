@@ -20,6 +20,7 @@ end
 resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId;
+properties['pipelineName'] = resourceId;
 
 puts "PROCESSING...#{resourceId}"
 
