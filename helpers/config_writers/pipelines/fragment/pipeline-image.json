@@ -1,0 +1,25 @@
+{
+  "group": "{{group}}",
+  "pipeline": {
+    "label_template": "${COUNT}",
+    "enable_pipeline_locking": true,
+    "name": "{{pipeline}}",
+    "template": null,
+    "parameters": [
+    ],
+    "environment_variables": [
+      {
+        "secure": false,
+        "name": "CONSUL_URL",
+        "value": "{{CONSUL_URL}}"
+      },
+      {
+        "secure": true,
+        "name": "VAULT_TOKEN",
+        "value": "{{VAULT_TOKEN}}"
+      }
+    ],
+    "materials": [],
+    "stages": []
+  }
+}

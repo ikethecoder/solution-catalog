@@ -1,0 +1,16 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "on_cancel": null,
+    "command": "sudo",
+    "arguments": [
+      "/opt/canzea-utils/register_service.sh",
+      "{{project}}",
+      "{{service}}"
+    ],
+    "working_directory": ""
+  }
+}

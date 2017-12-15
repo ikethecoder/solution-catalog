@@ -1,0 +1,12 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "on_cancel": null,
+    "command": "node_modules/bower/bin/bower",
+    "arguments": {{{arguments}}},
+    "working_directory": "{{project}}"
+  }
+}

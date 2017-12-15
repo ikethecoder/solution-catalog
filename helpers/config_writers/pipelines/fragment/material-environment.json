@@ -1,0 +1,13 @@
+{
+  "type": "git",
+  "attributes": {
+    "url": "https://IKE_CI:55665566@gitlab.com/ikethecoder/ike-environments.git",
+    "destination": "ike-environments",
+    "filter": null,
+    "name": null,
+    "auto_update": false,
+    "branch": "master",
+    "submodule_folder": null,
+    "shallow_clone": false
+  }
+}

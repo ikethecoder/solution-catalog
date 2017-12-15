@@ -1,0 +1,11 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "command": "mvn",
+    "arguments": [ "clean", "package" ],
+    "working_directory": "{{project}}"
+  }
+}

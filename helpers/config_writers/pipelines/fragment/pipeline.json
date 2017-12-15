@@ -1,0 +1,35 @@
+{
+  "group": "{{group}}",
+  "pipeline": {
+    "label_template": "#{VERSION}-${COUNT}",
+    "enable_pipeline_locking": true,
+    "name": "{{pipelineName}}",
+    "template": null,
+    "parameters": [
+    ],
+    "environment_variables": [
+      {
+        "secure": false,
+        "name": "CONSUL_URL",
+        "value": "{{CONSUL_URL}}"
+      },
+      {
+        "secure": false,
+        "name": "JAVA_HOME",
+        "value": "/usr/lib/jvm/java"
+      },
+      {
+        "secure": false,
+        "name": "JAVA_COMMAND",
+        "value": "/etc/alternatives/java"
+      },
+      {
+        "secure": true,
+        "name": "VAULT_TOKEN",
+        "value": "{{VAULT_TOKEN}}"
+      }
+    ],
+    "materials": [],
+    "stages": []
+  }
+}

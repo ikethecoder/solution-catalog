@@ -1,0 +1,14 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "on_cancel": null,
+    "command": "sudo",
+    "arguments": [
+      {{{parameters}}}
+    ],
+    "working_directory": ""
+  }
+}

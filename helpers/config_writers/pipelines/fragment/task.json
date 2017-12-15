@@ -1,0 +1,11 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "command": "mvn",
+    "arguments": [ "clean", "install" ],
+    "working_directory": "hello-world-svc-app"
+  }
+}

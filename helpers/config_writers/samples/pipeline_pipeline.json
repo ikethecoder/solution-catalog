@@ -1,0 +1,41 @@
+{
+  "resources": [
+    {
+      "pipeline_pipeline": {
+        "sample-build": {
+          "url": "https://esdade.canzea.cc/gogs/joe/console-app.git",
+          "branch": "develop",
+          "type": "java-maven",
+          "name": "sample",
+          "artifactId": "ike-enterprise",
+          "groupId": "com.ike",
+          "version": "1.1-SNAPSHOT",
+          "commitRevision": "b790c844bcb60ed37c54c41d0059893ee635bce3",
+          "build_pipeline": "ike-enterprise-develop-build",
+          "env-integration-C": "on",
+          "checkbox": "on",
+          "pipelineType": "build",
+          "pipelineName": "ike-enterprise-develop-build",
+          "account_id": "597f6d8ad4c6ef50ff9248cf"
+        }
+      }
+    },
+    {
+      "pipeline_pipeline": {
+        "sample-deploy": {
+          "type": "java-maven",
+          "component": "gs-actuator-service",
+          "pipelineType": "deploy",
+          "pipelineName": "gs-actuator-service-master-live-deploy",
+          "build_pipeline": "gs-actuator-service-master-build",
+          "port": "3334",
+          "version": "0.0.0",
+          "name": "sample",
+          "branch": "master",
+          "url": "https://gitlab.com/ikethecoder/hello-world-svc-app.git"
+        }
+      }
+    }
+
+  ]
+}

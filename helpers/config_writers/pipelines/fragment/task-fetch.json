@@ -1,0 +1,15 @@
+{
+  "type": "fetch",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "on_cancel": null,
+    "pipeline": "{{build_pipeline}}",
+    "stage": "Build",
+    "job": "defaultJob",
+    "is_source_a_file": false,
+    "source": "maven-archiver",
+    "destination": ""
+  }
+}

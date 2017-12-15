@@ -1,0 +1,11 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"gocd"},
+    {"name":"archiva"}
+  ],
+  "secrets": [
+  ]
+}

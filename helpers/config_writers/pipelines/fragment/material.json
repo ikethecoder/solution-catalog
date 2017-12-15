@@ -1,0 +1,13 @@
+{
+  "type": "git",
+  "attributes": {
+    "url": "{{url}}",
+    "destination": "{{name}}",
+    "filter": null,
+    "name": null,
+    "auto_update": false,
+    "branch": "{{branch}}",
+    "submodule_folder": null,
+    "shallow_clone": true
+  }
+}
