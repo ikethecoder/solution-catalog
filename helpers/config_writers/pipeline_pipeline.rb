@@ -4,7 +4,7 @@ require 'template-runner'
 require_relative 'pipelines/java-maven-build'
 require_relative 'pipelines/js-npm-build'
 
-# PrepareEnvironment.new.addToEnv "#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipeline_pipeline_env.json"
+PrepareEnvironment.new.addToEnv "#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipeline_pipeline_env.json"
 
 is_plus = (ARGV[1] == 'PLUS')
 
