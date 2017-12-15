@@ -15,7 +15,7 @@ files.each do | file |
     resource = JSON.parse(data)
 
     payload = {
-        "resources": [ resource ]
+        "resources" => [ resource ]
     }
 
     headers = {
@@ -24,7 +24,7 @@ files.each do | file |
       'Content-Type' => 'application/json'
     }
 
-    uri = URI(ENV['NODERED_URL'] + '/api/bulk')
+    uri = URI(ENV['NODERED_URL'] + '/gw/api/bulk')
 
     http = Net::HTTP.new(uri.host, uri.port)
     #http.use_ssl = true
