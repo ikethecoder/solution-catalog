@@ -11,7 +11,7 @@
           "ecosystem": "${es.id}"
         }
       },
-      "depends_on": ["canzea_ecosystem.${es.id}","digitalocean_portlet.${instanceName}"]
+      "depends_on": ["digitalocean_droplet.${instanceName}"]
     },
     {
       "vault_secret": {
