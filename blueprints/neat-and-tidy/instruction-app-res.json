@@ -1,7 +1,7 @@
 {
   "resources": [
     {
-      "digitalocean_droplet": {
+      "digitalocean_droplet_x": {
         "${instanceName}": {
           "environment": "${environment}",
           "region": "",
