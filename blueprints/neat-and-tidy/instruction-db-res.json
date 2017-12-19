@@ -10,7 +10,8 @@
           "encdata": "",
           "ecosystem": "${es.id}"
         }
-      }
+      },
+      "depends_on": ["canzea_ecosystem.${es.id}","digitalocean_portlet.${instanceName}"]
     },
     {
       "vault_secret": {
