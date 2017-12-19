@@ -10,7 +10,8 @@
           "encdata": "",
           "ecosystem": "${es.id}"
         }
-      }
+      },
+      "depends_on": ["digitalocean_droplet.${instanceName}"]
     },
     {
       "vault_secret": {
