@@ -1,8 +1,33 @@
 {
   "resources": [
     {
+      "digitalocean_droplet": {
+        "${instanceName}": {
+          "environment": "${environment}",
+          "region": "",
+          "imageCode": "",
+          "size": "",
+          "encdata": "",
+          "ecosystem": "${es.id}"
+        }
+      }
+    },
+    {
+      "vault_secret": {
+        "shell/commands/${instanceId}-bash": {
+          "user": "root",
+          "host": "${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
+          "auth": "publickey",
+          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
+          "command": "bash",
+          "interactive": true
+        }
+      },
+      "depends_on": []
+    },
+    {
       "building_block": {
-        "docker": {
+        "${instanceId}-docker": {
           "role": "container",
           "solution": "docker",
           "droplet" : "${instanceName}",
@@ -12,7 +37,7 @@
     },
     {
       "building_block": {
-        "ruby": {
+        "${instanceId}-ruby": {
           "role": "workarounds",
           "solution": "ruby",
           "droplet" : "${instanceName}",
@@ -22,7 +47,7 @@
     },
     {
       "building_block": {
-        "ruby-gems": {
+        "${instanceId}-ruby-gems": {
           "role": "workarounds",
           "solution": "ruby-gems",
           "droplet" : "${instanceName}",
@@ -32,7 +57,7 @@
     },
     {
       "building_block": {
-        "git-core": {
+        "${instanceId}-git-core": {
           "role": "sourcecontrol",
           "solution": "git-core",
           "droplet" : "${instanceName}",
@@ -43,7 +68,7 @@
 
     {
       "building_block": {
-        "cloud-profile-r2": {
+        "${instanceId}-cloud-profile-r2": {
           "role": "workarounds",
           "solution": "cloud-profile-r2",
           "droplet" : "${instanceName}",
@@ -53,7 +78,7 @@
     },
     {
       "building_block": {
-        "canzea": {
+        "${instanceId}-canzea": {
           "role": "workarounds",
           "solution": "canzea",
           "droplet" : "${instanceName}",
@@ -63,7 +88,7 @@
     },
     {
       "building_block": {
-        "selinux": {
+        "${instanceId}-selinux": {
           "role": "workarounds",
           "solution": "selinux",
           "droplet" : "${instanceName}",
@@ -74,7 +99,7 @@
 
     {
       "building_block": {
-        "java": {
+        "${instanceId}-java": {
           "role": "virtualmachine",
           "solution": "java",
           "droplet" : "${instanceName}",
@@ -84,7 +109,7 @@
     },
     {
       "building_block": {
-        "filebeat": {
+        "${instanceId}-filebeat": {
           "role": "monitoring",
           "solution": "filebeat",
           "droplet" : "${instanceName}",
@@ -94,7 +119,7 @@
     },
     {
       "building_block": {
-        "metricbeat": {
+        "${instanceId}-metricbeat": {
           "role": "monitoring",
           "solution": "metricbeat",
           "droplet" : "${instanceName}",
@@ -104,7 +129,7 @@
     },
     {
       "building_block": {
-        "auditd": {
+        "${instanceId}-auditd": {
           "role": "audit",
           "solution": "auditd",
           "droplet" : "${instanceName}",
@@ -114,7 +139,7 @@
     },
     {
       "building_block": {
-        "golang": {
+        "${instanceId}-golang": {
           "role": "workarounds",
           "solution": "golang",
           "droplet" : "${instanceName}",
@@ -124,7 +149,7 @@
     },
     {
       "building_block": {
-        "networks-nc": {
+        "${instanceId}-networks-nc": {
           "role": "tools",
           "solution": "nc",
           "droplet" : "${instanceName}",
@@ -134,57 +159,7 @@
     },
     {
       "building_block": {
-        "mongodb": {
-          "role": "documentdatabase",
-          "solution": "mongodb",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "nginx": {
-          "role": "loadbalancer",
-          "solution": "nginx",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "rabbitmq": {
-          "role": "messaging",
-          "solution": "rabbitmq",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "fabio": {
-          "role": "router",
-          "solution": "fabio",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "nginx": {
-          "role": "workarounds",
-          "solution": "sudoers",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "gocd-agent": {
+        "${instanceId}-gocd-agent": {
           "role": "deploy",
           "solution": "gocd-agent",
           "droplet" : "${instanceName}",
@@ -194,7 +169,7 @@
     },
     {
       "building_block": {
-        "maven": {
+        "${instanceId}-maven": {
           "role": "build",
           "solution": "maven",
           "droplet" : "${instanceName}",
@@ -225,15 +200,14 @@
     },
 
     {
-      "boot:user_config": {
-        "go": {
-          "wire" : "users:configure-go",
-          "instance" : "${instanceId}",
-          "privateKey" : "master_key"
+      "wire": {
+        "${instanceId}-go": {
+          "solution": "users",
+          "action": "configure-go",
+          "droplet" : "${instanceId}"
         }
       }
     },
-
     {
       "monitoring_dashboard": {
         "${environmentLabel}-environment": {
@@ -246,14 +220,52 @@
     },
 
     {
-      "vault_secret": {
-        "shell/commands/${instanceId}-bash": {
-          "user": "root",
-          "host": "${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
-          "auth": "publickey",
-          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
-          "command": "bash",
-          "interactive": true
+      "building_block": {
+        "${instanceId}-mongodb": {
+          "role": "documentdatabase",
+          "solution": "mongodb",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-nginx": {
+          "role": "loadbalancer",
+          "solution": "nginx",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-rabbitmq": {
+          "role": "messaging",
+          "solution": "rabbitmq",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-fabio": {
+          "role": "router",
+          "solution": "fabio",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-nginx": {
+          "role": "workarounds",
+          "solution": "sudoers",
+          "droplet" : "${instanceName}",
+          "commands" : false
         }
       }
     }
