@@ -9,6 +9,9 @@ cp /var/local/consul/ssl/CA/ca.cert /var/local/flows-gateway/ssl/.
 
 
 
+useradd -u 1001 pm2user
+touch /var/local/flows-gateway/flows.json
+chown pm2user:pm2user /var/local/flows-gateway/flows.json
 
 yes | cp -f roles/adhoc/flows-gateway/config/flows-gateway.service /etc/systemd/system/multi-user.target.wants/.
 
@@ -20,7 +23,6 @@ systemctl restart flows-gateway
 
 # Allow remote SHELL Logon
 
-useradd -u 1001 pm2user
 
 mkdir -p /var/local/flows-gateway/ssl/keys
 
