@@ -123,6 +123,16 @@
       }
     },
     {
+      "building_block": {
+        "${instanceId}-networks-nc": {
+          "role": "tools",
+          "solution": "nc",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
       "pipeline_environment": {
         "Tools": {
         }
