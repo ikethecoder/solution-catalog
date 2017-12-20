@@ -2,7 +2,7 @@
   "resources": [
     {
       "building_block": {
-        "docker": {
+        "${instanceId}-docker": {
           "role": "container",
           "solution": "docker",
           "droplet" : "${instanceName}",
@@ -12,7 +12,7 @@
     },
     {
       "building_block": {
-        "ruby": {
+        "${instanceId}-ruby": {
           "role": "workarounds",
           "solution": "ruby",
           "droplet" : "${instanceName}",
@@ -22,7 +22,7 @@
     },
     {
       "building_block": {
-        "ruby-gems": {
+        "${instanceId}-ruby-gems": {
           "role": "workarounds",
           "solution": "ruby-gems",
           "droplet" : "${instanceName}",
@@ -32,7 +32,7 @@
     },
     {
       "building_block": {
-        "git-core": {
+        "${instanceId}-git-core": {
           "role": "sourcecontrol",
           "solution": "git-core",
           "droplet" : "${instanceName}",
@@ -43,7 +43,7 @@
 
     {
       "building_block": {
-        "cloud-profile-r2": {
+        "${instanceId}-cloud-profile-r2": {
           "role": "workarounds",
           "solution": "cloud-profile-r2",
           "droplet" : "${instanceName}",
@@ -53,7 +53,7 @@
     },
     {
       "building_block": {
-        "canzea": {
+        "${instanceId}-canzea": {
           "role": "workarounds",
           "solution": "canzea",
           "droplet" : "${instanceName}",
@@ -63,7 +63,7 @@
     },
     {
       "building_block": {
-        "selinux": {
+        "${instanceId}-selinux": {
           "role": "workarounds",
           "solution": "selinux",
           "droplet" : "${instanceName}",
@@ -74,7 +74,7 @@
 
     {
       "building_block": {
-        "java": {
+        "${instanceId}-java": {
           "role": "virtualmachine",
           "solution": "java",
           "droplet" : "${instanceName}",
@@ -84,7 +84,7 @@
     },
     {
       "building_block": {
-        "filebeat": {
+        "${instanceId}-filebeat": {
           "role": "monitoring",
           "solution": "filebeat",
           "droplet" : "${instanceName}",
@@ -94,7 +94,7 @@
     },
     {
       "building_block": {
-        "metricbeat": {
+        "${instanceId}-metricbeat": {
           "role": "monitoring",
           "solution": "metricbeat",
           "droplet" : "${instanceName}",
@@ -104,7 +104,7 @@
     },
     {
       "building_block": {
-        "auditd": {
+        "${instanceId}-auditd": {
           "role": "audit",
           "solution": "auditd",
           "droplet" : "${instanceName}",
@@ -114,7 +114,7 @@
     },
     {
       "building_block": {
-        "golang": {
+        "${instanceId}-golang": {
           "role": "workarounds",
           "solution": "golang",
           "droplet" : "${instanceName}",
