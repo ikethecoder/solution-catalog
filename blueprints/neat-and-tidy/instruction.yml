@@ -368,6 +368,11 @@ instructions:
       variables:
         nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
 
+
+    default:
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
     tools:
       abbreviation: tools
       label: tools
