@@ -3,7 +3,7 @@ require 'commands/push-config'
 require 'template-runner'
 require 'trace-runner'
 
-pc = PushConfig.new
+pc = PushConfig.new "/'"
 
 t = Template.new
 
@@ -18,7 +18,7 @@ parameters = JSON.parse(ARGV[0])
 
 n = RunnerWorker.new(false)
 
-contents = t.process "#{parameters.file}", parameters
+contents = t.process "#{parameters['file']}", parameters
 
 json = JSON.parse(contents)
 
@@ -29,11 +29,9 @@ json['resources'].each do | resource |
     puts rtype
     puts "   #{rid}"
 
-    args = {files => "resources/#{rtype}/#{rid}.es"}
+    args = {"files" => "resources/#{rtype}/#{rid}.es"}
 
-    pc.write "resources/#{rtype}/#{rid}.es", output
-
-    # n.run "ruby process-resource.rb '#{args}'", 0, 0
+    pc.write "resources/#{rtype}/#{rid}.es", JSON.pretty_generate(resource)
 end
 
 
