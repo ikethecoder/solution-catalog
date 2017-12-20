@@ -1,18 +1,6 @@
 {
   "resources": [
-    {
-      "digitalocean_droplet_x": {
-        "${instanceName}": {
-          "environment": "${environment}",
-          "region": "",
-          "imageCode": "",
-          "size": "",
-          "encdata": "",
-          "ecosystem": "${es.id}"
-        }
-      },
-      "depends_on": ["digitalocean_droplet.${instanceName}"]
-    },
+
     {
       "vault_secret": {
         "shell/commands/${instanceId}-bash": {
@@ -23,7 +11,8 @@
           "command": "bash",
           "interactive": true
         }
-      }
+      },
+      "depends_on": ["digitalocean_droplet.${instanceName}"]
     },
     {
       "building_block": {

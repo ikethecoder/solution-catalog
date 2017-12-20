@@ -2,17 +2,18 @@
   "resources": [
     {
       "building_block": {
-        "docker": {
+        "${instanceId}-docker": {
           "role": "container",
           "solution": "docker",
           "droplet" : "${es.id}-cd-builder-01",
           "commands" : true
         }
-      }
+      },
+      "depends_on": ["digitalocean_droplet.${instanceName}"]
     },
     {
       "building_block": {
-        "ruby": {
+        "${instanceId}-ruby": {
           "role": "workarounds",
           "solution": "ruby",
           "droplet" : "${es.id}-cd-builder-01",
@@ -22,7 +23,7 @@
     },
     {
       "building_block": {
-        "ruby-gems": {
+        "${instanceId}-ruby-gems": {
           "role": "workarounds",
           "solution": "ruby-gems",
           "droplet" : "${es.id}-cd-builder-01",
@@ -32,7 +33,7 @@
     },
     {
       "building_block": {
-        "git-core": {
+        "${instanceId}-git-core": {
           "role": "sourcecontrol",
           "solution": "git-core",
           "droplet" : "${es.id}-cd-builder-01",
@@ -43,7 +44,7 @@
 
     {
       "building_block": {
-        "cloud-profile-r2": {
+        "${instanceId}-cloud-profile-r2": {
           "role": "workarounds",
           "solution": "cloud-profile-r2",
           "droplet" : "${es.id}-cd-builder-01",
@@ -53,7 +54,7 @@
     },
     {
       "building_block": {
-        "canzea": {
+        "${instanceId}-canzea": {
           "role": "workarounds",
           "solution": "canzea",
           "droplet" : "${es.id}-cd-builder-01",
@@ -63,7 +64,7 @@
     },
     {
       "building_block": {
-        "selinux": {
+        "${instanceId}-selinux": {
           "role": "workarounds",
           "solution": "selinux",
           "droplet" : "${es.id}-cd-builder-01",
@@ -74,7 +75,7 @@
 
     {
       "building_block": {
-        "java": {
+        "${instanceId}-java": {
           "role": "virtualmachine",
           "solution": "java",
           "droplet" : "${es.id}-cd-builder-01",
@@ -84,7 +85,7 @@
     },
     {
       "building_block": {
-        "filebeat": {
+        "${instanceId}-filebeat": {
           "role": "monitoring",
           "solution": "filebeat",
           "droplet" : "${es.id}-cd-builder-01",
@@ -94,7 +95,7 @@
     },
     {
       "building_block": {
-        "metricbeat": {
+        "${instanceId}-metricbeat": {
           "role": "monitoring",
           "solution": "metricbeat",
           "droplet" : "${es.id}-cd-builder-01",
@@ -104,7 +105,7 @@
     },
     {
       "building_block": {
-        "auditd": {
+        "${instanceId}-auditd": {
           "role": "audit",
           "solution": "auditd",
           "droplet" : "${es.id}-cd-builder-01",
@@ -114,7 +115,7 @@
     },
     {
       "building_block": {
-        "golang": {
+        "${instanceId}-golang": {
           "role": "workarounds",
           "solution": "golang",
           "droplet" : "${es.id}-cd-builder-01",
@@ -124,7 +125,7 @@
     },
     {
       "building_block": {
-        "gocd-agent": {
+        "${instanceId}-gocd-agent": {
           "role": "deploy",
           "solution": "gocd-agent",
           "droplet" : "${es.id}-cd-builder-01",
@@ -134,7 +135,7 @@
     },
     {
       "building_block": {
-        "maven": {
+        "${instanceId}-maven": {
           "role": "build",
           "solution": "maven",
           "droplet" : "${es.id}-cd-builder-01",

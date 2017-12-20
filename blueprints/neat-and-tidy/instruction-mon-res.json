@@ -2,40 +2,41 @@
   "resources": [
     {
       "building_block": {
-        "docker": {
+        "${instanceId}-docker": {
           "role": "container",
           "solution": "docker",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
-      }
+      },
+      "depends_on": ["digitalocean_droplet.${instanceName}"]
     },
     {
       "building_block": {
-        "ruby": {
+        "${instanceId}-ruby": {
           "role": "workarounds",
           "solution": "ruby",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
     },
     {
       "building_block": {
-        "ruby-gems": {
+        "${instanceId}-ruby-gems": {
           "role": "workarounds",
           "solution": "ruby-gems",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
     },
     {
       "building_block": {
-        "git-core": {
+        "${instanceId}-git-core": {
           "role": "sourcecontrol",
           "solution": "git-core",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
@@ -43,30 +44,30 @@
 
     {
       "building_block": {
-        "cloud-profile-r2": {
+        "${instanceId}-cloud-profile-r2": {
           "role": "workarounds",
           "solution": "cloud-profile-r2",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "canzea": {
+        "${instanceId}-canzea": {
           "role": "workarounds",
           "solution": "canzea",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "selinux": {
+        "${instanceId}-selinux": {
           "role": "workarounds",
           "solution": "selinux",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -74,60 +75,60 @@
 
     {
       "building_block": {
-        "java": {
+        "${instanceId}-java": {
           "role": "virtualmachine",
           "solution": "java",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "elasticsearch": {
+        "${instanceId}-elasticsearch": {
           "role": "documentdatabase",
           "solution": "elasticsearch",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "logstash": {
+        "${instanceId}-logstash": {
           "role": "monitoring",
           "solution": "logstash",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "statsd": {
+        "${instanceId}-statsd": {
           "role": "monitoring",
           "solution": "statsd",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "grafana": {
+        "${instanceId}-grafana": {
           "role": "monitoring",
           "solution": "grafana",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "collectd": {
+        "${instanceId}-collectd": {
           "role": "monitoring",
           "solution": "collectd",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -136,40 +137,40 @@
 
     {
       "building_block": {
-        "filebeat": {
+        "${instanceId}-filebeat": {
           "role": "monitoring",
           "solution": "filebeat",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "metricbeat": {
+        "${instanceId}-metricbeat": {
           "role": "monitoring",
           "solution": "metricbeat",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "auditd": {
+        "${instanceId}-auditd": {
           "role": "audit",
           "solution": "auditd",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "elasticsearch-metrics": {
+        "${instanceId}-elasticsearch-metrics": {
           "role": "monitoring",
           "solution": "elasticsearch-metrics",
-          "droplet" : "${es.id}-mon-mon-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
