@@ -1,41 +1,48 @@
 {
+  "variables": {
+    "cloud_provider": "",
+    "auth": "",
+    "blueprint": "",
+    "cloud_auth_id": ""
+  },
   "resources": [
     {
       "building_block": {
-        "docker": {
+        "${instanceId}-docker": {
           "role": "container",
           "solution": "docker",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
-      }
+      },
+      "depends_on": ["digitalocean_droplet.${instanceName}"]
     },
     {
       "building_block": {
-        "ruby": {
+        "${instanceId}-ruby": {
           "role": "workarounds",
           "solution": "ruby",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
     },
     {
       "building_block": {
-        "ruby-gems": {
+        "${instanceId}-ruby-gems": {
           "role": "workarounds",
           "solution": "ruby-gems",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
     },
     {
       "building_block": {
-        "git-core": {
+        "${instanceId}-git-core": {
           "role": "sourcecontrol",
           "solution": "git-core",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : true
         }
       }
@@ -43,110 +50,110 @@
 
     {
       "building_block": {
-        "cloud-profile-r2": {
+        "${instanceId}-cloud-profile-r2": {
           "role": "workarounds",
           "solution": "cloud-profile-r2",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "canzea": {
+        "${instanceId}-canzea": {
           "role": "workarounds",
           "solution": "canzea",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "selinux": {
+        "${instanceId}-selinux": {
           "role": "workarounds",
           "solution": "selinux",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "consul-docker": {
+        "${instanceId}-consul-docker": {
           "role": "configdb",
           "solution": "consul-docker",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "hashicorpvault-docker": {
+        "${instanceId}-hashicorpvault-docker": {
           "role": "keymgmt",
           "solution": "hashicorpvault-docker",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "ecosystem-bootstrap-r2": {
+        "${instanceId}-ecosystem-bootstrap-r2": {
           "role": "workarounds",
           "solution": "ecosystem-bootstrap-r2",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "flows-gateway": {
+        "${instanceId}-flows-gateway": {
           "role": "adhoc",
           "solution": "flows-gateway",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "gogs": {
+        "${instanceId}-gogs": {
           "role": "sourcecontrol",
           "solution": "gogs",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "archiva": {
+        "${instanceId}-archiva": {
           "role": "registry",
           "solution": "archiva-docker",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "rocketchat": {
+        "${instanceId}-rocketchat": {
           "role": "collaboration",
           "solution": "rocketchat",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "phantomjs-docker": {
+        "${instanceId}-phantomjs-docker": {
           "role": "testsuite",
           "solution": "phantomjs-docker",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -156,7 +163,7 @@
         "gocd-docker": {
           "role": "deploy",
           "solution": "gocd-docker",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -202,20 +209,20 @@
     },
     {
       "building_block": {
-        "unzip": {
+        "${instanceId}-unzip": {
           "role": "workarounds",
           "solution": "zip",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "hashicorpvault-cli": {
+        "${instanceId}-hashicorpvault-cli": {
           "role": "keymgmt",
           "solution": "hashicorpvault-cli",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -223,7 +230,7 @@
 
 
     {
-      "boot:vault_secret": {
+      "vault_secret": {
         "service/vault": {
           "environment": "cd",
           "serverNumber": 1,
@@ -236,10 +243,10 @@
 
     {
       "building_block": {
-        "nginx": {
+        "${instanceId}-nginx": {
           "role": "loadbalancer",
           "solution": "nginx-docker",
-          "droplet" : "${es.id}-cd-ci-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -312,7 +319,7 @@
     },
 
     {
-      "boot:vault_secret": {
+      "vault_secret": {
         "oauth/clients/saas_express": {
           "wire": "vault:register-secret",
           "environment": "cd",
@@ -491,7 +498,7 @@
     },
 
     {
-      "boot:vault_secret": {
+      "vault_secret": {
         "admin/rocketchat": {
           "wire": "vault:register-secret",
           "environment": "cd",
@@ -530,7 +537,7 @@
       }
     },
     {
-      "boot:vault_secret": {
+      "vault_secret": {
         "service/gogs/root/credentials": {
           "wire": "vault:register-secret",
           "environment": "cd",
@@ -561,7 +568,7 @@
 
 
     {
-      "boot:vault_secret": {
+      "vault_secret": {
         "nodered/canzea_console": {
           "wire": "vault:register-secret",
           "environment": "cd",
@@ -577,7 +584,7 @@
     },
 
     {
-      "boot:source_control_token": {
+      "source_control_token": {
         "admin": {
           "wire": "ecosystem-resources:process-resources",
           "environment": "cd",
@@ -599,7 +606,7 @@
     },
 
     {
-      "boot:vault_token": {
+      "vault_token": {
         "admin": {
           "wire": "ecosystem-resources:process-resources",
           "environment": "cd",
@@ -620,7 +627,7 @@
     },
 
     {
-      "boot:source_control_repository": {
+      "source_control_repository": {
         "ecosystems": {
           "wire": "ecosystem-resources:process-resources",
           "environment": "cd",
@@ -648,7 +655,7 @@
     },
 
     {
-      "boot:source_control_public_key": {
+      "source_control_public_key": {
         "rpk": {
           "wire": "ecosystem-resources:process-resources",
           "environment": "cd",
@@ -692,19 +699,11 @@
       }
     },
     {
-      "boot:vault_secret": {
+      "vault_secret": {
         "service/archiva/admin/credentials": {
-          "wire": "vault:register-secret",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "key": "service/archiva/admin/credentials",
-          "data": {
             "user_name": "admin",
             "password": "admin1admin",
             "email": "aidan@gmail.com"
-          }
         }
       }
     },
