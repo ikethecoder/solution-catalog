@@ -36,7 +36,7 @@ files.each do | file |
         raise("Connection to NodeRed Failed")
     end
 
-    # content = JSON.parse(res.body)
+    content = JSON.parse(res.body)
 
-    # puts content
+    puts content
 end
