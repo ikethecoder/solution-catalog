@@ -3,7 +3,7 @@ require 'commands/push-config'
 require 'template-runner'
 require 'trace-runner'
 
-pc = PushConfig.new "/'"
+pc = PushConfig.new "/"
 
 t = Template.new
 
