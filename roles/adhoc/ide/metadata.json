@@ -1,0 +1,19 @@
+{
+  "services": [],
+  "resources": [
+    {
+      "proxy_service": {
+        "play-ide": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/play-ide/",
+          "template": "ide.tmpl",
+          "passthrough": "https://play-ide.service.dc1.consul:8000"
+        }
+      }
+    }
+  ]
+}
