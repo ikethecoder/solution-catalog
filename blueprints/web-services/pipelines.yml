@@ -1,0 +1,7 @@
+
+pipelines:
+  -
+    name: some_image_app_pipeline
+    type: image
+    environment: intg
+    state: inactive
