@@ -1,5 +1,5 @@
 #
-# canzea --config=config.json --lifecycle=wire --solution=ecosystem --action=create-bb --args='{"role":"adhoc", "solution":"test"}'
+# canzea --config=config.json --lifecycle=wire --solution=ecosystem --action=create-bb --args='{"role":"adhoc", "solution":"test", "docker_service": true}'
 #
 require 'json'
 require 'fileutils'
