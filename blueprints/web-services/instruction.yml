@@ -55,8 +55,11 @@ instructions:
         - step:workarounds:ruby
         - step:workarounds:ruby-gems
         - step:workarounds:canzea
+        - step:workarounds:sshd
+        - step:workarounds:network
         - step:workarounds:zip
         - step:workarounds:expect
+        - step:workarounds:journald
         - step:sourcecontrol:git
         - step:configdb:consul
         - step:keymgmt:hashicorpvault
@@ -353,6 +356,22 @@ instructions:
       wiring:
         - sample:python-script
         - users:configure-go
+
+    db:
+      abbreviation: db
+      label: Database
+      description: DB
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
+
+    default:
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
 
     tools:
       abbreviation: tools

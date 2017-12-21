@@ -1,0 +1,155 @@
+{
+  "id": "78d32ab1.ca8c04",
+  "type": "subflow",
+  "name": "Async Events",
+  "info": "",
+  "in": [
+    {
+      "x": 197,
+      "y": 153,
+      "wires": [
+        {
+          "id": "ed51b3f2.faa4f"
+        },
+        {
+          "id": "fb88b106.0a1f5"
+        },
+        {
+          "id": "34ca5a39.444d36"
+        },
+        {
+          "id": "8374fceb.06d8d"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 541,
+      "y": 154,
+      "wires": [
+        {
+          "id": "fb88b106.0a1f5",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "c3f3e417.af7f68",
+      "type": "remote-server",
+      "z": "78d32ab1.ca8c04",
+      "name": "mon-elastic",
+      "host": "http://elasticsearch.service.dc1.consul:9200"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ed51b3f2.faa4f",
+      "type": "debug",
+      "z": "78d32ab1.ca8c04",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 382.5,
+      "y": 95,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "fb88b106.0a1f5",
+      "type": "function",
+      "z": "78d32ab1.ca8c04",
+      "name": "Process Event",
+      "func": "if (msg.statusCode >= 200 && msg.statusCode < 300) {\n    node.warn(\"SUCCESS [\" + msg.topic + \"] \" + JSON.stringify(msg.payload));\n} else {\n    node.warn(\"FAILURE [\" + msg.topic + \"]\" + JSON.stringify(msg.payload));\n}\nmsg.payload = {\n    \"statusCode\" : msg.statusCode,\n    \"result\" : msg.payload\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 376.5,
+      "y": 154,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "68e752dc.2a343c",
+      "type": "es-create",
+      "z": "78d32ab1.ca8c04",
+      "name": "",
+      "documentIndex": "flowsgateway",
+      "documentType": "metrics",
+      "server": "c3f3e417.af7f68",
+      "x": 478.5,
+      "y": 261,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "34ca5a39.444d36",
+      "type": "function",
+      "z": "78d32ab1.ca8c04",
+      "name": "",
+      "func": "msg.payload = {\n    \"statusCode\" : msg.statusCode,\n    \"result\" : msg.payload,\n    \"@timestamp\" : Date.now(),\n    \"triggerDate\" : new Date().toISOString()\n}\nmsg.documentType = msg.topic;\nmsg.documentId = msg._msgid;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 312.5,
+      "y": 261,
+      "wires": [
+        [
+          "68e752dc.2a343c",
+          "777e7524.37916c"
+        ]
+      ]
+    },
+    {
+      "id": "777e7524.37916c",
+      "type": "debug",
+      "z": "78d32ab1.ca8c04",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 416.5,
+      "y": 315,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "42d9b7bf.1aaf68",
+      "type": "subflow:459ae946.b59388",
+      "z": "78d32ab1.ca8c04",
+      "x": 540,
+      "y": 200,
+      "wires": [
+        [
+
+        ]
+      ],
+      "subflow": "459ae946.b59388"
+    },
+    {
+      "id": "8374fceb.06d8d",
+      "type": "function",
+      "z": "78d32ab1.ca8c04",
+      "name": "",
+      "func": "p = msg.payload;\nmsg.channel = 'general';\n\nsuccess = (msg.statusCode >= 200 && msg.statusCode <= 299);\n\nmsg.payload = \"Gateway Call \" + (success ? 'Succeeded':'Failed');\n\ncolor = (success ? '#00ff00' : '#ff0000');\n\ntextmsgs = [\n    \"**> \" + msg.topic + '**',\n    \"** \" + msg.key + '**'\n];\nif (!success) {\n    textmsgs.push ('\\n' + JSON.stringify(JSON.parse(p), null, 2));\n}\nmsg.topic = 'send-message';\nmsg.payload = {\n    \"text\": msg.payload,\n    \"avatar\": \"https://es0390.canzea.cc/images/canzea_gw_icon_es.svg\",\n    \"attachments\": [{\n        \"color\": color,\n        \"text\": textmsgs.join('\\n')\n    }]\n};\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 320,
+      "y": 201,
+      "wires": [
+        [
+          "42d9b7bf.1aaf68"
+        ]
+      ]
+    }
+  ]
+}

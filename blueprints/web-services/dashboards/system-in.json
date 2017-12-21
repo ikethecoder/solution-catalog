@@ -2,7 +2,7 @@
           "annotations": {
             "list": []
           },
-          "description": "System metrics from metricbeat to elasticsearch",
+          "description": "{{description}}",
           "editable": true,
           "gnetId": 2030,
           "graphTooltip": 0,
@@ -1542,6 +1542,6 @@
             ]
           },
           "timezone": "browser",
-          "title": "System metrics",
+          "title": "{{title}}",
           "version": 5
         }

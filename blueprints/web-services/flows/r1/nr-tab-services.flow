@@ -1,0 +1,326 @@
+{
+  "id": "673be612.65c0e8",
+  "label": "Services",
+  "nodes": [
+    {
+      "id": "ba73ea78.709e88",
+      "type": "subflow:a6b9a798.463af8",
+      "z": "673be612.65c0e8",
+      "x": 542.5,
+      "y": 278,
+      "wires": [
+        [
+          "a5954dda.e93ea"
+        ]
+      ],
+      "subflow": "a6b9a798.463af8"
+    },
+    {
+      "id": "6a0ec521.8f985c",
+      "type": "http in",
+      "z": "673be612.65c0e8",
+      "name": "",
+      "url": "/services",
+      "method": "post",
+      "swaggerDoc": "",
+      "x": 102.5,
+      "y": 78,
+      "wires": [
+        [
+          "65e2ddf4.3d94d4"
+        ]
+      ]
+    },
+    {
+      "id": "f6b73012.90ca1",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "put-service",
+      "func": "msg.topic = 'put-service'\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 279.5,
+      "y": 131,
+      "wires": [
+        [
+          "ba73ea78.709e88"
+        ]
+      ]
+    },
+    {
+      "id": "a5954dda.e93ea",
+      "type": "http response",
+      "z": "673be612.65c0e8",
+      "name": "",
+      "x": 698.5,
+      "y": 278,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "65e2ddf4.3d94d4",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "Prep",
+      "func": "p = msg.payload;\n\nid = p.environment + \"-\" + p.name + \"-\" + p.port;\n\nargs = {\n    \"name\":p.name,\n    \"id\": id,\n    \"address\": \"10.136.41.145\", \n    \"port\": Number(p.port)\n};\n\ntags = [\n    \"urlprefix-www.dev/api\"\n];\n\ncheck = {\n    \"http\" : \"http://10.136.41.145:3333/api/query/q/test\",\n    \"interval\" : \"10s\",\n    \"timeout\" : \"1s\"\n};\n\nmsg.payload = {\n        \"Name\" : args.name, \n        \"ID\" : args.id, \n        \"Address\" : args.address, \n        \"Port\" : args.port, \n        \"Tags\" : tags,\n        \"Check\" : check\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 121,
+      "y": 130,
+      "wires": [
+        [
+          "f6b73012.90ca1",
+          "878f3062.6c77c"
+        ]
+      ]
+    },
+    {
+      "id": "3e79e63f.f030aa",
+      "type": "http in",
+      "z": "673be612.65c0e8",
+      "name": "",
+      "url": "/service_check",
+      "method": "put",
+      "swaggerDoc": "",
+      "x": 115,
+      "y": 519,
+      "wires": [
+        [
+          "a61d358b.aa7d18"
+        ]
+      ]
+    },
+    {
+      "id": "cd24f6ca.f74fd8",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "put-service",
+      "func": "msg.topic = 'put-service'\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 320,
+      "y": 603,
+      "wires": [
+        [
+          "ba73ea78.709e88"
+        ]
+      ]
+    },
+    {
+      "id": "a61d358b.aa7d18",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "Prep",
+      "func": "args = {\n    \"id\":\"enterprise-1236-5\",\n    \"Name\":\"enterprise\",\n    \"address\":\"10.136.17.79\", \n    \"port\":1236\n};\n\ntags = [\n    \"urlprefix-/enterprise\"\n];\n\ncheck = {\n    \"http\" : \"http://10.136.17.79:1235/health\",\n    \"interval\" : \"10s\",\n    \"timeout\" : \"1s\"\n};\n\nmsg.payload = {\n        \"ID\" : args.id, \n        \"Name\" : args.serviceName, \n        \"Address\" : args.address, \n        \"Port\" : args.port, \n        \"Tags\" : tags,\n        \"Check\" : check\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 161.5,
+      "y": 602,
+      "wires": [
+        [
+          "cd24f6ca.f74fd8"
+        ]
+      ]
+    },
+    {
+      "id": "d6b075db.21ffb8",
+      "type": "http in",
+      "z": "673be612.65c0e8",
+      "name": "",
+      "url": "/services",
+      "method": "delete",
+      "swaggerDoc": "",
+      "x": 105,
+      "y": 189,
+      "wires": [
+        [
+          "f6aaa661.78fa18"
+        ]
+      ]
+    },
+    {
+      "id": "10c506a.7790ef9",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "delete-service",
+      "func": "msg.topic = 'delete-service'\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 292,
+      "y": 242,
+      "wires": [
+        [
+          "ba73ea78.709e88"
+        ]
+      ]
+    },
+    {
+      "id": "f6aaa661.78fa18",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "Prep",
+      "func": "args = {\n    \"name\":\"enterprise2\",\n    \"id\":\"test\",\n    \"address\":\"10.136.17.79\", \n    \"port\":1236\n};\n\ntags = [\n    \"urlprefix-/enterprise\"\n];\n\ncheck = {\n    \"http\" : \"http://10.136.17.79:1235/health\",\n    \"interval\" : \"10s\",\n    \"timeout\" : \"1s\"\n};\n\nmsg.payload = {\n        \"Name\" : args.name, \n        \"ID\" : args.id, \n        \"Address\" : args.address, \n        \"Port\" : args.port, \n        \"Tags\" : tags,\n        \"Check\" : check\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 123.5,
+      "y": 241,
+      "wires": [
+        [
+          "10c506a.7790ef9"
+        ]
+      ]
+    },
+    {
+      "id": "a3cc77cb.b78d38",
+      "type": "http in",
+      "z": "673be612.65c0e8",
+      "name": "",
+      "url": "/services/:state",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 110,
+      "y": 327,
+      "wires": [
+        [
+          "d7a28618.8dfc68"
+        ]
+      ]
+    },
+    {
+      "id": "2cfb8d65.4ac062",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "list-health",
+      "func": "msg.topic = 'list-health'\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 307,
+      "y": 406,
+      "wires": [
+        [
+          "ba73ea78.709e88"
+        ]
+      ]
+    },
+    {
+      "id": "d7a28618.8dfc68",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "Set Param",
+      "func": "msg.payload = {\"state\": msg.req.params.state};\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 145.5,
+      "y": 407,
+      "wires": [
+        [
+          "2cfb8d65.4ac062"
+        ]
+      ]
+    },
+    {
+      "id": "b23bcd52.5cd9c",
+      "type": "comment",
+      "z": "673be612.65c0e8",
+      "name": "any, passing, warning, or critical",
+      "info": "",
+      "x": 141.5,
+      "y": 287,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "1a139964.5f9d87",
+      "type": "http in",
+      "z": "673be612.65c0e8",
+      "name": "",
+      "url": "/services",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 418,
+      "y": 456,
+      "wires": [
+        [
+          "7d32199a.e901f8"
+        ]
+      ]
+    },
+    {
+      "id": "7d32199a.e901f8",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "list-services",
+      "func": "msg.topic = 'list-services'\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 635,
+      "y": 535,
+      "wires": [
+        [
+          "ba73ea78.709e88"
+        ]
+      ]
+    },
+    {
+      "id": "da906cc9.ed393",
+      "type": "catch",
+      "z": "673be612.65c0e8",
+      "name": "",
+      "scope": null,
+      "x": 539,
+      "y": 165,
+      "wires": [
+        [
+          "f6d4026a.c334e",
+          "d1d09f2b.ad0e"
+        ]
+      ]
+    },
+    {
+      "id": "f6d4026a.c334e",
+      "type": "function",
+      "z": "673be612.65c0e8",
+      "name": "Error",
+      "func": "msg.payload = {\n    \"error\": msg.message\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 667.5,
+      "y": 165,
+      "wires": [
+        [
+          "a5954dda.e93ea"
+        ]
+      ]
+    },
+    {
+      "id": "d1d09f2b.ad0e",
+      "type": "debug",
+      "z": "673be612.65c0e8",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 651.5,
+      "y": 92,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "878f3062.6c77c",
+      "type": "debug",
+      "z": "673be612.65c0e8",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 334,
+      "y": 72,
+      "wires": [
+
+      ]
+    }
+  ]
+}

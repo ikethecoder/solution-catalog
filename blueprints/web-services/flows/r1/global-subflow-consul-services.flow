@@ -1,0 +1,562 @@
+{
+  "id": "a6b9a798.463af8",
+  "type": "subflow",
+  "name": "Consul Services",
+  "info": "",
+  "in": [
+    {
+      "x": 50,
+      "y": 179,
+      "wires": [
+        {
+          "id": "ef505d18.7367"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 1040,
+      "y": 220,
+      "wires": [
+        {
+          "id": "5e75657b.1e49bc",
+          "port": 0
+        },
+        {
+          "id": "7f08106e.19757",
+          "port": 0
+        },
+        {
+          "id": "6dd7b3d.d4dda4c",
+          "port": 0
+        },
+        {
+          "id": "b3150035.75da2",
+          "port": 0
+        },
+        {
+          "id": "b41465b0.dff418",
+          "port": 0
+        },
+        {
+          "id": "6b9c82dc.ca52ec",
+          "port": 0
+        },
+        {
+          "id": "1497a281.b22ffd",
+          "port": 0
+        },
+        {
+          "id": "d584c3b6.b66d",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "ef505d18.7367",
+      "type": "switch",
+      "z": "a6b9a798.463af8",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "list-components",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "set-key-value",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "list-health",
+          "vt": "str"
+        },
+        {
+          "t": "cont",
+          "v": "service",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 5,
+      "x": 145.61111450195312,
+      "y": 178.22222900390625,
+      "wires": [
+        [
+          "6a433a50.1ba1d4"
+        ],
+        [
+          "6a433a50.1ba1d4"
+        ],
+        [
+
+        ],
+        [
+          "33fad3f.b4b082c"
+        ],
+        [
+          "7f08106e.19757"
+        ]
+      ]
+    },
+    {
+      "id": "dbf15835.5ee688",
+      "type": "catch",
+      "z": "a6b9a798.463af8",
+      "name": "",
+      "scope": null,
+      "x": 672.5,
+      "y": 21,
+      "wires": [
+        [
+          "6dd7b3d.d4dda4c"
+        ]
+      ]
+    },
+    {
+      "id": "6dd7b3d.d4dda4c",
+      "type": "function",
+      "z": "a6b9a798.463af8",
+      "name": "Error",
+      "func": "msg.payload = {\n    \"error\": msg.message\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 826,
+      "y": 23,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "5e75657b.1e49bc",
+      "type": "function",
+      "z": "a6b9a798.463af8",
+      "name": "Error",
+      "func": "return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 703,
+      "y": 211,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "7f08106e.19757",
+      "type": "function",
+      "z": "a6b9a798.463af8",
+      "name": "Invalid Topic",
+      "func": "msg.payload = {\n    \"error\": \"Unknown topic \" + msg.topic\n};\nmsg.statusCode = 500;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 445.5,
+      "y": 213,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "bcc4f1bb.54c44",
+      "type": "http request",
+      "z": "a6b9a798.463af8",
+      "name": "POST",
+      "method": "PUT",
+      "ret": "txt",
+      "url": "https://consul.service.dc1.consul:8080/v1/agent/service/register",
+      "tls": "c792be07.29d4",
+      "x": 621,
+      "y": 292,
+      "wires": [
+        [
+          "bde421d8.76287"
+        ]
+      ]
+    },
+    {
+      "id": "3a3892f4.b262fe",
+      "type": "http request",
+      "z": "a6b9a798.463af8",
+      "name": "DELETE",
+      "method": "DELETE",
+      "ret": "txt",
+      "url": "https://consul.service.dc1.consul:8080/v1/agent/service/deregister/{{key}}",
+      "tls": "c792be07.29d4",
+      "x": 492,
+      "y": 335,
+      "wires": [
+        [
+          "bde421d8.76287"
+        ]
+      ]
+    },
+    {
+      "id": "e8540b41.b7f818",
+      "type": "http request",
+      "z": "a6b9a798.463af8",
+      "name": "GET LIST",
+      "method": "GET",
+      "ret": "txt",
+      "url": "https://consul.service.dc1.consul:8080/v1/health/state/{{payload.state}}",
+      "tls": "c792be07.29d4",
+      "x": 493,
+      "y": 374,
+      "wires": [
+        [
+          "bde421d8.76287"
+        ]
+      ]
+    },
+    {
+      "id": "b3150035.75da2",
+      "type": "switch",
+      "z": "a6b9a798.463af8",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 660,
+      "y": 170,
+      "wires": [
+        [
+
+        ],
+        [
+          "5e75657b.1e49bc"
+        ]
+      ]
+    },
+    {
+      "id": "5d11203e.7932a",
+      "type": "http request",
+      "z": "a6b9a798.463af8",
+      "name": "GET SERVICES",
+      "method": "GET",
+      "ret": "txt",
+      "url": "https://consul.service.dc1.consul:8080/v1/agent/services",
+      "tls": "",
+      "x": 458,
+      "y": 169,
+      "wires": [
+        [
+          "b3150035.75da2"
+        ]
+      ]
+    },
+    {
+      "id": "aed4e776.4f6468",
+      "type": "http request",
+      "z": "a6b9a798.463af8",
+      "name": "GET KEY VALUES",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://consul.service.dc1.consul:8080/v1/kv/{{{payload.key}}}",
+      "tls": "c792be07.29d4",
+      "x": 445,
+      "y": 60,
+      "wires": [
+        [
+          "adf50611.70f568",
+          "3b45a3ac.e78b7c"
+        ]
+      ]
+    },
+    {
+      "id": "64b7d53f.ea6cfc",
+      "type": "http request",
+      "z": "a6b9a798.463af8",
+      "name": "SET KEY VALUE",
+      "method": "PUT",
+      "ret": "txt",
+      "url": "https://consul.service.dc1.consul:8080/v1/kv/{{key}}",
+      "tls": "c792be07.29d4",
+      "x": 444,
+      "y": 99,
+      "wires": [
+        [
+          "adf50611.70f568"
+        ]
+      ]
+    },
+    {
+      "id": "86013aba.94fb18",
+      "type": "function",
+      "z": "a6b9a798.463af8",
+      "name": "",
+      "func": "msg.payload['ID'] = msg.key;\nreturn msg;\n\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 482.5,
+      "y": 292,
+      "wires": [
+        [
+          "bcc4f1bb.54c44"
+        ]
+      ]
+    },
+    {
+      "id": "33fad3f.b4b082c",
+      "type": "switch",
+      "z": "a6b9a798.463af8",
+      "name": "SERVICES",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:service_discovery_service",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:service_discovery_service",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:service_discovery_service",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "list-services",
+          "vt": "str"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 4,
+      "x": 296,
+      "y": 346,
+      "wires": [
+        [
+          "86013aba.94fb18"
+        ],
+        [
+          "3a3892f4.b262fe"
+        ],
+        [
+          "e8540b41.b7f818"
+        ],
+        [
+          "e677b09d.f63f1"
+        ]
+      ]
+    },
+    {
+      "id": "e677b09d.f63f1",
+      "type": "http request",
+      "z": "a6b9a798.463af8",
+      "name": "GET SERVICES",
+      "method": "GET",
+      "ret": "txt",
+      "url": "https://consul.service.dc1.consul:8080/v1/agent/services",
+      "tls": "c792be07.29d4",
+      "x": 514,
+      "y": 414,
+      "wires": [
+        [
+          "bde421d8.76287"
+        ]
+      ]
+    },
+    {
+      "id": "6a433a50.1ba1d4",
+      "type": "switch",
+      "z": "a6b9a798.463af8",
+      "name": "KEYVAL",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "list-components",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "set-key-value",
+          "vt": "str"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 278,
+      "y": 81,
+      "wires": [
+        [
+          "aed4e776.4f6468"
+        ],
+        [
+          "64b7d53f.ea6cfc"
+        ]
+      ]
+    },
+    {
+      "id": "b41465b0.dff418",
+      "type": "function",
+      "z": "a6b9a798.463af8",
+      "name": "Success",
+      "func": "msg.payload = (msg.payload.data ? msg.payload.data : msg.payload);\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 800,
+      "y": 60,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "adf50611.70f568",
+      "type": "switch",
+      "z": "a6b9a798.463af8",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 645.5,
+      "y": 78,
+      "wires": [
+        [
+          "b41465b0.dff418"
+        ],
+        [
+          "6b9c82dc.ca52ec"
+        ]
+      ]
+    },
+    {
+      "id": "6b9c82dc.ca52ec",
+      "type": "function",
+      "z": "a6b9a798.463af8",
+      "name": "Error",
+      "func": "msg.payload = {\n    \"error\": msg.payload\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 785.5,
+      "y": 102,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "1497a281.b22ffd",
+      "type": "function",
+      "z": "a6b9a798.463af8",
+      "name": "Success",
+      "func": "msg.payload = (msg.payload.data ? msg.payload.data:msg.payload);\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 921,
+      "y": 337,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "bde421d8.76287",
+      "type": "switch",
+      "z": "a6b9a798.463af8",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 782.5,
+      "y": 356,
+      "wires": [
+        [
+          "1497a281.b22ffd"
+        ],
+        [
+          "d584c3b6.b66d"
+        ]
+      ]
+    },
+    {
+      "id": "d584c3b6.b66d",
+      "type": "function",
+      "z": "a6b9a798.463af8",
+      "name": "Error",
+      "func": "return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 914.5,
+      "y": 373,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "3b45a3ac.e78b7c",
+      "type": "debug",
+      "z": "a6b9a798.463af8",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 1010,
+      "y": 40,
+      "wires": [
+
+      ]
+    }
+  ]
+}
