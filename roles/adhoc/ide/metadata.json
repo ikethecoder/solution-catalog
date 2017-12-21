@@ -2,6 +2,21 @@
   "services": [],
   "resources": [
     {
+      "service_discovery_service": {
+        "{{instanceId}}-ide": {
+          "Name": "ide",
+          "Address": "{{instance.privateIp}}",
+          "Port": 2181,
+          "Tags" : [ "{{instanceId}}", "{{environmentId}}" ],
+          "Check": {
+            "url": "http://{{instance.privateIp}}:8000",
+            "interval": "10s",
+            "timeout": "1s"
+          }
+        }
+      }
+    },
+    {
       "proxy_service": {
         "play-ide": {
           "environment": "cd",
