@@ -1,0 +1,12 @@
+{
+  "consul_tls": true,
+  "consul_tls_ca_file" : "/var/local/consul/ssl/ca.cert",
+  "consul_tls_cert_file" : "/var/local/consul/ssl/consul.cert",
+  "consul_tls_key_file" : "/var/local/consul/ssl/consul.key",
+  "vault_tls_cert_file" : "/var/local/consul/ssl/vault.cert",
+  "vault_tls_key_file" : "/var/local/consul/ssl/vault.key",
+  "config_location": "#{Dir.home}/.es-catalog",
+  "catalog_location": "#{Dir.home}/.es-catalog/catalog",
+  "catalog_git": "http://gogs.service.dc1.consul/root/ecosystems.git",
+  "catalog_branch": "master"
+}
