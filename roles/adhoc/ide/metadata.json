@@ -3,13 +3,13 @@
   "resources": [
     {
       "service_discovery_service": {
-        "{{instanceId}}-ide": {
-          "Name": "ide",
-          "Address": "{{instance.privateIp}}",
-          "Port": 2181,
-          "Tags" : [ "{{instanceId}}", "{{environmentId}}" ],
+        "${instanceId}-ide": {
+          "Name": "${instanceId}-ide",
+          "Address": "${instance.privateIp}",
+          "Port": 8000,
+          "Tags" : [ "${instanceId}", "${environmentId}" ],
           "Check": {
-            "url": "http://{{instance.privateIp}}:8000",
+            "http": "http://${instance.privateIp}:8000",
             "interval": "10s",
             "timeout": "1s"
           }
@@ -18,15 +18,24 @@
     },
     {
       "proxy_service": {
-        "play-ide": {
+        "${instanceId}-ide": {
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
           "privateKey": "master_key",
           "proxy_ssl_virtual_host": "default",
-          "location": "/play-ide/",
+          "location": "/${instanceId}-ide/",
           "template": "ide.tmpl",
-          "passthrough": "https://play-ide.service.dc1.consul:8000"
+          "passthrough": "https://${instanceId}-ide.service.dc1.consul:8000"
+        }
+      }
+    },
+    {
+      "service_endpoint": {
+        "${instanceId}-ide": {
+          "service": "ide",
+          "segment":"${segmentId}",
+          "secure":"https://${secureDomain}/${instanceId}-ide"
         }
       }
     }
