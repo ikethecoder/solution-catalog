@@ -5,8 +5,8 @@
   "consul_tls_key_file" : "/var/local/consul/ssl/consul.key",
   "vault_tls_cert_file" : "/var/local/consul/ssl/vault.cert",
   "vault_tls_key_file" : "/var/local/consul/ssl/vault.key",
-  "config_location": "#{Dir.home}/.es-catalog",
-  "catalog_location": "#{Dir.home}/.es-catalog/catalog",
-  "catalog_git": "http://gogs.service.dc1.consul/root/ecosystems.git",
+  "config_location": "/root/.es-catalog",
+  "catalog_location": "/root/.es-catalog/catalog",
+  "catalog_git": "http://gogs.service.dc1.consul:10080/root/ecosystems.git",
   "catalog_branch": "master"
 }
