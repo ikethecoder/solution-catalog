@@ -5,14 +5,14 @@ parameters = JSON.parse(ARGV[0])
 
 http = Connection.new.prepareHttpPutConnection()
 
-request = Net::HTTP::Put.new("/v1/agent/service/deregister/#{parameters['service_id']}")
+request = Net::HTTP::Get.new("/v1/agent/services")
 
 res = http.request(request)
 
-puts res.body
+puts JSON.pretty_generate(JSON.parse(res.body))
 
 if ( Integer(res.code) != 200 )
     puts res.code
     puts res.body
-    raise("Deleting service configuration failed")
+    raise("Getting service list failed.")
 end
