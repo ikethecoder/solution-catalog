@@ -1,6 +1,6 @@
 require 'json'
 
-class JavascriptProject
+class HugoProject
 
     def createDetails(branch, commitRevision, name)
         file = File.read("#{name}/package.json")
