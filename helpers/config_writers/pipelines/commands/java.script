@@ -1,0 +1,12 @@
+FROM openjdk:8u151-jdk-alpine
+
+LABEL description="This image can be used to build java applications"
+
+RUN apk update && apk add openssl && \
+    java version
+
+RUN adduser -D -H -u 1005 go
+
+USER go
+
+CMD java
