@@ -1,7 +1,7 @@
 require 'json'
 require 'template-runner'
 
-class JSNpmBuild
+class HugoBuild
 
     def createPipeline (parameters)
 
