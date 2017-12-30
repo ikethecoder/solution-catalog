@@ -31,49 +31,52 @@ class JSNpmBuild
 
         taskTemplateCanzea = getFragmentPath("task-canzea.json")
 
-        if (type == "js-npm")
-            stage = JSON.parse(t.process stageTemplate, {"name" => "Build"})
 
-            job = JSON.parse(t.process jobTemplate, attributes)
-            stage['jobs'].push(job)
+        stage = JSON.parse(t.process stageTemplate, {"name" => "Build"})
 
-            taskTemplate1 = getFragmentPath("task-docker.json")
+        job = JSON.parse(t.process jobTemplate, attributes)
+        stage['jobs'].push(job)
 
-            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "npm", "config", "set", "jobs", "1"] })
-            job['tasks'].push (task)
+        taskTemplate1 = getFragmentPath("task-docker-cli.json")
+        taskTemplate2 = getFragmentPath("task-docker.json")
 
-            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "npm", "install"] })
-            job['tasks'].push (task)
+        task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
+        job['tasks'].push (task)
 
-            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "npm", "run", "build"] })
-            job['tasks'].push (task)
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task", "npm", "install"] })
+        job['tasks'].push (task)
 
-            root['pipeline']['stages'].push (stage)
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task", "npm", "run", "build"] })
+        job['tasks'].push (task)
+
+        taskTemplate1 = getFragmentPath("task-docker.json")
+
+        root['pipeline']['stages'].push (stage)
 
 
-            stage = JSON.parse(t.process stageTemplate, {"name" => "Registry"})
+        stage = JSON.parse(t.process stageTemplate, {"name" => "Registry"})
 
-            job = JSON.parse(t.process jobTemplate, attributes)
-            stage['jobs'].push(job)
+        job = JSON.parse(t.process jobTemplate, attributes)
+        stage['jobs'].push(job)
 
-            params = { }
-            params = params.to_json.to_json
-            params = params.slice(1,params.length - 2)
+        params = { }
+        params = params.to_json.to_json
+        params = params.slice(1,params.length - 2)
 
-            task = JSON.parse(t.process taskTemplateCanzea, {"workingdir" => attributes['project'], "project" => attributes['project'], "solution" => "gocd", "action" => "prep-build", "parameters" => params })
-            job['tasks'].push (task)
+        task = JSON.parse(t.process taskTemplateCanzea, {"workingdir" => attributes['project'], "project" => attributes['project'], "solution" => "gocd", "action" => "prep-build", "parameters" => params })
+        job['tasks'].push (task)
 
-            taskTemplate = getFragmentPath("task-mvn-package.json")
-            task = JSON.parse(t.process taskTemplate, {"project" => attributes['project']})
-            job['tasks'].push (task)
+        taskTemplate = getFragmentPath("task-mvn-package.json")
+        task = JSON.parse(t.process taskTemplate, {"project" => attributes['project']})
+        job['tasks'].push (task)
 
-            taskTemplate = getFragmentPath("task-mvn-deploy.json")
-            task = JSON.parse(t.process taskTemplate, {"project" => attributes['project']})
-            job['tasks'].push (task)
+        taskTemplate = getFragmentPath("task-mvn-deploy.json")
+        task = JSON.parse(t.process taskTemplate, {"project" => attributes['project']})
+        job['tasks'].push (task)
 
-            root['pipeline']['stages'].push (stage)
+        root['pipeline']['stages'].push (stage)
 
-        end
+
 
         item = {
             "pipeline_pipeline" => {

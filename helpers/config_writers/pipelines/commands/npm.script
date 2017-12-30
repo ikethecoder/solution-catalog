@@ -1,0 +1,12 @@
+FROM node:8.9.3-alpine
+
+LABEL description="This image can be used to build node applications"
+
+RUN apk update && apk add openssl && \
+    npm -version
+
+RUN adduser -D -H -u 1005 go
+
+USER go
+
+CMD java

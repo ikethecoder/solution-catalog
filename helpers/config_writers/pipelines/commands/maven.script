@@ -6,7 +6,7 @@ RUN apk update && apk add openssl && \
     java -version && \
     mvn -v
 
-RUN adduser -D -H -u 1005 go
+RUN adduser -D -u 1005 go
 
 USER go
 
