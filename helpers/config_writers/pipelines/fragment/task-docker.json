@@ -1,0 +1,11 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "command": "docker-run",
+    "arguments": {{{arguments}}},
+    "working_directory": "{{project}}"
+  }
+}

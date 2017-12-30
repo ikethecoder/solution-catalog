@@ -9,6 +9,7 @@ require 'fileutils'
 require 'canzea/registry'
 require_relative 'types/java-maven/java-maven-project'
 require_relative 'types/js-npm/js-npm-project'
+require_relative 'types/js-npm/hugo-project'
 require_relative 'types/ruby/ruby-project'
 
 parameters = JSON.parse(ARGV[0])
@@ -41,6 +42,8 @@ begin
 
     if (File.exists? "#{name}/pom.xml")
         puts JavaMavenProject.new.createDetails branch, commit, name
+    elsif (File.exists? "#{name}/config.toml")
+        puts HugoProject.new.createDetails branch, commit, name
     elsif (File.exists? "#{name}/package.json")
         puts JavascriptProject.new.createDetails branch, commit, name
     elsif (File.exists? "#{name}/Rakefile")

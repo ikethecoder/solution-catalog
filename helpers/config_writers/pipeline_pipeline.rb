@@ -3,6 +3,7 @@ require 'commands/push-config'
 require 'template-runner'
 require_relative 'pipelines/java-maven-build'
 require_relative 'pipelines/js-npm-build'
+require_relative 'pipelines/hugo-build'
 require_relative 'pipelines/deploy'
 
 #   PrepareEnvironment.new.addToEnv "#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipeline_pipeline_env.json"
@@ -30,6 +31,8 @@ puts "TYPE = #{properties['type']}"
 if is_plus
     if properties['pipelineType'] == 'deploy'
         output = Deploy.new.createPipeline properties
+    elsif properties['type'] == 'hugo'
+        output = HugoBuild.new.createPipeline properties
     elsif properties['type'] == 'java-maven'
         output = JavaMavenBuild.new.createPipeline properties
     elsif properties['type'] == 'js-npm'
