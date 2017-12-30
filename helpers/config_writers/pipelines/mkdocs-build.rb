@@ -26,7 +26,7 @@ class MkdocsBuild
         material = JSON.parse(t.process getFragmentPath("material.json"), attributes)
         root['pipeline']['materials'].push (material)
 
-        material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://esdade.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
+        material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ECOSYSTEM']}.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
         root['pipeline']['materials'].push (material)
 
         taskTemplateCanzea = getFragmentPath("task-canzea.json")
