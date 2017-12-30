@@ -36,15 +36,13 @@ class HugoBuild
         job = JSON.parse(t.process jobTemplate, attributes)
         stage['jobs'].push(job)
 
-        taskTemplate1 = getFragmentPath("task-docker.json")
+        taskTemplate1 = getFragmentPath("task-docker-cli.json")
+        taskTemplate2 = getFragmentPath("task-docker.json")
 
-        task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "npm", "config", "set", "jobs", "1"] })
+        task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
         job['tasks'].push (task)
 
-        task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "npm", "install"] })
-        job['tasks'].push (task)
-
-        task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "npm", "run", "build"] })
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task"] })
         job['tasks'].push (task)
 
         root['pipeline']['stages'].push (stage)
