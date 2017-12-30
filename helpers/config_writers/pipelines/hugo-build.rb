@@ -39,7 +39,7 @@ class HugoBuild
         taskTemplate1 = getFragmentPath("task-docker-cli.json")
         taskTemplate2 = getFragmentPath("task-docker.json")
 
-        task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
+        task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
         job['tasks'].push (task)
 
         task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task"] })
@@ -84,7 +84,11 @@ class HugoBuild
 
     def preparePipelineScripts(parameters)
         project = parameters['name']
+
+        dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/hugo.script")
+
         return [
+            { "file" => "components/#{project}/Dockerfile", "content" => dockerFile }
         ]
     end
 
