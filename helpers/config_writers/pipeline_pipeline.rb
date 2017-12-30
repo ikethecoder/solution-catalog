@@ -31,7 +31,7 @@ puts "TYPE = #{properties['type']}"
 if is_plus
     if properties['pipelineType'] == 'deploy'
         output = Deploy.new.createPipeline properties
-    elsif properties['type'] == 'hugo'
+    elsif properties['type'] == 'static-hugo'
         output = HugoBuild.new.createPipeline properties
     elsif properties['type'] == 'java-maven'
         output = JavaMavenBuild.new.createPipeline properties

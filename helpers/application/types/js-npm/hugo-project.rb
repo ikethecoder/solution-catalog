@@ -7,7 +7,7 @@ class HugoProject
         package = JSON.parse(file)
 
         content = {
-          "type" => "hugo",
+          "type" => "static-hugo",
           "name" => package['name'],
           "author" => package['author'],
           "version" => package['version'],
