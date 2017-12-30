@@ -57,7 +57,7 @@ class HugoBuild
         params = params.to_json.to_json
         params = params.slice(1,params.length - 2)
 
-        task = JSON.parse(t.process taskTemplateCanzea, {"workingdir" => attributes['project'], "project" => attributes['project'], "solution" => "gocd", "action" => "prep-build", "parameters" => params })
+        task = JSON.parse(t.process taskTemplateCanzea, {"workingdir" => attributes['project'], "project" => attributes['project'], "solution" => "gocd", "action" => "prep-build-hugo", "parameters" => params })
         job['tasks'].push (task)
 
         taskTemplate = getFragmentPath("task-mvn-package.json")
