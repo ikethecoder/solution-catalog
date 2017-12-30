@@ -88,7 +88,7 @@ class MkdocsBuild
         dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/mkdocs.script")
 
         return [
-            { "file" => "components/#{project}/Dockerfile", "contents": dockerFile }
+            { "file" => "components/#{project}/Dockerfile", "contents" => dockerFile }
         ]
     end
 end

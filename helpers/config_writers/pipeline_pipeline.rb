@@ -54,7 +54,7 @@ if is_plus
 
     fileList = handler.preparePipelineScripts properties
     fileList.each do | file |
-        pc.write file.file, file.content
+        pc.write file['file'], file['content']
     end
 else
     pc.backupAndRemove "es_orchestrator/pipeline_pipeline/#{resourceId}.json"
