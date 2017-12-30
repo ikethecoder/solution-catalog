@@ -42,7 +42,7 @@ class MkdocsBuild
         task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
         job['tasks'].push (task)
 
-        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task"] })
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task", "mkdocs", "build"] })
         job['tasks'].push (task)
 
         root['pipeline']['stages'].push (stage)
@@ -57,7 +57,7 @@ class MkdocsBuild
         params = params.to_json.to_json
         params = params.slice(1,params.length - 2)
 
-        task = JSON.parse(t.process taskTemplateCanzea, {"workingdir" => attributes['project'], "project" => attributes['project'], "solution" => "gocd", "action" => "prep-build-hugo", "parameters" => params })
+        task = JSON.parse(t.process taskTemplateCanzea, {"workingdir" => attributes['project'], "project" => attributes['project'], "solution" => "gocd", "action" => "prep-build-mkdocs", "parameters" => params })
         job['tasks'].push (task)
 
         taskTemplate = getFragmentPath("task-mvn-package.json")
@@ -80,6 +80,16 @@ class MkdocsBuild
 
     def getFragmentPath (fileRelativePath)
         return "#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/fragment/#{fileRelativePath}"
+    end
+
+    def preparePipelineScripts(parameters)
+        project = parameters['name']
+
+        dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/mkdocs.script")
+
+        return [
+            { "file" => "components/#{project}/Dockerfile", "contents": dockerFile }
+        ]
     end
 end
 

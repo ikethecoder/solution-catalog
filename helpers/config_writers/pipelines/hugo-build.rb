@@ -81,5 +81,12 @@ class HugoBuild
     def getFragmentPath (fileRelativePath)
         return "#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/fragment/#{fileRelativePath}"
     end
+
+    def preparePipelineScripts(parameters)
+        project = parameters['name']
+        return [
+        ]
+    end
+
 end
 
