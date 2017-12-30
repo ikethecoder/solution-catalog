@@ -26,6 +26,9 @@ class JSNpmBuild
         material = JSON.parse(t.process getFragmentPath("material.json"), attributes)
         root['pipeline']['materials'].push (material)
 
+        material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://esdade.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
+        root['pipeline']['materials'].push (material)
+
         taskTemplateCanzea = getFragmentPath("task-canzea.json")
 
         if (type == "js-npm")
@@ -34,22 +37,15 @@ class JSNpmBuild
             job = JSON.parse(t.process jobTemplate, attributes)
             stage['jobs'].push(job)
 
-            taskTemplate1 = getFragmentPath("task-npm.json")
-            taskTemplate2 = getFragmentPath("task-bower.json")
+            taskTemplate1 = getFragmentPath("task-docker.json")
 
-            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["config", "set", "jobs", "1"] })
+            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "npm", "config", "set", "jobs", "1"] })
             job['tasks'].push (task)
 
-            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["install"] })
+            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "npm", "install"] })
             job['tasks'].push (task)
 
-            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["install", "bower"] })
-            job['tasks'].push (task)
-
-            task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["install"] })
-            job['tasks'].push (task)
-
-            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["run", "build"] })
+            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "npm", "run", "build"] })
             job['tasks'].push (task)
 
             root['pipeline']['stages'].push (stage)
