@@ -92,7 +92,10 @@ class JSNpmBuild
 
     def preparePipelineScripts(parameters)
         project = parameters['name']
+        dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/npm.script")
+
         return [
+            { "file" => "components/#{project}/Dockerfile", "content" => dockerFile }
         ]
     end
 
