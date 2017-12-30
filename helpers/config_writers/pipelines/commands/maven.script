@@ -3,8 +3,8 @@ FROM maven:3.5.2-jdk-8-alpine
 LABEL description="This image can be used to build java applications with maven"
 
 RUN apk update && apk add openssl && \
-    java version && \
-    mvn version
+    java -version && \
+    mvn -v
 
 RUN adduser -D -H -u 1005 go
 
