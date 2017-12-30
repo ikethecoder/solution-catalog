@@ -29,33 +29,40 @@ class JavaMavenBuild
 
         taskTemplateCanzea = getFragmentPath("task-canzea.json")
 
-        if (type == "java-maven")
-            stage = JSON.parse(t.process stageTemplate, {"name" => "Build"})
+        stage = JSON.parse(t.process stageTemplate, {"name" => "Build"})
 
-            job = JSON.parse(t.process jobTemplate, attributes)
-            stage['jobs'].push(job)
+        job = JSON.parse(t.process jobTemplate, attributes)
+        stage['jobs'].push(job)
 
-            taskTemplate1 = getFragmentPath("task-docker-mvn-install.json")
-            taskTemplate2 = getFragmentPath("task-mvn-deploy.json")
-            artifactTemplate = getFragmentPath("artifact.json")
+        taskTemplate1 = getFragmentPath("task-docker-cli.json")
+        taskTemplate2 = getFragmentPath("task-docker.json")
 
-            task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project']})
-            job['tasks'].push (task)
+        task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
+        job['tasks'].push (task)
 
-            task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project']})
-            job['tasks'].push (task)
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task", "mvn", "clean", "install"] })
+        job['tasks'].push (task)
 
-            if (attributes.has_key? "module")
-                attributes['projectModule'] = "#{project}/#{attributes['module']}"
-            else
-                attributes['projectModule'] = "#{project}"
-            end
-            artifact = JSON.parse(t.process artifactTemplate, attributes)
-            job['artifacts'].push (artifact)
 
-            root['pipeline']['stages'].push (stage)
+        taskTemplate1 = getFragmentPath("task-docker-mvn-install.json")
+        taskTemplate2 = getFragmentPath("task-mvn-deploy.json")
+        artifactTemplate = getFragmentPath("artifact.json")
 
+        task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project']})
+        job['tasks'].push (task)
+
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project']})
+        job['tasks'].push (task)
+
+        if (attributes.has_key? "module")
+            attributes['projectModule'] = "#{project}/#{attributes['module']}"
+        else
+            attributes['projectModule'] = "#{project}"
         end
+        artifact = JSON.parse(t.process artifactTemplate, attributes)
+        job['artifacts'].push (artifact)
+
+        root['pipeline']['stages'].push (stage)
 
         item = {
             "pipeline_pipeline" => {
@@ -71,7 +78,10 @@ class JavaMavenBuild
 
     def preparePipelineScripts(parameters)
         project = parameters['name']
+        dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/maven.script")
+
         return [
+            { "file" => "components/#{project}/Dockerfile", "content" => dockerFile }
         ]
     end
 
