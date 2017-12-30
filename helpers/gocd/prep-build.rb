@@ -18,7 +18,7 @@ config = {
 
 catalog = Canzea::config[:catalog_location]
 
-t.processAndWriteToFile "#{catalog}/helpers/gocd/builders/assembly.xml", "assembly.xml", config
+t.processAndWriteToFile "#{catalog}/helpers/gocd/builders/assembly-web.xml", "assembly.xml", config
 t.processAndWriteToFile "#{catalog}/helpers/gocd/builders/pom.xml", "pom.xml", config
 
 t.processAndWriteToFile "#{catalog}/helpers/gocd/builders/pom.properties", "pom.properties", config
