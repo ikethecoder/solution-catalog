@@ -8,7 +8,7 @@
     "arguments": [
       "deploy",
       "-B",
-      "-DaltDeploymentRepository=snapshotRepository::default::{{ARCHIVA_URL}}/repository/snapshots"
+      "-DaltDeploymentRepository=snapshotRepository::default::http://archiva.service.dc1.consul:9080/repository/snapshots"
     ],
     "working_directory": "{{project}}"
   }
