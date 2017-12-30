@@ -1,0 +1,11 @@
+FROM python:3.6-alpine
+LABEL description="This image can be used to build your mkdocs site"
+
+RUN apk add --no-cache rsync openssh git && \
+    pip install --no-cache-dir "mkdocs>=0.16,<0.17"
+
+RUN adduser -D -H -u 1005 go
+
+USER go
+
+CMD mkdocs
