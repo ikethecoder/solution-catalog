@@ -45,7 +45,7 @@ class MkdocsBuild
         task = JSON.parse(t.process taskTemplate1, {"project" => project, "version" => version})
         job['tasks'].push (task)
 
-        params = { "port" => attributes['port'], "env" => attributes['env'], "name" => attributes['name'], "project" => attributes['name'], "branch" => attributes['branch'] }
+        params = { "port" => attributes['port'], "env" => attributes['env'], "project" => attributes['name'] }
         params = params.to_json.to_json
         params = params.slice(1,params.length - 2)
 
@@ -54,18 +54,14 @@ class MkdocsBuild
 
         taskTemplateDockerCli = getFragmentPath("task-docker-cli.json")
 
-        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["build", "-f", "Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
         job['tasks'].push (task)
 
-        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "-name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}", "#{attributes['project']}-deploy"] })
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:80", "#{attributes['project']}-deploy"] })
         job['tasks'].push (task)
 
-        task = JSON.parse(t.process taskTemplate3, {"workingdir" => "", "project" => "#{project}", "service" => "/opt/applications/#{project}-#{branch}.service" })
+        task = JSON.parse(t.process taskTemplate3, {"workingdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "project" => "#{project}", "service" => "docker.service" })
         job['tasks'].push (task)
-
-        # params = { "channel" => "integration", "message" => "#{project} deployed" }
-        # task = JSON.parse(t.process taskTemplate2, {"workingdir" => "", "project" => project, "version" => version, "solution" => "rocketchat", "action" => "collaboration-send-message", "parameters" => JSON.generate(params.to_json) })
-        # job['tasks'].push (task)
 
         stage['jobs'].push(job)
 
@@ -165,12 +161,16 @@ class MkdocsBuild
     end
 
     def preparePipelineScripts(parameters)
+        t = Template.new
+
         project = parameters['name']
 
+        metadataFile = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/metadata/mkdocs.metadata.tmpl", parameters)
         dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/mkdocs.script")
 
         return [
-            { "file" => "components/#{project}/Dockerfile", "content" => dockerFile }
+            { "file" => "components/#{project}/Dockerfile", "content" => dockerFile },
+            { "file" => "components/#{project}/metadata.json", "content" => metadataFile }
         ]
     end
 end
