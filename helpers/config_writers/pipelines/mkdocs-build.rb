@@ -45,11 +45,19 @@ class MkdocsBuild
         task = JSON.parse(t.process taskTemplate1, {"project" => project, "version" => version})
         job['tasks'].push (task)
 
-        params = { "port" => attributes['port'], "env" => attributes['env'], "name" => attributes['name'], "branch" => attributes['branch'] }
+        params = { "port" => attributes['port'], "env" => attributes['env'], "name" => attributes['name'], "project" => attributes['name'], "branch" => attributes['branch'] }
         params = params.to_json.to_json
         params = params.slice(1,params.length - 2)
 
-        task = JSON.parse(t.process taskTemplate2, {"workingdir" => "", "docker_image" => "canzea/canzea_cli", "project" => project, "version" => version, "solution" => "application", "action" => "install-app", "parameters" => params })
+        task = JSON.parse(t.process taskTemplate2, {"workingdir" => "", "docker_image" => "canzea/canzea_cli", "project" => project, "version" => version, "solution" => "application", "action" => "pull", "parameters" => params })
+        job['tasks'].push (task)
+
+        taskTemplateDockerCli = getFragmentPath("task-docker-cli.json")
+
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["build", "-f", "Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
+        job['tasks'].push (task)
+
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "-name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}", "#{attributes['project']}-deploy"] })
         job['tasks'].push (task)
 
         task = JSON.parse(t.process taskTemplate3, {"workingdir" => "", "project" => "#{project}", "service" => "/opt/applications/#{project}-#{branch}.service" })
