@@ -17,6 +17,8 @@ sess = Patron::Session.new
 sess.timeout = 10
 sess.base_url = "http://#{repoHost}:#{repoPort}"
 
+puts "Base URL #{sess.base_url}"
+
 properties = JavaProperties.load(pomPropertiesFile)
 
 groupId = properties[:groupId]
