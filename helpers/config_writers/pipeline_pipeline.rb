@@ -31,24 +31,26 @@ puts "PATTERN = #{properties['pipelineType']}"
 puts "TYPE = #{properties['type']}"
 if is_plus
 
-    if properties['pipelineType'] == 'deploy'
-        output = Deploy.new.createPipeline properties
-        handler = Deploy.new
-    elsif properties['type'] == 'static-hugo'
-        output = HugoBuild.new.createPipeline properties
+    if properties['type'] == 'static-hugo'
         handler = HugoBuild.new
     elsif properties['type'] == 'static-mkdocs'
-        output = MkdocsBuild.new.createPipeline properties
         handler = MkdocsBuild.new
     elsif properties['type'] == 'java-maven'
-        output = JavaMavenBuild.new.createPipeline properties
         handler = JavaMavenBuild.new
     elsif properties['type'] == 'js-npm'
-        output = JSNpmBuild.new.createPipeline properties
         handler = JSNpmBuild.new
     else
         raise("unsupported type #{properties['type']}.")
     end
+
+    if properties['pipelineType'] == "build"
+        output = handler.createPipeline properties
+    elsif properties['pipelineType'] == 'deploy'
+        output = handler.createDeployPipeline properties
+    else
+        raise("unsupported pipeline type #{properties['pipelineType']}.")
+    end
+
     puts "WRITING : es_orchestrator/pipeline_pipeline/#{resourceId}.json"
     pc.write "es_orchestrator/pipeline_pipeline/#{resourceId}.json", output
 
