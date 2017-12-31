@@ -2,7 +2,7 @@
   "type": "dependency",
   "attributes": {
     "pipeline": "{{build_pipeline}}",
-    "stage": "Build",
+    "stage": "Registry",
     "name": "{{build_pipeline}}",
     "auto_update": true
   }
