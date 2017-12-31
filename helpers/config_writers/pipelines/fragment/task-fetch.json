@@ -6,7 +6,7 @@
     ],
     "on_cancel": null,
     "pipeline": "{{build_pipeline}}",
-    "stage": "Build",
+    "stage": "Registry",
     "job": "defaultJob",
     "is_source_a_file": false,
     "source": "maven-archiver",
