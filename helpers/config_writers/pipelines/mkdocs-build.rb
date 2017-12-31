@@ -137,6 +137,11 @@ class MkdocsBuild
         task = JSON.parse(t.process taskTemplate, {"project" => attributes['project']})
         job['tasks'].push (task)
 
+        artifactTemplate = getFragmentPath("artifact-assembly.json")
+        artifact = JSON.parse(t.process artifactTemplate, attributes)
+        job['artifacts'].push (artifact)
+
+
         root['pipeline']['stages'].push (stage)
 
         item = {

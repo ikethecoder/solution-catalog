@@ -1,0 +1,5 @@
+{
+  "source": "{{projectModule}}/pom.properties",
+  "destination": "maven-archiver",
+  "type": "build"
+}
