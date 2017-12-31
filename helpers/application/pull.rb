@@ -19,9 +19,6 @@ sess.base_url = "http://#{repoHost}:#{repoPort}"
 
 properties = JavaProperties.load(pomPropertiesFile)
 
-branch = attributes['branch']
-projectName = attributes['name']
-
 groupId = properties[:groupId]
 artifactId = properties[:artifactId]
 version = properties[:version]
@@ -34,9 +31,9 @@ puts url
 
 resp = sess.get(url)
 
-File.write("#{projectName}.zip", resp.body)
+File.write("#{project}.zip", resp.body)
 
-result = system "unzip #{projectName}.zip -d #{projectName}/site"
+result = system "unzip #{project}.zip -d #{project}/site"
 if (result == false)
     raise("Failed to unpackage assembly.")
 end
