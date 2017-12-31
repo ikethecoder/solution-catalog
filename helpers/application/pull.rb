@@ -27,7 +27,7 @@ version = properties[:version]
 
 groupIdPath = groupId.tr(".","/")
 
-url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{version}.zip"
+url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{version}-bin.zip"
 
 puts url
 
