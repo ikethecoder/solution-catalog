@@ -5,7 +5,7 @@
         "${instanceId}-{{name}}": {
           "service": "{{name}}",
           "segment": "${segmentId}",
-          "url": "http://${instance.privateIp}:{{port}}"
+          "url": "http://${domainName}:{{port}}"
         }
       }
     },
@@ -13,13 +13,13 @@
       "service_discovery_service": {
         "${instanceId}-{{name}}-{{port}}": {
           "Name" : "{{name}}",
-          "Address" : "${instance.privateIp}",
+          "Address" : "${d}{vars.compute_instance.${instanceId}.privateIp}",
           "Port" : {{port}},
           "Tags" : [
             "urlprefix-/www strip=/www"
           ],
           "Check" : {
-            "http": "http://${instance.privateIp}:{{port}}",
+            "http": "http://${d}{vars.compute_instance.${instanceId}.privateIp}:{{port}}",
             "interval": "10s",
             "timeout": "1s"
           }
