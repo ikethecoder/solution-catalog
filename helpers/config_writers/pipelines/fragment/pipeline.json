@@ -1,7 +1,7 @@
 {
   "group": "{{group}}",
   "pipeline": {
-    "label_template": "#{VERSION}-${COUNT}",
+    "label_template": "#{VERSION}-${COUNT}-${git[:7]}",
     "enable_pipeline_locking": true,
     "name": "{{pipelineName}}",
     "template": null,

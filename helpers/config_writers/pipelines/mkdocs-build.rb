@@ -92,7 +92,7 @@ class MkdocsBuild
 
         root = JSON.parse(t.process getFragmentPath("pipeline.json"), attributes)
 
-        material = JSON.parse(t.process getFragmentPath("material.json"), attributes)
+        material = JSON.parse(t.process getFragmentPath("material-core.json"), attributes)
         root['pipeline']['materials'].push (material)
 
         material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ECOSYSTEM']}.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
