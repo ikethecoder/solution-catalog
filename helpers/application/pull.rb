@@ -9,6 +9,8 @@ parameters = JSON.parse(ARGV[0])
 
 project = parameters['project']
 
+suffix = "-bin.zip"
+
 repoHost = ENV['ARCHIVA_ADDRESS']
 repoPort = ENV['ARCHIVA_PORT']
 pomPropertiesFile = "maven-archiver/pom.properties"
@@ -27,7 +29,7 @@ version = properties[:version]
 
 groupIdPath = groupId.tr(".","/")
 
-url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{version}-bin.zip"
+url = "/repository/snapshots/#{groupIdPath}/#{artifactId}/#{version}/#{artifactId}-#{version}#{suffix}"
 
 puts url
 
@@ -35,7 +37,7 @@ resp = sess.get(url)
 
 File.write("#{project}.zip", resp.body)
 
-result = system "unzip #{project}.zip -d #{project}/site"
+result = system "unzip #{project}.zip -d site"
 if (result == false)
     raise("Failed to unpackage assembly.")
 end
