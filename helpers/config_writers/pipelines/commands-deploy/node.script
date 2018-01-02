@@ -1,5 +1,5 @@
 FROM nginx:1.13.8-alpine
 
-LABEL description="This image can be used to deploy the hugo site"
+LABEL description="This image can be used to deploy the NPM site"
 
-COPY public/{{project}}-{{version}}/web /usr/share/nginx/html
+COPY site/{{project}}-{{version}}/web /usr/share/nginx/html
