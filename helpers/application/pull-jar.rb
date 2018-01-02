@@ -35,10 +35,5 @@ puts url
 
 resp = sess.get(url)
 
-File.write("#{project}.zip", resp.body)
-
-result = system "unzip #{project}.zip -d site"
-if (result == false)
-    raise("Failed to unpackage assembly.")
-end
+File.write("#{project}.jar", resp.body)
 
