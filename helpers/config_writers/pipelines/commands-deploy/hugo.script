@@ -1,0 +1,5 @@
+FROM nginx:1.13.8-alpine
+
+LABEL description="This image can be used to deploy the hugo site"
+
+COPY public/{{project}}-{{version}}/public /usr/share/nginx/html

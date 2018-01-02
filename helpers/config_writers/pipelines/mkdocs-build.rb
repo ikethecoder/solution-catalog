@@ -169,9 +169,13 @@ class MkdocsBuild
 
         metadataFile = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/metadata/mkdocs.metadata.tmpl", parameters)
         dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/mkdocs.script")
+        deployDockerFile = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands-deploy/mkdocs.script", parameters)
+        dockerService = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands-deploy/docker.service", parameters)
 
         return [
             { "file" => "components/#{project}/Dockerfile", "content" => dockerFile },
+            { "file" => "components/#{project}/docker.service", "content" => dockerService },
+            { "file" => "components/#{project}/Deploy.Dockerfile", "content" => deployDockerFile },
             { "file" => "components/#{project}/metadata.json", "content" => metadataFile }
         ]
     end
