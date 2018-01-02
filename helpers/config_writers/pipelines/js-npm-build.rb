@@ -96,14 +96,13 @@ class JSNpmBuild
 
         root = JSON.parse(t.process getFragmentPath("pipeline.json"), attributes)
 
-        material = JSON.parse(t.process getFragmentPath("material.json"), attributes)
+        material = JSON.parse(t.process getFragmentPath("material-core.json"), attributes)
         root['pipeline']['materials'].push (material)
 
         material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ECOSYSTEM']}.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
         root['pipeline']['materials'].push (material)
 
         taskTemplateCanzea = getFragmentPath("task-canzea.json")
-
 
         stage = JSON.parse(t.process stageTemplate, {"name" => "Build"})
 
@@ -112,6 +111,9 @@ class JSNpmBuild
 
         taskTemplate1 = getFragmentPath("task-docker-cli.json")
         taskTemplate2 = getFragmentPath("task-docker.json")
+
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["-e", "GO_PIPELINE_LABEL", "canzea/canzea_cli", "template", "src/app/config/config.js", "src/app/config/config.js"] })
+        job['tasks'].push (task)
 
         task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
         job['tasks'].push (task)
@@ -153,8 +155,6 @@ class JSNpmBuild
 
         root['pipeline']['stages'].push (stage)
 
-
-
         item = {
             "pipeline_pipeline" => {
                 attributes['rid'] => root
@@ -184,6 +184,5 @@ class JSNpmBuild
             { "file" => "components/#{project}/metadata.json", "content" => metadataFile }
         ]
     end
-
 end
 
