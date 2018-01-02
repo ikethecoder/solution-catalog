@@ -112,6 +112,9 @@ class MkdocsBuild
         taskTemplate1 = getFragmentPath("task-docker-cli.json")
         taskTemplate2 = getFragmentPath("task-docker.json")
 
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["canzea/canzea_cli", "template", "#{attributes['project']}", "#{attributes['project']}"] })
+        job['tasks'].push (task)
+
         task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
         job['tasks'].push (task)
 
