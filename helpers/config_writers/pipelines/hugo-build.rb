@@ -2,6 +2,79 @@ require 'json'
 require 'template-runner'
 
 class HugoBuild
+    def createDeployPipeline (parameters)
+        attributes = parameters
+
+        type = attributes['type']
+        project = attributes['name']
+        version = attributes['version']
+        branch = attributes['branch']
+
+        attributes['project'] = "#{project}"
+        attributes['group'] = "#{project}"
+
+
+        attributes['CONSUL_URL'] = ENV['CONSUL_URL']
+
+        attributes['project'] = "#{project}"
+        attributes['group'] = "#{project}"
+
+        attributes['build_pipeline_label'] = "${#{attributes['build_pipeline']}}"
+
+
+        t = Template.new
+
+        stageTemplate = getFragmentPath("stage.json")
+        jobTemplate = getFragmentPath("job.json")
+        taskTemplate1 = getFragmentPath("task-fetch.json")
+        taskTemplate2 = getFragmentPath("task-docker-canzea.json")
+        taskTemplate3 = getFragmentPath("task-sudo-register-service.json")
+
+        root = JSON.parse(t.process getFragmentPath("pipeline-deploy.json"), attributes)
+
+        material = JSON.parse(t.process getFragmentPath("material-pipeline.json"), attributes)
+        root['pipeline']['materials'].push (material)
+
+        material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ECOSYSTEM']}.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
+        root['pipeline']['materials'].push (material)
+
+        stage = JSON.parse(t.process stageTemplate, {"name" => "Deploy"})
+
+        job = JSON.parse(t.process jobTemplate, attributes)
+
+        task = JSON.parse(t.process taskTemplate1, {"project" => project, "version" => version})
+        job['tasks'].push (task)
+
+        params = { "port" => attributes['port'], "env" => attributes['env'], "project" => attributes['name'] }
+        params = params.to_json.to_json
+        params = params.slice(1,params.length - 2)
+
+        task = JSON.parse(t.process taskTemplate2, {"workingdir" => "", "docker_image" => "canzea/canzea_cli", "project" => project, "version" => version, "solution" => "application", "action" => "pull", "parameters" => params })
+        job['tasks'].push (task)
+
+        taskTemplateDockerCli = getFragmentPath("task-docker-cli.json")
+
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
+        job['tasks'].push (task)
+
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:80", "#{attributes['project']}-deploy"] })
+        job['tasks'].push (task)
+
+        task = JSON.parse(t.process taskTemplate3, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "project" => "#{project}", "service" => "docker.service" })
+        job['tasks'].push (task)
+
+        stage['jobs'].push(job)
+
+        root['pipeline']['stages'].push (stage)
+
+        item = {
+            "pipeline_pipeline" => {
+                attributes['rid'] => root
+            }
+        }
+        return JSON.pretty_generate( item )
+
+    end
 
     def createPipeline (parameters)
 
@@ -23,7 +96,7 @@ class HugoBuild
 
         root = JSON.parse(t.process getFragmentPath("pipeline.json"), attributes)
 
-        material = JSON.parse(t.process getFragmentPath("material.json"), attributes)
+        material = JSON.parse(t.process getFragmentPath("material-core.json"), attributes)
         root['pipeline']['materials'].push (material)
 
         material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ECOSYSTEM']}.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
@@ -39,10 +112,13 @@ class HugoBuild
         taskTemplate1 = getFragmentPath("task-docker-cli.json")
         taskTemplate2 = getFragmentPath("task-docker.json")
 
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["-e", "GO_PIPELINE_LABEL", "canzea/canzea_cli", "template", "config.toml", "config.toml"] })
+        job['tasks'].push (task)
+
         task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
         job['tasks'].push (task)
 
-        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task"] })
+        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task", "hugo"] })
         job['tasks'].push (task)
 
         root['pipeline']['stages'].push (stage)
@@ -87,12 +163,16 @@ class HugoBuild
     end
 
     def preparePipelineScripts(parameters)
+        t = Template.new
+
         project = parameters['name']
 
+        metadataFile = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/metadata/static.metadata.tmpl", parameters)
         dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/hugo.script")
 
         return [
-            { "file" => "components/#{project}/Dockerfile", "content" => dockerFile }
+            { "file" => "components/#{project}/Dockerfile", "content" => dockerFile },
+            { "file" => "components/#{project}/metadata.json", "content" => metadataFile }
         ]
     end
 

@@ -148,7 +148,6 @@ class MkdocsBuild
         artifact = JSON.parse(t.process artifactTemplate, attributes)
         job['artifacts'].push (artifact)
 
-
         root['pipeline']['stages'].push (stage)
 
         item = {
