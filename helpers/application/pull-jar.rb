@@ -9,7 +9,7 @@ parameters = JSON.parse(ARGV[0])
 
 project = parameters['project']
 
-suffix = (parameters.has_key? 'suffix' ? parameters['suffix'] : "-bin.zip")
+suffix = ".jar"
 
 repoHost = ENV['ARCHIVA_ADDRESS']
 repoPort = ENV['ARCHIVA_PORT']
