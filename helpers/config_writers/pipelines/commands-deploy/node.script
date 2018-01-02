@@ -2,4 +2,4 @@ FROM nginx:1.13.8-alpine
 
 LABEL description="This image can be used to deploy the NPM site"
 
-COPY site/{{project}}-{{version}}/web /usr/share/nginx/html
+COPY site/*/web /usr/share/nginx/html
