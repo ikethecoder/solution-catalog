@@ -49,7 +49,7 @@ class JavaMavenBuild
         params = params.to_json.to_json
         params = params.slice(1,params.length - 2)
 
-        task = JSON.parse(t.process taskTemplate2, {"workingdir" => "", "docker_image" => "canzea/canzea_cli", "project" => project, "version" => version, "solution" => "application", "action" => "pull", "parameters" => params })
+        task = JSON.parse(t.process taskTemplate2, {"workingdir" => "", "docker_image" => "canzea/canzea_cli", "project" => project, "version" => version, "solution" => "application", "action" => "pull-jar", "parameters" => params })
         job['tasks'].push (task)
 
         taskTemplateDockerCli = getFragmentPath("task-docker-cli.json")
@@ -57,7 +57,7 @@ class JavaMavenBuild
         task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
         job['tasks'].push (task)
 
-        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:80", "#{attributes['project']}-deploy"] })
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:8888", "#{attributes['project']}-deploy"] })
         job['tasks'].push (task)
 
         task = JSON.parse(t.process taskTemplate3, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "project" => "#{project}", "service" => "docker.service" })
@@ -120,12 +120,6 @@ class JavaMavenBuild
         job['tasks'].push (task)
 
         task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["#{project}-task", "mvn", "clean", "install"] })
-        job['tasks'].push (task)
-
-
-        taskTemplate1 = getFragmentPath("task-docker-mvn-install.json")
-
-        task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project']})
         job['tasks'].push (task)
 
         root['pipeline']['stages'].push (stage)
