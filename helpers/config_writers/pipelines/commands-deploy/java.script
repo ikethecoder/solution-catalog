@@ -5,6 +5,6 @@ LABEL description="This image can be used to deploy java applications"
 RUN apk update && apk add openssl && \
     java -version
 
-COPY site/*/target/*.jar /application.jar
+COPY *.jar /application.jar
 
-CMD ["java","application.jar"]
+CMD ["java", "-Denv=prod", "-jar", "/application.jar"]
