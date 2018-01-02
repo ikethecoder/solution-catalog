@@ -124,12 +124,16 @@ class JavaMavenBuild
 
 
         taskTemplate1 = getFragmentPath("task-docker-mvn-install.json")
-        taskTemplate2 = getFragmentPath("task-mvn-deploy.json")
-        artifactTemplate = getFragmentPath("artifact.json")
 
         task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project']})
         job['tasks'].push (task)
 
+        stage = JSON.parse(t.process stageNoFetchTemplate, {"name" => "Registry"})
+
+        job = JSON.parse(t.process jobTemplate, attributes)
+        stage['jobs'].push(job)
+
+        taskTemplate2 = getFragmentPath("task-mvn-deploy.json")
         task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project']})
         job['tasks'].push (task)
 
@@ -138,6 +142,7 @@ class JavaMavenBuild
         else
             attributes['projectModule'] = "#{project}"
         end
+        artifactTemplate = getFragmentPath("artifact.json")
         artifact = JSON.parse(t.process artifactTemplate, attributes)
         job['artifacts'].push (artifact)
 
