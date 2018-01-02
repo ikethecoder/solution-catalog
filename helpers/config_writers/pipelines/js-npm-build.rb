@@ -91,6 +91,7 @@ class JSNpmBuild
         t = Template.new
 
         stageTemplate = getFragmentPath("stage.json")
+        stageNoFetchTemplate = getFragmentPath("stage-no-fetch.json")
 
         jobTemplate = getFragmentPath("job.json")
 
@@ -129,7 +130,7 @@ class JSNpmBuild
         root['pipeline']['stages'].push (stage)
 
 
-        stage = JSON.parse(t.process stageTemplate, {"name" => "Registry"})
+        stage = JSON.parse(t.process stageNoFetchTemplate, {"name" => "Registry"})
 
         job = JSON.parse(t.process jobTemplate, attributes)
         stage['jobs'].push(job)
