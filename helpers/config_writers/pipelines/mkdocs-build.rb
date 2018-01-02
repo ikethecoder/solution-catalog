@@ -60,7 +60,7 @@ class MkdocsBuild
         task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:80", "#{attributes['project']}-deploy"] })
         job['tasks'].push (task)
 
-        task = JSON.parse(t.process taskTemplate3, {"workingdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "project" => "#{project}", "service" => "docker.service" })
+        task = JSON.parse(t.process taskTemplate3, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "project" => "#{project}", "service" => "docker.service" })
         job['tasks'].push (task)
 
         stage['jobs'].push(job)

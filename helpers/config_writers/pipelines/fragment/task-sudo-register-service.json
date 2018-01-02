@@ -11,6 +11,6 @@
       "{{project}}",
       "{{service}}"
     ],
-    "working_directory": ""
+    "working_directory": "{{workdir}}"
   }
 }
