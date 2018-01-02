@@ -81,7 +81,6 @@ class JavaMavenBuild
         attributes = parameters
 
         type = attributes['type']
-
         project = attributes['name']
         version = attributes['version']
         pattern = attributes['pattern']
@@ -92,12 +91,13 @@ class JavaMavenBuild
         t = Template.new
 
         stageTemplate = getFragmentPath("stage.json")
+        stageNoFetchTemplate = getFragmentPath("stage-no-fetch.json")
 
         jobTemplate = getFragmentPath("job.json")
 
         root = JSON.parse(t.process getFragmentPath("pipeline.json"), attributes)
 
-        material = JSON.parse(t.process getFragmentPath("material.json"), attributes)
+        material = JSON.parse(t.process getFragmentPath("material-core.json"), attributes)
         root['pipeline']['materials'].push (material)
 
         material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ECOSYSTEM']}.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
@@ -112,6 +112,9 @@ class JavaMavenBuild
 
         taskTemplate1 = getFragmentPath("task-docker-cli.json")
         taskTemplate2 = getFragmentPath("task-docker.json")
+
+//        task = JSON.parse(t.process taskTemplate2, {"project" => attributes['project'], "arguments" => ["-e", "GO_PIPELINE_LABEL", "canzea/canzea_cli", "template", "src/app/config/config.js", "src/app/config/config.js"] })
+//        job['tasks'].push (task)
 
         task = JSON.parse(t.process taskTemplate1, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["build", "--tag", "#{project}-task", "."] })
         job['tasks'].push (task)
