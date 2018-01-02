@@ -128,6 +128,8 @@ class JavaMavenBuild
         task = JSON.parse(t.process taskTemplate1, {"project" => attributes['project']})
         job['tasks'].push (task)
 
+        root['pipeline']['stages'].push (stage)
+
         stage = JSON.parse(t.process stageNoFetchTemplate, {"name" => "Registry"})
 
         job = JSON.parse(t.process jobTemplate, attributes)
