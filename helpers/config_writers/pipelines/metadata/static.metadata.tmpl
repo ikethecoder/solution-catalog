@@ -16,7 +16,7 @@
           "Address" : "${d}{vars.compute_instance.${instanceId}.privateIp}",
           "Port" : "${d}{port}",
           "Tags" : [
-            "urlprefix-/www strip=/www"
+            "urlprefix-/{{name}} strip=/{{name}}"
           ],
           "Check" : {
             "http": "http://${d}{vars.compute_instance.${instanceId}.privateIp}:${d}{port}",
