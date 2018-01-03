@@ -54,7 +54,7 @@ class JSNpmBuild
 
         taskTemplateDockerCli = getFragmentPath("task-docker-cli.json")
 
-        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "--build-arg", "ENV_NAME=#{attributes['environment']}", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "--build-arg", "ENV_NAME=#{attributes['environmentName']}", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
         job['tasks'].push (task)
 
         taskTemplateSh = getFragmentPath("task-sh.json")
