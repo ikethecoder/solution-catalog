@@ -143,3 +143,17 @@ environments:
             qty: 1
             segment: "app"
             label: "App"
+
+   -
+      name: "prod"
+      title:
+        label: "Production"
+        pipeline: true
+        provision: false
+        order:
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app"
+            label: "App"
