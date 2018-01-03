@@ -57,6 +57,10 @@ class JavaMavenBuild
         task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
         job['tasks'].push (task)
 
+        taskTemplateSh = getFragmentPath("task-sh.json")
+        task = JSON.parse(t.process taskTemplateSh, {"workdir" => "", "arguments" => ["-c", "/usr/bin/docker rm -f #{attributes['project']}-deploy || true"] })
+        job['tasks'].push (task)
+
         task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:8888", "#{attributes['project']}-deploy"] })
         job['tasks'].push (task)
 
