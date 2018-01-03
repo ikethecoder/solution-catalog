@@ -54,7 +54,7 @@ class JSNpmBuild
 
         taskTemplateDockerCli = getFragmentPath("task-docker-cli.json")
 
-        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "--build-arg", "ENV_NAME=intg", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "--build-arg", "ENV_NAME=#{attributes['environment']}", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
         job['tasks'].push (task)
 
         taskTemplateSh = getFragmentPath("task-sh.json")
@@ -176,6 +176,7 @@ class JSNpmBuild
         t = Template.new
 
         project = parameters['name']
+        env = parameters['environment']
 
         metadataFile = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/metadata/static.metadata.tmpl", parameters)
         dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/npm.script")
@@ -185,6 +186,7 @@ class JSNpmBuild
         return [
             { "file" => "components/#{project}/Dockerfile", "content" => dockerFile },
             { "file" => "components/#{project}/docker.service", "content" => dockerService },
+            { "file" => "components/#{project}/#{env}-config.js", "content" => "// Add your custom configuration here" },
             { "file" => "components/#{project}/Deploy.Dockerfile", "content" => deployDockerFile },
             { "file" => "components/#{project}/metadata.json", "content" => metadataFile }
         ]
