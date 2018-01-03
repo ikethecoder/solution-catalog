@@ -1,10 +1,12 @@
 FROM openjdk:8u151-jdk-alpine
 
-LABEL description="This image can be used to deploy java applications"
+ARG ENV_NAME
+
+LABEL description="This image can be used to deploy java application in ${ENV_NAME}"
 
 RUN apk update && apk add openssl && \
     java -version
 
 COPY *.jar /application.jar
 
-CMD ["java", "-Denv=prod", "-jar", "/application.jar"]
+CMD ["java", "-Denv=${ENV_NAME}", "-jar", "/application.jar"]

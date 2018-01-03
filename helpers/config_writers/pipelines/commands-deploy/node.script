@@ -2,6 +2,6 @@ FROM nginx:1.13.8-alpine
 
 ARG ENV_NAME
 
-LABEL description="This image can be used to deploy the NPM site"
+LABEL description="This image can be used to deploy the NPM site for ${ENV_NAME}"
 
 COPY site/*/web /usr/share/nginx/html
