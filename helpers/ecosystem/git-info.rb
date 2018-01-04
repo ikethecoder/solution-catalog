@@ -3,7 +3,7 @@ require 'git'
 
 parameters = JSON.parse(ARGV[0])
 
-g = Git.open('.')
+g = Git.open(parameters['path'])
 
 branch = g.current_branch
 commit = g.log[0]
