@@ -287,6 +287,48 @@
     },
 
     {
+      "proxy_service": {
+        "gogs": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/gogs/",
+          "passthrough": "http://localhost:10080/"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "consul-ui": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/ui/",
+          "passthrough": "https://consul.service.dc1.consul:8080",
+          "template": "consul.tmpl"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "consul-v2": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/v1/",
+          "passthrough": "https://consul.service.dc1.consul:8080",
+          "template": "consul.tmpl"
+        }
+      }
+    },
+
+    {
       "vault_secret": {
         "oauth/clients/saas_express": {
           "wire": "vault:register-secret",
@@ -328,47 +370,6 @@
           "client_secret": "1111-0000-0000-0001",
           "username": "saas_express_user",
           "password": "1234"
-        }
-      }
-    },
-    {
-      "proxy_service": {
-        "gogs": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "default",
-          "location": "/gogs/",
-          "passthrough": "http://localhost:10080/"
-        }
-      }
-    },
-    {
-      "proxy_service": {
-        "consul-ui": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "default",
-          "location": "/ui/",
-          "passthrough": "https://consul.service.dc1.consul:8080",
-          "template": "consul.tmpl"
-        }
-      }
-    },
-    {
-      "proxy_service": {
-        "consul-v2": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "default",
-          "location": "/v1/",
-          "passthrough": "https://consul.service.dc1.consul:8080",
-          "template": "consul.tmpl"
         }
       }
     },
