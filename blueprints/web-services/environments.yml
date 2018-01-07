@@ -8,7 +8,7 @@ environments:
         provision: false
         order:
           -
-            product: "M4GB_D60GB"
+            product: "M2GB_D40GB"
             image: "centos-7-x64"
             qty: 1
             segment: "ci"
@@ -17,20 +17,20 @@ environments:
             product: "M2GB_D40GB"
             image: "centos-7-x64"
             qty: 1
+            segment: "reg"
+            label: "Pipeline Mgmt"
+          -
+            product: "M2GB_D40GB"
+            image: "centos-7-x64"
+            qty: 1
             segment: "builder"
             label: "Builders"
           -
-            product: "M4GB_D60GB"
+            product: "M2GB_D40GB"
             image: "centos-7-x64"
             qty: 1
             segment: "col"
             label: "Collaboration"
-          -
-            product: "M4GB_D60GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "sc"
-            label: "GitLab"
 
    -
       name: "mon"

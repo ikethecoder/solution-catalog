@@ -129,48 +129,6 @@
       }
     },
     {
-      "building_block": {
-        "${instanceId}-archiva": {
-          "role": "registry",
-          "solution": "archiva-docker",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "${instanceId}-rocketchat": {
-          "role": "collaboration",
-          "solution": "rocketchat",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "${instanceId}-phantomjs-docker": {
-          "role": "testsuite",
-          "solution": "phantomjs-docker",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "${instanceId}-gocd-docker": {
-          "role": "deploy",
-          "solution": "gocd-docker",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-
-
-    {
       "tls_key_pair": {
         "hashicorp-ca": {
           "files": ["ca.cert"]
@@ -391,19 +349,6 @@
     },
     {
       "proxy_service": {
-        "archiva": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "default",
-          "location": "/archiva/",
-          "passthrough": "http://localhost:9080/"
-        }
-      }
-    },
-    {
-      "proxy_service": {
         "consul-ui": {
           "environment": "cd",
           "serverNumber": 1,
@@ -430,100 +375,6 @@
         }
       }
     },
-
-    {
-      "digitalocean_dns" : {
-        "chat": {
-          "environment": "cd",
-          "droplet": "${es.id}-cd-ci-01",
-          "domain-id": "${es.id}-canzea-cc",
-          "domain": "${es.id}.canzea.cc",
-          "a": {
-            "name": "chat",
-            "address": "${dollar}{digitalocean_droplet.${es.id}-cd-ci-01.ipv4_address}"
-          }
-        }
-      }
-    },
-
-    {
-      "proxy_ssl_virtual_host": {
-        "chat": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "domainName": "chat.${es.id}.canzea.cc",
-          "email": "aidan.cope+certbot@gmail.com"
-        }
-      }
-    },
-    {
-      "proxy_service": {
-        "rocketchat": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "chat",
-          "location": "/",
-          "passthrough": "http://localhost:8780"
-        }
-      }
-    },
-
-    {
-      "service_discovery_service_md": {
-        "phantomjs": {
-          "role": "testsuite",
-          "solution": "phantomjs",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key"
-        }
-      }
-    },
-    {
-      "service_discovery_service_md": {
-        "rocketchat": {
-          "role": "collaboration",
-          "solution": "rocketchat",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key"
-        }
-      }
-    },
-
-    {
-      "vault_secret": {
-        "admin/rocketchat": {
-          "wire": "vault:register-secret",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "key": "admin/rocketchat",
-          "data": {
-            "password": "admin1admin"
-          }
-        }
-      }
-    },
-    {
-      "boot:first-login": {
-        "rocketchat": {
-          "wire": "rocketchat:first-login",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key"
-        }
-      }
-    },
-
     {
       "service_discovery_service_md": {
         "gogs": {
@@ -685,53 +536,6 @@
       }
     },
 
-
-    {
-      "service_discovery_service_md": {
-        "archiva": {
-          "role": "registry",
-          "solution": "archiva",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key"
-        }
-      }
-    },
-    {
-      "vault_secret": {
-        "service/archiva/admin/credentials": {
-            "user_name": "admin",
-            "password": "admin1admin",
-            "email": "aidan@gmail.com"
-        }
-      }
-    },
-    {
-      "boot:first-login": {
-        "archiva": {
-          "wire": "archiva:first-login",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key"
-        }
-      }
-    },
-
-    {
-      "service_discovery_service_md": {
-        "gocd": {
-          "role": "deploy",
-          "solution": "gocd",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key"
-        }
-      }
-    },
-
     {
       "vault_secret": {
         "shell/commands/${instanceId}-bash": {
@@ -748,12 +552,6 @@
     {
       "collaboration_channel" : {
         "Continuous-Delivery": {}
-      }
-    },
-    {
-      "pipeline_environment": {
-        "Continuous-Delivery": {
-        }
       }
     },
     {
