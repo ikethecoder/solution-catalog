@@ -129,6 +129,16 @@
       }
     },
     {
+      "building_block": {
+        "${instanceId}-phantomjs-docker": {
+          "role": "testsuite",
+          "solution": "phantomjs-docker",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
       "tls_key_pair": {
         "hashicorp-ca": {
           "files": ["ca.cert"]
@@ -318,19 +328,6 @@
           "client_secret": "1111-0000-0000-0001",
           "username": "saas_express_user",
           "password": "1234"
-        }
-      }
-    },
-    {
-      "proxy_service": {
-        "gocd": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "default",
-          "location": "/go/",
-          "passthrough": "http://localhost:8153"
         }
       }
     },
@@ -546,12 +543,6 @@
           "command": "bash",
           "interactive": true
         }
-      }
-    },
-
-    {
-      "collaboration_channel" : {
-        "Continuous-Delivery": {}
       }
     },
     {
