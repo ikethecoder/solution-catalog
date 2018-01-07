@@ -12,7 +12,7 @@ environments:
             image: "centos-7-x64"
             qty: 1
             segment: "ci"
-            label: "Pipeline Mgmt"
+            label: "CD Core"
           -
             product: "M2GB_D40GB"
             image: "centos-7-x64"
