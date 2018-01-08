@@ -1,11 +1,11 @@
 {
-  "id": "37c1489.b81d4b8",
+  "id": "f599a037.bdfe8",
   "label": "Components",
   "nodes": [
     {
       "id": "ef7d8a1d.9d3968",
       "type": "http in",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "url": "/components",
       "method": "post",
@@ -21,7 +21,7 @@
     {
       "id": "f8cbf808.cfb9c8",
       "type": "json-schema",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "func": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"title\": \"Component\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"name\": {\n            \"description\": \"Name of the component\",\n            \"type\": \"string\"\n        },\n        \"url\": {\n            \"description\": \"URL\",\n            \"type\": \"string\"\n        },\n        \"branch\": {\n            \"description\": \"Branch\",\n            \"type\": \"string\"\n        },\n        \"version\": {\n            \"description\": \"Current version on the branch\",\n            \"type\": \"string\"\n        }\n    },\n    \"required\": [\"name\", \"url\", \"branch\", \"version\"]\n}",
       "x": 383,
@@ -35,7 +35,8 @@
     {
       "id": "b5e9cb35.52c2a8",
       "type": "subflow:ea5122d7.76e78",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
+      "name": "",
       "x": 637.125,
       "y": 121,
       "wires": [
@@ -48,7 +49,7 @@
     {
       "id": "2698baa5.ab36a6",
       "type": "http response",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "x": 735.625,
       "y": 212,
@@ -59,7 +60,7 @@
     {
       "id": "e20ec5b3.387458",
       "type": "catch",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "scope": null,
       "x": 175.5,
@@ -73,7 +74,7 @@
     {
       "id": "2cc83ee2.394222",
       "type": "function",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "Error",
       "func": "msg.payload = {\n    \"error\": (msg.error ? msg.error : msg.message)\n};\nmsg.statusCode = 400;\nreturn msg;",
       "outputs": 1,
@@ -89,7 +90,7 @@
     {
       "id": "13398b31.8d67e5",
       "type": "http in",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "url": "/analyze",
       "method": "post",
@@ -106,7 +107,7 @@
     {
       "id": "323eb9b5.762b76",
       "type": "json-schema",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "func": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"title\": \"Component\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"name\": {\n            \"description\": \"Name of the component\",\n            \"type\": \"string\"\n        },\n        \"sourceRepo\": {\n            \"description\": \"URL\",\n            \"type\": \"string\"\n        },\n        \"branch\": {\n            \"description\": \"Branch\",\n            \"type\": \"string\"\n        },\n        \"credential_resource\": {\n            \"description\": \"Credentials for project.\",\n            \"type\": \"string\"\n        }\n    },\n    \"required\": [\"name\", \"sourceRepo\"]\n}",
       "x": 331,
@@ -120,7 +121,7 @@
     {
       "id": "cf8d2e6f.747d",
       "type": "function",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "func": "msg.topic = 'analyze-project';\nreturn msg;",
       "outputs": 1,
@@ -136,7 +137,7 @@
     {
       "id": "d934c3b0.c1072",
       "type": "function",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "add-component",
       "func": "msg.topic = 'add-component';\nreturn msg;",
       "outputs": 1,
@@ -152,7 +153,7 @@
     {
       "id": "1b6ace2c.0fd502",
       "type": "debug",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "active": true,
       "console": "false",
@@ -166,7 +167,7 @@
     {
       "id": "fd0889cf.48ed78",
       "type": "http in",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "url": "/all_components",
       "method": "get",
@@ -182,7 +183,7 @@
     {
       "id": "19fcc784.487d28",
       "type": "function",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "list-components",
       "func": "msg.payload = {\"key\" : 'components?recurse=true'}\nmsg.topic = 'list-components'\nreturn msg;",
       "outputs": 1,
@@ -198,7 +199,7 @@
     {
       "id": "c9e33065.9f497",
       "type": "subflow:a6b9a798.463af8",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "x": 537,
       "y": 499,
       "wires": [
@@ -211,7 +212,7 @@
     {
       "id": "a32a621d.11e1a",
       "type": "http response",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "x": 724,
       "y": 499,
@@ -222,7 +223,7 @@
     {
       "id": "9f408973.e3c128",
       "type": "function",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "Parse",
       "func": "p = msg.payload\n\nif (msg.statusCode == 200) {\n    \n    out = {};\n    for ( var i = 0; i < p.length; i++) {\n        d = p[i];\n        val = Buffer.from(\"\"+d['Value'], 'base64').toString('utf8');\n    \n        keys = d.Key.split('/')\n        node = out;\n        for ( var k = 0; k < keys.length - 1; k++) {\n            if (node.hasOwnProperty(keys[k])) {\n                node = node[keys[k]];\n            } else {\n                node = node[keys[k]] = {}\n            }\n        }\n        node[keys[keys.length-1]] = val;\n    }\n}\n\nmsg.payload = out\nreturn msg;",
       "outputs": 1,
@@ -239,7 +240,7 @@
     {
       "id": "29e31c9d.a0cdd4",
       "type": "debug",
-      "z": "37c1489.b81d4b8",
+      "z": "f599a037.bdfe8",
       "name": "",
       "active": true,
       "console": "false",

@@ -1,18 +1,18 @@
 {
-  "id": "c6d6dfa5.18623",
+  "id": "a2d3a527.af2358",
   "label": "WebHooks",
   "nodes": [
     {
       "id": "ccc1c6b1.6acc78",
       "type": "http in",
-      "z": "c6d6dfa5.18623",
+      "z": "a2d3a527.af2358",
       "name": "",
-      "url": "/webhook",
+      "url": "/hooks/gogs",
       "method": "post",
       "upload": false,
       "swaggerDoc": "",
-      "x": 241.5,
-      "y": 62,
+      "x": 131.5,
+      "y": 66,
       "wires": [
         [
           "d2274c5a.befc7",
@@ -24,13 +24,13 @@
     {
       "id": "d2274c5a.befc7",
       "type": "debug",
-      "z": "c6d6dfa5.18623",
+      "z": "a2d3a527.af2358",
       "name": "",
       "active": true,
       "console": "false",
       "complete": "true",
-      "x": 462.5,
-      "y": 63,
+      "x": 406.5,
+      "y": 92,
       "wires": [
 
       ]
@@ -38,7 +38,7 @@
     {
       "id": "22041553.68d4fa",
       "type": "subflow:459ae946.b59388",
-      "z": "c6d6dfa5.18623",
+      "z": "a2d3a527.af2358",
       "x": 580,
       "y": 140,
       "wires": [
@@ -51,7 +51,7 @@
     {
       "id": "af58491a.1ed538",
       "type": "function",
-      "z": "c6d6dfa5.18623",
+      "z": "a2d3a527.af2358",
       "name": "",
       "func": "p = msg.payload;\nmsg.channel = 'general';\n\nmsg.payload = \"Source Control Event \" + p.repository.full_name;\n\ncolor = '#ff00ff';\n\ntextmsgs = [\n    \"**> \" + p.repository.full_name + '**',\n    \"**> \" + p.ref + '**',\n    \"Before: **\" + p.before.slice(0,10) + '**',\n    \"After:  **\" + p.after.slice(0,10) + '**\\n'\n];\n\np.commits.map((e) => {\n    textmsgs.push (e.message)\n    textmsgs.push ('Modified='+e.modified.length +', Added='+e.added.length +', Removed=' + e.removed.length + '\\n');\n});\n\nmsg.topic = 'send-message';\nmsg.payload = {\n    \"text\": msg.payload,\n    \"avatar\": \"https://es0390.canzea.cc/images/canzea_gw_icon_es.svg\",\n    \"attachments\": [{\n        \"color\": color,\n        \"text\": textmsgs.join('\\n')\n    }]\n};\nreturn msg;\n",
       "outputs": 1,
@@ -67,7 +67,7 @@
     {
       "id": "b8475dfa.ebead",
       "type": "http response",
-      "z": "c6d6dfa5.18623",
+      "z": "a2d3a527.af2358",
       "name": "",
       "statusCode": "",
       "headers": {

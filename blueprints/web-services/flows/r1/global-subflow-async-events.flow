@@ -140,7 +140,7 @@
       "type": "function",
       "z": "78d32ab1.ca8c04",
       "name": "",
-      "func": "p = msg.payload;\nmsg.channel = 'general';\n\nsuccess = (msg.statusCode >= 200 && msg.statusCode <= 299);\n\nmsg.payload = \"Gateway Call \" + (success ? 'Succeeded':'Failed');\n\ncolor = (success ? '#00ff00' : '#ff0000');\n\ntextmsgs = [\n    \"**> \" + msg.topic + '**',\n    \"** \" + msg.key + '**'\n];\nif (!success) {\n    textmsgs.push ('\\n' + JSON.stringify(JSON.parse(p), null, 2));\n}\nmsg.topic = 'send-message';\nmsg.payload = {\n    \"text\": msg.payload,\n    \"avatar\": \"https://es0390.canzea.cc/images/canzea_gw_icon_es.svg\",\n    \"attachments\": [{\n        \"color\": color,\n        \"text\": textmsgs.join('\\n')\n    }]\n};\nreturn msg;\n",
+      "func": "p = msg.payload;\nmsg.channel = 'general';\n\nsuccess = (msg.statusCode >= 200 && msg.statusCode <= 299);\n\nmsg.payload = \"Gateway Call \" + (success ? 'Succeeded':'Failed');\n\ncolor = (success ? '#00ff00' : '#ff0000');\n\ntextmsgs = [\n    \"**> \" + msg.topic + '**'\n];\nif (msg.key) {\n    textmsgs.push(\"** \" + msg.key + '**');\n}\n\nif (!success) {\n    textmsgs.push ('\\n' + JSON.stringify(JSON.parse(p), null, 2));\n}\nmsg.topic = 'send-message';\nmsg.payload = {\n    \"text\": msg.payload,\n    \"avatar\": \"https://es0390.canzea.cc/images/canzea_gw_icon_es.svg\",\n    \"attachments\": [{\n        \"color\": color,\n        \"text\": textmsgs.join('\\n')\n    }]\n};\nreturn msg;\n",
       "outputs": 1,
       "noerr": 0,
       "x": 320,
@@ -148,6 +148,50 @@
       "wires": [
         [
           "42d9b7bf.1aaf68"
+        ]
+      ]
+    },
+    {
+      "id": "a97f301b.affa7",
+      "type": "catch",
+      "z": "78d32ab1.ca8c04",
+      "name": "",
+      "scope": null,
+      "x": 133.5,
+      "y": 41,
+      "wires": [
+        [
+          "de0f054f.e51b58"
+        ]
+      ]
+    },
+    {
+      "id": "90376924.59bff8",
+      "type": "debug",
+      "z": "78d32ab1.ca8c04",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 370,
+      "y": 40,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "de0f054f.e51b58",
+      "type": "function",
+      "z": "78d32ab1.ca8c04",
+      "name": "",
+      "func": "msg.payload = 'Caught error on Async Events ' + msg.payload;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 240.5,
+      "y": 80,
+      "wires": [
+        [
+          "90376924.59bff8"
         ]
       ]
     }

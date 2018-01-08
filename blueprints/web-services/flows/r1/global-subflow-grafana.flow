@@ -540,7 +540,7 @@
       "id": "f981e00c.61b88",
       "type": "switch",
       "z": "811542a8.5ac78",
-      "name": "Data Sources",
+      "name": "DATA SOURCE",
       "property": "topic",
       "propertyType": "msg",
       "rules": [

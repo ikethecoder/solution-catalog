@@ -1,11 +1,11 @@
 {
-  "id": "748463e4.6a858c",
+  "id": "58f754f1.e60abc",
   "label": "Versioning",
   "nodes": [
     {
       "id": "9e71ce8c.d68a9",
       "type": "http in",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "",
       "url": "/versioning",
       "method": "post",
@@ -21,7 +21,7 @@
     {
       "id": "5cbfcb3f.052a64",
       "type": "http response",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "Response",
       "x": 610.5,
       "y": 149,
@@ -32,7 +32,7 @@
     {
       "id": "c8f3bdf7.9b27d",
       "type": "comment",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "Major/Minor/Patch branching",
       "info": "\nWhen a new branch of the code is created, it should\ncause a new build and deploy pipeline to be created.\n\nNeed to choose the environments for the pipeline.\n\nIt should also register in Consul the service so that it\nis picked up by Fabio.\n",
       "x": 138.5,
@@ -44,7 +44,7 @@
     {
       "id": "24ee88ff.e124b8",
       "type": "function",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "",
       "func": "msg.topic = 'new';\nreturn msg;",
       "outputs": 1,
@@ -60,7 +60,7 @@
     {
       "id": "429afac5.f82bb4",
       "type": "subflow:cfce5daf.36867",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "",
       "x": 470.5,
       "y": 149,
@@ -74,7 +74,7 @@
     {
       "id": "60de5e6b.7c91d",
       "type": "http in",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "",
       "url": "/versions",
       "method": "post",
@@ -90,7 +90,7 @@
     {
       "id": "da2bf790.f14fd8",
       "type": "function",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "",
       "func": "msg.topic = 'create';\nreturn msg;",
       "outputs": 1,
@@ -106,7 +106,7 @@
     {
       "id": "86400a70.338348",
       "type": "http in",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "",
       "url": "/versions-cleanup",
       "method": "post",
@@ -122,7 +122,7 @@
     {
       "id": "d3e47cee.efc7f",
       "type": "function",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "",
       "func": "msg.topic = 'cleanup';\nreturn msg;",
       "outputs": 1,
@@ -138,7 +138,7 @@
     {
       "id": "e431f500.c8af88",
       "type": "json-schema",
-      "z": "748463e4.6a858c",
+      "z": "58f754f1.e60abc",
       "name": "",
       "func": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"title\": \"ComponentVersion\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"name\": {\n            \"description\": \"Name of the component\",\n            \"type\": \"string\"\n        },\n        \"version\": {\n            \"description\": \"Baseline (default branch) version\",\n            \"type\": \"string\"\n        },\n        \"branch\": {\n            \"description\": \"Default Branch\",\n            \"type\": \"string\"\n        }\n    },\n    \"required\": [\"name\", \"branch\", \"version\"]\n}\n",
       "x": 335,

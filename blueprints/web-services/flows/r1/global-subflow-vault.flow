@@ -536,7 +536,8 @@
       "y": 425,
       "wires": [
         [
-          "3f0d969f.04bd1a"
+          "3f0d969f.04bd1a",
+          "ba7e5c59.6e278"
         ]
       ]
     },
@@ -704,7 +705,8 @@
           "c80c65dd.832ac8"
         ],
         [
-          "9e1e2a5b.2b1108"
+          "e5a52f7b.7b4ad",
+          "4211ceff.ce4bb"
         ],
         [
           "e6ba2799.1d03b8"
@@ -752,7 +754,8 @@
           "2e7a5176.51bd5e"
         ],
         [
-          "87e0ec2f.c2b67"
+          "87e0ec2f.c2b67",
+          "e5a52f7b.7b4ad"
         ],
         [
           "87fa8357.4a068"
@@ -942,6 +945,50 @@
       "complete": "true",
       "x": 863.5,
       "y": 689,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "e5a52f7b.7b4ad",
+      "type": "debug",
+      "z": "fcb37b93.778448",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 766.5,
+      "y": 546,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "4211ceff.ce4bb",
+      "type": "function",
+      "z": "fcb37b93.778448",
+      "name": "",
+      "func": "msg.payload = {\n    \"name\": msg.key,\n    \"policy\": JSON.stringify(msg.payload, null, 3)\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 358.5,
+      "y": 541,
+      "wires": [
+        [
+          "9e1e2a5b.2b1108"
+        ]
+      ]
+    },
+    {
+      "id": "ba7e5c59.6e278",
+      "type": "debug",
+      "z": "fcb37b93.778448",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 787.5,
+      "y": 506,
       "wires": [
 
       ]

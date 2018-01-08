@@ -5,8 +5,8 @@
   "info": "",
   "in": [
     {
-      "x": 50,
-      "y": 30,
+      "x": 58,
+      "y": 83,
       "wires": [
         {
           "id": "fe8ae5a2.67ecb8"
@@ -32,10 +32,6 @@
           "port": 0
         },
         {
-          "id": "331729c0.6bc2c6",
-          "port": 0
-        },
-        {
           "id": "cbe8b62b.0a7208",
           "port": 0
         },
@@ -52,11 +48,27 @@
           "port": 0
         },
         {
-          "id": "4f330caf.58aa84",
+          "id": "3b3da074.3223b",
           "port": 0
         },
         {
-          "id": "3b3da074.3223b",
+          "id": "6884a7da.3c0078",
+          "port": "2"
+        },
+        {
+          "id": "8eb5fdba.2899",
+          "port": 1
+        },
+        {
+          "id": "6884a7da.3c0078",
+          "port": 0
+        },
+        {
+          "id": "6884a7da.3c0078",
+          "port": 1
+        },
+        {
+          "id": "f23dea12.a98128",
           "port": 0
         }
       ]
@@ -108,43 +120,18 @@
       "propertyType": "msg",
       "rules": [
         {
-          "t": "eq",
-          "v": "plus:source_control_repository",
+          "t": "cont",
+          "v": "source_control_repository",
           "vt": "str"
         },
         {
-          "t": "eq",
-          "v": "minus:source_control_repository",
+          "t": "cont",
+          "v": "source_control_user",
           "vt": "str"
         },
         {
-          "t": "eq",
-          "v": "check:source_control_repository",
-          "vt": "str"
-        },
-        {
-          "t": "eq",
-          "v": "plus:source_control_user",
-          "vt": "str"
-        },
-        {
-          "t": "eq",
-          "v": "minus:source_control_user",
-          "vt": "str"
-        },
-        {
-          "t": "eq",
-          "v": "check:source_control_user",
-          "vt": "str"
-        },
-        {
-          "t": "eq",
-          "v": "plus:source_control_token",
-          "vt": "str"
-        },
-        {
-          "t": "eq",
-          "v": "minus:source_control_token",
+          "t": "cont",
+          "v": "source_control_token",
           "vt": "str"
         },
         {
@@ -157,33 +144,18 @@
         }
       ],
       "checkall": "true",
-      "outputs": 10,
-      "x": 197.5,
-      "y": 283,
+      "outputs": 5,
+      "x": 93,
+      "y": 300,
       "wires": [
         [
-          "13d0e456.ce5b4c"
+          "f5681294.672e6"
         ],
         [
-          "4bd7ba7c.cf3804"
+          "2e878982.65ae26"
         ],
         [
-          "f3964dd2.6662d"
-        ],
-        [
-          "743b1caa.a66594"
-        ],
-        [
-          "e82f3ff1.2c1f6"
-        ],
-        [
-          "fc0169fd.272f78"
-        ],
-        [
-          "a5530f90.066cf"
-        ],
-        [
-          "222514fc.6e944c"
+          "9038ddeb.6cd72"
         ],
         [
           "9c6a0471.7859d8"
@@ -283,8 +255,8 @@
       "func": "throw new Error (\"Invalid topic \" + msg.topic);",
       "outputs": 1,
       "noerr": 0,
-      "x": 178,
-      "y": 410,
+      "x": 100,
+      "y": 417,
       "wires": [
         [
 
@@ -333,11 +305,11 @@
       "ret": "obj",
       "url": "http://gogs.service.dc1.consul:10080/api/v1/admin/users",
       "tls": "",
-      "x": 690,
-      "y": 493,
+      "x": 570,
+      "y": 480,
       "wires": [
         [
-          "4f330caf.58aa84"
+          "6884a7da.3c0078"
         ]
       ]
     },
@@ -349,8 +321,8 @@
       "func": "msg.payload['username'] = msg.key;\nmsg._username = msg.key;\nmsg._repositories = msg.payload['repositories'];\nreturn msg;\n",
       "outputs": 1,
       "noerr": 0,
-      "x": 438,
-      "y": 494,
+      "x": 430,
+      "y": 480,
       "wires": [
         [
           "8ae28ffd.5569d"
@@ -362,14 +334,14 @@
       "type": "function",
       "z": "cc909323.1bc6b",
       "name": "",
-      "func": "msg._parts = msg.parts;\nrequest = msg.req.body;\n\nmsg.payload = msg._repositories;\nreturn msg;",
+      "func": "return msg;",
       "outputs": 1,
       "noerr": 0,
-      "x": 818,
-      "y": 493,
+      "x": 590,
+      "y": 420,
       "wires": [
         [
-
+          "771fb2af.5b8c1c"
         ]
       ]
     },
@@ -440,32 +412,19 @@
       ]
     },
     {
-      "id": "564f2508.e582fc",
-      "type": "split",
-      "z": "cc909323.1bc6b",
-      "name": "",
-      "splt": "\\n",
-      "x": 642.5,
-      "y": 421,
-      "wires": [
-        [
-          "771fb2af.5b8c1c"
-        ]
-      ]
-    },
-    {
       "id": "771fb2af.5b8c1c",
       "type": "function",
       "z": "cc909323.1bc6b",
       "name": "Collaborators",
-      "func": "k = Object.keys(msg.payload)[0];\nmsg._repo = k;\n\nmsg.payload = {\n    \"permission\" : msg.payload[k]\n}\nmsg.headers = {\n    'Authorization': 'token ' + msg.token\n}\n\nreturn msg;\n",
+      "func": "//k = Object.keys(msg.payload.repositories)[0];\nkeys = msg.key.split('/')\nmsg._repo = keys[0] + '/' + keys[1];\n\nmsg._username = msg.payload.user;\n\nmsg.payload = {\n    \"permission\" : msg.payload.permission\n}\nreturn msg;\n",
       "outputs": 1,
       "noerr": 0,
-      "x": 794,
-      "y": 423,
+      "x": 740,
+      "y": 420,
       "wires": [
         [
-          "9aee5381.900f2"
+          "9aee5381.900f2",
+          "9ad18e7a.97dc6"
         ]
       ]
     },
@@ -476,50 +435,13 @@
       "name": "PUT",
       "method": "PUT",
       "ret": "txt",
-      "url": "http://174.138.36.126:10080/api/v1/repos/{{_repo}}/collaborators/{{_username}}",
+      "url": "http://gogs.service.dc1.consul:10080/api/v1/repos/{{{_repo}}}/collaborators/{{_username}}",
       "tls": "",
-      "x": 950,
-      "y": 425,
+      "x": 890,
+      "y": 420,
       "wires": [
         [
-          "26428ed7.765822"
-        ]
-      ]
-    },
-    {
-      "id": "26428ed7.765822",
-      "type": "join",
-      "z": "cc909323.1bc6b",
-      "name": "",
-      "mode": "auto",
-      "build": "string",
-      "property": "payload",
-      "propertyType": "msg",
-      "key": "topic",
-      "joiner": "\\n",
-      "timeout": "",
-      "count": "",
-      "x": 1089.5,
-      "y": 431,
-      "wires": [
-        [
-          "331729c0.6bc2c6"
-        ]
-      ]
-    },
-    {
-      "id": "331729c0.6bc2c6",
-      "type": "function",
-      "z": "cc909323.1bc6b",
-      "name": "",
-      "func": "msg.parts = msg._parts;\nreturn msg;",
-      "outputs": 1,
-      "noerr": 0,
-      "x": 1197.5,
-      "y": 481,
-      "wires": [
-        [
-
+          "8eb5fdba.2899"
         ]
       ]
     },
@@ -597,14 +519,22 @@
           "vt": "str"
         },
         {
+          "t": "eq",
+          "v": "plus:source_control_user_repo",
+          "vt": "str"
+        },
+        {
           "t": "else"
         }
       ],
       "checkall": "false",
-      "outputs": 4,
+      "outputs": 5,
       "x": 213.5,
       "y": 83,
       "wires": [
+        [
+          "b383085f.9c9e08"
+        ],
         [
           "b383085f.9c9e08"
         ],
@@ -624,14 +554,14 @@
       "type": "function",
       "z": "cc909323.1bc6b",
       "name": "CREDS",
-      "func": "username = msg.envs['SERVICE_GOGS_ROOT_CREDENTIALS_USER_NAME'];\npassword = msg.envs['SERVICE_GOGS_ROOT_CREDENTIALS_PASSWORD'];\n\nup = new Buffer(username + \":\" + password).toString('base64');\n\nmsg.headers = {\n    'Authorization': 'Basic ' + up\n}\nreturn msg;",
+      "func": "username = msg.envs[msg.envKey + '_USER_NAME'];\npassword = msg.envs[msg.envKey + '_PASSWORD'];\n\nup = new Buffer(username + \":\" + password).toString('base64');\n\nmsg.headers = {\n    'Authorization': 'Basic ' + up,\n    'Clear': username + \":\" + password\n}\nreturn msg;\n",
       "outputs": 1,
       "noerr": 0,
-      "x": 560,
-      "y": 20,
+      "x": 675,
+      "y": 68,
       "wires": [
         [
-          "cbce0248.c4efb"
+          "20829a0d.dac8b6"
         ]
       ]
     },
@@ -660,8 +590,8 @@
       "func": "msg._token = 'access';\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
-      "x": 359.5,
-      "y": 846,
+      "x": 390,
+      "y": 840,
       "wires": [
         [
           "7e675900.3a6dd8"
@@ -710,35 +640,35 @@
       "propertyType": {
         "context": {
           "location": {
-            "href": "https://es5ab5.canzea.cc/gw/admin/#flow/811542a8.5ac78",
+            "href": "https://esdade.canzea.cc/gwadmin/#flow/cc909323.1bc6b",
             "ancestorOrigins": {
             },
-            "origin": "https://es5ab5.canzea.cc",
+            "origin": "https://esdade.canzea.cc",
             "protocol": "https:",
-            "host": "es5ab5.canzea.cc",
-            "hostname": "es5ab5.canzea.cc",
+            "host": "esdade.canzea.cc",
+            "hostname": "esdade.canzea.cc",
             "port": "",
-            "pathname": "/gw/admin/",
+            "pathname": "/gwadmin/",
             "search": "",
-            "hash": "#flow/811542a8.5ac78"
+            "hash": "#flow/cc909323.1bc6b"
           },
-          "jQuery1113034684408510297815": 1
+          "jQuery11130187427721003254": 1
         },
         "selector": "#node-input-property"
       },
       "rules": [
         {
           "t": "secret",
-          "v": "service/gogs/root/credentials",
-          "vt": "str"
+          "v": "secretKey",
+          "vt": "msg"
         }
       ],
       "checkall": "true",
       "outputs": 1,
       "tls": "94073df5.ac54f",
       "url": "https://vault.service.dc1.consul:8200",
-      "x": 412.5,
-      "y": 21,
+      "x": 527.5,
+      "y": 69,
       "wires": [
         [
           "8a3da7a5.267118"
@@ -781,8 +711,8 @@
       "outputs": 1,
       "tls": "94073df5.ac54f",
       "url": "https://vault.service.dc1.consul:8200",
-      "x": 410,
-      "y": 60,
+      "x": 525,
+      "y": 108,
       "wires": [
         [
           "bb70e123.8e1c9"
@@ -811,11 +741,11 @@
       "func": "token = msg.envs['GOGS_ADMIN_TOKEN'];\nmsg.headers = {\n    'Authorization': 'token ' + token\n}\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
-      "x": 560,
-      "y": 60,
+      "x": 675,
+      "y": 108,
       "wires": [
         [
-          "cbce0248.c4efb"
+          "20829a0d.dac8b6"
         ]
       ]
     },
@@ -825,8 +755,8 @@
       "z": "cc909323.1bc6b",
       "name": "",
       "scope": null,
-      "x": 878.5,
-      "y": 109,
+      "x": 929.5,
+      "y": 186,
       "wires": [
         [
 
@@ -838,15 +768,277 @@
       "type": "function",
       "z": "cc909323.1bc6b",
       "name": "",
-      "func": "msg.secretKey = \"service/gogs/{{msg.key}}/credentials\";\nreturn msg;",
+      "func": "// key is [user]/[refid]\nuser = msg.key.split('/')[0]\nmsg.secretKey = \"service/gogs/\" + user + \"/credentials\";\nmsg.envKey = (\"SERVICE_GOGS_\" + user + \"_CREDENTIALS\").toUpperCase();\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
-      "x": 275.5,
-      "y": 19,
+      "x": 383.5,
+      "y": 69,
       "wires": [
         [
           "f238ced3.21639"
         ]
+      ]
+    },
+    {
+      "id": "6884a7da.3c0078",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "201",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "422",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 3,
+      "x": 710,
+      "y": 480,
+      "wires": [
+        [
+
+        ],
+        [
+
+        ],
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "74b27ea5.d529b",
+      "type": "debug",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 1090,
+      "y": 460,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "8eb5fdba.2899",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "201",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 1150,
+      "y": 160,
+      "wires": [
+        [
+          "f23dea12.a98128"
+        ],
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "f23dea12.a98128",
+      "type": "json",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "pretty": false,
+      "x": 1284,
+      "y": 154,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "f5681294.672e6",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:source_control_repository",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:source_control_repository",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:source_control_repository",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 3,
+      "x": 270,
+      "y": 300,
+      "wires": [
+        [
+          "13d0e456.ce5b4c"
+        ],
+        [
+          "4bd7ba7c.cf3804"
+        ],
+        [
+          "f3964dd2.6662d"
+        ]
+      ]
+    },
+    {
+      "id": "2e878982.65ae26",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:source_control_user_repo",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:source_control_user",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:source_control_user",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:source_control_user",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 4,
+      "x": 270,
+      "y": 460,
+      "wires": [
+        [
+          "4f330caf.58aa84"
+        ],
+        [
+          "743b1caa.a66594"
+        ],
+        [
+          "e82f3ff1.2c1f6"
+        ],
+        [
+          "fc0169fd.272f78"
+        ]
+      ]
+    },
+    {
+      "id": "9038ddeb.6cd72",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:source_control_token",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:source_control_token",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 2,
+      "x": 250,
+      "y": 720,
+      "wires": [
+        [
+          "a5530f90.066cf"
+        ],
+        [
+          "222514fc.6e944c"
+        ]
+      ]
+    },
+    {
+      "id": "20829a0d.dac8b6",
+      "type": "link out",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "links": [
+        "77fdf44e.b1c02c"
+      ],
+      "x": 801.5,
+      "y": 85,
+      "wires": [
+        [
+          "77fdf44e.b1c02c"
+        ]
+      ]
+    },
+    {
+      "id": "77fdf44e.b1c02c",
+      "type": "link in",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "links": [
+        "20829a0d.dac8b6"
+      ],
+      "x": 28.5,
+      "y": 237,
+      "wires": [
+        [
+          "cbce0248.c4efb"
+        ]
+      ]
+    },
+    {
+      "id": "9ad18e7a.97dc6",
+      "type": "debug",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 755.5,
+      "y": 377,
+      "wires": [
+
       ]
     }
   ]

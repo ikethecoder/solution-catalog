@@ -1,11 +1,11 @@
 {
-  "id": "30f41b37.f56574",
+  "id": "9f54417b.7eb3a",
   "label": "VARS",
   "nodes": [
     {
       "id": "9d10fd85.4d413",
       "type": "inject",
-      "z": "30f41b37.f56574",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "topic": "",
       "payload": "",
@@ -17,32 +17,32 @@
       "y": 194,
       "wires": [
         [
-          "65cf8ef3.29e59"
+          "c88d8361.91a9d"
         ]
       ]
     },
     {
       "id": "65cf8ef3.29e59",
       "type": "vars",
-      "z": "30f41b37.f56574",
+      "z": "9f54417b.7eb3a",
       "name": "VAULT",
       "property": "payload",
       "propertyType": {
         "context": {
           "location": {
-            "href": "https://es110c.canzea.cc/gw/admin/#flow/fc35ec8c.ec27",
+            "href": "https://esdade.canzea.cc/gwadmin/#flow/8d16e131.e7aad",
             "ancestorOrigins": {
             },
-            "origin": "https://es110c.canzea.cc",
+            "origin": "https://esdade.canzea.cc",
             "protocol": "https:",
-            "host": "es110c.canzea.cc",
-            "hostname": "es110c.canzea.cc",
+            "host": "esdade.canzea.cc",
+            "hostname": "esdade.canzea.cc",
             "port": "",
-            "pathname": "/gw/admin/",
+            "pathname": "/gwadmin/",
             "search": "",
-            "hash": "#flow/fc35ec8c.ec27"
+            "hash": "#flow/8d16e131.e7aad"
           },
-          "jQuery111306876730675286178": 1
+          "jQuery111306105483551972906": 1
         },
         "selector": "#node-input-property"
       },
@@ -51,6 +51,11 @@
           "t": "secret",
           "v": "digitalocean",
           "vt": "str"
+        },
+        {
+          "t": "secret",
+          "v": "payload.key",
+          "vt": "msg"
         }
       ],
       "checkall": "true",
@@ -68,7 +73,7 @@
     {
       "id": "eccc3f5b.8f9d4",
       "type": "debug",
-      "z": "30f41b37.f56574",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "active": true,
       "console": "false",
@@ -82,7 +87,7 @@
     {
       "id": "835f305a.f2f83",
       "type": "inject",
-      "z": "30f41b37.f56574",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "topic": "",
       "payload": "",
@@ -94,48 +99,48 @@
       "y": 287,
       "wires": [
         [
-          "3d57f7bf.77ce68"
+          "64fca6f1.0e0128"
         ]
       ]
     },
     {
       "id": "3d57f7bf.77ce68",
       "type": "vars",
-      "z": "30f41b37.f56574",
+      "z": "9f54417b.7eb3a",
       "name": "CONSUL",
       "property": "payload",
       "propertyType": {
         "context": {
           "location": {
-            "href": "https://es110c.canzea.cc/gw/admin/#flow/fc35ec8c.ec27",
+            "href": "https://esdade.canzea.cc/gwadmin/#flow/cc909323.1bc6b",
             "ancestorOrigins": {
             },
-            "origin": "https://es110c.canzea.cc",
+            "origin": "https://esdade.canzea.cc",
             "protocol": "https:",
-            "host": "es110c.canzea.cc",
-            "hostname": "es110c.canzea.cc",
+            "host": "esdade.canzea.cc",
+            "hostname": "esdade.canzea.cc",
             "port": "",
-            "pathname": "/gw/admin/",
+            "pathname": "/gwadmin/",
             "search": "",
-            "hash": "#flow/fc35ec8c.ec27"
+            "hash": "#flow/cc909323.1bc6b"
           },
-          "jQuery111306876730675286178": 1
+          "jQuery11130187427721003254": 1
         },
         "selector": "#node-input-property"
       },
       "rules": [
         {
           "t": "service",
-          "v": "grafana",
-          "vt": "str"
+          "v": "payload.key",
+          "vt": "msg"
         }
       ],
       "checkall": "true",
       "outputs": 1,
       "tls": "c792be07.29d4",
       "url": "https://consul.service.dc1.consul:8080",
-      "x": 354.5,
-      "y": 289,
+      "x": 385.5,
+      "y": 285,
       "wires": [
         [
           "1f4418c4.21bb77"
@@ -145,7 +150,7 @@
     {
       "id": "1f4418c4.21bb77",
       "type": "debug",
-      "z": "30f41b37.f56574",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "active": true,
       "console": "false",
@@ -154,6 +159,38 @@
       "y": 286,
       "wires": [
 
+      ]
+    },
+    {
+      "id": "c88d8361.91a9d",
+      "type": "function",
+      "z": "9f54417b.7eb3a",
+      "name": "",
+      "func": "msg.payload = {key:'ABC'}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 309.5,
+      "y": 113,
+      "wires": [
+        [
+          "65cf8ef3.29e59"
+        ]
+      ]
+    },
+    {
+      "id": "64fca6f1.0e0128",
+      "type": "function",
+      "z": "9f54417b.7eb3a",
+      "name": "",
+      "func": "msg.payload = {key:'grafana'}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 254,
+      "y": 350,
+      "wires": [
+        [
+          "3d57f7bf.77ce68"
+        ]
       ]
     }
   ]

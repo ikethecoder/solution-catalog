@@ -196,7 +196,7 @@
       "type": "http request",
       "z": "a6b9a798.463af8",
       "name": "DELETE",
-      "method": "DELETE",
+      "method": "PUT",
       "ret": "txt",
       "url": "https://consul.service.dc1.consul:8080/v1/agent/service/deregister/{{key}}",
       "tls": "c792be07.29d4",
