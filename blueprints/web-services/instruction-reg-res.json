@@ -195,15 +195,7 @@
     {
       "vault_secret": {
         "admin/rocketchat": {
-          "wire": "vault:register-secret",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "key": "admin/rocketchat",
-          "data": {
             "password": "admin1admin"
-          }
         }
       }
     },
