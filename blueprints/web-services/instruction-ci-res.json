@@ -547,6 +547,17 @@
       }
     },
     {
+      "vault_policy": {
+        "all": {
+          "path": {
+            "secret/*": {
+              "capabilities": ["create", "read", "update", "delete", "list"]
+            }
+          }
+        }
+      }
+    },
+    {
       "remote_ssh_key_pair": {
         "root_id_rsa": {}
       }

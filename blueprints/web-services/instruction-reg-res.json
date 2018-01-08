@@ -184,9 +184,9 @@
         "rocketchat": {
           "role": "collaboration",
           "solution": "rocketchat",
-          "environment": "cd",
+          "environment": "${environmentId}",
           "serverNumber": 1,
-          "segment": "ci",
+          "segment": "reg",
           "privateKey": "master_key"
         }
       }
@@ -219,9 +219,9 @@
         "archiva": {
           "role": "registry",
           "solution": "archiva",
-          "environment": "cd",
+          "environment": "${environmentId}",
           "serverNumber": 1,
-          "segment": "ci",
+          "segment": "reg",
           "privateKey": "master_key"
         }
       }
@@ -252,9 +252,9 @@
         "gocd": {
           "role": "deploy",
           "solution": "gocd",
-          "environment": "cd",
+          "environment": "${environmentId}",
           "serverNumber": 1,
-          "segment": "ci",
+          "segment": "reg",
           "privateKey": "master_key"
         }
       }
