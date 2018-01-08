@@ -465,7 +465,7 @@
           "resources": [
             {
               "vault_secret": {
-                "gogs/admin": {
+                "gogs/root": {
                   "token": "${db['source_control_token-root'].sha1}"
                 }
               }
