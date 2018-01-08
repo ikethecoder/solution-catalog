@@ -684,26 +684,26 @@
       "propertyType": {
         "context": {
           "location": {
-            "href": "https://es5ab5.canzea.cc/gw/admin/#flow/cc909323.1bc6b",
+            "href": "https://esdade.canzea.cc/gwadmin/#flow/cc909323.1bc6b",
             "ancestorOrigins": {
             },
-            "origin": "https://es5ab5.canzea.cc",
+            "origin": "https://esdade.canzea.cc",
             "protocol": "https:",
-            "host": "es5ab5.canzea.cc",
-            "hostname": "es5ab5.canzea.cc",
+            "host": "esdade.canzea.cc",
+            "hostname": "esdade.canzea.cc",
             "port": "",
-            "pathname": "/gw/admin/",
+            "pathname": "/gwadmin/",
             "search": "",
             "hash": "#flow/cc909323.1bc6b"
           },
-          "jQuery111305410853696513407": 1
+          "jQuery11130622822423511479": 1
         },
         "selector": "#node-input-property"
       },
       "rules": [
         {
           "t": "secret",
-          "v": "gogs/admin",
+          "v": "gogs/root",
           "vt": "str"
         }
       ],
@@ -738,7 +738,7 @@
       "type": "function",
       "z": "cc909323.1bc6b",
       "name": "CREDS",
-      "func": "token = msg.envs['GOGS_ADMIN_TOKEN'];\nmsg.headers = {\n    'Authorization': 'token ' + token\n}\nreturn msg;",
+      "func": "token = msg.envs['GOGS_ROOT_TOKEN'];\nmsg.headers = {\n    'Authorization': 'token ' + token\n}\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
       "x": 675,
