@@ -444,8 +444,8 @@
           "resources": [
             {
               "source_control_token": {
-                "admin": {
-                  "Name": "admin"
+                "root": {
+                  "Name": "access_token"
                 }
               }
             }
@@ -466,7 +466,7 @@
             {
               "vault_secret": {
                 "gogs/admin": {
-                  "token": "${db['source_control_token-admin'].sha1}"
+                  "token": "${db['source_control_token-root'].sha1}"
                 }
               }
             }
@@ -514,7 +514,7 @@
           "resources": [
             {
               "source_control_public_key": {
-                "rpk": {
+                "root/rpk": {
                   "title": "root_pk",
                   "key": "${db['root_ecosystem'].public}"
                 }
