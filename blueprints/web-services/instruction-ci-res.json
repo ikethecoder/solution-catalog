@@ -171,7 +171,6 @@
           "serverNumber": 1,
           "segment": "ci",
           "privateKey": "master_key",
-          "blueprint": "neat-and-tidy",
           "source": "flows/r1"
         }
       }
