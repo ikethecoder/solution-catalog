@@ -456,7 +456,7 @@
 
     {
       "vault_token": {
-        "admin": {
+        "gogs/root": {
           "wire": "ecosystem-resources:process-resources",
           "environment": "cd",
           "serverNumber": 1,
