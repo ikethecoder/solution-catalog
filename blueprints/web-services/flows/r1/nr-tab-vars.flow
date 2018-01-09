@@ -1,11 +1,11 @@
 {
-  "id": "5b543b75.ad4564",
+  "id": "9f54417b.7eb3a",
   "label": "VARS",
   "nodes": [
     {
       "id": "9d10fd85.4d413",
       "type": "inject",
-      "z": "5b543b75.ad4564",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "topic": "",
       "payload": "",
@@ -24,7 +24,7 @@
     {
       "id": "65cf8ef3.29e59",
       "type": "vars",
-      "z": "5b543b75.ad4564",
+      "z": "9f54417b.7eb3a",
       "name": "VAULT",
       "property": "payload",
       "propertyType": {
@@ -73,7 +73,7 @@
     {
       "id": "eccc3f5b.8f9d4",
       "type": "debug",
-      "z": "5b543b75.ad4564",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "active": true,
       "console": "false",
@@ -87,7 +87,7 @@
     {
       "id": "835f305a.f2f83",
       "type": "inject",
-      "z": "5b543b75.ad4564",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "topic": "",
       "payload": "",
@@ -106,7 +106,7 @@
     {
       "id": "3d57f7bf.77ce68",
       "type": "vars",
-      "z": "5b543b75.ad4564",
+      "z": "9f54417b.7eb3a",
       "name": "CONSUL",
       "property": "payload",
       "propertyType": {
@@ -150,7 +150,7 @@
     {
       "id": "1f4418c4.21bb77",
       "type": "debug",
-      "z": "5b543b75.ad4564",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "active": true,
       "console": "false",
@@ -164,7 +164,7 @@
     {
       "id": "c88d8361.91a9d",
       "type": "function",
-      "z": "5b543b75.ad4564",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "func": "msg.payload = {key:'ABC'}\nreturn msg;",
       "outputs": 1,
@@ -180,7 +180,7 @@
     {
       "id": "64fca6f1.0e0128",
       "type": "function",
-      "z": "5b543b75.ad4564",
+      "z": "9f54417b.7eb3a",
       "name": "",
       "func": "msg.payload = {key:'grafana'}\nreturn msg;",
       "outputs": 1,

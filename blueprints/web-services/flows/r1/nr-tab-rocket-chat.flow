@@ -1,11 +1,11 @@
 {
-  "id": "49de166f.6572c8",
+  "id": "202853c0.a91a2c",
   "label": "Rocket.Chat",
   "nodes": [
     {
       "id": "2ffedc15.007f04",
       "type": "inject",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "topic": "",
       "payload": "",
@@ -24,7 +24,7 @@
     {
       "id": "ec3a2fda.153b8",
       "type": "http request",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Login",
       "method": "POST",
       "ret": "obj",
@@ -42,7 +42,7 @@
     {
       "id": "f923a92.6a54f58",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "func": "msg.payload = {\n    \"user\": \"aidan\",\n    \"password\": \"acope29\"\n};\nreturn msg;",
       "outputs": 1,
@@ -58,7 +58,7 @@
     {
       "id": "c799be66.23a85",
       "type": "debug",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "active": true,
       "console": "false",
@@ -72,7 +72,7 @@
     {
       "id": "f7ba7b42.faa3c8",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "func": "token = msg.payload.data.authToken;\nuserId = msg.payload.data.userId;\nmsg.headers = {\n    \"X-Auth-Token\": token,\n    \"X-User-Id\": userId,\n    'Content-Type': 'application/json'\n};\nmsg.req_headers = msg.headers;\nreturn msg;",
       "outputs": 1,
@@ -89,7 +89,7 @@
     {
       "id": "a26d30e3.61ec5",
       "type": "http request",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Public Rooms",
       "method": "GET",
       "ret": "obj",
@@ -107,7 +107,7 @@
     {
       "id": "a3a58a0a.93df88",
       "type": "file",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "filename": "/home/pm2user/req.log",
       "appendNewline": true,
@@ -122,7 +122,7 @@
     {
       "id": "468bc807.963a48",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Find Room",
       "func": "msg.topic = msg.payload.channels[0]._id;\nmsg.headers = msg.req_headers;\nreturn msg;\n",
       "outputs": 1,
@@ -138,7 +138,7 @@
     {
       "id": "f2be4714.701348",
       "type": "http request",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Get Room",
       "method": "GET",
       "ret": "txt",
@@ -156,7 +156,7 @@
     {
       "id": "427a89ef.0d1f38",
       "type": "http request",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Post Message",
       "method": "POST",
       "ret": "txt",
@@ -173,7 +173,7 @@
     {
       "id": "67b2281c.6325c8",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Post Message",
       "func": "//msg.topic = msg.payload.channels[0]._id;\nmsg.headers = msg.req_headers;\nmsg.payload = {\n    \"channel\": \"#\" + msg.topic,\n    \"text\": msg.message\n}\nreturn msg;\n",
       "outputs": 1,
@@ -189,7 +189,7 @@
     {
       "id": "a115f5fd.bc2208",
       "type": "http request",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Create Channel",
       "method": "POST",
       "ret": "obj",
@@ -206,7 +206,7 @@
     {
       "id": "11c157d2.32c4b8",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "func": "token = msg.payload.data.authToken;\nuserId = msg.payload.data.userId;\nmsg.headers = {\n    \"X-Auth-Token\": token,\n    \"X-User-Id\": userId,\n    'Content-Type': 'application/json'\n};\nmsg.req_headers = msg.headers;\nmsg.payload = {\n    \"name\":\"Env-1\"\n}\nreturn msg;",
       "outputs": 1,
@@ -222,7 +222,7 @@
     {
       "id": "d9a3482e.b99b78",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "func": "msg.topic = msg.req.params.channel;\nmsg.message = msg.payload;\nreturn msg;",
       "outputs": 1,
@@ -238,7 +238,7 @@
     {
       "id": "2cf2ee3b.2aa582",
       "type": "http in",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "url": "/channel/:channel/message",
       "method": "post",
@@ -254,7 +254,7 @@
     {
       "id": "cbd18711.092498",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Prep Data",
       "func": "msg.topic = 'send-message';\nmsg.payload = {\n    \"text\": msg.payload\n};\nreturn msg;",
       "outputs": 1,
@@ -270,7 +270,7 @@
     {
       "id": "bcddd3c6.0aa9c",
       "type": "subflow:459ae946.b59388",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "x": 631.5,
       "y": 704,
       "wires": [
@@ -283,7 +283,7 @@
     {
       "id": "ae551134.6a178",
       "type": "http response",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "x": 824.5,
       "y": 705,
@@ -294,7 +294,7 @@
     {
       "id": "db5c7d6e.0737c",
       "type": "comment",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "https://escd27.canzea.cc/gw/api/channel/Env-1/message",
       "info": "",
       "x": 249.5,
@@ -306,7 +306,7 @@
     {
       "id": "9987d84d.47c658",
       "type": "http in",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "url": "/user",
       "method": "post",
@@ -322,7 +322,7 @@
     {
       "id": "26d6c.1b33b294e",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Prep Data",
       "func": "msg.topic = 'create-user';\nreturn msg;",
       "outputs": 1,
@@ -338,7 +338,7 @@
     {
       "id": "74b163ed.95d54c",
       "type": "http response",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "x": 827.7222175598145,
       "y": 855.4443969726562,
@@ -349,7 +349,7 @@
     {
       "id": "381ae123.45cb9e",
       "type": "subflow:9ed8bb48.699498",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "x": 617.2221984863281,
       "y": 851.1110973358154,
       "wires": [
@@ -362,7 +362,7 @@
     {
       "id": "e9add4cb.66d538",
       "type": "http in",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "url": "/group",
       "method": "post",
@@ -378,7 +378,7 @@
     {
       "id": "cf4426d0.e91528",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Prep Data",
       "func": "msg.topic = 'create-group';\nmsg.payload = {\n    \"name\": msg.payload\n};\nreturn msg;",
       "outputs": 1,
@@ -394,7 +394,7 @@
     {
       "id": "2c368e75.577792",
       "type": "http response",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "x": 832.1666679382324,
       "y": 897.6666259765625,
@@ -405,7 +405,7 @@
     {
       "id": "aeddbcc2.4f46e",
       "type": "subflow:3206ac46.8fc5e4",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "x": 619.444465637207,
       "y": 897.777759552002,
       "wires": [
@@ -418,7 +418,7 @@
     {
       "id": "23c7180b.93ea48",
       "type": "http in",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "url": "/rocketchat_hook",
       "method": "post",
@@ -435,7 +435,7 @@
     {
       "id": "c5ccdcdc.b324d",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "Build response",
       "func": "txt = msg.payload.text;\nnam = msg.payload.user_name;\nmsg.payload = \n{\n  \"text\": nam + \", hi!\",\n  \"xattachments\": [\n    {\n      \"title\": \"Canzea Ecosystem\",\n      \"title_link\": \"https://escd27.canzea.cc\",\n      \"text\": \"Your ecosystem is up and running.\",\n      \"image_url\": \"https://canzea.gitlab.io/img/canzea_logo.png\",\n      \"color\": \"#764FA5\"\n    }\n  ]\n};\n\nreturn msg;",
       "outputs": 1,
@@ -451,7 +451,7 @@
     {
       "id": "c60c100f.c07bf",
       "type": "http response",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "x": 602.7777252197266,
       "y": 1016.6666469573975,
@@ -462,7 +462,7 @@
     {
       "id": "9e0389.b6593c78",
       "type": "debug",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "active": true,
       "console": "false",
@@ -476,7 +476,7 @@
     {
       "id": "13eaec4d.936774",
       "type": "http in",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "url": "/channel/:channel/pipeline_message",
       "method": "post",
@@ -492,7 +492,7 @@
     {
       "id": "9ac26443.dc1fc8",
       "type": "function",
-      "z": "49de166f.6572c8",
+      "z": "202853c0.a91a2c",
       "name": "",
       "func": "msg.payload = \"Added component \" + msg.payload.name + \" to the ecosystem.\";\nreturn msg;",
       "outputs": 1,
