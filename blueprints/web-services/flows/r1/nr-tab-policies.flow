@@ -1,11 +1,11 @@
 {
-  "id": "d237c623.a2a288",
+  "id": "c9568603.1888d8",
   "label": "Policies",
   "nodes": [
     {
       "id": "c01ca7a.c94cd58",
       "type": "subflow:fcb37b93.778448",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "x": 574.5,
       "y": 251,
@@ -19,7 +19,7 @@
     {
       "id": "75153709.148b78",
       "type": "function",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "get-policies",
       "func": "msg.topic = 'get-policies'\nreturn msg;",
       "outputs": 1,
@@ -35,7 +35,7 @@
     {
       "id": "be1cb6b3.e92c58",
       "type": "http in",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "url": "/policies",
       "method": "get",
@@ -51,7 +51,7 @@
     {
       "id": "f3a8d513.86a288",
       "type": "http response",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "x": 711.5,
       "y": 251,
@@ -62,7 +62,7 @@
     {
       "id": "65c7d186.e56a7",
       "type": "function",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "get-policy",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'get-policy'\nreturn msg;",
       "outputs": 1,
@@ -78,7 +78,7 @@
     {
       "id": "80ee00a4.17989",
       "type": "http in",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "url": "/policy/:id",
       "method": "get",
@@ -94,7 +94,7 @@
     {
       "id": "9624f510.f7f788",
       "type": "function",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "put-policy",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'put-policy'\nreturn msg;",
       "outputs": 1,
@@ -110,7 +110,7 @@
     {
       "id": "be0363e.67f55a",
       "type": "http in",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "url": "/policy/:id",
       "method": "put",
@@ -126,7 +126,7 @@
     {
       "id": "d5ba39ca.671d78",
       "type": "function",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "delete-policy",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'delete-policy'\nreturn msg;",
       "outputs": 1,
@@ -142,7 +142,7 @@
     {
       "id": "421bcef2.29f03",
       "type": "http in",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "url": "/policy/:id",
       "method": "delete",
@@ -158,7 +158,7 @@
     {
       "id": "1ef0db6e.0e38a5",
       "type": "http in",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "url": "/users",
       "method": "get",
@@ -174,7 +174,7 @@
     {
       "id": "4160b23d.efd4ac",
       "type": "function",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "get-users",
       "func": "msg.topic = 'get-users'\nreturn msg;",
       "outputs": 1,
@@ -190,7 +190,7 @@
     {
       "id": "dd4a59e4.aa49a8",
       "type": "function",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "get-user",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'check:vault_user'\nreturn msg;",
       "outputs": 1,
@@ -206,7 +206,7 @@
     {
       "id": "1a44eea6.c4c0b1",
       "type": "http in",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "url": "/user/:id",
       "method": "get",
@@ -223,7 +223,7 @@
     {
       "id": "49e3de8a.e03b4",
       "type": "function",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "put-user",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'plus:vault_user'\nreturn msg;",
       "outputs": 1,
@@ -239,7 +239,7 @@
     {
       "id": "76c65a8f.6b81e4",
       "type": "http in",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "url": "/user/:id",
       "method": "put",
@@ -256,7 +256,7 @@
     {
       "id": "c1e1c6b1.7f3d38",
       "type": "function",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "delete-user",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'minus:vault_user'\nreturn msg;",
       "outputs": 1,
@@ -272,7 +272,7 @@
     {
       "id": "d04ae327.8f5b5",
       "type": "http in",
-      "z": "d237c623.a2a288",
+      "z": "c9568603.1888d8",
       "name": "",
       "url": "/user/:id",
       "method": "delete",

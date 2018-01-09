@@ -1,11 +1,11 @@
 {
-  "id": "7243d5b3.d8e7fc",
+  "id": "3b6d1e77.7ad522",
   "label": "AppRoles",
   "nodes": [
     {
       "id": "b9428426.e95f68",
       "type": "subflow:fcb37b93.778448",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "x": 518,
       "y": 153,
       "wires": [
@@ -19,7 +19,7 @@
     {
       "id": "eee2546a.4415e8",
       "type": "function",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "get-approles",
       "func": "msg.topic = 'get-approles'\nreturn msg;",
       "outputs": 1,
@@ -35,7 +35,7 @@
     {
       "id": "2b432062.481b6",
       "type": "http in",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "",
       "url": "/approles",
       "method": "get",
@@ -52,7 +52,7 @@
     {
       "id": "2488aa11.cdae06",
       "type": "http response",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "",
       "x": 655,
       "y": 153,
@@ -63,7 +63,7 @@
     {
       "id": "ea456020.3ca2e",
       "type": "function",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "get-approle",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'get-approle'\nreturn msg;",
       "outputs": 1,
@@ -79,7 +79,7 @@
     {
       "id": "ae104e51.3aa27",
       "type": "http in",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "",
       "url": "/approle/:id",
       "method": "get",
@@ -95,7 +95,7 @@
     {
       "id": "bac35810.b73bd8",
       "type": "function",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "put-approle",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'put-approle'\nreturn msg;",
       "outputs": 1,
@@ -112,7 +112,7 @@
     {
       "id": "ee56764b.12c918",
       "type": "http in",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "",
       "url": "/approle/:id",
       "method": "put",
@@ -128,7 +128,7 @@
     {
       "id": "51822a49.d30e14",
       "type": "function",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "delete-approle",
       "func": "msg.key = msg.req.params.id;\nmsg.topic = 'delete-approle'\nreturn msg;",
       "outputs": 1,
@@ -144,7 +144,7 @@
     {
       "id": "87e918f1.260e88",
       "type": "http in",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "",
       "url": "/approle/:id",
       "method": "delete",
@@ -160,7 +160,7 @@
     {
       "id": "60bd9124.bfb8e",
       "type": "debug",
-      "z": "7243d5b3.d8e7fc",
+      "z": "3b6d1e77.7ad522",
       "name": "",
       "active": true,
       "console": "false",

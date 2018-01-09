@@ -1,11 +1,11 @@
 {
-  "id": "e0bd815d.37ca",
+  "id": "f4976fe6.e0f42",
   "label": "Slack Simulator",
   "nodes": [
     {
       "id": "e22072e4.1d607",
       "type": "http in",
-      "z": "e0bd815d.37ca",
+      "z": "f4976fe6.e0f42",
       "name": "",
       "url": "/emu/slack",
       "method": "post",
@@ -23,7 +23,7 @@
     {
       "id": "6213e675.244b98",
       "type": "http response",
-      "z": "e0bd815d.37ca",
+      "z": "f4976fe6.e0f42",
       "name": "",
       "statusCode": "",
       "headers": {
@@ -37,7 +37,7 @@
     {
       "id": "b32ec11f.67322",
       "type": "debug",
-      "z": "e0bd815d.37ca",
+      "z": "f4976fe6.e0f42",
       "name": "",
       "active": true,
       "console": "false",
@@ -51,7 +51,7 @@
     {
       "id": "a180255d.5e8a98",
       "type": "http in",
-      "z": "e0bd815d.37ca",
+      "z": "f4976fe6.e0f42",
       "name": "Go.CD GitLab Compatibility",
       "url": "/v3/user",
       "method": "get",
@@ -69,7 +69,7 @@
     {
       "id": "84e93199.6b90b",
       "type": "http response",
-      "z": "e0bd815d.37ca",
+      "z": "f4976fe6.e0f42",
       "name": "",
       "statusCode": "",
       "headers": {
@@ -83,7 +83,7 @@
     {
       "id": "8be521ec.b0423",
       "type": "function",
-      "z": "e0bd815d.37ca",
+      "z": "f4976fe6.e0f42",
       "name": "",
       "func": "msg.payload = {\n    \"social-auth-manager\": {\n    \"name\": \"joe\",\n    \"email\": \"joe@gmail.com\",\n    \"username\": \"Joe\"\n    }\n}\nreturn msg;",
       "outputs": 1,
@@ -99,7 +99,7 @@
     {
       "id": "ad262b0f.980548",
       "type": "debug",
-      "z": "e0bd815d.37ca",
+      "z": "f4976fe6.e0f42",
       "name": "",
       "active": true,
       "console": "false",
@@ -113,7 +113,7 @@
     {
       "id": "58512f08.3ec95",
       "type": "json",
-      "z": "e0bd815d.37ca",
+      "z": "f4976fe6.e0f42",
       "name": "",
       "pretty": false,
       "x": 517.5,

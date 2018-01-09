@@ -1,11 +1,11 @@
 {
-  "id": "94b66020.2a22f",
+  "id": "3017f1a4.3b617e",
   "label": "Go.CD",
   "nodes": [
     {
       "id": "f1eff82e.669eb8",
       "type": "websocket in",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "Go.CD Listener",
       "server": "",
       "client": "692f4929.e69968",
@@ -22,7 +22,7 @@
     {
       "id": "73b83f6b.fddcc",
       "type": "debug",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "active": false,
       "console": "false",
@@ -36,7 +36,7 @@
     {
       "id": "9a02eba1.c6e438",
       "type": "file",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "filename": "/home/pm2user/nodered-gocd-events.log",
       "appendNewline": true,
@@ -51,7 +51,7 @@
     {
       "id": "1121eaa0.f82f15",
       "type": "function",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "func": "msg.payload = JSON.stringify(msg.payload, null, 3);\nreturn msg;",
       "outputs": 1,
@@ -67,7 +67,7 @@
     {
       "id": "242fd676.a865aa",
       "type": "file",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "filename": "/home/pm2user/nodered-gocd-last-message.log",
       "appendNewline": true,
@@ -82,7 +82,7 @@
     {
       "id": "cc669faf.2e0c7",
       "type": "json",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "x": 107.5,
       "y": 337,
@@ -96,7 +96,7 @@
     {
       "id": "278a0945.6ceb96",
       "type": "template",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "Build Document",
       "field": "payload",
       "fieldType": "msg",
@@ -117,7 +117,7 @@
     {
       "id": "6039f470.059b3c",
       "type": "es-create",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "documentIndex": "ecosystem",
       "documentType": "new",
@@ -133,7 +133,7 @@
     {
       "id": "9bc3721e.c859a",
       "type": "function",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "Set TS",
       "func": "\nvar lastts = msg.payload.pipeline.stage['last-transition-time'];\nvar ts = msg.payload.pipeline.stage['create-time'];\nts = ts.substr(0, ts.indexOf('.'));\nmsg.payload.ts = ts;\nmsg.payload.lastts = lastts;\nmsg.documentId = msg._msgid;\nreturn msg;\n",
       "outputs": 1,
@@ -150,7 +150,7 @@
     {
       "id": "c78f054d.0b5938",
       "type": "catch",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "scope": null,
       "x": 300,
@@ -164,7 +164,7 @@
     {
       "id": "80fb0b03.7d4a28",
       "type": "debug",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "active": true,
       "console": "false",
@@ -178,7 +178,7 @@
     {
       "id": "ab8a608f.dfdef",
       "type": "switch",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "property": "payload.state",
       "propertyType": "msg",
@@ -233,7 +233,7 @@
     {
       "id": "4416833c.84bd9c",
       "type": "subflow:459ae946.b59388",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "x": 820.5,
       "y": 688,
       "wires": [
@@ -246,7 +246,7 @@
     {
       "id": "50f4be4e.a912b",
       "type": "function",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "func": "p = msg.payload;\nmsg.channel = 'general';\nmsg.payload = \"Pipeline \" + p.state;\n\ncolors = {\n    'Passed' : '#00ff00',\n    'Building' : '#0000ff',\n    'Failed' : '#ff0000',\n    'Cancelled' : '#ff00ff'\n};\ncolor = colors[p.state];\n\ntextmsgs = [\n    \"** >\" + p.pipeline + '**\\n',\n    \"STAGE: **\" + p.stage + '**',\n    \"BUILD: **\" + p.label + '**'\n];\n\nmsg.topic = 'send-message';\nmsg.payload = {\n    \"text\": msg.payload,\n    \"avatar\": \"https://es0390.canzea.cc/images/canzea_gw_icon_es.svg\",\n    \"attachments\": [{\n        \"color\": color,\n        \"text\": textmsgs.join('\\n')\n    }]\n};\nreturn msg;\n",
       "outputs": 1,
@@ -262,7 +262,7 @@
     {
       "id": "b8f59824.c1f1b8",
       "type": "function",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "Update COMPONENT",
       "func": "msg.topic = \"plus:component_metadata\";\n\nevent = msg.payload;\n\nresId = event.group +\"/pipelines/\" + event.pipeline;\nmsg.payload = { \"component_metadata\": {}}\n\nmsg.payload['component_metadata'][resId] = {\n      \"lastDeploy\": event.ts,\n      \"version\": event.label\n};\n\nreturn msg;",
       "outputs": 1,
@@ -278,7 +278,7 @@
     {
       "id": "7d43245.19bf6dc",
       "type": "subflow:9e3e25e6.0e0308",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "x": 708.5,
       "y": 819,
       "wires": [
@@ -291,7 +291,7 @@
     {
       "id": "f7ed093b.85ffb8",
       "type": "debug",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "active": true,
       "console": "false",
@@ -305,7 +305,7 @@
     {
       "id": "7cc08be9.3b68b4",
       "type": "es-create",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "documentIndex": "ecosystem_looking_glass",
       "documentType": "new",
@@ -321,7 +321,7 @@
     {
       "id": "d4fc044.2dc4ff8",
       "type": "function",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "func": "msg.temp = msg.payload;\nmsg.payload = {\"key\": \"components/\" + msg.temp['group'] + \"/?recurse=true\"};\nmsg.topic = 'list-components';\nreturn msg;\n",
       "outputs": 1,
@@ -337,7 +337,7 @@
     {
       "id": "2a52783e.3b4098",
       "type": "subflow:a6b9a798.463af8",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "x": 880,
       "y": 640,
@@ -351,7 +351,7 @@
     {
       "id": "44a56020.083f1",
       "type": "function",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "func": "payload = msg.temp;\n\ntry {\ncomponentKey = \"components/\" + msg.temp['group'] + \"/\";\n\nstartKey = \"pipelines/\" + msg.temp['pipeline'];\n\n\nfor ( var i in msg.payload ) {\n    var key = msg.payload[i]['Key'];\n\n    var encval = msg.payload[i]['Value'];\n    \n    if (encval !== null) {\n        var val = new Buffer(encval, 'base64').toString('utf8');\n        key = key.slice(componentKey.length);\n\n        if (key.startsWith('versioning')) {\n            // do nothing\n        } else\n        if (key.startsWith('pipelines')) {\n            if (key.startsWith(startKey)) {\n                var k = key.slice(startKey.length);\n                payload['pipeline' + k] = val;\n            }\n        } else {\n            payload['component/' + key] = val;\n        }\n    }\n}\n\nmsg.payload = payload;\n\n    \n} catch (e) {\n  node.error(\"Error\");\n  node.error(e);\n  raise (e);\n}\nreturn msg;",
       "outputs": 1,
@@ -368,7 +368,7 @@
     {
       "id": "fcd53f06.919c1",
       "type": "debug",
-      "z": "94b66020.2a22f",
+      "z": "3017f1a4.3b617e",
       "name": "",
       "active": true,
       "console": "false",

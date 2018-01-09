@@ -1,11 +1,11 @@
 {
-  "id": "b66b660d.a88a88",
+  "id": "fa6cdf48.0d3b5",
   "label": "Vault GET",
   "nodes": [
     {
       "id": "1cebe2dd.8b6d9d",
       "type": "subflow:fcb37b93.778448",
-      "z": "b66b660d.a88a88",
+      "z": "fa6cdf48.0d3b5",
       "name": "",
       "x": 463.77777099609375,
       "y": 306.1111145019531,
@@ -19,7 +19,7 @@
     {
       "id": "12e4f08f.af54ef",
       "type": "http in",
-      "z": "b66b660d.a88a88",
+      "z": "fa6cdf48.0d3b5",
       "name": "",
       "url": "/vault",
       "method": "get",
@@ -35,7 +35,7 @@
     {
       "id": "a74bc685.f65058",
       "type": "function",
-      "z": "b66b660d.a88a88",
+      "z": "fa6cdf48.0d3b5",
       "name": "Prep Request",
       "func": "msg.key = msg.req.query.key;\nmsg.topic = 'get-secret';\nreturn msg;",
       "outputs": 1,
@@ -51,7 +51,7 @@
     {
       "id": "76d6a63c.33aef8",
       "type": "http response",
-      "z": "b66b660d.a88a88",
+      "z": "fa6cdf48.0d3b5",
       "name": "Response",
       "x": 609.5,
       "y": 306,
@@ -62,7 +62,7 @@
     {
       "id": "cd12da35.d45e18",
       "type": "http in",
-      "z": "b66b660d.a88a88",
+      "z": "fa6cdf48.0d3b5",
       "name": "",
       "url": "/vault",
       "method": "post",
@@ -78,7 +78,7 @@
     {
       "id": "547ab802.860318",
       "type": "function",
-      "z": "b66b660d.a88a88",
+      "z": "fa6cdf48.0d3b5",
       "name": "Prep Request",
       "func": "msg.key = msg.req.query.key;\nmsg.topic = 'plus:vault_secret';\nreturn msg;",
       "outputs": 1,
@@ -94,7 +94,7 @@
     {
       "id": "3ec41697.009aaa",
       "type": "http in",
-      "z": "b66b660d.a88a88",
+      "z": "fa6cdf48.0d3b5",
       "name": "",
       "url": "/vault",
       "method": "delete",
@@ -110,7 +110,7 @@
     {
       "id": "ea93eea.8e6501",
       "type": "function",
-      "z": "b66b660d.a88a88",
+      "z": "fa6cdf48.0d3b5",
       "name": "Prep Request",
       "func": "msg.key = msg.req.query.key;\nmsg.topic = 'minus:vault_secret';\nreturn msg;",
       "outputs": 1,
