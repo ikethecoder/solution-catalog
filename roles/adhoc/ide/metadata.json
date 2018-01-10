@@ -4,15 +4,10 @@
     {
       "service_discovery_service": {
         "${instanceId}-ide": {
-          "Name": "${instanceId}-ide",
+          "Name": "ide",
           "Address": "${instance.privateIp}",
           "Port": 8000,
-          "Tags" : [ "${instanceId}", "${environmentId}" ],
-          "Check": {
-            "http": "http://${instance.privateIp}:8000",
-            "interval": "10s",
-            "timeout": "1s"
-          }
+          "Tags" : [ "${instanceId}", "${environmentId}" ]
         }
       }
     },
@@ -24,9 +19,9 @@
           "segment": "ci",
           "privateKey": "master_key",
           "proxy_ssl_virtual_host": "default",
-          "location": "/${instanceId}-ide/",
+          "location": "/ide/",
           "template": "ide.tmpl",
-          "passthrough": "https://${instanceId}-ide.service.dc1.consul:8000"
+          "passthrough": "https://${instance.privateIp}:8000"
         }
       }
     },
@@ -35,7 +30,7 @@
         "${instanceId}-ide": {
           "service": "ide",
           "segment":"${segmentId}",
-          "secure":"https://${secureDomain}/${instanceId}-ide"
+          "secure":"https://${secureDomain}/ide"
         }
       }
     }
