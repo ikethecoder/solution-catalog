@@ -636,26 +636,6 @@
       "type": "vars",
       "z": "cc909323.1bc6b",
       "name": "",
-      "property": "payload",
-      "propertyType": {
-        "context": {
-          "location": {
-            "href": "https://esdade.canzea.cc/gwadmin/#flow/cc909323.1bc6b",
-            "ancestorOrigins": {
-            },
-            "origin": "https://esdade.canzea.cc",
-            "protocol": "https:",
-            "host": "esdade.canzea.cc",
-            "hostname": "esdade.canzea.cc",
-            "port": "",
-            "pathname": "/gwadmin/",
-            "search": "",
-            "hash": "#flow/cc909323.1bc6b"
-          },
-          "jQuery11130622822423511479": 1
-        },
-        "selector": "#node-input-property"
-      },
       "rules": [
         {
           "t": "secret",
@@ -680,26 +660,6 @@
       "type": "vars",
       "z": "cc909323.1bc6b",
       "name": "",
-      "property": "payload",
-      "propertyType": {
-        "context": {
-          "location": {
-            "href": "https://esdade.canzea.cc/gwadmin/#flow/cc909323.1bc6b",
-            "ancestorOrigins": {
-            },
-            "origin": "https://esdade.canzea.cc",
-            "protocol": "https:",
-            "host": "esdade.canzea.cc",
-            "hostname": "esdade.canzea.cc",
-            "port": "",
-            "pathname": "/gwadmin/",
-            "search": "",
-            "hash": "#flow/cc909323.1bc6b"
-          },
-          "jQuery11130622822423511479": 1
-        },
-        "selector": "#node-input-property"
-      },
       "rules": [
         {
           "t": "secret",
