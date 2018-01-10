@@ -182,12 +182,6 @@
     },
 
     {
-      "collaboration_channel" : {
-        "${environmentLabel}": {}
-      }
-    },
-
-    {
       "wire": {
         "${instanceId}-go": {
           "solution": "users",
@@ -257,6 +251,12 @@
           "commands" : false
         }
       }
+    },
+    {
+      "collaboration_channel" : {
+        "${environmentLabel}": {}
+      },
+      "depends_on": ["service_discovery_service_md.rocketchat"]
     }
 
   ]

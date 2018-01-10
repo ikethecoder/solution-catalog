@@ -143,21 +143,7 @@
         }
       }
     },
-    {
-      "pipeline_environment": {
-        "Continuous-Delivery": {
-        }
-      }
-    },
 
-    {
-      "pipeline_agent": {
-        "cd-builder-01": {
-          "agent" : "${es.id}-cd-builder-01",
-          "environment" : "Continuous-Delivery"
-        }
-      }
-    },
 
     {
       "vault_secret": {
@@ -170,7 +156,23 @@
           "interactive": true
         }
       }
-    }
+    },
+    {
+      "pipeline_environment": {
+        "Continuous-Delivery": {
+        }
+      },
+      "depends_on": ["service_discovery_service_md.gocd"]
+    },
 
+    {
+      "pipeline_agent": {
+        "cd-builder-01": {
+          "agent" : "${es.id}-cd-builder-01",
+          "environment" : "Continuous-Delivery"
+        }
+      },
+      "depends_on": ["service_discovery_service_md.gocd"]
+    }
   ]
 }

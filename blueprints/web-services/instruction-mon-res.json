@@ -211,11 +211,6 @@
         }
       }
     },
-    {
-      "collaboration_channel" : {
-        "Monitoring_Analytics": {}
-      }
-    },
 
     {
       "monitoring_datasource": {
@@ -274,6 +269,12 @@
           "interactive": true
         }
       }
+    },
+    {
+      "collaboration_channel" : {
+        "Monitoring_Analytics": {}
+      },
+      "depends_on": ["service_discovery_service_md.rocketchat"]
     }
 
   ]

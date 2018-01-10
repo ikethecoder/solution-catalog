@@ -276,13 +276,15 @@
     {
       "collaboration_channel" : {
         "Continuous-Delivery": {}
-      }
+      },
+      "depends_on": ["service_discovery_service_md.rocketchat"]
     },
     {
       "pipeline_environment": {
         "Continuous-Delivery": {
         }
-      }
+      },
+      "depends_on": ["service_discovery_service_md.gocd"]
     }
 
   ]
