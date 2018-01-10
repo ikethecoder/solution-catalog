@@ -29,14 +29,6 @@ File.write "ssh/config", t.processString(ssh_config, parameters)
 
 pc.cp sourcePath, "."
 
-if File.exists? "sc/blueprints"
-    pc.cp "sc/blueprints", "."
-end
-
-if File.exists? "sc/helpers"
-    pc.cp "sc/helpers", "."
-end
-
 pc.write "ssh/config", t.processString(ssh_config, parameters)
 
 pc.commit "Migrated to ecosystems repository."
