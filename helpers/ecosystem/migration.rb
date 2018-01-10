@@ -29,6 +29,8 @@ File.write "ssh/config", t.processString(ssh_config, parameters)
 
 pc.cp sourcePath, "."
 
+pc.cp "sc/blueprints", "."
+
 pc.write "ssh/config", t.processString(ssh_config, parameters)
 
 pc.commit "Migrated to ecosystems repository."
