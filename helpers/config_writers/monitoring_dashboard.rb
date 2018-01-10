@@ -44,6 +44,9 @@ if is_plus
     output = t.processString template, properties
 
     puts output
+
+    pc.write "es_orchestrator/monitoring_dashboard/#{resourceId}.json", output
+
     pc.write "resources/monitoring_dashboard/#{params.keys[0]}.es", output
 else
     pc.backupAndRemove "config/monitoring_dashboard/#{params.keys[0]}.es"

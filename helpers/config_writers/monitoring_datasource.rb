@@ -43,7 +43,11 @@ if is_plus
     output = t.processString template, properties
 
     puts output
-    pc.write "resources/monitoring_datasource/#{params.keys[0]}.es", output
+
+    pc.write "es_orchestrator/monitoring_datasource/#{resourceId}.json", output
+
+    pc.write "resources/monitoring_datasource/#{resourceId}.es", output
 else
+    pc.backupAndRemove "es_orchestrator/monitoring_datasource/#{resourceId}.json"
     pc.backupAndRemove "config/monitoring_datasource/#{params.keys[0]}.es"
 end
