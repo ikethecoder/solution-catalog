@@ -504,8 +504,8 @@
     },
     {
       "boot:restart": {
-        "${instanceId}-nginx": {
-          "wire": "nginx:restart",
+        "${instanceId}-flows-gateway": {
+          "wire": "nodered:restart",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
