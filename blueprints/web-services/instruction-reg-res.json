@@ -272,7 +272,26 @@
         }
       }
     },
-
+    {
+      "building_block": {
+        "${instanceId}-canzea-upgrade": {
+          "role": "workarounds",
+          "solution": "canzea-upgrade",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-ide": {
+          "role": "adhoc",
+          "solution": "ide",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
     {
       "collaboration_channel" : {
         "Continuous-Delivery": {}

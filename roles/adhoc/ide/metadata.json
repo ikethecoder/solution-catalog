@@ -2,24 +2,31 @@
   "services": [],
   "resources": [
     {
+      "vault_secret": {
+        "oauth/clients/2222-0000-0000-0000": {
+          "label": "IDE",
+          "client_secret": "2222-0000-0000-0001",
+          "accessTokenLifetime": 14515200,
+          "grants": [ "password", "authorization_code", "refresh_token" ],
+          "redirectUris": [ "https://${es.fqdn}/ide/" ]
+        }
+      }
+    },
+    {
       "wire": {
         "${instanceId}-ide-tls": {
           "wire": "tls:create",
-          "droplet" : "${instanceName}",
+          "droplet" : "${es.id}-cd-ci-01",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
           "privateKey": "master_key",
           "name": "ide",
           "cn": "ide.service.dc1.consul"
-        }
-      }
-    },
-    {
-      "wire": {
+        },
         "${instanceId}-ide-tls-reg-cert": {
           "wire": "consul:add_keyvalue",
-          "droplet" : "${instanceName}",
+          "droplet" : "${es.id}-cd-ci-01",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
@@ -27,14 +34,10 @@
           "root":"certs",
           "key":"ide.cert",
           "file":"/var/local/consul/ssl/ide.cert"
-        }
-      }
-    },
-    {
-      "wire": {
+        },
         "${instanceId}-ide-tls-reg-key": {
           "wire": "consul:add_keyvalue",
-          "droplet" : "${instanceName}",
+          "droplet" : "${es.id}-cd-ci-01",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
@@ -49,7 +52,7 @@
       "service_discovery_service": {
         "${instanceId}-ide": {
           "Name": "ide",
-          "Address": "${instance.privateIp}",
+          "Address": "${d}{cloud_instance.${instanceId}.privateIp}",
           "Port": 8000,
           "Tags" : [ "${instanceId}", "${environmentId}" ]
         }
@@ -65,7 +68,7 @@
           "proxy_ssl_virtual_host": "default",
           "location": "/ide/",
           "template": "ide.tmpl",
-          "passthrough": "https://${instance.privateIp}:8000"
+          "passthrough": "https://${d}{cloud_instance.${instanceId}.privateIp}:8000"
         }
       }
     },
