@@ -14,7 +14,7 @@ environments:
             segment: "ci"
             label: "CD Core"
           -
-            product: "M2GB_D40GB"
+            product: "M4GB_D60GB"
             image: "centos-7-x64"
             qty: 1
             segment: "reg"
