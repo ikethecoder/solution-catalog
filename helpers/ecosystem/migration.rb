@@ -18,7 +18,7 @@ pc = PushConfig.new "/"
 parameters['pwd'] = Dir.pwd
 
 ssh_config = %{
-   host {{ecosystem}}.canzea.cc
+   host {{fqdn}}
      User root
      Port 10022
      IdentityFile {{pwd}}/sc/ecosystems/{{ecosystem}}/terraform/.es/id_rsa_root_ecosystem
