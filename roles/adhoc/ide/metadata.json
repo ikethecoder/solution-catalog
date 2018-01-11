@@ -5,6 +5,7 @@
       "wire": {
         "${instanceId}-ide-tls": {
           "wire": "tls:create",
+          "droplet" : "${instanceName}",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
@@ -18,6 +19,7 @@
       "wire": {
         "${instanceId}-ide-tls-reg-cert": {
           "wire": "consul:add_keyvalue",
+          "droplet" : "${instanceName}",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
@@ -32,6 +34,7 @@
       "wire": {
         "${instanceId}-ide-tls-reg-key": {
           "wire": "consul:add_keyvalue",
+          "droplet" : "${instanceName}",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
