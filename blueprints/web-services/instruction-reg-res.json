@@ -160,7 +160,7 @@
           "serverNumber": 1,
           "segment": "ci",
           "privateKey": "master_key",
-          "domainName": "chat.${es.id}.canzea.cc",
+          "domainName": "chat.${es.fqdn}",
           "email": "aidan.cope+certbot@gmail.com"
         }
       }
