@@ -116,7 +116,7 @@
         "chat": {
           "environment": "cd",
           "droplet": "${es.id}-cd-ci-01",
-          "domain-id": "${es.id}-chat",
+          "domain-id": "${es.fqdn_id}",
           "domain": "${es.fqdn}",
           "a": {
             "name": "chat",
