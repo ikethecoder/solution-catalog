@@ -1,0 +1,17 @@
+{
+  "name": "pgadmin",
+  "services": [
+
+  ],
+  "resources": [
+    {
+       "service_endpoint": {
+        "${instanceId}-pgadmin": {
+            "service":"pgadmin",
+            "segment":"${segmentId}",
+            "url":"http://${domainName}:5050"
+        }
+       }
+    }
+  ]
+}

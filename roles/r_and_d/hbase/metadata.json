@@ -1,0 +1,17 @@
+{
+  "name": "hbase",
+  "services": [
+
+  ],
+  "resources": [
+    {
+      "service_endpoint": {
+        "${instanceId}-hbase": {
+            "service":"hbase",
+            "segment":"${segmentId}",
+            "url":"http://${domainName}:16010"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+    [Unit]
+    Description=hbase
+    Wants=network-online.target
+    After=network-online.target
+
+    [Service]
+    Type=forking
+    User=hbase
+    Environment=JAVA_HOME=/usr/java/latest
+    Environment=HBASE_CONF_DIR=/opt/hbase-1.3.1/conf
+    Environment=PATH=$PATH:/usr/bin
+    WorkingDirectory=/opt/hbase-1.3.1
+    ExecStart=/opt/hbase-1.3.1/bin/start-hbase.sh
+    ExecStop=/opt/hbase-1.3.1/bin/stop-hbase.sh
+
+    [Install]
+    WantedBy=multi-user.target
+

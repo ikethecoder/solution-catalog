@@ -1,0 +1,63 @@
+{
+  "name": "zookeeper",
+  "services": [],
+  "resources": [
+    {
+      "service_discovery_service": {
+        "${instanceId}-zookeeper": {
+          "Name": "zookeeper",
+          "Address": "${d}{var.compute_instance.${instanceId}.privateIp}",
+          "Port": 2181,
+          "Tags" : [ "${instanceId}", "${environmentId}" ],
+          "Check": {
+            "script": "echo stat | nc ${d}{var.compute_instance.${instanceId}.privateIp} 2181",
+            "interval": "10s",
+            "timeout": "1s"
+          }
+        }
+      }
+    },
+        {
+            "vault_policy": {
+                "service::${environmentId}::zookeeper::admin": {
+                    "path": {
+                        "secret/service/zookeeper/*": {
+                            "capabilities": ["create","update","read"]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "vault_policy": {
+                "service::${environmentId}::zookeeper::runtime": {
+                    "path": {
+                        "secret/service/zookeeper/*": {
+                            "capabilities": ["read"]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "vault_policy": {
+                "service::${environmentId}::zookeeper::updater": {
+                    "path": {
+                        "secret/service/zookeeper/*": {
+                            "capabilities": ["create","update"]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "vault_user": {
+                "${environmentId}_zookeeper_runtime": {
+                    "username": "${environmentId}_zookeeper",
+                    "password": "1234",
+                    "policies": "service::${environmentId}::zookeeper::runtime"
+                }
+            }
+        }
+  ]
+}

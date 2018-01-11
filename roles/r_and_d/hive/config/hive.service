@@ -1,0 +1,16 @@
+[Unit]
+Description=hive
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=hive
+Environment=JAVA_HOME=/usr/java/default
+Environment=HADOOP_HOME=/opt/hadoop-2.8.1
+WorkingDirectory=/opt/hive-2.3.2
+Restart=always
+RestartSec=10s
+ExecStart=/opt/hive-2.3.2/bin/hiveserver2
+
+[Install]
+WantedBy=multi-user.target

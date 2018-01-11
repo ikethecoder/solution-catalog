@@ -1,0 +1,36 @@
+{
+  "name": "solr",
+  "services": [
+
+  ],
+  "resources": [
+{
+      "service_discovery_service": {
+        "${instanceId}-solr": {
+          "Name": "solr",
+          "Address": "${d}{var.compute_instance.${instanceId}.privateIp}",
+          "Port": 8983,
+          "Tags" : [ "${instanceId}", "${environmentId}" ],
+          "Check": {
+            "http": "http://${d}{var.compute_instance.${instanceId}.privateIp}:8983",
+            "interval": "10s",
+            "timeout": "1s"
+          }
+        }
+      }
+    },
+    {
+       "service_endpoint": {
+        "${instanceId}-solr": {
+	    "service":"solr",
+            "segment":"${segmentId}",
+            "url":"http://${domainName}:8983/solr"
+        }
+       }
+    }
+
+  ],
+  "logging": [
+     { "file": "/var/solr/logs/solr.log" }
+  ]
+}

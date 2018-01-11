@@ -1,0 +1,17 @@
+{
+  "name": "hadoop",
+  "services": [
+
+  ],
+  "resources": [
+    {
+       "service_endpoint": {
+        "${instanceId}-hadoop": {
+            "service":"hadoop",
+            "segment":"${segmentId}",
+            "url":"http://${domainName}:50070"
+        }
+       }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+backend = "vault"
+log-level = "debug"
+client_cert = "/var/local/consul/ssl/vault.cert"
+client_key = "/var/local/consul/ssl/vault.key"
+client_cakeys = "/var/local/consul/ssl/ca.cert"
+auth_type = "token"
+auth_token = "5a79e607-118b-eab1-5338-a6918560ed53"
+nodes = [
+  "https://vault.service.dc1.consul:8200",
+]
+scheme = "https"

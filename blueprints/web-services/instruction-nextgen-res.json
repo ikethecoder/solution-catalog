@@ -8,7 +8,8 @@
           "droplet" : "${instanceName}",
           "commands" : true
         }
-      }
+      },
+      "depends_on": ["digitalocean_droplet.${instanceName}"]
     },
     {
       "building_block": {
@@ -123,20 +124,11 @@
       }
     },
     {
-      "building_block": {
-        "${instanceId}-networks-nc": {
-          "role": "tools",
-          "solution": "nc",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
       "pipeline_environment": {
         "Tools": {
         }
-      }
+      },
+      "depends_on": ["digitalocean_droplet.${instanceName}"]
     },
     {
       "vault_secret": {
@@ -148,8 +140,132 @@
           "command": "bash",
           "interactive": true
         }
+      },
+      "depends_on": ["digitalocean_droplet.${instanceName}"]
+    },
+   {
+      "building_block": {
+        "${instanceId}-canzea-upgrade": {
+          "role": "workarounds",
+          "solution": "canzea-upgrade",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-confd": {
+          "role": "r_and_d",
+          "solution": "confd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-zookeeper": {
+          "role": "r_and_d",
+          "solution": "zookeeper",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-hbase": {
+          "role": "r_and_d",
+          "solution": "hbase",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-hadoop": {
+          "role": "r_and_d",
+          "solution": "hadoop",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-kafka": {
+          "role": "r_and_d",
+          "solution": "kafka",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-solr": {
+          "role": "r_and_d",
+          "solution": "solr",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+   {
+      "building_block": {
+        "${instanceId}-fail2ban": {
+          "role": "r_and_d",
+          "solution": "fail2ban",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+   {
+      "building_block": {
+        "${instanceId}-ide": {
+          "role": "adhoc",
+          "solution": "ide",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+   {
+      "building_block": {
+        "${instanceId}-postgresql": {
+          "role": "r_and_d",
+          "solution": "postgresql",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+   {
+      "building_block": {
+        "${instanceId}-pgadmin": {
+          "role": "r_and_d",
+          "solution": "pgadmin",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+  {
+      "building_block": {
+        "${instanceId}-hive": {
+          "role": "r_and_d",
+          "solution": "hive",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
       }
     }
+
+
+
 
   ]
 }

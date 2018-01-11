@@ -1,0 +1,19 @@
+    [Unit]
+    Description=zookeeper
+    Wants=network-online.target
+    After=network-online.target
+
+    [Service]
+    Type=forking
+    User=zookeeper
+    Environment=PATH=$PATH:/usr/bin
+    WorkingDirectory=/opt/zookeeper-3.4.10
+    Restart=always
+    RestartSec=0s
+    ExecStart=/opt/zookeeper-3.4.10/bin/zkServer.sh start
+    ExecStop=/opt/zookeeper-3.4.10/bin/zkServer.sh stop
+    ExecReload=/opt/zookeeper-3.4.10/bin/zkServer.sh restart
+
+    [Install]
+    WantedBy=multi-user.target
+

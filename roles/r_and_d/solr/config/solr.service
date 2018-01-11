@@ -1,0 +1,14 @@
+    [Unit]
+    Description=solr
+    Wants=network-online.target
+    After=network-online.target
+
+    [Service]
+    User=solr
+    WorkingDirectory=/opt/solr-7.1.0
+    ExecStart=/opt/solr-7.1.0/bin/solr start -c -m 1g -z localhost:2181 -noprompt
+    ExecStop=/opt/solr-7.1.0/bin/solr stop -c -m 1g -z localhost:2181
+    ExecRestart=/opt/solr-7.1.0/bin/solr restart -c -m 1g -z localhost:2181 -noprompt
+
+    [Install]
+    WantedBy=multi-user.target

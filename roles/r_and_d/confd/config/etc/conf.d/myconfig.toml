@@ -1,0 +1,6 @@
+[template]
+src = "myconfig.conf.tmpl"
+dest = "/host/myconfig.conf"
+keys = [
+    "/myapp/database"
+]
