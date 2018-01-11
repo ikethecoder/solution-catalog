@@ -116,8 +116,8 @@
         "chat": {
           "environment": "cd",
           "droplet": "${es.id}-cd-ci-01",
-          "domain-id": "${es.id}-canzea-cc",
-          "domain": "${es.id}.canzea.cc",
+          "domain-id": "${es.id}-chat",
+          "domain": "${es.fqdn}",
           "a": {
             "name": "chat",
             "address": "${dollar}{digitalocean_droplet.${es.id}-cd-ci-01.ipv4_address}"

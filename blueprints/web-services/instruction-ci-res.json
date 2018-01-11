@@ -227,7 +227,7 @@
           "serverNumber": 1,
           "segment": "ci",
           "privateKey": "master_key",
-          "domainName": "${es.id}.canzea.cc",
+          "domainName": "${es.fqdn}",
           "email": "aidan.cope+certbot@gmail.com"
         }
       }
@@ -398,7 +398,7 @@
             "user_name": "root",
             "password": "admin1admin",
             "email": "aidan@gmail.com",
-            "url": "https://${es.id}.canzea.cc/gogs"
+            "url": "https://${es.fqdn}/gogs"
           }
         }
       }
