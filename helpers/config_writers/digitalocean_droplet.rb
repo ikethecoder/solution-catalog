@@ -81,13 +81,13 @@ template = %{
             inline = [
                 "export ES_ENC_DATA={{encdata}}",
                 "export ECOSYSTEM={{ecosystem}}",
-                "export ES_DOMAIN={{domain}}",
+                "export ES_DOMAIN={{fqdn}}",
                 "export ECOSYSTEM_ENV=production",
                 "export VAULT_URL=https://vault.service.dc1.consul:8080",
                 "export HOSTNAME=`curl -s http://169.254.169.254/metadata/v1/hostname`",
                 "export PUBLIC_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address`",
                 "export PRIVATE_IPV4=`curl -s http://169.254.169.254/metadata/v1/interfaces/private/0/ipv4/address`",
-                "echo 'export ECOSYSTEM={{ecosystem}}\nexport ES_DOMAIN={{domain}}' > /etc/profile.d/canzea.sh"
+                "echo 'export ECOSYSTEM={{ecosystem}}\nexport ES_DOMAIN={{fqdn}}' > /etc/profile.d/canzea.sh"
             ]
         }
     }
