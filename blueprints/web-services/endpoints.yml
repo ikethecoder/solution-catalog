@@ -1,7 +1,7 @@
 
 consoles:
   -
-    segment: app
+    segment: reg
     name: eside
     secure: https://${secureDomain}/ide/
 

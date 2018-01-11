@@ -502,6 +502,17 @@
         }
       }
     },
+    {
+      "boot:restart": {
+        "${instanceId}-nginx": {
+          "wire": "nginx:restart",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
 
     {
       "source_control_public_key": {
