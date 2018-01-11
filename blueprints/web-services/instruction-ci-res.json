@@ -540,6 +540,7 @@
       "migrate": {
         "ecosystem": {
           "ecosystem":"${es.id}",
+          "fqdn": "${es.fqdn}",
           "sourcePath":"sc/ecosystems/${es.id}"
         }
       }
