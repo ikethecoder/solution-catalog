@@ -2,6 +2,47 @@
   "services": [],
   "resources": [
     {
+      "wire": {
+        "${instanceId}-ide-tls": {
+          "wire": "tls:create",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "name": "ide",
+          "cn": "ide.service.dc1.consul"
+        }
+      }
+    },
+    {
+      "wire": {
+        "${instanceId}-ide-tls-reg-cert": {
+          "wire": "consul:add_keyvalue",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "root":"certs",
+          "key":"ide.cert",
+          "file":"/var/local/consul/ssl/ide.cert"
+        }
+      }
+    },
+    {
+      "wire": {
+        "${instanceId}-ide-tls-reg-key": {
+          "wire": "consul:add_keyvalue",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "root":"certs",
+          "key":"ide.key",
+          "file":"/var/local/consul/ssl/ide.key"
+        }
+      }
+    },
+    {
       "service_discovery_service": {
         "${instanceId}-ide": {
           "Name": "ide",
