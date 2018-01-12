@@ -161,6 +161,8 @@
           "segment": "ci",
           "privateKey": "master_key",
           "domainName": "chat.${es.fqdn}",
+          "domain": "chat.${es.fqdn}",
+          "certname": "${es.fqdn}",
           "email": "aidan.cope+certbot@gmail.com"
         }
       }
