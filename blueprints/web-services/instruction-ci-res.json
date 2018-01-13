@@ -228,7 +228,7 @@
           "segment": "ci",
           "privateKey": "master_key",
           "domainName": "${es.fqdn}",
-          "domain": "${es.fqdn}",
+          "domains": "${es.fqdn}",
           "certname": "${es.fqdn}",
           "email": "aidan.cope+certbot@gmail.com"
         }
