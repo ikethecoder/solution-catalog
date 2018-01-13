@@ -1,9 +1,5 @@
 
 consoles:
-  -
-    segment: reg
-    name: eside
-    secure: https://${secureDomain}/ide/
 
   -
     segment: ci
