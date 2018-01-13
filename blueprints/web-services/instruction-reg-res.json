@@ -292,7 +292,8 @@
           "droplet" : "${instanceName}",
           "commands" : false
         }
-      }
+      },
+      "depends_on": ["service_discovery_service.cd-reg-01-ide"]
     },
     {
       "collaboration_channel" : {

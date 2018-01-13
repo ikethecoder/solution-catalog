@@ -191,17 +191,6 @@
       }
     },
     {
-      "monitoring_dashboard": {
-        "${environmentLabel}-environment": {
-          "blueprint": "neat-and-tidy",
-          "template": "monitoring_dashboard-integration-environment",
-          "title": "${environmentLabel} Environment",
-          "description": "System Metrics for the ${environmentLabel}"
-        }
-      }
-    },
-
-    {
       "building_block": {
         "${instanceId}-mongodb": {
           "role": "documentdatabase",
@@ -257,7 +246,17 @@
         "${environmentLabel}": {}
       },
       "depends_on": ["service_discovery_service_md.rocketchat"]
+    },
+    {
+      "monitoring_dashboard": {
+        "${environmentLabel}-environment": {
+          "blueprint": "web-services",
+          "template": "monitoring_dashboard-integration-environment",
+          "title": "${environmentLabel} Environment",
+          "description": "System Metrics for the ${environmentLabel}"
+        }
+      },
+      "depends_on": ["building_block.grafana"]
     }
-
   ]
 }

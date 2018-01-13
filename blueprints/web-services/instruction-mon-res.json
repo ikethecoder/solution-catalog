@@ -228,48 +228,53 @@
     {
       "monitoring_datasource": {
         "metricbeat": {
-          "blueprint": "neat-and-tidy",
+          "blueprint": "web-services",
           "template": "monitoring_datasource-elasticsearch",
           "database": "[metricbeat-]YYYY.MM.DD"
         }
-      }
+      },
+      "depends_on": ["building_block.grafana"]
     },
     {
       "monitoring_datasource": {
         "filebeat": {
-          "blueprint": "neat-and-tidy",
+          "blueprint": "web-services",
           "template": "monitoring_datasource-elasticsearch",
           "database": "[filebeat-]YYYY.MM.DD"
         }
-      }
+      },
+      "depends_on": ["building_block.grafana"]
     },
     {
       "monitoring_datasource": {
         "elasticsearch": {
-          "blueprint": "neat-and-tidy",
+          "blueprint": "web-services",
           "template": "monitoring_datasource-elasticsearch",
           "database": "[metricbeat-]YYYY.MM.DD"
         }
-      }
+      },
+      "depends_on": ["building_block.grafana"]
     },
     {
       "monitoring_datasource": {
         "logstash": {
-          "blueprint": "neat-and-tidy",
+          "blueprint": "web-services",
           "template": "monitoring_datasource-elasticsearch",
           "database": "[logstash-]YYYY.MM.DD"
         }
-      }
+      },
+      "depends_on": ["building_block.grafana"]
     },
     {
       "monitoring_dashboard": {
         "systems-at-a-glance": {
-          "blueprint": "neat-and-tidy",
+          "blueprint": "web-services",
           "template": "at-a-glance",
           "title": "Systems at a glance",
           "description": "Systems at a glance"
         }
-      }
+      },
+      "depends_on": ["building_block.grafana"]
     },
     {
       "collaboration_channel" : {
