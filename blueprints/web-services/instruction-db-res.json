@@ -12,7 +12,7 @@
           "interactive": true
         }
       },
-      "depends_on": ["digitalocean_droplet.${instanceName}"]
+      "depends_on": ["compute_instance.${instanceName}"]
     },
     {
       "building_block": {

@@ -9,7 +9,7 @@
           "commands" : true
         }
       },
-      "depends_on": ["digitalocean_droplet.${instanceName}"]
+      "depends_on": ["compute_instance.${instanceName}"]
     },
     {
       "building_block": {
@@ -128,7 +128,7 @@
         "Tools": {
         }
       },
-      "depends_on": ["digitalocean_droplet.${instanceName}"]
+      "depends_on": ["compute_instance.${instanceName}"]
     },
     {
       "vault_secret": {
@@ -141,7 +141,7 @@
           "interactive": true
         }
       },
-      "depends_on": ["digitalocean_droplet.${instanceName}"]
+      "depends_on": ["compute_instance.${instanceName}"]
     },
    {
       "building_block": {
