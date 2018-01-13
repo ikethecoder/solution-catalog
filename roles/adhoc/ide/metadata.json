@@ -52,7 +52,7 @@
       "service_discovery_service": {
         "${instanceId}-ide": {
           "Name": "ide",
-          "Address": "${d}{cloud_instance.${instanceId}.privateIp}",
+          "Address": "${d}{compute_instance.${instanceName}.privateIp}",
           "Port": 8000,
           "Tags" : [ "${instanceId}", "${environmentId}" ]
         }
@@ -68,7 +68,7 @@
           "proxy_ssl_virtual_host": "default",
           "location": "/ide/",
           "template": "ide.tmpl",
-          "passthrough": "https://${d}{cloud_instance.${instanceId}.privateIp}:8000"
+          "passthrough": "https://${d}{cloud_instance.${instanceName}.privateIp}:8000"
         }
       }
     },
