@@ -75,7 +75,7 @@
     {
       "service_endpoint": {
         "${instanceId}-ide": {
-          "service": "ide",
+          "service": "eside",
           "segment":"${segmentId}",
           "secure":"https://${secureDomain}/ide"
         }
