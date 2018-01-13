@@ -80,6 +80,36 @@
     },
     {
       "building_block": {
+        "${instanceId}-filebeat": {
+          "role": "monitoring",
+          "solution": "filebeat",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-metricbeat": {
+          "role": "monitoring",
+          "solution": "metricbeat",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-auditd": {
+          "role": "audit",
+          "solution": "auditd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
         "${instanceId}-archiva": {
           "role": "registry",
           "solution": "archiva-docker",

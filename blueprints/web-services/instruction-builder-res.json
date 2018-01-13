@@ -88,7 +88,7 @@
         "${instanceId}-filebeat": {
           "role": "monitoring",
           "solution": "filebeat",
-          "droplet" : "${es.id}-cd-builder-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -98,7 +98,7 @@
         "${instanceId}-metricbeat": {
           "role": "monitoring",
           "solution": "metricbeat",
-          "droplet" : "${es.id}-cd-builder-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
@@ -108,7 +108,7 @@
         "${instanceId}-auditd": {
           "role": "audit",
           "solution": "auditd",
-          "droplet" : "${es.id}-cd-builder-01",
+          "droplet" : "${instanceName}",
           "commands" : false
         }
       }
