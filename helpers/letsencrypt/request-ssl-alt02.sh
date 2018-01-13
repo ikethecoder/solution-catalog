@@ -24,6 +24,8 @@ echo "EMAIL     = $EMAIL"
 echo "DOMAINS   = $DOMAINS"
 echo "CERT_NAME = $CERT_NAME"
 
+sleep 5
+
 cp /var/local/nginx/conf.d/p80-default.conf /var/local/nginx/conf.d/p80-default.conf.oem
 cp /var/local/nginx/conf.d/p80-default.conf /var/local/nginx/conf.d/p80-default.conf.bak
 docker exec nginx certbot --authenticator webroot --cert-name $CERT_NAME --webroot-path /usr/share/nginx/html --installer nginx --email aidan.cope+letsencrypt@gmail.com --text --agree-tos --rsa-key-size 4096 -d $DOMAINS
