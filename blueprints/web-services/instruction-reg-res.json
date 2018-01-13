@@ -191,9 +191,9 @@
           "segment": "ci",
           "privateKey": "master_key",
           "domainName": "chat.${es.fqdn}",
-          "domain": "chat.${es.fqdn}",
+          "domains": "${es.fqdn},chat.${es.fqdn}",
           "certname": "${es.fqdn}",
-          "email": "aidan.cope+certbot@gmail.com"
+          "email": "${owner.email}"
         }
       }
     },
@@ -323,7 +323,7 @@
           "commands" : false
         }
       },
-      "depends_on": ["service_discovery_service.cd-reg-01-ide"]
+      "depends_on": ["service_discovery_service.${instanceId}-ide"]
     },
     {
       "collaboration_channel" : {

@@ -10,7 +10,8 @@
           "grants": [ "password", "authorization_code", "refresh_token" ],
           "redirectUris": [ "https://${es.fqdn}/ide/" ]
         }
-      }
+      },
+      "depends_on": ["building_block.${instanceId}-canzea-upgrade"]
     },
     {
       "wire": {
@@ -22,7 +23,7 @@
           "segment": "ci",
           "privateKey": "master_key",
           "name": "ide",
-          "cn": "ide.service.dc1.consul"
+          "cn": "${d}{compute_instance.${instanceName}.privateIp}"
         },
         "${instanceId}-ide-tls-reg-cert": {
           "wire": "consul:add_keyvalue",
