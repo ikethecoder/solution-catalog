@@ -35,7 +35,7 @@ class JavaMavenBuild
         material = JSON.parse(t.process getFragmentPath("material-pipeline.json"), attributes)
         root['pipeline']['materials'].push (material)
 
-        material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ECOSYSTEM']}.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
+        material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ES_DOMAIN']}/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
         root['pipeline']['materials'].push (material)
 
         stage = JSON.parse(t.process stageTemplate, {"name" => "Deploy"})
@@ -104,7 +104,7 @@ class JavaMavenBuild
         material = JSON.parse(t.process getFragmentPath("material-core.json"), attributes)
         root['pipeline']['materials'].push (material)
 
-        material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ECOSYSTEM']}.canzea.cc/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
+        material = JSON.parse(t.process getFragmentPath("material.json"), {"url"=>"https://#{ENV['ES_DOMAIN']}/gogs/root/ecosystems.git","name"=>"es-catalog","branch"=>"master"})
         root['pipeline']['materials'].push (material)
 
         taskTemplateCanzea = getFragmentPath("task-canzea.json")
