@@ -166,7 +166,7 @@ class JavaGradleBuild
         project = parameters['name']
 
         metadataFile = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/metadata/static.metadata.tmpl", parameters)
-        dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/maven.script")
+        dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/gradle.script")
         deployDockerFile = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands-deploy/java.script", parameters)
         dockerService = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands-deploy/docker.service", parameters)
 
