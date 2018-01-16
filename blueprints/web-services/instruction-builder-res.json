@@ -158,6 +158,15 @@
       "depends_on": ["service_discovery_service_md.gocd"]
     },
     {
+      "wire": {
+        "${instanceId}-go": {
+          "solution": "users",
+          "action": "configure-go",
+          "droplet" : "${instanceName}"
+        }
+      }
+    },
+    {
       "pipeline_environment": {
         "Continuous-Delivery": {
         }
