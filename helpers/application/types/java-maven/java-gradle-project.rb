@@ -1,6 +1,6 @@
 require 'json'
 
-class JavaMavenProject
+class JavaGradleProject
 
     def createDetails(branch, commitRevision, name)
 
