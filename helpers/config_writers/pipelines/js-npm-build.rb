@@ -176,7 +176,7 @@ class JSNpmBuild
         t = Template.new
 
         project = parameters['name']
-        env = parameters['environment']
+        env = parameters['environmentName']
 
         metadataFile = t.process("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/metadata/static.metadata.tmpl", parameters)
         dockerFile = File.read("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/pipelines/commands/npm.script")

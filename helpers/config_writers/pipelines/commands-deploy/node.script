@@ -5,3 +5,5 @@ ARG ENV_NAME
 LABEL description="This image can be used to deploy the NPM site for ${ENV_NAME}"
 
 COPY site/*/web /usr/share/nginx/html
+
+COPY es-catalog/ecosystems/${ECOSYSTEM}/components/console-ui/${ENV_NAME}-config.js /usr/share/nginx/html/config.js
