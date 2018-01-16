@@ -3,8 +3,6 @@
 
 # sudo yum install -y go-agent
 
-mkdir -p /var/go
-
 groupadd -g 1005 go
 
 useradd -d /var/go -u 1005 -g 1005 go
