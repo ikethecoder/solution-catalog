@@ -4,7 +4,6 @@ Requires=docker.service
 After=docker.service,network.target
 
 [Service]
-Restart=always
 ExecStart=/usr/bin/docker start -a {{project}}-deploy
 ExecStop=/usr/bin/docker stop -t 2 {{project}}-deploy
 
