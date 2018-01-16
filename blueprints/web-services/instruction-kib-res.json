@@ -2,17 +2,18 @@
   "resources": [
     {
       "building_block": {
-        "docker": {
+        "${instanceId}-docker": {
           "role": "container",
           "solution": "docker",
           "droplet" : "${instanceName}",
           "commands" : true
         }
-      }
+      },
+      "depends_on": ["compute_instance.${instanceName}"]
     },
     {
       "building_block": {
-        "ruby": {
+        "${instanceId}-ruby": {
           "role": "workarounds",
           "solution": "ruby",
           "droplet" : "${instanceName}",
@@ -22,7 +23,7 @@
     },
     {
       "building_block": {
-        "ruby-gems": {
+        "${instanceId}-ruby-gems": {
           "role": "workarounds",
           "solution": "ruby-gems",
           "droplet" : "${instanceName}",
@@ -32,7 +33,7 @@
     },
     {
       "building_block": {
-        "git-core": {
+        "${instanceId}-git-core": {
           "role": "sourcecontrol",
           "solution": "git-core",
           "droplet" : "${instanceName}",
@@ -43,7 +44,7 @@
 
     {
       "building_block": {
-        "cloud-profile-r2": {
+        "${instanceId}-cloud-profile-r2": {
           "role": "workarounds",
           "solution": "cloud-profile-r2",
           "droplet" : "${instanceName}",
@@ -53,7 +54,7 @@
     },
     {
       "building_block": {
-        "canzea": {
+        "${instanceId}-canzea": {
           "role": "workarounds",
           "solution": "canzea",
           "droplet" : "${instanceName}",
@@ -63,7 +64,7 @@
     },
     {
       "building_block": {
-        "selinux": {
+        "${instanceId}-selinux": {
           "role": "workarounds",
           "solution": "selinux",
           "droplet" : "${instanceName}",
@@ -74,7 +75,7 @@
 
     {
       "building_block": {
-        "java": {
+        "${instanceId}-java": {
           "role": "virtualmachine",
           "solution": "java",
           "droplet" : "${instanceName}",
@@ -84,7 +85,7 @@
     },
     {
       "building_block": {
-        "logstash": {
+        "${instanceId}-logstash": {
           "role": "monitoring",
           "solution": "kibana",
           "droplet" : "${instanceName}",
@@ -94,7 +95,7 @@
     },
     {
       "building_block": {
-        "collectd": {
+        "${instanceId}-collectd": {
           "role": "monitoring",
           "solution": "collectd",
           "droplet" : "${instanceName}",
@@ -104,7 +105,7 @@
     },
     {
       "building_block": {
-        "filebeat": {
+        "${instanceId}-filebeat": {
           "role": "monitoring",
           "solution": "filebeat",
           "droplet" : "${instanceName}",
@@ -114,7 +115,7 @@
     },
     {
       "building_block": {
-        "metricbeat": {
+        "${instanceId}-metricbeat": {
           "role": "monitoring",
           "solution": "metricbeat",
           "droplet" : "${instanceName}",
@@ -124,7 +125,7 @@
     },
     {
       "building_block": {
-        "auditd": {
+        "${instanceId}-auditd": {
           "role": "audit",
           "solution": "auditd",
           "droplet" : "${instanceName}",
@@ -134,7 +135,7 @@
     },
     {
       "proxy_service": {
-        "kibana": {
+        "${instanceId}-kibana": {
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
