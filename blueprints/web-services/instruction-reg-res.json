@@ -263,7 +263,7 @@
         "service/archiva/admin/credentials": {
             "user_name": "admin",
             "password": "admin1admin",
-            "email": "aidan@gmail.com"
+            "email": "${owner.email}"
         }
       }
     },

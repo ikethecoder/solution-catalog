@@ -230,7 +230,7 @@
           "domainName": "${es.fqdn}",
           "domains": "${es.fqdn}",
           "certname": "${es.fqdn}",
-          "email": "aidan.cope+certbot@gmail.com"
+          "email": "${owner.email}"
         }
       }
     },
@@ -359,7 +359,7 @@
           "privateKey": "master_key",
           "data" : {
             "password": "1234",
-            "email": "aidan@gmail.com"
+            "email": "${owner.email}"
           }
         }
       }
@@ -399,7 +399,7 @@
           "data": {
             "user_name": "root",
             "password": "admin1admin",
-            "email": "aidan@gmail.com",
+            "email": "${owner.email}",
             "url": "https://${es.fqdn}/gogs"
           }
         }
