@@ -2,6 +2,7 @@ require 'json'
 require 'commands/push-config'
 require 'template-runner'
 require_relative 'pipelines/java-maven-build'
+require_relative 'pipelines/java-gradle-build'
 require_relative 'pipelines/js-npm-build'
 require_relative 'pipelines/hugo-build'
 require_relative 'pipelines/deploy'
@@ -37,6 +38,8 @@ if is_plus
         handler = MkdocsBuild.new
     elsif properties['type'] == 'java-maven'
         handler = JavaMavenBuild.new
+    elsif properties['type'] == 'java-gradle'
+        handler = JavaGradleBuild.new
     elsif properties['type'] == 'js-npm'
         handler = JSNpmBuild.new
     else
