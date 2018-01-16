@@ -13,13 +13,13 @@
       "service_discovery_service": {
         "${instanceId}-{{name}}-${port}": {
           "Name" : "{{name}}",
-          "Address" : "${d}{vars.compute_instance.${instanceId}.privateIp}",
+          "Address" : "${d}{var.compute_instance.${instanceName}.privateIp}",
           "Port" : ${port},
           "Tags" : [
             "urlprefix-/{{name}} strip=/{{name}}"
           ],
           "Check" : {
-            "http": "http://${d}{vars.compute_instance.${instanceId}.privateIp}:${port}",
+            "http": "http://${d}{var.compute_instance.${instanceName}.privateIp}:${port}",
             "interval": "10s",
             "timeout": "1s"
           }
