@@ -233,7 +233,7 @@
           "database": "[metricbeat-]YYYY.MM.DD"
         }
       },
-      "depends_on": ["building_block.grafana"]
+      "depends_on": ["building_block.${instanceId}-grafana"]
     },
     {
       "monitoring_datasource": {
@@ -243,7 +243,7 @@
           "database": "[filebeat-]YYYY.MM.DD"
         }
       },
-      "depends_on": ["building_block.grafana"]
+      "depends_on": ["building_block.${instanceId}-grafana"]
     },
     {
       "monitoring_datasource": {
@@ -253,7 +253,7 @@
           "database": "[metricbeat-]YYYY.MM.DD"
         }
       },
-      "depends_on": ["building_block.grafana"]
+      "depends_on": ["building_block.${instanceId}-grafana"]
     },
     {
       "monitoring_datasource": {
@@ -263,7 +263,7 @@
           "database": "[logstash-]YYYY.MM.DD"
         }
       },
-      "depends_on": ["building_block.grafana"]
+      "depends_on": ["building_block.${instanceId}-grafana"]
     },
     {
       "monitoring_dashboard": {
@@ -274,7 +274,7 @@
           "description": "Systems at a glance"
         }
       },
-      "depends_on": ["building_block.grafana"]
+      "depends_on": ["building_block.${instanceId}-grafana"]
     },
     {
       "collaboration_channel" : {
