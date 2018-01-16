@@ -8,6 +8,7 @@ require 'java-properties'
 require 'fileutils'
 require 'canzea/registry'
 require_relative 'types/java-maven/java-maven-project'
+require_relative 'types/java-maven/java-gradle-project'
 require_relative 'types/js-npm/js-npm-project'
 require_relative 'types/ruby/ruby-project'
 require_relative 'types/static/mkdocs-project'
@@ -43,6 +44,8 @@ begin
 
     if (File.exists? "#{name}/pom.xml")
         puts JavaMavenProject.new.createDetails branch, commit, name
+    elsif (File.exists? "#{name}/build.gradle")
+        puts JavaGradleProject.new.createDetails branch, commit, name
     elsif (File.exists? "#{name}/config.toml")
         puts HugoProject.new.createDetails branch, commit, name
     elsif (File.exists? "#{name}/mkdocs.yml")
