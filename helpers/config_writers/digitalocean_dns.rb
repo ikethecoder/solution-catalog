@@ -57,13 +57,15 @@ if is_plus
     puts output
     pc.write "terraform/modules/#{properties['environment']}/dns-#{resourceId}.tf", output
 
-    if File.exists? domainFile
-        pc.write domainFile, t.processString(domainTemplate, properties)
+    if properties.has_key? "a"
     else
         pc.write domainFile, t.processString(domainTemplate, properties)
     end
 
 else
     pc.backupAndRemove "terraform/modules/#{properties['environment']}/dns-#{resourceId}.tf"
-    pc.backupAndRemove domainFile
+    if properties.has_key? "a"
+    else
+        pc.backupAndRemove domainFile
+    end
 end
