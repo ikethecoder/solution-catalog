@@ -24,10 +24,12 @@ t = Template.new
 
 
 content = t.process(source, params)
-pc.write "config/#{solution}#{target}", content
-
-puts "Writing to: config/#{solution}#{target}"
 
 File.write(target, content)
 
-pc.commit "Tracking #{target}"
+if params.has_key? "track" == false or params['track'] == true
+    pc.write "config/#{solution}#{target}", content
+    puts "Writing to: config/#{solution}#{target}"
+
+    pc.commit "Tracking #{target}"
+end
