@@ -16,6 +16,15 @@
           }
         }
       }
+    },
+    {
+      "service_endpoint": {
+        "${instanceId}-strongswan": {
+          "service": "strongswan",
+          "segment":"${segmentId}",
+          "type":"services"
+        }
+      }
     }
   ]
 }
