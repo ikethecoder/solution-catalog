@@ -228,3 +228,10 @@ buildingBlocks:
     roles: [ "headless_browser" ]
     resources: [  ]
     type: console
+
+  strongswan:
+    repo: https://github.com/strongswan/strongswan.git
+    logo: https://avatars0.githubusercontent.com/u/457671?s=200&v=4
+    description: IPsec-based VPN Solution
+    roles: ["vpn"]
+    type: console
