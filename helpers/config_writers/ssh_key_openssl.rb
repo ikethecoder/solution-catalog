@@ -21,7 +21,8 @@ if is_plus
     if File.exists? "id_rsa_#{key}"
         puts "Key already exists.  Reusing."
     else
-        n.run "(ssh-keygen -q -t rsa -f id_rsa_#{key} -P ''; ssh-keygen -f id_rsa_#{key}.pub -e -m PKCS8 > id_rsa_#{key}.pem.pub)", 0, 0
+
+        n.run "(openssl genpkey -algorithm RSA -out id_rsa_#{key} -pkeyopt rsa_keygen_bits:2048; openssl rsa -pubout -in id_rsa_#{key} -out id_rsa_#{key}.pub)", 0, 0
 
         pc.write "terraform/.es/id_rsa_#{key}", File.read("id_rsa_#{key}")
         pc.write "terraform/.es/id_rsa_#{key}.pub", File.read("id_rsa_#{key}.pub")
