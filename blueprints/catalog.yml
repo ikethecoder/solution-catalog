@@ -3,7 +3,7 @@ organizations:
   digitalocean:
     name: Digital Ocean
     website: https://www.digitalocean.com
-    logo: https://avatars3.githubusercontent.com/u/4650108?v=4&s=200
+    logo: styles/img/partners/do.png
 
   hashicorp:
     name: HashiCorp
@@ -35,7 +35,7 @@ buildingBlocks:
   digitalocean:
     description: Cloud computing, designed for developers.
     url: https://cloud.digitalocean.com/droplets
-    logo: https://avatars3.githubusercontent.com/u/4650108?v=4&s=200
+    logo: styles/img/partners/do.png
     roles: [ "cloud_hosting" ]
     resources: [ "droplets" ]
     authentication: token
@@ -147,6 +147,7 @@ buildingBlocks:
   eside:
     description: Ecosystem IDE
     logo: styles/img/partners/canzea_gw_icon_es.svg
+    bg: black
     roles: [ "ide" ]
     type: service
 

@@ -4,8 +4,10 @@
       "service_endpoint": {
         "${instanceId}-{{name}}": {
           "service": "{{name}}",
+          "description": "",
           "segment": "${segmentId}",
-          "url": "http://${domainName}:${port}"
+          "url": "http://${domainName}:${port}",
+          "type": "console"
         }
       }
     },
