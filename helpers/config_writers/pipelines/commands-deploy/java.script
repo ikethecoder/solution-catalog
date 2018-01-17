@@ -10,3 +10,7 @@ RUN apk update && apk add openssl && \
 COPY *.jar /application.jar
 
 CMD ["java", "-Denv=${ENV_NAME}", "-jar", "/application.jar"]
+
+ENV ENAME "$ENV_NAME"
+
+CMD "java" "-Denv=${ENAME}" "-jar" "/application.jar"
