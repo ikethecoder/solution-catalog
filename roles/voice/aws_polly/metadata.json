@@ -1,4 +1,14 @@
 {
     "services":[],
-    "resources": []
+    "resources": [
+        {
+            "service_endpoint": {
+                "${instanceId}-aws-polly": {
+                    "service":"aws_polly",
+                    "segment":"${segmentId}",
+                    "type": "console"
+                }
+            }
+        }
+    ]
 }
