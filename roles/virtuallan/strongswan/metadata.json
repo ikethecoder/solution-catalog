@@ -18,6 +18,20 @@
       }
     },
     {
+      "digitalocean_dns": {
+        "vpn": {
+          "environment": "${environmentName}",
+          "droplet": "${instanceName}",
+          "domain-id": "${es.fqdn_id}",
+          "domain": "${es.fqdn}",
+          "a": {
+            "name": "internal",
+            "address": "${dollar}{compute_instance.${instanceName}.privateIp}"
+          }
+        }
+      }
+    },
+    {
       "service_endpoint": {
         "${instanceId}-strongswan": {
           "service": "strongswan",
