@@ -236,3 +236,51 @@ buildingBlocks:
     description: IPsec-based VPN Solution
     roles: ["vpn"]
     type: console
+
+  zookeeper:
+    description: Centralized service for maintaining configuration information, naming, providing distributed synchronization, and group services
+    logo: http://zookeeper.apache.org/images/zookeeper_small.gif
+    repo: https://github.com/apache/zookeeper.git
+    roles: ['distributed_kv_store', 'service_discovery']
+
+  hadoop:
+    description: Framework that allows for the distributed processing of large data sets
+    logo: http://hadoop.apache.org/images/hadoop-logo.jpg
+    repo: https://github.com/apache/hadoop.git
+    roles: ['distributed_processing']
+
+  hive:
+    description: Reading, writing, and managing large datasets residing in distributed storage using SQL
+    logo: http://hive.apache.org/images/hive_logo_medium.jpg
+    repo: https://github.com/apache/hive.git
+    roles: ['distributed_querying']
+
+  atlas:
+    description: Scalable and extensible set of core foundational governance services
+    logo: http://atlas.apache.org/images/atlas-logo.png
+    repo: https://github.com/apache/atlas.git
+    roles: ['governance_services']
+
+  nifi:
+    description: Supports powerful and scalable directed graphs of data routing, transformation, and system mediation logic
+    logo: http://nifi.apache.org/assets/images/apache-nifi-logo.svg
+    repo: https://github.com/apache/nifi.git
+    roles: ['distributed_data_routing']
+
+  solr:
+    description: Search platform
+    logo: http://lucene.apache.org/images/mantle-lucene-solr.png
+    repo: https://github.com/apache/lucene-solr.git
+    roles: ['search_platform']
+
+  spark:
+    description: A fast and general engine for big data processing
+    logo: http://spark.apache.org/images/spark-logo-trademark.png
+    repo: https://github.com/apache/spark.git
+    roles: ['dag_execution_engine']
+
+  hbase:
+    description: Non-relational, distributed database modeled after Google's Bigtable
+    logo: http://hbase.apache.org/images/hbase_logo_with_orca_large.png
+    repo: https://github.com/apache/hbase.git
+    roles: ['big_data_store']
