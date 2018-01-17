@@ -1,0 +1,11 @@
+[Unit]
+Description=AWS Polly
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a aws-polly
+ExecStop=/usr/bin/docker stop -t 2 aws-polly
+
+[Install]
+WantedBy=local.target

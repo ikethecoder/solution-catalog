@@ -1,0 +1,12 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+  ],
+  "secrets": [
+    {"name": "providers/aws/credentials"}
+  ],
+  "environment": [
+  ]
+}

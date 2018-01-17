@@ -6,7 +6,8 @@
                 "${instanceId}-aws-polly": {
                     "service":"aws_polly",
                     "segment":"${segmentId}",
-                    "type": "console"
+                    "type": "console",
+                    "url":"http://${domainName}:4022"
                 }
             }
         }
