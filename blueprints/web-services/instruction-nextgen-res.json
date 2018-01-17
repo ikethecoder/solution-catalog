@@ -123,26 +123,6 @@
         }
       }
     },
-    {
-      "pipeline_environment": {
-        "Tools": {
-        }
-      },
-      "depends_on": ["compute_instance.${instanceName}"]
-    },
-    {
-      "vault_secret": {
-        "shell/commands/${instanceId}-bash": {
-          "user": "root",
-          "host": "${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
-          "auth": "publickey",
-          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
-          "command": "bash",
-          "interactive": true
-        }
-      },
-      "depends_on": ["compute_instance.${instanceName}"]
-    },
    {
       "building_block": {
         "${instanceId}-canzea-upgrade": {
@@ -252,8 +232,28 @@
           "commands" : false
         }
       }
-    }
+    },
 
+    {
+      "pipeline_environment": {
+        "Tools": {
+        }
+      },
+      "depends_on": ["compute_instance.${instanceName}"]
+    },
+    {
+      "vault_secret": {
+        "shell/commands/${instanceId}-bash": {
+          "user": "root",
+          "host": "${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
+          "auth": "publickey",
+          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
+          "command": "bash",
+          "interactive": true
+        }
+      },
+      "depends_on": ["compute_instance.${instanceName}"]
+    }
 
 
 
