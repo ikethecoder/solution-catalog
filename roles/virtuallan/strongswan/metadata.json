@@ -22,7 +22,7 @@
         "${instanceId}-strongswan": {
           "service": "strongswan",
           "segment":"${segmentId}",
-          "type":"services"
+          "type":"Service"
         }
       }
     }
