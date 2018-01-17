@@ -1,5 +1,21 @@
 {
   "name": "strongswan",
   "services": [],
-  "resources": []
+  "resources": [
+
+    {
+      "digitalocean_dns": {
+        "vpn": {
+          "environment": "cd",
+          "droplet": "${es.id}-cd-reg-01",
+          "domain-id": "${es.fqdn_id}",
+          "domain": "${es.fqdn}",
+          "a": {
+            "name": "vpn",
+            "address": "${dollar}{compute_instance.${instanceName}.publicIp}"
+          }
+        }
+      }
+    }
+  ]
 }
