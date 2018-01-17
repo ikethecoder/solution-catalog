@@ -6,6 +6,8 @@ yum -y install epel-release
 yum -y install strongswan
 
 yum -y install haveged
+systemctl enable haveged
+systemctl start haveged
 
 
 
@@ -43,24 +45,24 @@ openssl x509 -inform DER -in ipsec.d/certs/strongswanCert.der -out ipsec.d/certs
 
 ### Key for an idividual
 
-# cd /etc/strongswan/
-# strongswan pki --gen --type rsa --size 2048 --outform der > ipsec.d/private/JohnKey.der
-# chmod 600 ipsec.d/private/JohnKey.der
+cd /etc/strongswan/
+strongswan pki --gen --type rsa --size 2048 --outform der > ipsec.d/private/JohnKey.der
+chmod 600 ipsec.d/private/JohnKey.der
 
-# strongswan pki --pub --in ipsec.d/private/JohnKey.der --type rsa | strongswan pki --issue --lifetime 730 --cacert ipsec.d/cacerts/strongswanCert.der --cakey ipsec.d/private/strongswanKey.der --dn "C=NL, O=Example Company, CN=john@canzea.com" --san "john@canzea.com" --outform der > ipsec.d/certs/JohnCert.der
+strongswan pki --pub --in ipsec.d/private/JohnKey.der --type rsa | strongswan pki --issue --lifetime 730 --cacert ipsec.d/cacerts/strongswanCert.der --cakey ipsec.d/private/strongswanKey.der --dn "C=NL, O=Example Company, CN=john@canzea.com" --san "john@canzea.com" --outform der > ipsec.d/certs/JohnCert.der
 
 
-# openssl rsa -inform DER -in ipsec.d/private/JohnKey.der -out ipsec.d/private/JohnKey.pem -outform PEM
+openssl rsa -inform DER -in ipsec.d/private/JohnKey.der -out ipsec.d/private/JohnKey.pem -outform PEM
 
-# openssl x509 -inform DER -in ipsec.d/certs/JohnCert.der -out ipsec.d/certs/JohnCert.pem -outform PEM
+openssl x509 -inform DER -in ipsec.d/certs/JohnCert.der -out ipsec.d/certs/JohnCert.pem -outform PEM
 
-# openssl x509 -inform DER -in ipsec.d/cacerts/strongswanCert.der -out ipsec.d/cacerts/strongswanCert.pem -outform PEM
+openssl x509 -inform DER -in ipsec.d/cacerts/strongswanCert.der -out ipsec.d/cacerts/strongswanCert.pem -outform PEM
 
 # Prompts for password - need EXPECT here
-# openssl pkcs12 -export  -inkey ipsec.d/private/JohnKey.pem -in ipsec.d/certs/JohnCert.pem -name "John's VPN Certificate"  -certfile ipsec.d/cacerts/strongswanCert.pem -caname "strongSwan Root CA" -out John.p12
+openssl pkcs12 -export  -inkey ipsec.d/private/JohnKey.pem -in ipsec.d/certs/JohnCert.pem -name "John's VPN Certificate"  -certfile ipsec.d/cacerts/strongswanCert.pem -caname "strongSwan Root CA" -out John.p12
 
-# cp John.p12 /usr/share/nginx/html/.
+cp John.p12 /usr/share/nginx/html/.
 
-# cp ipsec.d/certs/vpnHostCert.der /usr/share/nginx/html/.
+cp ipsec.d/certs/vpnHostCert.der /usr/share/nginx/html/.
 
-# cp ipsec.d/cacerts/strongswanCert.der /usr/share/nginx/html/.
+cp ipsec.d/cacerts/strongswanCert.der /usr/share/nginx/html/.
