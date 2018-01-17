@@ -3,6 +3,15 @@
   "services": [],
   "resources": [
     {
+      "service_endpoint": {
+        "${instanceId}-zookeeper": {
+          "service":"zookeeper",
+          "segment":"${segmentId}",
+          "type": "service"
+        }
+      }
+    },
+    {
       "service_discovery_service": {
         "${instanceId}-zookeeper": {
           "Name": "zookeeper",

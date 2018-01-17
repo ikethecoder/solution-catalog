@@ -2,5 +2,16 @@
   "name": "spark",
   "services": [
 
+  ],
+  "resources": [
+    {
+      "service_endpoint": {
+        "${instanceId}-spark": {
+          "service":"spark",
+          "segment":"${segmentId}",
+          "type": "service"
+        }
+      }
+    }
   ]
 }

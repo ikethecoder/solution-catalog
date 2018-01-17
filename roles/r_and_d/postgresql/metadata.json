@@ -2,5 +2,16 @@
   "name": "postgresql",
   "services": [
 
+  ],
+  "resources": [
+    {
+      "service_endpoint": {
+        "${instanceId}-postgresql": {
+          "service":"postgresql",
+          "segment":"${segmentId}",
+          "type": "service"
+        }
+      }
+    }
   ]
 }

@@ -2,5 +2,16 @@
   "name": "hive",
   "services": [
 
+  ],
+  "resources": [
+    {
+      "service_endpoint": {
+        "${instanceId}-hive": {
+          "service":"hive",
+          "segment":"${segmentId}",
+          "type": "service"
+        }
+      }
+    }
   ]
 }

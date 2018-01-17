@@ -2,5 +2,16 @@
   "name": "fail2ban",
   "services": [
 
+  ],
+  "resources": [
+    {
+      "service_endpoint": {
+        "${instanceId}-fail2ban": {
+          "service":"fail2ban",
+          "segment":"${segmentId}",
+          "type": "service"
+        }
+      }
+    }
   ]
 }

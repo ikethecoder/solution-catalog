@@ -2,5 +2,16 @@
   "name": "kafka",
   "services": [
 
+  ],
+  "resources": [
+    {
+      "service_endpoint": {
+        "${instanceId}-kafka": {
+          "service":"kafka",
+          "segment":"${segmentId}",
+          "type": "service"
+        }
+      }
+    }
   ]
 }
