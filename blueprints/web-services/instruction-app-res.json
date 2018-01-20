@@ -255,8 +255,7 @@
           "title": "${environmentLabel} Environment",
           "description": "System Metrics for the ${environmentLabel}"
         }
-      },
-      "depends_on": ["building_block.${es.id}-mon-mon-01-grafana"]
+      }
     }
   ]
 }
