@@ -139,16 +139,6 @@
       }
     },
 
-    {
-      "building_block": {
-        "${instanceId}-strongswan": {
-          "role": "virtuallan",
-          "solution": "strongswan",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
 
     {
       "digitalocean_dns" : {
