@@ -10,14 +10,14 @@
     "resources": [
         {
             "digitalocean_dns": {
-                "${environmentName}-lb": {
-                    "environment": "${environmentName}",
+                "${environmentId}-lb": {
+                    "environment": "${environmentId}",
                     "droplet": "${instanceName}",
                     "domain-id": "${es.fqdn_id}",
                     "domain": "${es.fqdn}",
                     "a": {
-                        "name": "${environmentName}-lb",
-                        "address": "${dollar}{compute_instance.${instanceName}.publicIp}"
+                        "name": "${environmentId}-lb",
+                        "address": "${dollar}{var.compute_instance.${instanceName}.publicIp}"
                     }
                 }
             }
@@ -27,7 +27,7 @@
                 "${instanceId}-lb": {
                     "service": "lb",
                     "instance": "${instanceName}",
-                    "environment":"${environmentName}",
+                    "environment":"${environmentId}",
                     "segment":"${segmentId}",
                     "type":"Service"
                 }
