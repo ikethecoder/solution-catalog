@@ -20,13 +20,13 @@
     {
       "digitalocean_dns": {
         "vpn": {
-          "environment": "${environmentName}",
+          "environment": "cd",
           "droplet": "${instanceName}",
           "domain-id": "${es.fqdn_id}",
           "domain": "${es.fqdn}",
           "a": {
             "name": "internal",
-            "address": "${dollar}{var.compute_instance.${instanceName}.privateIp}"
+            "address": "${d}{var.compute_instance.${instanceName}.privateIp}"
           }
         }
       }
@@ -36,7 +36,7 @@
         "${instanceId}-strongswan": {
           "service": "strongswan",
           "segment":"${segmentId}",
-          "type":"Service"
+          "type":"service"
         }
       }
     }

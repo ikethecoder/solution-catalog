@@ -11,7 +11,7 @@
         {
             "digitalocean_dns": {
                 "${environmentId}-lb": {
-                    "environment": "${environmentId}",
+                    "environment": "cd",
                     "droplet": "${instanceName}",
                     "domain-id": "${es.fqdn_id}",
                     "domain": "${es.fqdn}",
@@ -29,7 +29,7 @@
                     "instance": "${instanceName}",
                     "environment":"${environmentId}",
                     "segment":"${segmentId}",
-                    "type":"Service"
+                    "type":"console"
                 }
             }
         }
