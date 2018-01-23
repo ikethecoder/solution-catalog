@@ -24,8 +24,8 @@
         },
         {
             "service_endpoint": {
-                "${instanceId}-lb": {
-                    "service": "lb",
+                "${instanceId}-fabio": {
+                    "service": "fabio",
                     "instance": "${instanceName}",
                     "environment":"${environmentId}",
                     "segment":"${segmentId}",
