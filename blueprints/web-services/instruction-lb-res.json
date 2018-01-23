@@ -95,14 +95,13 @@
     },
     {
       "building_block": {
-        "${instanceId}-strongswan": {
-          "role": "virtuallan",
-          "solution": "strongswan",
+        "${instanceId}-fabio": {
+          "role": "router",
+          "solution": "fabio",
           "droplet" : "${instanceName}",
           "commands" : false
         }
       }
     }
-
   ]
 }
