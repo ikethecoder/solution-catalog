@@ -6,5 +6,32 @@
             "port":9998,
             "ssl":false
         }
+    ],
+    "resources": [
+        {
+            "digitalocean_dns": {
+                "${environmentName}-lb": {
+                    "environment": "${environmentName}",
+                    "droplet": "${instanceName}",
+                    "domain-id": "${es.fqdn_id}",
+                    "domain": "${es.fqdn}",
+                    "a": {
+                        "name": "${environmentName}-lb",
+                        "address": "${dollar}{compute_instance.${instanceName}.publicIp}"
+                    }
+                }
+            }
+        },
+        {
+            "service_endpoint": {
+                "${instanceId}-lb": {
+                    "service": "lb",
+                    "instance": "${instanceName}",
+                    "environment":"${environmentName}",
+                    "segment":"${segmentId}",
+                    "type":"Service"
+                }
+            }
+        }
     ]
 }
