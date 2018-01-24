@@ -94,6 +94,7 @@ class HugoBuild
 
         t = Template.new
 
+        stageAutoTemplate = getFragmentPath("stage.json")
         stageTemplate = getFragmentPath("stage-first.json")
 
         jobTemplate = getFragmentPath("job.json")
@@ -128,7 +129,7 @@ class HugoBuild
         root['pipeline']['stages'].push (stage)
 
 
-        stage = JSON.parse(t.process stageTemplate, {"name" => "Registry"})
+        stage = JSON.parse(t.process stageAutoTemplate, {"name" => "Registry"})
 
         job = JSON.parse(t.process jobTemplate, attributes)
         stage['jobs'].push(job)
