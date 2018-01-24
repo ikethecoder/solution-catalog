@@ -27,9 +27,10 @@
                 "${instanceId}-fabio": {
                     "service": "fabio",
                     "instance": "${instanceName}",
-                    "environment":"${environmentId}",
-                    "segment":"${segmentId}",
-                    "type":"console"
+                    "environment": "${environmentId}",
+                    "segment": "${segmentId}",
+                    "type": "console",
+                    "url": "http://${domainName}:9998"
                 }
             }
         }
