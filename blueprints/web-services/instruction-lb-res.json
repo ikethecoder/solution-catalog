@@ -95,6 +95,16 @@
     },
     {
       "building_block": {
+        "${instanceId}-golang": {
+          "role": "workarounds",
+          "solution": "golang",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
         "${instanceId}-fabio": {
           "role": "router",
           "solution": "fabio",

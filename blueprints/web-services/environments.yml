@@ -92,17 +92,17 @@ environments:
         provision: false
         order:
           -
-            product: "M2GB_D40GB"
-            image: "centos-7-x64"
-            qty: 3
-            segment: "db"
-            label: "DB"
-          -
             product: "M4GB_D60GB"
             image: "centos-7-x64"
             qty: 1
             segment: "app"
             label: "App"
+          -
+            product: "M2GB_D40GB"
+            image: "centos-7-x64"
+            qty: 3
+            segment: "db"
+            label: "DB"
 
    -
       name: "stage"
@@ -112,24 +112,23 @@ environments:
         provision: false
         order:
           -
-            product: "M2GB_D40GB"
-            image: "centos-7-x64"
-            qty: 3
-            segment: "db"
-            label: "DB"
-          -
-            product: "M4GB_D60GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "app"
-            label: "App"
-          -
             product: "M1GB_D25GB"
             image: "centos-7-x64"
             qty: 1
             segment: "lb"
             label: "Load Balancer"
-
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app-a"
+            label: "App A"
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app-b"
+            label: "App B"
 
    -
       name: "live"
@@ -139,14 +138,20 @@ environments:
         provision: false
         order:
           -
-            product: "M4GB_D60GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "app"
-            label: "App"
-          -
             product: "M1GB_D25GB"
             image: "centos-7-x64"
             qty: 1
             segment: "lb"
             label: "Load Balancer"
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app-a"
+            label: "App A"
+          -
+            product: "M4GB_D60GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app-b"
+            label: "App B"
