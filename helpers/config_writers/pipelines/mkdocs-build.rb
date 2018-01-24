@@ -94,7 +94,7 @@ class MkdocsBuild
 
         t = Template.new
 
-        stageTemplate = getFragmentPath("stage.json")
+        stageTemplate = getFragmentPath("stage-first.json")
 
         jobTemplate = getFragmentPath("job.json")
 

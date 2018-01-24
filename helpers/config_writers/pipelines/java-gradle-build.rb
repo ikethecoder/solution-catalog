@@ -94,7 +94,7 @@ class JavaGradleBuild
 
         t = Template.new
 
-        stageTemplate = getFragmentPath("stage.json")
+        stageTemplate = getFragmentPath("stage-first.json")
         stageNoFetchTemplate = getFragmentPath("stage-no-fetch.json")
 
         jobTemplate = getFragmentPath("job.json")
