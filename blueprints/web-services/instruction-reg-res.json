@@ -138,8 +138,16 @@
         }
       }
     },
-
-
+    {
+      "building_block": {
+        "${instanceId}-confd": {
+          "role": "r_and_d",
+          "solution": "confd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
     {
       "digitalocean_dns" : {
         "chat": {
