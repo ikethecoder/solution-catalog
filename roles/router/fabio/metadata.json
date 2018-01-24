@@ -17,7 +17,7 @@
                     "domain": "${es.fqdn}",
                     "a": {
                         "name": "${environmentId}-lb",
-                        "address": "${dollar}{var.compute_instance.${instanceName}.publicIp}"
+                        "address": "${d}{digitalocean_droplet.${instanceName}.ipv4_address}"
                     }
                 }
             }

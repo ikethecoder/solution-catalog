@@ -12,7 +12,7 @@
           "domain": "${es.fqdn}",
           "a": {
             "name": "vpn",
-            "address": "${dollar}{var.compute_instance.${instanceName}.publicIp}"
+            "address": "${d}{digitalocean_droplet.${instanceName}.ipv4_address}"
           }
         }
       }
@@ -26,7 +26,7 @@
           "domain": "${es.fqdn}",
           "a": {
             "name": "internal",
-            "address": "${d}{var.compute_instance.${instanceName}.privateIp}"
+            "address": "${d}{digitalocean_droplet.${instanceName}.ipv4_address}"
           }
         }
       }
