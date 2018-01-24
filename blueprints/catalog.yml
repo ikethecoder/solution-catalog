@@ -284,3 +284,7 @@ buildingBlocks:
     logo: http://hbase.apache.org/images/hbase_logo_with_orca_large.png
     repo: https://github.com/apache/hbase.git
     roles: ['big_data_store']
+
+  aws_polly:
+    description: Amazon's text to speech.
+    logo: styles/img/partners/aws.png
