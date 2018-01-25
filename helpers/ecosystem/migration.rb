@@ -27,6 +27,8 @@ ssh_config = %{
 FileUtils.mkdir_p "ssh"
 File.write "ssh/config", t.processString(ssh_config, parameters)
 
+FileUtils.mkdir_p "#{Dir.pwd}/sc/ecosystems/#{parameters['ecosystem']}/ssh"
+
 n = RunnerWorker.new(false)
 n.run "ssh-keyscan #{parameters['fqdn']} > #{Dir.pwd}/sc/ecosystems/#{parameters['ecosystem']}/ssh/known_hosts", 0, 0
 
