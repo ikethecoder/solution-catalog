@@ -102,7 +102,16 @@
           "commands" : false
         }
       }
+    },
+    {
+      "building_block": {
+        "${instanceId}-fail2ban": {
+          "role": "r_and_d",
+          "solution": "fail2ban",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
     }
-
   ]
 }
