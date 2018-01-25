@@ -43,7 +43,7 @@ consoles:
     secure: https://chat.${secureDomain}
 
   -
-    segment: app
+    segment: lb
     name: fabio
     url: http://${domainName}:9998
     remarks: none
@@ -138,21 +138,21 @@ services:
     url: http://${domainName}:8200
 
   -
-    segment: app
+    segment: app-a
     name: postgresql
     description: Postgresql Relational Database
     url: http://${domainName}:5432
     nodes: build/e/*
 
   -
-    segment: app
+    segment: app-a
     name: mongodb
     description: MongoDB Database
     url: http://${domainName}:5432
     nodes: build/e/*
 
   -
-    segment: app
+    segment: app-a
     name: rabbitmq
     description: RabbitMQ Messaging
     url: http://${domainName}:5672
