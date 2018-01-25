@@ -27,11 +27,15 @@ ssh_config = %{
 FileUtils.mkdir_p "ssh"
 File.write "ssh/config", t.processString(ssh_config, parameters)
 
+n = RunnerWorker.new(false)
+n.run "ssh-keyscan #{fqdn} > #{Dir.pwd}/sc/ecosystems/#{parameters['ecosystem']}/ssh/known_hosts", 0, 0
+
 pc.cp sourcePath, "."
 
 pc.write "ssh/config", t.processString(ssh_config, parameters)
 
 pc.commit "Migrated to ecosystems repository."
+
 
 
 FileUtils.cp_r "sc", "sc_bk"
