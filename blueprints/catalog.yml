@@ -218,7 +218,7 @@ buildingBlocks:
 
   vault:
     description: A Tool for Managing Secrets
-    logo: /styles/img/partners/vault.svg
+    logo: styles/img/partners/vault.svg
     roles: [ "secret_mgmt" ]
     resources: [  ]
     type: console
