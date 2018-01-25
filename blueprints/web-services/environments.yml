@@ -40,7 +40,6 @@ environments:
             qty: 1
             segment: "vpn"
             label: "VPN"
-            tags: ["std"]
 
    -
       name: "mon"
