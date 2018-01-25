@@ -13,18 +13,21 @@ environments:
             qty: 1
             segment: "ci"
             label: "CD Core"
+            tags: ["min","std"]
           -
             product: "M4GB_D60GB"
             image: "centos-7-x64"
             qty: 1
             segment: "reg"
             label: "Pipeline Mgmt"
+            tags: ["std"]
           -
             product: "M2GB_D40GB"
             image: "centos-7-x64"
             qty: 1
             segment: "builder"
             label: "Builders"
+            tags: ["std"]
           -
             product: "M2GB_D40GB"
             image: "centos-7-x64"
@@ -37,6 +40,7 @@ environments:
             qty: 1
             segment: "vpn"
             label: "VPN"
+            tags: ["std"]
 
    -
       name: "mon"
@@ -51,6 +55,7 @@ environments:
             qty: 1
             segment: "mon"
             label: "Monitoring"
+            tags: ["std"]
           -
             product: "M4GB_D60GB"
             image: "centos-7-x64"
@@ -97,6 +102,7 @@ environments:
             qty: 1
             segment: "app"
             label: "App"
+            tags: ["std"]
           -
             product: "M2GB_D40GB"
             image: "centos-7-x64"
@@ -143,12 +149,14 @@ environments:
             qty: 1
             segment: "lb"
             label: "Load Balancer"
+            tags: ["std"]
           -
             product: "M4GB_D60GB"
             image: "centos-7-x64"
             qty: 1
             segment: "app-a"
             label: "App A"
+            tags: ["std"]
           -
             product: "M4GB_D60GB"
             image: "centos-7-x64"
