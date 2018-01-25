@@ -131,9 +131,9 @@ environments:
             label: "App B"
 
    -
-      name: "live"
+      name: "prod"
       title:
-        label: "Live"
+        label: "Production"
         pipeline: true
         provision: false
         order:
