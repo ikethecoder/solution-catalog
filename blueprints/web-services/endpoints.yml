@@ -49,6 +49,12 @@ consoles:
     remarks: none
 
   -
+    segment: app
+    name: fabio
+    url: http://${domainName}:9998
+    remarks: none
+
+  -
     segment: kib
     name: kibana
     url: http://${domainName}:5601
@@ -136,6 +142,27 @@ services:
     name: vault
     description: Hashicorp Vault Secrets Management
     url: http://${domainName}:8200
+
+  -
+    segment: app
+    name: postgresql
+    description: Postgresql Relational Database
+    url: http://${domainName}:5432
+    nodes: build/e/*
+
+  -
+    segment: app
+    name: mongodb
+    description: MongoDB Database
+    url: http://${domainName}:5432
+    nodes: build/e/*
+
+  -
+    segment: app
+    name: rabbitmq
+    description: RabbitMQ Messaging
+    url: http://${domainName}:5672
+    nodes: build/e/*
 
   -
     segment: app-a
