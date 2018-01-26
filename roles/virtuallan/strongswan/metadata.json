@@ -19,7 +19,7 @@
     },
     {
       "digitalocean_dns": {
-        "vpn": {
+        "internal": {
           "environment": "cd",
           "droplet": "${instanceName}",
           "domain-id": "${es.fqdn_id}",
