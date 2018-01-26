@@ -9,20 +9,6 @@
     ],
     "resources": [
         {
-            "digitalocean_dns": {
-                "${environmentId}-lb": {
-                    "environment": "cd",
-                    "droplet": "${instanceName}",
-                    "domain-id": "${es.fqdn_id}",
-                    "domain": "${es.fqdn}",
-                    "a": {
-                        "name": "${environmentId}-lb",
-                        "address": "${d}{digitalocean_droplet.${instanceName}.ipv4_address}"
-                    }
-                }
-            }
-        },
-        {
             "service_endpoint": {
                 "${instanceId}-fabio": {
                     "service": "fabio",
