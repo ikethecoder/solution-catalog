@@ -35,6 +35,8 @@
       "service_endpoint": {
         "${instanceId}-strongswan": {
           "service": "strongswan",
+          "instance": "${instanceId}",
+          "environment": "${environmentId}",
           "segment":"${segmentId}",
           "type":"service"
         }
