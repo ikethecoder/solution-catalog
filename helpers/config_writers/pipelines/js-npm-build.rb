@@ -10,6 +10,7 @@ class JSNpmBuild
         version = attributes['version']
         branch = attributes['branch']
 
+        attributes['deploy_id'] = "#{project}"
         attributes['project'] = "#{project}"
         attributes['group'] = "#{project}"
 

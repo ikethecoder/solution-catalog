@@ -11,6 +11,11 @@
     "environment_variables": [
       {
         "secure": false,
+        "name": "DEPLOY_ID",
+        "value": "{{deploy_id}}"
+      },
+      {
+        "secure": false,
         "name": "CONSUL_URL",
         "value": "{{CONSUL_URL}}"
       },
