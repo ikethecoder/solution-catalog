@@ -1,10 +1,16 @@
 {
     "services":[
+    ],
+    "resources": [
         {
-            "name":"${environmentId}-mongodb",
-            "listener":"pub",
-            "port":27017,
-            "ssl":false
+            "service_discovery_service": {
+                "${instanceId}-mongodb": {
+                    "Name": "${environmentId}-mongodb",
+                    "Address": "${d}{var.compute_instance.${instanceName}.privateIp}",
+                    "Port": 27017,
+                    "Tags" : [ "documentdatabase", "mongodb", "${instanceId}", "${environmentId}" ]
+                }
+            }
         }
     ]
 }
