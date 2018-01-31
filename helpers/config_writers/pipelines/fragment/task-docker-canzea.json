@@ -13,6 +13,8 @@
       "/var/go/ssl:/var/go/ssl",
       "-v",
       "/var/go/.ecosystem-catalog:/var/go/.ecosystem-catalog",
+      "-e",
+      "DEPLOY_ID",
       "--env",
       "JAVA_COMMAND=/etc/alternatives/java",
       "{{docker_image}}",
