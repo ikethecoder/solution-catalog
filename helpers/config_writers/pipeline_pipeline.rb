@@ -59,7 +59,12 @@ if is_plus
 
     fileList = handler.preparePipelineScripts properties
     fileList.each do | file |
-        pc.write file['file'], file['content']
+        if File.exists? file['file']
+            puts "SKIPPING - ALREADY EXISTS - #{file['file']}"
+        else
+            puts "WRITING : #{file['file']}"
+            pc.write file['file'], file['content']
+        end
     end
 else
     pc.backupAndRemove "es_orchestrator/pipeline_pipeline/#{resourceId}.json"
