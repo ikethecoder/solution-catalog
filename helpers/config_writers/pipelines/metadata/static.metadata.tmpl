@@ -2,8 +2,8 @@
   "resources": [
     {
       "service_endpoint": {
-        "${instanceId}-{{name}}": {
-          "service": "{{name}}",
+        "${instanceId}-{{name}}-${port}": {
+          "service": "${path}",
           "description": "",
           "instance": "${instanceId}",
           "environment": "${environmentId}",
