@@ -1,5 +1,5 @@
 
 yum -y install ruby
 
-gem install canzea
+gem install --no-ri --no-rdoc canzea
 
