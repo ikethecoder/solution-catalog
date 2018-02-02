@@ -14,6 +14,20 @@
     ],
     "resources": [
         {
+            "service_discovery_service": {
+                "${instanceId}-aws-polly": {
+                    "Name": "${environmentId}-aws-polly",
+                    "Address": "${d}{var.compute_instance.${instanceName}.privateIp}",
+                    "Port": 4022,
+                    "Tags": [
+                        "text_to_speech",
+                        "${instanceId}",
+                        "${environmentId}"
+                    ]
+                }
+            }
+        },
+        {
             "service_endpoint": {
                 "${instanceId}-aws-polly": {
                     "service":"aws_polly",
