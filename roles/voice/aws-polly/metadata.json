@@ -1,10 +1,24 @@
 {
-    "services":[],
+    "services": [
+    ],
+    "building_block": {
+        "${instanceId}-aws-polly": {
+            "role": "voice",
+            "solution": "aws-polly",
+            "droplet": "${instanceName}",
+            "commands": false
+        }
+    },
+    "depends_on": [
+        "vault_secret.providers_aws"
+    ],
     "resources": [
         {
             "service_endpoint": {
                 "${instanceId}-aws-polly": {
                     "service":"aws_polly",
+                    "instance": "${instanceName}",
+                    "environment": "${environmentId}",
                     "segment":"${segmentId}",
                     "type": "console",
                     "url":"http://${domainName}:4022"
