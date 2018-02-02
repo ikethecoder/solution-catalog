@@ -1,5 +1,7 @@
 
-docker pull continuumio/anaconda
+docker pull continuumio/anaconda3
 
-docker create -p 8889:8888 --name anaconda continuumio/anaconda /bin/bash -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
+(cd roles/datascience/anaconda && docker build --tag local_anaconda .)
+
+docker create -p 8889:8888 -v /var/local/notebooks:/opt/notebooks --name anaconda local_anaconda
 

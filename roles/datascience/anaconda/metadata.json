@@ -1,15 +1,27 @@
 {
-    "services":[
+    "services":[],
+    "resources": [
         {
-            "name":"anaconda",
-            "listener":"pub",
-            "port":8889,
-            "ssl":false,
-            "check": {
-                "http":"{{address}}",
-                "interval":"10s",
-                "timeout":"10s"
+            "service_discovery_service": {
+                "${instanceId}-anaconda": {
+                    "Name": "${environmentId}-anaconda",
+                    "Address": "${d}{var.compute_instance.${instanceName}.privateIp}",
+                    "Port": 8889,
+                    "Tags" : [ "data_science", "${instanceId}", "${environmentId}" ]
+                }
+            }
+        },
+        {
+            "service_endpoint": {
+                "${instanceId}-anaconda": {
+                    "service":"anaconda",
+                    "instance": "${instanceName}",
+                    "environment": "${environmentId}",
+                    "segment":"${segmentId}",
+                    "url":"http://${domainName}:8889"
+                }
             }
         }
+
     ]
 }
