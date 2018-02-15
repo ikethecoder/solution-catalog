@@ -1,5 +1,5 @@
 
 
-chkconfig docker on
+systemctl enable docker
 
-sudo service docker start
+systemctl start docker
