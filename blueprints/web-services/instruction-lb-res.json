@@ -112,6 +112,16 @@
           "commands" : false
         }
       }
+    },
+    {
+      "building_block": {
+        "${instanceId}-nginx": {
+          "role": "loadbalancer",
+          "solution": "nginx",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
     }
   ]
 }
