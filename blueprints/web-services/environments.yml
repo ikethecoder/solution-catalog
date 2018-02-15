@@ -72,32 +72,6 @@ environments:
             label: "Kibana Analysis"
 
    -
-      name: "play"
-      title:
-        label: "Playground"
-        pipeline: false
-        provision: false
-        order:
-          -
-            product: "VCPU2_M4GB_D80GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "tools"
-            label: "Tools"
-          -
-            product: "VCPU6_M16GB_D320GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "bigdata"
-            label: "Big Data"
-          -
-            product: "VCPU4_M8GB_D160GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "nextgen"
-            label: "Next Generation"
-
-   -
       name: "intg"
       title:
         label: "Integration"
