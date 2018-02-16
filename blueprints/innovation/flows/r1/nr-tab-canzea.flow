@@ -1,0 +1,506 @@
+{
+  "id": "a285a14b.b09ec",
+  "label": "Canzea",
+  "nodes": [
+    {
+      "id": "20bc93b6.437eec",
+      "type": "websocket in",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "server": "7138d6b8.dc7bc8",
+      "client": "",
+      "x": 141,
+      "y": 139,
+      "wires": [
+        [
+          "8ce3041c.bc6c88"
+        ]
+      ]
+    },
+    {
+      "id": "d256768d.b28aa8",
+      "type": "websocket out",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "server": "7138d6b8.dc7bc8",
+      "client": "",
+      "x": 596,
+      "y": 144,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "16fd14e9.bbba3b",
+      "type": "cron",
+      "z": "a285a14b.b09ec",
+      "name": "Every 5 seconds",
+      "crontab": "*/5 * * * * *",
+      "x": 296,
+      "y": 75,
+      "wires": [
+        [
+          "62ee61e5.5c3f3",
+          "d256768d.b28aa8"
+        ]
+      ]
+    },
+    {
+      "id": "62ee61e5.5c3f3",
+      "type": "debug",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "active": false,
+      "console": "false",
+      "complete": "true",
+      "x": 493,
+      "y": 77,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "8ce3041c.bc6c88",
+      "type": "debug",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 302.5,
+      "y": 139,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "e0610052.145a",
+      "type": "http in",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "url": "/gateway/:resource",
+      "method": "post",
+      "swaggerDoc": "",
+      "x": 137.5,
+      "y": 238,
+      "wires": [
+        [
+          "f97483df.3a3b8"
+        ]
+      ]
+    },
+    {
+      "id": "f97483df.3a3b8",
+      "type": "json-schema",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "func": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"title\": \"Resources\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"collaboration_channel\": {\n            \"description\": \"Channel\",\n            \"type\": \"object\",\n            \"properties\": {\n                \"name\": {\n                    \"type\": \"string\"\n                }\n            },\n            \"required\": [\"name\"]\n        },\n        \"pipeline_environment\": {\n            \"description\": \"Pipeline Environment\",\n            \"type\": \"object\",\n            \"properties\": {\n                \"name\": {\n                    \"type\": \"string\"\n                }\n            },\n            \"required\": [\"name\"]\n        },\n        \"service_discovery_service\": {\n            \"description\": \"Service Discovery Service\",\n            \"type\": \"object\",\n            \"properties\": {\n                \"Name\": {\n                    \"type\": \"string\"\n                },\n                \"ID\": {\n                    \"type\": \"string\"\n                },\n                \"Address\": {\n                    \"type\": \"string\"\n                },\n                \"Port\": {\n                    \"type\": \"number\"\n                },\n                \"Tags\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                        \"type\": \"string\"\n                    }\n                },\n                \"Check\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"http\": {\n                            \"type\": \"string\"\n                        },\n                        \"interval\": {\n                            \"type\": \"string\"\n                        },\n                        \"timeout\": {\n                            \"type\": \"string\"\n                        }\n                    }\n                }\n                \n            },\n            \"required\": [\"Name\"]\n        }\n    }\n}\n",
+      "x": 118.5,
+      "y": 316,
+      "wires": [
+        [
+          "7366cbdf.1b04d4"
+        ]
+      ]
+    },
+    {
+      "id": "8d118121.b6063",
+      "type": "http response",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "x": 554.5,
+      "y": 297,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "7366cbdf.1b04d4",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "Set Topic",
+      "func": "msg.topic = \"plus:\" + msg.req.params.resource;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 276.5,
+      "y": 297,
+      "wires": [
+        [
+          "23b4138d.0e2ecc"
+        ]
+      ]
+    },
+    {
+      "id": "bcdf6bf.9dc8f98",
+      "type": "http in",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "url": "/bulk",
+      "method": "post",
+      "swaggerDoc": "",
+      "x": 126.5,
+      "y": 580,
+      "wires": [
+        [
+          "cf74e76a.902498"
+        ]
+      ]
+    },
+    {
+      "id": "cf74e76a.902498",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "func": "msg.payload = msg.payload.resources;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 282.5,
+      "y": 580,
+      "wires": [
+        [
+          "522bb079.16564"
+        ]
+      ]
+    },
+    {
+      "id": "522bb079.16564",
+      "type": "split",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "splt": "\\n",
+      "x": 405.5,
+      "y": 581,
+      "wires": [
+        [
+          "eb7cc7e7.9fa348"
+        ]
+      ]
+    },
+    {
+      "id": "e2544175.29e6f",
+      "type": "join",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "mode": "auto",
+      "build": "string",
+      "property": "payload",
+      "propertyType": "msg",
+      "key": "topic",
+      "joiner": "\\n",
+      "timeout": "",
+      "count": "",
+      "x": 868.5,
+      "y": 581,
+      "wires": [
+        [
+          "44adc81b.841fa8"
+        ]
+      ]
+    },
+    {
+      "id": "48ce6537.6d251c",
+      "type": "http response",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "x": 1145,
+      "y": 621,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "23b4138d.0e2ecc",
+      "type": "subflow:9e3e25e6.0e0308",
+      "z": "a285a14b.b09ec",
+      "x": 419.5,
+      "y": 297,
+      "wires": [
+        [
+          "8d118121.b6063"
+        ]
+      ],
+      "subflow": "9e3e25e6.0e0308"
+    },
+    {
+      "id": "2c371cb3.f910b4",
+      "type": "subflow:9e3e25e6.0e0308",
+      "z": "a285a14b.b09ec",
+      "x": 737,
+      "y": 581,
+      "wires": [
+        [
+          "e2544175.29e6f"
+        ]
+      ],
+      "subflow": "9e3e25e6.0e0308"
+    },
+    {
+      "id": "eb7cc7e7.9fa348",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "Set Topic",
+      "func": "action = 'plus'; // plus | minus\nk = Object.keys(msg.payload)[0];\nmsg.topic = action + \":\" + k;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 544.5,
+      "y": 581,
+      "wires": [
+        [
+          "2c371cb3.f910b4"
+        ]
+      ]
+    },
+    {
+      "id": "284b75e8.d813ca",
+      "type": "http in",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "url": "/bulk",
+      "method": "delete",
+      "swaggerDoc": "",
+      "x": 128,
+      "y": 625,
+      "wires": [
+        [
+          "dea7045c.7c69f8"
+        ]
+      ]
+    },
+    {
+      "id": "dea7045c.7c69f8",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "func": "msg.payload = msg.payload.resources;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 285,
+      "y": 626,
+      "wires": [
+        [
+          "d7dc9c41.ea694"
+        ]
+      ]
+    },
+    {
+      "id": "d7dc9c41.ea694",
+      "type": "split",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "splt": "\\n",
+      "x": 411,
+      "y": 626,
+      "wires": [
+        [
+          "f965c608.a823d8"
+        ]
+      ]
+    },
+    {
+      "id": "f965c608.a823d8",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "Set Topic",
+      "func": "action = 'minus'; // plus | minus\nk = Object.keys(msg.payload)[0];\nmsg.topic = action + \":\" + k;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 542,
+      "y": 625,
+      "wires": [
+        [
+          "2c371cb3.f910b4"
+        ]
+      ]
+    },
+    {
+      "id": "9d48781c.0b9d88",
+      "type": "http in",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "url": "/check",
+      "method": "post",
+      "swaggerDoc": "",
+      "x": 128,
+      "y": 535,
+      "wires": [
+        [
+          "5a8fa2f8.d872fc"
+        ]
+      ]
+    },
+    {
+      "id": "5a8fa2f8.d872fc",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "func": "msg.payload = msg.payload.resources;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 284,
+      "y": 535,
+      "wires": [
+        [
+          "77b52971.527168"
+        ]
+      ]
+    },
+    {
+      "id": "77b52971.527168",
+      "type": "split",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "splt": "\\n",
+      "x": 407,
+      "y": 536,
+      "wires": [
+        [
+          "41fe63c1.86f22c"
+        ]
+      ]
+    },
+    {
+      "id": "41fe63c1.86f22c",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "Set Topic",
+      "func": "action = 'check'; // plus | minus\nk = Object.keys(msg.payload)[0];\nmsg.topic = action + \":\" + k;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 546,
+      "y": 536,
+      "wires": [
+        [
+          "2c371cb3.f910b4"
+        ]
+      ]
+    },
+    {
+      "id": "e2e30c43.2d5af",
+      "type": "http in",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "url": "/gateway/:resource/:id",
+      "method": "delete",
+      "swaggerDoc": "",
+      "x": 154,
+      "y": 448,
+      "wires": [
+        [
+          "2c05a2e0.4edeee"
+        ]
+      ]
+    },
+    {
+      "id": "2c05a2e0.4edeee",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "Set Topic",
+      "func": "msg.topic = \"minus:\" + msg.req.params.resource;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 382,
+      "y": 449,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "44adc81b.841fa8",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "func": "msg.statusCode = 200;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 1015.5,
+      "y": 622,
+      "wires": [
+        [
+          "48ce6537.6d251c"
+        ]
+      ]
+    },
+    {
+      "id": "138d9c21.257f14",
+      "type": "http in",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "url": "/bulk/list",
+      "method": "post",
+      "upload": false,
+      "swaggerDoc": "",
+      "x": 139,
+      "y": 495,
+      "wires": [
+        [
+          "42375c69.f6b844"
+        ]
+      ]
+    },
+    {
+      "id": "42375c69.f6b844",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "func": "msg.payload = msg.payload.resources;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 285,
+      "y": 495,
+      "wires": [
+        [
+          "36f9fb5a.ab77c4"
+        ]
+      ]
+    },
+    {
+      "id": "36f9fb5a.ab77c4",
+      "type": "split",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "splt": "\\n",
+      "x": 408,
+      "y": 496,
+      "wires": [
+        [
+          "4bf75e2.2032fa"
+        ]
+      ]
+    },
+    {
+      "id": "4bf75e2.2032fa",
+      "type": "function",
+      "z": "a285a14b.b09ec",
+      "name": "Set Topic",
+      "func": "action = 'list'; // plus | minus\nk = Object.keys(msg.payload)[0];\nmsg.topic = action + \":\" + k;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 547,
+      "y": 496,
+      "wires": [
+        [
+          "2c371cb3.f910b4"
+        ]
+      ]
+    },
+    {
+      "id": "7b4142f.27fa9bc",
+      "type": "http in",
+      "z": "a285a14b.b09ec",
+      "name": "",
+      "url": "/minus",
+      "method": "post",
+      "upload": false,
+      "swaggerDoc": "",
+      "x": 127,
+      "y": 672,
+      "wires": [
+        [
+          "dea7045c.7c69f8"
+        ]
+      ]
+    }
+  ]
+}

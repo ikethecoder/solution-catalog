@@ -1,0 +1,23 @@
+{
+  "id" : 1,
+  "orgId" : 1,
+  "name" : "Elasticsearch",
+  "type" : "elasticsearch",
+  "typeLogoUrl" : "",
+  "access" : "proxy",
+  "url" : "http://elasticsearch.service.dc1.consul:9200",
+  "password" : "",
+  "user" : "",
+  "database" : "[metricbeat-]YYYY.MM.DD",
+  "basicAuth" : false,
+  "basicAuthUser" : "",
+  "basicAuthPassword" : "",
+  "withCredentials" : false,
+  "isDefault" : false,
+  "jsonData" : {
+    "esVersion" : 5,
+    "interval" : "Daily",
+    "timeField" : "@timestamp"
+  },
+  "secureJsonFields" : { }
+}

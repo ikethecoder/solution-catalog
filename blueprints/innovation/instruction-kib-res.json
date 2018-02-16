@@ -1,0 +1,165 @@
+{
+  "resources": [
+    {
+      "building_block": {
+        "${instanceId}-docker": {
+          "role": "container",
+          "solution": "docker",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      },
+      "depends_on": ["compute_instance.${instanceName}"]
+    },
+    {
+      "building_block": {
+        "${instanceId}-ruby": {
+          "role": "workarounds",
+          "solution": "ruby",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-ruby-gems": {
+          "role": "workarounds",
+          "solution": "ruby-gems",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-git-core": {
+          "role": "sourcecontrol",
+          "solution": "git-core",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      }
+    },
+
+    {
+      "building_block": {
+        "${instanceId}-cloud-profile-r2": {
+          "role": "workarounds",
+          "solution": "cloud-profile-r2",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-canzea": {
+          "role": "workarounds",
+          "solution": "canzea",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-selinux": {
+          "role": "workarounds",
+          "solution": "selinux",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+
+    {
+      "building_block": {
+        "${instanceId}-java": {
+          "role": "virtualmachine",
+          "solution": "java",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-logstash": {
+          "role": "monitoring",
+          "solution": "kibana",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-collectd": {
+          "role": "monitoring",
+          "solution": "collectd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-filebeat": {
+          "role": "monitoring",
+          "solution": "filebeat",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-metricbeat": {
+          "role": "monitoring",
+          "solution": "metricbeat",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-auditd": {
+          "role": "audit",
+          "solution": "auditd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "${instanceId}-kibana": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/kibana/",
+          "passthrough": "http://${ecosystem.lookupInstanceByName('mon-kib-01').privateIp}:5601/"
+        }
+      }
+    },
+
+    {
+      "vault_secret": {
+        "shell/commands/${instanceId}-bash": {
+          "user": "root",
+          "host": "${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
+          "auth": "publickey",
+          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
+          "command": "bash",
+          "interactive": true
+        }
+      }
+    }
+
+
+  ]
+}

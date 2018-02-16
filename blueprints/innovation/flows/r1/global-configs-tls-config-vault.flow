@@ -1,0 +1,23 @@
+{
+  "id": "94073df5.ac54f",
+  "type": "tls-config",
+  "z": "",
+  "name": "VAULT",
+  "cert": "/etc/vault/ssl/vault.cert",
+  "key": "/etc/vault/ssl/vault.key",
+  "ca": "/etc/vault/ssl/ca.cert",
+  "certname": "",
+  "keyname": "",
+  "caname": "",
+  "verifyservercert": true,
+  "_users": [
+    "65cf8ef3.29e59",
+    "f7554218.e2e43",
+    "38801932.546906",
+    "b5640c37.19e05",
+    "138e59.c6ee91a7",
+    "56c8fd71.86e484",
+    "f238ced3.21639",
+    "54b908b1.b6d058"
+  ]
+}

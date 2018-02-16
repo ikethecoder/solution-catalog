@@ -1,0 +1,286 @@
+
+environments:
+   -
+      name: "cd"
+      title:
+        label: "Continuous Delivery"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU1_M2GB_D50GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "ci"
+            label: "CD Core"
+            tags: ["min","std"]
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "reg"
+            label: "Pipeline Mgmt"
+            tags: ["std"]
+          -
+            product: "VCPU1_M2GB_D50GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "builder"
+            label: "Builders"
+            tags: ["std"]
+          -
+            product: "VCPU1_M1GB_D25GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "vpn"
+            label: "VPN"
+
+   -
+      name: "sup"
+      title:
+        label: "Ideas and Support"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU1_M2GB_D50GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "col"
+            label: "Collaboration"
+
+
+   -
+      name: "mon"
+      title:
+        label: "Monitoring & Analytics"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "mon"
+            label: "Monitoring"
+            tags: ["std"]
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "kib"
+            label: "Kibana Analysis"
+
+   -
+      name: "ms"
+      title:
+        label: "Micro-services Lab"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "kub"
+            label: "Kubernetes"
+
+   -
+      name: "mob"
+      title:
+        label: "Mobile Lab"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU1_M2GB_D50GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "db"
+            label: "Data Storage"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "func"
+            label: "Functions"
+
+   -
+      name: "ds"
+      title:
+        label: "Data Science Lab"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU6_M16GB_D320GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "bigdata"
+            label: "Big Data"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "dataflow"
+            label: "Data Flow"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "expore"
+            label: "Exploratory"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "dstrain"
+            label: "Training"
+
+   -
+      name: "rpa"
+      title:
+        label: "Robotic Process Automation Lab"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "interact"
+            label: "Human Interactions"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "ai"
+            label: "Artificial Intelligence"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "nlptrain"
+            label: "Natural Language Training"
+
+   -
+      name: "iot"
+      title:
+        label: "Internet of Things Lab"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU1_M2GB_D50GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "ingest"
+            label: "Data Ingester"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "insight"
+            label: "Data Insight"
+
+   -
+      name: "bc"
+      title:
+        label: "Blockchain Lab"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "ico"
+            label: "Currency Offering"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "eth"
+            label: "Ethereum Network"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "contracts"
+            label: "Smart Contracts"
+
+   -
+      name: "intg"
+      title:
+        label: "Integration"
+        pipeline: true
+        provision: false
+        order:
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app"
+            label: "App"
+            tags: ["std"]
+          -
+            product: "VCPU1_M2GB_D50GB"
+            image: "centos-7-x64"
+            qty: 3
+            segment: "db"
+            label: "DB"
+
+
+   -
+      name: "stage"
+      title:
+        label: "Staging"
+        pipeline: true
+        provision: false
+        order:
+          -
+            product: "VCPU1_M1GB_D25GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "lb"
+            label: "Load Balancer"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app-a"
+            label: "App A"
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app-b"
+            label: "App B"
+
+   -
+      name: "prod"
+      title:
+        label: "Production"
+        pipeline: true
+        provision: false
+        order:
+          -
+            product: "VCPU1_M1GB_D25GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "lb"
+            label: "Load Balancer"
+            tags: ["std"]
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app-a"
+            label: "App A"
+            tags: ["std"]
+          -
+            product: "VCPU2_M4GB_D80GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "app-b"
+            label: "App B"

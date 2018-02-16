@@ -1,0 +1,287 @@
+{
+  "resources": [
+    {
+      "vault_secret": {
+        "shell/commands/${instanceId}-bash": {
+          "user": "root",
+          "host": "${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
+          "auth": "publickey",
+          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
+          "command": "bash",
+          "interactive": true
+        }
+      },
+      "depends_on": ["compute_instance.${instanceName}"]
+    },
+    {
+      "building_block": {
+        "${instanceId}-docker": {
+          "role": "container",
+          "solution": "docker",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      },
+      "depends_on": ["compute_instance.${instanceName}"]
+    },
+    {
+      "building_block": {
+        "${instanceId}-ruby": {
+          "role": "workarounds",
+          "solution": "ruby",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-ruby-gems": {
+          "role": "workarounds",
+          "solution": "ruby-gems",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-git-core": {
+          "role": "sourcecontrol",
+          "solution": "git-core",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      }
+    },
+
+    {
+      "building_block": {
+        "${instanceId}-cloud-profile-r2": {
+          "role": "workarounds",
+          "solution": "cloud-profile-r2",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-canzea": {
+          "role": "workarounds",
+          "solution": "canzea",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-selinux": {
+          "role": "workarounds",
+          "solution": "selinux",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+
+    {
+      "building_block": {
+        "${instanceId}-java": {
+          "role": "virtualmachine",
+          "solution": "java",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-elasticsearch": {
+          "role": "documentdatabase",
+          "solution": "elasticsearch",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-logstash": {
+          "role": "monitoring",
+          "solution": "logstash",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-statsd": {
+          "role": "monitoring",
+          "solution": "statsd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-grafana": {
+          "role": "monitoring",
+          "solution": "grafana",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-collectd": {
+          "role": "monitoring",
+          "solution": "collectd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+
+
+    {
+      "building_block": {
+        "${instanceId}-filebeat": {
+          "role": "monitoring",
+          "solution": "filebeat",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-metricbeat": {
+          "role": "monitoring",
+          "solution": "metricbeat",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-auditd": {
+          "role": "audit",
+          "solution": "auditd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-elasticsearch-metrics": {
+          "role": "monitoring",
+          "solution": "elasticsearch-metrics",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "grafana": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/grafana/",
+          "passthrough": "http://${ecosystem.lookupInstanceByName('mon-mon-01').privateIp}:3000/"
+        }
+      }
+    },
+
+    {
+      "vault_secret": {
+        "service/grafana/admin/credentials": {
+          "user_name": "admin",
+          "password": "admin"
+        }
+      }
+    },
+    {
+      "grafana_auth_key": {
+        "admin": {
+          "Role": "Admin"
+        }
+      }
+    },
+    {
+      "vault_secret": {
+        "grafana/edit": {
+          "token": "${db['grafana_auth_key-admin'].key}"
+        }
+      }
+    },
+
+    {
+      "monitoring_datasource": {
+        "metricbeat": {
+          "blueprint": "web-services",
+          "template": "monitoring_datasource-elasticsearch",
+          "database": "[metricbeat-]YYYY.MM.DD"
+        }
+      },
+      "depends_on": ["building_block.${instanceId}-grafana"]
+    },
+    {
+      "monitoring_datasource": {
+        "filebeat": {
+          "blueprint": "web-services",
+          "template": "monitoring_datasource-elasticsearch",
+          "database": "[filebeat-]YYYY.MM.DD"
+        }
+      },
+      "depends_on": ["building_block.${instanceId}-grafana"]
+    },
+    {
+      "monitoring_datasource": {
+        "elasticsearch": {
+          "blueprint": "web-services",
+          "template": "monitoring_datasource-elasticsearch",
+          "database": "[metricbeat-]YYYY.MM.DD"
+        }
+      },
+      "depends_on": ["building_block.${instanceId}-grafana"]
+    },
+    {
+      "monitoring_datasource": {
+        "logstash": {
+          "blueprint": "web-services",
+          "template": "monitoring_datasource-elasticsearch",
+          "database": "[logstash-]YYYY.MM.DD"
+        }
+      },
+      "depends_on": ["building_block.${instanceId}-grafana"]
+    },
+    {
+      "monitoring_dashboard": {
+        "systems-at-a-glance": {
+          "blueprint": "web-services",
+          "template": "at-a-glance",
+          "title": "Systems at a glance",
+          "description": "Systems at a glance"
+        }
+      },
+      "depends_on": ["building_block.${instanceId}-grafana"]
+    },
+    {
+      "collaboration_channel" : {
+        "Monitoring_Analytics": {}
+      },
+      "depends_on": ["service_discovery_service_md.rocketchat"]
+    }
+
+  ]
+}

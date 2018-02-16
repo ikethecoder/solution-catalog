@@ -1,0 +1,350 @@
+{
+  "variables": {
+    "cloud_provider": "",
+    "auth": "",
+    "blueprint": "",
+    "cloud_auth_id": ""
+  },
+  "resources": [
+    {
+      "building_block": {
+        "${instanceId}-docker": {
+          "role": "container",
+          "solution": "docker",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      },
+      "depends_on": ["compute_instance.${instanceName}"]
+    },
+    {
+      "building_block": {
+        "${instanceId}-ruby": {
+          "role": "workarounds",
+          "solution": "ruby",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-ruby-gems": {
+          "role": "workarounds",
+          "solution": "ruby-gems",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-git-core": {
+          "role": "sourcecontrol",
+          "solution": "git-core",
+          "droplet" : "${instanceName}",
+          "commands" : true
+        }
+      }
+    },
+
+    {
+      "building_block": {
+        "${instanceId}-cloud-profile-r2": {
+          "role": "workarounds",
+          "solution": "cloud-profile-r2",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-canzea": {
+          "role": "workarounds",
+          "solution": "canzea",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-selinux": {
+          "role": "workarounds",
+          "solution": "selinux",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-filebeat": {
+          "role": "monitoring",
+          "solution": "filebeat",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-metricbeat": {
+          "role": "monitoring",
+          "solution": "metricbeat",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-auditd": {
+          "role": "audit",
+          "solution": "auditd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-archiva": {
+          "role": "registry",
+          "solution": "archiva-docker",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-rocketchat": {
+          "role": "collaboration",
+          "solution": "rocketchat",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-gocd-docker": {
+          "role": "deploy",
+          "solution": "gocd-docker",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-confd": {
+          "role": "r_and_d",
+          "solution": "confd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "digitalocean_dns" : {
+        "chat": {
+          "environment": "cd",
+          "droplet": "${es.id}-cd-ci-01",
+          "domain-id": "${es.fqdn_id}",
+          "domain": "${es.fqdn}",
+          "a": {
+            "name": "chat",
+            "address": "${dollar}{digitalocean_droplet.${es.id}-cd-ci-01.ipv4_address}"
+          }
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "gocd": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/go/",
+          "passthrough": "http://${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}:8153"
+        }
+      }
+    },
+
+    {
+      "proxy_service": {
+        "archiva": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "default",
+          "location": "/archiva/",
+          "passthrough": "http://${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}:9080/"
+        }
+      }
+    },
+
+    {
+      "proxy_ssl_virtual_host": {
+        "chat": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "domainName": "chat.${es.fqdn}",
+          "domains": "${es.fqdn},chat.${es.fqdn}",
+          "certname": "${es.fqdn}",
+          "email": "${owner.email}"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "rocketchat": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "chat",
+          "location": "/",
+          "passthrough": "http://${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}:8780"
+        }
+      }
+    },
+
+    {
+      "service_discovery_service_md": {
+        "rocketchat": {
+          "role": "collaboration",
+          "solution": "rocketchat",
+          "environment": "${environmentId}",
+          "serverNumber": 1,
+          "segment": "reg",
+          "privateKey": "master_key"
+        }
+      }
+    },
+
+    {
+      "vault_secret": {
+        "admin/rocketchat": {
+            "password": "admin1admin"
+        }
+      }
+    },
+    {
+      "boot:first-login": {
+        "rocketchat": {
+          "wire": "rocketchat:first-login",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+
+
+
+
+    {
+      "service_discovery_service_md": {
+        "archiva": {
+          "role": "registry",
+          "solution": "archiva",
+          "environment": "${environmentId}",
+          "serverNumber": 1,
+          "segment": "reg",
+          "privateKey": "master_key"
+        }
+      }
+    },
+    {
+      "vault_secret": {
+        "service/archiva/admin/credentials": {
+            "user_name": "admin",
+            "password": "admin1admin",
+            "email": "${owner.email}"
+        }
+      }
+    },
+    {
+      "boot:first-login": {
+        "archiva": {
+          "wire": "archiva:first-login",
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key"
+        }
+      }
+    },
+
+    {
+      "service_discovery_service_md": {
+        "gocd": {
+          "role": "deploy",
+          "solution": "gocd",
+          "environment": "${environmentId}",
+          "serverNumber": 1,
+          "segment": "reg",
+          "privateKey": "master_key"
+        }
+      }
+    },
+
+    {
+      "vault_secret": {
+        "shell/commands/${instanceId}-bash": {
+          "user": "root",
+          "host": "${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}",
+          "auth": "publickey",
+          "identity": "/home/pm2user/ssl/keys/root_id_rsa",
+          "command": "bash",
+          "interactive": true
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-canzea-upgrade": {
+          "role": "workarounds",
+          "solution": "canzea-upgrade",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-ide": {
+          "role": "adhoc",
+          "solution": "ide",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      },
+      "depends_on": ["service_discovery_service.${instanceId}-ide"]
+    },
+    {
+      "collaboration_channel" : {
+        "Continuous-Delivery": {}
+      },
+      "depends_on": ["service_discovery_service_md.rocketchat"]
+    },
+    {
+      "pipeline_environment": {
+        "Continuous-Delivery": {
+        }
+      },
+      "depends_on": ["service_discovery_service_md.gocd"]
+    }
+
+  ]
+}

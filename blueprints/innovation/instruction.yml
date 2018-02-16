@@ -84,9 +84,9 @@ instructions:
         - rocketchat:first-login
         - rocketchat:setup-site-url
         -
-          wire: "nginx:ssl-route:gitlist"
-          location: "/sc/"
-          passthrough: "http://localhost:851/"
+          wire: "nginx:ssl-route:gw"
+          location: "/gw/"
+          passthrough: "http://localhost:8000/"
         -
           wire: "nginx:ssl-route:gocd"
           location: "/go"
@@ -356,6 +356,22 @@ instructions:
       wiring:
         - sample:python-script
         - users:configure-go
+
+    db:
+      abbreviation: db
+      label: Database
+      description: DB
+      provision:
+        region: nyc1
+        size: 2gb
+        image: centos-7-x64
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
+
+    default:
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
 
     tools:
       abbreviation: tools
