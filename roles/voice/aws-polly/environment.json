@@ -5,7 +5,7 @@
   "services": [
   ],
   "secrets": [
-    {"name": "providers/aws"}
+    {"name": "providers/aws/live"}
   ],
   "environment": [
   ]
