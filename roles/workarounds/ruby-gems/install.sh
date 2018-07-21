@@ -1,4 +1,6 @@
 
+gem install net-ssh -v 4.2.0
+
 # XML to JSON parser
 gem install crack
 
@@ -15,7 +17,6 @@ gem install java-properties
 gem install git
 
 # SaaS Express
-gem install net-ssh
 gem install net-sftp
 gem install json
 
@@ -29,3 +30,6 @@ gem install cri -v 2.7.1
 gem install selenium-webdriver -v 3.3.0
 
 gem install canzea
+
+# For some zip activities
+gem install rubyzip
