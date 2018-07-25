@@ -9,7 +9,7 @@ yum install -y kibana
 
 
 
-(cd ~ && curl -L -s -O https://artifacts.elastic.co/downloads/kibana/kibana-5.3.0-linux-x86_64.tar.gz)
+(cd ~ && curl -L -s -O https://artifacts.elastic.co/downloads/kibana/kibana-6.3.2-linux-x86_64.tar.gz)
 (cd ~; tar -xf kibana-*.gz)
 (cd ~; rm -rf /opt/kibana)
 mkdir /opt/kibana
