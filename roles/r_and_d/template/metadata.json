@@ -1,0 +1,42 @@
+{
+  "name": "sample",
+
+  "resources": [
+    {
+      "proxy_ssl_virtual_host": {
+        "sample": {
+          "environment": "${environmentId}",
+          "serverNumber": 1,
+          "segment": "${segmentId}",
+          "privateKey": "master_key",
+          "domainName": "sample.${es.fqdn}",
+          "domains": "sample.${es.fqdn}",
+          "certname": "sample.${es.fqdn}",
+          "email": "${owner.email}"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "sample": {
+          "environment": "${environmentId}",
+          "serverNumber": 1,
+          "segment": "${segmentId}",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "vault",
+          "location": "/",
+          "passthrough": "http://localhost:8780"
+        }
+      }
+    },
+    {
+       "service_endpoint": {
+        "${instanceId}-sample": {
+            "service":"sample",
+            "segment":"${segmentId}",
+            "url":"http://${domainName}:5050"
+        }
+       }
+    }
+  ]
+}
