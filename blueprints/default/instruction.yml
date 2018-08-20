@@ -1,0 +1,65 @@
+
+instructions:
+
+  segments:
+    ci:
+      abbreviation: foundation
+
+    mon:
+      abbreviation: metrics
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+        monitorServer: "$!{ecosystem.lookupInstanceByName('mon-mon-01').privateIp}"
+
+    kib:
+      abbreviation: kibana
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+        monitorServer: "$!{ecosystem.lookupInstanceByName('mon-mon-01').privateIp}"
+
+    sc:
+      abbreviation: sourcecontrol
+
+    col:
+      abbreviation: collaboration
+
+    app:
+      abbreviation: application
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
+    builder:
+      abbreviation: builder
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
+    db:
+      abbreviation: db
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
+
+    default:
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
+    tools:
+      abbreviation: tools
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
+    nifi:
+      abbreviation: nifi
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
+    hive:
+      abbreviation: hive
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
+    ci-b:
+      abbreviation: ci-b
+      variables:
+        nameserver: "$!{ecosystem.lookupInstanceByName('cd-ci-01').privateIp}"
+
