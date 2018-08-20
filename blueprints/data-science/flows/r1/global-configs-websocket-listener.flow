@@ -1,0 +1,11 @@
+{
+  "id": "7138d6b8.dc7bc8",
+  "type": "websocket-listener",
+  "z": "",
+  "path": "/ws/canzea",
+  "wholemsg": "false",
+  "_users": [
+    "20bc93b6.437eec",
+    "d256768d.b28aa8"
+  ]
+}

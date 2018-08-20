@@ -1,0 +1,457 @@
+{
+  "id": "9e3e25e6.0e0308",
+  "type": "subflow",
+  "name": "Routing",
+  "info": "",
+  "in": [
+    {
+      "x": 50,
+      "y": 30,
+      "wires": [
+        {
+          "id": "1310b17.58a994f"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 1002,
+      "y": 230,
+      "wires": [
+        {
+          "id": "9020744f.79bbf8",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "39129e2d.1b8d12",
+      "type": "catch",
+      "z": "9e3e25e6.0e0308",
+      "name": "",
+      "scope": null,
+      "x": 258,
+      "y": 492,
+      "wires": [
+        [
+          "1e7d8fe.133aa7"
+        ]
+      ]
+    },
+    {
+      "id": "1e7d8fe.133aa7",
+      "type": "function",
+      "z": "9e3e25e6.0e0308",
+      "name": "Unexpected Error",
+      "func": "msg.payload = {\n    \"source\": \"flows_gateway\",\n    \"message\": msg.error,\n    \"detail\": msg._error\n} \nmsg.statusCode = 400\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 435,
+      "y": 494,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ]
+    },
+    {
+      "id": "a4de2042.85a16",
+      "type": "switch",
+      "z": "9e3e25e6.0e0308",
+      "name": "",
+      "property": "resource",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "collaboration_channel",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "collaboration_message",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "pipeline_environment",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "pipeline_pipeline",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "service_discovery_service",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "component_metadata",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "vault_policy",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "vault_user",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "vault_secret",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "monitoring_dashboard",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "monitoring_datasource",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "grafana_auth_key",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "source_control_repository",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "source_control_user",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "source_control_user_repo",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "source_control_token",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "source_control_public_key",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "service_endpoint",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 19,
+      "x": 246,
+      "y": 209,
+      "wires": [
+        [
+          "bcb3534d.a0a29"
+        ],
+        [
+          "e205a621.617e18"
+        ],
+        [
+          "25e8c9ea.4e0b46"
+        ],
+        [
+          "25e8c9ea.4e0b46"
+        ],
+        [
+          "b1d6a9aa.fd1098"
+        ],
+        [
+          "218de7de.341c28"
+        ],
+        [
+          "c581029b.d8734"
+        ],
+        [
+          "c581029b.d8734"
+        ],
+        [
+          "c581029b.d8734"
+        ],
+        [
+          "c01a6c07.e2379"
+        ],
+        [
+          "c01a6c07.e2379"
+        ],
+        [
+          "c01a6c07.e2379"
+        ],
+        [
+          "c36921e9.a1a59"
+        ],
+        [
+          "c36921e9.a1a59"
+        ],
+        [
+          "c36921e9.a1a59"
+        ],
+        [
+          "c36921e9.a1a59"
+        ],
+        [
+          "c36921e9.a1a59"
+        ],
+        [
+          "7c64ea81.28e544"
+        ],
+        [
+          "ed9292b3.ee39b"
+        ]
+      ]
+    },
+    {
+      "id": "bcb3534d.a0a29",
+      "type": "subflow:4fc6c84.9271b38",
+      "z": "9e3e25e6.0e0308",
+      "x": 445,
+      "y": 110,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ],
+      "subflow": "4fc6c84.9271b38"
+    },
+    {
+      "id": "25e8c9ea.4e0b46",
+      "type": "subflow:a1cb3587.05ca68",
+      "z": "9e3e25e6.0e0308",
+      "name": "",
+      "x": 422,
+      "y": 184,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ],
+        [
+          "9020744f.79bbf8"
+        ]
+      ],
+      "subflow": "a1cb3587.05ca68"
+    },
+    {
+      "id": "9020744f.79bbf8",
+      "type": "subflow:78d32ab1.ca8c04",
+      "z": "9e3e25e6.0e0308",
+      "x": 858,
+      "y": 231,
+      "wires": [
+        [
+
+        ]
+      ],
+      "subflow": "78d32ab1.ca8c04"
+    },
+    {
+      "id": "b1d6a9aa.fd1098",
+      "type": "subflow:a6b9a798.463af8",
+      "z": "9e3e25e6.0e0308",
+      "x": 422,
+      "y": 220,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ],
+      "subflow": "a6b9a798.463af8"
+    },
+    {
+      "id": "ed9292b3.ee39b",
+      "type": "function",
+      "z": "9e3e25e6.0e0308",
+      "name": "Invalid Resource",
+      "func": "msg.payload = {\n    \"source\": \"flows_gateway\",\n    \"message\": \"Invalid resource \" + msg.resource\n} \nmsg.statusCode = 400\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 429.5,
+      "y": 456,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ]
+    },
+    {
+      "id": "218de7de.341c28",
+      "type": "subflow:ea5122d7.76e78",
+      "z": "9e3e25e6.0e0308",
+      "name": "",
+      "x": 409,
+      "y": 254,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ],
+      "subflow": "ea5122d7.76e78"
+    },
+    {
+      "id": "1310b17.58a994f",
+      "type": "function",
+      "z": "9e3e25e6.0e0308",
+      "name": "Set Resource",
+      "func": "msg.resource = msg.topic.split(':')[1];\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 182.5,
+      "y": 32,
+      "wires": [
+        [
+          "6d409ec7.5f861",
+          "2e52c9f5.387d56"
+        ]
+      ]
+    },
+    {
+      "id": "6d409ec7.5f861",
+      "type": "debug",
+      "z": "9e3e25e6.0e0308",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 374.5,
+      "y": 38,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "2e52c9f5.387d56",
+      "type": "json-schema",
+      "z": "9e3e25e6.0e0308",
+      "name": "",
+      "func": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"title\": \"Resources\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"collaboration_channel\": {\n            \"description\": \"Channel\",\n            \"type\": \"object\",\n            \"patternProperties\": {\n                \"^.*$\": {\n                  \"anyOf\": [\n                    {\"type\": \"object\",\n\n                        \"properties\": {\n                        }\n                    }\n                ]\n                }\n            }\n        },\n        \"pipeline_environment\": {\n            \"description\": \"Pipeline Environment\",\n            \"type\": \"object\",\n            \"patternProperties\": {\n                \"^.*$\": {\n                  \"anyOf\": [\n                    {\"type\": \"object\",\n                        \"properties\": {\n                        }\n                    }\n                ]\n                }\n            }\n        },\n        \"pipeline_pipeline\": {\n            \"description\": \"Pipeline Pipeline\",\n            \"type\": \"object\",\n            \"patternProperties\": {\n                \"^.*$\": {\n                  \"anyOf\": [\n                    {\"type\": \"object\",\n                        \"properties\": {\n                        }\n                    }\n                ]\n                }\n            }\n        },        \n        \"service_discovery_service\": {\n            \"description\": \"Service Discovery Service\",\n            \"type\": \"object\",\n            \"patternProperties\": {\n                \"^.*$\": {\n                  \"anyOf\": [\n                    {\"type\": \"object\",\n                        \"properties\": {\n                            \"Name\": {\n                                \"type\": \"string\"\n                            },\n                            \"Address\": {\n                                \"type\": \"string\"\n                            },\n                            \"Port\": {\n                                \"type\": \"number\"\n                            },\n                            \"Tags\": {\n                                \"type\": \"array\",\n                                \"items\": {\n                                    \"type\": \"string\"\n                                }\n                            },\n                            \"Check\": {\n                                \"type\": \"object\",\n                                \"properties\": {\n                                    \"http\": {\n                                        \"type\": \"string\"\n                                    },\n                                    \"interval\": {\n                                        \"type\": \"string\"\n                                    },\n                                    \"timeout\": {\n                                        \"type\": \"string\"\n                                    }\n                                }\n                            }\n                            \n                        },\n                        \"required\": [\"Name\"]\n                    }\n                ]\n                }\n            }\n        },\n        \"component_metadata\": {\n            \"description\": \"Component Metadata\",\n            \"type\": \"object\",\n            \"patternProperties\": {\n                \"^.*$\": {\n                  \"anyOf\": [\n                    {\"type\": \"object\",\n\n                        \"properties\": {\n                        }\n                    }\n                ]\n                }\n            }\n        },\n        \"source_control_user\": {\n            \"description\": \"Source Control User\",\n            \"type\": \"object\",\n            \"patternProperties\": {\n                \"^.*$\": {\n                  \"anyOf\": [\n                    {\"type\": \"object\",\n                        \"properties\": {\n                        }\n                    }\n                ]\n                }\n            }\n        },\n        \"source_control_repository\": {\n            \"description\": \"Source Control Repository\",\n            \"type\": \"object\",\n            \"patternProperties\": {\n                \"^.*$\": {\n                  \"anyOf\": [\n                    {\"type\": \"object\",\n                        \"properties\": {\n                        }\n                    }\n                ]\n                }\n            }\n        },\n        \"vault_user\": {\n            \"description\": \"Vault User\",\n            \"type\": \"object\",\n            \"patternProperties\": {\n                \"^.*$\": {\n                  \"anyOf\": [\n                    {\"type\": \"object\",\n                        \"properties\": {\n                        }\n                    }\n                ]\n                }\n            }\n        },\n        \"vault_policy\": {\n            \"type\": \"object\",\n            \"patternProperties\": {\n                \"^.*$\": {\n                  \"anyOf\": [\n                    {\"type\": \"object\",\n                        \"properties\": {\n                            \"message\": {\n                                \"type\": \"string\"\n                            },\n                            \"channel\": {\n                                \"type\": \"string\"\n                            }\n                        }\n                    }\n                  ]\n                }\n            },\n            \"additionalProperties\": false\n        }\n    }\n}\n",
+      "x": 107,
+      "y": 107,
+      "wires": [
+        [
+          "baf867e3.181548"
+        ]
+      ]
+    },
+    {
+      "id": "e205a621.617e18",
+      "type": "subflow:459ae946.b59388",
+      "z": "9e3e25e6.0e0308",
+      "x": 463.5,
+      "y": 147,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ],
+      "subflow": "459ae946.b59388"
+    },
+    {
+      "id": "c581029b.d8734",
+      "type": "subflow:fcb37b93.778448",
+      "z": "9e3e25e6.0e0308",
+      "x": 395.5,
+      "y": 294,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ],
+      "subflow": "fcb37b93.778448"
+    },
+    {
+      "id": "baf867e3.181548",
+      "type": "function",
+      "z": "9e3e25e6.0e0308",
+      "name": "Set Body",
+      "func": "msg.key = Object.keys(msg.payload[msg.resource])[0];\nmsg.payload = msg.payload[msg.resource][msg.key];\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 106.5,
+      "y": 196,
+      "wires": [
+        [
+          "a4de2042.85a16"
+        ]
+      ]
+    },
+    {
+      "id": "d9c84573.f01308",
+      "type": "comment",
+      "z": "9e3e25e6.0e0308",
+      "name": "Valid Resources (POST/DELETE)",
+      "info": "# MINUS/PLUS/CHECK Resources\n\n- collaboration_channel\n- collaboration_message\n- pipeline_environment\n- pipeline_pipeline\n- vault_user\n- vault_policy\n- vault_secret\n- service_discovery_service\n- component_metadata (inc. pipelines)\n- monitoring_dashboard\n- source_control_repository\n- source_control_user\n- source_control_token\n- source_control_public_key\n\n- vault_token\n- vault_approle\n- source_control_branch\n- pipeline_agent\n- infrastructure (terraform)\n- cd_flow\n- chatbot_rule\n- monitoring_datasource\n- file_stream\n\n\nchatbots, agile PM, incidents, alerts\n\n\n",
+      "x": 151,
+      "y": 416,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "c01a6c07.e2379",
+      "type": "subflow:811542a8.5ac78",
+      "z": "9e3e25e6.0e0308",
+      "x": 398.5,
+      "y": 338,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ],
+      "subflow": "811542a8.5ac78"
+    },
+    {
+      "id": "c36921e9.a1a59",
+      "type": "subflow:cc909323.1bc6b",
+      "z": "9e3e25e6.0e0308",
+      "x": 400.5,
+      "y": 377,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ],
+      "subflow": "cc909323.1bc6b"
+    },
+    {
+      "id": "7c64ea81.28e544",
+      "type": "function",
+      "z": "9e3e25e6.0e0308",
+      "name": "NO OP",
+      "func": "msg.statusCode = 200;\nmsg.payload = \"ok\"\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 422.5,
+      "y": 415,
+      "wires": [
+        [
+          "9020744f.79bbf8"
+        ]
+      ]
+    }
+  ]
+}

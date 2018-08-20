@@ -1,0 +1,11 @@
+{
+  "id": "c636bc4a.a28ab",
+  "type": "remote-server",
+  "z": "",
+  "name": "Elasticsearch",
+  "host": "http://elasticsearch.service.dc1.consul:9200",
+  "_users": [
+    "6039f470.059b3c",
+    "7cc08be9.3b68b4"
+  ]
+}
