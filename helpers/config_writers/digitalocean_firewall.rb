@@ -11,7 +11,7 @@ pc = PushConfig.new "/"
 template = %{
 
     resource "digitalocean_firewall" "{{rid}}" {
-      name = "only-22-80-and-443"
+      name = "{{name}}-22-80-and-443"
 
       droplet_ids = ["${digitalocean_droplet.{{rid}}.id}"]
 
