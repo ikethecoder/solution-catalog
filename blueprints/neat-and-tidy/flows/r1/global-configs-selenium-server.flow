@@ -1,9 +1,0 @@
-{
-  "id": "a0ccc8b4.4e82d8",
-  "type": "selenium-server",
-  "z": "",
-  "remoteurl": "http://localhost:8001/wd/hub",
-  "_users": [
-    "c9b53b9d.9544f8"
-  ]
-}
