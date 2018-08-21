@@ -1,5 +1,5 @@
 {
-  "es110c-cd-ci-01": {
+  "testes-cd-ci-01": {
     "environment": "cd",
     "region": "nyc1",
     "image": 11234,

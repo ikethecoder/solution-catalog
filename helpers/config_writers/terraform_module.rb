@@ -15,6 +15,15 @@ module_vars_tmpl = %{
 }
 
 
+tags_tmpl = %{
+
+  {{#tags}}
+    resource "digitalocean_tag" "{{.}}" {
+      name = "{{.}}"
+    }
+  {{/tags}}
+}
+
 template = %{
     module "{{rid}}" {
         source = "./modules/{{rid}}"
@@ -25,7 +34,7 @@ template = %{
 }
 
 if ARGV[0].start_with? "@"
-    params = JSON.parse(File.read(ARGV[0][1,100]))
+    params = JSON.parse(File.read(ARGV[0][1,200]))
 else
     params = JSON.parse(ARGV[0])
 end
@@ -47,6 +56,12 @@ if is_plus
 
     pc.write "terraform/module-#{resourceId}.tf", output0
     pc.write "terraform/modules/#{resourceId}/variables.tf", output
+
+    if properties.has_key? 'tags'
+        output = t.processString tags_tmpl, properties
+        puts "terraform/modules/#{resourceId}/tags.tf", output
+        pc.write "terraform/modules/#{resourceId}/tags.tf", output
+    end
 else
     pc.backupAndRemove "terraform/module-#{resourceId}.tf"
     pc.backupAndRemove "terraform/modules/#{resourceId}/variables.tf"

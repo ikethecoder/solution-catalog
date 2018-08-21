@@ -94,7 +94,7 @@ template = %{
 }
 
 if ARGV[0].start_with? "@"
-    params = JSON.parse(File.read(ARGV[0][1,100]))
+    params = JSON.parse(File.read(ARGV[0][1,200]))
 else
     params = JSON.parse(ARGV[0])
 end

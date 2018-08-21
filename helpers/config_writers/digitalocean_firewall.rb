@@ -11,49 +11,42 @@ pc = PushConfig.new "/"
 template = %{
 
     resource "digitalocean_firewall" "{{rid}}" {
-      name = "{{name}}-22-80-and-443"
+      name = "{{rid}}"
 
-      droplet_ids = ["${digitalocean_droplet.{{rid}}.id}"]
+      droplet_ids = {{{instanceArray}}}
 
       inbound_rule = [
+
+      {{#inbound_rule}}
         {
-          protocol           = "tcp"
-          port_range         = "22"
-          source_addresses   = ["0.0.0.0/0", "::/0"]
+          protocol           = "{{protocol}}"
+          port_range         = "{{port_range}}"
+          {{#source_tags.length}}
+          source_tags   = {{{source_tags}}}
+          {{/source_tags.length}}
+          {{#source_addresses.length}}
+          source_addresses   = {{{source_addresses}}}
+          {{/source_addresses.length}}
         },
-        {
-          protocol           = "tcp"
-          port_range         = "80"
-          source_addresses   = ["0.0.0.0/0", "::/0"]
-        },
-        {
-          protocol           = "tcp"
-          port_range         = "443"
-          source_addresses   = ["0.0.0.0/0", "::/0"]
-        },
+      {{/inbound_rule}}
+
       ]
 
       outbound_rule = [
+
+      {{#outbound_rule}}
         {
-          protocol                = "tcp"
-          port_range              = "53"
-          destination_addresses   = ["0.0.0.0/0", "::/0"]
-        },
-        {
-          protocol                = "udp"
-          port_range              = "53"
-          destination_addresses   = ["0.0.0.0/0", "::/0"]
-        },
-        {
-          protocol                = "tcp"
-          port_range              = "80"
-          destination_addresses   = ["0.0.0.0/0", "::/0"]
-        },
-        {
-          protocol                = "tcp"
-          port_range              = "443"
-          destination_addresses   = ["0.0.0.0/0", "::/0"]
+          protocol           = "{{protocol}}"
+          port_range         = "{{port_range}}"
+          {{#destination_tags.length}}
+          destination_tags   = {{{destination_tags}}}
+          {{/destination_tags.length}}
+          {{#destination_addresses.length}}
+          destination_addresses   = {{{destination_addresses}}}
+          {{/destination_addresses.length}}
         }
+      {{/outbound_rule}}
+
       ]
     }
 
@@ -62,7 +55,7 @@ template = %{
 
 
 if ARGV[0].start_with? "@"
-    params = JSON.parse(File.read(ARGV[0][1,100]))
+    params = JSON.parse(File.read(ARGV[0][1,200]))
 else
     params = JSON.parse(ARGV[0])
 end
@@ -70,6 +63,12 @@ end
 resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId;
+
+properties['instanceArray'] = []
+
+properties['instances'].each { |key|
+    properties['instanceArray'].push "${digitalocean_droplet.#{key}.id}"
+}
 
 if is_plus
     output = t.processString template, properties
