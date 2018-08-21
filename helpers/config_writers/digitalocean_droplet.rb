@@ -18,6 +18,9 @@ template = %{
         ssh_keys = [
             "${var.ssh_fingerprint}"
         ]
+  {{#_tags.length}}
+        tags = {{{_tags}}}
+  {{/_tags.length}}
 
         connection {
             user = "root"
@@ -112,6 +115,13 @@ end
 if properties.has_key? "tls_setup"
     properties['tls_setup'] = ["-dummy-"]
 end
+
+properties['_tags'] = []
+
+properties['tags'].each { |key|
+    properties['_tags'].push "${digitalocean_tag.#{key}.id}"
+}
+
 
 if is_plus
     output = t.processString template, properties

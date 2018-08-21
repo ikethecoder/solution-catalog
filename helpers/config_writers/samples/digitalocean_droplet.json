@@ -5,6 +5,7 @@
     "image": 11234,
     "size": "4gb",
     "encdata": "ENCDATA",
-    "ecosystem": "es110c"
+    "ecosystem": "es110c",
+    "tags": ["testes", "testes-cd"]
   }
 }
