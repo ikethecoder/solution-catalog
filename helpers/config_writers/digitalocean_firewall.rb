@@ -44,7 +44,7 @@ template = %{
           {{#destination_addresses.length}}
           destination_addresses   = {{{destination_addresses}}}
           {{/destination_addresses.length}}
-        }
+        },
       {{/outbound_rule}}
 
       ]
