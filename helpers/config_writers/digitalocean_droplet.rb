@@ -119,7 +119,8 @@ end
 properties['_tags'] = []
 
 properties['tags'].each { |key|
-    properties['_tags'].push "${var.digitalocean_tag_#{key}_id}"
+    safeKey = key.gsub(/-/, '_')
+    properties['_tags'].push "${var.digitalocean_tag_#{safeKey}_id}"
 }
 
 

@@ -24,11 +24,11 @@ tags_tmpl = %{
   {{/tags}}
 
 
-  {{#tags}}
-    output "digitalocean_tag_{{.}}_id" {
-      value = "${digitalocean_tag.{{.}}.id}"
+  {{#_tags}}
+    output "digitalocean_tag_{{tag}}_id" {
+      value = "${digitalocean_tag.{{original}}.id}"
     }
-  {{/tags}}
+  {{/_tags}}
 }
 
 template = %{
@@ -49,6 +49,14 @@ end
 resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId;
+
+properties['_tags'] = []
+
+properties['tags'].each { |key|
+    safeKey = key.gsub(/-/, '_')
+    item = { "original" => key, "tag" => "#{safeKey}" }
+    properties['_tags'].push item
+}
 
 
 if is_plus
