@@ -119,7 +119,7 @@ end
 properties['_tags'] = []
 
 properties['tags'].each { |key|
-    properties['_tags'].push "${digitalocean_tag.#{key}.id}"
+    properties['_tags'].push "${var.digitalocean_tag_#{key}_id}"
 }
 
 
