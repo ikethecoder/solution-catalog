@@ -22,6 +22,13 @@ tags_tmpl = %{
       name = "{{.}}"
     }
   {{/tags}}
+
+
+  {{#tags}}
+    output "digitalocean_tag_{{.}}_id" {
+      value = "${digitalocean_tag.{{.}}.id}"
+    }
+  {{/tags}}
 }
 
 template = %{
