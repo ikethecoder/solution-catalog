@@ -66,11 +66,11 @@ properties['rid'] = resourceId;
 
 properties['instanceArray'] = []
 
-properties['instances'].each { |key|
-    properties['instanceArray'].push "${digitalocean_droplet.#{key}.id}"
-}
-
 if is_plus
+    properties['instances'].each { |key|
+        properties['instanceArray'].push "${digitalocean_droplet.#{key}.id}"
+    }
+
     output = t.processString template, properties
     pc.write "terraform/modules/#{properties['environment']}/firewall-#{resourceId}.tf", output
 else
