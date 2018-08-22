@@ -118,11 +118,12 @@ end
 
 properties['_tags'] = []
 
-properties['tags'].each { |key|
-    safeKey = key.gsub(/-/, '_')
-    properties['_tags'].push "${var.digitalocean_tag_#{safeKey}_id}"
-}
-
+if properties.has_key? "tags"
+    properties['tags'].each { |key|
+        safeKey = key.gsub(/-/, '_')
+        properties['_tags'].push "${var.digitalocean_tag_#{safeKey}_id}"
+    }
+end
 
 if is_plus
     output = t.processString template, properties
