@@ -573,15 +573,15 @@
     },
     {
       "vault_secret": {
-        "users/${owner.name}": {
+        "users/${owner.username}": {
           "email": "${owner.email}"
         }
       }
     },
     {
       "vault_user": {
-        "${owner.name}": {
-          "password": "${owner.name}_1234",
+        "${owner.username}": {
+          "password": "${owner.username}_1234",
           "policies": "all"
         }
       }
