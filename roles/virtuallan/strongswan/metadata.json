@@ -6,7 +6,7 @@
     {
       "digitalocean_dns": {
         "vpn": {
-          "environment": "${environmentName}",
+          "environment": "${environment.id}",
           "droplet": "${instanceName}",
           "domain-id": "${es.fqdn_id}",
           "domain": "${es.fqdn}",
@@ -26,7 +26,7 @@
           "domain": "${es.fqdn}",
           "a": {
             "name": "internal",
-            "address": "${d}{digitalocean_droplet.${instanceName}.ipv4_address}"
+            "address": "${d}{digitalocean_droplet.${instanceName}.ipv4_address_private}"
           }
         }
       }
