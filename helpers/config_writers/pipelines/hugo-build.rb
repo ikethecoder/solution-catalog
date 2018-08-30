@@ -62,7 +62,7 @@ class HugoBuild
         task = JSON.parse(t.process taskTemplateSh, {"workdir" => "", "arguments" => ["-c", "/usr/bin/docker rm -f #{attributes['project']}-deploy || true"] })
         job['tasks'].push (task)
 
-        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:#{attributes['internal-port']}", "#{attributes['project']}-deploy"] })
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:#{attributes['internal_port']}", "#{attributes['project']}-deploy"] })
         job['tasks'].push (task)
 
         task = JSON.parse(t.process taskTemplate3, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "project" => "#{project}", "service" => "docker.service" })
