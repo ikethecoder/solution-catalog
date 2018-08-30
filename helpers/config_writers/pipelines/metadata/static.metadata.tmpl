@@ -23,7 +23,7 @@
             "urlprefix-/${path} strip=/${path}"
           ],
           "Check" : {
-            "http": "http://${d}{var.compute_instance.${instanceName}.privateIp}:${port}",
+            "http": "http://${d}{var.compute_instance.${instanceName}.privateIp}:${port}/${checkPath}",
             "interval": "10s",
             "timeout": "1s"
           }
