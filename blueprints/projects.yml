@@ -1,0 +1,6 @@
+projects:
+  "hello world":
+    name: Hello World
+    repo: https://gitlab.com/ikethecoder/hello-world-svc-app.git
+    branch: master
+    tags: ["java", "hello world"]
