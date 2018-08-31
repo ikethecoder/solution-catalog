@@ -130,7 +130,7 @@
     },
     {
       "building_block": {
-        "${instanceId}-gocd-docker": {
+        "${instanceId}-gocd": {
           "role": "deploy",
           "solution": "gocd-docker",
           "droplet" : "${instanceName}",

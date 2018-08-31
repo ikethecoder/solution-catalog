@@ -213,6 +213,16 @@
     },
     {
       "building_block": {
+        "${instanceId}-fabio": {
+          "role": "router",
+          "solution": "fabio",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
         "${instanceId}-rabbitmq": {
           "role": "messaging",
           "solution": "rabbitmq",
