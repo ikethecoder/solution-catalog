@@ -9,13 +9,13 @@ driver = Selenium::WebDriver.for :remote, url: ENV['PHANTOMJS_URL']
 target_size = Selenium::WebDriver::Dimension.new(1024, 768)
 # driver.manage.window.size = target_size
 
-driver.navigate.to "#{ENV["SERVICE_GOGS_ROOT_CREDENTIALS_URL"]}/user/sign_up"
+driver.navigate.to "#{ENV["SERVICE_GITEA_ROOT_CREDENTIALS_URL"]}/user/sign_up"
 
 sleep 5
 
-user = ENV['SERVICE_GOGS_ROOT_CREDENTIALS_USER_NAME']
-pass = ENV['SERVICE_GOGS_ROOT_CREDENTIALS_PASSWORD']
-email = ENV['SERVICE_GOGS_ROOT_CREDENTIALS_EMAIL']
+user = ENV['SERVICE_GITEA_ROOT_CREDENTIALS_USER_NAME']
+pass = ENV['SERVICE_GITEA_ROOT_CREDENTIALS_PASSWORD']
+email = ENV['SERVICE_GITEA_ROOT_CREDENTIALS_EMAIL']
 
 driver.find_element(:id, "user_name").send_keys user
 driver.find_element(:id, "email").send_keys email
