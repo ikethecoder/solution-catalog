@@ -1,4 +1,4 @@
-docker build --tag gitea -f blocks/gitea/docker/Dockerfile
+docker build --tag gitea -f blocks/gitea/docker/Dockerfile .
 
 mkdir -p /var/local/gitea
 

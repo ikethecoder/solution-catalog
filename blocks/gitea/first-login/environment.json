@@ -3,10 +3,10 @@
   ],
 
   "services": [
-    {"name":"gogs"},
+    {"name":"gitea"},
     {"name":"phantomjs"}
   ],
   "secrets": [
-    {"name": "service/gogs/root/credentials"}
+    {"name": "service/gitea/root/credentials"}
   ]
 }
