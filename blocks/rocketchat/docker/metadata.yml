@@ -68,7 +68,7 @@ resources:
       service/rocketchat/esadmin/credentials:
         user_name: esadmin
         password: admin1admin1
-        email: aidan@canzea.com
+        email: ${owner.email}
         url: "https://chat.${es.fqdn}"
 
   - wire:
