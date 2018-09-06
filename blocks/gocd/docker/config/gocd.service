@@ -1,0 +1,11 @@
+[Unit]
+Description=GoCD container
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a gocd
+ExecStop=/usr/bin/docker stop -t 2 gocd
+
+[Install]
+WantedBy=local.target

@@ -1,0 +1,26 @@
+name: gocd
+version: v18.7.0
+resources:
+  - service_discovery_service:
+      ${instance.id}-gocd:
+        Name: gocd
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 8153
+        Tags: [ "${instance.id}", "${environment.id}", "delivery_pipeline" ]
+        Check:
+          http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:8153"
+          interval: 10s
+          timeout: 1s
+
+  - proxy_service:
+      gocd:
+        environment: cd
+        serverNumber: 1
+        segment: ci
+        privateKey: master_key
+        proxy_ssl_virtual_host: default
+        location: "/go"
+        passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:8153"
+
+
+
