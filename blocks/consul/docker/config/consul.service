@@ -1,0 +1,11 @@
+[Unit]
+Description=Consul container
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a consul
+ExecStop=/usr/bin/docker stop -t 2 consul
+
+[Install]
+WantedBy=local.target

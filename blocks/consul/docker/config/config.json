@@ -1,0 +1,16 @@
+{
+  "skip_leave_on_interrupt": true,
+  "ports": {
+    "dns": 53,
+    "https": 8080
+  },
+  "log_level": "INFO",
+  "ca_file": "/etc/consul.d/ssl/ca.cert",
+  "cert_file": "/etc/consul.d/ssl/consul.cert",
+  "key_file": "/etc/consul.d/ssl/consul.key",
+  "verify_incoming": true,
+  "verify_outgoing": true,
+  "disable_remote_exec": true,
+  "enable_script_checks": true
+}
+
