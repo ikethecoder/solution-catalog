@@ -1,0 +1,94 @@
+name: gocd
+version: v18.7.0
+resources:
+  - service_discovery_service:
+      rocketchat:
+        Name: rocketchat
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 8780
+        Tags: [ "${instance.id}", "${environment.id}", "collaboration" ]
+        Check:
+          http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:8780"
+          interval: 10s
+          timeout: 1s
+
+  - proxy_service:
+      rocketchat:
+        environment: cd
+        serverNumber: 1
+        segment: ci
+        privateKey: master_key
+        proxy_ssl_virtual_host: default
+        location: "/go"
+        passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:8153"
+
+
+  - digitalocean_dns:
+      chat:
+        environment: "cd"
+        droplet: "${instance.name}"
+        domain-id: "${es.fqdn_id}"
+        domain: "${es.fqdn}"
+        a:
+          name: "chat"
+          address: "${d}{digitalocean_droplet.${instance.name}.ipv4_address}"
+
+  - proxy_ssl_virtual_host:
+      cd:
+        environment: "cd"
+        serverNumber: 1
+        segment: "${segment.id}"
+        privateKey: "master_key"
+        domainName: "chat.${es.fqdn}"
+        domains: "${es.fqdn},chat.${es.fqdn}"
+        certname: "${es.fqdn}"
+        email: "${owner.email}"
+
+  - proxy_service:
+      ${instance.id}-rocketchat:
+        environment: "cd"
+        serverNumber: 1
+        segment: "ci"
+        privateKey: "master_key"
+        proxy_ssl_virtual_host: "chat"
+        location: "/"
+        passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:8780"
+
+
+  - service_endpoint:
+      ${instance.id}-rocketchat:
+        service: rocketchat
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://chat.${es.fqdn}"
+
+  - vault_secret:
+      service/rocketchat/esadmin/credentials:
+        user_name: esadmin
+        password: admin1admin1
+        email: aidan@canzea.com
+        url: "https://chat.${es.fqdn}"
+
+  - wire:
+      rocketchat-first-login:
+        solution: rocketchat
+        action: first-login
+        droplet: "${instance.name}"
+
+  - vault_secret:
+      oauth/clients/rocketchat:
+        label: "Rocket.Chat"
+        client_secret: "11-11-11-11"
+        accessTokenLifetime: 14515200
+        oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
+        oauth2_token: "https://${es.fqdn}/gw/oauth/token"
+        oauth2_profile: "https://${es.fqdn}/gw/me"
+        grants:
+        - "password"
+        - "authorization_code"
+        - "refresh_token"
+        redirectUris:
+        - "https://chat.${es.fqdn}/oauth2/callback"
+

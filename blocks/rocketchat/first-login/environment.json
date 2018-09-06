@@ -1,0 +1,12 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"rocketchat"},
+    {"name":"phantomjs"}
+  ],
+  "secrets": [
+    {"name": "service/rocketchat/esadmin/credentials"}
+  ]
+}
