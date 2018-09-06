@@ -377,7 +377,7 @@
     },
     {
       "service_discovery_service_md": {
-        "gogs": {
+        "gitea": {
           "role": "sourcecontrol",
           "solution": "gitea/docker",
           "environment": "cd",
