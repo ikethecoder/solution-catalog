@@ -12,17 +12,6 @@ resources:
           interval: 10s
           timeout: 1s
 
-  - proxy_service:
-      rocketchat:
-        environment: cd
-        serverNumber: 1
-        segment: ci
-        privateKey: master_key
-        proxy_ssl_virtual_host: default
-        location: "/go"
-        passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:8153"
-
-
   - digitalocean_dns:
       chat:
         environment: "cd"
@@ -34,7 +23,7 @@ resources:
           address: "${d}{digitalocean_droplet.${instance.name}.ipv4_address}"
 
   - proxy_ssl_virtual_host:
-      cd:
+      chat:
         environment: "cd"
         serverNumber: 1
         segment: "${segment.id}"

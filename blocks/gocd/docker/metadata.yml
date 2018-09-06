@@ -24,3 +24,11 @@ resources:
 
 
 
+  - service_endpoint:
+      ${instance.id}-gocd:
+        service: gocd
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://${es.fqdn}/go/admin/pipelines"

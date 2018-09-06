@@ -13,17 +13,6 @@ resources:
           timeout: 1s
 
   - proxy_service:
-      archiva:
-        environment: cd
-        serverNumber: 1
-        segment: ci
-        privateKey: master_key
-        proxy_ssl_virtual_host: default
-        location: "/go"
-        passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:8153"
-
-
-  - proxy_service:
       ${instance.id}-archiva:
         environment: "cd"
         serverNumber: 1
