@@ -7,7 +7,7 @@
     {"name":"phantomjs"}
   ],
   "secrets": [
-    {"name": "service/gitea/root/credentials"},
+    {"name": "service/gitea/esadmin/credentials"},
     {"name": "oauth/clients/gitea"}
   ]
 }

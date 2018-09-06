@@ -23,10 +23,10 @@ driver.find_element(:tag_name, "button").click
 
 sleep 2
 
-oauth_secret = ENV['OAUTH_CLIENTS_GITEA_CLIENT_SECRET']
-oauth2_authorize = ENV['OAUTH_CLIENTS_GITEA_OAUTH2_AUTHORIZE']
-oauth2_token = ENV['OAUTH_CLIENTS_GITEA_OAUTH2_TOKEN']
-oauth2_profile = ENV['OAUTH_CLIENTS_GITEA_OAUTH2_PROFILE']
+oauth_secret = ENV['OAUTH_CLIENTS_GITEA_CLIENTSECRET']
+oauth2_authorize = ENV['OAUTH_CLIENTS_GITEA_OAUTH2AUTHORIZE']
+oauth2_token = ENV['OAUTH_CLIENTS_GITEA_OAUTH2TOKEN']
+oauth2_profile = ENV['OAUTH_CLIENTS_GITEA_OAUTH2PROFILE']
 
 driver.navigate.to "#{ENV["SERVICE_GITEA_ESADMIN_CREDENTIALS_URL"]}/admin/auths/new"
 
