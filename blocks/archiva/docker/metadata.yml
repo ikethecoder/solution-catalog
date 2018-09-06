@@ -43,6 +43,6 @@ resources:
       archiva-first-login:
         solution: archiva
         action: first-login
-        droplet: "${instance.name}"
+        droplet: "${es.tag}-cd-ci-01"
 
 

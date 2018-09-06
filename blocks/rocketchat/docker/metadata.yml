@@ -64,7 +64,7 @@ resources:
       rocketchat-first-login:
         solution: rocketchat
         action: first-login
-        droplet: "${instance.name}"
+        droplet: "${es.tag}-cd-ci-01"
 
   - vault_secret:
       oauth/clients/rocketchat:
