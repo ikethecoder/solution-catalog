@@ -18,7 +18,7 @@ rootPath = SecureRandom.hex
 Dir.mkdir rootPath
 
 # Get the authtoken and userId
-uri = URI(ENV['NODERED_URL'] + '/admin/auth/token')
+uri = URI(ENV['NODERED_URL'] + '/gwadmin/auth/token')
 
 res = Net::HTTP.post_form(uri , 'client_id' => 'node-red-admin', 'grant_type' => 'password', 'scope' => '*', 'username' => 'admin', 'password' => 'password')
 
@@ -32,7 +32,7 @@ headers = {
   'Content-Type' => 'application/json'
 }
 
-uri = URI(ENV['NODERED_URL'] + '/admin/flows')
+uri = URI(ENV['NODERED_URL'] + '/gwadmin/flows')
 
 http = Net::HTTP.new(uri.host, uri.port)
 #http.use_ssl = true
@@ -61,7 +61,7 @@ content['flows'].push({"type" => "tab", "id" => "global"})
 content['flows'].each do | flow |
 
     if (flow['type'] == 'tab')
-        uri = URI(ENV['NODERED_URL'] + "/admin/flow/#{flow['id']}")
+        uri = URI(ENV['NODERED_URL'] + "/gwadmin/flow/#{flow['id']}")
 
         http = Net::HTTP.new(uri.host, uri.port)
         #http.use_ssl = true
