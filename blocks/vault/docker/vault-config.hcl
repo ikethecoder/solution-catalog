@@ -1,0 +1,17 @@
+ui = true
+
+backend "consul" {
+  address = "consul.service.dc1.consul:8080"
+  scheme = "https"
+  path = "vault"
+  tls_ca_file = "/etc/consul.d/ssl/ca.cert"
+  tls_cert_file = "/etc/consul.d/ssl/consul.cert"
+  tls_key_file = "/etc/consul.d/ssl/consul.key"
+}
+
+listener "tcp" {
+  address = ":8200"
+  tls_disable = 0
+  tls_cert_file = "/etc/consul.d/ssl/vault-master.cert"
+  tls_key_file = "/etc/consul.d/ssl/vault.key"
+}
