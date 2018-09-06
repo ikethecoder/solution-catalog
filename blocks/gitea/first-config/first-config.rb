@@ -23,10 +23,10 @@ driver.find_element(:tag_name, "button").click
 
 sleep 2
 
-oauth_secret = ENV['OAUTH_CLIENTS_GITEA_CLIENTSECRET']
-oauth2_authorize = ENV['OAUTH_CLIENTS_GITEA_OAUTH2AUTHORIZE']
-oauth2_token = ENV['OAUTH_CLIENTS_GITEA_OAUTH2TOKEN']
-oauth2_profile = ENV['OAUTH_CLIENTS_GITEA_OAUTH2PROFILE']
+oauth_secret = ENV['OAUTH_CLIENTS_GITEA_CLIENT_SECRET']
+oauth2_authorize = ENV['OAUTH_CLIENTS_GITEA_OAUTH2_AUTHORIZE']
+oauth2_token = ENV['OAUTH_CLIENTS_GITEA_OAUTH2_TOKEN']
+oauth2_profile = ENV['OAUTH_CLIENTS_GITEA_OAUTH2_PROFILE']
 
 driver.navigate.to "#{ENV["SERVICE_GITEA_ESADMIN_CREDENTIALS_URL"]}/admin/auths/new"
 
@@ -51,7 +51,11 @@ wait.until { driver.find_element(:id, "oauth2_auth_url").displayed? }
 
 driver.find_element(:id, "oauth2_auth_url").clear
 driver.find_element(:id, "oauth2_auth_url").send_keys oauth2_authorize
+
+driver.find_element(:id, "oauth2_token_url").clear
 driver.find_element(:id, "oauth2_token_url").send_keys oauth2_token
+
+driver.find_element(:id, "oauth2_profile_url").clear
 driver.find_element(:id, "oauth2_profile_url").send_keys oauth2_profile
 
 driver.find_element(:xpath, "//button").click
