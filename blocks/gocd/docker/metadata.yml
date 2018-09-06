@@ -2,7 +2,7 @@ name: gocd
 version: v18.7.0
 resources:
   - service_discovery_service:
-      ${instance.id}-gocd:
+      gocd:
         Name: gocd
         Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
         Port: 8153

@@ -34,7 +34,7 @@ resources:
         email: "${owner.email}"
 
   - proxy_service:
-      ${instance.id}-rocketchat:
+      rocketchat:
         environment: "cd"
         serverNumber: 1
         segment: "ci"

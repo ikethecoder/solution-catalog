@@ -13,7 +13,7 @@ resources:
           timeout: 1s
 
   - proxy_service:
-      ${instance.id}-archiva:
+      archiva:
         environment: "cd"
         serverNumber: 1
         segment: "ci"
