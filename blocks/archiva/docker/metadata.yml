@@ -1,0 +1,59 @@
+name: archiva
+version: tbd
+resources:
+  - service_discovery_service:
+      archiva:
+        Name: archiva
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 9080
+        Tags: [ "${instance.id}", "${environment.id}", "artifact_registry" ]
+        Check:
+          http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9080"
+          interval: 10s
+          timeout: 1s
+
+  - proxy_service:
+      archiva:
+        environment: cd
+        serverNumber: 1
+        segment: ci
+        privateKey: master_key
+        proxy_ssl_virtual_host: default
+        location: "/go"
+        passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:8153"
+
+
+  - proxy_service:
+      ${instance.id}-archiva:
+        environment: "cd"
+        serverNumber: 1
+        segment: "ci"
+        privateKey: "master_key"
+        proxy_ssl_virtual_host: "default"
+        location: "/archiva/"
+        passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9080/"
+
+
+  - service_endpoint:
+      ${instance.id}-archiva:
+        service: archiva
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://${es.fqdn}/archiva/"
+
+  - vault_secret:
+      service/archiva/esadmin/credentials:
+        user_name: admin
+        password: admin1admin1
+        email: ${owner.email}
+        url: "https://${es.fqdn}/archiva/"
+
+  - wire:
+      archiva-first-login:
+        solution: archiva
+        action: first-login
+        droplet: "${instance.name}"
+
+

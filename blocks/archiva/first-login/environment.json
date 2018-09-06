@@ -1,0 +1,12 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"archiva"},
+    {"name":"phantomjs"}
+  ],
+  "secrets": [
+    {"name": "service/archiva/esadmin/credentials"}
+  ]
+}
