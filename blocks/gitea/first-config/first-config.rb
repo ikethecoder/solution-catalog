@@ -40,7 +40,7 @@ driver.find_element(:xpath, "//div[6]/div/div").click
 driver.find_element(:xpath, "//div[6]/div/div/div[2]/div[5]").click
 
 
-driver.find_element(:id, "name").send_keys 'Ecosystem GW'
+driver.find_element(:id, "name").send_keys 'ecosystem-gw'
 
 driver.find_element(:id, "oauth2_use_custom_url").click
 
