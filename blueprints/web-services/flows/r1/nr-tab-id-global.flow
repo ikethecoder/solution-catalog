@@ -7268,7 +7268,7 @@
           "rules": [
             {
               "t": "secret",
-              "v": "gogs/root",
+              "v": "gitea/root",
               "vt": "str"
             }
           ],
@@ -7333,7 +7333,7 @@
           "type": "function",
           "z": "cc909323.1bc6b",
           "name": "",
-          "func": "// key is [user]/[refid]\nuser = msg.key.split('/')[0]\nmsg.secretKey = \"service/gogs/\" + user + \"/credentials\";\nmsg.envKey = (\"SERVICE_GOGS_\" + user + \"_CREDENTIALS\").toUpperCase();\nreturn msg;",
+          "func": "// key is [user]/[refid]\nuser = msg.key.split('/')[0]\nmsg.secretKey = \"service/gitea/\" + user + \"/credentials\";\nmsg.envKey = (\"SERVICE_GOGS_\" + user + \"_CREDENTIALS\").toUpperCase();\nreturn msg;",
           "outputs": 1,
           "noerr": 0,
           "x": 383.5,

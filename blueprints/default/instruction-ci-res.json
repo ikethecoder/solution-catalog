@@ -290,7 +290,7 @@
 
     {
       "proxy_service": {
-        "gogs": {
+        "gitea": {
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
@@ -407,7 +407,7 @@
     },
     {
       "boot:first-login": {
-        "gogs": {
+        "gitea": {
           "wire": "gitea:first-login",
           "environment": "cd",
           "serverNumber": 1,
@@ -458,7 +458,7 @@
 
     {
       "vault_token": {
-        "gogs/root": {
+        "gitea/root": {
           "wire": "ecosystem-resources:process-resources",
           "environment": "cd",
           "serverNumber": 1,
@@ -467,7 +467,7 @@
           "resources": [
             {
               "vault_secret": {
-                "gogs/root": {
+                "gitea/root": {
                   "token": "${db['source_control_token-esadmin'].sha1}"
                 }
               }

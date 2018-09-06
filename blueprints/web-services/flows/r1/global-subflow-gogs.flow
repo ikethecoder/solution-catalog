@@ -663,7 +663,7 @@
       "rules": [
         {
           "t": "secret",
-          "v": "gogs/root",
+          "v": "gitea/root",
           "vt": "str"
         }
       ],
