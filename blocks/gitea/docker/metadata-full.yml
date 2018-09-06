@@ -1,0 +1,115 @@
+name: gitea
+version: 1.5.1
+resources:
+  - service_discovery_service:
+      ${instance.id}-gitea:
+        Name: gitea
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 11080
+        Tags: [ "${instance.id}", "${environment.id}", "source_control" ]
+        Check:
+          http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:11080"
+          interval: 10s
+          timeout: 1s
+
+  - digitalocean_dns:
+      sc:
+        environment: "cd"
+        droplet: "${instance.name}"
+        domain-id: "${es.fqdn_id}"
+        domain: "${es.fqdn}"
+        a:
+          name: "sc"
+          address: "${d}{digitalocean_droplet.${instance.name}.ipv4_address}"
+
+  - proxy_ssl_virtual_host:
+      cd:
+        environment: "cd"
+        serverNumber: 1
+        segment: "${segment.id}"
+        privateKey: "master_key"
+        domainName: "sc.${es.fqdn}"
+        domains: "sc.${es.fqdn}"
+        certname: "sc.${es.fqdn}"
+        email: "${owner.email}"
+
+  - proxy_service:
+      ${instance.id}-gitea:
+        environment: "cd"
+        serverNumber: 1
+        segment: "ci"
+        privateKey: "master_key"
+        proxy_ssl_virtual_host: "cd"
+        location: "/"
+        passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:11080"
+
+
+  - service_endpoint:
+      ${instance.id}-gitea:
+        service: gitea
+        instance: ${instance.id}
+        environment: cd
+        segment: ci
+        type: console
+        secure: "https://sc.${es.fqdn}"
+
+  - vault_secret:
+      service/gitea/esadmin/credentials:
+        user_name: esadmin
+        password: admin1admin1
+        email: aidan@canzea.com
+        url: "https://sc.${es.fqdn}"
+
+  - wire:
+      gitea-first-login:
+        solution: gitea
+        action: first-login
+        droplet: "${es.tag}-cd-ci-01"
+
+
+  - vault_secret:
+      oauth/clients/gitea:
+        label: "Gitea"
+        client_secret: "11-11-11-11"
+        accessTokenLifetime: 14515200
+        oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
+        oauth2_token: "https://${es.fqdn}/gw/oauth/token"
+        oauth2_profile: "https://${es.fqdn}/gw/me"
+        grants:
+        - "password"
+        - "authorization_code"
+        - "refresh_token"
+        redirectUris:
+        - "https://sc.${es.fqdn}/user/oauth2/ecosystem-gw/callback"
+
+  - wire:
+      gitea-first-config:
+        solution: gitea
+        action: first-config
+        droplet: "${instance.name}"
+
+
+  - source_control_token:
+      esadmin:
+        Name: access_token
+
+  - vault_secret:
+      service/gitea/esadmin/token:
+        token: "${d}{var.source_control_token.esadmin.result.sha1}"
+
+  - source_control_repository:
+      ecosystems: {}
+
+  - vault_policy:
+      "service::gitea::esadmin":
+        path:
+          secret/service/gitea/esadmin/*:
+            capabilities: ["create","update","read"]
+
+#  - wire:
+#      user-esarchiver:
+#        solution: users
+#        action: add-user
+#        droplet: "${instance.name}"
+#        name: esarchiver
+
