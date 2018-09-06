@@ -148,156 +148,6 @@
         }
       }
     },
-    {
-      "digitalocean_dns" : {
-        "chat": {
-          "environment": "cd",
-          "droplet": "${es.id}-cd-ci-01",
-          "domain-id": "${es.fqdn_id}",
-          "domain": "${es.fqdn}",
-          "a": {
-            "name": "chat",
-            "address": "${dollar}{digitalocean_droplet.${es.id}-cd-ci-01.ipv4_address}"
-          }
-        }
-      }
-    },
-    {
-      "proxy_service": {
-        "gocd": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "default",
-          "location": "/go/",
-          "passthrough": "http://${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}:8153"
-        }
-      }
-    },
-
-    {
-      "proxy_service": {
-        "archiva": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "default",
-          "location": "/archiva/",
-          "passthrough": "http://${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}:9080/"
-        }
-      }
-    },
-
-    {
-      "proxy_ssl_virtual_host": {
-        "chat": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "domainName": "chat.${es.fqdn}",
-          "domains": "${es.fqdn},chat.${es.fqdn}",
-          "certname": "${es.fqdn}",
-          "email": "${owner.email}"
-        }
-      }
-    },
-    {
-      "proxy_service": {
-        "rocketchat": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "chat",
-          "location": "/",
-          "passthrough": "http://${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}:8780"
-        }
-      }
-    },
-
-    {
-      "service_discovery_service_md": {
-        "rocketchat": {
-          "role": "collaboration",
-          "solution": "rocketchat",
-          "environment": "${environmentId}",
-          "serverNumber": 1,
-          "segment": "reg",
-          "privateKey": "master_key"
-        }
-      }
-    },
-
-    {
-      "vault_secret": {
-        "admin/rocketchat": {
-            "password": "admin1admin"
-        }
-      }
-    },
-    {
-      "boot:first-login": {
-        "rocketchat": {
-          "wire": "rocketchat:first-login",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key"
-        }
-      }
-    },
-
-
-
-
-    {
-      "service_discovery_service_md": {
-        "archiva": {
-          "role": "registry",
-          "solution": "archiva",
-          "environment": "${environmentId}",
-          "serverNumber": 1,
-          "segment": "reg",
-          "privateKey": "master_key"
-        }
-      }
-    },
-    {
-      "vault_secret": {
-        "service/archiva/admin/credentials": {
-            "user_name": "admin",
-            "password": "admin1admin",
-            "email": "${owner.email}"
-        }
-      }
-    },
-    {
-      "boot:first-login": {
-        "archiva": {
-          "wire": "archiva:first-login",
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key"
-        }
-      }
-    },
-
-    {
-      "service_discovery_service_md": {
-        "gocd": {
-          "role": "deploy",
-          "solution": "gocd",
-          "environment": "${environmentId}",
-          "serverNumber": 1,
-          "segment": "reg",
-          "privateKey": "master_key"
-        }
-      }
-    },
 
     {
       "vault_secret": {
@@ -322,28 +172,17 @@
       }
     },
     {
-      "building_block": {
-        "${instanceId}-ide": {
-          "role": "adhoc",
-          "solution": "ide",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      },
-      "depends_on": ["service_discovery_service.${instanceId}-ide"]
-    },
-    {
       "collaboration_channel" : {
         "Continuous-Delivery": {}
       },
-      "depends_on": ["service_discovery_service_md.rocketchat"]
+      "depends_on": ["service_discovery_service.rocketchat"]
     },
     {
       "pipeline_environment": {
         "Continuous-Delivery": {
         }
       },
-      "depends_on": ["service_discovery_service_md.gocd"]
+      "depends_on": ["service_discovery_service.gocd"]
     }
 
   ]
