@@ -1,0 +1,10 @@
+{
+  "services": [
+    {
+      "name": "gitea",
+      "listener": "pub",
+      "port": 11080,
+      "ssl": false
+    }
+  ]
+}
