@@ -20,13 +20,13 @@ resources:
         domain: "${es.fqdn}"
         a:
           name: "chat"
-          address: "${d}{digitalocean_droplet.${instance.name}.ipv4_address}"
+          address: "${d}{digitalocean_droplet.${es.tag}-cd-ci-01.ipv4_address}"
 
   - proxy_ssl_virtual_host:
       chat:
-        environment: "cd"
+        environment: cd
         serverNumber: 1
-        segment: "${segment.id}"
+        segment: ci
         privateKey: "master_key"
         domainName: "chat.${es.fqdn}"
         domains: "${es.fqdn},chat.${es.fqdn}"
@@ -81,3 +81,8 @@ resources:
         redirectUris:
         - "https://chat.${es.fqdn}/oauth2/callback"
 
+  - wire:
+      rocketchat-first-set-site-url:
+        solution: rocketchat
+        action: first-set-site-url
+        droplet: "${es.tag}-cd-ci-01"
