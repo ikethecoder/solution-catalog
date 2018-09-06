@@ -80,20 +80,20 @@
     },
     {
       "building_block": {
-        "${instanceId}-consul-docker": {
+        "${instanceId}-consul": {
           "role": "configdb",
-          "solution": "consul-docker",
-          "droplet" : "${instanceName}",
+          "solution": "consul/docker",
+          "droplet" : "${instance.name}",
           "commands" : false
         }
       }
     },
     {
       "building_block": {
-        "${instanceId}-hashicorpvault-docker": {
+        "${instanceId}-vault": {
           "role": "keymgmt",
-          "solution": "hashicorpvault-docker",
-          "droplet" : "${instanceName}",
+          "solution": "vault/docker",
+          "droplet" : "${instance.name}",
           "commands" : false
         }
       }
@@ -120,9 +120,9 @@
     },
     {
       "building_block": {
-        "${instanceId}-gogs": {
+        "${instanceId}-gitea": {
           "role": "sourcecontrol",
-          "solution": "gogs",
+          "solution": "gitea",
           "droplet" : "${instanceName}",
           "commands" : false
         }
@@ -213,7 +213,7 @@
       "building_block": {
         "${instanceId}-nginx": {
           "role": "loadbalancer",
-          "solution": "nginx-docker",
+          "solution": "nginx/docker",
           "droplet" : "${instanceName}",
           "commands" : false
         }
@@ -296,8 +296,8 @@
           "segment": "ci",
           "privateKey": "master_key",
           "proxy_ssl_virtual_host": "default",
-          "location": "/gogs/",
-          "passthrough": "http://localhost:10080/"
+          "location": "/gitea/",
+          "passthrough": "http://localhost:11080/"
         }
       }
     },
@@ -379,7 +379,7 @@
       "service_discovery_service_md": {
         "gogs": {
           "role": "sourcecontrol",
-          "solution": "gogs",
+          "solution": "gitea/docker",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
@@ -389,18 +389,18 @@
     },
     {
       "vault_secret": {
-        "service/gogs/root/credentials": {
+        "service/gitea/root/credentials": {
           "wire": "vault:register-secret",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
           "privateKey": "master_key",
-          "key": "service/gogs/root/credentials",
+          "key": "service/gitea/root/credentials",
           "data": {
-            "user_name": "root",
-            "password": "admin1admin",
+            "user_name": "esadmin",
+            "password": "admin1admin1",
             "email": "${owner.email}",
-            "url": "https://${es.fqdn}/gogs"
+            "url": "https://${es.fqdn}/gitea"
           }
         }
       }
@@ -408,7 +408,7 @@
     {
       "boot:first-login": {
         "gogs": {
-          "wire": "gogs:first-login",
+          "wire": "gitea:first-login",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
@@ -446,7 +446,7 @@
           "resources": [
             {
               "source_control_token": {
-                "root": {
+                "esadmin": {
                   "Name": "access_token"
                 }
               }
@@ -468,7 +468,7 @@
             {
               "vault_secret": {
                 "gogs/root": {
-                  "token": "${db['source_control_token-root'].sha1}"
+                  "token": "${db['source_control_token-esadmin'].sha1}"
                 }
               }
             }
@@ -500,7 +500,7 @@
 
     {
       "ssh_key": {
-        "root_ecosystem": {
+        "esadmin_ecosystem": {
         }
       }
     },
@@ -527,9 +527,9 @@
           "resources": [
             {
               "source_control_public_key": {
-                "root/rpk": {
-                  "title": "root_pk",
-                  "key": "${db['root_ecosystem'].public}"
+                "esadmin/rpk": {
+                  "title": "esadmin_pk",
+                  "key": "${db['esadmin_ecosystem'].public}"
                 }
               }
             }

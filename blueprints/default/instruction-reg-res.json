@@ -109,47 +109,6 @@
       }
     },
     {
-      "building_block": {
-        "${instanceId}-archiva": {
-          "role": "registry",
-          "solution": "archiva-docker",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "${instanceId}-rocketchat": {
-          "role": "collaboration",
-          "solution": "rocketchat",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "${instanceId}-gocd": {
-          "role": "deploy",
-          "solution": "gocd-docker",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
-        "${instanceId}-confd": {
-          "role": "r_and_d",
-          "solution": "confd",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-
-    {
       "vault_secret": {
         "shell/commands/${instanceId}-bash": {
           "user": "root",
@@ -171,6 +130,48 @@
         }
       }
     },
+    {
+      "building_block": {
+        "${instanceId}-archiva": {
+          "role": "registry",
+          "solution": "archiva/docker",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-rocketchat": {
+          "role": "collaboration",
+          "solution": "rocketchat/docker",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-gocd": {
+          "role": "deploy",
+          "solution": "gocd/docker",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+    {
+      "building_block": {
+        "${instanceId}-confd": {
+          "role": "r_and_d",
+          "solution": "confd",
+          "droplet" : "${instanceName}",
+          "commands" : false
+        }
+      }
+    },
+
+
     {
       "collaboration_channel" : {
         "Continuous-Delivery": {}
