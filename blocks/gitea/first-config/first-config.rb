@@ -9,12 +9,12 @@ driver = Selenium::WebDriver.for :remote, url: ENV['PHANTOMJS_URL']
 target_size = Selenium::WebDriver::Dimension.new(1024, 768)
 # driver.manage.window.size = target_size
 
-driver.navigate.to "#{ENV["SERVICE_GITEA_ROOT_CREDENTIALS_URL"]}/user/login"
+driver.navigate.to "#{ENV["SERVICE_GITEA_ESADMIN_CREDENTIALS_URL"]}/user/login"
 
 sleep 5
 
-user = ENV['SERVICE_GITEA_ROOT_CREDENTIALS_USER_NAME']
-pass = ENV['SERVICE_GITEA_ROOT_CREDENTIALS_PASSWORD']
+user = ENV['SERVICE_GITEA_ESADMIN_CREDENTIALS_USER_NAME']
+pass = ENV['SERVICE_GITEA_ESADMIN_CREDENTIALS_PASSWORD']
 
 driver.find_element(:id, "user_name").send_keys user
 driver.find_element(:id, "password").send_keys pass
@@ -23,7 +23,7 @@ driver.find_element(:tag_name, "button").click
 
 sleep 2
 
-driver.navigate.to "#{ENV["SERVICE_GITEA_ROOT_CREDENTIALS_URL"]}/admin/auths/new"
+driver.navigate.to "#{ENV["SERVICE_GITEA_ESADMIN_CREDENTIALS_URL"]}/admin/auths/new"
 
 wait.until { driver.find_element(:tag_name, "form").displayed? }
 
