@@ -82,7 +82,7 @@ resources:
 - building_block:
     ${instanceId}-phantomjs-docker:
       role: "testsuite"
-      solution: "phantomjs-docker"
+      solution: "phantomjs/docker"
       droplet: "${instanceName}"
       commands: false
 - tls_key_pair:
