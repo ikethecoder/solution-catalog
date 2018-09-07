@@ -1,17 +1,6 @@
 name: phantomjs
 version: tbd
 resources:
-  - service_discovery_service:
-      phantomjs:
-        Name: phantomjs
-        Address: "${d}{var.compute_instance.${instance.name}.publicIp}"
-        Port: 8001
-        Tags: [ "${instance.id}", "${environment.id}", "automated_testing" ]
-        Check:
-          http: "http://${d}{var.compute_instance.${instance.name}.publicIp}:8001"
-          interval: 10s
-          timeout: 1s
-
   - service_endpoint:
       ${instance.id}-phantomjs:
         service: phantomjs
@@ -19,3 +8,15 @@ resources:
         environment: ${environment.id}
         segment: ${segment.id}
         type: service
+
+#  - service_discovery_service:
+#      phantomjs:
+#        Name: phantomjs
+#        Address: "${d}{var.compute_instance.${instance.name}.publicIp}"
+#        Port: 8001
+#        Tags: [ "${instance.id}", "${environment.id}", "automated_testing" ]
+#        Check:
+#          http: "http://${d}{var.compute_instance.${instance.name}.publicIp}:8001"
+#          interval: 10s
+#          timeout: 1s
+
