@@ -1,0 +1,22 @@
+name: grafana
+version: tbd
+resources:
+  - service_discovery_service:
+      ${instance.id}-grafana:
+        Name: grafana
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 3000
+        Tags: [ "${instance.id}", "${environment.id}", "monitoring" ]
+        Check:
+          http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:3000"
+          interval: 10s
+          timeout: 1s
+
+  - service_endpoint:
+      ${instance.id}-grafana:
+        service: grafana
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "http://${d}{var.compute_instance.${instance.name}.privateIp}:3000"
