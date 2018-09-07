@@ -53,6 +53,12 @@ resources:
       droplet: "${instanceName}"
       commands: false
 - building_block:
+    ${instanceId}-sshd:
+      role: "workarounds"
+      solution: "sshd"
+      droplet: "${instanceName}"
+      commands: false
+- building_block:
     ${instanceId}-canzea-upgrade:
       role: "workarounds"
       solution: "canzea-upgrade"
