@@ -154,7 +154,7 @@
           "commands" : false
         }
       },
-      "depends_on": ["service_discovery_service_md.gocd", "building_block.${instanceId}-maven"]
+      "depends_on": ["service_discovery_service.gocd", "building_block.${instanceId}-maven"]
     },
     {
       "wire": {
@@ -170,7 +170,7 @@
         "Continuous-Delivery": {
         }
       },
-      "depends_on": ["service_discovery_service_md.gocd", "building_block.${instanceId}-gocd-agent"]
+      "depends_on": ["service_discovery_service.gocd", "building_block.${instanceId}-gocd-agent"]
     },
 
     {
@@ -180,7 +180,7 @@
           "environment" : "Continuous-Delivery"
         }
       },
-      "depends_on": ["service_discovery_service_md.gocd", "building_block.${instanceId}-gocd-agent"]
+      "depends_on": ["service_discovery_service.gocd", "building_block.${instanceId}-gocd-agent"]
     }
   ]
 }

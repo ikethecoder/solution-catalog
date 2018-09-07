@@ -245,7 +245,7 @@
       "collaboration_channel" : {
         "${environmentLabel}": {}
       },
-      "depends_on": ["service_discovery_service_md.rocketchat"]
+      "depends_on": ["service_discovery_service.rocketchat"]
     },
     {
       "monitoring_dashboard": {
