@@ -1,0 +1,12 @@
+[Unit]
+Description=Fabio
+After=network.target
+
+[Service]
+Environment=CONSUL_CACERT=/var/local/consul/ssl/ca.cert
+Environment=CONSUL_CLIENT_CERT=/var/local/consul/ssl/consul.cert
+Environment=CONSUL_CLIENT_KEY=/var/local/consul/ssl/consul.key
+ExecStart=/opt/fabio/bin/fabio -cfg /opt/fabio/config.properties
+
+[Install]
+WantedBy=local.target

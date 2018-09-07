@@ -1,0 +1,22 @@
+name: fabio
+version: tbd
+resources:
+  - service_discovery_service:
+      ${instance.id}-fabio:
+        Name: fabio
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 9998
+        Tags: [ "${instance.id}", "${environment.id}", "load_balancer" ]
+        Check:
+          http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9998"
+          interval: 10s
+          timeout: 1s
+
+  - service_endpoint:
+      ${instance.id}-fabio:
+        service: fabio
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "http://${d}{var.compute_instance.${instance.name}.publicIp}:9998"
