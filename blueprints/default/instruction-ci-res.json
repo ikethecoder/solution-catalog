@@ -290,19 +290,6 @@
 
     {
       "proxy_service": {
-        "gitea": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "default",
-          "location": "/gitea/",
-          "passthrough": "http://localhost:11080/"
-        }
-      }
-    },
-    {
-      "proxy_service": {
         "consul-ui": {
           "environment": "cd",
           "serverNumber": 1,
@@ -329,6 +316,36 @@
         }
       }
     },
+
+
+    {
+      "proxy_ssl_virtual_host": {
+        "sc": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "domainName": "sc.${es.fqdn}",
+          "domains": "sc.${es.fqdn}",
+          "certname": "sc.${es.fqdn}",
+          "email": "${owner.email}"
+        }
+      }
+    },
+    {
+      "proxy_service": {
+        "sc": {
+          "environment": "cd",
+          "serverNumber": 1,
+          "segment": "ci",
+          "privateKey": "master_key",
+          "proxy_ssl_virtual_host": "sc",
+          "location": "/",
+          "passthrough": "http://localhost:11080/"
+        }
+      }
+    },
+
 
     {
       "vault_secret": {
@@ -400,7 +417,7 @@
             "user_name": "esadmin",
             "password": "admin1admin1",
             "email": "${owner.email}",
-            "url": "https://${es.fqdn}/gitea"
+            "url": "https://sc.${es.fqdn}"
           }
         }
       }
