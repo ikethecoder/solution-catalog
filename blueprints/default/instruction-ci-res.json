@@ -389,13 +389,13 @@
     },
     {
       "vault_secret": {
-        "service/gitea/root/credentials": {
+        "service/gitea/esadmin/credentials": {
           "wire": "vault:register-secret",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
           "privateKey": "master_key",
-          "key": "service/gitea/root/credentials",
+          "key": "service/gitea/esadmin/credentials",
           "data": {
             "user_name": "esadmin",
             "password": "admin1admin1",
