@@ -19,10 +19,8 @@ resources:
         segment: ci
         privateKey: master_key
         proxy_ssl_virtual_host: default
-        location: "/go"
+        location: "/go/"
         passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:8153"
-
-
 
   - service_endpoint:
       ${instance.id}-gocd:

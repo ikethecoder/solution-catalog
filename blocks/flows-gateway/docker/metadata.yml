@@ -1,2 +1,11 @@
 name: flows-gateway
 version: 0.1.24
+resources:
+  - service_endpoint:
+      ${instance.id}-flows-gateway:
+        service: flows-gateway
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://${es.fqdn}/gwadmin"

@@ -1,2 +1,11 @@
 name: gitea
 version: 1.5.1
+resources:
+  - service_endpoint:
+      ${instance.id}-gitea:
+        service: gitea
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://sc.${es.fqdn}"
