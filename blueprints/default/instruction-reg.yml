@@ -94,6 +94,12 @@ resources:
       droplet: "${instanceName}"
       commands: false
 - building_block:
+    ${instanceId}-mongodb:
+      role: "documentdatabase"
+      solution: "mongodb/docker"
+      droplet: "${instanceName}"
+      commands: false
+- building_block:
     ${instanceId}-rocketchat:
       role: "collaboration"
       solution: "rocketchat/docker"
