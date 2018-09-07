@@ -20,7 +20,7 @@ parameters['pwd'] = Dir.pwd
 ssh_config = %{
    host {{fqdn}}
      User root
-     Port 10022
+     Port 11022
      IdentityFile {{pwd}}/sc/ecosystems/{{ecosystem}}/terraform/.es/id_rsa_root_ecosystem
 }
 
@@ -28,7 +28,7 @@ FileUtils.mkdir_p "ssh"
 File.write "ssh/config", t.processString(ssh_config, parameters)
 
 n = RunnerWorker.new(false)
-n.run "ssh-keyscan -p 10022 #{parameters['fqdn']} > known_hosts", 0, 0
+n.run "ssh-keyscan -p 11022 #{parameters['fqdn']} > known_hosts", 0, 0
 
 pc.cp sourcePath, "."
 
