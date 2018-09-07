@@ -1,6 +1,6 @@
 {
-  "services": [
-  ],
+  "keyvalues": [],
+  "services": [],
   "secrets": [
     {"name":"gitea/root"},
     {"name":"service/gitea/esadmin/credentials"}
