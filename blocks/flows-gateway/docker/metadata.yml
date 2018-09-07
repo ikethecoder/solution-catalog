@@ -3,7 +3,7 @@ version: 0.1.24
 resources:
   - service_endpoint:
       ${instance.id}-flows-gateway:
-        service: flows-gateway
+        service: nodered
         instance: ${instance.id}
         environment: ${environment.id}
         segment: ${segment.id}
