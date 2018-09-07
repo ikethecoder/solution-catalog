@@ -179,7 +179,7 @@
     },
     {
       "building_block": {
-        "${instanceId}-nginx": {
+        "${instanceId}-sudoers": {
           "role": "workarounds",
           "solution": "sudoers",
           "droplet" : "${instanceName}",

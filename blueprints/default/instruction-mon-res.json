@@ -100,7 +100,7 @@
       "building_block": {
         "${instanceId}-elasticsearch": {
           "role": "documentdatabase",
-          "solution": "elasticsearch",
+          "solution": "elasticsearch/vm",
           "droplet" : "${instanceName}",
           "commands" : false
         }
@@ -130,7 +130,7 @@
       "building_block": {
         "${instanceId}-grafana": {
           "role": "monitoring",
-          "solution": "grafana",
+          "solution": "grafana/vm",
           "droplet" : "${instanceName}",
           "commands" : false
         }
@@ -188,19 +188,7 @@
         }
       }
     },
-    {
-      "proxy_service": {
-        "grafana": {
-          "environment": "cd",
-          "serverNumber": 1,
-          "segment": "ci",
-          "privateKey": "master_key",
-          "proxy_ssl_virtual_host": "default",
-          "location": "/grafana/",
-          "passthrough": "http://${ecosystem.lookupInstanceByName('mon-mon-01').privateIp}:3000/"
-        }
-      }
-    },
+
 
     {
       "vault_secret": {
