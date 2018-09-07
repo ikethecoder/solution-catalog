@@ -698,7 +698,7 @@
       "type": "function",
       "z": "cc909323.1bc6b",
       "name": "CREDS",
-      "func": "token = msg.envs['GOGS_ROOT_TOKEN'];\nmsg.headers = {\n    'Authorization': 'token ' + token\n}\nreturn msg;",
+      "func": "token = msg.envs['GITEA_ROOT_TOKEN'];\nmsg.headers = {\n    'Authorization': 'token ' + token\n}\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
       "x": 675,
