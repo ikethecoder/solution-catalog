@@ -1,0 +1,16 @@
+FROM alpine:3.4
+LABEL description="This image can be used to build your hugo site"
+
+RUN apk update && apk add openssl && \
+    wget https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_linux-64bit.tgz && \
+    echo "37ee91ab3469afbf7602a091d466dfa5  hugo_0.16_linux-64bit.tgz" | md5sum -c && \
+    tar xf hugo_0.16_linux-64bit.tgz && cp ./hugo /usr/bin && \
+    hugo version
+
+RUN apk add nodejs
+
+RUN adduser -D -u 1005 go
+
+USER go
+
+CMD hugo
