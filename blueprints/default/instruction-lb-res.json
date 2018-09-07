@@ -117,7 +117,7 @@
       "building_block": {
         "${instanceId}-nginx": {
           "role": "loadbalancer",
-          "solution": "nginx",
+          "solution": "nginx/docker",
           "droplet" : "${instanceName}",
           "commands" : false
         }

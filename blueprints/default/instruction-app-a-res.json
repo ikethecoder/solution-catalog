@@ -215,7 +215,7 @@
       "building_block": {
         "${instanceId}-rabbitmq": {
           "role": "messaging",
-          "solution": "rabbitmq",
+          "solution": "rabbitmq/vm",
           "droplet" : "${instanceName}",
           "commands" : false
         }
