@@ -1,5 +1,5 @@
 name: rocketchat
-version: 0.64.2
+version: 0.69.1
 resources:
   - service_discovery_service:
       rocketchat:
