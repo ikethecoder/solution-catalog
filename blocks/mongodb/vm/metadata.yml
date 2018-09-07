@@ -1,0 +1,13 @@
+name: mongodb
+version: tbd
+resources:
+  - service_discovery_service:
+      ${instance.id}-mongodb:
+        Name: ${environment.id}-mongodb
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 27017
+        Tags: [ "${instance.id}", "${environment.id}", "distributed_database" ]
+        Check:
+          script: "nc ${d}{var.compute_instance.${instance.name}.privateIp} 27017"
+          interval: 10s
+          timeout: 1s
