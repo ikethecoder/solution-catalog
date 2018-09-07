@@ -1,5 +1,5 @@
-name: gocd
-version: v18.7.0
+name: rocketchat
+version: 0.68.5
 resources:
   - service_discovery_service:
       rocketchat:
