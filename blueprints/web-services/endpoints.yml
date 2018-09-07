@@ -15,8 +15,8 @@ consoles:
 
   -
     segment: ci
-    name: gogs
-    secure: https://${secureDomain}/gogs
+    name: gitea
+    secure: https://sc.${secureDomain}
 
   -
     segment: ci

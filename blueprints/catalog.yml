@@ -64,6 +64,15 @@ buildingBlocks:
     authentication: token
     type: service
 
+  gitea:
+    description: Painless self-hosted Git service
+    logo: https://avatars0.githubusercontent.com/u/12724356?s=200&v=4
+    repo: https://github.com/go-gitea/gitea.git
+    roles: ['source_control']
+    resources: [ "repositories", "files", "branches", "issues", "pull_requests" ]
+    authentication: token
+    type: service
+
   archiva:
     description: Archiva Package Repository
     logo: styles/img/partners/archiva.png
