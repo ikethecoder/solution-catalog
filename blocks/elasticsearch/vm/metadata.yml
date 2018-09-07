@@ -1,0 +1,13 @@
+name: elasticsearch
+version: tbd
+resources:
+  - service_discovery_service:
+      ${instance.id}-elasticsearch:
+        Name: elasticsearch
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 9200
+        Tags: [ "${instance.id}", "${environment.id}", "distributed_database" ]
+        Check:
+          http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9200/_cluster/health"
+          interval: 10s
+          timeout: 1s
