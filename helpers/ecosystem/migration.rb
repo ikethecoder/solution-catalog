@@ -19,9 +19,9 @@ parameters['pwd'] = Dir.pwd
 
 ssh_config = %{
    host {{fqdn}}
-     User root
+     User esadmin
      Port 11022
-     IdentityFile {{pwd}}/sc/ecosystems/{{ecosystem}}/terraform/.es/id_rsa_root_ecosystem
+     IdentityFile {{pwd}}/sc/ecosystems/{{ecosystem}}/terraform/.es/id_rsa_esadmin_ecosystem
 }
 
 FileUtils.mkdir_p "ssh"
