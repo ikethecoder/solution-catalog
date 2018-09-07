@@ -107,7 +107,7 @@
       "building_block": {
         "${instanceId}-fabio": {
           "role": "router",
-          "solution": "fabio",
+          "solution": "fabio/vm",
           "droplet" : "${instanceName}",
           "commands" : false
         }
