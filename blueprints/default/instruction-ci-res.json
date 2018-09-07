@@ -112,7 +112,7 @@
       "building_block": {
         "${instanceId}-flows-gateway": {
           "role": "adhoc",
-          "solution": "flows-gateway",
+          "solution": "flows-gateway/docker",
           "droplet" : "${instanceName}",
           "commands" : false
         }
