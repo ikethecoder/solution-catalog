@@ -20,3 +20,14 @@ resources:
         segment: ${segment.id}
         type: console
         secure: "http://${d}{var.compute_instance.${instance.name}.privateIp}:3000"
+
+  - proxy_service:
+      grafana:
+        environment: cd
+        serverNumber: 1
+        segment: ci
+        privateKey: master_key
+        proxy_ssl_virtual_host: default
+        location: "/grafana/"
+        passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:3000/"
+
