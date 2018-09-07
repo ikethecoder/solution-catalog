@@ -156,7 +156,7 @@
       "service_discovery_service_md": {
         "flows-gateway": {
           "role": "adhoc",
-          "solution": "flows-gateway",
+          "solution": "flows-gateway/docker",
           "environment": "cd",
           "serverNumber": 1,
           "segment": "ci",
