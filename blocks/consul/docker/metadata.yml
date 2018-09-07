@@ -1,14 +1,11 @@
 name: consul
 version: 1.2.2
 resources:
-
-#  - service_endpoint:
-#      ${instance.id}-consul:
-#        service: consul
-#        instance: ${instance.id}
-#        environment: ${environment.id}
-#        segment: ${segment.id}
-#        type: console
-#        secure: "https://${es.fqdn}/ui"
-#    depends_on:
-#    - migrate/ecosystem
+  - service_endpoint:
+      ${instance.id}-consul:
+        service: consul
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://${es.fqdn}/ui"
