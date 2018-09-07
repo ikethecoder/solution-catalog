@@ -118,16 +118,6 @@
     },
     {
       "building_block": {
-        "${instanceId}-statsd": {
-          "role": "monitoring",
-          "solution": "statsd",
-          "droplet" : "${instanceName}",
-          "commands" : false
-        }
-      }
-    },
-    {
-      "building_block": {
         "${instanceId}-grafana": {
           "role": "monitoring",
           "solution": "grafana/vm",
