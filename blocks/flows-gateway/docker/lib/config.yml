@@ -1,0 +1,19 @@
+apps:
+  - script   : app.js
+    name     : flows-gateway
+    instances: 1
+    exec_mode: fork
+    watch: true
+    env:
+      NODE_ENV: development
+      PORT: 8000
+    env_production:
+      NODE_ENV          : production
+      PORT              : 8000
+      VAULT_TLS_KEY     : /home/pm2user/ssl/vault.key
+      VAULT_TLS_CERT    : /home/pm2user/ssl/vault.cert
+      VAULT_TLS_CA_CERT : /home/pm2user/ssl/ca.cert
+      VAULT_URI         : https://vault.service.dc1.consul:8200
+      SECRETS_FILE      : /home/pm2user/.ecosystem-catalog/env.json
+
+

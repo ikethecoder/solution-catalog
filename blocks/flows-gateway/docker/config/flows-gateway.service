@@ -1,0 +1,11 @@
+[Unit]
+Description=Flows Gateway container
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a flows-gateway
+ExecStop=/usr/bin/docker stop -t 2 flows-gateway
+
+[Install]
+WantedBy=local.target
