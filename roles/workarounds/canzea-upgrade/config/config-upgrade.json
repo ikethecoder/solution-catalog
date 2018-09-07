@@ -7,6 +7,6 @@
   "vault_tls_key_file" : "/var/local/consul/ssl/vault.key",
   "config_location": "/root/.es-catalog",
   "catalog_location": "/root/.es-catalog/catalog",
-  "catalog_git": "http://gogs.service.dc1.consul:10080/root/ecosystems.git",
+  "catalog_git": "http://gitea.service.dc1.consul:11080/esadmin/ecosystems.git",
   "catalog_branch": "master"
 }
