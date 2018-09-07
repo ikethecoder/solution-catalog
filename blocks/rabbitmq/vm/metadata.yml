@@ -11,3 +11,11 @@ resources:
           script: "nc ${d}{var.compute_instance.${instance.name}.privateIp} 5672"
           interval: 10s
           timeout: 1s
+
+  - service_endpoint:
+      ${instance.id}-rabbitmq:
+        service: rabbitmq
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: service

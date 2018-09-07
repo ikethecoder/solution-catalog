@@ -11,3 +11,11 @@ resources:
           script: "nc ${d}{var.compute_instance.${instance.name}.privateIp} 27017"
           interval: 10s
           timeout: 1s
+
+  - service_endpoint:
+      ${instance.id}-mongodb:
+        service: mongodb
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: service

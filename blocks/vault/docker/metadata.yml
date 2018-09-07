@@ -1,4 +1,10 @@
 name: vault
 version: 0.11.0
 resources:
-
+  - service_endpoint:
+      ${instance.id}-vault:
+        service: vault
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: service
