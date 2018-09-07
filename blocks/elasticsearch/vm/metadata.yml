@@ -11,3 +11,10 @@ resources:
           http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9200/_cluster/health"
           interval: 10s
           timeout: 1s
+  - service_endpoint:
+      ${instance.id}-elasticsearch:
+        service: elasticsearch
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: service
