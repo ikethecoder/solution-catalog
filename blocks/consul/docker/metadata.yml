@@ -9,3 +9,4 @@ resources:
         segment: ${segment.id}
         type: console
         secure: "https://${es.fqdn}/ui"
+    depends_on: [ "migrate/ecosystem" ]
