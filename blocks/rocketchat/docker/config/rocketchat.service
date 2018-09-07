@@ -1,7 +1,7 @@
 [Unit]
 Description=Rocket.Chat container
-Requires=docker.service rocketchat-db.service
-After=docker.service rocketchat-db.service
+Requires=docker.service mongodb.service
+After=docker.service mongodb.service
 
 [Service]
 ExecStart=/usr/bin/docker start -a rocketchat
