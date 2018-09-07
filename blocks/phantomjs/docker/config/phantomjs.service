@@ -1,0 +1,11 @@
+[Unit]
+Description=PhantomJS container
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a phantomjs
+ExecStop=/usr/bin/docker stop -t 2 phantomjs
+
+[Install]
+WantedBy=local.target
