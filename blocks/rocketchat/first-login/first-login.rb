@@ -12,81 +12,62 @@ target_size = Selenium::WebDriver::Dimension.new(1024, 768)
 user = ENV['SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_USER_NAME']
 pass = ENV['SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_PASSWORD']
 email = ENV['SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_EMAIL']
+url = ENV['SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_URL']
 
-driver.navigate.to ENV['ROCKETCHAT_URL'] + "/home"
+driver.navigate.to ENV['ROCKETCHAT_URL'] + "/setup-wizard"
 
 counter = 1
 
 define_method(:screenshot) do
     puts "Saving screenshot#{counter}.png"
-	driver.save_screenshot("/usr/share/nginx/html/screenshot#{counter}.png")
+	driver.save_screenshot("screenshot#{counter}.png")
 	counter = counter + 1
-end
-
-define_method(:nextAction) do
-	begin
-	   wait.until {
-            driver.find_element(:xpath, "//button[contains(text(), 'Register a new account')]").displayed? or
-            driver.find_element(:xpath, "//button[contains(text(), 'Please Wait...')]").displayed? or
-            driver.find_element(:xpath, "//button/span[contains(text(), 'Use this username')]").displayed?
-	   }
-	   if ( driver.find_element(:xpath, "//button[contains(text(), 'Register a new account')]").displayed? )
-		return "REGISTER_NEW_ACCOUNT"
-	   end
-           if ( driver.find_element(:xpath, "//button[contains(text(), 'Use this username')]").displayed? )
-                return "USE_USERNAME"
-           end
-           if ( driver.find_element(:xpath, "//button[contains(text(), 'Please Wait...')]").displayed? )
-                return "PLEASE_WAIT"
-           end
-
-	rescue
-		screenshot()
-		return "NO_MATCH"
-	end
-
 end
 
 
 begin
 
-    puts nextAction()
+    wait.until { driver.find_element(:name, "registration-name").displayed? }
 
-    begin
-       wait.until { driver.find_element(:xpath, "//button[contains(text(), 'Register a new account')]").displayed? }
-    rescue
-       puts "Looks like we were logged in..."
-       driver.find_element(:tag_name => "h4").click
-       puts "Opened admin"
-       wait.until { driver.find_element(:id, "logout").displayed? }
-       driver.find_element(:id, "logout").click
-       puts "Safe to register name"
-    end
+    driver.find_element(:name, "registration-name").send_keys user
+    driver.find_element(:name, "registration-username").send_keys user
+    driver.find_element(:name, "registration-email").send_keys email
+    driver.find_element(:name, "registration-pass").send_keys pass
 
-    wait.until { driver.find_element(:xpath, "//button[contains(text(), 'Register a new account')]").displayed? }
-    driver.find_element(:xpath, "//button[contains(text(), 'Register a new account')]").click
+    wait.until { driver.find_element(:xpath, "//button").enabled? }
 
-    driver.find_element(:name, "name").send_keys user
-    driver.find_element(:name, "email").send_keys email
-    driver.find_element(:name, "pass").send_keys pass
-    driver.find_element(:name, "confirm-pass").send_keys pass
-#    driver.save_screenshot('/usr/share/nginx/html/screenshot.png')
+    driver.find_element(:xpath, "//button").click
 
-    driver.find_element(:class, "primary").click
+    wait.until { driver.find_element(:name, "Organization_Type").displayed? }
 
-# NOTE: THE H2 WARNING can appear NOW!
-    wait.until { driver.find_element(:xpath => "//button/span[contains(text(), 'Use this username')]").displayed? }
+    dropDownMenu = driver.find_element(:name, "Organization_Type")
+    option = Selenium::WebDriver::Support::Select.new(dropDownMenu)
+    option.select_by(:text, 'Community')
 
-    #driver.save_screenshot('/usr/share/nginx/html/screenshot.png')
+    driver.find_element(:xpath, "//button/span").click
 
-    # Confirm that the username can be used
-    driver.find_element(:xpath, "//button/span[contains(text(), 'Use this username')]").click
+    wait.until { driver.find_element(:name, "Site_Name").displayed? }
+
+    driver.find_element(:name, "Site_Name").send_keys url
+
+    dropDownMenu = driver.find_element(:name, "Server_Type")
+    option = Selenium::WebDriver::Support::Select.new(dropDownMenu)
+    option.select_by(:text, 'Private Team')
+
+    driver.find_element(:xpath, "//button[@type='submit']").click
+
+    driver.find_element(:xpath, "//label[2]/div/span").click
+    driver.find_element(:xpath, "//button[@type='submit']").click
+
+    wait.until { driver.find_element(:css, "h1.setup-wizard-info__content-title.setup-wizard-final__box-title").text.include? "Your workspace is ready to use" }
+
+    driver.find_element(:xpath, "//button").click
 
     sleep 2
 
 rescue Exception => e
     puts "Error - recording a screenshot"
-    driver.save_screenshot('/tmp/screenshot.png')
+    driver.save_screenshot('screenshot.png')
     raise e
 end
 
