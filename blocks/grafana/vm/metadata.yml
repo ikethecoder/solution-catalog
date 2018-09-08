@@ -8,7 +8,7 @@ resources:
         Port: 3000
         Tags: [ "${instance.id}", "${environment.id}", "monitoring" ]
         Check:
-          http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:3000"
+          http: "http://${d}{var.compute_instance.${instance.name}.privateIp}:3000/grafana/login"
           interval: 10s
           timeout: 1s
 
@@ -19,7 +19,7 @@ resources:
         environment: ${environment.id}
         segment: ${segment.id}
         type: console
-        secure: "http://${d}{var.compute_instance.${instance.name}.privateIp}:3000"
+        secure: "https://${es.fqdn}/grafana"
 
   - proxy_service:
       grafana:
