@@ -155,10 +155,53 @@ resources:
       solution: "sudoers"
       droplet: "${instanceName}"
       commands: false
+
+
+- digitalocean_dns:
+    ${environment.id}:
+      environment: cd
+      droplet: ${es.tag}-cd-ci-01
+      domain-id: "${es.fqdn_id}"
+      domain: "${es.fqdn}"
+      a:
+        name: "${environment.id}"
+        address: "${d}{var.compute_instance.${instance.name}.publicIp}"
+
+- proxy_ssl_virtual_host:
+    ${environment.id}:
+      environment: ${environment.id}
+      serverNumber: 1
+      segment: ${segment.id}
+      privateKey: "master_key"
+      domainName: "${environment.id}.${es.fqdn}"
+      domains: "${environment.id}.${es.fqdn}"
+      certname: "${environment.id}.${es.fqdn}"
+      email: "${owner.email}"
+
+- proxy_service:
+    ${environment.id}:
+      environment: "${environment.id}"
+      serverNumber: 1
+      segment: ${segment.id}
+      privateKey: "master_key"
+      proxy_ssl_virtual_host: "${environment.id}"
+      location: "/"
+      passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9998"
+
+- service_endpoint:
+    ${instance.id}-${environment.id}:
+      service: gw-${environment.id}
+      instance: ${instance.id}
+      environment: ${environment.id}
+      segment: ${segment.id}
+      type: console
+      secure: "https://${environment.id}.${es.fqdn}"
+
 - collaboration_channel:
     ${environmentLabel}: {}
   depends_on:
   - "service_discovery_service.rocketchat"
+
 - monitoring_dashboard:
     ${environmentLabel}-environment:
       blueprint: "web-services"
