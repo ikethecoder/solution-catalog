@@ -3,7 +3,7 @@ version: tbd
 resources:
   - service_discovery_service:
       ${instance.id}-fabio:
-        Name: fabio
+        Name: ${environment.id}-fabio
         Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
         Port: 9998
         Tags: [ "${instance.id}", "${environment.id}", "load_balancer" ]
@@ -19,4 +19,4 @@ resources:
         environment: ${environment.id}
         segment: ${segment.id}
         type: console
-        secure: "http://${d}{var.compute_instance.${instance.name}.publicIp}:9998"
+        secure: "https://${environment.id}.${es.fqdn}"
