@@ -276,9 +276,30 @@ resources:
         password: "admin1admin1"
         email: "${owner.email}"
         url: "https://sc.${es.fqdn}"
+  - vault_secret:
+      oauth/clients/gitea:
+        label: "Gitea"
+        client_secret: "11-11-11-11"
+        accessTokenLifetime: 14515200
+        oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
+        oauth2_token: "https://${es.fqdn}/gw/oauth/token"
+        oauth2_profile: "https://${es.fqdn}/gw/me"
+        grants:
+        - "password"
+        - "authorization_code"
+        - "refresh_token"
+        redirectUris:
+        - "https://sc.${es.fqdn}/user/oauth2/ecosystem-gw/callback"
 - boot:first-login:
     gitea:
       wire: "gitea:first-login"
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+- boot:first-set-oauth:
+    gitea:
+      wire: "gitea:first-set-oauth"
       environment: "cd"
       serverNumber: 1
       segment: "ci"
