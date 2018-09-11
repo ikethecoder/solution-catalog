@@ -1,0 +1,11 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name": "gocd"}
+  ],
+  "secrets": [
+    {"name": "oauth/clients/gocd"}
+  ]
+}
