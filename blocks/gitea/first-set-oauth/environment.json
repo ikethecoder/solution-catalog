@@ -7,6 +7,6 @@
   ],
   "secrets": [
     {"name": "oauth/clients/gitea"},
-    {"name": "services/gitea/esadmin/credentials"}
+    {"name": "service/gitea/esadmin/credentials"}
   ]
 }
