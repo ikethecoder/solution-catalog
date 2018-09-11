@@ -3,7 +3,7 @@
 module.exports = {
     'Set OAuth' : function (browser) {
       browser
-        .url(browser.config.gocd.url + "/admin/security/auth_configs")
+        .url(browser.config.gocd.url + "/go/admin/security/auth_configs")
         .waitForElementVisible('body', 1000)
         .waitAndClick('.add-auth-config')
         .setValue("input[data-prop-name='id']", "esgw")

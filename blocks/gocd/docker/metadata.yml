@@ -47,3 +47,11 @@ resources:
         redirectUris:
         - "https://${es.fqdn}/go/plugin/cd.go.authorization.generic/authenticate"
 
+  - vault_secret:
+      users/sp_gocd_admin:
+        email: "${owner.email}"
+
+  - vault_user:
+      sp_gocd_admin:
+        password: 1234
+        policies: "all"
