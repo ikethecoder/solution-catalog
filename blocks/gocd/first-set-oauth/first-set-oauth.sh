@@ -14,7 +14,9 @@ docker run --net=vlan1 --rm \
   -v `pwd`:/screenshots \
   -v `pwd`/blocks/gocd/first-set-oauth/scripts:/tests \
   -e ENV=local \
-  -e APP_LOCAL_GOCD_URL="$GOCD_URL" \
+  -e GOCD_ADDRESS \
+  -e GOCD_PORT \
+  -e USERS_SPGOCDADMIN \
   -e OAUTH_CLIENTS_GOCD_OAUTH2_ROOT_URL \
   -e OAUTH_CLIENTS_GOCD_CLIENT_SECRET \
   canzea/tester:0.1.3
