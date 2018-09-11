@@ -28,11 +28,17 @@ module.exports = {
         .waitAndClick("div[data-value='gitlab']")
         .setValue("#oauth2_key", "gitea")
         .setValue("#oauth2_secret", process.env.OAUTH_CLIENTS_GITEA_CLIENT_SECRET)
-        .waitAndClick("div.oauth2_use_custom_url")
+        .useXpath().waitAndClick("//div[5]/div/label").useCss()
+
         .waitForElementVisible("#oauth2_auth_url")
 
+        .clearValue("#oauth2_auth_url")
         .setValue("#oauth2_auth_url", process.env.OAUTH_CLIENTS_GITEA_OAUTH2_AUTHORIZE)
+
+        .clearValue("#oauth2_token_url")
         .setValue("#oauth2_token_url", process.env.OAUTH_CLIENTS_GITEA_OAUTH2_TOKEN)
+
+        .clearValue("#oauth2_profile_url")
         .setValue("#oauth2_profile_url", process.env.OAUTH_CLIENTS_GITEA_OAUTH2_PROFILE)
 
         .click("button.green")
