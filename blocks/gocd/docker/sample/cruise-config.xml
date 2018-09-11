@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="111">
+    <server artifactsdir="artifacts" siteUrl="https://8281205.xyz/go" agentAutoRegisterKey="b51a3676-2ea3-41fe-8b84-5f1707b1f1e5" webhookSecret="1e3478fa-a432-4919-8237-02be13130545" commandRepositoryLocation="default" serverId="5493b80b-68ed-4a6a-bd25-f9c9626f09bc" tokenGenerationKey="1f47ed54-ed2a-4c77-9ab4-96e80d561ad4">
+        <security>
+            <authConfigs>
+                <authConfig id="gw" pluginId="cd.go.authorization.generic">
+                    <property>
+                        <key>GenericEndpoint</key>
+                        <value>https://8281205.xyz/gw</value>
+                    </property>
+                    <property>
+                        <key>ClientId</key>
+                        <encryptedValue>AES:Y6h82KtFLuFQn+Vbb3bnUA==:z5Q84nM5OuaJfW/ogXrybw==</encryptedValue>
+                    </property>
+                    <property>
+                        <key>ClientSecret</key>
+                        <encryptedValue>AES:4snOmSJtw4ag5d3gBeDTcQ==:FvbUu+cGBCUlZu/BmV0lvQ==</encryptedValue>
+                    </property>
+                </authConfig>
+            </authConfigs>
+        </security>
+    </server>
+    <environments>
+        <environment name="Continuous-Integration" />
+    </environments>
+</cruise>
