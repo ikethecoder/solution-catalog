@@ -20,7 +20,7 @@ resources:
         privateKey: master_key
         proxy_ssl_virtual_host: default
         location: "/go/"
-        passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:8153"
+        passthrough: "https://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:8154"
 
   - service_endpoint:
       ${instance.id}-gocd:
@@ -46,3 +46,4 @@ resources:
         - "refresh_token"
         redirectUris:
         - "https://${es.fqdn}/go/plugin/cd.go.authorization.generic/authenticate"
+
