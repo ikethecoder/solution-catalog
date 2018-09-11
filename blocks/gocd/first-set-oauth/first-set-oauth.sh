@@ -16,7 +16,7 @@ docker run --net=vlan1 --rm \
   -e ENV=local \
   -e GOCD_ADDRESS \
   -e GOCD_PORT \
-  -e USERS_SPGOCDADMIN \
+  -e USERS_SP_GOCD_ADMIN_PASSWORD \
   -e OAUTH_CLIENTS_GOCD_OAUTH2_ROOT_URL \
   -e OAUTH_CLIENTS_GOCD_CLIENT_SECRET \
   canzea/tester:0.1.3

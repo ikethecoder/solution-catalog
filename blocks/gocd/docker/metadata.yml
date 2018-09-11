@@ -49,6 +49,7 @@ resources:
 
   - vault_secret:
       users/sp_gocd_admin:
+        password: 1234
         email: "${owner.email}"
 
   - vault_user:
