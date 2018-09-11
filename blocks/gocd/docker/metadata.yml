@@ -51,3 +51,10 @@ resources:
       services/gocd/sp_gocd_admin/credentials:
         password: "1234"
         email: "${owner.email}"
+
+  - wire:
+      gocd-first-set-oauth-apis:
+        solution: gocd
+        action: first-set-oauth-apis
+        droplet: "${es.tag}-cd-ci-01"
+
