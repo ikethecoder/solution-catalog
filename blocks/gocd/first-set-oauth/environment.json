@@ -7,6 +7,6 @@
   ],
   "secrets": [
     {"name": "oauth/clients/gocd"},
-    {"name": "users/sp_gocd_admin"}
+    {"name": "services/gocd/sp_gocd_admin/credentials"}
   ]
 }
