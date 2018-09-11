@@ -28,7 +28,8 @@ module.exports = {
         .waitAndClick("div[data-value='gitlab']")
         .setValue("#oauth2_key", "gitea")
         .setValue("#oauth2_secret", process.env.OAUTH_CLIENTS_GITEA_CLIENT_SECRET)
-        .waitAndClick("#oauth2_use_custom_url")
+        .waitAndClick("div.oauth2_use_custom_url")
+        .waitForElementVisible("#oauth2_auth_url")
 
         .setValue("#oauth2_auth_url", process.env.OAUTH_CLIENTS_GITEA_OAUTH2_AUTHORIZE)
         .setValue("#oauth2_token_url", process.env.OAUTH_CLIENTS_GITEA_OAUTH2_TOKEN)
