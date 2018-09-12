@@ -3,10 +3,10 @@
   ],
 
   "services": [
-    {"name":"rocketchat"},
-    {"name":"phantomjs"}
+    {"name": "rocketchat"}
   ],
   "secrets": [
-    {"name": "service/rocketchat/esadmin/credentials"}
+    {"name": "service/rocketchat/esadmin/credentials"},
+    {"name": "oauth/clients/rocketchat"}
   ]
 }

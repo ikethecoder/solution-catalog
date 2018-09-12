@@ -7,7 +7,7 @@ driver = Selenium::WebDriver.for :remote, url: ENV['PHANTOMJS_URL']
 driver.manage.delete_all_cookies
 
 target_size = Selenium::WebDriver::Dimension.new(1024, 768)
-# driver.manage.window.size = target_size
+driver.manage.window.size = target_size
 
 user = ENV['SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_USER_NAME']
 pass = ENV['SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_PASSWORD']
@@ -54,9 +54,13 @@ begin
     option = Selenium::WebDriver::Support::Select.new(dropDownMenu)
     option.select_by(:text, 'Private Team')
 
+    # (3) Server Info : Continue
     driver.find_element(:xpath, "//button[@type='submit']").click
 
+    # (4) Register Server Keep Standalone
     driver.find_element(:xpath, "//label[2]/div/span").click
+
+    # (4) Register Server Continue
     driver.find_element(:xpath, "//button[@type='submit']").click
 
     wait.until { driver.find_element(:css, "h1.setup-wizard-info__content-title.setup-wizard-final__box-title").text.include? "Your workspace is ready to use" }

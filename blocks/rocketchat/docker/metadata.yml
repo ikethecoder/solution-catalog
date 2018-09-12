@@ -71,6 +71,7 @@ resources:
         label: "Rocket.Chat"
         client_secret: "11-11-11-11"
         accessTokenLifetime: 14515200
+        oauth2_root: "https://${es.fqdn}/gw"
         oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
         oauth2_token: "https://${es.fqdn}/gw/oauth/token"
         oauth2_profile: "https://${es.fqdn}/gw/me"
@@ -79,7 +80,7 @@ resources:
         - "authorization_code"
         - "refresh_token"
         redirectUris:
-        - "https://chat.${es.fqdn}/oauth2/callback"
+        - "https://chat.${es.fqdn}/_oauth/esgw"
 
   - wire:
       rocketchat-first-set-site-url:
