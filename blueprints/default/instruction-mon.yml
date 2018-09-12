@@ -1,5 +1,15 @@
 ---
 resources:
+- digitalocean_dns:
+    ${environment.id}:
+      environment: "cd"
+      droplet: "${es.tag}-cd-ci-01"
+      domain-id: "${es.fqdn_id}"
+      domain: "${es.fqdn}"
+      a:
+        name: "${environment.id}"
+        address: "${d}{var.compute_instance.${instance.name}.publicIp}"
+
 - vault_secret:
     shell/commands/${instanceId}-bash:
       user: "root"
