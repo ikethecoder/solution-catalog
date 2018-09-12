@@ -60,12 +60,6 @@ resources:
         email: ${owner.email}
         url: "https://chat.${es.fqdn}"
 
-  - wire:
-      rocketchat-first-login:
-        solution: rocketchat
-        action: first-login
-        droplet: "${es.tag}-cd-ci-01"
-
   - vault_secret:
       oauth/clients/rocketchat:
         label: "Rocket.Chat"
@@ -83,7 +77,19 @@ resources:
         - "https://chat.${es.fqdn}/_oauth/esgw"
 
   - wire:
+      rocketchat-first-login:
+        solution: rocketchat
+        action: first-login
+        droplet: "${es.tag}-cd-ci-01"
+
+  - wire:
       rocketchat-first-set-site-url:
         solution: rocketchat
         action: first-set-site-url
+        droplet: "${es.tag}-cd-ci-01"
+
+  - wire:
+      rocketchat-first-set-oauth:
+        solution: rocketchat
+        action: first-set-oauth
         droplet: "${es.tag}-cd-ci-01"
