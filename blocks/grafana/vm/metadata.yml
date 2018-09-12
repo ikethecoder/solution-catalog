@@ -32,6 +32,13 @@ resources:
         passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:3000/"
 
   - vault_secret:
+      service/grafana/esadmin/credentials:
+        user_name: admin
+        password: admin1admin1
+        email: ${owner.email}
+        url: "https://${es.fqdn}/grafana/"
+
+  - vault_secret:
       oauth/clients/grafana:
         label: "Grafana"
         client_secret: "11-11-11-11"
