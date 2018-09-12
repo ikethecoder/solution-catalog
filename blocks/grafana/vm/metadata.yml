@@ -12,31 +12,12 @@ resources:
           interval: 10s
           timeout: 1s
 
-  - service_endpoint:
-      ${instance.id}-grafana:
-        service: grafana
-        instance: ${instance.id}
-        environment: ${environment.id}
-        segment: ${segment.id}
-        type: console
-        secure: "https://${es.fqdn}/grafana"
-
-  - proxy_service:
-      grafana:
-        environment: cd
-        serverNumber: 1
-        segment: ci
-        privateKey: master_key
-        proxy_ssl_virtual_host: default
-        location: "/grafana/"
-        passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:3000/"
-
   - vault_secret:
       service/grafana/esadmin/credentials:
         user_name: admin
         password: admin1admin1
         email: ${owner.email}
-        url: "https://${es.fqdn}/grafana/"
+        url: "https://grafana.mon.${es.fqdn}"
 
   - vault_secret:
       oauth/clients/grafana:
@@ -52,4 +33,45 @@ resources:
         - "authorization_code"
         - "refresh_token"
         redirectUris:
-        - "https://${es.fqdn}/grafana/oauth/callback"
+        - "https://grafana.mon.${es.fqdn}/login/generic_oauth"
+
+  - digitalocean_dns:
+      grafana:
+        environment: "cd"
+        droplet: "${instance.name}"
+        domain-id: "${es.fqdn_id}"
+        domain: "${es.fqdn}"
+        a:
+          name: "grafana.mon"
+          address: "${d}{var.compute_instance.${instance.name}.publicIp}"
+
+  - proxy_ssl_virtual_host:
+      grafana:
+        environment: ${environment.id}
+        serverNumber: 1
+        segment: ${segment.id}
+        privateKey: "master_key"
+        domainName: "grafana.mon.${es.fqdn}"
+        domains: "grafana.mon.${es.fqdn}"
+        certname: "mon.${es.fqdn}"
+        email: "${owner.email}"
+
+  - proxy_service:
+      grafana:
+        environment: ${environment.id}
+        serverNumber: 1
+        segment: ${segment.id}
+        privateKey: "master_key"
+        proxy_ssl_virtual_host: "grafana"
+        location: "/"
+        passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:3000"
+
+
+  - service_endpoint:
+      ${instance.id}-grafana:
+        service: grafana
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://grafana.mon.${es.fqdn}"
