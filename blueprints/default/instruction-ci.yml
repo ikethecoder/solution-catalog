@@ -213,6 +213,7 @@ resources:
       domains: "sc.${es.fqdn}"
       certname: "sc.${es.fqdn}"
       email: "${owner.email}"
+
 - proxy_service:
     sc:
       environment: "cd"
@@ -222,6 +223,25 @@ resources:
       proxy_ssl_virtual_host: "sc"
       location: "/"
       passthrough: "http://localhost:11080/"
+- proxy_ssl_virtual_host:
+    vault:
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+      domainName: "vault.${es.fqdn}"
+      domains: "vault.${es.fqdn}"
+      certname: "vault.${es.fqdn}"
+      email: "${owner.email}"
+- proxy_service:
+    vault:
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+      proxy_ssl_virtual_host: "vault"
+      location: "/"
+      passthrough: "http://localhost:8200/"
 - vault_secret:
     oauth/clients/saas_express:
       wire: "vault:register-secret"
@@ -276,8 +296,15 @@ resources:
         password: "admin1admin1"
         email: "${owner.email}"
         url: "https://sc.${es.fqdn}"
-  - vault_secret:
-      oauth/clients/gitea:
+- vault_secret:
+    oauth/clients/gitea:
+      wire: "vault:register-secret"
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+      key: "oauth/clients/gitea"
+      data:
         label: "Gitea"
         client_secret: "11-11-11-11"
         accessTokenLifetime: 14515200
