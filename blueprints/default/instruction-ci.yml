@@ -425,5 +425,10 @@ resources:
     ${owner.username}:
       password: "${owner.username}_1234"
       policies: "all"
+
+- legacy:
+    fill-endpoints:
+      activity: vs:fill-endpoints
+
 - remote_ssh_key_pair:
     root_id_rsa: {}
