@@ -1,0 +1,11 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+  ],
+  "secrets": [
+    {"name": "service/grafana/esadmin/credentials"},
+    {"name": "oauth/clients/grafana"}
+  ]
+}

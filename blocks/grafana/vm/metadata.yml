@@ -31,3 +31,18 @@ resources:
         location: "/grafana/"
         passthrough: "http://${d}{ecosystem.lookupInstanceByName('${instance.id}').privateIp}:3000/"
 
+  - vault_secret:
+      oauth/clients/grafana:
+        label: "Grafana"
+        client_secret: "11-11-11-11"
+        accessTokenLifetime: 14515200
+        oauth2_root_url: "https://${es.fqdn}/gw"
+        oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
+        oauth2_token: "https://${es.fqdn}/gw/oauth/token"
+        oauth2_profile: "https://${es.fqdn}/gw/me"
+        grants:
+        - "password"
+        - "authorization_code"
+        - "refresh_token"
+        redirectUris:
+        - "https://${es.fqdn}/grafana/oauth/callback"
