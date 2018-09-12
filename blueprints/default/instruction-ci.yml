@@ -289,7 +289,7 @@ resources:
         - "authorization_code"
         - "refresh_token"
         redirectUris:
-        - "https://sc.${es.fqdn}/user/oauth2/ecosystem-gw/callback"
+        - "https://sc.${es.fqdn}/user/oauth2/esgw/callback"
 - boot:first-login:
     gitea:
       wire: "gitea:first-login"
