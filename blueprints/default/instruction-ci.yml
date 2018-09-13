@@ -317,6 +317,13 @@ resources:
         - "refresh_token"
         redirectUris:
         - "https://sc.${es.fqdn}/user/oauth2/esgw/callback"
+- boot:first-config:
+    gitea:
+      wire: "gitea:first-config"
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
 - boot:first-login:
     gitea:
       wire: "gitea:first-login"
