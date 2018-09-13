@@ -13,7 +13,7 @@ docker run --net=vlan1 -d -p 4444:4444 --name selenium -v /dev/shm:/dev/shm sele
 sleep 5
 
 docker run --net=vlan1 --rm \
-  -v `pwd`:/screenshots \
+  -v /tmp:/screenshots \
   -v $CATALOG_LOCATION/blocks/gocd/first-set-oauth-apis/scripts:/tests \
   -e ENV=local \
   -e APP_LOCAL_GOCD_URL="$GOCD_URL" \
