@@ -20,10 +20,11 @@ if parameters.has_key? "version"
     version = parameters['version']
 end
 
-headers = {
-  'Accept' => "application/vnd.go.cd.#{version}+json",
-  'Content-Type' => 'application/json'
-}
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
+
+headers = cli.headers(version)
+
 
 http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 res = http.delete("/go/api/admin/#{type}/#{name}", headers)

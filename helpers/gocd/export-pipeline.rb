@@ -6,10 +6,10 @@ parameters = JSON.parse(ARGV[0])
 
 pipeline = parameters['pipeline']
 
-headers = {
-  'Accept' => 'application/vnd.go.cd.v2+json',
-  'Content-Type' => 'application/json'
-}
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
+
+headers = cli.headers(2)
 
 http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 http.use_ssl = false

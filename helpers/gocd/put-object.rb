@@ -12,11 +12,11 @@ name = parameters[qualifier]['name']
 file = File.open("#{type}-#{name}-etag.txt", "rb")
 etag = file.read
 
-headers = {
-  'Accept' => 'application/vnd.go.cd.v1+json',
-  'Content-Type' => 'application/json',
-  'If-Match' => etag
-}
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
+
+headers = cli.headers(1)
+headers['If-Match'] = etag
 
 file = File.open("#{type}-#{name}.json", "rb")
 payload = file.read

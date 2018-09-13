@@ -9,11 +9,11 @@ pipeline = parameters['pipeline']
 file = File.open("#{pipeline}-etag.txt", "rb")
 etag = file.read
 
-headers = {
-  'Accept' => 'application/vnd.go.cd.v2+json',
-  'Content-Type' => 'application/json',
-  'If-Match' => etag
-}
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
+
+headers = cli.headers(2)
+headers['If-Match'] = etag
 
 file = File.open("#{pipeline}.json", "rb")
 payload = file.read

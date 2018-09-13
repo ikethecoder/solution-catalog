@@ -21,11 +21,11 @@ else
     name = parameters[qualifier]['name']
 end
 
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
 
-headers = {
-  'Accept' => 'application/vnd.go.cd.v3+json',
-  'Content-Type' => 'application/json',
-}
+headers = cli.headers(3)
+
 
 file = File.open("#{Canzea::config[:pwd]}/#{type}-#{name}.json", "rb")
 payload = file.read

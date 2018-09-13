@@ -2,6 +2,7 @@
 
 require 'json'
 require 'net/http'
+
 parameters = JSON.parse(ARGV[0])
 
 qualifier = parameters['qualifier']
@@ -10,10 +11,10 @@ qualifier = parameters['qualifier']
 type = parameters[qualifier]['type']
 name = parameters[qualifier]['name']
 
-headers = {
-  'Accept' => 'application/vnd.go.cd.v2+json',
-  'Content-Type' => 'application/json'
-}
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
+
+headers = cli.headers(2)
 
 http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 http.use_ssl = false

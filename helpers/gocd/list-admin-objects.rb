@@ -10,10 +10,10 @@ qualifier = parameters['qualifier']
 type = parameters[qualifier]['type']
 version = parameters[qualifier]['version']
 
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => "application/vnd.go.cd.v#{version}+json"
-}
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
+
+headers = cli.headers(version)
 
 http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 http.use_ssl = false

@@ -1,4 +1,4 @@
-# ruby helpers/helper-run.rb  gocd put-object '{"qualifier":"A","A":{"type":"environments","name":"Build"}}'
+h# ruby helpers/helper-run.rb  gocd put-object '{"qualifier":"A","A":{"type":"environments","name":"Build"}}'
 
 require 'json'
 require 'net/http'
@@ -12,11 +12,12 @@ name = parameters[qualifier]['name']
 file = File.open("#{type}-#{name}-etag.txt", "rb")
 etag = file.read
 
-headers = {
-  'Accept' => 'application/vnd.go.cd.v2+json',
-  'Content-Type' => 'application/json',
-  'If-Match' => etag
-}
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
+
+headers = cli.headers(2)
+
+headers['If-Match'] = etag
 
 file = File.open("#{type}-#{name}.json", "rb")
 payload = file.read

@@ -14,10 +14,10 @@ else
     name = parameters[qualifier]['name']
 end
 
-headers = {
-  'Accept' => 'application/vnd.go.cd.v1+json',
-  'Content-Type' => 'application/json'
-}
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
+
+headers = cli.headers(1)
 
 http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 res = http.delete("/go/api/admin/#{type}/#{name}", headers)
