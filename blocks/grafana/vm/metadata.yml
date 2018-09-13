@@ -75,3 +75,9 @@ resources:
         segment: ${segment.id}
         type: console
         secure: "https://grafana.mon.${es.fqdn}"
+
+  - wire:
+      grafana-first-config:
+        solution: grafana
+        action: first-config
+        droplet: "${es.tag}-cd-ci-01"
