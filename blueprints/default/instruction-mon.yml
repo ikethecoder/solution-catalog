@@ -95,6 +95,12 @@ resources:
       droplet: "${instanceName}"
       commands: false
 - building_block:
+    ${instanceId}-nginx:
+      role: "loadbalancer"
+      solution: "nginx/docker"
+      droplet: "${instanceName}"
+      commands: false
+- building_block:
     ${instanceId}-grafana:
       role: "monitoring"
       solution: "grafana/vm"
@@ -122,12 +128,6 @@ resources:
     ${instanceId}-auditd:
       role: "audit"
       solution: "auditd"
-      droplet: "${instanceName}"
-      commands: false
-- building_block:
-    ${instanceId}-nginx:
-      role: "loadbalancer"
-      solution: "nginx/docker"
       droplet: "${instanceName}"
       commands: false
 - building_block:
