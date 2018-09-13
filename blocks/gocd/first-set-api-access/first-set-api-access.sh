@@ -14,7 +14,7 @@ sleep 5
 
 docker run --net=vlan1 --rm \
   -v /tmp:/screenshots \
-  -v $CATALOG_LOCATION/blocks/gocd/first-set-oauth-apis/scripts:/tests \
+  -v $CATALOG_LOCATION/blocks/gocd/first-set-api-access/scripts:/tests \
   -e ENV=local \
   -e APP_LOCAL_GOCD_URL="$GOCD_URL" \
   canzea/tester:0.1.3
