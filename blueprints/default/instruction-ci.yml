@@ -241,7 +241,8 @@ resources:
       privateKey: "master_key"
       proxy_ssl_virtual_host: "vault"
       location: "/"
-      passthrough: "http://localhost:8200/"
+      passthrough: "https://vault.service.dc1.consul:8200"
+      template: "vault.tmpl"
 - vault_secret:
     oauth/clients/saas_express:
       wire: "vault:register-secret"
