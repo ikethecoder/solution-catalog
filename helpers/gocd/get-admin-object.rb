@@ -10,11 +10,12 @@ qualifier = parameters['qualifier']
 # Type: environments, pipelines
 type = parameters[qualifier]['type']
 name = parameters[qualifier]['name']
+version = parameters[qualifier]['version']
 
 require_relative './gocd-client.rb'
 cli = GoCDClient.new
 
-headers = cli.headers(6)
+headers = cli.headers(version)
 
 http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 http.use_ssl = false
