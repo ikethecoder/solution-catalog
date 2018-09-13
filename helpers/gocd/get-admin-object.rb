@@ -14,7 +14,7 @@ name = parameters[qualifier]['name']
 require_relative './gocd-client.rb'
 cli = GoCDClient.new
 
-headers = cli.headers(2)
+headers = cli.headers(6)
 
 http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 http.use_ssl = false
