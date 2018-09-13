@@ -6,4 +6,4 @@ systemctl start gocd
 
 
 # Create password access
-python -c "import sha; from base64 import b64encode; print 'sp_gocd_admin:' + b64encode(sha.new('1234').digest())" >> /var/local/gocd/password.properties
+python -c "import sha; from base64 import b64encode; print 'sp_gocd_admin:' + b64encode(sha.new('1234').digest())" >> /var/local/gocd/godata/password.properties
