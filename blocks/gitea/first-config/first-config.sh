@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set +e
+
 canzea --lifecycle=wire \
   --solution=ecosystem \
   --action=config \
