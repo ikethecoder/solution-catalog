@@ -1,0 +1,12 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+    {"name":"gitea"},
+    {"name":"phantomjs"}
+  ],
+  "secrets": [
+    {"name": "service/gitea/esadmin/credentials"}
+  ]
+}
