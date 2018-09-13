@@ -7,5 +7,5 @@ resources:
         instance: ${instance.id}
         environment: ${environment.id}
         segment: ${segment.id}
-        type: service
+        type: console
         secure: "https://vault.${es.fqdn}"
