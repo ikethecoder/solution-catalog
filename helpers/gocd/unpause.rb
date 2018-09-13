@@ -8,9 +8,12 @@ qualifier = parameters['qualifier']
 
 pipeline = parameters[qualifier]['name']
 
-headers = {
-  'Confirm' => 'true'
-}
+require_relative './gocd-client.rb'
+cli = GoCDClient.new
+
+headers = cli.headers(1)
+
+headers['Confirm'] = 'true'
 
 http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 res = http.post("/go/api/pipelines/#{pipeline}/unpause", "", headers)
