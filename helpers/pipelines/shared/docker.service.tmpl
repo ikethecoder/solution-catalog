@@ -1,0 +1,11 @@
+[Unit]
+Description=${service}
+Requires=docker.service
+After=docker.service,network.target
+
+[Service]
+ExecStart=/usr/bin/docker start -a ${dockerContainer}
+ExecStop=/usr/bin/docker stop -t 2 ${dockerContainer}
+
+[Install]
+WantedBy=local.target

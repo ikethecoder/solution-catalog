@@ -1,0 +1,126 @@
+[
+    {
+        "Checks": [
+            {
+                "CheckID": "serfHealth", 
+                "CreateIndex": 196624, 
+                "Definition": {}, 
+                "ModifyIndex": 196624, 
+                "Name": "Serf Health Status", 
+                "Node": "esff51-cd-ci-01", 
+                "Notes": "", 
+                "Output": "Agent alive and reachable", 
+                "ServiceID": "", 
+                "ServiceName": "", 
+                "ServiceTags": [], 
+                "Status": "passing"
+            }, 
+            {
+                "CheckID": "service:live-app-a-01-oss-index-5555", 
+                "CreateIndex": 196624, 
+                "Definition": {}, 
+                "ModifyIndex": 262622, 
+                "Name": "Service 'oss-index' check", 
+                "Node": "esff51-cd-ci-01", 
+                "Notes": "", 
+                "Output": "HTTP GET http://10.136.73.38:5555: 200 OK Output: circle')\n        .data(dataset)\n        .enter()\n        .append(\"circle\")\n        .attr(\"pointer-events\", \"none\")\n        .classed('bp-logo-circle', true)\n        .attr('cx', (d) => d.x )\n        .attr('cy', (d) => d.y )\n        .attr(\"r\", 3);\n\n    \n\n    center = (157-(params['rect'][0]*8))/2;\n    dataset = griddata(params['rect'][0], params['rect'][1], {x: center + 1, y:params['rect'][2], w:8, h:8})\n    var rects = svg\n        .selectAll('rect')\n        .data(dataset)\n        .enter()\n        .append(\"rect\")\n        .attr(\"pointer-events\", \"none\")\n        .classed('bp-logo-rect', true)\n        .attr('x', (d) => d.x )\n        .attr('y', (d) => d.y )\n        .attr(\"width\", 5)\n        .attr(\"height\", 5);\n\n    \n\n}\n\n\n\n\nvar logos = {\n    'saas': { circle: [1,1,10], path: [1,1,30], rect: [1,1,70] },\n    'web-services': { circle: [2,2,10], path: [2,2,30], rect: [2,2,70] },\n    'microservices': { circle: [2,2,10], path: [8,2,30], rect: [2,2,70] },\n    'mobile': { circle: [2,2, 70], path: [4,2,30], rect: [18,1,20] },\n    'iot': { circle: [2,2,70], path: [8,2,30], rect: [18,2,10] },\n    'big-data': { circle: [2,2,10], path: [2,2,30], rect: [18,2,70] },\n    'data-science': { circle: [18,2,10], path: [4,2,30], rect: [8,2,70] },\n    'rpa': { circle: [9,2,10], path: [4,2,30], rect: [2,2,70] },\n    'distributed-ledgers': { circle: [2,2,10], path: [4,2,30], rect: [2,2,70] },\n    'blockchain': { circle: [2,2,10], path: [4,2,30], rect: [2,2,70] },\n    'innovation': { circle: [18,1,8], path: [8,1,30], rect: [18,1,65] },\n    'under-review': { circle: [18,1,8], path: [8,1,30], rect: [18,1,65] },\n}\n\nObject.keys(logos).map ((l) => {\n    bp_logo('logo_' + l, logos[l])\n});\n\nfunction hexagon () {\n    var s = 0.05;\n    var _points = []\n    _points.push(\"M\" + scale(\"300,150\", s))\n    var points = \"225,280 75,280 0,150 75,20 225,20\"\n    var spoints = points.split(' ');\n    for ( var p in spoints ) {\n        _points.push('L' + scale(spoints[p], s))\n    }\n    _points.push('Z')\n    return _points.join(' ')\n}\n\nfunction scale (p, scale) {\n    var sp = p.split(',')\n    var x = Number((1.0 * sp[0]*scale).toFixed(2))\n    var y = Number((1.0 * sp[1]*scale).toFixed(2))\n    return \"\" + x + \",\" + y;\n}\n\nfunction griddata(cols, rows, offset) {\n    var dataset = []\n\n    for ( var r = 0; r < rows; r++) {\n        for ( var c = 0; c < cols; c++) {\n            dataset.push ( { x: (c*offset.w) + offset.x, y: (r*offset.h) + offset.y } )\n        }\n    }\n    return dataset;\n}\n\nfunction returnToOriginalState (svg, objects) {\n  objects\n    .transition()\n    .ease(d3.easeBack)\n    .duration(600)\n    .attr('x', (d) => d.x )\n    .attr('y', (d) => d.y )\n    .attr('cx', (d) => d.x )\n    .attr('cy', (d) => d.y )\n}\n\nfunction returnPathToOriginalState (svg, objects) {\n  objects\n    .transition()\n    .ease(d3.easeBack)\n    .duration(1200)\n    .attr('transform', (d) => 'translate(' + d.x + ',' + d.y + ')')\n}\n\nfunction circleTransition(svg, objects, easement,yPos){\n\n    repeat1();\n\n    function repeat1() {\n      objects\n        .transition()             \n        .ease(easement)           \n        .duration(800)           \n        .attr('cx', (d) => 20 + Math.floor(Math.random()*120))\n        .attr('cy', (d) => 10 + Math.floor(Math.random()*60))\n        .on(\"end\", repeat1);       \n    };\n};\n\nfunction rectTransition(svg, objects, easement,yPos){\n\n    repeat2();\n\n    function repeat2() {\n      objects\n        .transition()             \n        .ease(easement)           \n        .duration(800)           \n        .attr('x', (d) => 20 + Math.floor(Math.random()*120))\n        .attr('y', (d) => 10 + Math.floor(Math.random()*60))\n        .on(\"end\", repeat2);       \n    };\n};\n\nfunction pathTransition(svg, objects, easement){\n\n    repeat3();\n\n    function repeat3() {\n      objects\n        .transition()             \n        .ease(easement)           \n        .duration(800)           \n        .attr('transform', (d) => 'translate(' + (20 + Math.floor(Math.random()*120)) + ',' + (10 + Math.floor(Math.random()*60)) + ')')\n        .on(\"end\", repeat3);       \n    };\n};\n\n\n</script>\n\n\n  </body>\n</html>\n", 
+                "ServiceID": "live-app-a-01-oss-index-5555", 
+                "ServiceName": "oss-index", 
+                "ServiceTags": [
+                    "urlprefix-/oss-index strip=/oss-index"
+                ], 
+                "Status": "passing"
+            }
+        ], 
+        "Node": {
+            "Address": "10.136.38.115", 
+            "CreateIndex": 196624, 
+            "Datacenter": "dc1", 
+            "ID": "74a71279-7267-0885-c58e-1c4bea54d6be", 
+            "Meta": {
+                "consul-network-segment": ""
+            }, 
+            "ModifyIndex": 196625, 
+            "Node": "esff51-cd-ci-01", 
+            "TaggedAddresses": {
+                "lan": "10.136.38.115", 
+                "wan": "10.136.38.115"
+            }
+        }, 
+        "Service": {
+            "Address": "10.136.73.38", 
+            "CreateIndex": 196624, 
+            "EnableTagOverride": false, 
+            "ID": "live-app-a-01-oss-index-5555", 
+            "ModifyIndex": 285716, 
+            "Port": 5555, 
+            "Service": "oss-index", 
+            "Tags": [
+                "urlprefix-/oss-index strip=/oss-index", 
+                "release=A"
+            ]
+        }
+    }, 
+    {
+        "Checks": [
+            {
+                "CheckID": "serfHealth", 
+                "CreateIndex": 196624, 
+                "Definition": {}, 
+                "ModifyIndex": 196624, 
+                "Name": "Serf Health Status", 
+                "Node": "esff51-cd-ci-01", 
+                "Notes": "", 
+                "Output": "Agent alive and reachable", 
+                "ServiceID": "", 
+                "ServiceName": "", 
+                "ServiceTags": [], 
+                "Status": "passing"
+            }, 
+            {
+                "CheckID": "service:stage-app-a-01-oss-index-5555", 
+                "CreateIndex": 196624, 
+                "Definition": {}, 
+                "ModifyIndex": 199571, 
+                "Name": "Service 'oss-index' check", 
+                "Node": "esff51-cd-ci-01", 
+                "Notes": "", 
+                "Output": "Get http://10.136.46.246:5555: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)", 
+                "ServiceID": "stage-app-a-01-oss-index-5555", 
+                "ServiceName": "oss-index", 
+                "ServiceTags": [
+                    "urlprefix-/oss-index strip=/oss-index"
+                ], 
+                "Status": "critical"
+            }
+        ], 
+        "Node": {
+            "Address": "10.136.38.115", 
+            "CreateIndex": 196624, 
+            "Datacenter": "dc1", 
+            "ID": "74a71279-7267-0885-c58e-1c4bea54d6be", 
+            "Meta": {
+                "consul-network-segment": ""
+            }, 
+            "ModifyIndex": 196625, 
+            "Node": "esff51-cd-ci-01", 
+            "TaggedAddresses": {
+                "lan": "10.136.38.115", 
+                "wan": "10.136.38.115"
+            }
+        }, 
+        "Service": {
+            "Address": "10.136.73.38", 
+            "CreateIndex": 196624, 
+            "EnableTagOverride": false, 
+            "ID": "stage-app-a-01-oss-index-5555", 
+            "ModifyIndex": 285335, 
+            "Port": 5555, 
+            "Service": "oss-index", 
+            "Tags": [
+                "urlprefix-/console-ui strip=/console-ui", 
+                "release=B"
+            ]
+        }
+    }
+]

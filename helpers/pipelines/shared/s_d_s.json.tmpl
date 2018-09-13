@@ -1,0 +1,15 @@
+{
+  "service_discovery_service" : {
+    "${SERVICE_PREFIX}-${PORT}" : {
+      "Name" : "${SERVICE}",
+      "Address" : "${PRIVATE_IP}",
+      "Port" : ${PORT},
+      "Tags" : [ "urlprefix-${SITE}/${SERVICE} strip=/${SERVICE}", "${RELEASE}" ],
+      "Check" : {
+        "http" : "http://${PRIVATE_IP}:${PORT}",
+        "interval" : "10s",
+        "timeout" : "1s"
+      }
+    }
+  }
+}
