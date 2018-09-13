@@ -2,11 +2,12 @@
 # Install ERLANG FIRST
 yum -y install wget
 
+yum -y install epel-release
+
 curl -L -s -O https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm
 rpm -Uvh erlang-solutions-1.0-1.noarch.rpm
 rm -f erlang-solutions-1.0-1.noarch.rpm
 
-yum -y install epel-release
 
 # Install
 yum -y install erlang
