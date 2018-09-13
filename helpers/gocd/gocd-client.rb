@@ -9,7 +9,7 @@ class GoCDClient
     end
 
     def findObject (version, type, name)
-        headers = headers()
+        headers = headers(version)
 
         http = Net::HTTP.new("#{ENV['GOCD_ADDRESS']}",8153)
         http.use_ssl = false
@@ -35,7 +35,7 @@ class GoCDClient
    end
 
    def getObject(version, type, id)
-        headers = headers()
+        headers = headers(version)
 
         http = Net::HTTP.new("#{ENV['GOCD_ADDRESS']}",8153)
         http.use_ssl = false
@@ -60,7 +60,7 @@ class GoCDClient
 
    def postObject (version, type, payload)
 
-        headers = headers()
+        headers = headers(version)
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
         res = http.post("#{@api}/#{type}", payload.to_json, headers)
@@ -77,12 +77,8 @@ class GoCDClient
         file = File.open("#{type}-#{id}-etag.txt", "rb")
         etag = file.read
 
-        headers = headers()
-        headers = {
-          'Accept' => "application/vnd.go.cd.v#{version}+json",
-          'Content-Type' => 'application/json',
-          'If-Match' => etag
-        }
+        headers = headers(version)
+        headers['If-Match'] = etag
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
         res = http.put("#{@api}/#{type}/#{id}", payload.to_json, headers)
@@ -97,7 +93,7 @@ class GoCDClient
 
    def deleteObject (version, type, id)
 
-        headers = headers()
+        headers = headers(version)
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
         res = http.delete("#{@api}/#{type}/#{id}", headers)
@@ -114,7 +110,7 @@ class GoCDClient
         file = File.open("#{type}-#{id}-etag.txt", "rb")
         etag = file.read
 
-        headers = headers()
+        headers = headers(version)
         headers['If-Match'] = etag
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
