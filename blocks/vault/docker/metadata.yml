@@ -8,3 +8,4 @@ resources:
         environment: ${environment.id}
         segment: ${segment.id}
         type: service
+        secure: "https://vault.${es.fqdn}"
