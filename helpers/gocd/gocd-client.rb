@@ -130,8 +130,9 @@ class GoCDClient
    def headers (version)
         cred = "sp_gocd_admin:#{ENV['SERVICE_GOCD_SP_GOCD_ADMIN_CREDENTIALS_PASSWORD']}"
 
+        puts "CREDS: #{cred}"
         cred = Base64.strict_encode64(cred)
-
+        puts "CREDS: #{cred}"
         headers = {
           'Accept' => "application/vnd.go.cd.v#{version}+json",
           'Content-Type' => 'application/json',
