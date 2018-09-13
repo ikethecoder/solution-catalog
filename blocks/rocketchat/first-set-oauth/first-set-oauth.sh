@@ -2,6 +2,8 @@
 
 set -e
 
+docker rm -f selenium || true && docker network rm vlan1 || true
+
 docker network create \
   --driver=bridge \
   --subnet=4.1.0.0/16 \
@@ -23,6 +25,6 @@ docker run --net=vlan1 --rm \
   -e OAUTH_CLIENTS_ROCKETCHAT_CLIENT_SECRET \
   canzea/tester:0.1.5
 
-docker rm -f selenium || true
+docker rm -f selenium || true && docker network rm vlan1 || true
 
-docker network rm vlan1
+
