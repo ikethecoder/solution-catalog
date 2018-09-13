@@ -45,8 +45,8 @@ module.exports = {
             .waitAndClick("select[name='Accounts_OAuth_Custom-Esgw-login_style']")
             .waitAndClick("option[value='redirect']")
 
-            .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-id']").execute(setValue, ["input[name='Accounts_OAuth_Custom-Esgw-id']", 'rocketchat')
-            .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-secret']").execute(setValue, ["input[name='Accounts_OAuth_Custom-Esgw-secret']", process.env.OAUTH_CLIENTS_ROCKETCHAT_OAUTH2_CLIENT_SECRET)
+            .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-id']").execute(setValue, ["input[name='Accounts_OAuth_Custom-Esgw-id']", 'rocketchat'])
+            .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-secret']").execute(setValue, ["input[name='Accounts_OAuth_Custom-Esgw-secret']", process.env.OAUTH_CLIENTS_ROCKETCHAT_OAUTH2_CLIENT_SECRET])
 
             .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']").clearValue("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']").setValue("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']", 'Ecosystem Gateway')
 
