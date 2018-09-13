@@ -80,4 +80,4 @@ resources:
       grafana-first-config:
         solution: grafana
         action: first-config
-        droplet: "${es.tag}-cd-ci-01"
+        droplet: "${instance.name}"
