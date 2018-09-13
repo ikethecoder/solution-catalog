@@ -21,7 +21,7 @@ docker run --net=vlan1 --rm \
   -e SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_PASSWORD \
   -e OAUTH_CLIENTS_ROCKETCHAT_OAUTH2_ROOT \
   -e OAUTH_CLIENTS_ROCKETCHAT_CLIENT_SECRET \
-  canzea/tester:0.1.3
+  canzea/tester:0.1.5
 
 docker rm -f selenium || true
 
