@@ -13,7 +13,7 @@ docker run --net=vlan1 -d -p 4444:4444 --name selenium -v /dev/shm:/dev/shm sele
 sleep 5
 
 docker run --net=vlan1 --rm \
-  -v /tmp`:/screenshots \
+  -v /tmp:/screenshots \
   -v $CATALOG_LOCATION/blocks/rocketchat/first-set-oauth/scripts:/tests \
   -e ENV=local \
   -e APP_LOCAL_ROCKETCHAT_URL="$ROCKETCHAT_URL" \
