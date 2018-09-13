@@ -13,7 +13,7 @@ cli = GoCDClient.new
 
 headers = cli.headers(1)
 
-headers['Confirm'] = 'true'
+headers['X-GoCD-Confirm'] = 'true'
 
 http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
 res = http.post("/go/api/pipelines/#{pipeline}/unpause", "", headers)
