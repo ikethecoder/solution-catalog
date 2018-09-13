@@ -1,5 +1,6 @@
 require 'json'
 require 'net/http'
+require 'base64'
 
 class GoCDClient
 
@@ -8,10 +9,7 @@ class GoCDClient
     end
 
     def findObject (version, type, name)
-        headers = {
-          'Content-Type' => 'application/json',
-          'Accept' => "application/vnd.go.cd.v#{version}+json"
-        }
+        headers = headers()
 
         http = Net::HTTP.new("#{ENV['GOCD_ADDRESS']}",8153)
         http.use_ssl = false
@@ -37,10 +35,7 @@ class GoCDClient
    end
 
    def getObject(version, type, id)
-        headers = {
-          'Accept' => "application/vnd.go.cd.v#{version}+json",
-          'Content-Type' => 'application/json'
-        }
+        headers = headers()
 
         http = Net::HTTP.new("#{ENV['GOCD_ADDRESS']}",8153)
         http.use_ssl = false
@@ -65,10 +60,7 @@ class GoCDClient
 
    def postObject (version, type, payload)
 
-        headers = {
-          'Accept' => "application/vnd.go.cd.v#{version}+json",
-          'Content-Type' => 'application/json'
-        }
+        headers = headers()
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
         res = http.post("#{@api}/#{type}", payload.to_json, headers)
@@ -85,6 +77,7 @@ class GoCDClient
         file = File.open("#{type}-#{id}-etag.txt", "rb")
         etag = file.read
 
+        headers = headers()
         headers = {
           'Accept' => "application/vnd.go.cd.v#{version}+json",
           'Content-Type' => 'application/json',
@@ -104,10 +97,7 @@ class GoCDClient
 
    def deleteObject (version, type, id)
 
-        headers = {
-          'Accept' => "application/vnd.go.cd.v#{version}+json",
-          'Content-Type' => 'application/json'
-        }
+        headers = headers()
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
         res = http.delete("#{@api}/#{type}/#{id}", headers)
@@ -124,11 +114,8 @@ class GoCDClient
         file = File.open("#{type}-#{id}-etag.txt", "rb")
         etag = file.read
 
-        headers = {
-          'Accept' => "application/vnd.go.cd.v#{version}+json",
-          'Content-Type' => 'application/json',
-          'If-Match' => etag
-        }
+        headers = headers()
+        headers['If-Match'] = etag
 
         http = Net::HTTP.new(ENV['GOCD_ADDRESS'], ENV['GOCD_PORT'])
         res = http.patch("#{@api}/#{type}/#{id}", payload.to_json, headers)
@@ -138,5 +125,18 @@ class GoCDClient
             raise("Updating #{type} #{id} failed")
         end
 
+   end
+
+   def headers (version)
+        cred = "sp_gocd_admin:#{ENV['SERVICE_GOCD_SP_GOCD_ADMIN_CREDENTIALS_PASSWORD']}"
+
+        cred = Base64.encode64(cred)
+
+        headers = {
+          'Accept' => "application/vnd.go.cd.v#{version}+json",
+          'Content-Type' => 'application/json',
+          'Authorization' => "Basic: #{cred}"
+        }
+        return headers
    end
 end
