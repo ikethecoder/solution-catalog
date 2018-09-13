@@ -55,6 +55,6 @@ resources:
   - wire:
       gocd-first-set-oauth-apis:
         solution: gocd
-        action: first-set-oauth-apis
+        action: first-set-api-access
         droplet: "${es.tag}-cd-ci-01"
 
