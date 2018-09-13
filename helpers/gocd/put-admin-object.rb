@@ -1,4 +1,4 @@
-h# ruby helpers/helper-run.rb  gocd put-object '{"qualifier":"A","A":{"type":"environments","name":"Build"}}'
+# ruby helpers/helper-run.rb  gocd put-object '{"qualifier":"A","A":{"type":"environments","name":"Build"}}'
 
 require 'json'
 require 'net/http'
