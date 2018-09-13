@@ -1,0 +1,295 @@
+{
+  "id": "357b5975.8ef876",
+  "type": "subflow",
+  "name": "Go.CD",
+  "info": "",
+  "in": [
+    {
+      "x": 40,
+      "y": 40,
+      "wires": [
+        {
+          "id": "128e2c17.56c554"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 800,
+      "y": 240,
+      "wires": [
+        {
+          "id": "cf40f271.7485f",
+          "port": 0
+        },
+        {
+          "id": "a6043eb1.ca64f",
+          "port": 0
+        },
+        {
+          "id": "37ae140.50de6ec",
+          "port": 0
+        },
+        {
+          "id": "7be7d4a2.d613bc",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "cf40f271.7485f",
+      "type": "http request",
+      "z": "357b5975.8ef876",
+      "name": "Get",
+      "method": "GET",
+      "ret": "obj",
+      "url": "http://gocd.service.dc1.consul:8153/go/api/admin/{{{type}}}/{{{key}}}",
+      "tls": "",
+      "x": 410,
+      "y": 280,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "128e2c17.56c554",
+      "type": "switch",
+      "z": "357b5975.8ef876",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "cont",
+          "v": "pipeline_pipeline",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "x": 130,
+      "y": 40,
+      "wires": [
+        [
+          "91688f10.fa48b"
+        ]
+      ]
+    },
+    {
+      "id": "d140838f.0eac3",
+      "type": "switch",
+      "z": "357b5975.8ef876",
+      "name": "Pipeline",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:pipeline_pipeline",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:pipeline_pipeline",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:pipeline_pipeline",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 4,
+      "x": 240,
+      "y": 120,
+      "wires": [
+        [
+          "b0c3cf50.a5ee3"
+        ],
+        [
+          "a6043eb1.ca64f"
+        ],
+        [
+          "cf40f271.7485f"
+        ],
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "a6043eb1.ca64f",
+      "type": "http request",
+      "z": "357b5975.8ef876",
+      "name": "Delete",
+      "method": "DELETE",
+      "ret": "obj",
+      "url": "http://gocd.service.dc1.consul:8153/go/api/admin/{{{type}}}/{{{key}}}",
+      "tls": "",
+      "x": 410,
+      "y": 240,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "91688f10.fa48b",
+      "type": "function",
+      "z": "357b5975.8ef876",
+      "name": "Headers",
+      "func": "msg.type = 'pipelines';\nmsg.headers = {\n    'Accept' : 'application/vnd.go.cd.v4+json',\n    'Content-Type' : 'application/json'\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 100,
+      "y": 120,
+      "wires": [
+        [
+          "d140838f.0eac3"
+        ]
+      ]
+    },
+    {
+      "id": "6f98edd3.ebeb24",
+      "type": "http request",
+      "z": "357b5975.8ef876",
+      "name": "Get",
+      "method": "GET",
+      "ret": "txt",
+      "url": "http://gocd.service.dc1.consul:8153/go/api/admin/{{{type}}}/{{{key}}}",
+      "tls": "",
+      "x": 410,
+      "y": 120,
+      "wires": [
+        [
+          "39e95198.7cd00e"
+        ]
+      ]
+    },
+    {
+      "id": "39e95198.7cd00e",
+      "type": "switch",
+      "z": "357b5975.8ef876",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 2,
+      "x": 410,
+      "y": 160,
+      "wires": [
+        [
+          "2c12d8ee.496ad8"
+        ],
+        [
+          "a3267f64.9a68e"
+        ]
+      ]
+    },
+    {
+      "id": "37ae140.50de6ec",
+      "type": "http request",
+      "z": "357b5975.8ef876",
+      "name": "Post",
+      "method": "POST",
+      "ret": "txt",
+      "url": "http://gocd.service.dc1.consul:8153/go/api/admin/{{{type}}}",
+      "tls": "",
+      "x": 670,
+      "y": 200,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "7be7d4a2.d613bc",
+      "type": "http request",
+      "z": "357b5975.8ef876",
+      "name": "Put",
+      "method": "PUT",
+      "ret": "txt",
+      "url": "http://gocd.service.dc1.consul:8153/go/api/admin/{{{type}}}/{{{key}}}",
+      "tls": "",
+      "x": 670,
+      "y": 160,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "2c12d8ee.496ad8",
+      "type": "function",
+      "z": "357b5975.8ef876",
+      "name": "200",
+      "func": "msg.payload = msg.temp;\nmsg.headers = {\n    'Accept' : 'application/vnd.go.cd.v4+json',\n    'Content-Type' : 'application/json',\n    'If-Match' : msg.headers['etag']\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 550,
+      "y": 160,
+      "wires": [
+        [
+          "7be7d4a2.d613bc"
+        ]
+      ]
+    },
+    {
+      "id": "b0c3cf50.a5ee3",
+      "type": "function",
+      "z": "357b5975.8ef876",
+      "name": "",
+      "func": "msg.temp = msg.payload\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 410,
+      "y": 80,
+      "wires": [
+        [
+          "6f98edd3.ebeb24"
+        ]
+      ]
+    },
+    {
+      "id": "a3267f64.9a68e",
+      "type": "function",
+      "z": "357b5975.8ef876",
+      "name": "new",
+      "func": "msg.payload = msg.temp;\nmsg.type = 'pipelines';\nmsg.headers = {\n    'Accept' : 'application/vnd.go.cd.v4+json',\n    'Content-Type' : 'application/json'\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 550,
+      "y": 200,
+      "wires": [
+        [
+          "37ae140.50de6ec"
+        ]
+      ]
+    }
+  ]
+}

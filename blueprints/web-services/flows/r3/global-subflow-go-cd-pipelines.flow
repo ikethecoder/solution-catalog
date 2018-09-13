@@ -1,0 +1,272 @@
+{
+  "id": "109c70f5.f87c1f",
+  "type": "subflow",
+  "name": "Go.CD Pipelines",
+  "info": "",
+  "in": [
+    {
+      "x": 50,
+      "y": 30,
+      "wires": [
+        {
+          "id": "c6260b5f.7a4118"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 692,
+      "y": 160,
+      "wires": [
+        {
+          "id": "3ca185d8.142a5a",
+          "port": 0
+        },
+        {
+          "id": "358aca25.9f25e6",
+          "port": 0
+        },
+        {
+          "id": "ac569094.a791d",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "f09befd2.ba5fa",
+      "type": "function",
+      "z": "109c70f5.f87c1f",
+      "name": "Set Headers",
+      "func": "\ncreds = Buffer.from('sp_gocd_admin' + \":\" + msg.envs.SERVICE_GOCD_SP_GOCD_ADMIN_CREDENTIALS_PASSWORD).toString('base64');\n\nmsg.headers = {\n  'Accept' : \"application/vnd.go.cd.v6+json\",\n  'Content-Type' : 'application/json',\n  'Authorization' : \"Basic \" + creds\n}\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 530,
+      "y": 40,
+      "wires": [
+        [
+          "30ecd882.5b9d28"
+        ]
+      ]
+    },
+    {
+      "id": "c6260b5f.7a4118",
+      "type": "vars",
+      "z": "109c70f5.f87c1f",
+      "name": "CONSUL",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://esdade.canzea.cc/gwadmin/#flow/109c70f5.f87c1f",
+            "ancestorOrigins": {
+            },
+            "origin": "https://esdade.canzea.cc",
+            "protocol": "https:",
+            "host": "esdade.canzea.cc",
+            "hostname": "esdade.canzea.cc",
+            "port": "",
+            "pathname": "/gwadmin/",
+            "search": "",
+            "hash": "#flow/109c70f5.f87c1f"
+          },
+          "jQuery111309588051960709292": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "service",
+          "v": "gocd",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "c792be07.29d4",
+      "url": "https://consul.service.dc1.consul:8080",
+      "x": 230,
+      "y": 31,
+      "wires": [
+        [
+          "407e4c12.066984"
+        ]
+      ]
+    },
+    {
+      "id": "3ca185d8.142a5a",
+      "type": "http request",
+      "z": "109c70f5.f87c1f",
+      "name": "ADD PIPELINE",
+      "method": "POST",
+      "ret": "obj",
+      "url": "{{{envs.GOCD_URL}}}/go/api/admin/pipelines",
+      "tls": "",
+      "x": 432.5,
+      "y": 119,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "92b986e1.794cd8",
+      "type": "switch",
+      "z": "109c70f5.f87c1f",
+      "name": "Pipelines",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:pipeline_pipeline",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:pipeline_pipeline",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:pipeline_pipeline",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 4,
+      "x": 204.5,
+      "y": 137,
+      "wires": [
+        [
+          "3ca185d8.142a5a"
+        ],
+        [
+          "ac569094.a791d"
+        ],
+        [
+          "358aca25.9f25e6"
+        ],
+        [
+          "358aca25.9f25e6"
+        ]
+      ]
+    },
+    {
+      "id": "30ecd882.5b9d28",
+      "type": "link out",
+      "z": "109c70f5.f87c1f",
+      "name": "",
+      "links": [
+        "50fd1185.40a1e"
+      ],
+      "x": 675,
+      "y": 40,
+      "wires": [
+        [
+          "50fd1185.40a1e"
+        ]
+      ]
+    },
+    {
+      "id": "50fd1185.40a1e",
+      "type": "link in",
+      "z": "109c70f5.f87c1f",
+      "name": "",
+      "links": [
+        "30ecd882.5b9d28"
+      ],
+      "x": 94.5,
+      "y": 136,
+      "wires": [
+        [
+          "92b986e1.794cd8"
+        ]
+      ]
+    },
+    {
+      "id": "358aca25.9f25e6",
+      "type": "function",
+      "z": "109c70f5.f87c1f",
+      "name": "ERROR",
+      "func": "msg.payload = {\n    statusCode: 400,\n    message: \"Invalid topic \" + msg.topic\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 431.5,
+      "y": 238,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "ac569094.a791d",
+      "type": "http request",
+      "z": "109c70f5.f87c1f",
+      "name": "DEL PIPELINE",
+      "method": "DELETE",
+      "ret": "txt",
+      "url": "{{{envs.GOCD_URL}}}/go/api/admin/pipelines/{{{key}}}",
+      "tls": "",
+      "x": 433,
+      "y": 161,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "407e4c12.066984",
+      "type": "vars",
+      "z": "109c70f5.f87c1f",
+      "name": "VAULT",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://8281205.xyz/gwadmin/#flow/d773a612.5b2d98",
+            "ancestorOrigins": {
+            },
+            "origin": "https://8281205.xyz",
+            "protocol": "https:",
+            "host": "8281205.xyz",
+            "hostname": "8281205.xyz",
+            "port": "",
+            "pathname": "/gwadmin/",
+            "search": "",
+            "hash": "#flow/d773a612.5b2d98"
+          },
+          "jQuery1113097090410759886": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "secret",
+          "v": "service/gocd/sp_gocd_admin/credentials",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "94073df5.ac54f",
+      "url": "https://vault.service.dc1.consul:8200",
+      "x": 370,
+      "y": 40,
+      "wires": [
+        [
+          "f09befd2.ba5fa"
+        ]
+      ]
+    }
+  ]
+}

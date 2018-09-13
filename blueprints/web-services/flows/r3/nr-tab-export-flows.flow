@@ -1,0 +1,182 @@
+{
+  "id": "83d02af1.8866b8",
+  "label": "Export Flows",
+  "nodes": [
+    {
+      "id": "804bc58.5f2f338",
+      "type": "subflow:9223e50a.f92628",
+      "z": "83d02af1.8866b8",
+      "x": 342.3333435058594,
+      "y": 119.44444274902344,
+      "wires": [
+        [
+          "86db2614.109ef8"
+        ]
+      ],
+      "subflow": "9223e50a.f92628"
+    },
+    {
+      "id": "18b981e3.d65c5e",
+      "type": "inject",
+      "z": "83d02af1.8866b8",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 149.5,
+      "y": 119,
+      "wires": [
+        [
+          "804bc58.5f2f338"
+        ]
+      ]
+    },
+    {
+      "id": "86db2614.109ef8",
+      "type": "debug",
+      "z": "83d02af1.8866b8",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 540.5,
+      "y": 120,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "aeb0c9df.0e1318",
+      "type": "http in",
+      "z": "83d02af1.8866b8",
+      "name": "",
+      "url": "/export_flows",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 129.00000762939453,
+      "y": 207.00000190734863,
+      "wires": [
+        [
+          "a95a4ebe.9a328"
+        ]
+      ]
+    },
+    {
+      "id": "a95a4ebe.9a328",
+      "type": "subflow:9223e50a.f92628",
+      "z": "83d02af1.8866b8",
+      "x": 370.0555623372395,
+      "y": 207.55555894639758,
+      "wires": [
+        [
+          "f19ce22e.e02a7"
+        ]
+      ],
+      "subflow": "9223e50a.f92628"
+    },
+    {
+      "id": "56bfe2c8.1f579c",
+      "type": "http in",
+      "z": "83d02af1.8866b8",
+      "name": "",
+      "url": "/export_grafana",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 139.5,
+      "y": 257.5555419921875,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "9dded12f.d544a",
+      "type": "http response",
+      "z": "83d02af1.8866b8",
+      "name": "",
+      "x": 611.5,
+      "y": 348,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "700a035c.b926ac",
+      "type": "http in",
+      "z": "83d02af1.8866b8",
+      "name": "",
+      "url": "/file/:id",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 126,
+      "y": 345,
+      "wires": [
+        [
+          "6e24002f.b58b3"
+        ]
+      ]
+    },
+    {
+      "id": "ca7600d3.8aa78",
+      "type": "http response",
+      "z": "83d02af1.8866b8",
+      "name": "",
+      "x": 676,
+      "y": 240,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "6e24002f.b58b3",
+      "type": "function",
+      "z": "83d02af1.8866b8",
+      "name": "Set Filename",
+      "func": "msg.filename = \"/home/pm2user/.ecosystem-catalog/catalog/flows-\" + msg.req.params.id + \".zip\"\nmsg.headers = {\n    \"Content-Type\": \"application/octet-stream\"\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 308,
+      "y": 348,
+      "wires": [
+        [
+          "8b4dc32e.99841"
+        ]
+      ]
+    },
+    {
+      "id": "8b4dc32e.99841",
+      "type": "file in",
+      "z": "83d02af1.8866b8",
+      "name": "",
+      "filename": "",
+      "format": "",
+      "x": 469,
+      "y": 348,
+      "wires": [
+        [
+          "9dded12f.d544a"
+        ]
+      ]
+    },
+    {
+      "id": "f19ce22e.e02a7",
+      "type": "function",
+      "z": "83d02af1.8866b8",
+      "name": "",
+      "func": "msg.payload = {\n    \"file-id\": msg.payload.trim()\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 541.5,
+      "y": 239,
+      "wires": [
+        [
+          "ca7600d3.8aa78"
+        ]
+      ]
+    }
+  ]
+}

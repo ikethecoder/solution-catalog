@@ -111,7 +111,7 @@ resources:
       serverNumber: 1
       segment: "ci"
       privateKey: "master_key"
-      source: "flows/r1"
+      source: "flows/r3"
 - building_block:
     ${instanceId}-unzip:
       role: "workarounds"

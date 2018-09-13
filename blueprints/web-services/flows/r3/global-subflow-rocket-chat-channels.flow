@@ -1,0 +1,553 @@
+{
+  "id": "4fc6c84.9271b38",
+  "type": "subflow",
+  "name": "Rocket.Chat Channels",
+  "info": "",
+  "in": [
+    {
+      "x": 50,
+      "y": 30,
+      "wires": [
+        {
+          "id": "93d4f6fd.453358"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 831,
+      "y": 335,
+      "wires": [
+        {
+          "id": "c84a327b.f1cc",
+          "port": 0
+        },
+        {
+          "id": "777696ff.8bd858",
+          "port": 0
+        },
+        {
+          "id": "aad2cb53.5f59f8",
+          "port": 0
+        },
+        {
+          "id": "220cc5d7.760e4a",
+          "port": 0
+        },
+        {
+          "id": "7d64214a.92502",
+          "port": 0
+        },
+        {
+          "id": "2d347082.b7fcb",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "28aa0d23.ba8a42",
+      "type": "http request",
+      "z": "4fc6c84.9271b38",
+      "name": "Login",
+      "method": "POST",
+      "ret": "obj",
+      "url": "http://rocketchat.service.dc1.consul:8780/api/login",
+      "tls": "",
+      "x": 363,
+      "y": 108,
+      "wires": [
+        [
+          "3a657acb.d24796"
+        ]
+      ]
+    },
+    {
+      "id": "ece03586.523688",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Prep Creds",
+      "func": "msg.message = msg.payload;\nmsg.params = msg.req.params;\nmsg.payload = {\n    \"user\": msg.envs.SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_USER_NAME,\n    \"password\": msg.envs.SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_PASSWORD\n};\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 203,
+      "y": 110,
+      "wires": [
+        [
+          "28aa0d23.ba8a42"
+        ]
+      ]
+    },
+    {
+      "id": "3a657acb.d24796",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Set Headers",
+      "func": "token = msg.payload.data.authToken;\nuserId = msg.payload.data.userId;\nmsg.req_headers = {\n    \"X-Auth-Token\": token,\n    \"X-User-Id\": userId,\n    'Content-Type': 'application/json'\n};\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 532,
+      "y": 110,
+      "wires": [
+        [
+          "32bdae49.975b12"
+        ]
+      ]
+    },
+    {
+      "id": "e2231f34.974c5",
+      "type": "http request",
+      "z": "4fc6c84.9271b38",
+      "name": "Create Channel",
+      "method": "POST",
+      "ret": "obj",
+      "url": "{{{envs.ROCKETCHAT_URL}}}/api/v1/channels.create",
+      "tls": "",
+      "x": 483,
+      "y": 164,
+      "wires": [
+        [
+          "18739691.dce0e9"
+        ]
+      ]
+    },
+    {
+      "id": "aac89601.9d9d38",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Create Channel",
+      "func": "//msg.topic = msg.payload.channels[0]._id;\nmsg.headers = msg.req_headers;\nmsg.payload = {\n    \"name\": msg.key\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 310,
+      "y": 173,
+      "wires": [
+        [
+          "e2231f34.974c5"
+        ]
+      ]
+    },
+    {
+      "id": "32bdae49.975b12",
+      "type": "switch",
+      "z": "4fc6c84.9271b38",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:collaboration_channel",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:collaboration_channel",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 3,
+      "x": 132.5,
+      "y": 169,
+      "wires": [
+        [
+          "aac89601.9d9d38"
+        ],
+        [
+          "fa42936c.62197"
+        ],
+        [
+          "777696ff.8bd858"
+        ]
+      ]
+    },
+    {
+      "id": "c84a327b.f1cc",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Success",
+      "func": "msg.payload = '';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 788.5,
+      "y": 140,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "e0645b4a.9fceb8",
+      "type": "catch",
+      "z": "4fc6c84.9271b38",
+      "name": "",
+      "scope": null,
+      "x": 589.5,
+      "y": 457,
+      "wires": [
+        [
+          "aad2cb53.5f59f8"
+        ]
+      ]
+    },
+    {
+      "id": "aad2cb53.5f59f8",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Error",
+      "func": "msg.payload = {\n    \"error\": msg.message\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 718,
+      "y": 457,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "18739691.dce0e9",
+      "type": "switch",
+      "z": "4fc6c84.9271b38",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 641,
+      "y": 160,
+      "wires": [
+        [
+          "c84a327b.f1cc"
+        ],
+        [
+          "220cc5d7.760e4a"
+        ]
+      ]
+    },
+    {
+      "id": "777696ff.8bd858",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Invalid Topic",
+      "func": "msg.payload = {\n    \"error\": \"Unknown topic \" + msg.topic\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 598.5,
+      "y": 418,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "220cc5d7.760e4a",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Graceful OK",
+      "func": "if (msg.payload.errorType == \"error-duplicate-channel-name\") {\n    msg.statusCode = 200;\n    msg.payload = {\n        \"warning\": \"Channel already created.\"\n    }\n} else {\n    msg.statusCode = 400;\n    msg.payload = {\n        \"source\": \"rocketchat\",\n        \"message\": msg.payload\n    }\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 667,
+      "y": 242,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "ff7d9b64.77e428",
+      "type": "http request",
+      "z": "4fc6c84.9271b38",
+      "name": "Get Channel",
+      "method": "GET",
+      "ret": "obj",
+      "url": "http://localhost:8780/api/v1/channels.info?roomName={{{key}}}",
+      "tls": "",
+      "x": 143,
+      "y": 308,
+      "wires": [
+        [
+          "69e87996.4aca08",
+          "fbd80a31.632598"
+        ]
+      ]
+    },
+    {
+      "id": "85872bfb.e398c8",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Transform",
+      "func": "msg.payload = {\n    \"roomId\": msg.payload.channel._id\n}\nmsg.headers = msg.req_headers;\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 190,
+      "y": 425,
+      "wires": [
+        [
+          "3f6eaea.4fbc852"
+        ]
+      ]
+    },
+    {
+      "id": "3f6eaea.4fbc852",
+      "type": "http request",
+      "z": "4fc6c84.9271b38",
+      "name": "Delete Channel",
+      "method": "POST",
+      "ret": "obj",
+      "url": "http://localhost:8780/api/v1/channels.delete",
+      "tls": "",
+      "x": 375,
+      "y": 426,
+      "wires": [
+        [
+          "3511fd0b.a12e52"
+        ]
+      ]
+    },
+    {
+      "id": "69e87996.4aca08",
+      "type": "debug",
+      "z": "4fc6c84.9271b38",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 279.5,
+      "y": 308,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "fa42936c.62197",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Set Headers",
+      "func": "//msg.topic = msg.payload.channels[0]._id;\nmsg.headers = msg.req_headers;\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 198,
+      "y": 253,
+      "wires": [
+        [
+          "ff7d9b64.77e428"
+        ]
+      ]
+    },
+    {
+      "id": "3511fd0b.a12e52",
+      "type": "switch",
+      "z": "4fc6c84.9271b38",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 452,
+      "y": 508,
+      "wires": [
+        [
+          "7d64214a.92502"
+        ],
+        [
+          "2d347082.b7fcb"
+        ]
+      ]
+    },
+    {
+      "id": "7d64214a.92502",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Graceful OK",
+      "func": "\nmsg.statusCode = 200;\nmsg.payload = {\n    \"source\": \"rocketchat\",\n    \"message\": msg.payload\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 611,
+      "y": 511,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "2d347082.b7fcb",
+      "type": "function",
+      "z": "4fc6c84.9271b38",
+      "name": "Return error",
+      "func": "\n    msg.statusCode = 400;\n    msg.payload = {\n        \"source\": \"rocketchat\",\n        \"message\": msg.payload\n    }\n    return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 608,
+      "y": 559,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "fbd80a31.632598",
+      "type": "switch",
+      "z": "4fc6c84.9271b38",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 88,
+      "y": 366,
+      "wires": [
+        [
+          "85872bfb.e398c8"
+        ],
+        [
+          "2d347082.b7fcb"
+        ]
+      ]
+    },
+    {
+      "id": "e1055459.5ed2d8",
+      "type": "comment",
+      "z": "4fc6c84.9271b38",
+      "name": "DELETE and UPDATE",
+      "info": "DELETE:\nhttps://ese00c.canzea.cc/gw/api/gateway/channel/Integration2\n\nUPDATE:\nhttps://ese00c.canzea.cc/gw/api/gateway/channel\n\n{\n\t\"channel\": {\n\t\t\"name\": \"Integration\"\n\t}\n}\n",
+      "x": 137.5,
+      "y": 496,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "93d4f6fd.453358",
+      "type": "vars",
+      "z": "4fc6c84.9271b38",
+      "name": "CONSUL",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://es110c.canzea.cc/gw/admin/#flow/4fc6c84.9271b38",
+            "ancestorOrigins": {
+            },
+            "origin": "https://es110c.canzea.cc",
+            "protocol": "https:",
+            "host": "es110c.canzea.cc",
+            "hostname": "es110c.canzea.cc",
+            "port": "",
+            "pathname": "/gw/admin/",
+            "search": "",
+            "hash": "#flow/4fc6c84.9271b38"
+          },
+          "jQuery111305858287869232": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "service",
+          "v": "rocketchat",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "c792be07.29d4",
+      "url": "https://consul.service.dc1.consul:8080",
+      "x": 198,
+      "y": 37,
+      "wires": [
+        [
+          "92b17b2b.624c98"
+        ]
+      ]
+    },
+    {
+      "id": "92b17b2b.624c98",
+      "type": "vars",
+      "z": "4fc6c84.9271b38",
+      "name": "VAULT",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://8281205.xyz/gwadmin/#flow/d773a612.5b2d98",
+            "ancestorOrigins": {
+            },
+            "origin": "https://8281205.xyz",
+            "protocol": "https:",
+            "host": "8281205.xyz",
+            "hostname": "8281205.xyz",
+            "port": "",
+            "pathname": "/gwadmin/",
+            "search": "",
+            "hash": "#flow/d773a612.5b2d98"
+          },
+          "jQuery1113097090410759886": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "secret",
+          "v": "service/rocketchat/esadmin/credentials",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "94073df5.ac54f",
+      "url": "https://vault.service.dc1.consul:8200",
+      "x": 382,
+      "y": 43,
+      "wires": [
+        [
+          "ece03586.523688"
+        ]
+      ]
+    }
+  ]
+}

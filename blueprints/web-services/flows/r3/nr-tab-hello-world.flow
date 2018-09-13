@@ -1,0 +1,49 @@
+{
+  "id": "9ace1721.e4f068",
+  "label": "Hello World",
+  "nodes": [
+    {
+      "id": "a7d9dd62.50bbc",
+      "type": "http in",
+      "z": "9ace1721.e4f068",
+      "name": "",
+      "url": "/bounce",
+      "method": "post",
+      "swaggerDoc": "",
+      "x": 110,
+      "y": 80,
+      "wires": [
+        [
+          "cdea1387.fb334"
+        ]
+      ]
+    },
+    {
+      "id": "cdea1387.fb334",
+      "type": "function",
+      "z": "9ace1721.e4f068",
+      "name": "",
+      "func": "msg.payload = \"hi\"\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 330,
+      "y": 80,
+      "wires": [
+        [
+          "20526f0f.db87c"
+        ]
+      ]
+    },
+    {
+      "id": "20526f0f.db87c",
+      "type": "http response",
+      "z": "9ace1721.e4f068",
+      "name": "",
+      "x": 510,
+      "y": 80,
+      "wires": [
+
+      ]
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "id": "9ed8bb48.699498",
+  "type": "subflow",
+  "name": "Rocket.Chat Users",
+  "info": "",
+  "in": [
+    {
+      "x": 50,
+      "y": 30,
+      "wires": [
+        {
+          "id": "624b89c0.987a98"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 931.1110696792603,
+      "y": 292.2222023010254,
+      "wires": [
+        {
+          "id": "472f5778.caef18",
+          "port": 0
+        },
+        {
+          "id": "7256c98d.8beac8",
+          "port": 0
+        },
+        {
+          "id": "74617625.e54388",
+          "port": 0
+        },
+        {
+          "id": "f9469784.1fa678",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "8f5dbf2d.fd6b1",
+      "type": "http request",
+      "z": "9ed8bb48.699498",
+      "name": "Login",
+      "method": "POST",
+      "ret": "obj",
+      "url": "http://localhost:8780/api/login",
+      "tls": "",
+      "x": 414.3888702392578,
+      "y": 109.99999237060547,
+      "wires": [
+        [
+          "fc402e1a.0369b"
+        ]
+      ]
+    },
+    {
+      "id": "624b89c0.987a98",
+      "type": "function",
+      "z": "9ed8bb48.699498",
+      "name": "Prep Creds",
+      "func": "msg.message = msg.payload;\nmsg.params = msg.req.params;\nmsg.payload = {\n    \"user\": \"admin\",\n    \"password\": \"admin1admin\"\n};\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 254.3888702392578,
+      "y": 111.99999237060547,
+      "wires": [
+        [
+          "8f5dbf2d.fd6b1"
+        ]
+      ]
+    },
+    {
+      "id": "fc402e1a.0369b",
+      "type": "function",
+      "z": "9ed8bb48.699498",
+      "name": "Set Headers",
+      "func": "token = msg.payload.data.authToken;\nuserId = msg.payload.data.userId;\nmsg.req_headers = {\n    \"X-Auth-Token\": token,\n    \"X-User-Id\": userId,\n    'Content-Type': 'application/json'\n};\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 583.3888702392578,
+      "y": 111.99999237060547,
+      "wires": [
+        [
+          "6e1a8708.c5fc78"
+        ]
+      ]
+    },
+    {
+      "id": "7a2c803d.753e2",
+      "type": "http request",
+      "z": "9ed8bb48.699498",
+      "name": "Create User",
+      "method": "POST",
+      "ret": "txt",
+      "url": "http://localhost:8780/api/v1/users.create",
+      "tls": "",
+      "x": 521.3888702392578,
+      "y": 198.99999237060547,
+      "wires": [
+        [
+          "14530014.402bc"
+        ]
+      ]
+    },
+    {
+      "id": "6e284823.de3f48",
+      "type": "function",
+      "z": "9ed8bb48.699498",
+      "name": "Create User",
+      "func": "//msg.topic = msg.payload.channels[0]._id;\nmsg.headers = msg.req_headers;\nmsg.payload = msg.message;\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 337.3888702392578,
+      "y": 198.99999237060547,
+      "wires": [
+        [
+          "7a2c803d.753e2"
+        ]
+      ]
+    },
+    {
+      "id": "6e1a8708.c5fc78",
+      "type": "switch",
+      "z": "9ed8bb48.699498",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "create-user",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 183.8888702392578,
+      "y": 170.99999237060547,
+      "wires": [
+        [
+          "6e284823.de3f48"
+        ],
+        [
+          "74617625.e54388"
+        ]
+      ]
+    },
+    {
+      "id": "472f5778.caef18",
+      "type": "function",
+      "z": "9ed8bb48.699498",
+      "name": "Success",
+      "func": "msg.payload = '';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 819.8888702392578,
+      "y": 191.99999237060547,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "f7137cc3.5c541",
+      "type": "catch",
+      "z": "9ed8bb48.699498",
+      "name": "",
+      "scope": null,
+      "x": 640.8888702392578,
+      "y": 458.99999237060547,
+      "wires": [
+        [
+          "f9469784.1fa678"
+        ]
+      ]
+    },
+    {
+      "id": "f9469784.1fa678",
+      "type": "function",
+      "z": "9ed8bb48.699498",
+      "name": "Error",
+      "func": "msg.payload = {\n    \"error\": msg.message\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 769.3888702392578,
+      "y": 458.99999237060547,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "14530014.402bc",
+      "type": "switch",
+      "z": "9ed8bb48.699498",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 679.3888702392578,
+      "y": 198.99999237060547,
+      "wires": [
+        [
+          "472f5778.caef18"
+        ],
+        [
+          "7256c98d.8beac8"
+        ]
+      ]
+    },
+    {
+      "id": "7256c98d.8beac8",
+      "type": "function",
+      "z": "9ed8bb48.699498",
+      "name": "Error",
+      "func": "msg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 810.3888702392578,
+      "y": 229.99999237060547,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "74617625.e54388",
+      "type": "function",
+      "z": "9ed8bb48.699498",
+      "name": "Invalid Topic",
+      "func": "msg.payload = {\n    \"error\": \"Unknown topic \" + msg.topic\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 649.8888702392578,
+      "y": 419.99999237060547,
+      "wires": [
+        [
+
+        ]
+      ]
+    }
+  ]
+}
