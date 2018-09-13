@@ -3,6 +3,11 @@
 module.exports = {
     'Set Rocket.Chat OAuth' : function (browser) {
       console.log("URL = "+browser.config.rocketchat.url + "/user/login");
+
+      var setValue =  function(sel, value) {
+        $(sel).val(value).change();
+      };
+
       browser
         .url(browser.config.rocketchat.url + "/home")
         .waitForElementVisible('body', 1000)
@@ -40,8 +45,8 @@ module.exports = {
             .waitAndClick("select[name='Accounts_OAuth_Custom-Esgw-login_style']")
             .waitAndClick("option[value='redirect']")
 
-            .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-id']").clearValue("input[name='Accounts_OAuth_Custom-Esgw-id']").setValue("input[name='Accounts_OAuth_Custom-Esgw-id']", 'rocketchat')
-            .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-secret']").clearValue("input[name='Accounts_OAuth_Custom-Esgw-secret']").setValue("input[name='Accounts_OAuth_Custom-Esgw-secret']", process.env.OAUTH_CLIENTS_ROCKETCHAT_OAUTH2_CLIENT_SECRET)
+            .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-id']").execute(setValue, ["input[name='Accounts_OAuth_Custom-Esgw-id']", 'rocketchat')
+            .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-secret']").execute(setValue, ["input[name='Accounts_OAuth_Custom-Esgw-secret']", process.env.OAUTH_CLIENTS_ROCKETCHAT_OAUTH2_CLIENT_SECRET)
 
             .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']").clearValue("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']").setValue("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']", 'Ecosystem Gateway')
 
