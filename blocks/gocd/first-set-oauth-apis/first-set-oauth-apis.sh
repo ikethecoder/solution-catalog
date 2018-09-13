@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 docker network create \
   --driver=bridge \
   --subnet=4.1.0.0/16 \
@@ -12,7 +14,7 @@ sleep 5
 
 docker run --net=vlan1 --rm \
   -v `pwd`:/screenshots \
-  -v `pwd`/blocks/gocd/first-set-oauth-apis/scripts:/tests \
+  -v $CATALOG_LOCATION/blocks/gocd/first-set-oauth-apis/scripts:/tests \
   -e ENV=local \
   -e APP_LOCAL_GOCD_URL="$GOCD_URL" \
   canzea/tester:0.1.3

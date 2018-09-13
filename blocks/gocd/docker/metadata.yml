@@ -48,7 +48,7 @@ resources:
         - "https://${es.fqdn}/go/plugin/cd.go.authorization.generic/authenticate"
 
   - vault_secret:
-      services/gocd/sp_gocd_admin/credentials:
+      service/gocd/sp_gocd_admin/credentials:
         password: "1234"
         email: "${owner.email}"
 
