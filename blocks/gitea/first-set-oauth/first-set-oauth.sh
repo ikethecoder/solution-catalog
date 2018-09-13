@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 docker network create \
   --driver=bridge \
   --subnet=4.1.0.0/16 \
@@ -11,8 +13,8 @@ docker run --net=vlan1 -d -p 4444:4444 --name selenium -v /dev/shm:/dev/shm sele
 sleep 5
 
 docker run --net=vlan1 --rm \
-  -v `pwd`:/screenshots \
-  -v `pwd`/blocks/gitea/first-set-oauth/scripts:/tests \
+  -v /tmp:/screenshots \
+  -v $CATALOG_LOCATION/blocks/gitea/first-set-oauth/scripts:/tests \
   -e ENV=local \
   -e APP_LOCAL_GITEA_URL="$GITEA_URL" \
   -e SERVICE_GITEA_ESADMIN_CREDENTIALS_USER_NAME \
