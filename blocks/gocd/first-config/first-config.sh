@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+canzea --lifecycle=wire \
+  --solution=ecosystem \
+  --action=config \
+  --args='{"source":"{{CATALOG_LOCATION}}/blocks/gocd/first-config/config/gocd-websocket-notifier.conf","target":"/var/local/gocd/home/gocd-websocket-notifier.conf","instanceId":"cd-reg-01","solution":"gocd"}'
+
+systemctl restart gocd-server
+
