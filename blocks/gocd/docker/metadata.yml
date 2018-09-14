@@ -59,3 +59,8 @@ resources:
         action: first-set-api-access
         droplet: "${es.tag}-cd-ci-01"
 
+  - wire:
+      gocd-first-config:
+        solution: gocd
+        action: first-config
+        droplet: "${instance.name}"
