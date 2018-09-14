@@ -12,6 +12,7 @@ params = JSON.parse(ARGV[0])
 pc = PushConfig.new "instances/#{params['instanceId']}/"
 
 source = params['source']
+target = params['target']
 # target = File.realpath(params['target'])
 instanceId = params['instanceId']
 solution = params['solution']
