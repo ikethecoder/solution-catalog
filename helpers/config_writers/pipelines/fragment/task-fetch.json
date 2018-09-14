@@ -1,6 +1,7 @@
 {
   "type": "fetch",
   "attributes": {
+    "artifact_origin": "external",
     "run_if": [
       "passed"
     ],
