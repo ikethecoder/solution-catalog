@@ -372,6 +372,7 @@ resources:
       - vault_secret:
           gitea/root:
             token: "${db['source_control_token-esadmin'].sha1}"
+            host: "sc.${es.fqdn}"
 - source_control_repository:
     ecosystems:
       wire: "ecosystem-resources:process-resources"
