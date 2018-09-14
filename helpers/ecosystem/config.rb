@@ -5,14 +5,14 @@ require 'trace-runner'
 require 'commands/push-config'
 require 'template-runner'
 
-# Config --args='{"src":"abc","dest"}'
+# canzea --lifecycle=wire --solution=ecosystem --action=config --args='{"source":"blocks/grafana/vm/config/grafana.ini","target":"/etc/grafana/grafana.ini","instanceId":"mon-mon-01","solution":"grafana"}'
 
 params = JSON.parse(ARGV[0])
 
 pc = PushConfig.new "instances/#{params['instanceId']}/"
 
 source = params['source']
-target = File.realpath(params['target'])
+# target = File.realpath(params['target'])
 instanceId = params['instanceId']
 solution = params['solution']
 
@@ -21,7 +21,6 @@ if File.exists? target
 end
 
 t = Template.new
-
 
 content = t.process(source, params)
 
