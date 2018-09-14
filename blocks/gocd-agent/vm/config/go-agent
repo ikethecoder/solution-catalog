@@ -1,0 +1,8 @@
+export GO_SERVER={{GOCD_ADDRESS}}
+export GO_PORT=8153
+
+export AGENT_WORK_DIR=/var/lib/${SERVICE_NAME:-go-agent}
+
+DAEMON=Y
+VNC=N
+export JAVA_HOME="/usr/java/jre1.8.0_131" # SET_BY_GO_INSTALLER__DONT_REMOVE

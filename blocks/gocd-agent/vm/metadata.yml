@@ -1,0 +1,8 @@
+name: gocd
+version: v18.7.0
+resources:
+  - wire:
+      gocd-agent-first-config:
+        solution: gocd-agent
+        action: first-config
+        droplet: "${instance.name}"
