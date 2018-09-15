@@ -1,2 +1,21 @@
 name: rabbitmq
 version: 3.7.7-management
+resources:
+  - service_discovery_service:
+      ${instance.id}-rabbitmq:
+        Name: ${environment.id}-rabbitmq
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 5672
+        Tags: [ "${instance.id}", "${environment.id}", "messaging" ]
+#        Check:
+#          script: "nc ${d}{var.compute_instance.${instance.name}.privateIp} 5672"
+#          interval: 10s
+#          timeout: 1s
+
+  - service_endpoint:
+      ${instance.id}-rabbitmq:
+        service: rabbitmq
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: service
