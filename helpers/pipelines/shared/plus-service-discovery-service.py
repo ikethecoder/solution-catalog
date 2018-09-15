@@ -42,7 +42,7 @@ ports = []
 parameters = {
     'SERVICE': service,
     'SERVICE_PREFIX': servicePrefix,
-    'SITE': 'a.site',
+    'SITE': '',
     'RELEASE': 'release-A',
     'PRIVATE_IP':ip,
     'PATH': healthPath
