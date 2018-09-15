@@ -1,7 +1,7 @@
 {
   "type": "fetch",
   "attributes": {
-    "artifact_origin": "external",
+    "artifact_origin": "gocd",
     "run_if": [
       "passed"
     ],
