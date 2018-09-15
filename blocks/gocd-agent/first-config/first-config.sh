@@ -14,5 +14,4 @@ canzea --lifecycle=wire \
 
 chmod 644 /var/go/.git*
 
-systemctl restart gocd-agent
-
+systemctl stop go-agent && systemctl start go-agent

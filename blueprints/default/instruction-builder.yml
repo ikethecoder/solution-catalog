@@ -51,6 +51,18 @@ resources:
       droplet: "${es.id}-cd-builder-01"
       commands: false
 - building_block:
+    ${instanceId}-sshd:
+      role: "workarounds"
+      solution: "sshd"
+      droplet: "${instanceName}"
+      commands: false
+- building_block:
+    ${instanceId}-canzea-upgrade:
+      role: "workarounds"
+      solution: "canzea-upgrade"
+      droplet: "${instanceName}"
+      commands: false
+- building_block:
     ${instanceId}-filebeat:
       role: "monitoring"
       solution: "filebeat"
