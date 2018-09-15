@@ -26,7 +26,7 @@ class JavaMavenBuild
         t = Template.new
 
         stageTemplate = getFragmentPath("stage.json")
-        jobTemplate = getFragmentPath("job.json")
+        jobTemplate = getFragmentPath("job-zerodowntime.json")
         taskTemplate1 = getFragmentPath("task-fetch.json")
         taskTemplate2 = getFragmentPath("task-docker-canzea.json")
         taskTemplate3 = getFragmentPath("task-sudo-register-service.json")

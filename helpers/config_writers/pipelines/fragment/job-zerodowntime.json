@@ -1,0 +1,20 @@
+{
+  "name": "defaultJob",
+  "run_instance_count": null,
+  "timeout": 0,
+  "environment_variables": [
+    {
+      "secure": false,
+      "name": "GW_URL",
+      "value": ""
+    },
+    {
+      "secure": false,
+      "name": "GW_TOKEN",
+      "value": ""
+    }
+  ],
+  "resources": [],
+  "tasks": [],
+  "artifacts": []
+}
