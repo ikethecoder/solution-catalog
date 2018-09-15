@@ -1,0 +1,11 @@
+{
+  "type": "exec",
+  "attributes": {
+    "run_if": [
+      "passed"
+    ],
+    "command": "/usr/bin/python",
+    "arguments": {{{arguments}}},
+    "working_directory": "{{workdir}}"
+  }
+}
