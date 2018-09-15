@@ -75,10 +75,10 @@ class JSNpmBuild
         # job['tasks'].push (task)
 
         prefix = "#{attributes['instanceId']}-#{attributes['project']}"
-        component = "#{attributes['project']}-deploy"
+        component = "#{attributes['project']}"
         wd = "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components"
         newTask(job,wd,["shared/prepare-env-vars.py",component,prefix,"release"].concat("#{attributes['ports']}".split(',')))
-        newTask(job,wd,["shared/command.py","plus-service-discovery-service",component,"#{attributes['instanceIp']}", prefix])
+        newTask(job,wd,["shared/command.py","plus-service-discovery-service","all",component,"#{attributes['instanceIp']}", prefix])
         newTask(job,wd,["shared/command.py","graceful-shutdown","up",prefix])
         newTask(job,wd,["shared/command.py","create-docker","up",component,prefix])
         newTask(job,wd,["shared/command.py","register-service","up",component,prefix])
