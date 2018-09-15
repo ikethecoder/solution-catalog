@@ -35,11 +35,13 @@ for x in range(3, len(sys.argv)):
 file = open("env.json", "r")
 env = json.loads(file.read())
 
-print(env)
+print(json.dumps(env, sort_keys = True, indent = 4))
+
 # Use the 'portSet' to determine which instances to include in the parameter list
-for serviceId in env[portSet]:
-    port = env['ports'][serviceId]
-    argv.append("%s" % port)
+if portSet in env:
+  for serviceId in env[portSet]:
+      port = env['ports'][serviceId]
+      argv.append("%s" % port)
 
 print(argv)
 exec_deploy_command (command, argv)

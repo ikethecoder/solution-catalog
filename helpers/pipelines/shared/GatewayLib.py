@@ -5,15 +5,16 @@ class Gateway:
 
     def __init__(self):
 
-      self.gw_url = os.environ['GW_URL'] # https://esff51.canzea.net
+      self.gw_url = os.environ['GW_URL']
       token = os.environ['GW_TOKEN']
 
-      self.url = "%s/gw/api/health/%s" % self.gw_url,os.environ['DEPLOY_ID']
+      self.url = "%s/gw/api/health/%s" % (self.gw_url, os.environ['DEPLOY_ID'])
       self.headers = {'Authorization': "Bearer %s" % token}
 
     def getServices (self):
 
         print("Getting %s" % self.url)
+        print("AuthHdr %s" % self.headers['Authorization'])
         response = requests.get(self.url, headers=self.headers)
         print(response)
 
