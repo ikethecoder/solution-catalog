@@ -6,7 +6,7 @@
       "Port" : ${PORT},
       "Tags" : [ "urlprefix-${SITE}/${SERVICE} strip=/${SERVICE}", "${RELEASE}" ],
       "Check" : {
-        "http" : "http://${PRIVATE_IP}:${PORT}",
+        "http" : "http://${PRIVATE_IP}:${PORT}/${PATH}",
         "interval" : "10s",
         "timeout" : "1s"
       }

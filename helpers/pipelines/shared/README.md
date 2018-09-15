@@ -26,6 +26,7 @@ Steps:
 Environment Variables:
 - GW_URL : Flows Gateway URL
 - GW_TOKEN : Bearer Token to access the flows gateway
+- DEPLOY_ID : Needs to match the 'service'
 
 ## prepare-env-vars
 
@@ -62,6 +63,7 @@ Environment Variables:
 | service | Service |
 | ip | IP Address of the service that is being added |
 | idBase | Prepended to the port to represent the service name on Consul |
+| healthPath | Health path |
 | ports... | Ports Auto-populated by command.py based on filter |
 
 
@@ -91,14 +93,13 @@ python graceful-shutdown.py live-app-01-oss-index 3001 3002
 - Creates a docker instance for each item in the "UP" list
 - create-docker /[ID...] /[Port...]
 
-````
-python create-docker.py oss-index-deploy live-app-01-oss-index 3001 3002
-````
-
 | Argument | Description |
 |---|---|
 | filter | which services to pick for docker creation - up or down or all |
+| dockerImage | Name of the docker image |
 | idBase | Prepended to the port to represent the service name on Consul |
+| internalPort | Internal port that the service is listening to
+| dockerArgs | Single string containing the docker args
 | ports... | Ports Auto-populated by command.py based on filter |
 
 ## register-service
@@ -114,6 +115,7 @@ python register-service.py oss-index-deploy live-app-01-oss-index 3001 3002
 | Argument | Description |
 |---|---|
 | filter | which services to pick for systemd registration and starting - up or down or all |
+| dockerImage | Name of the docker image |
 | idBase | Prepended to the port to represent the service name on Consul |
 | ports... | Ports Auto-populated by command.py based on filter |
 

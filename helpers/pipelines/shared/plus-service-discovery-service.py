@@ -10,9 +10,9 @@ from GatewayLib import Gateway
 service = sys.argv[1]
 ip = sys.argv[2]
 servicePrefix = sys.argv[3]
+healthPath = sys.argv[4]
 
 gw = Gateway()
-
 
 def exec_process_resources(file):
     # Submit the resources to the Gateway
@@ -44,9 +44,10 @@ parameters = {
     'SERVICE_PREFIX': servicePrefix,
     'SITE': 'a.site',
     'RELEASE': 'release-A',
-    'PRIVATE_IP':ip
+    'PRIVATE_IP':ip,
+    'PATH': healthPath
 }
-for x in range(4, len(sys.argv)):
+for x in range(5, len(sys.argv)):
     ports.append(sys.argv[x])
 
 exec_prepare_resource_set (service, ports, parameters)
