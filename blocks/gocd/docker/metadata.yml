@@ -54,7 +54,7 @@ resources:
         email: "${owner.email}"
 
   - wire:
-      gocd-first-set-oauth-apis:
+      gocd-first-set-api-access:
         solution: gocd
         action: first-set-api-access
         droplet: "${es.tag}-cd-ci-01"

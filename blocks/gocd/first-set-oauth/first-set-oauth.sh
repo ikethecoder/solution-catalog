@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -e
+
+docker rm -f selenium || true && docker network rm vlan1 || true
+
 docker network create \
   --driver=bridge \
   --subnet=4.1.0.0/16 \
