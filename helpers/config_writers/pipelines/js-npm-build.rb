@@ -58,7 +58,7 @@ class JSNpmBuild
         # DOCKER BUILD
         taskTemplateDockerCli = getFragmentPath("task-docker-cli.json")
 
-        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "--build-arg", "ENV_NAME=#{attributes['environmentName']}", "--build-arg", "ECOSYSTEM=#{ENV['ECOSYSTEM']}", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
+        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "--build-arg", "ENV_NAME=#{attributes['environmentName']}", "--build-arg", "CONFIG=es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
         job['tasks'].push (task)
 
         # TASK
@@ -76,12 +76,15 @@ class JSNpmBuild
 
         prefix = "#{attributes['instanceId']}-#{attributes['project']}"
         component = "#{attributes['project']}"
+        checkPath = "#{attributes['checkPath']}"
+        internalPort = "#{attributes['internal_port']}"
+        artifact = "#{attributes['project']}-deploy"
         wd = "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components"
         newTask(job,wd,["shared/prepare-env-vars.py",component,prefix,"release"].concat("#{attributes['ports']}".split(',')))
-        newTask(job,wd,["shared/command.py","plus-service-discovery-service","all",component,"#{attributes['instanceIp']}", prefix])
+        newTask(job,wd,["shared/command.py","plus-service-discovery-service","all",component,"#{attributes['instanceIp']}", prefix, checkPath])
         newTask(job,wd,["shared/command.py","graceful-shutdown","up",prefix])
-        newTask(job,wd,["shared/command.py","create-docker","up",component,prefix])
-        newTask(job,wd,["shared/command.py","register-service","up",component,prefix])
+        newTask(job,wd,["shared/command.py","create-docker","up",artifact,prefix,internalPort,""])
+        newTask(job,wd,["shared/command.py","register-service","up",artifact,prefix])
         newTask(job,wd,["shared/command.py","graceful-shutdown","down",prefix])
 
         stage['jobs'].push(job)
