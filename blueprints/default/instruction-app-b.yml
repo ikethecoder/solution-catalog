@@ -140,7 +140,7 @@ resources:
 - building_block:
     ${instanceId}-rabbitmq:
       role: "messaging"
-      solution: "rabbitmq"
+      solution: "rabbitmq/docker"
       droplet: "${instanceName}"
       commands: false
 - building_block:
