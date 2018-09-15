@@ -8,7 +8,7 @@ class Gateway:
       self.gw_url = os.environ['GW_URL'] # https://esff51.canzea.net
       token = os.environ['GW_TOKEN']
 
-      self.url = "%s/gw/api/health/oss-index" % self.gw_url
+      self.url = "%s/gw/api/health/%s" % self.gw_url,os.environ['DEPLOY_ID']
       self.headers = {'Authorization': "Bearer %s" % token}
 
     def getServices (self):
