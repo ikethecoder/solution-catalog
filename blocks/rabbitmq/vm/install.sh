@@ -2,7 +2,7 @@
 # Install ERLANG FIRST
 yum -y install wget
 
-yum update
+yum -y update
 
 yum -y install epel-release
 
