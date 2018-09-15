@@ -13,6 +13,7 @@ class Gateway:
 
     def getServices (self):
 
+        print("Getting %s" % self.url)
         response = requests.get(self.url, headers=self.headers)
         print(response)
 
