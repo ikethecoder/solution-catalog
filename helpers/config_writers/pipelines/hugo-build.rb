@@ -67,7 +67,7 @@ class HugoBuild
         newTask(job,wd,["shared/prepare-env-vars.py",component,prefix,"release"].concat("#{attributes['ports']}".split(',')))
         newTask(job,wd,["shared/command.py","plus-service-discovery-service","all",component,"#{attributes['instanceIp']}", prefix, checkPath])
         newTask(job,wd,["shared/command.py","graceful-shutdown","up",prefix])
-        newTask(job,wd,["shared/command.py","create-docker","up",artifact,prefix,internalPort,""])
+        newTask(job,wd,["shared/command.py","create-docker","up",artifact,prefix,internalPort,"-e,A=1"])
         newTask(job,wd,["shared/command.py","register-service","up",artifact,prefix])
         newTask(job,wd,["shared/command.py","graceful-shutdown","down",prefix])
 

@@ -58,15 +58,29 @@ class JavaGradleBuild
         task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "", "arguments" => ["build", "--build-arg", "ENV_NAME=#{attributes['environmentName']}", "-f", "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}/Deploy.Dockerfile", "--tag", "#{attributes['project']}-deploy", "."] })
         job['tasks'].push (task)
 
-        taskTemplateSh = getFragmentPath("task-sh.json")
-        task = JSON.parse(t.process taskTemplateSh, {"workdir" => "", "arguments" => ["-c", "/usr/bin/docker rm -f #{attributes['project']}-deploy || true"] })
-        job['tasks'].push (task)
+        prefix = "#{attributes['instanceId']}-#{attributes['project']}"
+        component = "#{attributes['project']}"
+        checkPath = "#{attributes['checkPath']}"
+        internalPort = "#{attributes['internal_port']}"
+        artifact = "#{attributes['project']}-deploy"
+        wd = "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components"
+        newTask(job,wd,["shared/prepare-env-vars.py",component,prefix,"release"].concat("#{attributes['ports']}".split(',')))
+        newTask(job,wd,["shared/command.py","plus-service-discovery-service","all",component,"#{attributes['instanceIp']}", prefix, checkPath])
+        newTask(job,wd,["shared/command.py","graceful-shutdown","up",prefix])
+        newTask(job,wd,["shared/command.py","create-docker","up",artifact,prefix,internalPort,"-e,A=1"])
+        newTask(job,wd,["shared/command.py","register-service","up",artifact,prefix])
+        newTask(job,wd,["shared/command.py","graceful-shutdown","down",prefix])
 
-        task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:#{attributes['internal_port']}", "-e", "GO_PIPELINE_LABEL", "#{attributes['project']}-deploy"] })
-        job['tasks'].push (task)
 
-        task = JSON.parse(t.process taskTemplate3, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "project" => "#{project}", "service" => "docker.service" })
-        job['tasks'].push (task)
+        #taskTemplateSh = getFragmentPath("task-sh.json")
+        #task = JSON.parse(t.process taskTemplateSh, {"workdir" => "", "arguments" => ["-c", "/usr/bin/docker rm -f #{attributes['project']}-deploy || true"] })
+        #job['tasks'].push (task)
+
+        #task = JSON.parse(t.process taskTemplateDockerCli, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "arguments" => ["create", "--name", "#{attributes['project']}-deploy", "-p", "#{attributes['port']}:#{attributes['internal_port']}", "-e", "GO_PIPELINE_LABEL", "#{attributes['project']}-deploy"] })
+        #job['tasks'].push (task)
+
+        #task = JSON.parse(t.process taskTemplate3, {"workdir" => "es-catalog/ecosystems/#{ENV['ECOSYSTEM']}/components/#{attributes['project']}", "project" => "#{project}", "service" => "docker.service" })
+        #job['tasks'].push (task)
 
         stage['jobs'].push(job)
 
@@ -79,6 +93,13 @@ class JavaGradleBuild
         }
         return JSON.pretty_generate( item )
 
+    end
+
+    def newTask (job,workdir,args)
+        t = Template.new
+        taskTemplatePython = getFragmentPath("task-python.json")
+        task = JSON.parse(t.process taskTemplatePython, {"workdir" => workdir, "arguments" => args })
+        job['tasks'].push (task)
     end
 
     def createPipeline (parameters)
