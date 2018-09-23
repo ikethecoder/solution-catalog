@@ -307,7 +307,7 @@ resources:
       key: "oauth/clients/gitea"
       data:
         label: "Gitea"
-        client_secret: "11-11-11-11"
+        client_secret: "${utils.uuid}"
         accessTokenLifetime: 14515200
         oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
         oauth2_token: "https://${es.fqdn}/gw/oauth/token"
