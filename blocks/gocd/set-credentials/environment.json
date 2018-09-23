@@ -1,0 +1,11 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+  ],
+  "secrets": [
+    {"name": "service/gocd/sp_gocd_admin/credentials"},
+    {"name": "gitea/root"}
+  ]
+}
