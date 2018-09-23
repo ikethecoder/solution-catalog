@@ -294,7 +294,7 @@ resources:
       key: "service/gitea/esadmin/credentials"
       data:
         user_name: "esadmin"
-        password: "${util.randomPassword}"
+        password: "${utils.randomPassword}"
         email: "${owner.email}"
         url: "https://sc.${es.fqdn}"
 - vault_secret:
