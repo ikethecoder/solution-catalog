@@ -432,7 +432,7 @@ resources:
       email: "${owner.email}"
 - vault_user:
     ${owner.username}:
-      password: "${d}${utils.randomPassword}"
+      password: "${utils.randomPassword}"
       policies: "all"
 
 - legacy:

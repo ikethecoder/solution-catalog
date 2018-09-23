@@ -34,7 +34,7 @@ resources:
   - vault_secret:
       oauth/clients/gocd:
         label: "Go.CD"
-        client_secret: "${d}${utils.uuid}"
+        client_secret: "${utils.uuid}"
         accessTokenLifetime: 14515200
         oauth2_root_url: "https://${es.fqdn}/gw"
         oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"

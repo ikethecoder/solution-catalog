@@ -56,7 +56,7 @@ resources:
   - vault_secret:
       service/gitea/esadmin/credentials:
         user_name: esadmin
-        password: ${d}${utils.randomPassword}
+        password: ${utils.randomPassword}
         email: aidan@canzea.com
         url: "https://sc.${es.fqdn}"
 
@@ -70,7 +70,7 @@ resources:
   - vault_secret:
       oauth/clients/gitea:
         label: "Gitea"
-        client_secret: "${d}${utils.uuid}"
+        client_secret: "${utils.uuid}"
         accessTokenLifetime: 14515200
         oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
         oauth2_token: "https://${es.fqdn}/gw/oauth/token"
