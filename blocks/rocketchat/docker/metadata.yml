@@ -56,14 +56,14 @@ resources:
   - vault_secret:
       service/rocketchat/esadmin/credentials:
         user_name: esadmin
-        password: ${utils.randomPassword}
+        password: ${d}${utils.randomPassword}
         email: ${owner.email}
         url: "https://chat.${es.fqdn}"
 
   - vault_secret:
       oauth/clients/rocketchat:
         label: "Rocket.Chat"
-        client_secret: "${utils.uuid}"
+        client_secret: "${d}${utils.uuid}"
         accessTokenLifetime: 14515200
         oauth2_root: "https://${es.fqdn}/gw"
         oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"

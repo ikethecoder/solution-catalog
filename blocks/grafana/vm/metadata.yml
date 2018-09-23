@@ -15,7 +15,7 @@ resources:
   - vault_secret:
       service/grafana/esadmin/credentials:
         user_name: admin
-        password: ${utils.randomPassword}
+        password: ${d}${utils.randomPassword}
         email: ${owner.email}
         url: "https://grafana.mon.${es.fqdn}"
 
