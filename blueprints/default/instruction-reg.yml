@@ -19,6 +19,8 @@ resources:
       solution: "ruby"
       droplet: "${instanceName}"
       commands: true
+  depends_on:
+  - "#previous"
 - building_block:
     ${instanceId}-ruby-gems:
       role: "workarounds"
@@ -120,7 +122,7 @@ resources:
 - collaboration_channel:
     Continuous-Delivery: {}
   depends_on:
-  - "wire.rocketchat-first-login"
+  - "wire.rocketchat-first-set-oauth"
 - pipeline_environment:
     Continuous-Delivery: {}
   depends_on:
