@@ -120,8 +120,8 @@ resources:
 - collaboration_channel:
     Continuous-Delivery: {}
   depends_on:
-  - "service_discovery_service.rocketchat"
+  - "wire.rocketchat-first-login"
 - pipeline_environment:
     Continuous-Delivery: {}
   depends_on:
-  - "service_discovery_service.gocd"
+  - "wire.gocd-first-config"
