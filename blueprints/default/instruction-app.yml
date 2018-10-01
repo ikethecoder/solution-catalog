@@ -16,6 +16,8 @@ resources:
       solution: "docker"
       droplet: "${instanceName}"
       commands: true
+  depends_on:
+  - "#previous"
 - building_block:
     ${instanceId}-ruby:
       role: "workarounds"

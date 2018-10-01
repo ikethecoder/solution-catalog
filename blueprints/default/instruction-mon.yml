@@ -9,7 +9,6 @@ resources:
       a:
         name: "${environment.id}"
         address: "${d}{var.compute_instance.${instance.name}.publicIp}"
-
 - vault_secret:
     shell/commands/${instanceId}-bash:
       user: "root"
@@ -34,6 +33,8 @@ resources:
       solution: "ruby"
       droplet: "${instanceName}"
       commands: true
+  depends_on:
+  - "#previous"
 - building_block:
     ${instanceId}-ruby-gems:
       role: "workarounds"

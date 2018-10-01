@@ -14,6 +14,8 @@ resources:
       solution: "ruby"
       droplet: "${instanceName}"
       commands: true
+  depends_on:
+  - "#previous"
 - building_block:
     ${instanceId}-ruby-gems:
       role: "workarounds"
