@@ -1,0 +1,20 @@
+---
+resources:
+- vault_secret:
+    shell/commands/${instanceId}-bash:
+      user: "root"
+      host: "${d}{ecosystem.lookupInstanceByName('${instanceId}').privateIp}"
+      auth: "publickey"
+      identity: "/home/pm2user/ssl/keys/root_id_rsa"
+      command: "bash"
+      interactive: true
+  depends_on:
+  - "compute_instance.${instanceName}"
+- building_block:
+    ${instanceId}-docker:
+      role: "container"
+      solution: "docker"
+      droplet: "${instanceName}"
+      commands: true
+  depends_on:
+  - "#previous"
