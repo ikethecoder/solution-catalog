@@ -108,6 +108,15 @@ resources:
       solution: "gocd-agent/vm"
       droplet: "${instanceName}"
       commands: false
+  depends_on:
+  - "service_discovery_service.gocd"
+- wire:
+    ${instanceId}-go:
+      solution: "users"
+      action: "configure-go"
+      droplet: "${instanceName}"
+  depends_on:
+  - "building_block.${instanceId}-gocd-agent"
 - building_block:
     ${instanceId}-maven:
       role: "build"
@@ -116,15 +125,14 @@ resources:
       commands: false
 - pipeline_environment:
     ${environmentLabel}: {}
+  depends_on:
+  - "service_discovery_service.gocd"
 - pipeline_agent:
     ${instanceName}:
       agent: "${instanceName}"
       environment: "${environmentLabel}"
-- wire:
-    ${instanceId}-go:
-      solution: "users"
-      action: "configure-go"
-      droplet: "${instanceName}"
+  depends_on:
+  - "service_discovery_service.gocd"
 - building_block:
     ${instanceId}-mongodb:
       role: "documentdatabase"
@@ -161,3 +169,5 @@ resources:
       template: "monitoring_dashboard-integration-environment"
       title: "${environmentLabel} Environment"
       description: "System Metrics for the ${environmentLabel}"
+  depends_on:
+  - "service_discovery_service.grafana"
