@@ -20,7 +20,7 @@ template = %{
 
     # Add a record to the domain
   {{#a}}
-    resource "digitalocean_record" "{{name}}" {
+    resource "digitalocean_record" "{{#tf_name}}name{{/tf_name}}" {
       domain = "${digitalocean_domain.{{domain-id}}.name}"
       type   = "A"
       name   = "{{name}}"
@@ -29,7 +29,7 @@ template = %{
   {{/a}}
 
   {{#cname}}
-    resource "digitalocean_record" "{{name}}" {
+    resource "digitalocean_record" "{{#tf_name}}name{{/tf_name}}" {
       domain = "${digitalocean_domain.{{domain-id}}.name}"
       type   = "CNAME"
       name   = "{{name}}"
