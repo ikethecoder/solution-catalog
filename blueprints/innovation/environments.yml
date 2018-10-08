@@ -233,8 +233,8 @@ environments:
             product: "VCPU2_M4GB_D80GB"
             image: "centos-7-x64"
             qty: 1
-            segment: "app"
-            label: "App"
+            segment: "app-a"
+            label: "App A"
             tags: ["std"]
           -
             product: "VCPU1_M2GB_D50GB"
