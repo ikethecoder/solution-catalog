@@ -1,0 +1,10 @@
+{
+  "id": "484da96d.3150f8",
+  "type": "websocket-client",
+  "z": "",
+  "path": "ws://$HOSTNAME/api/ws/canzea",
+  "wholemsg": "false",
+  "_users": [
+
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "id": "7aed40ca.900be",
+  "label": "Pipelines 3",
+  "nodes": [
+    {
+      "id": "22c490bd.7ac23",
+      "type": "http in",
+      "z": "7aed40ca.900be",
+      "name": "",
+      "url": "/set-key-value",
+      "method": "put",
+      "swaggerDoc": "",
+      "x": 155.5,
+      "y": 111,
+      "wires": [
+        [
+          "9deef954.73bd38",
+          "db98cb0e.a27748"
+        ]
+      ]
+    },
+    {
+      "id": "be4a7e41.274e1",
+      "type": "http response",
+      "z": "7aed40ca.900be",
+      "name": "",
+      "x": 575.5,
+      "y": 284,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "9deef954.73bd38",
+      "type": "function",
+      "z": "7aed40ca.900be",
+      "name": "",
+      "func": "msg.topic = 'set-key-value';\nmsg.key = msg.payload.key;\nmsg.payload = msg.payload.data;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 369.5,
+      "y": 112,
+      "wires": [
+        [
+          "b7c8670c.bbd988"
+        ]
+      ]
+    },
+    {
+      "id": "b7c8670c.bbd988",
+      "type": "subflow:a6b9a798.463af8",
+      "z": "7aed40ca.900be",
+      "x": 483.5,
+      "y": 188,
+      "wires": [
+        [
+          "be4a7e41.274e1"
+        ]
+      ],
+      "subflow": "a6b9a798.463af8"
+    },
+    {
+      "id": "27eef299.cb3a4e",
+      "type": "catch",
+      "z": "7aed40ca.900be",
+      "name": "",
+      "scope": null,
+      "x": 108.5,
+      "y": 353,
+      "wires": [
+        [
+          "db98cb0e.a27748"
+        ]
+      ]
+    },
+    {
+      "id": "db98cb0e.a27748",
+      "type": "debug",
+      "z": "7aed40ca.900be",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 247.5,
+      "y": 353,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "50b5493a.abdbb8",
+      "type": "comment",
+      "z": "7aed40ca.900be",
+      "name": "Sample CURL",
+      "info": "curl -v -H \"Authorization: Bearer 858b01ac65893ad97ba5b2ced893019b51f3bcc2\" -X PUT https://ese00c.canzea.cc/gw/api/set-key-value -d '{\"key\":\"components/gs-actuator-service-5/cd_pipelines/intg/name\", \"data\":\"gs-actuator-service-5-master-Integration-deploy\"}' -H \"Content-Type:application/json\"\n\ncurl -v -H \"Authorization: Bearer 858b01ac65893ad97ba5b2ced893019b51f3bcc2\" -X PUT https://ese00c.canzea.cc/gw/api/set-key-value -d '{\"key\":\"components/gs-actuator-service-5/cd_pipelines/intg/lastDeploy\", \"data\":\"1501527359510\"}' -H \"Content-Type:application/json\"\n",
+      "x": 123.5,
+      "y": 430,
+      "wires": [
+
+      ]
+    }
+  ]
+}

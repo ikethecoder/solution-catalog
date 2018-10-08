@@ -1,0 +1,263 @@
+[
+  {
+    "id": "692f4929.e69968",
+    "type": "websocket-client",
+    "z": "",
+    "path": "ws://gocd.service.dc1.consul:8887",
+    "wholemsg": "false",
+    "_users": [
+      "f1eff82e.669eb8"
+    ]
+  },
+  {
+    "id": "d8eec1bf.7984a",
+    "type": "ui_base",
+    "theme": {
+      "name": "theme-dark",
+      "lightTheme": {
+        "default": "#0094CE",
+        "baseColor": "#0094CE",
+        "baseFont": "Helvetica Neue",
+        "edited": true,
+        "reset": false
+      },
+      "darkTheme": {
+        "default": "#097479",
+        "baseColor": "#097479",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "edited": true,
+        "reset": false
+      },
+      "customTheme": {
+        "name": "",
+        "default": "#4B7930",
+        "baseColor": "#4B7930",
+        "baseFont": "Helvetica Neue"
+      },
+      "themeState": {
+        "base-color": {
+          "default": "#097479",
+          "value": "#097479",
+          "edited": false
+        },
+        "page-titlebar-backgroundColor": {
+          "value": "#097479",
+          "edited": false
+        },
+        "page-backgroundColor": {
+          "value": "#111111",
+          "edited": false
+        },
+        "page-sidebar-backgroundColor": {
+          "value": "#000000",
+          "edited": false
+        },
+        "group-textColor": {
+          "value": "#0eb8c0",
+          "edited": false
+        },
+        "group-borderColor": {
+          "value": "#555555",
+          "edited": false
+        },
+        "group-backgroundColor": {
+          "value": "#333333",
+          "edited": false
+        },
+        "widget-textColor": {
+          "value": "#eeeeee",
+          "edited": false
+        },
+        "widget-backgroundColor": {
+          "value": "#097479",
+          "edited": false
+        },
+        "widget-borderColor": {
+          "value": "#333333",
+          "edited": false
+        },
+        "base-font": {
+          "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+        }
+      }
+    },
+    "site": {
+      "name": "Node-RED Dashboard",
+      "hideToolbar": "false",
+      "allowSwipe": "false",
+      "dateFormat": "DD/MM/YYYY",
+      "sizes": {
+        "sx": 48,
+        "sy": 48,
+        "gx": 6,
+        "gy": 6,
+        "cx": 6,
+        "cy": 6,
+        "px": 10,
+        "py": 10
+      }
+    },
+    "_users": [
+
+    ]
+  },
+  {
+    "id": "76aa82b9.d5030c",
+    "type": "ui_tab",
+    "name": "Tab 1",
+    "icon": "dashboard",
+    "order": 1,
+    "_users": [
+      "813d2a41.9c0228",
+      "316384a.3cbc27c",
+      "ccd5aecb.3b7e9"
+    ]
+  },
+  {
+    "id": "813d2a41.9c0228",
+    "type": "ui_group",
+    "z": "",
+    "name": "Col1",
+    "tab": "76aa82b9.d5030c",
+    "disp": true,
+    "width": "12",
+    "_users": [
+
+    ]
+  },
+  {
+    "id": "fe3cec98.8cee2",
+    "type": "ui_tab",
+    "name": "Tab 2",
+    "icon": "dashboard",
+    "order": 2,
+    "_users": [
+
+    ]
+  },
+  {
+    "id": "316384a.3cbc27c",
+    "type": "ui_group",
+    "z": "",
+    "name": "Default",
+    "tab": "76aa82b9.d5030c",
+    "disp": true,
+    "width": "8",
+    "_users": [
+
+    ]
+  },
+  {
+    "id": "ccd5aecb.3b7e9",
+    "type": "ui_group",
+    "z": "",
+    "name": "Default",
+    "tab": "76aa82b9.d5030c",
+    "disp": true,
+    "width": "6",
+    "_users": [
+
+    ]
+  },
+  {
+    "id": "7138d6b8.dc7bc8",
+    "type": "websocket-listener",
+    "z": "",
+    "path": "/ws/canzea",
+    "wholemsg": "false",
+    "_users": [
+      "20bc93b6.437eec",
+      "d256768d.b28aa8"
+    ]
+  },
+  {
+    "id": "c636bc4a.a28ab",
+    "type": "remote-server",
+    "z": "",
+    "name": "Elasticsearch",
+    "host": "http://elasticsearch.service.dc1.consul:9200",
+    "_users": [
+      "6039f470.059b3c",
+      "7cc08be9.3b68b4"
+    ]
+  },
+  {
+    "id": "c792be07.29d4",
+    "type": "tls-config",
+    "z": "",
+    "name": "CONSUL",
+    "cert": "/etc/vault/ssl/consul.cert",
+    "key": "/etc/vault/ssl/consul.key",
+    "ca": "/etc/vault/ssl/ca.cert",
+    "certname": "",
+    "keyname": "",
+    "caname": "",
+    "verifyservercert": true,
+    "_users": [
+      "93d4f6fd.453358",
+      "bcc4f1bb.54c44",
+      "3a3892f4.b262fe",
+      "e8540b41.b7f818",
+      "aed4e776.4f6468",
+      "64b7d53f.ea6cfc",
+      "e677b09d.f63f1",
+      "c9e6186b.7a2788",
+      "c6260b5f.7a4118",
+      "3d57f7bf.77ce68"
+    ]
+  },
+  {
+    "id": "a0ccc8b4.4e82d8",
+    "type": "selenium-server",
+    "z": "",
+    "remoteurl": "http://localhost:8001/wd/hub",
+    "_users": [
+
+    ]
+  },
+  {
+    "id": "5d04b4f1.4b454c",
+    "type": "websocket-client",
+    "z": "",
+    "path": "ws://ese00c.canzea.cc/gw/api/ws/canzea",
+    "wholemsg": "false",
+    "_users": [
+
+    ]
+  },
+  {
+    "id": "94073df5.ac54f",
+    "type": "tls-config",
+    "z": "",
+    "name": "VAULT",
+    "cert": "/etc/vault/ssl/vault.cert",
+    "key": "/etc/vault/ssl/vault.key",
+    "ca": "/etc/vault/ssl/ca.cert",
+    "certname": "",
+    "keyname": "",
+    "caname": "",
+    "verifyservercert": true,
+    "_users": [
+      "b5640c37.19e05",
+      "138e59.c6ee91a7",
+      "56c8fd71.86e484",
+      "f238ced3.21639",
+      "54b908b1.b6d058",
+      "65cf8ef3.29e59",
+      "92b17b2b.624c98",
+      "407e4c12.066984",
+      "ffd0e092.8655d",
+      "90061bb4.000bc8"
+    ]
+  },
+  {
+    "id": "484da96d.3150f8",
+    "type": "websocket-client",
+    "z": "",
+    "path": "ws://$HOSTNAME/api/ws/canzea",
+    "wholemsg": "false",
+    "_users": [
+
+    ]
+  }
+]

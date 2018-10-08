@@ -1,0 +1,305 @@
+{
+  "id": "459ae946.b59388",
+  "type": "subflow",
+  "name": "Rocket.Chat Send Message",
+  "info": "# Input\n\n````\nmsg.topic = 'send-message'\nmsg.channel = '#general'\nmsg.payload = {\n    \"text\": \"hello team\"\n}\n````\n\n# Output\n\nmsg.payload : \"success\"",
+  "in": [
+    {
+      "x": 50,
+      "y": 30,
+      "wires": [
+        {
+          "id": "73431067.17be4"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 803,
+      "y": 357,
+      "wires": [
+        {
+          "id": "2f18cbf7.b83dc4",
+          "port": 0
+        },
+        {
+          "id": "29396b5b.bdef54",
+          "port": 0
+        },
+        {
+          "id": "e7d3f617.97bdf8",
+          "port": 0
+        },
+        {
+          "id": "553f1c2c.d2a694",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "55967ecb.8ad8c",
+      "type": "http request",
+      "z": "459ae946.b59388",
+      "name": "Login",
+      "method": "POST",
+      "ret": "obj",
+      "url": "http://rocketchat.service.dc1.consul:8780/api/login",
+      "tls": "",
+      "x": 338,
+      "y": 66,
+      "wires": [
+        [
+          "23dd6000.df81c"
+        ]
+      ]
+    },
+    {
+      "id": "73431067.17be4",
+      "type": "function",
+      "z": "459ae946.b59388",
+      "name": "Prep Creds",
+      "func": "msg.message = msg.payload;\nmsg.params = msg.channel ? {\"channel\":msg.channel}:msg.req.params;\nmsg.payload = {\n    \"user\": \"admin\",\n    \"password\": \"admin1admin\"\n};\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 178,
+      "y": 68,
+      "wires": [
+        [
+          "55967ecb.8ad8c"
+        ]
+      ]
+    },
+    {
+      "id": "23dd6000.df81c",
+      "type": "function",
+      "z": "459ae946.b59388",
+      "name": "Set Headers",
+      "func": "token = msg.payload.data.authToken;\nuserId = msg.payload.data.userId;\nmsg.req_headers = {\n    \"X-Auth-Token\": token,\n    \"X-User-Id\": userId,\n    'Content-Type': 'application/json'\n};\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 507,
+      "y": 68,
+      "wires": [
+        [
+          "ffca7df7.7c2eb"
+        ]
+      ]
+    },
+    {
+      "id": "fa28791b.390f18",
+      "type": "http request",
+      "z": "459ae946.b59388",
+      "name": "Post Message",
+      "method": "POST",
+      "ret": "txt",
+      "url": "http://rocketchat.service.dc1.consul:8780/api/v1/chat.postMessage",
+      "tls": "",
+      "x": 455,
+      "y": 155,
+      "wires": [
+        [
+          "12f83637.c38aea"
+        ]
+      ]
+    },
+    {
+      "id": "8effb7ac.68f778",
+      "type": "function",
+      "z": "459ae946.b59388",
+      "name": "Post Message",
+      "func": "//msg.topic = msg.payload.channels[0]._id;\nmsg.headers = msg.req_headers;\nmsg.payload = msg.message;\nmsg.payload.channel = \"#\" + msg.params.channel;\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 271,
+      "y": 155,
+      "wires": [
+        [
+          "fa28791b.390f18"
+        ]
+      ]
+    },
+    {
+      "id": "ffca7df7.7c2eb",
+      "type": "switch",
+      "z": "459ae946.b59388",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "send-message",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:collaboration_message",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 3,
+      "x": 105.5,
+      "y": 161,
+      "wires": [
+        [
+          "8effb7ac.68f778"
+        ],
+        [
+          "b9734344.54db5"
+        ],
+        [
+          "553f1c2c.d2a694"
+        ]
+      ]
+    },
+    {
+      "id": "2f18cbf7.b83dc4",
+      "type": "function",
+      "z": "459ae946.b59388",
+      "name": "Success",
+      "func": "msg.payload = '';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 743.5,
+      "y": 148,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "b2c1caa6.c5d178",
+      "type": "catch",
+      "z": "459ae946.b59388",
+      "name": "",
+      "scope": null,
+      "x": 564.5,
+      "y": 415,
+      "wires": [
+        [
+          "29396b5b.bdef54"
+        ]
+      ]
+    },
+    {
+      "id": "29396b5b.bdef54",
+      "type": "function",
+      "z": "459ae946.b59388",
+      "name": "Error",
+      "func": "msg.payload = {\n    \"error\": msg.message\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 693,
+      "y": 415,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "12f83637.c38aea",
+      "type": "switch",
+      "z": "459ae946.b59388",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 603,
+      "y": 155,
+      "wires": [
+        [
+          "2f18cbf7.b83dc4"
+        ],
+        [
+          "e7d3f617.97bdf8"
+        ]
+      ]
+    },
+    {
+      "id": "e7d3f617.97bdf8",
+      "type": "function",
+      "z": "459ae946.b59388",
+      "name": "Error",
+      "func": "msg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 734,
+      "y": 186,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "553f1c2c.d2a694",
+      "type": "function",
+      "z": "459ae946.b59388",
+      "name": "Invalid Topic",
+      "func": "msg.payload = {\n    \"error\": \"Unknown topic for Rocket.Chat Send Message \" + msg.topic\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 573.5,
+      "y": 376,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "b9734344.54db5",
+      "type": "function",
+      "z": "459ae946.b59388",
+      "name": "Post Message",
+      "func": "//msg.topic = msg.payload.channels[0]._id;\n//k = Object.keys(msg.message)[0];\nmsg.headers = msg.req_headers;\nmsg.payload = msg.message;\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 287,
+      "y": 205,
+      "wires": [
+        [
+          "fa28791b.390f18",
+          "cbfd33f3.e743d"
+        ]
+      ]
+    },
+    {
+      "id": "cbfd33f3.e743d",
+      "type": "debug",
+      "z": "459ae946.b59388",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 468.5,
+      "y": 219,
+      "wires": [
+
+      ]
+    }
+  ]
+}

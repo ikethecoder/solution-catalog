@@ -1,0 +1,173 @@
+{
+  "id": "d2af487b.9eaeb8",
+  "label": "AppRoles",
+  "nodes": [
+    {
+      "id": "eee2546a.4415e8",
+      "type": "function",
+      "z": "d2af487b.9eaeb8",
+      "name": "get-approles",
+      "func": "msg.topic = 'get-approles'\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 345,
+      "y": 74,
+      "wires": [
+        [
+          "1c6a34a7.b6311b"
+        ]
+      ]
+    },
+    {
+      "id": "2b432062.481b6",
+      "type": "http in",
+      "z": "d2af487b.9eaeb8",
+      "name": "",
+      "url": "/approles",
+      "method": "get",
+      "upload": false,
+      "swaggerDoc": "",
+      "x": 123,
+      "y": 73,
+      "wires": [
+        [
+          "eee2546a.4415e8"
+        ]
+      ]
+    },
+    {
+      "id": "2488aa11.cdae06",
+      "type": "http response",
+      "z": "d2af487b.9eaeb8",
+      "name": "",
+      "x": 655,
+      "y": 153,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "ea456020.3ca2e",
+      "type": "function",
+      "z": "d2af487b.9eaeb8",
+      "name": "get-approle",
+      "func": "msg.key = msg.req.params.id;\nmsg.topic = 'get-approle'\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 346.5,
+      "y": 125,
+      "wires": [
+        [
+          "1c6a34a7.b6311b"
+        ]
+      ]
+    },
+    {
+      "id": "ae104e51.3aa27",
+      "type": "http in",
+      "z": "d2af487b.9eaeb8",
+      "name": "",
+      "url": "/approle/:id",
+      "method": "get",
+      "swaggerDoc": "",
+      "x": 124.5,
+      "y": 124,
+      "wires": [
+        [
+          "ea456020.3ca2e"
+        ]
+      ]
+    },
+    {
+      "id": "bac35810.b73bd8",
+      "type": "function",
+      "z": "d2af487b.9eaeb8",
+      "name": "put-approle",
+      "func": "msg.key = msg.req.params.id;\nmsg.topic = 'put-approle'\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 345.5,
+      "y": 175,
+      "wires": [
+        [
+          "60bd9124.bfb8e"
+        ]
+      ]
+    },
+    {
+      "id": "ee56764b.12c918",
+      "type": "http in",
+      "z": "d2af487b.9eaeb8",
+      "name": "",
+      "url": "/approle/:id",
+      "method": "put",
+      "swaggerDoc": "",
+      "x": 123.5,
+      "y": 174,
+      "wires": [
+        [
+          "bac35810.b73bd8"
+        ]
+      ]
+    },
+    {
+      "id": "51822a49.d30e14",
+      "type": "function",
+      "z": "d2af487b.9eaeb8",
+      "name": "delete-approle",
+      "func": "msg.key = msg.req.params.id;\nmsg.topic = 'delete-approle'\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 354.5,
+      "y": 225,
+      "wires": [
+        [
+          "1c6a34a7.b6311b"
+        ]
+      ]
+    },
+    {
+      "id": "87e918f1.260e88",
+      "type": "http in",
+      "z": "d2af487b.9eaeb8",
+      "name": "",
+      "url": "/approle/:id",
+      "method": "delete",
+      "swaggerDoc": "",
+      "x": 131.5,
+      "y": 225,
+      "wires": [
+        [
+          "51822a49.d30e14"
+        ]
+      ]
+    },
+    {
+      "id": "60bd9124.bfb8e",
+      "type": "debug",
+      "z": "d2af487b.9eaeb8",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 660.5,
+      "y": 93,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "1c6a34a7.b6311b",
+      "type": "subflow:d773a612.5b2d98",
+      "z": "d2af487b.9eaeb8",
+      "x": 512.5,
+      "y": 47,
+      "wires": [
+        [
+          "2488aa11.cdae06"
+        ]
+      ],
+      "subflow": "d773a612.5b2d98"
+    }
+  ]
+}

@@ -1,0 +1,1158 @@
+{
+  "id": "d773a612.5b2d98",
+  "type": "subflow",
+  "name": "Vault",
+  "info": "# Input\n\nmsg.key = msg.req.query.key;\n\nmsg.topic = 'get-secret';\n\n",
+  "in": [
+    {
+      "x": 50,
+      "y": 30,
+      "wires": [
+        {
+          "id": "90061bb4.000bc8"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 1000,
+      "y": 340,
+      "wires": [
+        {
+          "id": "155d5d9e.59c672",
+          "port": 0
+        },
+        {
+          "id": "6cad931f.f7f67c",
+          "port": 0
+        },
+        {
+          "id": "cf7a1e5b.d834a",
+          "port": 0
+        },
+        {
+          "id": "f0f8d663.dac918",
+          "port": 0
+        },
+        {
+          "id": "c9cfd7a0.f8e608",
+          "port": 0
+        },
+        {
+          "id": "7d23f768.f6eeb8",
+          "port": 0
+        },
+        {
+          "id": "9c031d34.be741",
+          "port": 0
+        },
+        {
+          "id": "27b16771.700d28",
+          "port": 0
+        },
+        {
+          "id": "9e1e2fe5.e94fc",
+          "port": 0
+        },
+        {
+          "id": "43b210aa.138e4",
+          "port": 0
+        },
+        {
+          "id": "1a280f7e.4a8681",
+          "port": 0
+        },
+        {
+          "id": "8ddf685d.b9b3a8",
+          "port": 0
+        },
+        {
+          "id": "f10b0103.b2536",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "1e6bec6e.0a5634",
+      "type": "tls-config",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "cert": "/etc/vault/ssl/vault.cert",
+      "key": "/etc/vault/ssl/vault.key",
+      "ca": "/etc/vault/ssl/ca.cert",
+      "certname": "",
+      "keyname": "",
+      "caname": "",
+      "verifyservercert": false
+    }
+  ],
+  "nodes": [
+    {
+      "id": "b9fc27e.941b2d8",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Get Secret",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/secret/{{{key}}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 527.111083984375,
+      "y": 288.3333282470703,
+      "wires": [
+        [
+          "cf58a755.ff2ab8"
+        ]
+      ]
+    },
+    {
+      "id": "e0c6bbd.97afd48",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "cont",
+          "v": "secret",
+          "vt": "str"
+        },
+        {
+          "t": "cont",
+          "v": "polic",
+          "vt": "str"
+        },
+        {
+          "t": "cont",
+          "v": "user",
+          "vt": "str"
+        },
+        {
+          "t": "cont",
+          "v": "approle",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 5,
+      "x": 90,
+      "y": 240,
+      "wires": [
+        [
+          "61084c4.4cf48b4"
+        ],
+        [
+          "f2db90d6.621a2"
+        ],
+        [
+          "98eae683.cd6398"
+        ],
+        [
+          "1ace3344.6ecfdd"
+        ],
+        [
+          "cf7a1e5b.d834a"
+        ]
+      ]
+    },
+    {
+      "id": "155d5d9e.59c672",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Success",
+      "func": "//msg.payload = (msg.payload ? msg.payload.data:\"\");\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 825.611083984375,
+      "y": 306.3333282470703,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "b893bc22.373bf",
+      "type": "catch",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "scope": null,
+      "x": 705.611083984375,
+      "y": 218.33331298828125,
+      "wires": [
+        [
+          "f0f8d663.dac918"
+        ]
+      ]
+    },
+    {
+      "id": "f0f8d663.dac918",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Error",
+      "func": "msg.payload = {\n    \"error\": msg.message\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 834.111083984375,
+      "y": 218.33331298828125,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "cf58a755.ff2ab8",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 691.111083984375,
+      "y": 321.33331298828125,
+      "wires": [
+        [
+          "155d5d9e.59c672"
+        ],
+        [
+          "6cad931f.f7f67c"
+        ]
+      ]
+    },
+    {
+      "id": "6cad931f.f7f67c",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Error",
+      "func": "return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 826.111083984375,
+      "y": 355.3333282470703,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "cf7a1e5b.d834a",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Invalid Topic",
+      "func": "msg.payload = {\n    \"error\": \"Unknown topic \" + msg.topic\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 818.611083984375,
+      "y": 25.33331298828125,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "dff296f5.5384d8",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Set Headers",
+      "func": "msg.headers = {\n    \"X-Vault-Token\":msg.envs.SERVICE_VAULT_TOKEN\n};\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 136,
+      "y": 77,
+      "wires": [
+        [
+          "e0c6bbd.97afd48"
+        ]
+      ]
+    },
+    {
+      "id": "ffd0e092.8655d",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Put Secret",
+      "method": "PUT",
+      "ret": "txt",
+      "url": "https://vault.service.dc1.consul:8200/v1/secret/{{{key}}}",
+      "tls": "94073df5.ac54f",
+      "x": 529,
+      "y": 320,
+      "wires": [
+        [
+          "cf58a755.ff2ab8"
+        ]
+      ]
+    },
+    {
+      "id": "63cb357e.53e49c",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Delete Secret",
+      "method": "DELETE",
+      "ret": "txt",
+      "url": "https://vault.service.dc1.consul:8200/v1/secret/{{{key}}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 537,
+      "y": 352,
+      "wires": [
+        [
+          "cf58a755.ff2ab8"
+        ]
+      ]
+    },
+    {
+      "id": "9c3c7e8d.24c94",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Get Policies",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/sys/policy",
+      "tls": "1e6bec6e.0a5634",
+      "x": 533,
+      "y": 540,
+      "wires": [
+        [
+          "2a9a16b2.bc11da"
+        ]
+      ]
+    },
+    {
+      "id": "28174ad9.4ed356",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Get Policy",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/sys/policy/{{{key}}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 536,
+      "y": 661,
+      "wires": [
+        [
+          "2a9a16b2.bc11da"
+        ]
+      ]
+    },
+    {
+      "id": "a18a0063.e2989",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Put Policy",
+      "method": "PUT",
+      "ret": "txt",
+      "url": "https://vault.service.dc1.consul:8200/v1/sys/policy/{{{key}}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 527,
+      "y": 581,
+      "wires": [
+        [
+          "2a9a16b2.bc11da"
+        ]
+      ]
+    },
+    {
+      "id": "3759fe8c.979772",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Delete Policy",
+      "method": "DELETE",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/sys/policy/{{{key}}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 535,
+      "y": 619,
+      "wires": [
+        [
+          "2a9a16b2.bc11da"
+        ]
+      ]
+    },
+    {
+      "id": "ead91683.581ea8",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Get Users",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/auth/userpass/users?list=true",
+      "tls": "1e6bec6e.0a5634",
+      "x": 513,
+      "y": 389,
+      "wires": [
+        [
+          "bde85b9a.32a0d8"
+        ]
+      ]
+    },
+    {
+      "id": "5795713f.fbad2",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Get AppRoles",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/auth/approle/role?list=true",
+      "tls": "1e6bec6e.0a5634",
+      "x": 545,
+      "y": 698,
+      "wires": [
+        [
+          "63e90bf9.60d604"
+        ]
+      ]
+    },
+    {
+      "id": "27703b6e.13e104",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 770,
+      "y": 760,
+      "wires": [
+        [
+          "c9cfd7a0.f8e608"
+        ],
+        [
+          "7d23f768.f6eeb8"
+        ]
+      ]
+    },
+    {
+      "id": "c9cfd7a0.f8e608",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Success",
+      "func": "msg.payload = (msg.payload ? msg.payload.data:\"\");\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 932,
+      "y": 741,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "7d23f768.f6eeb8",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Error",
+      "func": "return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 920.5,
+      "y": 780,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "98ccb2cd.3e93f",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Get AppRole",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/auth/approle/role/{{{key}}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 536,
+      "y": 823,
+      "wires": [
+        [
+          "27703b6e.13e104"
+        ]
+      ]
+    },
+    {
+      "id": "492115cf.17ffdc",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Put AppRole",
+      "method": "POST",
+      "ret": "txt",
+      "url": "https://vault.service.dc1.consul:8200/v1/auth/approle/role/{{{key}}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 533,
+      "y": 740,
+      "wires": [
+        [
+          "27703b6e.13e104"
+        ]
+      ]
+    },
+    {
+      "id": "79f97f97.5971a",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Delete AppRole",
+      "method": "DELETE",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/auth/approle/role/{{{key}}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 545,
+      "y": 782,
+      "wires": [
+        [
+          "27703b6e.13e104"
+        ]
+      ]
+    },
+    {
+      "id": "50dda7c9.b6e308",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "POST User",
+      "method": "POST",
+      "ret": "txt",
+      "url": "https://vault.service.dc1.consul:8200/v1/auth/userpass/users/{{key}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 523,
+      "y": 425,
+      "wires": [
+        [
+          "bde85b9a.32a0d8",
+          "e8845cbc.41176"
+        ]
+      ]
+    },
+    {
+      "id": "609802f2.4fbc3c",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "DELETE User",
+      "method": "DELETE",
+      "ret": "txt",
+      "url": "https://vault.service.dc1.consul:8200/v1/auth/userpass/users/{{key}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 535,
+      "y": 463,
+      "wires": [
+        [
+          "bde85b9a.32a0d8"
+        ]
+      ]
+    },
+    {
+      "id": "d3564373.7dcca",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "GET User",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/auth/userpass/users/{{key}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 522,
+      "y": 501,
+      "wires": [
+        [
+          "bde85b9a.32a0d8"
+        ]
+      ]
+    },
+    {
+      "id": "90061bb4.000bc8",
+      "type": "vars",
+      "z": "d773a612.5b2d98",
+      "name": "VAULT",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://8281205.xyz/gwadmin/#flow/d773a612.5b2d98",
+            "ancestorOrigins": {
+            },
+            "origin": "https://8281205.xyz",
+            "protocol": "https:",
+            "host": "8281205.xyz",
+            "hostname": "8281205.xyz",
+            "port": "",
+            "pathname": "/gwadmin/",
+            "search": "",
+            "hash": "#flow/d773a612.5b2d98"
+          },
+          "jQuery1113097090410759886": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "secret",
+          "v": "service/vault",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "94073df5.ac54f",
+      "url": "https://vault.service.dc1.consul:8200",
+      "x": 158.5,
+      "y": 31,
+      "wires": [
+        [
+          "dff296f5.5384d8"
+        ]
+      ]
+    },
+    {
+      "id": "1ace3344.6ecfdd",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "APPROLE",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "get-approles",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "put-approle",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "delete-approle",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "get-approle",
+          "vt": "str"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 4,
+      "x": 331,
+      "y": 764,
+      "wires": [
+        [
+          "5795713f.fbad2"
+        ],
+        [
+          "492115cf.17ffdc"
+        ],
+        [
+          "79f97f97.5971a"
+        ],
+        [
+          "98ccb2cd.3e93f"
+        ]
+      ]
+    },
+    {
+      "id": "f2db90d6.621a2",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "POLICY",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "get-policies",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:vault_policy",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:vault_policy",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "get-policy",
+          "vt": "str"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 4,
+      "x": 337,
+      "y": 603,
+      "wires": [
+        [
+          "9c3c7e8d.24c94"
+        ],
+        [
+          "a9e91ff8.e7047",
+          "b5687d56.1fbb4"
+        ],
+        [
+          "3759fe8c.979772"
+        ],
+        [
+          "28174ad9.4ed356"
+        ]
+      ]
+    },
+    {
+      "id": "98eae683.cd6398",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "USER",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "get-users",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:vault_user",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:vault_user",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:vault_user",
+          "vt": "str"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 4,
+      "x": 337,
+      "y": 470,
+      "wires": [
+        [
+          "ead91683.581ea8"
+        ],
+        [
+          "50dda7c9.b6e308",
+          "a9e91ff8.e7047"
+        ],
+        [
+          "609802f2.4fbc3c"
+        ],
+        [
+          "d3564373.7dcca"
+        ]
+      ]
+    },
+    {
+      "id": "61084c4.4cf48b4",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "SECRET",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "get-secrets",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:vault_secret",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:vault_secret",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:vault_secret",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 5,
+      "x": 329,
+      "y": 324,
+      "wires": [
+        [
+          "fff9ccc4.ffab5"
+        ],
+        [
+          "b9fc27e.941b2d8"
+        ],
+        [
+          "ffd0e092.8655d"
+        ],
+        [
+          "63cb357e.53e49c"
+        ],
+        [
+          "cf7a1e5b.d834a"
+        ]
+      ]
+    },
+    {
+      "id": "2a9a16b2.bc11da",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 750,
+      "y": 598,
+      "wires": [
+        [
+          "9c031d34.be741"
+        ],
+        [
+          "27b16771.700d28"
+        ]
+      ]
+    },
+    {
+      "id": "9c031d34.be741",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Success",
+      "func": "msg.payload = (msg.payload ? msg.payload.data:\"\");\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 883,
+      "y": 604,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "27b16771.700d28",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Error",
+      "func": "return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 871.5,
+      "y": 643,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "bde85b9a.32a0d8",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 733,
+      "y": 444,
+      "wires": [
+        [
+          "9e1e2fe5.e94fc"
+        ],
+        [
+          "43b210aa.138e4"
+        ]
+      ]
+    },
+    {
+      "id": "9e1e2fe5.e94fc",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Success",
+      "func": "msg.payload = (msg.payload ? msg.payload.data:\"\");\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 887,
+      "y": 417,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "43b210aa.138e4",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Error",
+      "func": "return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 875.5,
+      "y": 456,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "a9e91ff8.e7047",
+      "type": "debug",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 766.5,
+      "y": 546,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "b5687d56.1fbb4",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "func": "msg.payload = {\n    \"name\": msg.key,\n    \"policy\": JSON.stringify(msg.payload, null, 3)\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 358.5,
+      "y": 541,
+      "wires": [
+        [
+          "a18a0063.e2989"
+        ]
+      ]
+    },
+    {
+      "id": "e8845cbc.41176",
+      "type": "debug",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 787.5,
+      "y": 506,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "c8768521.3ece28",
+      "type": "http request",
+      "z": "d773a612.5b2d98",
+      "name": "Secret Inventory",
+      "method": "use",
+      "ret": "obj",
+      "url": "https://vault.service.dc1.consul:8200/v1/secret/{{{key}}}",
+      "tls": "1e6bec6e.0a5634",
+      "x": 440,
+      "y": 220,
+      "wires": [
+        [
+          "ae4da850.7f86c8"
+        ]
+      ]
+    },
+    {
+      "id": "fff9ccc4.ffab5",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "func": "msg.method = \"LIST\"\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 466.5,
+      "y": 184,
+      "wires": [
+        [
+          "c8768521.3ece28"
+        ]
+      ]
+    },
+    {
+      "id": "ae4da850.7f86c8",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "404",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 3,
+      "x": 690,
+      "y": 260,
+      "wires": [
+        [
+          "1a280f7e.4a8681"
+        ],
+        [
+          "8ddf685d.b9b3a8"
+        ],
+        [
+          "6cad931f.f7f67c"
+        ]
+      ]
+    },
+    {
+      "id": "1a280f7e.4a8681",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Success",
+      "func": "msg.payload = (msg.payload ? msg.payload.data:\"\");\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 824.5,
+      "y": 245.00001525878906,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "8ddf685d.b9b3a8",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Empty",
+      "func": "msg.payload = {\n    keys:[]\n}\nmsg.statusCode = 200\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 830,
+      "y": 280,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "f10b0103.b2536",
+      "type": "function",
+      "z": "d773a612.5b2d98",
+      "name": "Empty",
+      "func": "msg.payload = {\n    keys:[]\n}\nmsg.statusCode = 200\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 910,
+      "y": 700,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "63e90bf9.60d604",
+      "type": "switch",
+      "z": "d773a612.5b2d98",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "404",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 3,
+      "x": 770,
+      "y": 700,
+      "wires": [
+        [
+          "c9cfd7a0.f8e608"
+        ],
+        [
+          "f10b0103.b2536"
+        ],
+        [
+          "7d23f768.f6eeb8"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,488 @@
+{
+  "id": "ea5122d7.76e78",
+  "type": "subflow",
+  "name": "Components",
+  "info": "",
+  "in": [
+    {
+      "x": 50,
+      "y": 30,
+      "wires": [
+        {
+          "id": "19b02aef.72eaf5"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 1158.75,
+      "y": 291.75,
+      "wires": [
+        {
+          "id": "530496a.2ecf268",
+          "port": 0
+        },
+        {
+          "id": "98ce0df9.bb629",
+          "port": 0
+        },
+        {
+          "id": "e37a45a.a7760b8",
+          "port": 0
+        },
+        {
+          "id": "caf35c01.cde71",
+          "port": 0
+        },
+        {
+          "id": "7386e52b.22813c",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "cb398cc2.c4dca",
+      "type": "inject",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 151.25,
+      "y": 228.75,
+      "wires": [
+        [
+          "acab1536.bbca78"
+        ]
+      ]
+    },
+    {
+      "id": "acab1536.bbca78",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "Prep New Component",
+      "func": "pl = msg.payload;\n\nargs = {\n    \"root\": \"components\",\n    \"key\": pl.name,\n    \"values\": pl\n};\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = \"--lifecycle=wire --solution=consul --action=add_keyvalue --args='\" + argsString + \"'\";\n\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 418.25,
+      "y": 224.75,
+      "wires": [
+        [
+          "eadeecad.f2baf"
+        ]
+      ]
+    },
+    {
+      "id": "eadeecad.f2baf",
+      "type": "bigexec",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "command": "/home/pm2user/canzea.sh",
+      "commandArgs": "",
+      "minError": 1,
+      "minWarning": 1,
+      "cwd": "/home/pm2user/.ecosystem-catalog/catalog",
+      "shell": "",
+      "extraArgumentProperty": "",
+      "envProperty": "",
+      "format": "utf8",
+      "limiter": true,
+      "payloadIs": "argumentNoStdin",
+      "x": 700,
+      "y": 300,
+      "wires": [
+        [
+
+        ],
+        [
+          "999cb956.5d6018"
+        ],
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "5dbb09c7.7f3108",
+      "type": "inject",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 152.25,
+      "y": 303.75,
+      "wires": [
+        [
+          "b91e0771.ab0008"
+        ]
+      ]
+    },
+    {
+      "id": "b91e0771.ab0008",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "Prep New Component Pipeline",
+      "func": "pl = msg.payload;\nname = pl.name;\n\nargs = {\n    \"root\": \"components\",\n    \"key\": \"gs-actuator-service/pipelines/gs-actuator-service-1.0.3-Build\",\n    \"values\": {\n        \"type\": \"build\"\n    }\n};\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = \"--lifecycle=wire --solution=consul --action=add_keyvalue --args='\" + argsString + \"'\";\n\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 449.25,
+      "y": 299.75,
+      "wires": [
+        [
+          "eadeecad.f2baf"
+        ]
+      ]
+    },
+    {
+      "id": "bca9e29b.3efc6",
+      "type": "catch",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "scope": null,
+      "x": 860,
+      "y": 400,
+      "wires": [
+        [
+          "530496a.2ecf268"
+        ]
+      ]
+    },
+    {
+      "id": "530496a.2ecf268",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "Error",
+      "func": "msg.payload = {\n    \"error\": msg.message\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 988.5,
+      "y": 400,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "999cb956.5d6018",
+      "type": "switch",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "property": "control.state",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "end",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "error",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 3,
+      "x": 855.75,
+      "y": 295.5,
+      "wires": [
+        [
+          "caf35c01.cde71"
+        ],
+        [
+          "98ce0df9.bb629"
+        ],
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "98ce0df9.bb629",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "Error",
+      "func": "msg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 982.75,
+      "y": 324.5,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "1c9d34b6.48706b",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "Analyze",
+      "func": "args = msg.payload;\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = \"--lifecycle=wire --raw --solution=application --action=analyze-project --args='\" + argsString + \"'\";\n\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 521,
+      "y": 36,
+      "wires": [
+        [
+          "96c46328.96cb7"
+        ]
+      ]
+    },
+    {
+      "id": "19b02aef.72eaf5",
+      "type": "switch",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "analyze-project",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "add-component",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:component_metadata",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:component_metadata",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 5,
+      "x": 215.5,
+      "y": 51,
+      "wires": [
+        [
+          "1c9d34b6.48706b"
+        ],
+        [
+          "acab1536.bbca78"
+        ],
+        [
+          "7a1da86c.1cefd8"
+        ],
+        [
+          "87f8878c.20d6f8"
+        ],
+        [
+          "e37a45a.a7760b8"
+        ]
+      ]
+    },
+    {
+      "id": "e37a45a.a7760b8",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "Invalid Topic",
+      "func": "msg.payload = {\n    \"error\": \"Invalid Topic \" + msg.topic\n};\nmsg.statusCode = 400;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 862.5,
+      "y": 67,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "96c46328.96cb7",
+      "type": "bigexec",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "command": "/home/pm2user/canzea.sh",
+      "commandArgs": "",
+      "minError": 1,
+      "minWarning": 1,
+      "cwd": "/home/pm2user/.ecosystem-catalog/catalog",
+      "shell": "",
+      "extraArgumentProperty": "",
+      "envProperty": "",
+      "format": "utf8",
+      "limiter": true,
+      "payloadIs": "argumentNoStdin",
+      "x": 703,
+      "y": 142,
+      "wires": [
+        [
+          "1a420c7f.9005c4",
+          "c5af3e19.b6246"
+        ],
+        [
+
+        ],
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "caf35c01.cde71",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "Success",
+      "func": "msg.statusCode = 200;\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 993,
+      "y": 283,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "87f8878c.20d6f8",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "Minus:component_metadata",
+      "func": "pl = msg.payload;\n\nargs = {\n    \"root\": \"components\",\n    \"key\": msg.key,\n    \"values\": pl\n};\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = \"--lifecycle=wire --solution=consul --action=delete_keyvalue --args='\" + argsString + \"'\";\n\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 461,
+      "y": 182,
+      "wires": [
+        [
+          "da5bf87f.edeab8"
+        ]
+      ]
+    },
+    {
+      "id": "da5bf87f.edeab8",
+      "type": "bigexec",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "command": "/home/pm2user/canzea.sh",
+      "commandArgs": "",
+      "minError": 1,
+      "minWarning": 1,
+      "cwd": "/home/pm2user/.ecosystem-catalog/catalog",
+      "shell": "",
+      "extraArgumentProperty": "",
+      "envProperty": "",
+      "format": "utf8",
+      "limiter": true,
+      "payloadIs": "argumentNoStdin",
+      "x": 701,
+      "y": 221,
+      "wires": [
+        [
+
+        ],
+        [
+          "999cb956.5d6018"
+        ],
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "7a1da86c.1cefd8",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "Plus:component_metadata",
+      "func": "pl = msg.payload;\n\nargs = {\n    \"root\": \"components\",\n    \"key\": msg.key,\n    \"values\": pl\n};\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = \"--lifecycle=wire --solution=consul --action=add_keyvalue --args='\" + argsString + \"'\";\n\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 456,
+      "y": 123,
+      "wires": [
+        [
+          "da5bf87f.edeab8"
+        ]
+      ]
+    },
+    {
+      "id": "7386e52b.22813c",
+      "type": "function",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "func": "if (msg.payload.code == '-1') {\n    msg.statusCode = 400;\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 1144,
+      "y": 134,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "1a420c7f.9005c4",
+      "type": "json",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "pretty": false,
+      "x": 848,
+      "y": 130,
+      "wires": [
+        [
+          "7386e52b.22813c",
+          "808c1b37.17fe88"
+        ]
+      ]
+    },
+    {
+      "id": "808c1b37.17fe88",
+      "type": "debug",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 1121.5,
+      "y": 70,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "c5af3e19.b6246",
+      "type": "debug",
+      "z": "ea5122d7.76e78",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "false",
+      "x": 897,
+      "y": 183,
+      "wires": [
+
+      ]
+    }
+  ]
+}

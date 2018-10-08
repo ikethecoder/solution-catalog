@@ -1,0 +1,54 @@
+{
+  "id": "d16f7762.dd6c98",
+  "label": "Simple HW",
+  "nodes": [
+    {
+      "id": "25b2b11.36aa94e",
+      "type": "subflow:459ae946.b59388",
+      "z": "d16f7762.dd6c98",
+      "x": 492.5,
+      "y": 98,
+      "wires": [
+        [
+
+        ]
+      ],
+      "subflow": "459ae946.b59388"
+    },
+    {
+      "id": "b3ebafc0.08f7e",
+      "type": "inject",
+      "z": "d16f7762.dd6c98",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 125.5,
+      "y": 98,
+      "wires": [
+        [
+          "a0b29258.5eada"
+        ]
+      ]
+    },
+    {
+      "id": "a0b29258.5eada",
+      "type": "function",
+      "z": "d16f7762.dd6c98",
+      "name": "",
+      "func": "msg.topic = 'send-message'\nmsg.channel = '#general'\nmsg.payload = {\n    \"text\": \"hello team\"\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 268.5,
+      "y": 98,
+      "wires": [
+        [
+          "25b2b11.36aa94e"
+        ]
+      ]
+    }
+  ]
+}

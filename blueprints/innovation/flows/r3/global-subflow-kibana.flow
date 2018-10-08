@@ -1,0 +1,18 @@
+{
+  "id": "15591bdf.bd0854",
+  "type": "subflow",
+  "name": "Kibana",
+  "info": "",
+  "in": [
+
+  ],
+  "out": [
+
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+
+  ]
+}

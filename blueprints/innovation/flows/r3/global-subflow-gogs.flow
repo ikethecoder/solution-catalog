@@ -1,0 +1,1043 @@
+{
+  "id": "cc909323.1bc6b",
+  "type": "subflow",
+  "name": "GOGS",
+  "info": "",
+  "in": [
+    {
+      "x": 58,
+      "y": 83,
+      "wires": [
+        {
+          "id": "fe8ae5a2.67ecb8"
+        }
+      ]
+    }
+  ],
+  "out": [
+    {
+      "x": 1327,
+      "y": 386,
+      "wires": [
+        {
+          "id": "5a8b7fc4.342d5",
+          "port": 0
+        },
+        {
+          "id": "87961250.08fe3",
+          "port": 0
+        },
+        {
+          "id": "77b3b86f.dd3568",
+          "port": 0
+        },
+        {
+          "id": "cbe8b62b.0a7208",
+          "port": 0
+        },
+        {
+          "id": "6b662908.3e7198",
+          "port": 0
+        },
+        {
+          "id": "7e675900.3a6dd8",
+          "port": 0
+        },
+        {
+          "id": "38bf5521.4a135a",
+          "port": 0
+        },
+        {
+          "id": "3b3da074.3223b",
+          "port": 0
+        },
+        {
+          "id": "6884a7da.3c0078",
+          "port": "2"
+        },
+        {
+          "id": "8eb5fdba.2899",
+          "port": 1
+        },
+        {
+          "id": "6884a7da.3c0078",
+          "port": 0
+        },
+        {
+          "id": "6884a7da.3c0078",
+          "port": 1
+        },
+        {
+          "id": "f23dea12.a98128",
+          "port": 0
+        }
+      ]
+    }
+  ],
+  "configs": [
+
+  ],
+  "nodes": [
+    {
+      "id": "680bc877.c49c08",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "POST",
+      "method": "POST",
+      "ret": "obj",
+      "url": "http://gitea.service.dc1.consul:11080/api/v1/user/repos",
+      "tls": "",
+      "x": 689,
+      "y": 247,
+      "wires": [
+        [
+          "5a8b7fc4.342d5"
+        ]
+      ]
+    },
+    {
+      "id": "13d0e456.ce5b4c",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "msg.payload['name'] = msg.key;\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 437,
+      "y": 248,
+      "wires": [
+        [
+          "680bc877.c49c08"
+        ]
+      ]
+    },
+    {
+      "id": "cbce0248.c4efb",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "cont",
+          "v": "source_control_repository",
+          "vt": "str"
+        },
+        {
+          "t": "cont",
+          "v": "source_control_user",
+          "vt": "str"
+        },
+        {
+          "t": "cont",
+          "v": "source_control_token",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:source_control_public_key",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 5,
+      "x": 93,
+      "y": 300,
+      "wires": [
+        [
+          "f5681294.672e6"
+        ],
+        [
+          "2e878982.65ae26"
+        ],
+        [
+          "9038ddeb.6cd72"
+        ],
+        [
+          "9c6a0471.7859d8"
+        ],
+        [
+          "1a339ad.58b0965"
+        ]
+      ]
+    },
+    {
+      "id": "5a8b7fc4.342d5",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "msg.payload = {\n    \"result\" : msg.payload,\n    \"statusCode\" : msg.statusCode\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 885,
+      "y": 257,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "4364655e.d9be7c",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "DELETE",
+      "method": "DELETE",
+      "ret": "obj",
+      "url": "http://174.138.36.126:10080/api/v1/repos/{{key}}",
+      "tls": "",
+      "x": 716.5,
+      "y": 303,
+      "wires": [
+        [
+          "87961250.08fe3"
+        ]
+      ]
+    },
+    {
+      "id": "87961250.08fe3",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "msg.payload = {\n    \"result\" : msg.payload,\n    \"statusCode\" : msg.statusCode\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 887.5,
+      "y": 308,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "f3964dd2.6662d",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "GET",
+      "method": "GET",
+      "ret": "obj",
+      "url": "https://ese00c.canzea.cc/grafana/api/dashboards/db/{{{key}}}",
+      "tls": "",
+      "x": 437.5,
+      "y": 354,
+      "wires": [
+        [
+          "77b3b86f.dd3568"
+        ]
+      ]
+    },
+    {
+      "id": "77b3b86f.dd3568",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "msg.payload = {\n    \"result\" : msg.payload,\n    \"statusCode\" : msg.statusCode\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 884.5,
+      "y": 365,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "1a339ad.58b0965",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "Invalid Topic",
+      "func": "throw new Error (\"Invalid topic \" + msg.topic);",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 100,
+      "y": 417,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "4bd7ba7c.cf3804",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "SEARCH",
+      "method": "GET",
+      "ret": "obj",
+      "url": "http://174.138.36.126:10080/api/v1/user/repos",
+      "tls": "",
+      "x": 443,
+      "y": 304,
+      "wires": [
+        [
+          "a3f6667e.8e9ba8"
+        ]
+      ]
+    },
+    {
+      "id": "a3f6667e.8e9ba8",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "Find",
+      "func": "let found = false;\nfor (let k in msg.payload) {\n    let item = msg.payload[k];\n    if (item['name'] == msg.key) {\n        msg.key = \"\" + item['owner']['username'] + \"/\" + item['name'];\n        found = true;\n    }\n}\nif (found === false) {\n    throw new Error (\"Repository not found\");\n}\nmsg.headers = {\n    'Authorization': 'token ' + msg.token\n}\n\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 570.5,
+      "y": 304,
+      "wires": [
+        [
+          "4364655e.d9be7c"
+        ]
+      ]
+    },
+    {
+      "id": "8ae28ffd.5569d",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "POST",
+      "method": "POST",
+      "ret": "obj",
+      "url": "http://gitea.service.dc1.consul:11080/api/v1/admin/users",
+      "tls": "",
+      "x": 570,
+      "y": 480,
+      "wires": [
+        [
+          "6884a7da.3c0078"
+        ]
+      ]
+    },
+    {
+      "id": "743b1caa.a66594",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "msg.payload['username'] = msg.key;\nmsg._username = msg.key;\nmsg._repositories = msg.payload['repositories'];\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 430,
+      "y": 480,
+      "wires": [
+        [
+          "8ae28ffd.5569d"
+        ]
+      ]
+    },
+    {
+      "id": "4f330caf.58aa84",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 590,
+      "y": 420,
+      "wires": [
+        [
+          "771fb2af.5b8c1c"
+        ]
+      ]
+    },
+    {
+      "id": "e82f3ff1.2c1f6",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "DELETE",
+      "method": "DELETE",
+      "ret": "txt",
+      "url": "http://174.138.36.126:10080/api/v1/admin/users/{{key}}",
+      "tls": "",
+      "x": 440.5,
+      "y": 546,
+      "wires": [
+        [
+          "cbe8b62b.0a7208"
+        ]
+      ]
+    },
+    {
+      "id": "cbe8b62b.0a7208",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 888.5,
+      "y": 554,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "fc0169fd.272f78",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "GET",
+      "method": "GET",
+      "ret": "obj",
+      "url": "http://174.138.36.126:10080/api/v1/users/{{key}}",
+      "tls": "",
+      "x": 438.5,
+      "y": 600,
+      "wires": [
+        [
+          "887366b7.e5cf68"
+        ]
+      ]
+    },
+    {
+      "id": "887366b7.e5cf68",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 885.5,
+      "y": 611,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "771fb2af.5b8c1c",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "Collaborators",
+      "func": "//k = Object.keys(msg.payload.repositories)[0];\nkeys = msg.key.split('/')\nmsg._repo = keys[0] + '/' + keys[1];\n\nmsg._username = msg.payload.user;\n\nmsg.payload = {\n    \"permission\" : msg.payload.permission\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 740,
+      "y": 420,
+      "wires": [
+        [
+          "9aee5381.900f2",
+          "9ad18e7a.97dc6"
+        ]
+      ]
+    },
+    {
+      "id": "9aee5381.900f2",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "PUT",
+      "method": "PUT",
+      "ret": "txt",
+      "url": "http://gitea.service.dc1.consul:11080/api/v1/repos/{{{_repo}}}/collaborators/{{_username}}",
+      "tls": "",
+      "x": 890,
+      "y": 420,
+      "wires": [
+        [
+          "8eb5fdba.2899"
+        ]
+      ]
+    },
+    {
+      "id": "ba97acf6.37fec",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "POST",
+      "method": "POST",
+      "ret": "obj",
+      "url": "http://gitea.service.dc1.consul:11080/api/v1/users/{{key}}/tokens",
+      "tls": "",
+      "x": 671,
+      "y": 773,
+      "wires": [
+        [
+          "6b662908.3e7198",
+          "278fa611.ab690a"
+        ]
+      ]
+    },
+    {
+      "id": "a5530f90.066cf",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "return msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 419,
+      "y": 774,
+      "wires": [
+        [
+          "ba97acf6.37fec"
+        ]
+      ]
+    },
+    {
+      "id": "6b662908.3e7198",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "return msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 799,
+      "y": 773,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "fe8ae5a2.67ecb8",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "Auth Choice",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:source_control_token",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:source_control_token",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:source_control_public_key",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:source_control_user_repo",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 5,
+      "x": 213.5,
+      "y": 83,
+      "wires": [
+        [
+          "b383085f.9c9e08"
+        ],
+        [
+          "b383085f.9c9e08"
+        ],
+        [
+          "b383085f.9c9e08"
+        ],
+        [
+          "b383085f.9c9e08"
+        ],
+        [
+          "54b908b1.b6d058"
+        ]
+      ]
+    },
+    {
+      "id": "8a3da7a5.267118",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "CREDS",
+      "func": "username = msg.envs[msg.envKey + '_USER_NAME'];\npassword = msg.envs[msg.envKey + '_PASSWORD'];\n\nup = new Buffer(username + \":\" + password).toString('base64');\n\nmsg.headers = {\n    'Authorization': 'Basic ' + up,\n    'Clear': username + \":\" + password\n}\nreturn msg;\n",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 675,
+      "y": 68,
+      "wires": [
+        [
+          "20829a0d.dac8b6"
+        ]
+      ]
+    },
+    {
+      "id": "7e675900.3a6dd8",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "DELETE",
+      "method": "DELETE",
+      "ret": "txt",
+      "url": "http://174.138.36.126:10080/api/v1/users/{{key}}/tokens/{{_token}}",
+      "tls": "",
+      "x": 555,
+      "y": 867,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "222514fc.6e944c",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "msg._token = 'access';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 390,
+      "y": 840,
+      "wires": [
+        [
+          "7e675900.3a6dd8"
+        ]
+      ]
+    },
+    {
+      "id": "38bf5521.4a135a",
+      "type": "http request",
+      "z": "cc909323.1bc6b",
+      "name": "POST",
+      "method": "POST",
+      "ret": "obj",
+      "url": "http://gitea.service.dc1.consul:11080/api/v1/user/keys",
+      "tls": "",
+      "x": 456,
+      "y": 926,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "9c6a0471.7859d8",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "node.warn(JSON.stringify(msg.payload,null,3));\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 314,
+      "y": 927,
+      "wires": [
+        [
+          "38bf5521.4a135a"
+        ]
+      ]
+    },
+    {
+      "id": "f238ced3.21639",
+      "type": "vars",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://esdade.canzea.cc/gwadmin/#flow/cc909323.1bc6b",
+            "ancestorOrigins": {
+            },
+            "origin": "https://esdade.canzea.cc",
+            "protocol": "https:",
+            "host": "esdade.canzea.cc",
+            "hostname": "esdade.canzea.cc",
+            "port": "",
+            "pathname": "/gwadmin/",
+            "search": "",
+            "hash": "#flow/cc909323.1bc6b"
+          },
+          "jQuery11130622822423511479": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "secret",
+          "v": "secretKey",
+          "vt": "msg"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "94073df5.ac54f",
+      "url": "https://vault.service.dc1.consul:8200",
+      "x": 527.5,
+      "y": 69,
+      "wires": [
+        [
+          "8a3da7a5.267118"
+        ]
+      ]
+    },
+    {
+      "id": "54b908b1.b6d058",
+      "type": "vars",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://esdade.canzea.cc/gwadmin/#flow/cc909323.1bc6b",
+            "ancestorOrigins": {
+            },
+            "origin": "https://esdade.canzea.cc",
+            "protocol": "https:",
+            "host": "esdade.canzea.cc",
+            "hostname": "esdade.canzea.cc",
+            "port": "",
+            "pathname": "/gwadmin/",
+            "search": "",
+            "hash": "#flow/cc909323.1bc6b"
+          },
+          "jQuery11130622822423511479": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "secret",
+          "v": "gitea/root",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "94073df5.ac54f",
+      "url": "https://vault.service.dc1.consul:8200",
+      "x": 525,
+      "y": 108,
+      "wires": [
+        [
+          "bb70e123.8e1c9"
+        ]
+      ]
+    },
+    {
+      "id": "278fa611.ab690a",
+      "type": "debug",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 823.5,
+      "y": 834,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "bb70e123.8e1c9",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "CREDS",
+      "func": "token = msg.envs['GITEA_ROOT_TOKEN'];\nmsg.headers = {\n    'Authorization': 'token ' + token\n}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 675,
+      "y": 108,
+      "wires": [
+        [
+          "20829a0d.dac8b6"
+        ]
+      ]
+    },
+    {
+      "id": "3b3da074.3223b",
+      "type": "catch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "scope": null,
+      "x": 929.5,
+      "y": 186,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "b383085f.9c9e08",
+      "type": "function",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "func": "// key is [user]/[refid]\nuser = msg.key.split('/')[0]\nmsg.secretKey = \"service/gitea/\" + user + \"/credentials\";\nmsg.envKey = (\"SERVICE_GITEA_\" + user + \"_CREDENTIALS\").toUpperCase();\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 383.5,
+      "y": 69,
+      "wires": [
+        [
+          "f238ced3.21639"
+        ]
+      ]
+    },
+    {
+      "id": "6884a7da.3c0078",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "201",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "422",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 3,
+      "x": 710,
+      "y": 480,
+      "wires": [
+        [
+
+        ],
+        [
+
+        ],
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "74b27ea5.d529b",
+      "type": "debug",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 1090,
+      "y": 460,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "8eb5fdba.2899",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "201",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 1150,
+      "y": 160,
+      "wires": [
+        [
+          "f23dea12.a98128"
+        ],
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "f23dea12.a98128",
+      "type": "json",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "pretty": false,
+      "x": 1284,
+      "y": 154,
+      "wires": [
+        [
+
+        ]
+      ]
+    },
+    {
+      "id": "f5681294.672e6",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:source_control_repository",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:source_control_repository",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:source_control_repository",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 3,
+      "x": 270,
+      "y": 300,
+      "wires": [
+        [
+          "13d0e456.ce5b4c"
+        ],
+        [
+          "4bd7ba7c.cf3804"
+        ],
+        [
+          "f3964dd2.6662d"
+        ]
+      ]
+    },
+    {
+      "id": "2e878982.65ae26",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:source_control_user_repo",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "plus:source_control_user",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:source_control_user",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "check:source_control_user",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 4,
+      "x": 270,
+      "y": 460,
+      "wires": [
+        [
+          "4f330caf.58aa84"
+        ],
+        [
+          "743b1caa.a66594"
+        ],
+        [
+          "e82f3ff1.2c1f6"
+        ],
+        [
+          "fc0169fd.272f78"
+        ]
+      ]
+    },
+    {
+      "id": "9038ddeb.6cd72",
+      "type": "switch",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "property": "topic",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "plus:source_control_token",
+          "vt": "str"
+        },
+        {
+          "t": "eq",
+          "v": "minus:source_control_token",
+          "vt": "str"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 2,
+      "x": 250,
+      "y": 720,
+      "wires": [
+        [
+          "a5530f90.066cf"
+        ],
+        [
+          "222514fc.6e944c"
+        ]
+      ]
+    },
+    {
+      "id": "20829a0d.dac8b6",
+      "type": "link out",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "links": [
+        "77fdf44e.b1c02c"
+      ],
+      "x": 801.5,
+      "y": 85,
+      "wires": [
+        [
+          "77fdf44e.b1c02c"
+        ]
+      ]
+    },
+    {
+      "id": "77fdf44e.b1c02c",
+      "type": "link in",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "links": [
+        "20829a0d.dac8b6"
+      ],
+      "x": 28.5,
+      "y": 237,
+      "wires": [
+        [
+          "cbce0248.c4efb"
+        ]
+      ]
+    },
+    {
+      "id": "9ad18e7a.97dc6",
+      "type": "debug",
+      "z": "cc909323.1bc6b",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 755.5,
+      "y": 377,
+      "wires": [
+
+      ]
+    }
+  ]
+}

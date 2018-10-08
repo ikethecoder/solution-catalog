@@ -1,0 +1,195 @@
+{
+  "id": "53fe2fea.b9395",
+  "label": "VARS",
+  "nodes": [
+    {
+      "id": "9d10fd85.4d413",
+      "type": "inject",
+      "z": "53fe2fea.b9395",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 120,
+      "y": 60,
+      "wires": [
+        [
+          "c88d8361.91a9d"
+        ]
+      ]
+    },
+    {
+      "id": "65cf8ef3.29e59",
+      "type": "vars",
+      "z": "53fe2fea.b9395",
+      "name": "VAULT",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://esdade.canzea.cc/gwadmin/#flow/8d16e131.e7aad",
+            "ancestorOrigins": {
+            },
+            "origin": "https://esdade.canzea.cc",
+            "protocol": "https:",
+            "host": "esdade.canzea.cc",
+            "hostname": "esdade.canzea.cc",
+            "port": "",
+            "pathname": "/gwadmin/",
+            "search": "",
+            "hash": "#flow/8d16e131.e7aad"
+          },
+          "jQuery111306105483551972906": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "secret",
+          "v": "digitalocean",
+          "vt": "str"
+        },
+        {
+          "t": "secret",
+          "v": "payload.key",
+          "vt": "msg"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "94073df5.ac54f",
+      "url": "https://vault.service.dc1.consul:8200",
+      "x": 450,
+      "y": 60,
+      "wires": [
+        [
+          "eccc3f5b.8f9d4"
+        ]
+      ]
+    },
+    {
+      "id": "eccc3f5b.8f9d4",
+      "type": "debug",
+      "z": "53fe2fea.b9395",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 610,
+      "y": 60,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "835f305a.f2f83",
+      "type": "inject",
+      "z": "53fe2fea.b9395",
+      "name": "",
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "x": 120,
+      "y": 140,
+      "wires": [
+        [
+          "64fca6f1.0e0128"
+        ]
+      ]
+    },
+    {
+      "id": "3d57f7bf.77ce68",
+      "type": "vars",
+      "z": "53fe2fea.b9395",
+      "name": "CONSUL",
+      "propertyType": {
+        "context": {
+          "location": {
+            "href": "https://esdade.canzea.cc/gwadmin/#flow/cc909323.1bc6b",
+            "ancestorOrigins": {
+            },
+            "origin": "https://esdade.canzea.cc",
+            "protocol": "https:",
+            "host": "esdade.canzea.cc",
+            "hostname": "esdade.canzea.cc",
+            "port": "",
+            "pathname": "/gwadmin/",
+            "search": "",
+            "hash": "#flow/cc909323.1bc6b"
+          },
+          "jQuery11130187427721003254": 1
+        },
+        "selector": "#node-input-property"
+      },
+      "rules": [
+        {
+          "t": "service",
+          "v": "payload.key",
+          "vt": "msg"
+        }
+      ],
+      "checkall": "true",
+      "outputs": 1,
+      "tls": "c792be07.29d4",
+      "url": "https://consul.service.dc1.consul:8080",
+      "x": 460,
+      "y": 140,
+      "wires": [
+        [
+          "1f4418c4.21bb77"
+        ]
+      ]
+    },
+    {
+      "id": "1f4418c4.21bb77",
+      "type": "debug",
+      "z": "53fe2fea.b9395",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 610,
+      "y": 140,
+      "wires": [
+
+      ]
+    },
+    {
+      "id": "c88d8361.91a9d",
+      "type": "function",
+      "z": "53fe2fea.b9395",
+      "name": "",
+      "func": "msg.payload = {key:'ABC'}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 290,
+      "y": 60,
+      "wires": [
+        [
+          "65cf8ef3.29e59"
+        ]
+      ]
+    },
+    {
+      "id": "64fca6f1.0e0128",
+      "type": "function",
+      "z": "53fe2fea.b9395",
+      "name": "",
+      "func": "msg.payload = {key:'grafana'}\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 290,
+      "y": 140,
+      "wires": [
+        [
+          "3d57f7bf.77ce68"
+        ]
+      ]
+    }
+  ]
+}
