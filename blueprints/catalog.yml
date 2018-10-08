@@ -565,7 +565,7 @@ buildingBlocks:
 
   canzea:
     logo: https://assets.gitlab-static.net/uploads/-/system/user/avatar/840849/avatar.png
-    _repos: ['https://gitlab.com/canzea/console-ui.git', 'https://gitlab.com/canzea/console-app.git']
+    repos: ['https://gitlab.com/canzea/console-ui.git', 'https://gitlab.com/canzea/console-app.git']
     description: Production grade software environments for optimized product flow
     roles: ['ecosystem_platform']
     hosting: subscription
