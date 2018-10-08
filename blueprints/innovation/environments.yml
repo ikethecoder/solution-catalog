@@ -49,6 +49,19 @@ environments:
             segment: "col"
             label: "Collaboration"
 
+   -
+      name: "exp"
+      title:
+        label: "Experimental"
+        pipeline: false
+        provision: false
+        order:
+          -
+            product: "VCPU1_M2GB_D50GB"
+            image: "centos-7-x64"
+            qty: 1
+            segment: "slim"
+            label: "Experimental"
 
    -
       name: "mon"
@@ -128,7 +141,7 @@ environments:
             product: "VCPU2_M4GB_D80GB"
             image: "centos-7-x64"
             qty: 1
-            segment: "expore"
+            segment: "explore"
             label: "Exploratory"
           -
             product: "VCPU2_M4GB_D80GB"
@@ -206,13 +219,13 @@ environments:
             product: "VCPU2_M4GB_D80GB"
             image: "centos-7-x64"
             qty: 1
-            segment: "contracts"
+            segment: "dapp"
             label: "Smart Contracts"
 
    -
-      name: "intg"
+      name: "staging"
       title:
-        label: "Integration"
+        label: "Staging"
         pipeline: true
         provision: false
         order:
@@ -230,57 +243,3 @@ environments:
             segment: "db"
             label: "DB"
 
-
-   -
-      name: "stage"
-      title:
-        label: "Staging"
-        pipeline: true
-        provision: false
-        order:
-          -
-            product: "VCPU1_M1GB_D25GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "lb"
-            label: "Load Balancer"
-          -
-            product: "VCPU2_M4GB_D80GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "app-a"
-            label: "App A"
-          -
-            product: "VCPU2_M4GB_D80GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "app-b"
-            label: "App B"
-
-   -
-      name: "prod"
-      title:
-        label: "Production"
-        pipeline: true
-        provision: false
-        order:
-          -
-            product: "VCPU1_M1GB_D25GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "lb"
-            label: "Load Balancer"
-            tags: ["std"]
-          -
-            product: "VCPU2_M4GB_D80GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "app-a"
-            label: "App A"
-            tags: ["std"]
-          -
-            product: "VCPU2_M4GB_D80GB"
-            image: "centos-7-x64"
-            qty: 1
-            segment: "app-b"
-            label: "App B"
