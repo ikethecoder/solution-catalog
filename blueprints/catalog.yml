@@ -32,50 +32,79 @@ organizations:
 
 buildingBlocks:
 
+
   digitalocean:
     description: Cloud computing, designed for developers.
     url: https://cloud.digitalocean.com/droplets
-    logo: styles/img/partners/do.png
-    roles: [ "cloud_hosting" ]
+    logo: https://canzea.com/saas/styles/img/partners/do.png
+    roles: [ "cloud_provider" ]
     resources: [ "droplets" ]
     authentication: token
     type: service
     organization: digitalocean
+    hosting: subscription
+
+  aws:
+    description: Offers reliable, scalable, and inexpensive cloud computing services
+    logo: https://avatars0.githubusercontent.com/u/2232217?s=200&v=4
+    roles: [ "cloud_provider" ]
+    type: service
+    reference: true
+    hosting: subscription
+
+  azure:
+    description: An open, flexible, enterprise-grade cloud computing platform
+    logo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWUYkT72MhdBK0BXMXVSTB2cZquFGlpM9sBhDWsUwdUq41mO0-
+    roles: [ "cloud_provider" ]
+    type: service
+    reference: true
+    hosting: subscription
+
+  gcp:
+    description: Build and host applications and websites, store data, and analyze data on Google's scalable infrastructure
+    logo: https://avatars0.githubusercontent.com/u/2810941?s=200&v=4
+    roles: [ "cloud_provider" ]
+    type: service
+    reference: true
+    hosting: subscription
 
   consul:
     description: Service Discovery and Configuration Made Easy
-    logo: styles/img/partners/consul.svg
-    roles: [ "service_discovery" ]
+    logo: https://canzea.com/saas/styles/img/partners/consul.svg
+    roles: [ "service_discovery", 'distributed_kv_store']
     resources: [ "services", "nodes", "keyvalues" ]
+    repo: https://github.com/hashicorp/consul.git
+    tags: []
+    fg: "black"
     authentication: token
     type: service
     organization: hashicorp
 
   terraform:
+    logo: https://www.terraform.io/assets/images/logo-hashicorp-3f10732f.svg
     description: Terraform is a tool for building, changing, and combining infrastructure safely and efficiently.
     type: cli
+    roles: ["infrastructure_as_code"]
+    fg: "black"
     organization: hashicorp
+    repo: https://github.com/hashicorp/terraform.git
 
   gogs:
     description: Painless self-hosted Git service
     logo: https://avatars2.githubusercontent.com/u/6656686?v=4&s=200
+    repo: https://github.com/gogits/gogs.git
+    tags: ['v0.11.29']
     roles: [ "source_control" ]
     resources: [ "repositories", "files", "branches", "issues", "pull_requests" ]
     authentication: token
     type: service
-
-  gitea:
-    description: Painless self-hosted Git service
-    logo: https://avatars0.githubusercontent.com/u/12724356?s=200&v=4
-    repo: https://github.com/go-gitea/gitea.git
-    roles: ['source_control']
-    resources: [ "repositories", "files", "branches", "issues", "pull_requests" ]
-    authentication: token
-    type: service
+    status: replaced
 
   archiva:
     description: Archiva Package Repository
-    logo: styles/img/partners/archiva.png
+    logo: http://archiva.apache.org/images/archiva.png
+    repo: https://github.com/apache/archiva.git
+    tags: ['archiva-2.2.1']
     roles: [ "artifact_repository" ]
     resources: [ "artifacts", "repositories" ]
     authentication: token
@@ -84,115 +113,147 @@ buildingBlocks:
   gocd:
     description: Go.CD Delivery Pipeline
     logo: https://avatars3.githubusercontent.com/u/6099846?v=3&s=200
+    repo: https://github.com/gocd/gocd.git
+    tags: ['17.11.0']
     roles: [ "continuous_delivery" ]
     resources: [ "agents", "pipelines", "environments" ]
+    type: service
+    organization: thoughtworks
+
+  gocd-agent:
+    description: Go.CD Delivery Pipeline
+    logo: https://avatars3.githubusercontent.com/u/6099846?v=3&s=200
+    repo: https://github.com/gocd/gocd.git
+    roles: [ "ci_worker" ]
+    resources: [ ]
     type: service
     organization: thoughtworks
 
   rocketchat:
     description: Rocket.Chat Real-Time Chat and Collaboration
     logo: https://avatars3.githubusercontent.com/u/12508788?v=3&s=200
+    repo: https://github.com/RocketChat/Rocket.Chat.git
+    tags: []
     roles: [ "collaboration" ]
     resources: [ "channels", "messages" ]
+    fg: "#CB382F"
     type: service
 
   fabio:
     description: A fast, modern, zero-conf load balancing HTTP(S) router
     logo: https://avatars3.githubusercontent.com/u/25439951?v=3&s=200
+    repo: https://github.com/fabiolb/fabio.git
+    tags: ['v1.5.3']
     roles: [ "api_gateway" ]
     resources: [ "services" ]
     type: service
 
   kibana:
-    description: Kibana
-    logo: http://www.elastic.co/assets/blt282ae2420e32fc38/icon-kibana-bb.svg
-    roles: [ "analytics" ]
+    description: Analytics and visualization platform that builds on Elasticsearch
+    logo: https://www.elastic.co/assets/blt282ae2420e32fc38/icon-kibana-bb.svg
+    repo: https://github.com/elastic/kibana.git
+    tags: ['v5.3.0']
+    roles: [ "analytics", "monitoring" ]
     resources: [ "dashboards", "queries" ]
     type: service
     organization: elastic
 
   grafana:
-    description: Grafana
+    description: Metric analytics & visualization suite
     logo: https://avatars2.githubusercontent.com/u/7195757?v=3&s=200
-    roles: [ "monitoring" ]
+    repo: https://github.com/grafana/grafana.git
+    bg: black
+    tags: ['v3.1.1']
+    roles: [ "monitoring", "alerting" ]
     resources: [ "dashboards", "queries" ]
-    type: service
-
-  notebook:
-    description: Jupyter Notebook
-    logo: https://avatars1.githubusercontent.com/u/7388996?v=4&s=200
-    roles: [ "Interactive Computing" ]
-    resources: [ "notebooks" ]
     type: service
 
   anaconda:
     description: Anaconda
-    logo: https://avatars2.githubusercontent.com/u/10549274?v=4&s=200
+    logo: https://www.anaconda.com/wp-content/themes/anaconda/images/logo-dark.png
+    bg: black
     roles: [ "Data Science Platform" ]
     organization: continuum
     type: service
+    status: replaced
 
   nodered:
     description: Node-Red
     logo: https://avatars3.githubusercontent.com/u/5375661?v=4&s=200
-    roles: [ "Ecosystem Management" ]
+    repo: https://github.com/node-red/node-red.git
+    tags: ['0.17.5']
+    roles: [ "integration_gateway" ]
     resources: [ "flows" ]
+    bg: "#83180F"
     type: service
 
   gitlab:
     description: GitLab unifies issues, code review, CI and CD into a single UI
     logo: https://avatars0.githubusercontent.com/u/1086321?v=4&s=200
-    roles: [ "source_control" ]
-    resources: [ "files" ]
+    repo: https://github.com/gitlabhq/gitlabhq.git
+    roles: [ "source_control", "continuous_delivery" ]
+    resources: [ "files", "projects" ]
     type: service
-
-  gitlist:
-    description: An elegant and modern git repository viewer
-    logo: https://avatars3.githubusercontent.com/u/18133?v=4&s=200
-    roles: [ "source_control_viewer" ]
-    resources: [ "files" ]
-    type: service
+    reference: true
 
   eside:
     description: Ecosystem IDE
-    logo: styles/img/partners/canzea_gw_icon_es.svg
+    logo: https://canzea.com/saas/styles/img/partners/canzea_gw_icon_es.svg
     bg: black
     roles: [ "ide" ]
+    type: service
+    status: replaced
+
+  tensorflow:
+    description: Computation using data flow graphs
+    logo: https://avatars0.githubusercontent.com/u/15658638?s=200&v=4
+    repo: https://github.com/tensorflow/tensorflow.git
+    roles: [ "computation" ]
+    fg: "#BD7049"
+    type: console
+
+  tensorboard:
+    description: Computation using data flow graphs
+    logo: https://avatars0.githubusercontent.com/u/15658638?s=200&v=4
+    repo: https://github.com/tensorflow/tensorboard.git
+    roles: [ "visualization" ]
+    fg: "#BD7049"
     type: service
 
   rasa:
     description: RASA Natural Language Processing
     logo: https://avatars0.githubusercontent.com/u/21214473?v=4&s=200
-    roles: [ "natural language processing" ]
-    type: service
-
-  rasa-trainer:
-    description: RASA Natural Language Trainer
-    logo: https://avatars0.githubusercontent.com/u/21214473?v=4&s=200
-    roles: [ "natural language trainer" ]
+    repos: ["https://github.com/RasaHQ/rasa_nlu.git", "https://github.com/RasaHQ/rasa_core.git"]
+    roles: [ "nlp" ]
+    fg: "#2C1272"
     type: service
 
   taiga:
     description: A project management platform for agile developers & designers
     logo: https://avatars0.githubusercontent.com/u/6905422?s=200&v=4
+    repos: ['https://github.com/taigaio/taiga-back.git', 'https://github.com/taigaio/taiga-front.git']
     roles: [ "agile_pm" ]
     type: service
 
   helpy:
     description: A modern, "mobile-first" helpdesk application
     logo: https://avatars2.githubusercontent.com/u/17730784?s=200&v=4
+    repo: https://github.com/helpyio/helpy.git
     roles: [ "incident_mgmt" ]
     type: service
 
   pgadmin:
     description: An administration and development platform for PostgreSQL
     logo: https://avatars0.githubusercontent.com/u/177543?s=200&v=4
+    repo: https://github.com/postgres/pgadmin4.git
     roles: [ "db_admin" ]
     type: service
 
   postgresql:
     description: An object-relational database management system (ORDBMS)
     logo: https://avatars0.githubusercontent.com/u/177543?s=200&v=4
+    repo: https://github.com/postgres/postgres.git
+    tags: ['REL9_6_6']
     roles: [ "relational_database" ]
     resources: [  ]
     type: console
@@ -200,51 +261,89 @@ buildingBlocks:
   mongodb:
     description: Mongodb
     logo: https://avatars1.githubusercontent.com/u/45120?s=200&v=4
-    roles: [ "document_database" ]
+    repo: https://github.com/mongodb/mongo.git
+    roles: [ "document_database", 'nosql_database' ]
     resources: [  ]
+    bg: "#43494E"
     type: console
 
   rabbitmq:
     description: RabbitMQ is the most widely deployed open source message broker
     logo: https://avatars0.githubusercontent.com/u/96669?s=200&v=4
+    repo: https://github.com/rabbitmq/rabbitmq-server.git
     roles: [ "messaging" ]
     resources: [ "topics", "channels" ]
+    fg: "#E7803B"
+    bg: "#EFEFEF"
     type: console
 
   logstash:
     description: A server-side data processing pipeline
-    logo: http://www.elastic.co/assets/blt946bc636d34a70eb/icon-logstash-bb.svg
+    logo: https://www.elastic.co/assets/blt9a26f88bfbd20eb5/icon-elasticsearch-bb.svg
+    repo: https://github.com/elastic/logstash.git
     roles: [ "data_aggregator" ]
     resources: [  ]
     type: console
 
   elasticsearch:
     description: A distributed, RESTful search and analytics engine
-    logo: http://www.elastic.co/assets/blt9a26f88bfbd20eb5/icon-elasticsearch-bb.svg
+    logo: https://www.elastic.co/assets/blt9a26f88bfbd20eb5/icon-elasticsearch-bb.svg
+    repo: https://github.com/elastic/elasticsearch.git
+    tags: ['v5.6.4']
     roles: [ "document_database" ]
     resources: [  ]
     type: console
 
   vault:
     description: A Tool for Managing Secrets
-    logo: styles/img/partners/vault.svg
+    logo: https://canzea.com/catalog/img/vendors/vault.svg
+    repo: https://github.com/hashicorp/vault.git
+    tags: []
     roles: [ "secret_mgmt" ]
     resources: [  ]
+    fg: "black"
     type: console
 
   phantomjs:
     description: A headless WebKit scriptable with a JavaScript API
     logo: http://phantomjs.org/img/phantomjs-logo.png
+    repo: https://github.com/ariya/phantomjs.git
     roles: [ "headless_browser" ]
+    resources: [  ]
+    bg: "#42413D"
+    type: console
+
+  kafka:
+    description: A distributed streaming platform
+    logo: http://kafka.apache.org/images/logo.png
+    repo: https://github.com/apache/kafka.git
+    roles: [ "streaming" ]
     resources: [  ]
     type: console
 
-  strongswan:
-    repo: https://github.com/strongswan/strongswan.git
-    logo: https://avatars0.githubusercontent.com/u/457671?s=200&v=4
-    description: IPsec-based VPN Solution
-    roles: ["vpn"]
-    type: console
+  docker:
+    description: Driving the container movement
+    logo: https://avatars0.githubusercontent.com/u/5429470?s=200&v=4
+    repo: https://github.com/docker/docker-ce.git
+    roles: [ "container_engine" ]
+    resources: [  ]
+    bg: "#2A6DA0"
+    type: service
+
+
+  kubernetes:
+    description: Production-Grade Container Scheduling and Management
+    logo: https://avatars3.githubusercontent.com/u/13629408?s=200&v=4
+    repo: https://github.com/kubernetes/kubernetes.git
+    roles: [ "container_orchestration" ]
+    type: suite
+
+  openfaas:
+    description: Serverless functions made simple
+    logo: https://avatars0.githubusercontent.com/u/27013154?s=200&v=4
+    repo: https://github.com/openfaas/faas.git
+    roles: ['microservice_manager']
+    type: service
 
   zookeeper:
     description: Centralized service for maintaining configuration information, naming, providing distributed synchronization, and group services
@@ -254,7 +353,7 @@ buildingBlocks:
 
   hadoop:
     description: Framework that allows for the distributed processing of large data sets
-    logo: http://hadoop.apache.org/images/hadoop-logo.jpg
+    logo: http://hadoop.apache.org/hadoop-logo.jpg
     repo: https://github.com/apache/hadoop.git
     roles: ['distributed_processing']
 
@@ -294,6 +393,584 @@ buildingBlocks:
     repo: https://github.com/apache/hbase.git
     roles: ['big_data_store']
 
+  traefik:
+    description: A modern HTTP reverse proxy and load balancer
+    organization: containous
+    logo: https://d33wubrfki0l68.cloudfront.net/e29410f43273a18d40e1bd6e41641f5afdfc8057/eb7ca/traefik.logo.png
+    repo: https://github.com/containous/traefik.git
+    type: service
+    roles: ['api_gateway']
+
+  fail2ban:
+    description: An intrusion prevention software framework
+    logo: https://avatars3.githubusercontent.com/u/1087378?s=200&v=4
+    repo: https://github.com/fail2ban/fail2ban.git
+    roles: ['network_intrusion_gw', 'application_firewall']
+
+  wireshark:
+    description: Network protocol analyzer
+    logo: https://avatars1.githubusercontent.com/u/6233056?s=200&v=4
+    repo: https://github.com/wireshark/wireshark.git
+    roles: ['network_analyzer']
+
+  keycloak:
+    description: Identity and access management solution
+    logo: https://avatars0.githubusercontent.com/u/4921466?s=200&v=4
+    repo: https://github.com/keycloak/keycloak.git
+    roles: ['identity_and_access']
+
+  shiny:
+    description: Provides an elegant and powerful web framework for building web applications using R
+    logo: https://avatars0.githubusercontent.com/u/513560?s=200&v=4
+    repo: https://github.com/rstudio/shiny.git
+    roles: ['data_interaction']
+    type: library
+
+  jitsi:
+    description: Video conferencing platform that securely connects users across browsers and devices
+    logo: https://avatars2.githubusercontent.com/u/3671647?s=200&v=4
+    repos: ['https://github.com/jitsi/jitsi-meet.git', 'https://github.com/jitsi/jitsi.git']
+    roles: ['video_conferencing']
+
+  jitsi-legacy:
+    description: Video conferencing platform that securely connects users across browsers and devices
+    logo: https://avatars2.githubusercontent.com/u/3671647?s=200&v=4
+    roles: ['video_conferencing']
+    status: replaced
+
+  opencv:
+    description: Library of programming functions mainly aimed at real-time computer vision
+    logo: https://avatars1.githubusercontent.com/u/5009934?s=200&v=4
+    repos: ['https://github.com/opencv/opencv.git', 'https://github.com/opencv/opencv_contrib.git']
+    roles: ['vision_library']
+    type: library
+
+  gitea:
+    logo: https://avatars0.githubusercontent.com/u/12724356?s=200&v=4
+    fg: "#6D963A"
+    bg: "#EFEFEF"
+    repo: https://github.com/go-gitea/gitea.git
+    roles: ['source_control']
+
+  ethereum:
+    description: Decentralized platform for applications
+    logo: https://avatars1.githubusercontent.com/u/6250754?s=200&v=4
+    repo: https://github.com/ethereum/go-ethereum.git
+    roles: ['distributed_ledger', "smart_contract_platform"]
+
+  ant-design:
+    description: A UI design language
+    website: http://ant.design
+    logo: https://avatars1.githubusercontent.com/u/12101536?s=200&v=4
+    repo: https://github.com/ant-design/ant-design.git
+    type: library
+    reference: true
+
+
+  pachyderm:
+    description: Reproducible Data Science that Scales
+    logo: https://avatars2.githubusercontent.com/u/10432478?s=200&v=4
+    repo: https://github.com/pachyderm/pachyderm.git
+    roles: ['data_pipeline']
+
+  presto:
+    description: Distributed SQL query engine for big data
+    logo: https://avatars1.githubusercontent.com/u/6882181?s=200&v=4
+    bg: black
+    repo: https://github.com/prestodb/presto.git
+    roles: ['query_engine']
+
+  storm:
+    description: Distributed realtime computation system
+    logo: http://storm.apache.org/images/logo.png
+    repo: https://github.com/apache/storm.git
+    roles: ['computation_engine']
+
+  mleap:
+    logo: http://mleap-docs.combust.ml/assets/images/logo.png
+    description: Deploy spark pipelines to production
+    repo: https://github.com/combust/mleap.git
+    roles: ['pipeline_tooling']
+
+  tesseract:
+    logo: https://avatars0.githubusercontent.com/u/8401422?s=200&v=4
+    description: OCR Engine
+    repo: https://github.com/tesseract-ocr/tesseract.git
+    bg: "#F0F0F0"
+    roles: ['ocr_engine']
+
+  sikuli:
+    description: Automates anything you see on the screen
+    logo: https://avatars1.githubusercontent.com/u/1049262?s=200&v=4
+    repo: https://github.com/RaiMan/SikuliX2.git
+    roles: ['automation_agent']
+
+  wrk:
+    description: Modern HTTP benchmarking tool
+    repo: https://github.com/wg/wrk.git
+    logo: https://avatars3.githubusercontent.com/u/94529?s=460&v=4
+    roles: ["benchmarking"]
+    bg: "#8E5926"
+    type: tool
+
+  ffmpeg:
+    description: Libraries and tools to process multimedia content
+    logo: https://avatars2.githubusercontent.com/u/729418?s=200&v=4
+    repo: https://github.com/FFmpeg/FFmpeg.git
+    type: tool
+    roles: ['video_processing']
+
+  fastlane:
+    description: Automate building and releasing your iOS and Android apps
+    logo: https://avatars2.githubusercontent.com/u/11098337?s=200&v=4
+    repo: https://github.com/fastlane/fastlane.git
+    roles: ['pipeline_tooling']
+    type: tool
+    reference: true
+
+  etcd:
+    logo: https://avatars0.githubusercontent.com/u/3730757?s=200&v=4
+    description: Distributed key-value store
+    repo: https://github.com/coreos/etcd.git
+    roles: ['distributed_kv_store']
+    reference: true
+
+  prometheus:
+    logo: https://avatars1.githubusercontent.com/u/3380462?s=200&v=4
+    description: Monitoring system with a dimensional data model, flexible query language, efficient time series database and modern alerting approach
+    repos: ['https://github.com/prometheus/prometheus.git', 'https://github.com/prometheus/alertmanager.git']
+    roles: ['monitoring', 'alerting', "time_series_database"]
+    reference: true
+
+  rkt:
+    logo: https://avatars1.githubusercontent.com/u/5866990?s=200&v=4
+    repo: https://github.com/rkt/rkt.git
+    description: A pod-native container engine for Linux
+    roles: ['container_engine']
+    reference: true
+
+  marathon:
+    logo: https://avatars2.githubusercontent.com/u/3458585?s=200&v=4
+    repo: https://github.com/mesosphere/marathon.git
+    description: Deploy and manage containers on top of Apache Mesos at scale
+    roles: ['container_orchestration']
+    reference: true
+
+  rancher:
+    logo: https://avatars3.githubusercontent.com/u/9343010?s=200&v=4
+    repo: https://github.com/rancher/rancher.git
+    description: Complete container management platform
+    roles: ['container_platform']
+    reference: true
+
+  canzea:
+    logo: https://assets.gitlab-static.net/uploads/-/system/user/avatar/840849/avatar.png
+    _repos: ['https://gitlab.com/canzea/console-ui.git', 'https://gitlab.com/canzea/console-app.git']
+    description: Production grade software environments for optimized product flow
+    roles: ['ecosystem_platform']
+    hosting: subscription
+
+  circleci:
+    logo: https://avatars2.githubusercontent.com/u/1231870?s=200&v=4
+    roles: ['continuous_delivery']
+    reference: true
+    hosting: subscription
+
+  travisci:
+    logo: https://avatars0.githubusercontent.com/u/639823?s=200&v=4
+    repo: https://github.com/travis-ci/travis-ci.git
+    roles: ['continuous_delivery']
+    reference: true
+
+  jenkins:
+    logo: https://avatars0.githubusercontent.com/u/107424?s=200&v=4
+    repo: https://github.com/jenkinsci/jenkins.git
+    roles: ['continuous_delivery', 'automation_server']
+    reference: true
+
+  letsencrypt:
+    logo: https://letsencrypt.org/images/le-logo-standard.svg
+    description: A free, automated, and open Certificate Authority
+    roles: ['certificate_authority']
+    type: service
+    hosting: subscription
+
+  certbot:
+    logo: https://avatars0.githubusercontent.com/u/17889013?s=200&v=4
+    repo: https://github.com/certbot/certbot.git
+    roles: ['ca_tool']
+    type: tool
+
+  modsecurity:
+    description: A web application firewall (WAF) engine for Apache, IIS and Nginx
+    logo: https://avatars2.githubusercontent.com/u/508521?s=200&v=4
+    repo: https://github.com/SpiderLabs/ModSecurity.git
+    roles: ['application_firewall']
+    type: library
+
+
+  redis:
+    logo: https://redis.io/images/redis-white.png
+    bg: black
+    description: An in-memory database that persists on disk
+    repo: https://github.com/antirez/redis.git
+    roles: ['in_memory_database', 'nosql_database']
+    type: service
+
+  cassandra:
+    logo: http://cassandra.apache.org/img/cassandra_logo.png
+    bg: "#90bd50"
+    repo: https://github.com/apache/cassandra.git
+    description: Manage massive amounts of data, fast, without losing sleep
+    roles: ['distributed_database', 'nosql_database']
+    type: service
+    reference: true
+
+  arangodb:
+    description: A native multi-model database with flexible data models for documents, graphs, and key-values
+    logo: https://avatars1.githubusercontent.com/u/5547849?s=200&v=4
+    repo: https://github.com/arangodb/arangodb.git
+    roles: ['graph_database', 'nosql_database']
+    type: service
+    reference: true
+
+  orientdb:
+    logo: https://avatars0.githubusercontent.com/u/536828?s=200&v=4
+    repo: https://github.com/orientechnologies/orientdb.git
+    description: DBMS supporting Graph, Document, Reactive, Full-Text, Geospatial and Key-Value models
+    roles: ['graph_database', 'nosql_database', 'document_database']
+    type: service
+    reference: true
+
+  confd:
+    repo: https://github.com/kelseyhightower/confd.git
+    description: Lightweight configuration management tool
+    logo: https://canzea.com/catalog/img/vendors/confd.png
+    bg: "#333333"
+    roles: ['config_sync']
+    type: service
+
+  livy:
+    logo: http://livy.incubator.apache.org./assets/themes/apache/img/logo.png
+    repos: ['https://github.com/apache/incubator-livy.git', 'https://github.com/cloudera/livy.git']
+    description: REST interface for interacting with Apache Spark
+    roles: ["spark_gateway"]
+
+  zeppelin:
+    repo: https://github.com/apache/zeppelin.git
+    logo: https://zeppelin.apache.org/assets/themes/zeppelin/img/zeppelin_logo.png
+    bg: "#3071a9"
+    description: Web-based notebook that enables data-driven, interactive data analytics
+    roles: ["notebook", "interactive_computing"]
+
+  rstudio:
+    repo: https://github.com/rstudio/rstudio.git
+    logo: https://avatars0.githubusercontent.com/u/513560?s=200&v=4
+    description: Integrated development environment (IDE) for R
+    roles: ["notebook", "interactive_computing"]
+
+  jupyter:
+    description: Create and share documents that contain live code, equations, visualizations and narrative text
+    logo: https://avatars1.githubusercontent.com/u/7388996?v=4&s=200
+    repo: https://github.com/jupyter/notebook.git
+    roles: [ "interactive_computing", "notebook" ]
+    resources: [ "notebook" ]
+    type: service
+
+  lstio:
+    description: An open platform to connect, manage, and secure microservices
+    logo: https://avatars3.githubusercontent.com/u/23534644?s=200&v=4
+    bg: "#466BB0"
+    repo: https://github.com/istio/istio.git
+    roles: ['microservice_manager', 'api_gateway']
+    type: service
+
+  hyperledger:
+    logo: https://avatars3.githubusercontent.com/u/7657900?s=200&v=4
+    repos: ["https://github.com/hyperledger/fabric.git", "https://github.com/hyperledger/iroha.git", "https://github.com/hyperledger/sawtooth-core.git", "https://github.com/hyperledger/indy-node.git"]
+    description: A decentralized ledger
+    roles: ["distributed_ledger"]
+
+  selinux:
+    repo: https://github.com/SELinuxProject/selinux.git
+    logo: https://avatars2.githubusercontent.com/u/7838867?s=200&v=4
+    description: Security enhancement to Linux which allows users and administrators more control over access control
+    roles: ["os_security"]
+
+  strongswan:
+    repo: https://github.com/strongswan/strongswan.git
+    logo: https://avatars0.githubusercontent.com/u/457671?s=200&v=4
+    description: IPsec-based VPN Solution
+    roles: ["vpn"]
+    fg: "#CB382F"
+    type: service
+
   aws_polly:
     description: Amazon's text to speech.
-    logo: styles/img/partners/aws.png
+    logo: https://canzea.com/saas/styles/img/partners/aws.png
+    roles: ["text_to_voice"]
+
+  gcp_speech:
+    description: Google Cloud Speech
+    logo: https://canzea.com/saas/styles/img/partners/gcp.png
+    roles: ["voice_to_text"]
+
+  namecheap:
+    description: Name Registry
+    logo: https://02.files.namecheap.com/cdn/401/assets/img/logos/namecheap-dkbg.png
+    roles: ["domain_registry"]
+    status: replaced
+
+  formspree:
+    description: Functional HTML forms
+    logo: https://formspree.io/static/img/logo.png
+    roles: ["contact_form_submission"]
+    hosting: subscription
+
+  openshift:
+    description: Container application platform
+    logo: https://assets.openshift.com/hubfs/images/logos/osh/Logotype_RH_OpenShift_wLogo_RGB_White.png
+    bg: "#333333"
+    roles: ["cloud_provider", "container_platform"]
+    hosting: subscription
+
+  guacamole:
+    description: Clientless remote desktop gateway
+    logo: https://avatars1.githubusercontent.com/u/47359?s=200&v=4
+    repos: ["https://github.com/apache/guacamole-server.git", "https://github.com/apache/guacamole-client.git"]
+    roles: ["remote_desktop_gw"]
+
+  kong:
+    description: A cloud-native, fast, scalable, and distributed api gateway
+    repo: https://github.com/Kong/kong.git
+    logo: https://avatars1.githubusercontent.com/u/962416?s=200&v=4
+    roles: ["api_gateway"]
+    type: service
+    reference: true
+
+  emqtt:
+    description: ERLang massively scalable MQTT Broker
+    repo: https://github.com/emqtt/emqttd.git
+    logo: https://avatars2.githubusercontent.com/u/3062055?s=200&v=4
+    roles: ["mqtt_broker"]
+    type: service
+    reference: true
+
+  graphql:
+    description: A query language and execution engine tied to any backend service
+    repos: ["https://github.com/facebook/graphql.git", "https://github.com/graphql/graphql-js.git"]
+    logo: https://graphql.org/img/logo.svg
+    roles: ["query_language"]
+
+  mongoose:
+    description: An IoT Firmware Development Framework
+    repo: "https://github.com/cesanta/mongoose-os.git"
+    logo: https://mongoose-os.com/images/logo_transpr_48@2x.png
+    bg: black
+
+  eos:
+    description: An open source smart contract platform
+    repo: https://github.com/EOSIO/eos.git
+    logo: http://www.freelogovectors.net/wp-content/uploads/2018/02/eos_logo.png
+    roles: ["smart_contract_platform"]
+
+  gobot:
+    description: Golang framework for robotics, drones, and the Internet of Things (IoT)
+    repo: https://github.com/hybridgroup/gobot.git
+    logo: https://avatars0.githubusercontent.com/u/212109?s=200&v=4
+    roles: ["iot_dev_framework"]
+
+  truffle:
+    description: Ethereum development framework
+    repo: https://github.com/trufflesuite/truffle.git
+    logo: https://avatars2.githubusercontent.com/u/22205159?s=200&v=4
+    roles: ["ethereum_dev_framework"]
+
+  openresty:
+    description: A Fast and Scalable Web Platform
+    repos: ["https://github.com/openresty/openresty.git"]
+    logo: https://avatars2.githubusercontent.com/u/7390180?s=200&v=4
+    roles: ["auth_proxy"]
+
+  alicloud:
+    logo: https://avatars2.githubusercontent.com/u/941070?s=200&v=4
+    description: An integrated suite of cloud products and services
+    roles: ["cloud_provider"]
+    type: service
+    hosting: subscription
+
+  minio:
+    logo: https://avatars0.githubusercontent.com/u/695951?s=200&v=4
+    repo: https://github.com/minio/minio.git
+    description: Object storage server compatible with Amazon S3 APIs
+    roles: ["object_storage"]
+    type: service
+
+  g_analytics:
+    logo: https://avatars0.githubusercontent.com/u/4327788?s=200&v=4
+    description: Measure your advertising ROI as well as track your Flash, video, and social networking sites and applications
+    hosting: subscription
+    type: service
+    roles: ["analytics"]
+
+  g_search:
+    logo: https://avatars2.githubusercontent.com/u/1342004?s=200&v=4
+    description: Search optimization
+    hosting: subscription
+    type: service
+    roles: ["analytics"]
+
+  g_gmail:
+    logo: https://upload.wikimedia.org/wikipedia/commons/4/45/New_Logo_Gmail.svg
+    description: GMail
+    hosting: subscription
+    type: service
+    roles: ["email"]
+
+  monday:
+    logo: https://avatars2.githubusercontent.com/u/1270710?s=200&v=4
+    description: Tool that simplifies the way teams work together
+    hosting: subscription
+    type: service
+    roles: ["time_management", "project_management"]
+
+  discord:
+    logo: https://avatars3.githubusercontent.com/u/1965106?s=200&v=4
+    description: Free and secure all-in-one voice+text app designed for gamers
+    hosting: subscription
+    type: service
+    roles: ["collaboration", "voice"]
+
+  namedotcom:
+    logo: https://avatars3.githubusercontent.com/u/34385287?s=200&v=4
+    description: Domain names, web hosting, and super easy websites
+    hosting: subscription
+    type: service
+    roles: ["domain_registry"]
+
+  stripe:
+    logo: https://avatars3.githubusercontent.com/u/856813?s=200&v=4
+    description: Online payment processing for internet businesses
+    hosting: subscription
+    type: service
+    roles: ["payment_processing"]
+
+  onenote:
+    logo: https://avatars1.githubusercontent.com/u/6225732?s=200&v=4
+    description: Has your digital notebook needs covered
+    hosting: subscription
+    type: service
+    roles: ["digital_notebook"]
+
+  twitter:
+    logo: https://avatars3.githubusercontent.com/u/50278?s=200&v=4
+    description: From breaking news and entertainment to sports and politics, get the full story with all the live commentary
+    hosting: subscription
+    type: service
+    roles: ["social_networking"]
+
+  mosquitto:
+    logo: https://mosquitto.org/images/mosquitto-text-side-28.png
+    description: Lightweight message broker that implements the MQTT protocol versions 3.1 and 3.1.1
+    type: service
+    repo: https://github.com/eclipse/mosquitto.git
+    roles: ["message_broker"]
+
+  totaljs:
+    logo: https://avatars3.githubusercontent.com/u/6499216?s=460&v=4
+    repo: https://github.com/totaljs/framework.git
+    description: Node.js framework
+    roles: ["nodejs_framework"]
+
+
+segments:
+- name: ci
+  label: CD Core
+  blocks: ["mongodb", "gitea", "nodered", "vault", "consul", "phantomjs","docker", "terraform","minio", "openresty", "fail2ban", "certbot", "letsencrypt", "modsecurity", "confd", "selinux"]
+- name: reg
+  label: Pipeline Mgmt
+  blocks: ["gocd", "rocketchat", "archiva"]
+- name: builder
+  label: Builders
+  blocks: ["gocd-agent"]
+- name: vpn
+  label: VPN
+  blocks: ["strongswan"]
+- name: iam
+  label: Identity / Access Mgmt
+  blocks: ["keycloak", "openldap"]
+- name: diagnosis
+  label: Diagnosis
+  blocks: ["wrk", "wireshark", "guacamole"]
+- name: sup
+  label: Ideas and Support
+  blocks: ["taiga", "helpy"]
+- name: mon
+  label: Monitoring
+  blocks: ["elasticsearch", "grafana", "logstash"]
+- name: kib
+  label: Kibana Analysis
+  blocks: ["kibana"]
+- name: db
+  label: Storage
+  blocks: ["mongodb", "postgresql", "rabbitmq", "pgadmin"]
+- name: lb
+  label: Load Balancer
+  blocks: ["fabio"]
+- name: app
+  label: Application
+  blocks: ["fabio", "mongodb", "postgresql", "rabbitmq", "pgadmin"]
+- name: kub
+  label: Kubernetes
+  blocks: ["kubernetes", "traefik", "etcd", "lstio"]
+- name: func
+  label: Functions
+  blocks: ["openfaas", "redis", "graphql"]
+- name: bigdata
+  label: Big Data
+  blocks: ["hadoop", "hive", "kafka", "spark", "zookeeper"]
+- name: dataflow
+  label: Data Flow
+  blocks: ["nifi"]
+- name: govern
+  label: Governance
+  blocks: ["atlas", "solr", "hbase"]
+- name: review
+  label: Under Review
+  blocks: ["shiny", "pachyderm", "presto", "storm", "mleap", "livy"]
+- name: dsui
+  label: Data Science UI
+  blocks: ["zeppelin","jupyter","rstudio"]
+- name: dstrain
+  label: Data Science Train
+  blocks: ["tensorboard", "tensorflow"]
+- name: interact
+  label: Interact
+  blocks: ["aws_polly", "ffmpeg", "gcp_speech", "sikuli", "jitsi"]
+- name: ai
+  label: Artifical Intelligence
+  blocks: ["opencv","tesseract"]
+- name: nlptrain
+  label: NLP Training
+  blocks: ["rasa"]
+- name: ingest
+  label: IoT Ingestion
+  blocks: ["totaljs", "mosquitto"]
+- name: insight
+  label: IoT Insight
+  blocks: ["gobot", "mongoose"]
+- name: ledgers
+  label: Ledgers
+  blocks: ["ethereum", "hyperledger"]
+- name: dapp
+  label: Distributed Apps
+  blocks: ["eos", "truffle"]
+
+
+
+
+
+
+
+
+
