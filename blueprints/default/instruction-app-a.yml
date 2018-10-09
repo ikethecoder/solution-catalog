@@ -159,6 +159,12 @@ resources:
       solution: "sudoers"
       droplet: "${instanceName}"
       commands: false
+- building_block:
+    ${instanceId}-securerandom:
+      role: "workarounds"
+      solution: "securerandom"
+      droplet: "${instanceName}"
+      commands: false
 - collaboration_channel:
     ${environmentLabel}: {}
   depends_on:
@@ -170,4 +176,4 @@ resources:
       title: "${environmentLabel} Environment"
       description: "System Metrics for the ${environmentLabel}"
   depends_on:
-  - "service_discovery_service.grafana"
+  - "service_discovery_service.mon-mon-01-grafana"
