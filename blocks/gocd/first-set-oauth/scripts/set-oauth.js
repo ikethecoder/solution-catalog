@@ -1,6 +1,6 @@
 // APP_LOCAL_GOCD_URL
 
-url = "http://sp_gocd_admin:" + process.env.SERVICES_GOCD_SP_GOCD_ADMIN_CREDENTIALS_PASSWORD + "@" + process.env.GOCD_ADDRESS + ":" + process.env.GOCD_PORT;
+url = "http://sp_gocd_admin:" + process.env.SERVICE_GOCD_SP_GOCD_ADMIN_CREDENTIALS_PASSWORD + "@" + process.env.GOCD_ADDRESS + ":" + process.env.GOCD_PORT;
 
 module.exports = {
     'Set OAuth' : function (browser) {
