@@ -1,11 +1,12 @@
 {
-  "id": "d16f7762.dd6c98",
+  "id": "69f8f8c1.a341d8",
   "label": "Simple HW",
   "nodes": [
     {
       "id": "25b2b11.36aa94e",
       "type": "subflow:459ae946.b59388",
-      "z": "d16f7762.dd6c98",
+      "z": "69f8f8c1.a341d8",
+      "name": "",
       "x": 492.5,
       "y": 98,
       "wires": [
@@ -18,7 +19,7 @@
     {
       "id": "b3ebafc0.08f7e",
       "type": "inject",
-      "z": "d16f7762.dd6c98",
+      "z": "69f8f8c1.a341d8",
       "name": "",
       "topic": "",
       "payload": "",
@@ -37,7 +38,7 @@
     {
       "id": "a0b29258.5eada",
       "type": "function",
-      "z": "d16f7762.dd6c98",
+      "z": "69f8f8c1.a341d8",
       "name": "",
       "func": "msg.topic = 'send-message'\nmsg.channel = '#general'\nmsg.payload = {\n    \"text\": \"hello team\"\n}\nreturn msg;",
       "outputs": 1,

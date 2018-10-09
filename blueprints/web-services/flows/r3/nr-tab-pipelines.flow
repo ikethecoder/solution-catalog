@@ -1,11 +1,11 @@
 {
-  "id": "c73edf2c.bd903",
+  "id": "ccd74192.43cbf",
   "label": "Pipelines",
   "nodes": [
     {
       "id": "61969da4.8edb94",
       "type": "inject",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "topic": "",
       "payload": "",
@@ -24,7 +24,7 @@
     {
       "id": "c8126364.1cb8e",
       "type": "debug",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "active": true,
       "console": "false",
@@ -38,7 +38,7 @@
     {
       "id": "8fc128bd.21b498",
       "type": "function",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "Prepare",
       "func": "pl = msg.payload;\nname = pl.name;\nmsg0 = {\"payload\":{\"name\":name}, \"filename\":\"/tmp/environments-\" + name + \".json\"};\nmsg.env = {\"CONSUL_URL\": \"https://consul.service.dc1.consul:8080\"};\nmsg.payload = \"--lifecycle=wire --solution=gocd --action=post-object-v1 --args='{\\\"type\\\":\\\"environments\\\",\\\"name\\\":\\\"\" + name + \"\\\"}'\";\nreturn [msg0, msg, msg];\n\n",
       "outputs": "3",
@@ -61,7 +61,7 @@
     {
       "id": "420bc8b4.e9d448",
       "type": "file",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "Prepare payload",
       "filename": "",
       "appendNewline": false,
@@ -76,7 +76,7 @@
     {
       "id": "784c37e0.cd2508",
       "type": "http in",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "url": "/environments",
       "method": "post",
@@ -93,7 +93,7 @@
     {
       "id": "28217028.172f7",
       "type": "function",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "Default",
       "func": "msg.payload = {'name':'test100'};\nreturn msg;",
       "outputs": 1,
@@ -109,7 +109,7 @@
     {
       "id": "314c7d76.abef02",
       "type": "json-schema",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "func": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"title\": \"Environment\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"name\": {\n            \"description\": \"Name of the environment\",\n            \"type\": \"string\"\n        }\n    },\n    \"required\": [\"name\"]\n}",
       "x": 373.5,
@@ -123,7 +123,7 @@
     {
       "id": "ce5c09bd.545018",
       "type": "comment",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "curl -H \"Authorization: Bearer 33ef854766b61e7901ddc1c41f2fee8f693aa423\" -X POST https://escd27.canzea.cc/gw/api/environments --data 'name=dude5'",
       "info": "",
       "x": 550.5,
@@ -135,7 +135,7 @@
     {
       "id": "b8c2183d.343988",
       "type": "http response",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "x": 987.5,
       "y": 364,
@@ -146,7 +146,7 @@
     {
       "id": "3a6715f4.074efa",
       "type": "debug",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "active": true,
       "console": "false",
@@ -160,7 +160,7 @@
     {
       "id": "58e09871.0576a8",
       "type": "switch",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "property": "control.state",
       "propertyType": "msg",
@@ -208,7 +208,7 @@
     {
       "id": "645c70a3.6df13",
       "type": "function",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "Error",
       "func": "msg.payload = \"ERROR \" + JSON.stringify(msg.error ? msg.error : msg.control);\nmsg.statusCode = 500;\nreturn msg;",
       "outputs": 1,
@@ -224,7 +224,7 @@
     {
       "id": "98ff3e98.c461f",
       "type": "function",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "Success",
       "func": "msg.payload = null;\nmsg.statusCode = 200;\nmsg.topic = 'result';\nreturn msg;",
       "outputs": 1,
@@ -240,7 +240,7 @@
     {
       "id": "d57f1c76.303a3",
       "type": "debug",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "active": true,
       "console": "false",
@@ -254,7 +254,7 @@
     {
       "id": "5855d25f.abab8c",
       "type": "bigexec",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "command": "/home/pm2user/canzea.sh",
       "commandArgs": "",
@@ -285,7 +285,7 @@
     {
       "id": "8150aca.da6695",
       "type": "catch",
-      "z": "c73edf2c.bd903",
+      "z": "ccd74192.43cbf",
       "name": "",
       "scope": null,
       "x": 675.5,

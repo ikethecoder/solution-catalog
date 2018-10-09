@@ -64,7 +64,7 @@
       "type": "function",
       "z": "459ae946.b59388",
       "name": "Prep Creds",
-      "func": "msg.message = msg.payload;\nmsg.params = msg.channel ? {\"channel\":msg.channel}:msg.req.params;\nmsg.payload = {\n    \"user\": \"admin\",\n    \"password\": \"admin1admin\"\n};\nreturn msg;",
+      "func": "msg.message = msg.payload;\nmsg.params = msg.channel ? {\"channel\":msg.channel}:msg.req.params;\nmsg.payload = {\n    \"user\": \"esadmin\",\n    \"password\": \"admin1admin1\"\n};\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
       "x": 178,

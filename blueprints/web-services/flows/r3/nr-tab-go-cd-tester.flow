@@ -1,11 +1,11 @@
 {
-  "id": "86488047.775ab",
+  "id": "1dc7158f.f96cba",
   "label": "Go.CD Tester",
   "nodes": [
     {
       "id": "e0413da6.d43c1",
       "type": "subflow:357b5975.8ef876",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "x": 430,
       "y": 120,
       "wires": [
@@ -18,7 +18,7 @@
     {
       "id": "f13a4d41.53c84",
       "type": "inject",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "",
       "topic": "",
       "payload": "",
@@ -37,7 +37,7 @@
     {
       "id": "ed361800.e0d1a8",
       "type": "function",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "Check",
       "func": "msg.key = \"hello-world-1\"\nmsg.topic = \"check:pipeline_pipeline\"\nreturn msg;",
       "outputs": 1,
@@ -53,7 +53,7 @@
     {
       "id": "6fe113cb.6b4c2c",
       "type": "debug",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "",
       "active": true,
       "console": "false",
@@ -67,7 +67,7 @@
     {
       "id": "87db5e85.4ba8c",
       "type": "subflow:357b5975.8ef876",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "",
       "x": 430,
       "y": 200,
@@ -81,7 +81,7 @@
     {
       "id": "f76cc6b4.36b348",
       "type": "inject",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "",
       "topic": "",
       "payload": "",
@@ -100,7 +100,7 @@
     {
       "id": "dc77c764.6e6818",
       "type": "function",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "Plus",
       "func": "msg.key = \"hello-world-1\"\nmsg.topic = \"plus:pipeline_pipeline\"\nmsg.payload = { \"group\": \"defaultGroup\",\n  \"pipeline\": {\n    \"label_template\": \"${COUNT}\",\n    \"enable_pipeline_locking\": true,\n    \"name\": \"hello-world-1\",\n    \"template\": null,\n    \"materials\": [\n\n      {\n        \"type\": \"git\",\n        \"attributes\": {\n          \"url\": \"http://localhost/root/hello-world-svc-app.git\",\n          \"destination\": \"hello-world-svc-app\",\n          \"filter\": null,\n          \"name\": null,\n          \"auto_update\": true,\n          \"branch\": \"master\",\n          \"submodule_folder\": null,\n          \"shallow_clone\": true\n        }\n      }\n\n    ],\n    \"stages\": [\n      {\n        \"name\": \"Build\",\n        \"fetch_materials\": true,\n        \"clean_working_directory\": false,\n        \"never_cleanup_artifacts\": false,\n        \"approval\": {\n          \"type\": \"success\",\n          \"authorization\": {\n            \"roles\": [],\n            \"users\": []\n          }\n        },\n        \"environment_variables\": [],\n        \"jobs\": [\n          {\n            \"name\": \"defaultJob\",\n            \"run_instance_count\": null,\n            \"timeout\": 0,\n            \"environment_variables\": [],\n            \"resources\": [],\n            \"tasks\": [\n              {\n                \"type\": \"exec\",\n                \"attributes\": {\n                  \"run_if\": [\n                    \"passed\"\n                  ],\n                  \"command\": \"ls\",\n                  \"working_directory\": null\n                }\n              },\n              {\n                \"type\": \"exec\",\n                \"attributes\": {\n                  \"run_if\": [\n                    \"passed\"\n                  ],\n                  \"command\": \"mvn\",\n                  \"arguments\": [ \"clean\", \"install\" ],\n                  \"working_directory\": \"hello-world-svc-app\"\n                }\n              }\n            ]\n          }\n        ]\n      },\n      {\n        \"name\": \"Deploy\",\n        \"fetch_materials\": true,\n        \"clean_working_directory\": false,\n        \"never_cleanup_artifacts\": false,\n        \"approval\": {\n          \"type\": \"success\",\n          \"authorization\": {\n            \"roles\": [],\n            \"users\": []\n          }\n        },\n        \"environment_variables\": [],\n        \"jobs\": [\n          {\n            \"name\": \"defaultJob\",\n            \"run_instance_count\": null,\n            \"timeout\": 0,\n            \"environment_variables\": [],\n            \"resources\": [],\n            \"tasks\": [\n              {\n                \"type\": \"exec\",\n                \"attributes\": {\n                  \"run_if\": [\n                    \"passed\"\n                  ],\n                  \"command\": \"mvn\",\n                  \"arguments\": [\n                    \"deploy\",\n                    \"-DaltDeploymentRepository=snapshotRepository::default::http://localhost:9080/repository/snapshots\"\n                  ],\n                  \"working_directory\": \"hello-world-svc-app\"\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}\nreturn msg;",
       "outputs": 1,
@@ -116,7 +116,7 @@
     {
       "id": "9fd5f191.6c6b2",
       "type": "debug",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "",
       "active": true,
       "console": "false",
@@ -130,7 +130,7 @@
     {
       "id": "33b98003.95e8b",
       "type": "subflow:357b5975.8ef876",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "x": 430,
       "y": 280,
       "wires": [
@@ -143,7 +143,7 @@
     {
       "id": "f5dd2832.3df388",
       "type": "inject",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "",
       "topic": "",
       "payload": "",
@@ -162,7 +162,7 @@
     {
       "id": "99b8aa33.ff8988",
       "type": "function",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "Minus",
       "func": "msg.key = \"hello-world-1\"\nmsg.topic = \"minus:pipeline_pipeline\"\n\nreturn msg;",
       "outputs": 1,
@@ -178,7 +178,7 @@
     {
       "id": "d534495c.97f0f8",
       "type": "debug",
-      "z": "86488047.775ab",
+      "z": "1dc7158f.f96cba",
       "name": "",
       "active": true,
       "console": "false",
