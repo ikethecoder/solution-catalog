@@ -50,6 +50,10 @@
         {
           "id": "d584c3b6.b66d",
           "port": 0
+        },
+        {
+          "id": "fb5d2f2a.65202",
+          "port": 0
         }
       ]
     }
@@ -82,6 +86,11 @@
           "vt": "str"
         },
         {
+          "t": "eq",
+          "v": "list-service-health",
+          "vt": "str"
+        },
+        {
           "t": "cont",
           "v": "service",
           "vt": "str"
@@ -91,7 +100,7 @@
         }
       ],
       "checkall": "false",
-      "outputs": 5,
+      "outputs": 6,
       "x": 145.61111450195312,
       "y": 178.22222900390625,
       "wires": [
@@ -102,7 +111,10 @@
           "6a433a50.1ba1d4"
         ],
         [
-
+          "ad4df813.558948"
+        ],
+        [
+          "9da3fb6f.18c028"
         ],
         [
           "33fad3f.b4b082c"
@@ -166,8 +178,8 @@
       "func": "msg.payload = {\n    \"error\": \"Unknown topic \" + msg.topic\n};\nmsg.statusCode = 500;\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
-      "x": 445.5,
-      "y": 213,
+      "x": 430,
+      "y": 320,
       "wires": [
         [
 
@@ -183,8 +195,8 @@
       "ret": "txt",
       "url": "https://consul.service.dc1.consul:8080/v1/agent/service/register",
       "tls": "c792be07.29d4",
-      "x": 621,
-      "y": 292,
+      "x": 610,
+      "y": 400,
       "wires": [
         [
           "bde421d8.76287"
@@ -200,8 +212,8 @@
       "ret": "txt",
       "url": "https://consul.service.dc1.consul:8080/v1/agent/service/deregister/{{key}}",
       "tls": "c792be07.29d4",
-      "x": 492,
-      "y": 335,
+      "x": 481,
+      "y": 443,
       "wires": [
         [
           "bde421d8.76287"
@@ -217,8 +229,8 @@
       "ret": "txt",
       "url": "https://consul.service.dc1.consul:8080/v1/health/state/{{payload.state}}",
       "tls": "c792be07.29d4",
-      "x": 493,
-      "y": 374,
+      "x": 482,
+      "y": 482,
       "wires": [
         [
           "bde421d8.76287"
@@ -315,8 +327,8 @@
       "func": "msg.payload['ID'] = msg.key;\nreturn msg;\n\n",
       "outputs": 1,
       "noerr": 0,
-      "x": 482.5,
-      "y": 292,
+      "x": 471.5,
+      "y": 400,
       "wires": [
         [
           "bcc4f1bb.54c44"
@@ -354,8 +366,8 @@
       ],
       "checkall": "false",
       "outputs": 4,
-      "x": 296,
-      "y": 346,
+      "x": 285,
+      "y": 454,
       "wires": [
         [
           "86013aba.94fb18"
@@ -380,8 +392,8 @@
       "ret": "txt",
       "url": "https://consul.service.dc1.consul:8080/v1/agent/services",
       "tls": "c792be07.29d4",
-      "x": 514,
-      "y": 414,
+      "x": 503,
+      "y": 522,
       "wires": [
         [
           "bde421d8.76287"
@@ -490,8 +502,8 @@
       "func": "msg.payload = (msg.payload.data ? msg.payload.data:msg.payload);\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
-      "x": 921,
-      "y": 337,
+      "x": 910,
+      "y": 445,
       "wires": [
         [
 
@@ -517,8 +529,8 @@
       ],
       "checkall": "false",
       "outputs": 2,
-      "x": 782.5,
-      "y": 356,
+      "x": 771.5,
+      "y": 464,
       "wires": [
         [
           "1497a281.b22ffd"
@@ -536,8 +548,8 @@
       "func": "return msg;",
       "outputs": 1,
       "noerr": 0,
-      "x": 914.5,
-      "y": 373,
+      "x": 903.5,
+      "y": 481,
       "wires": [
         [
 
@@ -556,6 +568,70 @@
       "y": 40,
       "wires": [
 
+      ]
+    },
+    {
+      "id": "9da3fb6f.18c028",
+      "type": "http request",
+      "z": "a6b9a798.463af8",
+      "name": "SERVICE HEALTH",
+      "method": "GET",
+      "ret": "txt",
+      "url": "https://consul.service.dc1.consul:8080/v1/health/service/{{{payload.service}}}",
+      "tls": "c792be07.29d4",
+      "x": 450,
+      "y": 260,
+      "wires": [
+        [
+          "fb5d2f2a.65202"
+        ]
+      ]
+    },
+    {
+      "id": "fb5d2f2a.65202",
+      "type": "switch",
+      "z": "a6b9a798.463af8",
+      "name": "",
+      "property": "statusCode",
+      "propertyType": "msg",
+      "rules": [
+        {
+          "t": "eq",
+          "v": "200",
+          "vt": "str"
+        },
+        {
+          "t": "else"
+        }
+      ],
+      "checkall": "false",
+      "outputs": 2,
+      "x": 630,
+      "y": 260,
+      "wires": [
+        [
+
+        ],
+        [
+          "5e75657b.1e49bc"
+        ]
+      ]
+    },
+    {
+      "id": "ad4df813.558948",
+      "type": "http request",
+      "z": "a6b9a798.463af8",
+      "name": "BY HEALTH",
+      "method": "GET",
+      "ret": "txt",
+      "url": "https://consul.service.dc1.consul:8080/v1/health/state/{{{payload.state}}}",
+      "tls": "c792be07.29d4",
+      "x": 430,
+      "y": 220,
+      "wires": [
+        [
+          "fb5d2f2a.65202"
+        ]
       ]
     }
   ]

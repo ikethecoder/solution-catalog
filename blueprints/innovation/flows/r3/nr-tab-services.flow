@@ -1,11 +1,12 @@
 {
-  "id": "eae36b5.f761398",
+  "id": "71feed24.4deca4",
   "label": "Services",
   "nodes": [
     {
       "id": "ba73ea78.709e88",
       "type": "subflow:a6b9a798.463af8",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
+      "name": "",
       "x": 542.5,
       "y": 278,
       "wires": [
@@ -18,7 +19,7 @@
     {
       "id": "6a0ec521.8f985c",
       "type": "http in",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "",
       "url": "/services",
       "method": "post",
@@ -34,7 +35,7 @@
     {
       "id": "f6b73012.90ca1",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "put-service",
       "func": "msg.topic = 'put-service'\nreturn msg;",
       "outputs": 1,
@@ -50,7 +51,7 @@
     {
       "id": "a5954dda.e93ea",
       "type": "http response",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "",
       "x": 698.5,
       "y": 278,
@@ -61,7 +62,7 @@
     {
       "id": "65e2ddf4.3d94d4",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "Prep",
       "func": "p = msg.payload;\n\nid = p.environment + \"-\" + p.name + \"-\" + p.port;\n\nargs = {\n    \"name\":p.name,\n    \"id\": id,\n    \"address\": \"10.136.41.145\", \n    \"port\": Number(p.port)\n};\n\ntags = [\n    \"urlprefix-www.dev/api\"\n];\n\ncheck = {\n    \"http\" : \"http://10.136.41.145:3333/api/query/q/test\",\n    \"interval\" : \"10s\",\n    \"timeout\" : \"1s\"\n};\n\nmsg.payload = {\n        \"Name\" : args.name, \n        \"ID\" : args.id, \n        \"Address\" : args.address, \n        \"Port\" : args.port, \n        \"Tags\" : tags,\n        \"Check\" : check\n}\nreturn msg;\n",
       "outputs": 1,
@@ -78,7 +79,7 @@
     {
       "id": "3e79e63f.f030aa",
       "type": "http in",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "",
       "url": "/service_check",
       "method": "put",
@@ -94,7 +95,7 @@
     {
       "id": "cd24f6ca.f74fd8",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "put-service",
       "func": "msg.topic = 'put-service'\nreturn msg;",
       "outputs": 1,
@@ -110,7 +111,7 @@
     {
       "id": "a61d358b.aa7d18",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "Prep",
       "func": "args = {\n    \"id\":\"enterprise-1236-5\",\n    \"Name\":\"enterprise\",\n    \"address\":\"10.136.17.79\", \n    \"port\":1236\n};\n\ntags = [\n    \"urlprefix-/enterprise\"\n];\n\ncheck = {\n    \"http\" : \"http://10.136.17.79:1235/health\",\n    \"interval\" : \"10s\",\n    \"timeout\" : \"1s\"\n};\n\nmsg.payload = {\n        \"ID\" : args.id, \n        \"Name\" : args.serviceName, \n        \"Address\" : args.address, \n        \"Port\" : args.port, \n        \"Tags\" : tags,\n        \"Check\" : check\n}\nreturn msg;\n",
       "outputs": 1,
@@ -126,7 +127,7 @@
     {
       "id": "d6b075db.21ffb8",
       "type": "http in",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "",
       "url": "/services",
       "method": "delete",
@@ -142,7 +143,7 @@
     {
       "id": "10c506a.7790ef9",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "delete-service",
       "func": "msg.topic = 'delete-service'\nreturn msg;",
       "outputs": 1,
@@ -158,7 +159,7 @@
     {
       "id": "f6aaa661.78fa18",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "Prep",
       "func": "args = {\n    \"name\":\"enterprise2\",\n    \"id\":\"test\",\n    \"address\":\"10.136.17.79\", \n    \"port\":1236\n};\n\ntags = [\n    \"urlprefix-/enterprise\"\n];\n\ncheck = {\n    \"http\" : \"http://10.136.17.79:1235/health\",\n    \"interval\" : \"10s\",\n    \"timeout\" : \"1s\"\n};\n\nmsg.payload = {\n        \"Name\" : args.name, \n        \"ID\" : args.id, \n        \"Address\" : args.address, \n        \"Port\" : args.port, \n        \"Tags\" : tags,\n        \"Check\" : check\n}\nreturn msg;\n",
       "outputs": 1,
@@ -174,7 +175,7 @@
     {
       "id": "a3cc77cb.b78d38",
       "type": "http in",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "",
       "url": "/services/:state",
       "method": "get",
@@ -190,7 +191,7 @@
     {
       "id": "2cfb8d65.4ac062",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "list-health",
       "func": "msg.topic = 'list-health'\nreturn msg;",
       "outputs": 1,
@@ -206,7 +207,7 @@
     {
       "id": "d7a28618.8dfc68",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "Set Param",
       "func": "msg.payload = {\"state\": msg.req.params.state};\nreturn msg;",
       "outputs": 1,
@@ -222,7 +223,7 @@
     {
       "id": "b23bcd52.5cd9c",
       "type": "comment",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "any, passing, warning, or critical",
       "info": "",
       "x": 141.5,
@@ -234,13 +235,13 @@
     {
       "id": "1a139964.5f9d87",
       "type": "http in",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "",
       "url": "/services",
       "method": "get",
       "swaggerDoc": "",
-      "x": 418,
-      "y": 456,
+      "x": 570,
+      "y": 620,
       "wires": [
         [
           "7d32199a.e901f8"
@@ -250,13 +251,13 @@
     {
       "id": "7d32199a.e901f8",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "list-services",
       "func": "msg.topic = 'list-services'\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
-      "x": 635,
-      "y": 535,
+      "x": 770,
+      "y": 620,
       "wires": [
         [
           "ba73ea78.709e88"
@@ -266,7 +267,7 @@
     {
       "id": "da906cc9.ed393",
       "type": "catch",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "",
       "scope": null,
       "x": 539,
@@ -281,7 +282,7 @@
     {
       "id": "f6d4026a.c334e",
       "type": "function",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "Error",
       "func": "msg.payload = {\n    \"error\": msg.message\n};\nmsg.statusCode = 400;\nreturn msg;",
       "outputs": 1,
@@ -297,7 +298,7 @@
     {
       "id": "d1d09f2b.ad0e",
       "type": "debug",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "",
       "active": true,
       "console": "false",
@@ -311,7 +312,7 @@
     {
       "id": "878f3062.6c77c",
       "type": "debug",
-      "z": "eae36b5.f761398",
+      "z": "71feed24.4deca4",
       "name": "",
       "active": true,
       "console": "false",
@@ -320,6 +321,72 @@
       "y": 72,
       "wires": [
 
+      ]
+    },
+    {
+      "id": "d84a2c78.943fa",
+      "type": "http in",
+      "z": "71feed24.4deca4",
+      "name": "",
+      "url": "/health/:service",
+      "method": "get",
+      "upload": false,
+      "swaggerDoc": "",
+      "x": 120,
+      "y": 480,
+      "wires": [
+        [
+          "8e0afe12.c8129"
+        ]
+      ]
+    },
+    {
+      "id": "8e0afe12.c8129",
+      "type": "function",
+      "z": "71feed24.4deca4",
+      "name": "",
+      "func": "msg.payload = {\"service\": msg.req.params.service};\nmsg.topic = 'list-service-health';\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 341.5,
+      "y": 508,
+      "wires": [
+        [
+          "ba73ea78.709e88"
+        ]
+      ]
+    },
+    {
+      "id": "1697b3c3.2a945c",
+      "type": "http in",
+      "z": "71feed24.4deca4",
+      "name": "",
+      "url": "/service_tags",
+      "method": "put",
+      "upload": false,
+      "swaggerDoc": "",
+      "x": 120,
+      "y": 660,
+      "wires": [
+        [
+          "ce96f0bd.cda6e"
+        ]
+      ]
+    },
+    {
+      "id": "ce96f0bd.cda6e",
+      "type": "function",
+      "z": "71feed24.4deca4",
+      "name": "",
+      "func": "msg.topic = 'put-service'\nmsg.resource = Object.keys(msg.payload)[0];\nmsg.key = Object.keys(msg.payload[msg.resource])[0];\nmsg.payload = msg.payload[msg.resource][msg.key];\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 356.5,
+      "y": 686,
+      "wires": [
+        [
+          "ba73ea78.709e88"
+        ]
       ]
     }
   ]

@@ -1,11 +1,11 @@
 {
-  "id": "b79b6ba4.eec458",
+  "id": "d4bfdd72.c1d43",
   "label": "Pipelines 2",
   "nodes": [
     {
       "id": "30e6f4a9.12525c",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/pipelines",
       "method": "post",
@@ -21,7 +21,7 @@
     {
       "id": "327747e9.2766e8",
       "type": "json-schema",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "func": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"title\": \"Pipeline\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"name\": {\n            \"description\": \"Name of the component\",\n            \"type\": \"string\"\n        },\n        \"url\": {\n            \"description\": \"Material URL\",\n            \"type\": \"string\"\n        },\n        \"branch\": {\n            \"description\": \"Material Branch\",\n            \"type\": \"string\"\n        },\n        \"pipelineName\": {\n            \"description\": \"Name of the pipeline\",\n            \"type\": \"string\"\n        }\n    },\n    \"required\": [\"name\", \"url\", \"branch\", \"pipelineName\"]\n}",
       "x": 372,
@@ -35,7 +35,7 @@
     {
       "id": "cd60d0ce.01276",
       "type": "comment",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "Pipelines (create/destroy)",
       "info": "As part of the micro-service architecture, the ability to\ncreate and destroy pipelines easily.",
       "x": 142.5,
@@ -47,7 +47,7 @@
     {
       "id": "f58b61ab.588ad",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "Prepare UPD FOR DEPLOY",
       "func": "args = {\n    \"name\":\"hello-world-svc-app\",\n    \"branch\":\"hotfix-1.0.3\", \n    \"version\":\"1.0.3\",\n    \"qualifier\":\"N\",\n    \"port\":\"1235\",\n    \"N\":{\n        \"pattern\":\"Deploy\",\n        \"name\":\"another-svc-app-hotfix-1.0.3-Deploy\"\n    }, \n    \"localUrl\":\"https://IKE_CI:55665566@gitlab.com/ikethecoder/hello-world-svc-app.git\",\n    \"localBranch\":\"master\"\n};\n\nfunction replaceAll(str, find, replace) {\n  return str.replace(new RegExp(find, 'g'), replace);\n}\n\nargsString = replaceAll(JSON.stringify(args),'\"', '\"');\n\nmsg.payload = [\n    \"--lifecycle=wire\",\n    \"--solution=gocd\",\n    \"--action=update-pipeline-for-deploy\",\n    \"--args='\" + argsString + \"'\"].join(' ');\n\nreturn msg;\n\n",
       "outputs": "2",
@@ -66,7 +66,7 @@
     {
       "id": "331ba2b9.3a7f3e",
       "type": "bigexec",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "command": "/home/pm2user/canzea.sh",
       "commandArgs": "",
@@ -96,7 +96,7 @@
     {
       "id": "d42dae8.4bae45",
       "type": "inject",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "topic": "",
       "payload": "",
@@ -115,7 +115,7 @@
     {
       "id": "1aad2b6e.675395",
       "type": "subflow:a1cb3587.05ca68",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "x": 746.5,
       "y": 305,
@@ -132,7 +132,7 @@
     {
       "id": "74955386.5e890c",
       "type": "http response",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "x": 915.5,
       "y": 307,
@@ -143,7 +143,7 @@
     {
       "id": "208adeec.40fcc2",
       "type": "catch",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "scope": null,
       "x": 659,
@@ -158,7 +158,7 @@
     {
       "id": "b0d47d29.69c92",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "Error",
       "func": "msg.payload = {\n    \"error\": msg.message\n};\nmsg.statusCode = 400;\nreturn msg;",
       "outputs": 1,
@@ -174,7 +174,7 @@
     {
       "id": "2ade4c04.460634",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "prepare-for-build",
       "func": "msg.topic = 'prepare-for-build';\nreturn msg;",
       "outputs": 1,
@@ -190,7 +190,7 @@
     {
       "id": "7c9c3177.0fa2b",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "create-build-pipeline",
       "func": "msg.topic = 'create-build-pipeline';\nreturn msg;",
       "outputs": 1,
@@ -206,7 +206,7 @@
     {
       "id": "d13325a7.d3c948",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/build-pipelines",
       "method": "post",
@@ -222,7 +222,7 @@
     {
       "id": "7a0ea8c1.915d08",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "unpause",
       "func": "msg.topic = 'unpause';\nreturn msg;",
       "outputs": 1,
@@ -238,7 +238,7 @@
     {
       "id": "a91b825b.58abc",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/unpause",
       "method": "post",
@@ -254,7 +254,7 @@
     {
       "id": "b30cf16a.08dff",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "schedule",
       "func": "msg.topic = 'schedule';\nreturn msg;",
       "outputs": 1,
@@ -270,7 +270,7 @@
     {
       "id": "e46d1cb5.ce65d",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/schedule",
       "method": "post",
@@ -286,7 +286,7 @@
     {
       "id": "5edd2786.a0d5c8",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/prepare-pipelines",
       "method": "post",
@@ -302,7 +302,7 @@
     {
       "id": "23a8fd44.c06ad2",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "prepare-for-deploy",
       "func": "msg.topic = 'prepare-for-deploy';\nreturn msg;",
       "outputs": 1,
@@ -318,7 +318,7 @@
     {
       "id": "21750101.c21e4e",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/deploy-pipelines",
       "method": "post",
@@ -334,7 +334,7 @@
     {
       "id": "f7bed930.df6238",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "create-deploy-pipeline",
       "func": "msg.topic = 'create-deploy-pipeline';\nreturn msg;",
       "outputs": 1,
@@ -350,7 +350,7 @@
     {
       "id": "31539abb.18ca16",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "get-environment",
       "func": "msg.topic = 'get-environment';\nreturn msg;",
       "outputs": 1,
@@ -366,7 +366,7 @@
     {
       "id": "df7ed55.d99e928",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/get-environment",
       "method": "post",
@@ -382,7 +382,7 @@
     {
       "id": "d6c5c2a8.d9634",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/add-to-environment",
       "method": "post",
@@ -398,7 +398,7 @@
     {
       "id": "798f67c2.554e18",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "add-pipeline-to-environment",
       "func": "msg.topic = 'add-pipeline-to-environment';\nreturn msg;",
       "outputs": 1,
@@ -414,7 +414,7 @@
     {
       "id": "b1c5a3bb.6d41d",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/save-environment",
       "method": "post",
@@ -430,7 +430,7 @@
     {
       "id": "b35d745.5df7a88",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "save-environment",
       "func": "msg.topic = 'save-environment';\nreturn msg;",
       "outputs": 1,
@@ -446,7 +446,7 @@
     {
       "id": "29518f8d.69449",
       "type": "debug",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "active": true,
       "console": "false",
@@ -460,7 +460,7 @@
     {
       "id": "c77e547f.992878",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/enable-agent",
       "method": "post",
@@ -476,7 +476,7 @@
     {
       "id": "2e87ca8c.e36af6",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "enable-agent",
       "func": "msg.topic = 'enable-agent';\nreturn msg;",
       "outputs": 1,
@@ -492,7 +492,7 @@
     {
       "id": "291042b8.d6622e",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/link-agent-to-environment",
       "method": "post",
@@ -508,7 +508,7 @@
     {
       "id": "2023797b.752f36",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "link-agent-to-environment",
       "func": "msg.topic = 'link-agent-to-environment';\nreturn msg;",
       "outputs": 1,
@@ -524,7 +524,7 @@
     {
       "id": "35702cf7.f9bff4",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/unlink-agent-from-environment",
       "method": "post",
@@ -540,7 +540,7 @@
     {
       "id": "b2f59b65.8257d8",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "unlink-agent-from-environment",
       "func": "msg.topic = 'unlink-agent-from-environment';\nreturn msg;",
       "outputs": 1,
@@ -556,7 +556,7 @@
     {
       "id": "278da8aa.19f6b8",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/delete-agent",
       "method": "post",
@@ -572,7 +572,7 @@
     {
       "id": "fa9f54ed.ee15a8",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "delete-agent",
       "func": "msg.topic = 'delete-agent';\nreturn msg;",
       "outputs": 1,
@@ -588,7 +588,7 @@
     {
       "id": "dec9b1ff.42ed5",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/create-environment",
       "method": "post",
@@ -604,7 +604,7 @@
     {
       "id": "8072af80.2a79",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "create-environment",
       "func": "msg.topic = 'create-environment';\nreturn msg;",
       "outputs": 1,
@@ -620,7 +620,7 @@
     {
       "id": "6401cffd.4e788",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/delete-environment",
       "method": "delete",
@@ -636,7 +636,7 @@
     {
       "id": "d9e70b61.56c2c8",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "delete-environment",
       "func": "msg.topic = 'delete-environment';\nreturn msg;",
       "outputs": 1,
@@ -652,7 +652,7 @@
     {
       "id": "88eaf589.5861f8",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/disable-agent",
       "method": "post",
@@ -668,7 +668,7 @@
     {
       "id": "f36d51b4.2da",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "disable-agent",
       "func": "msg.topic = 'disable-agent';\nreturn msg;",
       "outputs": 1,
@@ -684,7 +684,7 @@
     {
       "id": "b99aed9d.02087",
       "type": "http in",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "",
       "url": "/unlink-pipeline-from-environment",
       "method": "post",
@@ -700,7 +700,7 @@
     {
       "id": "147a1774.bc0409",
       "type": "function",
-      "z": "b79b6ba4.eec458",
+      "z": "d4bfdd72.c1d43",
       "name": "unlink-pipeline-from-environment",
       "func": "msg.topic = 'unlink-pipeline-from-environment';\nreturn msg;",
       "outputs": 1,

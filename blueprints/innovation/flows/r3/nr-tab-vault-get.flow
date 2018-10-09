@@ -1,11 +1,11 @@
 {
-  "id": "4261a5f5.ff52dc",
+  "id": "46056a6.1226594",
   "label": "Vault GET",
   "nodes": [
     {
       "id": "12e4f08f.af54ef",
       "type": "http in",
-      "z": "4261a5f5.ff52dc",
+      "z": "46056a6.1226594",
       "name": "",
       "url": "/vault",
       "method": "get",
@@ -21,9 +21,9 @@
     {
       "id": "a74bc685.f65058",
       "type": "function",
-      "z": "4261a5f5.ff52dc",
+      "z": "46056a6.1226594",
       "name": "Prep Request",
-      "func": "msg.key = msg.req.query.key;\nmsg.topic = 'check:vault_secret';\nreturn msg;",
+      "func": "msg.key = msg.req.query.key;\nmsg.topic = 'get-secret';\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
       "x": 311.5,
@@ -37,7 +37,7 @@
     {
       "id": "76d6a63c.33aef8",
       "type": "http response",
-      "z": "4261a5f5.ff52dc",
+      "z": "46056a6.1226594",
       "name": "Response",
       "x": 609.5,
       "y": 306,
@@ -48,7 +48,7 @@
     {
       "id": "cd12da35.d45e18",
       "type": "http in",
-      "z": "4261a5f5.ff52dc",
+      "z": "46056a6.1226594",
       "name": "",
       "url": "/vault",
       "method": "post",
@@ -64,7 +64,7 @@
     {
       "id": "547ab802.860318",
       "type": "function",
-      "z": "4261a5f5.ff52dc",
+      "z": "46056a6.1226594",
       "name": "Prep Request",
       "func": "msg.key = msg.req.query.key;\nmsg.topic = 'plus:vault_secret';\nreturn msg;",
       "outputs": 1,
@@ -80,7 +80,7 @@
     {
       "id": "3ec41697.009aaa",
       "type": "http in",
-      "z": "4261a5f5.ff52dc",
+      "z": "46056a6.1226594",
       "name": "",
       "url": "/vault",
       "method": "delete",
@@ -96,7 +96,7 @@
     {
       "id": "ea93eea.8e6501",
       "type": "function",
-      "z": "4261a5f5.ff52dc",
+      "z": "46056a6.1226594",
       "name": "Prep Request",
       "func": "msg.key = msg.req.query.key;\nmsg.topic = 'minus:vault_secret';\nreturn msg;",
       "outputs": 1,
@@ -112,7 +112,7 @@
     {
       "id": "682bafc5.01a9a",
       "type": "subflow:d773a612.5b2d98",
-      "z": "4261a5f5.ff52dc",
+      "z": "46056a6.1226594",
       "name": "",
       "x": 462.5,
       "y": 308,

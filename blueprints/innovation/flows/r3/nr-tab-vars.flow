@@ -1,11 +1,11 @@
 {
-  "id": "53fe2fea.b9395",
+  "id": "12397de2.401d02",
   "label": "VARS",
   "nodes": [
     {
       "id": "9d10fd85.4d413",
       "type": "inject",
-      "z": "53fe2fea.b9395",
+      "z": "12397de2.401d02",
       "name": "",
       "topic": "",
       "payload": "",
@@ -24,7 +24,7 @@
     {
       "id": "65cf8ef3.29e59",
       "type": "vars",
-      "z": "53fe2fea.b9395",
+      "z": "12397de2.401d02",
       "name": "VAULT",
       "propertyType": {
         "context": {
@@ -72,7 +72,7 @@
     {
       "id": "eccc3f5b.8f9d4",
       "type": "debug",
-      "z": "53fe2fea.b9395",
+      "z": "12397de2.401d02",
       "name": "",
       "active": true,
       "console": "false",
@@ -86,7 +86,7 @@
     {
       "id": "835f305a.f2f83",
       "type": "inject",
-      "z": "53fe2fea.b9395",
+      "z": "12397de2.401d02",
       "name": "",
       "topic": "",
       "payload": "",
@@ -105,7 +105,7 @@
     {
       "id": "3d57f7bf.77ce68",
       "type": "vars",
-      "z": "53fe2fea.b9395",
+      "z": "12397de2.401d02",
       "name": "CONSUL",
       "propertyType": {
         "context": {
@@ -148,7 +148,7 @@
     {
       "id": "1f4418c4.21bb77",
       "type": "debug",
-      "z": "53fe2fea.b9395",
+      "z": "12397de2.401d02",
       "name": "",
       "active": true,
       "console": "false",
@@ -162,7 +162,7 @@
     {
       "id": "c88d8361.91a9d",
       "type": "function",
-      "z": "53fe2fea.b9395",
+      "z": "12397de2.401d02",
       "name": "",
       "func": "msg.payload = {key:'ABC'}\nreturn msg;",
       "outputs": 1,
@@ -178,7 +178,7 @@
     {
       "id": "64fca6f1.0e0128",
       "type": "function",
-      "z": "53fe2fea.b9395",
+      "z": "12397de2.401d02",
       "name": "",
       "func": "msg.payload = {key:'grafana'}\nreturn msg;",
       "outputs": 1,
