@@ -104,13 +104,14 @@ resources:
       commands: false
   depends_on:
   - "service_discovery_service.gocd"
+  - "building_block.${instance.id}-golang"
 - wire:
     ${instanceId}-go:
       solution: "users"
       action: "configure-go"
       droplet: "${instanceName}"
   depends_on:
-  - "building_block.${instanceId}-gocd-agent"
+  - "building_block.${instance.id}-gocd-agent"
 - building_block:
     ${instanceId}-maven:
       role: "build"
@@ -121,12 +122,14 @@ resources:
     ${environmentLabel}: {}
   depends_on:
   - "service_discovery_service.gocd"
+  - "building_block.${instance.id}-gocd-agent"
 - pipeline_agent:
     ${instanceName}:
       agent: "${instanceName}"
       environment: "${environmentLabel}"
   depends_on:
   - "service_discovery_service.gocd"
+  - "building_block.${instance.id}-gocd-agent"
 - building_block:
     ${instanceId}-mongodb:
       role: "documentdatabase"
