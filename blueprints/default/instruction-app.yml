@@ -21,13 +21,7 @@ resources:
 - building_block:
     ${instanceId}-ruby:
       role: "workarounds"
-      solution: "ruby"
-      droplet: "${instanceName}"
-      commands: true
-- building_block:
-    ${instanceId}-ruby-gems:
-      role: "workarounds"
-      solution: "ruby-gems"
+      solution: "ruby-min"
       droplet: "${instanceName}"
       commands: true
 - building_block:
