@@ -6,10 +6,10 @@ yes | cp roles/workarounds/canzea/config/config.json /root/.ecosystem-catalog/co
 
 yes | cp roles/workarounds/canzea/config/profiled.sh /etc/profile.d/hashicorp.sh
 
-
-yes | cp roles/workarounds/canzea/config/canzea.bash /usr/local/sbin/canzea
-
-chmod +x /usr/local/sbin/canzea
-
 (cd roles/workarounds/canzea && docker build --tag canzea .)
+
+yes | cp roles/workarounds/canzea/config/canzea.bash /usr/local/sbin/canzea_c
+
+chmod +x /usr/local/sbin/canzea_c
+
 
