@@ -14,7 +14,7 @@ resources:
   depends_on:
   - "compute_instance.${instanceName}"
 - building_block:
-    ${instanceId}-ruby:
+    ${instanceId}-ruby-min:
       role: "workarounds"
       solution: "ruby-min"
       droplet: "${instanceName}"

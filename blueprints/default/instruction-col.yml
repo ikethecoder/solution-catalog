@@ -9,19 +9,13 @@ resources:
   depends_on:
   - "compute_instance.${instanceName}"
 - building_block:
-    ${instanceId}-ruby:
+    ${instanceId}-ruby-min:
       role: "workarounds"
-      solution: "ruby"
+      solution: "ruby-min"
       droplet: "${es.id}-cd-builder-01"
       commands: true
   depends_on:
   - "#previous"
-- building_block:
-    ${instanceId}-ruby-gems:
-      role: "workarounds"
-      solution: "ruby-gems"
-      droplet: "${es.id}-cd-builder-01"
-      commands: true
 - building_block:
     ${instanceId}-git-core:
       role: "sourcecontrol"

@@ -19,15 +19,9 @@ resources:
   depends_on:
   - "#previous"
 - building_block:
-    ${instanceId}-ruby:
+    ${instanceId}-ruby-min:
       role: "workarounds"
-      solution: "ruby"
-      droplet: "${instanceName}"
-      commands: true
-- building_block:
-    ${instanceId}-ruby-gems:
-      role: "workarounds"
-      solution: "ruby-gems"
+      solution: "ruby-min"
       droplet: "${instanceName}"
       commands: true
 - building_block:
