@@ -434,6 +434,8 @@ resources:
 - legacy:
     fill-endpoints:
       activity: vs:fill-endpoints
+  depends_on:
+  - "migrate.ecosystem"
 
 - remote_ssh_key_pair:
     root_id_rsa: {}
