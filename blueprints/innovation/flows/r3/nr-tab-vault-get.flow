@@ -23,7 +23,7 @@
       "type": "function",
       "z": "46056a6.1226594",
       "name": "Prep Request",
-      "func": "msg.key = msg.req.query.key;\nmsg.topic = 'get-secret';\nreturn msg;",
+      "func": "msg.key = msg.req.query.key;\nmsg.topic = 'check:vault_secret';\nreturn msg;",
       "outputs": 1,
       "noerr": 0,
       "x": 311.5,
