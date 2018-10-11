@@ -96,15 +96,15 @@ resources:
       droplet: "${instanceName}"
       commands: false
 - building_block:
-    ${instanceId}-rocketchat:
-      role: "collaboration"
-      solution: "rocketchat/docker"
-      droplet: "${instanceName}"
-      commands: false
-- building_block:
     ${instanceId}-gocd:
       role: "deploy"
       solution: "gocd/docker"
+      droplet: "${instanceName}"
+      commands: false
+- building_block:
+    ${instanceId}-rocketchat:
+      role: "collaboration"
+      solution: "rocketchat/docker"
       droplet: "${instanceName}"
       commands: false
 - building_block:
