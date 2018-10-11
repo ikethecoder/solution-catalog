@@ -165,7 +165,7 @@ resources:
 - collaboration_channel:
     ${environmentLabel}: {}
   depends_on:
-  - "service_discovery_service.rocketchat"
+  - "wire.rocketchat-first-set-oauth"
 - monitoring_dashboard:
     ${environmentLabel}-environment:
       blueprint: "web-services"
