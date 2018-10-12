@@ -84,6 +84,12 @@ resources:
       droplet: "${instanceName}"
       commands: false
 - building_block:
+    ${instanceId}-gocd:
+      role: "deploy"
+      solution: "gocd/docker"
+      droplet: "${instanceName}"
+      commands: false
+- building_block:
     ${instanceId}-archiva:
       role: "registry"
       solution: "archiva/docker"
@@ -93,12 +99,6 @@ resources:
     ${instanceId}-mongodb:
       role: "documentdatabase"
       solution: "mongodb/docker"
-      droplet: "${instanceName}"
-      commands: false
-- building_block:
-    ${instanceId}-gocd:
-      role: "deploy"
-      solution: "gocd/docker"
       droplet: "${instanceName}"
       commands: false
 - building_block:
