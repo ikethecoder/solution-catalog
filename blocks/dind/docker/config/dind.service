@@ -1,0 +1,11 @@
+[Unit]
+Description=Docker in Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a dind
+ExecStop=/usr/bin/docker stop -t 2 dind
+
+[Install]
+WantedBy=local.target
