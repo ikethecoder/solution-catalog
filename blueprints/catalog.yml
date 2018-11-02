@@ -35,6 +35,7 @@ buildingBlocks:
 
   digitalocean:
     description: Cloud computing, designed for developers.
+    info: https://digitalocean.com
     url: https://cloud.digitalocean.com/droplets
     logo: https://canzea.com/saas/styles/img/partners/do.png
     roles: [ "cloud_provider" ]
@@ -70,6 +71,7 @@ buildingBlocks:
 
   consul:
     description: Service Discovery and Configuration Made Easy
+    info: https://www.consul.io/
     logo: https://canzea.com/saas/styles/img/partners/consul.svg
     roles: [ "service_discovery", 'distributed_kv_store']
     resources: [ "services", "nodes", "keyvalues" ]
@@ -82,6 +84,7 @@ buildingBlocks:
 
   terraform:
     logo: https://www.terraform.io/assets/images/logo-hashicorp-3f10732f.svg
+    info: https://www.terraform.io/
     description: Terraform is a tool for building, changing, and combining infrastructure safely and efficiently.
     type: cli
     roles: ["infrastructure_as_code"]
@@ -102,6 +105,7 @@ buildingBlocks:
 
   archiva:
     description: Archiva Package Repository
+    info: https://archiva.apache.org/
     logo: http://archiva.apache.org/images/archiva.png
     repo: https://github.com/apache/archiva.git
     tags: ['archiva-2.2.1']
@@ -112,6 +116,7 @@ buildingBlocks:
 
   gocd:
     description: Go.CD Delivery Pipeline
+    info: https://www.gocd.org/
     logo: https://avatars3.githubusercontent.com/u/6099846?v=3&s=200
     repo: https://github.com/gocd/gocd.git
     tags: ['17.11.0']
@@ -131,6 +136,7 @@ buildingBlocks:
 
   rocketchat:
     description: Rocket.Chat Real-Time Chat and Collaboration
+    info: https://rocket.chat/
     logo: https://avatars3.githubusercontent.com/u/12508788?v=3&s=200
     repo: https://github.com/RocketChat/Rocket.Chat.git
     tags: []
@@ -141,6 +147,7 @@ buildingBlocks:
 
   fabio:
     description: A fast, modern, zero-conf load balancing HTTP(S) router
+    info: https://fabiolb.net/
     logo: https://avatars3.githubusercontent.com/u/25439951?v=3&s=200
     repo: https://github.com/fabiolb/fabio.git
     tags: ['v1.5.3']
@@ -150,6 +157,7 @@ buildingBlocks:
 
   kibana:
     description: Analytics and visualization platform that builds on Elasticsearch
+    info: https://www.elastic.co/products/kibana
     logo: https://www.elastic.co/assets/blt282ae2420e32fc38/icon-kibana-bb.svg
     repo: https://github.com/elastic/kibana.git
     tags: ['v5.3.0']
@@ -160,6 +168,7 @@ buildingBlocks:
 
   grafana:
     description: Metric analytics & visualization suite
+    info: https://grafana.com/
     logo: https://avatars2.githubusercontent.com/u/7195757?v=3&s=200
     repo: https://github.com/grafana/grafana.git
     bg: black
@@ -179,6 +188,7 @@ buildingBlocks:
 
   nodered:
     description: Node-Red
+    info: https://nodered.org/
     logo: https://avatars3.githubusercontent.com/u/5375661?v=4&s=200
     repo: https://github.com/node-red/node-red.git
     tags: ['0.17.5']
@@ -222,6 +232,7 @@ buildingBlocks:
 
   rasa:
     description: RASA Natural Language Processing
+    info: https://rasa.com/
     logo: https://avatars0.githubusercontent.com/u/21214473?v=4&s=200
     repos: ["https://github.com/RasaHQ/rasa_nlu.git", "https://github.com/RasaHQ/rasa_core.git"]
     roles: [ "nlp" ]
@@ -230,6 +241,7 @@ buildingBlocks:
 
   taiga:
     description: A project management platform for agile developers & designers
+    info: https://taiga.io/
     logo: https://avatars0.githubusercontent.com/u/6905422?s=200&v=4
     repos: ['https://github.com/taigaio/taiga-back.git', 'https://github.com/taigaio/taiga-front.git']
     roles: [ "agile_pm" ]
@@ -237,6 +249,7 @@ buildingBlocks:
 
   helpy:
     description: A modern, "mobile-first" helpdesk application
+    info: https://helpy.io/
     logo: https://avatars2.githubusercontent.com/u/17730784?s=200&v=4
     repo: https://github.com/helpyio/helpy.git
     roles: [ "incident_mgmt" ]
@@ -244,6 +257,7 @@ buildingBlocks:
 
   pgadmin:
     description: An administration and development platform for PostgreSQL
+    info: https://www.pgadmin.org/
     logo: https://avatars0.githubusercontent.com/u/177543?s=200&v=4
     repo: https://github.com/postgres/pgadmin4.git
     roles: [ "db_admin" ]
@@ -251,6 +265,7 @@ buildingBlocks:
 
   postgresql:
     description: An object-relational database management system (ORDBMS)
+    info: https://www.postgresql.org/
     logo: https://avatars0.githubusercontent.com/u/177543?s=200&v=4
     repo: https://github.com/postgres/postgres.git
     tags: ['REL9_6_6']
@@ -260,6 +275,7 @@ buildingBlocks:
 
   mongodb:
     description: Mongodb
+    info: https://www.mongodb.com/
     logo: https://avatars1.githubusercontent.com/u/45120?s=200&v=4
     repo: https://github.com/mongodb/mongo.git
     roles: [ "document_database", 'nosql_database' ]
@@ -269,6 +285,7 @@ buildingBlocks:
 
   rabbitmq:
     description: RabbitMQ is the most widely deployed open source message broker
+    info: https://www.rabbitmq.com/
     logo: https://avatars0.githubusercontent.com/u/96669?s=200&v=4
     repo: https://github.com/rabbitmq/rabbitmq-server.git
     roles: [ "messaging" ]
@@ -279,6 +296,7 @@ buildingBlocks:
 
   logstash:
     description: A server-side data processing pipeline
+    info: https://www.elastic.co/products/logstash
     logo: https://www.elastic.co/assets/blt9a26f88bfbd20eb5/icon-elasticsearch-bb.svg
     repo: https://github.com/elastic/logstash.git
     roles: [ "data_aggregator" ]
@@ -287,6 +305,7 @@ buildingBlocks:
 
   elasticsearch:
     description: A distributed, RESTful search and analytics engine
+    info: https://www.elastic.co/products/elasticsearch
     logo: https://www.elastic.co/assets/blt9a26f88bfbd20eb5/icon-elasticsearch-bb.svg
     repo: https://github.com/elastic/elasticsearch.git
     tags: ['v5.6.4']
@@ -296,6 +315,7 @@ buildingBlocks:
 
   vault:
     description: A Tool for Managing Secrets
+    info: https://www.vaultproject.io/
     logo: https://canzea.com/catalog/img/vendors/vault.svg
     repo: https://github.com/hashicorp/vault.git
     tags: []
@@ -306,6 +326,7 @@ buildingBlocks:
 
   phantomjs:
     description: A headless WebKit scriptable with a JavaScript API
+    info: http://phantomjs.org/
     logo: http://phantomjs.org/img/phantomjs-logo.png
     repo: https://github.com/ariya/phantomjs.git
     roles: [ "headless_browser" ]
@@ -323,6 +344,7 @@ buildingBlocks:
 
   docker:
     description: Driving the container movement
+    info: https://www.docker.com/products/docker-engine
     logo: https://avatars0.githubusercontent.com/u/5429470?s=200&v=4
     repo: https://github.com/docker/docker-ce.git
     roles: [ "container_engine" ]
@@ -403,6 +425,7 @@ buildingBlocks:
 
   fail2ban:
     description: An intrusion prevention software framework
+    info: https://www.fail2ban.org/
     logo: https://avatars3.githubusercontent.com/u/1087378?s=200&v=4
     repo: https://github.com/fail2ban/fail2ban.git
     roles: ['network_intrusion_gw', 'application_firewall']
@@ -415,6 +438,7 @@ buildingBlocks:
 
   keycloak:
     description: Identity and access management solution
+    info: https://www.keycloak.org/
     logo: https://avatars0.githubusercontent.com/u/4921466?s=200&v=4
     repo: https://github.com/keycloak/keycloak.git
     roles: ['identity_and_access']
@@ -447,6 +471,7 @@ buildingBlocks:
 
   gitea:
     logo: https://avatars0.githubusercontent.com/u/12724356?s=200&v=4
+    info: https://gitea.io/
     fg: "#6D963A"
     bg: "#EFEFEF"
     repo: https://github.com/go-gitea/gitea.git
@@ -565,6 +590,7 @@ buildingBlocks:
 
   canzea:
     logo: https://assets.gitlab-static.net/uploads/-/system/user/avatar/840849/avatar.png
+    info: https://canzea.com
     # repos: ['https://gitlab.com/canzea/console-ui.git', 'https://gitlab.com/canzea/console-app.git']
     description: Production grade software environments for optimized product flow
     roles: ['ecosystem_platform']
@@ -589,6 +615,7 @@ buildingBlocks:
     reference: true
 
   letsencrypt:
+    info: https://letsencrypt.org/
     logo: https://letsencrypt.org/images/le-logo-standard.svg
     description: A free, automated, and open Certificate Authority
     roles: ['certificate_authority']
@@ -596,6 +623,7 @@ buildingBlocks:
     hosting: subscription
 
   certbot:
+    info: https://certbot.eff.org/
     logo: https://avatars0.githubusercontent.com/u/17889013?s=200&v=4
     repo: https://github.com/certbot/certbot.git
     roles: ['ca_tool']
@@ -698,6 +726,7 @@ buildingBlocks:
     roles: ["os_security"]
 
   strongswan:
+    info: https://www.strongswan.org/
     repo: https://github.com/strongswan/strongswan.git
     logo: https://avatars0.githubusercontent.com/u/457671?s=200&v=4
     description: IPsec-based VPN Solution
@@ -707,11 +736,13 @@ buildingBlocks:
 
   aws_polly:
     description: Amazon's text to speech.
+    info: https://aws.amazon.com/polly/
     logo: https://canzea.com/saas/styles/img/partners/aws.png
     roles: ["text_to_voice"]
 
   gcp_speech:
     description: Google Cloud Speech
+    info: https://cloud.google.com/speech-to-text/
     logo: https://canzea.com/saas/styles/img/partners/gcp.png
     roles: ["voice_to_text"]
 
@@ -788,6 +819,7 @@ buildingBlocks:
 
   openresty:
     description: A Fast and Scalable Web Platform
+    info: https://openresty.org/
     repos: ["https://github.com/openresty/openresty.git"]
     logo: https://avatars2.githubusercontent.com/u/7390180?s=200&v=4
     roles: ["auth_proxy"]
@@ -801,6 +833,7 @@ buildingBlocks:
 
   minio:
     logo: https://avatars0.githubusercontent.com/u/695951?s=200&v=4
+    info: https://www.minio.io/
     repo: https://github.com/minio/minio.git
     description: Object storage server compatible with Amazon S3 APIs
     roles: ["object_storage"]
@@ -842,6 +875,7 @@ buildingBlocks:
     roles: ["collaboration", "voice"]
 
   namedotcom:
+    info: https://www.name.com/
     logo: https://avatars3.githubusercontent.com/u/34385287?s=200&v=4
     description: Domain names, web hosting, and super easy websites
     hosting: subscription
