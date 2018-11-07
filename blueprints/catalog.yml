@@ -314,7 +314,7 @@ buildingBlocks:
     type: console
 
   vault:
-    description: A Tool for Managing Secrets
+    description: Manage Secrets and Protect Sensitive Data
     info: https://www.vaultproject.io/
     logo: https://canzea.com/catalog/img/vendors/vault.svg
     repo: https://github.com/hashicorp/vault.git
