@@ -75,12 +75,6 @@ resources:
       solution: "gitea/docker"
       droplet: "${instanceName}"
       commands: false
-- building_block:
-    ${instanceId}-phantomjs-docker:
-      role: "testsuite"
-      solution: "phantomjs/docker"
-      droplet: "${instanceName}"
-      commands: false
 - tls_key_pair:
     hashicorp-ca:
       files:
