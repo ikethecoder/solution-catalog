@@ -1,4 +1,4 @@
-FROM canzea/flows-gateway:0.1.25
+FROM canzea/flows-gateway:0.1.26
 
 RUN canzea --reset
 

@@ -2,7 +2,7 @@
 
 set -e
 
-docker rm -f flows-gateway
+docker rm -f flows-gateway || true
 
 (cd blocks/flows-gateway/docker && docker build --tag local_gw .)
 
