@@ -329,6 +329,19 @@ resources:
         - "refresh_token"
         redirectUris:
         - "https://${es.fqdn}/gwadmin/auth/strategy/callback"
+- vault_secret:
+    service/flows-gateway/esadmin/credentials:
+      wire: "vault:register-secret"
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+      key: "service/flows-gateway/esadmin/credentials"
+      data:
+        user_name: "esadmin"
+        password: "${utils.randomPassword}"
+        email: "${owner.email}"
+        url: "https://${es.fqdn}/gwadmin"
 - boot:first-config:
     gitea:
       wire: "gitea:first-config"

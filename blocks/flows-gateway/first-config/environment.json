@@ -6,6 +6,7 @@
     {"name":"flows-gateway"}
   ],
   "secrets": [
-    {"name": "oauth/clients/flows-gateway"}
+    {"name": "oauth/clients/flows-gateway"},
+    {"name": "service/flows-gateway/esadmin/credentials"}
   ]
 }
