@@ -3,8 +3,7 @@
   ],
 
   "services": [
-    {"name":"gitea"},
-    {"name":"phantomjs"}
+    {"name":"gitea"}
   ],
   "secrets": [
     {"name": "service/gitea/esadmin/credentials"}
