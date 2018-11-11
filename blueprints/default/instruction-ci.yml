@@ -33,7 +33,7 @@ resources:
       solution: "canzea-min"
       droplet: "${instanceName}"
       def_catalog_branch: "${es.catalog.branch}"
-      commands: true
+      commands: false
 - building_block:
     ${instanceId}-canzea:
       role: "workarounds"
