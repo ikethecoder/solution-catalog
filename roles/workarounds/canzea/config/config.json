@@ -5,5 +5,5 @@
   "consul_tls_key_file" : "/var/local/consul/ssl/consul.key",
   "vault_tls_cert_file" : "/var/local/consul/ssl/vault.cert",
   "vault_tls_key_file" : "/var/local/consul/ssl/vault.key",
-  "catalog_branch" : "{{catalogBranch}}"
+  "catalog_branch" : "{{DEF_CATALOG_BRANCH}}"
 }
