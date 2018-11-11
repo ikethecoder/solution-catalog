@@ -14,7 +14,7 @@ resources:
   depends_on:
   - "compute_instance.${instanceName}"
 - building_block:
-    ${instanceId}-ruby:
+    ${instanceId}-ruby-min:
       role: "workarounds"
       solution: "ruby-min"
       droplet: "${instanceName}"
@@ -38,6 +38,8 @@ resources:
       role: "workarounds"
       solution: "canzea"
       droplet: "${instanceName}"
+      catalog_branch: "${es.catalog.branch}"
+      catalog_tag: "${es.catalog.tag}"
       commands: false
 - building_block:
     ${instanceId}-selinux:
