@@ -343,14 +343,14 @@ resources:
         password: "${utils.randomPassword}"
         email: "${owner.email}"
         url: "https://${es.fqdn}/gwadmin"
-- boot:flows-gateway:first-config:
-    gitea:
+- boot:first-config:
+    flows-gateway:
       wire: "flows-gateway:first-config"
       environment: "cd"
       serverNumber: 1
       segment: "ci"
       privateKey: "master_key"
-- boot:gitea:first-config:
+- boot:first-config:
     gitea:
       wire: "gitea:first-config"
       environment: "cd"
