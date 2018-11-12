@@ -19,7 +19,7 @@ volumnTemplate = %{
 
     resource "digitalocean_volume_attachment" "{{rid}}" {
       droplet_id = "${digitalocean_droplet.{{droplet}}.id}"
-      volume_id  = "${digitalocean_volume.[{rid}}.id}"
+      volume_id  = "${digitalocean_volume.{{rid}}.id}"
     }
 }
 
@@ -36,7 +36,7 @@ properties['rid'] = resourceId;
 domainFile = "terraform/modules/#{properties['environment']}/volume-#{properties['rid']}.tf"
 
 if is_plus
-    output = t.processString template, properties
+    output = t.processString volumeTemplate, properties
 
     puts output
     pc.write "terraform/modules/#{properties['environment']}/volume-#{resourceId}.tf", output

@@ -7,9 +7,10 @@ variables:
 resources:
 - digitalocean_volume:
     working:
+      droplet: "${instance.name}"
       size: 100
       region: "nyc1"
-      description: "Working Storage for ${es.name}"
+      description: "Working Storage for ${es.id}"
 - building_block:
     ${instanceId}-docker:
       role: "container"
