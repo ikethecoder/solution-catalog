@@ -13,6 +13,12 @@ resources:
       region: "nyc1"
       description: "Working Storage for ${es.id}"
 - building_block:
+    ${instanceId}-digitalocean-volume-working:
+      role: ""
+      solution: "digitalocean/digitalocean_volume"
+      droplet: "${instanceName}"
+      commands: true
+- building_block:
     ${instanceId}-docker:
       role: "container"
       solution: "docker"
