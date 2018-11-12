@@ -5,6 +5,11 @@ variables:
   blueprint: ""
   cloud_auth_id: ""
 resources:
+- digitalocean_volume:
+    working:
+      size: 100
+      region: "nyc1"
+      description: "Working Storage for ${es.name}"
 - building_block:
     ${instanceId}-docker:
       role: "container"
