@@ -103,13 +103,48 @@ resources:
       serverNumber: 1
       segment: "ci"
       privateKey: "master_key"
-- canzea_gateway_flow:
-    all:
+- vault_secret:
+    oauth/clients/flows-gateway:
+      wire: "vault:register-secret"
       environment: "cd"
       serverNumber: 1
       segment: "ci"
       privateKey: "master_key"
-      source: "flows/r3"
+      key: "oauth/clients/flows-gateway"
+      data:
+        label: "Flows Gateway"
+        client_secret: "${utils.uuid}"
+        accessTokenLifetime: 14515200
+        oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
+        oauth2_token: "https://${es.fqdn}/gw/oauth/token"
+        oauth2_profile: "https://${es.fqdn}/gw/me"
+        grants:
+        - "password"
+        - "authorization_code"
+        - "refresh_token"
+        redirectUris:
+        - "https://${es.fqdn}/gwadmin/auth/strategy/callback"
+- vault_secret:
+    service/flows-gateway/esadmin/credentials:
+      wire: "vault:register-secret"
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+      key: "service/flows-gateway/esadmin/credentials"
+      data:
+        user_name: "esadmin"
+        password: "${utils.randomPassword}"
+        email: "${owner.email}"
+        url: "https://${es.fqdn}/gwadmin"
+- boot:first-config:
+    flows-gateway:
+      wire: "flows-gateway:first-config"
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+
 - building_block:
     ${instanceId}-unzip:
       role: "workarounds"
@@ -274,6 +309,13 @@ resources:
       client_secret: "1111-0000-0000-0001"
       username: "saas_express_user"
       password: "1234"
+- canzea_gateway_flow:
+    all:
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+      source: "flows/r3"
 - service_discovery_service_md:
     gitea:
       role: "sourcecontrol"
@@ -316,47 +358,6 @@ resources:
         - "refresh_token"
         redirectUris:
         - "https://sc.${es.fqdn}/user/oauth2/esgw/callback"
-- vault_secret:
-    oauth/clients/flows-gateway:
-      wire: "vault:register-secret"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-      key: "oauth/clients/flows-gateway"
-      data:
-        label: "Flows Gateway"
-        client_secret: "${utils.uuid}"
-        accessTokenLifetime: 14515200
-        oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
-        oauth2_token: "https://${es.fqdn}/gw/oauth/token"
-        oauth2_profile: "https://${es.fqdn}/gw/me"
-        grants:
-        - "password"
-        - "authorization_code"
-        - "refresh_token"
-        redirectUris:
-        - "https://${es.fqdn}/gwadmin/auth/strategy/callback"
-- vault_secret:
-    service/flows-gateway/esadmin/credentials:
-      wire: "vault:register-secret"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-      key: "service/flows-gateway/esadmin/credentials"
-      data:
-        user_name: "esadmin"
-        password: "${utils.randomPassword}"
-        email: "${owner.email}"
-        url: "https://${es.fqdn}/gwadmin"
-- boot:first-config:
-    flows-gateway:
-      wire: "flows-gateway:first-config"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
 - boot:first-config:
     gitea:
       wire: "gitea:first-config"
