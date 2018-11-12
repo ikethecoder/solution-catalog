@@ -1,6 +1,6 @@
 
 
-sudo mkfs.ext4 /dev/disk/by-id/scsi-0DO_Volume_working
+yes | mkfs.ext4 /dev/disk/by-id/scsi-0DO_Volume_working
 
 mkdir -p /mnt/working
 
