@@ -7,7 +7,7 @@ is_plus = (ARGV[1] == 'PLUS')
 t = Template.new
 pc = PushConfig.new "/"
 
-volumnTemplate = %{
+template = %{
 
     resource "digitalocean_volume" "{{rid}}" {
         name = "{{rid}}"
@@ -36,7 +36,7 @@ properties['rid'] = resourceId;
 domainFile = "terraform/modules/#{properties['environment']}/volume-#{properties['rid']}.tf"
 
 if is_plus
-    output = t.processString volumeTemplate, properties
+    output = t.processString template, properties
 
     puts output
     pc.write "terraform/modules/#{properties['environment']}/volume-#{resourceId}.tf", output
