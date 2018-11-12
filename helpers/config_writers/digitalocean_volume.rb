@@ -33,14 +33,14 @@ resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId;
 
-domainFile = "terraform/modules/#{properties['environment']}/volume-#{properties['rid']}.tf"
+outFile = "terraform/modules/#{properties['environment']}/volume-#{properties['rid']}.tf"
 
 if is_plus
     output = t.processString template, properties
 
     puts output
-    pc.write "terraform/modules/#{properties['environment']}/volume-#{resourceId}.tf", output
+    pc.write outFile, output
 
 else
-    pc.backupAndRemove "terraform/modules/#{properties['environment']}/volume-#{resourceId}.tf"
+    pc.backupAndRemove outFile
 end

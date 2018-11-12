@@ -7,6 +7,7 @@ variables:
 resources:
 - digitalocean_volume:
     working:
+      environment: "${environment.name}"
       droplet: "${instance.name}"
       size: 100
       region: "nyc1"
