@@ -9,12 +9,12 @@ resources:
     working:
       environment: "${environment.name}"
       droplet: "${instance.name}"
-      size: 100
+      size: 50
       region: "nyc1"
       description: "Working Storage for ${es.id}"
 - building_block:
     ${instanceId}-digitalocean-volume-working:
-      role: ""
+      role: "na"
       solution: "digitalocean/digitalocean_volume"
       droplet: "${instanceName}"
       commands: true
