@@ -106,7 +106,7 @@ resources:
 - building_block:
     ${instanceId}-gocd-agent:
       role: "deploy"
-      solution: "gocd-agent/vm"
+      solution: "gocd-agent/docker"
       droplet: "${es.id}-cd-builder-01"
       commands: false
   depends_on:
