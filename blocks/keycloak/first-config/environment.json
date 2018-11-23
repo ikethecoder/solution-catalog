@@ -6,6 +6,7 @@
     {"name": "cd-keycloak"}
   ],
   "secrets": [
+    {"name": "oauth/clients/gitea"},
     {"name": "service/keycloak/esadmin/credentials"}
   ]
 }
