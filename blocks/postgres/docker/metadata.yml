@@ -1,0 +1,10 @@
+name: postgres
+version: 1.15.3
+resources:
+  - service_endpoint:
+      ${instance.id}-postgres:
+        service: postgres
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: service

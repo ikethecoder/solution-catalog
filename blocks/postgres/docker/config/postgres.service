@@ -1,0 +1,11 @@
+[Unit]
+Description=Postgres container
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a postgres
+ExecStop=/usr/bin/docker stop -t 2 postgres
+
+[Install]
+WantedBy=local.target
