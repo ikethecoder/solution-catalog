@@ -1,5 +1,5 @@
 name: keycloak
-version: 3.4.10
+version: 4.1.0.Final
 resources:
   - service_discovery_service:
       ${instance.id}-keycloak:
@@ -35,7 +35,7 @@ resources:
         serverNumber: 1
         segment: ${segment.id}
         privateKey: "master_key"
-        proxy_ssl_virtual_host: "identity"
+        proxy_ssl_virtual_host: "keycloak"
         location: "/"
         passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:8080"
 
