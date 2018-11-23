@@ -23,7 +23,7 @@ docker run --net=vlan1 --rm \
   -e SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_EMAIL \
   -e SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_USER_NAME \
   -e SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_PASSWORD \
-  canzea/tester:0.1.3
+  canzea/tester:0.1.13
 
 docker rm -f selenium || true
 
