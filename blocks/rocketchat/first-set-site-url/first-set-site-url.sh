@@ -16,7 +16,7 @@ sleep 5
 
 docker run --net=vlan1 --rm \
   -v /tmp:/screenshots \
-  -v $CATALOG_LOCATION/blocks/rocketchat/first-set-oauth/scripts:/tests \
+  -v $CATALOG_LOCATION/blocks/rocketchat/first-set-site-url/scripts:/tests \
   -e ENV=local \
   -e APP_LOCAL_ROCKETCHAT_URL="$ROCKETCHAT_URL" \
   -e SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_USER_NAME \
