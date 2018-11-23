@@ -36,6 +36,7 @@ resources:
         segment: ${segment.id}
         privateKey: "master_key"
         proxy_ssl_virtual_host: "keycloak"
+        template: "keycloak"
         location: "/"
         passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:7080"
 
