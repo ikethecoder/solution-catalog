@@ -4,7 +4,7 @@ module.exports = {
     'Archiva First Login' : function (browser) {
       console.log("URL = "+browser.config.archiva.url);
       browser
-        .url(browser.config.gitea.url)
+        .url(browser.config.archiva.url)
         .waitForElementVisible('body', 1000)
         .click("#create-admin-link-a")
         .setValue("input[name='password']", process.env.SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_PASSWORD)
