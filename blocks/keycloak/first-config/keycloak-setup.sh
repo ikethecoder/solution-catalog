@@ -7,5 +7,5 @@ keycloak/bin/kcadm.sh config credentials --server $KEYCLOAK_URL/auth --realm mas
 
 keycloak/bin/kcadm.sh create realms -s realm=ecosystem -s enabled=true -o
 
-CID=$(kcadm.sh create clients -r ecosystem -s clientId=gateway -s enabled=true -s clientAuthenticatorType=client-secret -s secret=$KEYCLOAK_CLIENT_SECRET -s "redirectUris=[\"http://*\",\"https://*\"]" -i)
+CID=$(kcadm.sh create clients -r ecosystem -s clientId=gitea -s enabled=true -s clientAuthenticatorType=client-secret -s secret=$KEYCLOAK_CLIENT_SECRET -s "redirectUris=[\"http://*\",\"https://*\"]" -i)
 
