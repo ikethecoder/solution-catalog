@@ -2,6 +2,7 @@
 
 module.exports = {
     'Archiva First Login' : function (browser) {
+      console.log("Archiva: " + browser.config.archiva.url + "/archiva")
       browser
         .url(browser.config.archiva.url + "/archiva")
         .waitForElementVisible('body', 1000)
