@@ -38,6 +38,7 @@ begin
 
     driver.find_element(:xpath, "//button").click
 
+
     wait.until { driver.find_element(:name, "Organization_Type").displayed? }
 
     dropDownMenu = driver.find_element(:name, "Organization_Type")
