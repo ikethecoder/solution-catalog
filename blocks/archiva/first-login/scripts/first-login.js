@@ -6,7 +6,7 @@ module.exports = {
       browser
         .url(browser.config.archiva.url)
         .waitForElementVisible('body', 1000)
-        .click("a[id='create-admin-link-a']")
+        .click("#create-admin-link-a")
         .waitForElementVisible("input[name='password']", 5000)
         .setValue("input[name='password']", process.env.SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_PASSWORD)
         .setValue("input[name='confirmPassword']", process.env.SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_PASSWORD)
