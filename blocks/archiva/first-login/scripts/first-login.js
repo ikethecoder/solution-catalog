@@ -2,9 +2,8 @@
 
 module.exports = {
     'Archiva First Login' : function (browser) {
-      console.log("URL = "+browser.config.archiva.url);
       browser
-        .url(browser.config.archiva.url)
+        .url(browser.config.archiva.url + "/archiva")
         .waitForElementVisible('body', 1000)
         .click("a[id='create-admin-link-a']")
         .waitForElementVisible("input[name='password']", 5000)

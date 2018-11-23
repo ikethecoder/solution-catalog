@@ -2,7 +2,7 @@
 
 set -e
 
-docker rm -f selenium || docker network rm vlan1 || true
+docker rm -f selenium || true && docker network rm vlan1 || true
 
 docker network create \
   --driver=bridge \
