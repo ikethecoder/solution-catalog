@@ -38,15 +38,15 @@ module.exports = {
 
 
             .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-url']")
-            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-url']").setValue("input[name='Accounts_OAuth_Custom-Esgw-url']", process.env.OAUTH_CLIENTS_ROCKETCHAT_OAUTH2_ROOT)
+            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-url']", function(result) { browser.pause(1000); }).setValue("input[name='Accounts_OAuth_Custom-Esgw-url']", process.env.OAUTH_CLIENTS_ROCKETCHAT_OAUTH2_ROOT)
 
             .click("input[name='Accounts_OAuth_Custom-Esgw'][value='1']")
 
             .waitAndClick("select[name='Accounts_OAuth_Custom-Esgw-login_style']")
             .waitAndClick("option[value='redirect']")
 
-            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-id']").setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-id']", 'rocketchat')
-            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-secret']").setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-secret']", process.env.OAUTH_CLIENTS_ROCKETCHAT_CLIENT_SECRET)
+            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-id']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-id']", 'rocketchat')
+            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-secret']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-secret']", process.env.OAUTH_CLIENTS_ROCKETCHAT_CLIENT_SECRET)
 
             .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']").clearValue("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']").setValue("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']", 'Ecosystem Gateway')
 
