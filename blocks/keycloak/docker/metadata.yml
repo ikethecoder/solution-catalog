@@ -1,0 +1,49 @@
+name: keycloak
+version: 3.4.10
+resources:
+  - service_discovery_service:
+      ${instance.id}-keycloak:
+        Name: ${environment.id}-keycloak
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 8080
+        Tags: [ "${instance.id}", "${environment.id}", "iam" ]
+
+  - digitalocean_dns:
+      keycloak:
+        environment: "cd"
+        droplet: "${instance.name}"
+        domain-id: "${es.fqdn_id}"
+        domain: "${es.fqdn}"
+        a:
+          name: "identity"
+          address: "${d}{var.compute_instance.${instance.name}.publicIp}"
+
+  - proxy_ssl_virtual_host:
+      keycloak:
+        environment: ${environment.id}
+        serverNumber: 1
+        segment: ${segment.id}
+        privateKey: "master_key"
+        domainName: "identity.${es.fqdn}"
+        domains: "identity.${es.fqdn}"
+        certname: "identity.${es.fqdn}"
+        email: "${owner.email}"
+
+  - proxy_service:
+      keycloak:
+        environment: ${environment.id}
+        serverNumber: 1
+        segment: ${segment.id}
+        privateKey: "master_key"
+        proxy_ssl_virtual_host: "identity"
+        location: "/"
+        passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:8080"
+
+  - service_endpoint:
+      ${instance.id}-keycloak:
+        service: keycloak
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://identity.${es.fqdn}"
