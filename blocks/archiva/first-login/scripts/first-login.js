@@ -7,12 +7,13 @@ module.exports = {
         .url(browser.config.archiva.url)
         .waitForElementVisible('#create-admin-link-a', 5000)
         .click("#create-admin-link-a")
-        .waitForElementVisible("input[name='password']", 5000)
+        .waitForElementVisible("input[name='password']", 3000)
         .setValue("input[name='password']", process.env.SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_PASSWORD)
         .setValue("input[name='confirmPassword']", process.env.SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_PASSWORD)
         .setValue("input[name='email']", process.env.SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_EMAIL)
         .click("input[name='validated']")
-        .click("input[id='user-create-form-register-button']")
+        .waitForElementVisible("#user-create-form-register-button", 3000)
+        .click("#user-create-form-register-button")
 
     }
   };
