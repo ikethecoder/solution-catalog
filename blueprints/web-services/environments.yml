@@ -8,7 +8,7 @@ environments:
         provision: false
         order:
           -
-            product: "VCPU1_M2GB_D50GB"
+            product: "M3GB_D50GB"
             image: "centos-7-x64"
             qty: 1
             segment: "ci"

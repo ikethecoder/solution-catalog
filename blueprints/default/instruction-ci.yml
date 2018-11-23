@@ -496,3 +496,16 @@ resources:
 
 - remote_ssh_key_pair:
     root_id_rsa: {}
+
+- building_block:
+    ${instanceId}-postgres:
+      role: "na"
+      solution: "postgres/docker"
+      droplet: "${instanceName}"
+      commands: false
+- building_block:
+    ${instanceId}-keycloak:
+      role: "na"
+      solution: "keycloak/docker"
+      droplet: "${instanceName}"
+      commands: false
