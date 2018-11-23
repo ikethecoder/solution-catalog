@@ -10,7 +10,7 @@ resources:
         domain: "${es.fqdn}"
         a:
           name: "kibana.mon"
-          address: "${d}{var.compute_instance.${es.tag}-mon-mon-01.publicIp}"
+          address: "${d}{var.compute_instance.${es.tag}-mon-kib-01.publicIp}"
 
   - proxy_ssl_virtual_host:
       kibana:
