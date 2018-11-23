@@ -21,10 +21,6 @@ server {
         ssl_stapling_verify on;
         # add_header Strict-Transport-Security max-age=15768000;
 
-        location ~ /.well-known {
-                allow all;
-        }
-
         # The rest of your server block
         root /usr/share/nginx/html;
         index index.html index.htm;
