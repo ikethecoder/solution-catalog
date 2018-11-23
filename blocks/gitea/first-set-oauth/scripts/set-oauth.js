@@ -25,21 +25,15 @@ module.exports = {
         .useXpath()
         .waitAndClick("//div[6]/div/div")
         .useCss()
-        .waitAndClick("div[data-value='gitlab']")
+        .waitAndClick("div[data-value='openidConnect']")
         .setValue("#oauth2_key", "gitea")
         .setValue("#oauth2_secret", process.env.OAUTH_CLIENTS_GITEA_CLIENT_SECRET)
-        .useXpath().waitAndClick("//div[5]/div/label").useCss()
+//        .useXpath().waitAndClick("//div[5]/div/label").useCss()
 
-        .waitForElementVisible("#oauth2_auth_url")
+        .waitForElementVisible("#open_id_connect_auto_discovery_url")
 
-        .clearValue("#oauth2_auth_url")
-        .setValue("#oauth2_auth_url", process.env.OAUTH_CLIENTS_GITEA_OAUTH2_AUTHORIZE)
-
-        .clearValue("#oauth2_token_url")
-        .setValue("#oauth2_token_url", process.env.OAUTH_CLIENTS_GITEA_OAUTH2_TOKEN)
-
-        .clearValue("#oauth2_profile_url")
-        .setValue("#oauth2_profile_url", process.env.OAUTH_CLIENTS_GITEA_OAUTH2_PROFILE)
+        .clearValue("#open_id_connect_auto_discovery_url")
+        .setValue("#open_id_connect_auto_discovery_url", process.env.OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY)
 
         .click("button.green")
         .assert.containsText('p', "The authentication 'esgw' has been added.")
