@@ -330,18 +330,7 @@ resources:
       privateKey: "master_key"
       source: "flows/r3"
 
-- building_block:
-    ${instanceId}-postgres:
-      role: "na"
-      solution: "postgres/docker"
-      droplet: "${instanceName}"
-      commands: false
-- building_block:
-    ${instanceId}-keycloak:
-      role: "na"
-      solution: "keycloak/docker"
-      droplet: "${instanceName}"
-      commands: false
+
 
 - service_discovery_service_md:
     gitea:
@@ -376,6 +365,20 @@ resources:
         label: "Gitea"
         client_secret: "${utils.uuid}"
         oidc_discovery: "https://identity.${es.fqdn}/auth/realms/ecosystem/.well-known/openid-configuration"
+
+- building_block:
+    ${instanceId}-postgres:
+      role: "na"
+      solution: "postgres/docker"
+      droplet: "${instanceName}"
+      commands: false
+- building_block:
+    ${instanceId}-keycloak:
+      role: "na"
+      solution: "keycloak/docker"
+      droplet: "${instanceName}"
+      commands: false
+
 - boot:first-config:
     gitea:
       wire: "gitea:first-config"
