@@ -47,9 +47,9 @@ resources:
       droplet: "${instanceName}"
       commands: false
 - building_block:
-    ${instanceId}-logstash:
+    ${instanceId}-kibana:
       role: "monitoring"
-      solution: "kibana"
+      solution: "kibana/docker"
       droplet: "${instanceName}"
       commands: false
 - building_block:
