@@ -14,4 +14,5 @@ yes | cp roles/workarounds/canzea/config/canzea.bash /usr/local/sbin/canzea_c
 
 chmod +x /usr/local/sbin/canzea_c
 
+canzea --reset
 
