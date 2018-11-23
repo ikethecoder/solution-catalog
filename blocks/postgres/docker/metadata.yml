@@ -1,6 +1,13 @@
 name: postgres
 version: 1.15.3
 resources:
+  - service_discovery_service:
+      ${instance.id}-postgres:
+        Name: ${environment.id}-postgres
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 5432
+        Tags: [ "${instance.id}", "${environment.id}", "relational_database" ]
+
   - service_endpoint:
       ${instance.id}-postgres:
         service: postgres
