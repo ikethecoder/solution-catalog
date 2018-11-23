@@ -119,6 +119,11 @@ resources:
   - "service_discovery_service.gocd"
   - "building_block.${instanceId}-maven"
 - wire:
+    gocd-agent-set-registry-creds:
+      solution: gocd-agent
+      action: set-registry-creds
+      droplet: "${instance.name}"
+- wire:
     ${instanceId}-go:
       solution: "users"
       action: "configure-go"

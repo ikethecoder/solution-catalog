@@ -118,6 +118,11 @@ resources:
       solution: "maven"
       droplet: "${instanceName}"
       commands: false
+- wire:
+    gocd-agent-set-registry-creds:
+      solution: gocd-agent
+      action: set-registry-creds
+      droplet: "${instance.name}"
 - pipeline_environment:
     ${environmentLabel}: {}
   depends_on:
