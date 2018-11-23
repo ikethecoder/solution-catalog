@@ -2,14 +2,29 @@
 
 set -e
 
+docker rm -f selenium || docker network rm vlan1 || true
 
-docker run --net=host --rm \
+docker network create \
+  --driver=bridge \
+  --subnet=4.1.0.0/16 \
+  --ip-range=4.1.5.0/24 \
+  vlan1
+
+docker run --net=vlan1 -d -p 4444:4444 --name selenium -v /dev/shm:/dev/shm selenium/standalone-chrome
+
+sleep 5
+
+docker run --net=vlan1 --rm \
+  -v /tmp:/screenshots \
   -v $CATALOG_LOCATION/blocks/archiva/first-login/scripts:/tests \
   -e ENV=local \
-  -e PHANTOMJS_URL \
-  -e ARCHIVA_URL \
+  -e APP_LOCAL_ARCHIVA_URL="$ARCHIVA_URL" \
   -e SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_URL \
   -e SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_EMAIL \
   -e SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_USER_NAME \
   -e SERVICE_ARCHIVA_ESADMIN_CREDENTIALS_PASSWORD \
-  canzea ruby /tests/first-login.rb
+  canzea/tester:0.1.3
+
+docker rm -f selenium || true
+
+docker network rm vlan1
