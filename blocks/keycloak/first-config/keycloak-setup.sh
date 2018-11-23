@@ -3,7 +3,7 @@
 export KEYCLOAK_HOME=`pwd`/keycloak
 export PATH=$PATH:$KEYCLOAK_HOME/bin
 
-keycloak/bin/kcadm.sh config credentials --server ${CD_KEYCLOAK_URL}/auth --realm master --user $KEYCLOAK_USER --client admin-cli --password $KEYCLOAK_PASSWORD
+keycloak/bin/kcadm.sh config credentials --server $KEYCLOAK_URL/auth --realm master --user $KEYCLOAK_USER --client admin-cli --password $KEYCLOAK_PASSWORD
 
 keycloak/bin/kcadm.sh create realms -s realm=ecosystem -s enabled=true -o
 

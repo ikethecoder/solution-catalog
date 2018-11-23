@@ -48,3 +48,10 @@ resources:
         segment: ${segment.id}
         type: console
         secure: "https://identity.${es.fqdn}"
+
+  - vault_secret:
+      service/keycloak/esadmin/credentials:
+        user_name: admin
+        password: ${utils.randomPassword}
+        email: ${owner.email}
+        url: "https://identity.${es.fqdn}"

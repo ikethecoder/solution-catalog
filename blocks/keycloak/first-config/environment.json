@@ -6,5 +6,6 @@
     {"name": "cd-keycloak"}
   ],
   "secrets": [
+    {"name": "service/keycloak/esadmin/credentials"}
   ]
 }
