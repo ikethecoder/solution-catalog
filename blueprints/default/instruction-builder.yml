@@ -104,6 +104,12 @@ resources:
       command: "bash"
       interactive: true
 - building_block:
+    ${instanceId}-docker-in-docker:
+      role: "na"
+      solution: "dind/docker"
+      droplet: "${es.id}-cd-builder-01"
+      commands: false
+- building_block:
     ${instanceId}-gocd-agent:
       role: "deploy"
       solution: "gocd-agent/docker"
