@@ -1,0 +1,43 @@
+name: kibana
+version: 6.3.2
+resources:
+
+  - digitalocean_dns:
+      kibana:
+        environment: "cd"
+        droplet: "${instance.name}"
+        domain-id: "${es.fqdn_id}"
+        domain: "${es.fqdn}"
+        a:
+          name: "kibana.mon"
+          address: "${d}{var.compute_instance.${es.tag}-mon-mon-01.publicIp}"
+
+  - proxy_ssl_virtual_host:
+      kibana:
+        environment: ${environment.id}
+        serverNumber: 1
+        segment: mon
+        privateKey: "master_key"
+        domainName: "kibana.mon.${es.fqdn}"
+        domains: "kibana.mon.${es.fqdn}"
+        certname: "mon.${es.fqdn}"
+        email: "${owner.email}"
+
+  - proxy_service:
+      kibana:
+        environment: ${environment.id}
+        serverNumber: 1
+        segment: mon
+        privateKey: "master_key"
+        proxy_ssl_virtual_host: "kibana"
+        location: "/"
+        passthrough: "http://${d}{var.compute_instance.${instance.name}.publicIp}:5601"
+
+  - service_endpoint:
+      ${instance.id}-kibana:
+        service: kibana
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://kibana.mon.${es.fqdn}"

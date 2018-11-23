@@ -1,0 +1,11 @@
+[Unit]
+Description=Kibana container
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a kibana
+ExecStop=/usr/bin/docker stop -t 2 kibana
+
+[Install]
+WantedBy=local.target
