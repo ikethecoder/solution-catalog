@@ -23,7 +23,7 @@ module.exports = {
 
             .waitForElementVisible("input[name='Site_Url']")
             .clearValue("input[name='Site_Url']")
-            .setValue("input[name='Site_Url']", process.env.SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_URL)
+            .setValueSlow("input[name='Site_Url']", process.env.SERVICE_ROCKETCHAT_ESADMIN_CREDENTIALS_URL)
 
             .waitAndClick("button.save")
 
