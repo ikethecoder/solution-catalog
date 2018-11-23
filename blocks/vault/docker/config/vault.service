@@ -1,7 +1,7 @@
 [Unit]
 Description=Vault container
 Requires=docker.service
-After=docker.service
+After=docker.service consul.service
 
 [Service]
 ExecStart=/usr/bin/docker start -a vault
