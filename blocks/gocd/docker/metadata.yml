@@ -52,6 +52,7 @@ resources:
         user_name: sp_gocd_admin
         password: "1234"
         email: "${owner.email}"
+        url: "https://${es.fqdn}/go"
 
   - wire:
       gocd-first-set-api-access:
