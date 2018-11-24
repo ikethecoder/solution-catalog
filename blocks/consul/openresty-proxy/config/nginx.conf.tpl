@@ -86,9 +86,22 @@ http {
             root   /usr/share/nginx/html;
             index  index.html index.htm;
 
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
+            proxy_ssl_certificate     /ssl/consul.cert;
+            proxy_ssl_certificate_key /ssl/consul.key;
+            proxy_ssl_trusted_certificate /ssl/ca.cert;
+            proxy_ssl_verify       on;
+            proxy_ssl_session_reuse on;
+
+            proxy_ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
+            proxy_ssl_ciphers             HIGH:!aNULL:!MD5;
+
             proxy_pass https://{{ES_DOMAIN}}/ui;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+            proxy_set_header X-Real-IP $remote_addr;
 
         }
 

@@ -1,0 +1,42 @@
+name: consul
+version: 1.2.2
+resources:
+  - service_endpoint:
+      ${instance.id}-consul-entry:
+        service: consul
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://consul.${es.fqdn}"
+
+  - digitalocean_dns:
+      consul:
+        environment: "cd"
+        droplet: "${instance.name}"
+        domain-id: "${es.fqdn_id}"
+        domain: "${es.fqdn}"
+        cname:
+          name: "consul"
+          address: "@"
+
+  - proxy_ssl_virtual_host:
+      consul:
+        environment: cd
+        serverNumber: 1
+        segment: ci
+        privateKey: "master_key"
+        domainName: "consul.${es.fqdn}"
+        domains: "consul.${es.fqdn}"
+        certname: "${es.fqdn}"
+        email: "${owner.email}"
+
+  - proxy_service:
+      consul:
+        environment: "cd"
+        serverNumber: 1
+        segment: "ci"
+        privateKey: "master_key"
+        proxy_ssl_virtual_host: "consul"
+        location: "/"
+        passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9080"
