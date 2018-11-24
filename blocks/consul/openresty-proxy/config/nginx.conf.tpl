@@ -49,7 +49,7 @@ http {
                 -- local session = require "resty.session".start{ secret = "623q4hR325t36VsCD3g567922IC0073T" }
 
                 local opts = {
-                    redirect_uri = "https://consul.{{ES_DOMAIN}}/redirect_uri",
+                    redirect_uri = "https://consul.{{ES_DOMAIN}}:9080/redirect_uri",
                     discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
                     client_id = "gitea",
                     client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
