@@ -45,7 +45,7 @@ http {
             access_by_lua '
 
                 local opts = {
-                    redirect_uri = "http://consul.{{ES_DOMAIN}}:9080/redirect_uri",
+                    redirect_uri = "https://consul.{{ES_DOMAIN}}:9443/redirect_uri",
                     discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
                     client_id = "gitea",
                     client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
