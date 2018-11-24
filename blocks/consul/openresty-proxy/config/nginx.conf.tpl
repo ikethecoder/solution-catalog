@@ -88,7 +88,12 @@ http {
 		    ngx.req.set_header("x-access-token", res.access_token);
         ';
 
-        location /ui {
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+        }
+
+        location /nowhere {
             root   /usr/share/nginx/html;
             index  index.html index.htm;
 
