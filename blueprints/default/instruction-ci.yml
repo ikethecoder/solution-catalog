@@ -412,13 +412,19 @@ resources:
       commands: false
 
 - wire:
-    upgrade-to-oidc:
+    ${instanceId}-keycloak-first-config:
+      solution: keycloak
+      action: first-config
+      droplet: "${es.tag}-cd-ci-01"
+
+- wire:
+    ${instanceId}-upgrade-to-oidc:
       solution: flows-gateway
       action: upgrade-to-oidc
       droplet: "${es.tag}-cd-ci-01"
 
 - wire:
-    consul-component-folder:
+    ${instanceId}-consul-component-folder:
       solution: consul
       action: first-set-component
       droplet: "${es.tag}-cd-ci-01"
