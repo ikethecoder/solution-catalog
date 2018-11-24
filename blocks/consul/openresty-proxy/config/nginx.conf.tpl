@@ -33,23 +33,19 @@ http {
     lua_ssl_verify_depth 5;
 
     server {
-        listen       80;
-        # server_name  consul.{{ES_DOMAIN}};
+        listen       443 ssl;
+        server_name  consul.{{ES_DOMAIN}};
 
-        # Don't think I need to bundle rootCA because it has been added to keychain
-        # ssl_certificate     /ssl/root2/server_crt.pem;
-        # ssl_certificate_key /ssl/root2/server_key.pem;
-        # ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-        # ssl_ciphers         HIGH:!aNULL:!MD5;
-
-        # set $session_secret 623q4hR325t36VsCD3g567922IC0073T;
+        ssl_certificate     /ssl/cert.pem;
+        ssl_certificate_key /ssl/privkey.pem;
+        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers         HIGH:!aNULL:!MD5;
 
         location / {
             access_by_lua '
-                -- local session = require "resty.session".start{ secret = "623q4hR325t36VsCD3g567922IC0073T" }
 
                 local opts = {
-                    redirect_uri = "https://consul.{{ES_DOMAIN}}:9080/redirect_uri",
+                    redirect_uri = "http://consul.{{ES_DOMAIN}}:9080/redirect_uri",
                     discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
                     client_id = "gitea",
                     client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
