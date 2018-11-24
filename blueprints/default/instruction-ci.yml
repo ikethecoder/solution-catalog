@@ -90,12 +90,6 @@ resources:
       solution: "flows-gateway/docker"
       droplet: "${instanceName}"
       commands: false
-- building_block:
-    ${instanceId}-gitea:
-      role: "sourcecontrol"
-      solution: "gitea/docker"
-      droplet: "${instanceName}"
-      commands: false
 - tls_key_pair:
     hashicorp-ca:
       files:
@@ -179,26 +173,7 @@ resources:
       proxy_ssl_virtual_host: "default"
       location: "/shell/"
       passthrough: "http://localhost:8000"
-- proxy_service:
-    consul-ui:
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-      proxy_ssl_virtual_host: "default"
-      location: "/ui/"
-      passthrough: "https://consul.service.dc1.consul:8080"
-      template: "consul.tmpl"
-- proxy_service:
-    consul-v2:
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-      proxy_ssl_virtual_host: "default"
-      location: "/v1/"
-      passthrough: "https://consul.service.dc1.consul:8080"
-      template: "consul.tmpl"
+
 - proxy_ssl_virtual_host:
     sc:
       environment: "cd"
@@ -219,6 +194,7 @@ resources:
       proxy_ssl_virtual_host: "sc"
       location: "/"
       passthrough: "http://localhost:11080/"
+
 - proxy_ssl_virtual_host:
     vault:
       environment: "cd"
@@ -229,6 +205,7 @@ resources:
       domains: "vault.${es.fqdn}"
       certname: "vault.${es.fqdn}"
       email: "${owner.email}"
+
 - proxy_service:
     vault:
       environment: "cd"
@@ -239,6 +216,7 @@ resources:
       location: "/"
       passthrough: "https://vault.service.dc1.consul:8200"
       template: "vault.tmpl"
+
 - vault_secret:
     oauth/clients/saas_express:
       wire: "vault:register-secret"
@@ -272,6 +250,7 @@ resources:
       client_secret: "1111-0000-0000-0001"
       username: "saas_express_user"
       password: "1234"
+
 - canzea_gateway_flow:
     all:
       environment: "cd"
@@ -279,43 +258,6 @@ resources:
       segment: "ci"
       privateKey: "master_key"
       source: "flows/r3"
-
-
-
-- service_discovery_service_md:
-    gitea:
-      role: "sourcecontrol"
-      solution: "gitea/docker"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-- vault_secret:
-    service/gitea/esadmin/credentials:
-      wire: "vault:register-secret"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-      key: "service/gitea/esadmin/credentials"
-      data:
-        user_name: "esadmin"
-        password: "${utils.randomPassword}"
-        email: "${owner.email}"
-        url: "https://sc.${es.fqdn}"
-- vault_secret:
-    oauth/clients/gitea:
-      wire: "vault:register-secret"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-      key: "oauth/clients/gitea"
-      data:
-        label: "Gitea"
-        client_secret: "${utils.uuid}"
-        oidc_issuer: "https://identity.${es.fqdn}/auth/realms/ecosystem"
-        oidc_discovery: "https://identity.${es.fqdn}/auth/realms/ecosystem/.well-known/openid-configuration"
 
 - building_block:
     ${instanceId}-postgres:
@@ -329,28 +271,13 @@ resources:
       solution: "keycloak/docker"
       droplet: "${instanceName}"
       commands: false
+- building_block:
+    ${instanceId}-gitea:
+      role: "sourcecontrol"
+      solution: "gitea/docker"
+      droplet: "${instanceName}"
+      commands: false
 
-- boot:first-config:
-    gitea:
-      wire: "gitea:first-config"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-- boot:first-login:
-    gitea:
-      wire: "gitea:first-login"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-- boot:first-set-oauth:
-    gitea:
-      wire: "gitea:first-set-oauth"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
 - vault_secret:
     nodered/canzea_console:
       wire: "vault:register-secret"
@@ -361,6 +288,7 @@ resources:
       key: "nodered/canzea_console"
       data:
         token: "${secrets['applications/flows_gateway'].token}"
+
 - source_control_token:
     admin:
       wire: "ecosystem-resources:process-resources"
@@ -373,6 +301,7 @@ resources:
       - source_control_token:
           esadmin:
             Name: "access_token"
+
 - vault_token:
     gitea/root:
       wire: "ecosystem-resources:process-resources"
@@ -385,6 +314,7 @@ resources:
           gitea/root:
             token: "${db['source_control_token-esadmin'].sha1}"
             host: "sc.${es.fqdn}"
+
 - source_control_repository:
     ecosystems:
       wire: "ecosystem-resources:process-resources"
@@ -395,8 +325,10 @@ resources:
       resources:
       - source_control_repository:
           ecosystems: {}
+
 - ssh_key:
     esadmin_ecosystem: {}
+
 - boot:restart:
     ${instanceId}-flows-gateway:
       wire: "nodered:restart"
@@ -404,6 +336,7 @@ resources:
       serverNumber: 1
       segment: "ci"
       privateKey: "master_key"
+
 - source_control_public_key:
     rpk:
       wire: "ecosystem-resources:process-resources"
@@ -416,11 +349,13 @@ resources:
           esadmin/rpk:
             title: "esadmin_pk"
             key: "${db['esadmin_ecosystem'].public}"
+
 - migrate:
     ecosystem:
       ecosystem: "${es.id}"
       fqdn: "${es.fqdn}"
       sourcePath: "sc/ecosystems/${es.id}"
+
 - vault_secret:
     shell/commands/${instanceId}-bash:
       user: "root"
@@ -429,6 +364,7 @@ resources:
       identity: "/home/pm2user/ssl/keys/root_id_rsa"
       command: "bash"
       interactive: true
+
 - vault_policy:
     all:
       path:
@@ -439,18 +375,32 @@ resources:
           - "update"
           - "delete"
           - "list"
+
 - vault_secret:
     users/${owner.username}:
       email: "${owner.email}"
+
 - vault_user:
     ${owner.username}:
       password: "${utils.randomPassword}"
       policies: "all"
 
 - wire:
+    upgrade-to-oidc:
+      solution: flows-gateway
+      action: upgrade-to-oidc
+      droplet: "${es.tag}-cd-ci-01"
+
+- wire:
     consul-component-folder:
       solution: consul
       action: first-set-component
+      droplet: "${es.tag}-cd-ci-01"
+
+- wire:
+    oidc-proxy:
+      solution: consul
+      action: oidc-proxy
       droplet: "${es.tag}-cd-ci-01"
 
 - legacy:

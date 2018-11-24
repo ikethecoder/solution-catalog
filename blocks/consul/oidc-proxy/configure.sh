@@ -1,7 +1,7 @@
 
 mkdir -p /var/local/consul_oidc_proxy/config /var/local/consul_oidc_proxy/www
 
-docker rm -f consul_oidc || true
+docker rm -f consul_oidc_proxy || true
 
 canzea --lifecycle=wire --solution=ecosystem --action=config --args='{"source":"{{CATALOG_LOCATION}}/blocks/consul/oidc-proxy/config/nginx.conf.tpl","target":"/var/local/consul_oidc_proxy/config/nginx.conf","instanceId":"{{HOSTNAME}}","solution":"consul"}'
 

@@ -1,32 +1,54 @@
 name: consul
 version: 1.2.2
 resources:
-  - service_endpoint:
-      ${instance.id}-consul-entry:
-        service: consul
-        instance: ${instance.id}
-        environment: ${environment.id}
-        segment: ${segment.id}
-        type: console
-        secure: "https://consul.${es.fqdn}"
+- service_endpoint:
+    ${instance.id}-consul-oidc-proxy:
+      service: consul
+      instance: ${instance.id}
+      environment: ${environment.id}
+      segment: ${segment.id}
+      type: console
+      secure: "https://consul.${es.fqdn}"
 
-  - proxy_ssl_virtual_host:
-      consul:
-        environment: cd
-        serverNumber: 1
-        segment: ci
-        privateKey: "master_key"
-        domainName: "consul.${es.fqdn}"
-        domains: "consul.${es.fqdn}"
-        certname: "consul.${es.fqdn}"
-        email: "${owner.email}"
+- proxy_ssl_virtual_host:
+    consul:
+      environment: cd
+      serverNumber: 1
+      segment: ci
+      privateKey: "master_key"
+      domainName: "consul.${es.fqdn}"
+      domains: "consul.${es.fqdn}"
+      certname: "consul.${es.fqdn}"
+      email: "${owner.email}"
 
-  - proxy_service:
-      consul:
-        environment: "cd"
-        serverNumber: 1
-        segment: "ci"
-        privateKey: "master_key"
-        proxy_ssl_virtual_host: "consul"
-        location: "/"
-        passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9080"
+- proxy_service:
+    consul:
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+      proxy_ssl_virtual_host: "consul"
+      template: "openresty_proxy"
+      location: "/"
+      passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9080"
+
+#- proxy_service:
+#    consul-ui:
+#      environment: "cd"
+#      serverNumber: 1
+#      segment: "ci"
+#      privateKey: "master_key"
+#      proxy_ssl_virtual_host: "default"
+#      location: "/ui/"
+#      passthrough: "https://consul.service.dc1.consul:8080"
+#      template: "consul.tmpl"
+#- proxy_service:
+#    consul-v2:
+#      environment: "cd"
+#      serverNumber: 1
+#      segment: "ci"
+#      privateKey: "master_key"
+#      proxy_ssl_virtual_host: "default"
+#      location: "/v1/"
+#      passthrough: "https://consul.service.dc1.consul:8080"
+#      template: "consul.tmpl"
