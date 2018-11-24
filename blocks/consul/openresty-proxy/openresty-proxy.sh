@@ -14,7 +14,7 @@ canzea --lifecycle=wire \
   --action=config \
   --args='{"source":"{{CATALOG_LOCATION}}/blocks/consul/openresty-proxy/config/mime.types","target":"/var/local/consul_openresty/mime.types","instanceId":"{{HOSTNAME}}","solution":"consul"}'
 
-docker create --net=vlan0 -p 9080:80 -p 9443:443--name consul_oidc \
+docker create --net=vlan0 --name consul_oidc \
   -v /var/local/consul_openresty:/conf \
   canzea/oidc-proxy:latest -c /conf/nginx.conf
 
