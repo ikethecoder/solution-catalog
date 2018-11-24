@@ -1,6 +1,6 @@
 
 
-yes | cp -f blocks/consul/consul_oidc_proxy/config/consul_oidc_proxy.service /etc/systemd/system/multi-user.target.wants/.
+yes | cp -f blocks/consul/oidc-proxy/config/consul_oidc_proxy.service /etc/systemd/system/multi-user.target.wants/.
 
 systemctl daemon-reload
 
