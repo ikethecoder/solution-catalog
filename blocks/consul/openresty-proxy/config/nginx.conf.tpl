@@ -33,27 +33,27 @@ http {
     lua_ssl_verify_depth 5;
 
     server {
-        listen       443 ssl;
-        server_name  consul.{{ES_DOMAIN}};
+        listen       80;
+        # server_name  consul.{{ES_DOMAIN}};
 
-        ssl_certificate     /letsencrypt/live/{{ES_DOMAIN}}/cert.pem;
-        ssl_certificate_key /letsencrypt/live/{{ES_DOMAIN}}/privkey.pem;
-        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-        ssl_ciphers         HIGH:!aNULL:!MD5;
+        # ssl_certificate     /letsencrypt/live/{{ES_DOMAIN}}/cert.pem;
+        # ssl_certificate_key /letsencrypt/live/{{ES_DOMAIN}}/privkey.pem;
+        # ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+        # ssl_ciphers         HIGH:!aNULL:!MD5;
 
         location / {
 
             access_by_lua '
 
                 local opts = {
-                    redirect_uri = "https://consul.{{ES_DOMAIN}}:9443/redirect_uri",
+                    redirect_uri = "http://consul.{{ES_DOMAIN}}/redirect_uri",
                     discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
                     client_id = "gitea",
                     client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
                     -- redirect_uri_scheme = "https",
                     scope = "openid profile",
                     logout_path = "/logout",
-                    redirect_after_logout_uri = "{{OAUTH_CLIENTS_GITEA_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fconsul.{{ES_DOMAIN}}:9443",
+                    redirect_after_logout_uri = "{{OAUTH_CLIENTS_GITEA_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=http%3A%2F%2Fconsul.{{ES_DOMAIN}}",
                     redirect_after_logout_with_id_token_hint = false,
                     -- session_contents = {id_token=true,access_token=true}
                     ssl_verify = "no"
