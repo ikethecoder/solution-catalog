@@ -9,5 +9,5 @@ canzea --lifecycle=wire --solution=ecosystem --action=config --args='{"source":"
 
 canzea --lifecycle=wire --solution=ecosystem --action=config --args='{"source":"{{CATALOG_LOCATION}}/blocks/consul/openresty-proxy/www/index.html","target":"/var/local/consul_openresty/www/index.html","instanceId":"{{HOSTNAME}}","solution":"consul"}'
 
-docker create --net=vlan0 --name consul_oidc -p 9443:443 -v /var/local/letsencrypt/live/${ES_DOMAIN}:/ssl -v /var/local/consul/ssl:/consul_ssl -v /var/local/consul_openresty/config:/conf -v /var/local/consul_openresty/www:/www canzea/oidc-proxy:latest -c /conf/nginx.conf
+docker create --net=vlan0 --name consul_oidc -p 9443:443 -v /var/local/letsencrypt:/letsencrypt -v /var/local/consul/ssl:/ssl -v /var/local/consul_openresty/config:/conf -v /var/local/consul_openresty/www:/www canzea/oidc-proxy:latest -c /conf/nginx.conf
 

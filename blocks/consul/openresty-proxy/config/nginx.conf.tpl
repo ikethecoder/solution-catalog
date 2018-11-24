@@ -36,8 +36,8 @@ http {
         listen       443 ssl;
         server_name  consul.{{ES_DOMAIN}};
 
-        ssl_certificate     /ssl/cert.pem;
-        ssl_certificate_key /ssl/privkey.pem;
+        ssl_certificate     /letsencrypt/live/{{ES_DOMAIN}}/cert.pem;
+        ssl_certificate_key /letsencrypt/live/{{ES_DOMAIN}}/privkey.pem;
         ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
         ssl_ciphers         HIGH:!aNULL:!MD5;
 
