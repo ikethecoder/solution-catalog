@@ -278,6 +278,30 @@ resources:
       droplet: "${instanceName}"
       commands: false
 
+- boot:first-config:
+    gitea:
+      wire: "gitea:first-config"
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+
+- boot:first-login:
+    gitea:
+      wire: "gitea:first-login"
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+
+- boot:first-set-oauth:
+    gitea:
+      wire: "gitea:first-set-oauth"
+      environment: "cd"
+      serverNumber: 1
+      segment: "ci"
+      privateKey: "master_key"
+
 - vault_secret:
     nodered/canzea_console:
       wire: "vault:register-secret"
