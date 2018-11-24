@@ -46,12 +46,13 @@ http {
         access_by_lua '
             local session = require "resty.session".start{ secret = "623q4hR325t36VsCD3g567922IC0073T" }
 
+#                redirect_uri_scheme = "https",
+
             local opts = {
                 redirect_uri = "https://consul.{{ES_DOMAIN}}/redirect_uri",
                 discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
                 client_id = "gitea",
                 client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
-                redirect_uri_scheme = "https",
                 scope = "openid profile",
                 logout_path = "/logout",
                 redirect_after_logout_uri = "{{OAUTH_CLIENTS_GITEA_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2F{{ES_DOMAIN}}/ui",
