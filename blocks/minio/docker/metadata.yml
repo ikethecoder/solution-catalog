@@ -1,0 +1,19 @@
+name: minio
+version: RELEASE.2018-09-12T18-49-56Z
+resources:
+  - service_discovery_service:
+      ${instance.id}-minio:
+        Name: ${environment.id}-minio
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 8080
+        Tags: [ "${instance.id}", "${environment.id}", "object_storage" ]
+
+  - vault_secret:
+      provider/minio/live:
+        access_key: admin
+        secret_key: ${utils.randomPassword}
+        mode: server
+        data_path: /data
+        gateway_provider: none
+        email: ${owner.email}
+        url: "https://identity.${es.fqdn}"
