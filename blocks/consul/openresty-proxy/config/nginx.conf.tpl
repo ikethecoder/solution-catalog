@@ -27,6 +27,7 @@ http {
     lua_shared_dict jwks 1m;
     lua_code_cache off;
 
+
     lua_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
     lua_ssl_verify_depth 5;
 
@@ -40,15 +41,17 @@ http {
         # ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
         # ssl_ciphers         HIGH:!aNULL:!MD5;
 
+        set $session_secret 623q4hR325t36VsCD3g567922IC0073T;
+
         access_by_lua '
-            set $session_secret 33-44-11-33;
 
             local opts = {
-                redirect_uri = "https://consul.{{ES_DOMAIN}}/proxy/cb",
+                redirect_uri = "https://consul.{{ES_DOMAIN}}/redirect_uri",
                 discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
                 client_id = "gitea",
                 client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
                 redirect_uri_scheme = "https",
+                scope = "openid profile",
                 logout_path = "/logout",
                 redirect_after_logout_uri = "{{OAUTH_CLIENTS_GITEA_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2F{{ES_DOMAIN}}/ui",
                 redirect_after_logout_with_id_token_hint = false,
