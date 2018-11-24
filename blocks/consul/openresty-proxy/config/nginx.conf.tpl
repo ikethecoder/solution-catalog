@@ -41,50 +41,51 @@ http {
         ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
         ssl_ciphers         HIGH:!aNULL:!MD5;
 
-        access_by_lua '
-
-            local opts = {
-                redirect_uri = "https://consul.{{ES_DOMAIN}}:9443/redirect_uri",
-                discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
-                client_id = "gitea",
-                client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
-                -- redirect_uri_scheme = "https",
-                scope = "openid profile",
-                logout_path = "/logout",
-                redirect_after_logout_uri = "{{OAUTH_CLIENTS_GITEA_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fconsul.{{ES_DOMAIN}}:9443",
-                redirect_after_logout_with_id_token_hint = false,
-                -- session_contents = {id_token=true,access_token=true}
-                ssl_verify = "no"
-            }
-
-            function dump(o)
-                if type(o) == "table" then
-                    local s = "{ "
-                    for k,v in pairs(o) do
-                        if type(k) ~= "number" then k = " "..k.." " end
-                        s = s .. "["..k.."] = " .. dump(v) .. ","
-                    end
-                    return s .. "} "
-                else
-                    return tostring(o)
-                end
-            end
-
-            -- call introspect for OAuth 2.0 Bearer Access Token validation
-            local res, err = require("resty.openidc").authenticate(opts)
-
-            if err then
-                ngx.status = 403
-                ngx.say(err)
-                ngx.exit(ngx.HTTP_FORBIDDEN)
-            end
-
-            ngx.req.set_header("x-user-email", res.id_token.email);
-            ngx.req.set_header("x-user-preferred-username", res.id_token.preferred_username);
-            ngx.req.set_header("x-access-token", res.access_token);
-        ';
-
         location / {
+
+            access_by_lua '
+
+                local opts = {
+                    redirect_uri = "https://consul.{{ES_DOMAIN}}:9443/redirect_uri",
+                    discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
+                    client_id = "gitea",
+                    client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
+                    -- redirect_uri_scheme = "https",
+                    scope = "openid profile",
+                    logout_path = "/logout",
+                    redirect_after_logout_uri = "{{OAUTH_CLIENTS_GITEA_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fconsul.{{ES_DOMAIN}}:9443",
+                    redirect_after_logout_with_id_token_hint = false,
+                    -- session_contents = {id_token=true,access_token=true}
+                    ssl_verify = "no"
+                }
+
+                function dump(o)
+                    if type(o) == "table" then
+                        local s = "{ "
+                        for k,v in pairs(o) do
+                            if type(k) ~= "number" then k = " "..k.." " end
+                            s = s .. "["..k.."] = " .. dump(v) .. ","
+                        end
+                        return s .. "} "
+                    else
+                        return tostring(o)
+                    end
+                end
+
+                -- call introspect for OAuth 2.0 Bearer Access Token validation
+                local res, err = require("resty.openidc").authenticate(opts)
+
+                if err then
+                    ngx.status = 403
+                    ngx.say(err)
+                    ngx.exit(ngx.HTTP_FORBIDDEN)
+                end
+
+                ngx.req.set_header("x-user-email", res.id_token.email);
+                ngx.req.set_header("x-user-preferred-username", res.id_token.preferred_username);
+                ngx.req.set_header("x-access-token", res.access_token);
+            ';
+
             root   /www;
             index  index.html index.htm;
 
@@ -97,7 +98,7 @@ http {
             proxy_ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
             proxy_ssl_ciphers             HIGH:!aNULL:!MD5;
 
-            proxy_pass https://{{ES_DOMAIN}}/;
+            proxy_pass https://consul.service.dc1.consul:8080;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
