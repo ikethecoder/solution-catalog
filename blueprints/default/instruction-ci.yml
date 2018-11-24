@@ -265,12 +265,7 @@ resources:
       solution: "postgres/docker"
       droplet: "${instanceName}"
       commands: false
-- building_block:
-    ${instanceId}-keycloak:
-      role: "na"
-      solution: "keycloak/docker"
-      droplet: "${instanceName}"
-      commands: false
+
 - building_block:
     ${instanceId}-gitea:
       role: "sourcecontrol"
@@ -409,6 +404,13 @@ resources:
       password: "${utils.randomPassword}"
       policies: "all"
 
+- building_block:
+    ${instanceId}-keycloak:
+      role: "na"
+      solution: "keycloak/docker"
+      droplet: "${instance.name}"
+      commands: false
+
 - wire:
     upgrade-to-oidc:
       solution: flows-gateway
@@ -421,11 +423,12 @@ resources:
       action: first-set-component
       droplet: "${es.tag}-cd-ci-01"
 
-- wire:
-    oidc-proxy:
-      solution: consul
-      action: oidc-proxy
-      droplet: "${es.tag}-cd-ci-01"
+- building_block:
+    ${instanceId}-consul-oidc-proxy:
+      role: "na"
+      solution: "consul/oidc-proxy"
+      droplet: "${instance.name}"
+      commands: false
 
 - legacy:
     fill-endpoints:
