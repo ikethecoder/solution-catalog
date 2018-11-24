@@ -2,6 +2,8 @@
 
 set -e
 
+docker rm -f selenium || true && docker network rm vlan1 || true
+
 docker network create \
   --driver=bridge \
   --subnet=4.1.0.0/16 \
@@ -21,7 +23,7 @@ docker run --net=vlan1 --rm \
   -e SERVICE_GITEA_ESADMIN_CREDENTIALS_PASSWORD \
   -e OAUTH_CLIENTS_GITEA_CLIENT_SECRET \
   -e OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY \
-  canzea/tester:0.1.3
+  canzea/tester:0.1.13
 
 docker rm -f selenium || true
 
