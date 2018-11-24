@@ -1,5 +1,5 @@
 
-mkdir -p /var/local/consul_openresty
+mkdir -p /var/local/consul_openresty/config /var/local/consul_openresty/www
 
 docker rm -f consul_oidc || true
 

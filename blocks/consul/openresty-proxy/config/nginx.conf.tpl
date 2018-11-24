@@ -17,7 +17,7 @@ http {
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 
-    access_log  /var/log/nginx/access.log
+    access_log  /var/log/nginx/access.log;
 
     resolver 127.0.0.11; # Docker DNS
 
