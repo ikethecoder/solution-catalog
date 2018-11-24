@@ -28,7 +28,7 @@ resources:
       segment: "ci"
       privateKey: "master_key"
       proxy_ssl_virtual_host: "consul"
-      template: "openresty_proxy"
+      template: "openresty_proxy.tmpl"
       location: "/"
       passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9080"
 
