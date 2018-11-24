@@ -1,0 +1,10 @@
+{
+  "keyvalues": [
+  ],
+
+  "services": [
+  ],
+  "secrets": [
+    {"name": "oauth/clients/gitea"}
+  ]
+}
