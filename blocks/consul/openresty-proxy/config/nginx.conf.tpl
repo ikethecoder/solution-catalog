@@ -1,8 +1,6 @@
 worker_processes  1;
 
-error_log  /var/log/nginx/error.log info;
 pid        /var/run/nginx.pid;
-
 
 events {
     worker_connections  128;
@@ -16,8 +14,6 @@ http {
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
-
-    access_log  /var/log/nginx/access.log;
 
     resolver 127.0.0.11; # Docker DNS
 
@@ -36,11 +32,6 @@ http {
         listen       80;
         server_name  consul.{{ES_DOMAIN}};
 
-        ssl_certificate     /letsencrypt/live/{{ES_DOMAIN}}/cert.pem;
-        ssl_certificate_key /letsencrypt/live/{{ES_DOMAIN}}/privkey.pem;
-        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-        ssl_ciphers         HIGH:!aNULL:!MD5;
-
         location / {
 
             access_by_lua '
@@ -53,9 +44,9 @@ http {
                     -- redirect_uri_scheme = "https",
                     scope = "openid profile",
                     logout_path = "/logout",
-                    redirect_after_logout_uri = "{{OAUTH_CLIENTS_GITEA_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=http%3A%2F%2Fconsul.{{ES_DOMAIN}}",
+                    redirect_after_logout_uri = "{{OAUTH_CLIENTS_GITEA_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fconsul.{{ES_DOMAIN}}",
                     redirect_after_logout_with_id_token_hint = false,
-                    -- session_contents = {id_token=true,access_token=true}
+                    session_contents = {id_token=true,access_token=true}
                     ssl_verify = "no"
                 }
 
@@ -84,6 +75,8 @@ http {
                 ngx.req.set_header("x-user-email", res.id_token.email);
                 ngx.req.set_header("x-user-preferred-username", res.id_token.preferred_username);
                 ngx.req.set_header("x-access-token", res.access_token);
+
+                print(green .. dump(ngx.req))
             ';
 
             root   /www;
