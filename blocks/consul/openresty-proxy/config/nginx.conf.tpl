@@ -32,6 +32,8 @@ http {
         listen       80;
         server_name  consul.{{ES_DOMAIN}};
 
+        error_log stderr;
+
         location / {
 
             access_by_lua '
