@@ -3,7 +3,7 @@
 docker rm -f flows-gateway || true
 
 docker create --name flows-gateway -p 8000:8000 \
-    -e adminAuth=oauth2 \
+    -e adminAuth=normal \
     -e adminRoot="/gwadmin/" \
     -e ADMIN_OAUTH2_AUTHORIZE="$OAUTH_CLIENTS_GITEA_OIDC_ISSUER/protocol/openid-connect/auth" \
     -e ADMIN_OAUTH2_TOKEN="$OAUTH_CLIENTS_GITEA_OIDC_ISSUER/protocol/openid-connect/token" \
