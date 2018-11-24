@@ -34,12 +34,12 @@ http {
 
     server {
         listen       80;
-        # server_name  consul.{{ES_DOMAIN}};
+        server_name  consul.{{ES_DOMAIN}};
 
-        # ssl_certificate     /letsencrypt/live/{{ES_DOMAIN}}/cert.pem;
-        # ssl_certificate_key /letsencrypt/live/{{ES_DOMAIN}}/privkey.pem;
-        # ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-        # ssl_ciphers         HIGH:!aNULL:!MD5;
+        ssl_certificate     /letsencrypt/live/{{ES_DOMAIN}}/cert.pem;
+        ssl_certificate_key /letsencrypt/live/{{ES_DOMAIN}}/privkey.pem;
+        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers         HIGH:!aNULL:!MD5;
 
         location / {
 
