@@ -25,7 +25,6 @@ http {
     lua_shared_dict discovery 1m;
     # cache for JWKs
     lua_shared_dict jwks 1m;
-    lua_code_cache off
 
     lua_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
     lua_ssl_verify_depth 5;
