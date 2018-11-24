@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+mkdir -p /var/local/consul_openresty
+
 canzea --lifecycle=wire \
   --solution=ecosystem \
   --action=config \
@@ -12,4 +14,4 @@ canzea --lifecycle=wire \
 
 docker create --net=vlan0 --name consul_openresty \
   -v /var/local/consul_openresty:/conf \
-  openresty -c /conf/nginx.conf
+  canzea/oidc-proxy:latest -c /conf/nginx.conf
