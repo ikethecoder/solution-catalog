@@ -76,7 +76,7 @@ http {
                 ngx.req.set_header("x-user-preferred-username", res.id_token.preferred_username);
                 ngx.req.set_header("x-access-token", res.access_token);
 
-                print(green .. dump(ngx.req))
+                print(dump(ngx.req))
             ';
 
             root   /www;
