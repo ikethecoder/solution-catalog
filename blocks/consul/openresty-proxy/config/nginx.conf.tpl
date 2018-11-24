@@ -25,13 +25,14 @@ http {
     lua_shared_dict discovery 1m;
     # cache for JWKs
     lua_shared_dict jwks 1m;
+    lua_code_cache off
 
     lua_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
     lua_ssl_verify_depth 5;
 
     server {
         listen       80;
-        server_name  consul.{{ES_DOMAIN}};
+        # server_name  consul.{{ES_DOMAIN}};
 
         # Don't think I need to bundle rootCA because it has been added to keychain
         # ssl_certificate     /ssl/root2/server_crt.pem;
