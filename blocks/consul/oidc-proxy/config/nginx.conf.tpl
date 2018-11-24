@@ -74,21 +74,21 @@ http {
                     ngx.exit(ngx.HTTP_FORBIDDEN)
                 end
 
-                ngx.req.set_header("x-user-email", res.id_token.email);
-                ngx.req.set_header("x-user-preferred-username", res.id_token.preferred_username);
+                -- ngx.req.set_header("x-user-email", res.id_token.email);
+                -- ngx.req.set_header("x-user-preferred-username", res.id_token.preferred_username);
                 ngx.req.set_header("x-access-token", res.access_token);
 
-                ngx.log(ngx.ERR, dump(ngx.req.get_headers()));
+                -- ngx.log(ngx.ERR, dump(ngx.req.get_headers()));
             ';
 
             root   /www;
             index  index.html index.htm;
 
-            proxy_ssl_certificate     /ssl/consul.cert;
-            proxy_ssl_certificate_key /ssl/consul.key;
+            proxy_ssl_certificate         /ssl/consul.cert;
+            proxy_ssl_certificate_key     /ssl/consul.key;
             proxy_ssl_trusted_certificate /ssl/ca.cert;
-            proxy_ssl_verify       on;
-            proxy_ssl_session_reuse on;
+            proxy_ssl_verify              on;
+            proxy_ssl_session_reuse       on;
 
             proxy_ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
             proxy_ssl_ciphers             HIGH:!aNULL:!MD5;
