@@ -364,6 +364,7 @@ resources:
       data:
         label: "Gitea"
         client_secret: "${utils.uuid}"
+        oidc_issuer: "https://identity.${es.fqdn}/auth/realms/ecosystem"
         oidc_discovery: "https://identity.${es.fqdn}/auth/realms/ecosystem/.well-known/openid-configuration"
 
 - building_block:
