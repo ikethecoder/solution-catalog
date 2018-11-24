@@ -1,6 +1,6 @@
 worker_processes  1;
 
-error_log  /var/log/nginx/error.log warn;
+error_log  /var/log/nginx/error.log info;
 pid        /var/run/nginx.pid;
 
 
@@ -42,7 +42,7 @@ http {
         access_by_lua '
 
             local opts = {
-                redirect_uri_path = "/proxy/cb",
+                redirect_uri = "https://consul.{{ES_DOMAIN}}/proxy/cb",
                 discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
                 client_id = "gitea",
                 client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
