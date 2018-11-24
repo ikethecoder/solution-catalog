@@ -44,6 +44,7 @@ http {
         set $session_secret 623q4hR325t36VsCD3g567922IC0073T;
 
         access_by_lua '
+            local session = require "resty.session".start{ secret = "623q4hR325t36VsCD3g567922IC0073T" }
 
             local opts = {
                 redirect_uri = "https://consul.{{ES_DOMAIN}}/redirect_uri",
