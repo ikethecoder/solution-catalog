@@ -26,7 +26,6 @@ http {
     # cache for JWKs
     lua_shared_dict jwks 1m;
     lua_code_cache off;
-    set $session_secret 33-44-11-33;
 
     lua_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
     lua_ssl_verify_depth 5;
@@ -42,6 +41,7 @@ http {
         # ssl_ciphers         HIGH:!aNULL:!MD5;
 
         access_by_lua '
+            set $session_secret 33-44-11-33;
 
             local opts = {
                 redirect_uri = "https://consul.{{ES_DOMAIN}}/proxy/cb",
