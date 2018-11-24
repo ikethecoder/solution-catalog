@@ -1,0 +1,9 @@
+- vault_secret:
+    provider/minio/live:
+      access_key: admin
+      secret_key: ${utils.randomPassword}
+      mode: server
+      data_path: /data
+      gateway_provider: none
+      email: ${owner.email}
+      url: "https://identity.${es.fqdn}"
