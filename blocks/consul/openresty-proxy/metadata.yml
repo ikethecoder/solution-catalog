@@ -10,16 +10,6 @@ resources:
         type: console
         secure: "https://consul.${es.fqdn}"
 
-  - digitalocean_dns:
-      consul:
-        environment: "cd"
-        droplet: "${instance.name}"
-        domain-id: "${es.fqdn_id}"
-        domain: "${es.fqdn}"
-        cname:
-          name: "consul"
-          address: "@"
-
   - proxy_ssl_virtual_host:
       consul:
         environment: cd
@@ -28,7 +18,7 @@ resources:
         privateKey: "master_key"
         domainName: "consul.${es.fqdn}"
         domains: "consul.${es.fqdn}"
-        certname: "${es.fqdn}"
+        certname: "consul.${es.fqdn}"
         email: "${owner.email}"
 
   - proxy_service:
