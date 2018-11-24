@@ -110,7 +110,7 @@ http {
         location / {
             root   /www;
             index  index.html index.htm;
-            return 301 $scheme://$server_name$request_uri/ui;
+            return 301 $scheme://$server_name:$server_port/ui;
         }
 
 
