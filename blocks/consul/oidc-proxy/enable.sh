@@ -1,10 +1,10 @@
 
 
-yes | cp -f blocks/consul/openresty-proxy/config/consul_oidc.service /etc/systemd/system/multi-user.target.wants/.
+yes | cp -f blocks/consul/consul_oidc_proxy/config/consul_oidc_proxy.service /etc/systemd/system/multi-user.target.wants/.
 
 systemctl daemon-reload
 
-systemctl restart consul_oidc
+systemctl restart consul_oidc_proxy
 
 
 
