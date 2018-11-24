@@ -84,8 +84,8 @@ http {
             ngx.req.set_header("x-access-token", res.access_token);
         ';
 
-        location /ui {
-            root   /usr/share/nginx/html;
+        location / {
+            root   /www;
             index  index.html index.htm;
 
             proxy_ssl_certificate     /ssl/consul.cert;
@@ -97,7 +97,7 @@ http {
             proxy_ssl_protocols           TLSv1 TLSv1.1 TLSv1.2;
             proxy_ssl_ciphers             HIGH:!aNULL:!MD5;
 
-            proxy_pass https://{{ES_DOMAIN}}/ui;
+            proxy_pass https://{{ES_DOMAIN}}/;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
@@ -105,12 +105,6 @@ http {
             proxy_cache_bypass $http_upgrade;
             proxy_set_header X-Real-IP $remote_addr;
 
-        }
-
-        location / {
-            root   /www;
-            index  index.html index.htm;
-            return 301 $scheme://$server_name:$server_port/ui;
         }
 
 
