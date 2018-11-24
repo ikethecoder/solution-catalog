@@ -108,56 +108,6 @@ resources:
       files:
       - "vault.cert"
       - "vault.key"
-- service_discovery_service_md:
-    flows-gateway:
-      role: "adhoc"
-      solution: "flows-gateway/docker"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-- vault_secret:
-    oauth/clients/flows-gateway:
-      wire: "vault:register-secret"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-      key: "oauth/clients/flows-gateway"
-      data:
-        label: "Flows Gateway"
-        client_secret: "${utils.uuid}"
-        accessTokenLifetime: 14515200
-        oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
-        oauth2_token: "https://${es.fqdn}/gw/oauth/token"
-        oauth2_profile: "https://${es.fqdn}/gw/me"
-        grants:
-        - "password"
-        - "authorization_code"
-        - "refresh_token"
-        redirectUris:
-        - "https://${es.fqdn}/gwadmin/auth/strategy/callback"
-- vault_secret:
-    service/flows-gateway/esadmin/credentials:
-      wire: "vault:register-secret"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-      key: "service/flows-gateway/esadmin/credentials"
-      data:
-        user_name: "esadmin"
-        password: "${utils.randomPassword}"
-        email: "${owner.email}"
-        url: "https://${es.fqdn}/gwadmin"
-- boot:first-config:
-    flows-gateway:
-      wire: "flows-gateway:first-config"
-      environment: "cd"
-      serverNumber: 1
-      segment: "ci"
-      privateKey: "master_key"
-
 - building_block:
     ${instanceId}-unzip:
       role: "workarounds"
@@ -496,6 +446,12 @@ resources:
     ${owner.username}:
       password: "${utils.randomPassword}"
       policies: "all"
+
+- wire:
+    consul-component-folder:
+      solution: consul
+      action: first-set-component
+      droplet: "${es.tag}-cd-ci-01"
 
 - legacy:
     fill-endpoints:
