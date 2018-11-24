@@ -1,0 +1,11 @@
+[Unit]
+Description=Consul OIDC container
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a consul_oidc
+ExecStop=/usr/bin/docker stop -t 2 consul_oidc
+
+[Install]
+WantedBy=local.target

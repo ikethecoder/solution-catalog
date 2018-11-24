@@ -15,3 +15,12 @@ canzea --lifecycle=wire \
 docker create --net=vlan0 --name consul_openresty \
   -v /var/local/consul_openresty:/conf \
   canzea/oidc-proxy:latest -c /conf/nginx.conf
+
+
+yes | cp -f blocks/consul/openresty-proxy/config/consul_oidc.service /etc/systemd/system/multi-user.target.wants/.
+
+systemctl daemon-reload
+
+systemctl restart consul_oidc
+
+
