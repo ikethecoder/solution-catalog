@@ -39,10 +39,5 @@ resources:
         email: ${owner.email}
         url: "https://${es.fqdn}/archiva/"
 
-  - wire:
-      archiva-first-login:
-        solution: archiva
-        action: first-login
-        droplet: "${es.tag}-cd-ci-01"
 
 

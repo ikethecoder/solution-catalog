@@ -97,12 +97,32 @@ resources:
       solution: "gocd/docker"
       droplet: "${instanceName}"
       commands: false
+
+- wire:
+    gocd-first-set-api-access:
+      solution: gocd
+      action: first-set-api-access
+      droplet: "${es.tag}-cd-ci-01"
+
+- wire:
+    gocd-first-config:
+      solution: gocd
+      action: first-config
+      droplet: "${instance.name}"
+
 - building_block:
     ${instanceId}-archiva:
       role: "registry"
       solution: "archiva/docker"
       droplet: "${instanceName}"
       commands: false
+
+- wire:
+    archiva-first-login:
+      solution: archiva
+      action: first-login
+      droplet: "${es.tag}-cd-ci-01"
+
 - building_block:
     ${instanceId}-mongodb:
       role: "documentdatabase"
@@ -115,6 +135,24 @@ resources:
       solution: "rocketchat/docker"
       droplet: "${instanceName}"
       commands: false
+
+- wire:
+    rocketchat-first-login:
+      solution: rocketchat
+      action: first-login
+      droplet: "${es.tag}-cd-ci-01"
+
+- wire:
+    rocketchat-first-set-site-url:
+      solution: rocketchat
+      action: first-set-site-url
+      droplet: "${es.tag}-cd-ci-01"
+
+- wire:
+    rocketchat-first-set-oauth:
+      solution: rocketchat
+      action: first-set-oauth
+      droplet: "${es.tag}-cd-ci-01"
 - building_block:
     ${instanceId}-confd:
       role: "r_and_d"
