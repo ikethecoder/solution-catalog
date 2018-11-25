@@ -32,6 +32,28 @@ resources:
       location: "/"
       passthrough: "http://${d}{var.compute_instance.${instance.name}.privateIp}:9080"
 
+  - vault_secret:
+      oauth/clients/consul:
+        label: "Consul"
+        client_id: "consul"
+        client_secret: "5c0f2c39-0adf-45d0-9ba8-98d86522c35f"
+        accessTokenLifetime: 14515200
+        oauth2_issuer: "https://identity.${es.fqdn}/auth/realms/ecosystem"
+        oauth2_root: "https://identity.${es.fqdn}/auth/realms/ecosystem/protocol/openid-connect"
+        grants:
+        - "password"
+        - "authorization_code"
+        - "refresh_token"
+        redirectUris:
+        - "https://chat.${es.fqdn}/_oauth/esgw"
+
+  - iam_realm_client:
+      rocketchat:
+        clientId: consul
+        secret: "5c0f2c39-0adf-45d0-9ba8-98d86522c35f"
+        redirectUris:
+        - "https://consul.${es.fqdn}/*"
+
 #- proxy_service:
 #    consul-ui:
 #      environment: "cd"

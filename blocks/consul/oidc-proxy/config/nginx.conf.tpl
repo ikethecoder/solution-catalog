@@ -40,13 +40,13 @@ http {
 
                 local opts = {
                     redirect_uri = "https://consul.{{ES_DOMAIN}}/redirect_uri",
-                    discovery = "{{OAUTH_CLIENTS_GITEA_OIDC_DISCOVERY}}",
-                    client_id = "gitea",
-                    client_secret = "{{OAUTH_CLIENTS_GITEA_CLIENT_SECRET}}",
+                    discovery = "{{OAUTH_CLIENTS_CONSUL_OIDC_DISCOVERY}}",
+                    client_id = "{{OAUTH_CLIENTS_CONSUL_CLIENT_ID}}",
+                    client_secret = "{{OAUTH_CLIENTS_CONSUL_CLIENT_SECRET}}",
                     -- redirect_uri_scheme = "https",
                     scope = "openid profile",
                     logout_path = "/logout",
-                    redirect_after_logout_uri = "{{OAUTH_CLIENTS_GITEA_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fconsul.{{ES_DOMAIN}}",
+                    redirect_after_logout_uri = "{{OAUTH_CLIENTS_CONSUL_OIDC_ISSUER}}/protocol/openid-connect/logout?redirect_uri=https%3A%2F%2Fconsul.{{ES_DOMAIN}}",
                     redirect_after_logout_with_id_token_hint = false,
                     session_contents = {id_token=true,access_token=true},
                     ssl_verify = "no"

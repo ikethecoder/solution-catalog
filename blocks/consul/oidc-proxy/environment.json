@@ -5,6 +5,6 @@
   "services": [
   ],
   "secrets": [
-    {"name": "oauth/clients/gitea"}
+    {"name": "oauth/clients/consul"}
   ]
 }
