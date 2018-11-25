@@ -375,6 +375,9 @@ resources:
       fqdn: "${es.fqdn}"
       sourcePath: "sc/ecosystems/${es.id}"
 
+- remote_ssh_key_pair:
+    root_id_rsa: {}
+
 - vault_secret:
     shell/commands/${instanceId}-bash:
       user: "root"
@@ -442,5 +445,3 @@ resources:
   depends_on:
   - "migrate.ecosystem"
 
-- remote_ssh_key_pair:
-    root_id_rsa: {}
