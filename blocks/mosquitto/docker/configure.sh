@@ -1,4 +1,6 @@
 
+docker rm -f mosquitto || true
+
 mkdir -p /var/local/mosquitto/config
 
 yes | cp blocks/mosquitto/docker/config/mosquitto.conf /var/local/mosquitto/config/mosquitto.conf
