@@ -147,19 +147,20 @@ resources:
     rocketchat-first-login:
       solution: rocketchat
       action: first-login
-      droplet: "${es.tag}-cd-ci-01"
+      droplet: "${instance.name}"
 
 - wire:
     rocketchat-first-set-site-url:
       solution: rocketchat
       action: first-set-site-url
-      droplet: "${es.tag}-cd-ci-01"
+      droplet: "${instance.name}"
 
 - wire:
     rocketchat-first-set-oauth:
       solution: rocketchat
       action: first-set-oauth
-      droplet: "${es.tag}-cd-ci-01"
+      droplet: "${instance.name}"
+
 - building_block:
     ${instanceId}-confd:
       role: "r_and_d"
