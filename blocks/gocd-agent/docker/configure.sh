@@ -4,6 +4,8 @@ docker rm -f gocd-agent || true
 
 echo "HOSTNAME=$HOSTNAME"
 
+mkdir -p /var/local/gocd/home
+
 canzea --lifecycle=wire --solution=ecosystem --action=config --args='{"source":"{{CATALOG_LOCATION}}/blocks/gocd-agent/docker/config/docker-run.sh","target":"/var/local/gocd/home/docker-run","instanceId":"{{HOSTNAME}}","solution":"gocd-agent"}'
 
 chmod +x /var/local/gocd/home/docker-run
