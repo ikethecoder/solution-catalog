@@ -5,6 +5,6 @@
   "services": [
   ],
   "secrets": [
-    {"name": "provider/minio/live"}
+    {"name": "providers/minio/live"}
   ]
 }
