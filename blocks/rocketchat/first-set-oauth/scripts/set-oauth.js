@@ -38,14 +38,24 @@ module.exports = {
 
 
             .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-url']")
-            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-url']", function(result) { browser.pause(1000); }).setValue("input[name='Accounts_OAuth_Custom-Esgw-url']", process.env.OAUTH_CLIENTS_ROCKETCHAT_OAUTH2_ROOT)
+            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-url']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-url']", process.env.OAUTH_CLIENTS_ROCKETCHAT_OAUTH2_ROOT)
+
+            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-token_path']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-token_path']", '/token')
+
+            .waitAndClick("select[name='Accounts_OAuth_Custom-Esgw-token_sent_via']")
+            .waitAndClick("option[value='header']")
+
+            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-identity_path']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-identity_path']", '/userinfo')
+            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-authorize_path']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-authorize_path']", '/auth')
+
+            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-username_field']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-username_field']", 'preferred_username')
 
             .click("input[name='Accounts_OAuth_Custom-Esgw'][value='1']")
 
             .waitAndClick("select[name='Accounts_OAuth_Custom-Esgw-login_style']")
             .waitAndClick("option[value='redirect']")
 
-            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-id']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-id']", 'rocketchat')
+            .clearValue("input[name='Accounts_OAuth_Custom-Esgw-id']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-id']", process.env.OAUTH_CLIENTS_ROCKETCHAT_CLIENT_ID)
             .clearValue("input[name='Accounts_OAuth_Custom-Esgw-secret']", function(result) { browser.pause(1000); }).setValueSlow("input[name='Accounts_OAuth_Custom-Esgw-secret']", process.env.OAUTH_CLIENTS_ROCKETCHAT_CLIENT_SECRET)
 
             .waitForElementVisible("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']").clearValue("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']").setValue("input[name='Accounts_OAuth_Custom-Esgw-button_label_text']", 'Ecosystem Gateway')
