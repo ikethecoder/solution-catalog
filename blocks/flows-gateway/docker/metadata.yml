@@ -56,4 +56,3 @@ resources:
         url: "https://${es.fqdn}/gwadmin"
 
 
-
