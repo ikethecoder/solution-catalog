@@ -408,6 +408,13 @@ resources:
       policies: "all"
 
 - building_block:
+    ${instance.id}-minio:
+      role: "na"
+      solution: "minio/docker"
+      droplet: "${instance.name}"
+      commands: false
+
+- building_block:
     ${instanceId}-keycloak:
       role: "na"
       solution: "keycloak/docker"
