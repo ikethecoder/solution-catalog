@@ -8,9 +8,9 @@ rm -rf /var/local/flows-gateway/projects
 
 mkdir -p /var/local/flows-gateway/projects
 
-yes | cp -r $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc/projects/* /var/local/flows-gateway/projects
+unzip -d /var/local/flows-gateway/projects $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc/config/*.zip
 
-chown pm2user:pm2user /var/local/flows-gateway/projects
+chown -R pm2user:pm2user /var/local/flows-gateway/projects
 
 docker create --name flows-gateway --net=vlan0 -p 8000:8000 \
     -e adminAuth=oauth2 \
@@ -27,3 +27,7 @@ docker create --name flows-gateway --net=vlan0 -p 8000:8000 \
 systemctl restart flows-gateway
 
 # -v /var/local/flows-gateway/config.json:/home/pm2user/.node-red/.config.json
+
+
+# zip -r keycloak.zip keycloak
+
