@@ -120,6 +120,13 @@ resources:
   - "service_discovery_service.gocd"
   - "building_block.${instanceId}-maven"
 - wire:
+    gocd-agent-first-config:
+      solution: gocd-agent
+      action: first-config
+      droplet: "${instance.name}"
+  depends_on:
+  - "#previous"
+- wire:
     gocd-agent-set-registry-creds:
       solution: gocd-agent
       action: set-registry-creds
