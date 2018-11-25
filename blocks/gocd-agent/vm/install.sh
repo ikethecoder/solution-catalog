@@ -13,10 +13,10 @@ yum -y localinstall go-agent-17.3.0-4704.noarch.rpm
 
 chown -R go:go /var/go
 
-touch /var/local/gocd/home/.gitconfig
-touch /var/local/gocd/home/.git-credentials
+echo "" > /var/local/gocd/home/.gitconfig
+echo "" > /var/local/gocd/home/.git-credentials
 
-ln -s /var/local/gocd/home/.gitconfig /var/go/
-ln -s /var/local/gocd/home/.git-credentials /var/go/
+ln -sf /var/local/gocd/home/.gitconfig /var/go/
+ln -sf /var/local/gocd/home/.git-credentials /var/go/
 
 ls -l /etc/default
