@@ -45,6 +45,7 @@ resources:
       role: "workarounds"
       solution: "canzea"
       droplet: "${instanceName}"
+      def_catalog_branch: "${es.catalog.branch}"
       commands: false
 - building_block:
     ${instanceId}-selinux:
