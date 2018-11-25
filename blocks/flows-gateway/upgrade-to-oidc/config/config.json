@@ -3,6 +3,9 @@
     "projects": {
       "temp": {
         "credentialSecret": "cred secret"
+      },
+      "general": {
+        "credentialSecret": "cred secret"
       }
     },
     "activeProject": "temp"
