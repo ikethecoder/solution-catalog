@@ -63,15 +63,24 @@ resources:
   - vault_secret:
       oauth/clients/rocketchat:
         label: "Rocket.Chat"
-        client_secret: "${utils.uuid}"
+        client_id: "rocketchat"
+        client_secret: "a9bbe1f6-b3eb-421e-b100-057b795275b5"
+        client_secret_old: "${utils.uuid}"
         accessTokenLifetime: 14515200
-        oauth2_root: "https://${es.fqdn}/gw"
-        oauth2_authorize: "https://${es.fqdn}/gw/oauth/authorize"
-        oauth2_token: "https://${es.fqdn}/gw/oauth/token"
-        oauth2_profile: "https://${es.fqdn}/gw/me"
+        oauth2_root: "https://identity.${es.fqdn}/auth/realms/ecosystem/protocol/openid-connect"
+        oauth2_authorize: "https://identity.${es.fqdn}/auth/realms/ecosystem/protocol/openid-connect/auth"
+        oauth2_token: "https://identity.${es.fqdn}/auth/realms/ecosystem/protocol/openid-connect/token"
+        oauth2_profile: "https://identity.${es.fqdn}/auth/realms/ecosystem/protocol/openid-connect/userinfo"
         grants:
         - "password"
         - "authorization_code"
         - "refresh_token"
+        redirectUris:
+        - "https://chat.${es.fqdn}/_oauth/esgw"
+
+  - iam_realm_client:
+      rocketchat:
+        clientId: rocketchat
+        secret: "a9bbe1f6-b3eb-421e-b100-057b795275b5"
         redirectUris:
         - "https://chat.${es.fqdn}/_oauth/esgw"
