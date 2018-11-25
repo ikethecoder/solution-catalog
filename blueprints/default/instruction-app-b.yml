@@ -106,9 +106,17 @@ resources:
 - building_block:
     ${instanceId}-gocd-agent:
       role: "deploy"
-      solution: "gocd-agent/docker"
+      solution: "gocd-agent/vm"
       droplet: "${instanceName}"
       commands: false
+- wire:
+    gocd-agent-first-config:
+      solution: gocd-agent
+      action: first-config
+      droplet: "${instance.name}"
+  depends_on:
+  - "${instanceId}-gocd-agent"
+
 - building_block:
     ${instanceId}-maven:
       role: "build"
