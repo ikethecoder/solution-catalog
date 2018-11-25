@@ -107,6 +107,13 @@ resources:
   - "service_discovery_service.gocd"
   - "building_block.${instance.id}-golang"
 - wire:
+    gocd-agent-first-config:
+      solution: gocd-agent
+      action: first-config
+      droplet: "${instance.name}"
+  depends_on:
+  - "${instanceId}-gocd-agent"
+- wire:
     ${instanceId}-go:
       solution: "users"
       action: "configure-go"
