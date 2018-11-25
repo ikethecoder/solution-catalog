@@ -1,0 +1,11 @@
+[Unit]
+Description=Mosquitto container
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a mosquitto
+ExecStop=/usr/bin/docker stop -t 2 mosquitto
+
+[Install]
+WantedBy=local.target
