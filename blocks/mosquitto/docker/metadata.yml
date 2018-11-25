@@ -1,0 +1,21 @@
+name: mosquitto
+version: 1.5.4
+resources:
+  - service_discovery_service:
+      ${instance.id}-mosquitto:
+        Name: ${environment.id}-mosquitto
+        Address: "${d}{var.compute_instance.${instance.name}.privateIp}"
+        Port: 1883
+        Tags: [ "${instance.id}", "${environment.id}", "mqtt_message_broker" ]
+#        Check:
+#          script: "nc ${d}{var.compute_instance.${instance.name}.privateIp} 27017"
+#          interval: 10s
+#          timeout: 1s
+
+  - service_endpoint:
+      ${instance.id}-mosquitto:
+        service: mosquitto
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: service
