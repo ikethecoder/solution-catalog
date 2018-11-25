@@ -1,0 +1,1494 @@
+{
+  "projects": {
+    "projects": {
+      "temp": {
+        "credentialSecret": "cred secret"
+      }
+    },
+    "activeProject": "temp"
+  },
+  "contextProviders": {},
+  "nodes": {
+    "node-red": {
+      "name": "node-red",
+      "version": "0.19.5",
+      "local": false,
+      "nodes": {
+        "sentiment": {
+          "name": "sentiment",
+          "types": [
+            "sentiment"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/analysis/72-sentiment.js"
+        },
+        "inject": {
+          "name": "inject",
+          "types": [
+            "inject"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/20-inject.js"
+        },
+        "catch": {
+          "name": "catch",
+          "types": [
+            "catch"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/25-catch.js"
+        },
+        "status": {
+          "name": "status",
+          "types": [
+            "status"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/25-status.js"
+        },
+        "debug": {
+          "name": "debug",
+          "types": [
+            "debug"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/58-debug.js"
+        },
+        "link": {
+          "name": "link",
+          "types": [
+            "link in",
+            "link out"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/60-link.js"
+        },
+        "exec": {
+          "name": "exec",
+          "types": [
+            "exec"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/75-exec.js"
+        },
+        "function": {
+          "name": "function",
+          "types": [
+            "function"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/80-function.js"
+        },
+        "template": {
+          "name": "template",
+          "types": [
+            "template"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/80-template.js"
+        },
+        "delay": {
+          "name": "delay",
+          "types": [
+            "delay"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/89-delay.js"
+        },
+        "trigger": {
+          "name": "trigger",
+          "types": [
+            "trigger"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/89-trigger.js"
+        },
+        "comment": {
+          "name": "comment",
+          "types": [
+            "comment"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/90-comment.js"
+        },
+        "unknown": {
+          "name": "unknown",
+          "types": [
+            "unknown"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/core/98-unknown.js"
+        },
+        "rpi-gpio": {
+          "name": "rpi-gpio",
+          "types": [
+            "rpi-gpio in",
+            "rpi-gpio out",
+            "rpi-mouse",
+            "rpi-keyboard"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/hardware/36-rpi-gpio.js"
+        },
+        "tls": {
+          "name": "tls",
+          "types": [
+            "tls-config"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/io/05-tls.js"
+        },
+        "mqtt": {
+          "name": "mqtt",
+          "types": [
+            "mqtt in",
+            "mqtt out",
+            "mqtt-broker"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/io/10-mqtt.js"
+        },
+        "httpin": {
+          "name": "httpin",
+          "types": [
+            "http in",
+            "http response"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/io/21-httpin.js"
+        },
+        "httprequest": {
+          "name": "httprequest",
+          "types": [
+            "http request"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/io/21-httprequest.js"
+        },
+        "websocket": {
+          "name": "websocket",
+          "types": [
+            "websocket in",
+            "websocket out",
+            "websocket-listener",
+            "websocket-client"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/io/22-websocket.js"
+        },
+        "watch": {
+          "name": "watch",
+          "types": [
+            "watch"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/io/23-watch.js"
+        },
+        "tcpin": {
+          "name": "tcpin",
+          "types": [
+            "tcp in",
+            "tcp out",
+            "tcp request"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/io/31-tcpin.js"
+        },
+        "udp": {
+          "name": "udp",
+          "types": [
+            "udp in",
+            "udp out"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/io/32-udp.js"
+        },
+        "switch": {
+          "name": "switch",
+          "types": [
+            "switch"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/logic/10-switch.js"
+        },
+        "change": {
+          "name": "change",
+          "types": [
+            "change"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/logic/15-change.js"
+        },
+        "range": {
+          "name": "range",
+          "types": [
+            "range"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/logic/16-range.js"
+        },
+        "split": {
+          "name": "split",
+          "types": [
+            "split",
+            "join"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/logic/17-split.js"
+        },
+        "sort": {
+          "name": "sort",
+          "types": [
+            "sort"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/logic/18-sort.js"
+        },
+        "batch": {
+          "name": "batch",
+          "types": [
+            "batch"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/logic/19-batch.js"
+        },
+        "CSV": {
+          "name": "CSV",
+          "types": [
+            "csv"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/parsers/70-CSV.js"
+        },
+        "HTML": {
+          "name": "HTML",
+          "types": [
+            "html"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/parsers/70-HTML.js"
+        },
+        "JSON": {
+          "name": "JSON",
+          "types": [
+            "json"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/parsers/70-JSON.js"
+        },
+        "XML": {
+          "name": "XML",
+          "types": [
+            "xml"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/parsers/70-XML.js"
+        },
+        "YAML": {
+          "name": "YAML",
+          "types": [
+            "yaml"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/parsers/70-YAML.js"
+        },
+        "tail": {
+          "name": "tail",
+          "types": [
+            "tail"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/storage/28-tail.js"
+        },
+        "file": {
+          "name": "file",
+          "types": [
+            "file",
+            "file in"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red/nodes/core/storage/50-file.js"
+        }
+      }
+    },
+    "node-red-contrib-influxdb": {
+      "name": "node-red-contrib-influxdb",
+      "version": "0.2.2",
+      "local": true,
+      "nodes": {
+        "influxdb": {
+          "name": "influxdb",
+          "types": [
+            "influxdb",
+            "influxdb out",
+            "influxdb batch",
+            "influxdb in"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-influxdb",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-influxdb/influxdb.js"
+        }
+      }
+    },
+    "node-red-contrib-bigexec": {
+      "name": "node-red-contrib-bigexec",
+      "version": "1.3.2",
+      "local": true,
+      "nodes": {
+        "bigexec": {
+          "name": "bigexec",
+          "types": [
+            "bigexec"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-bigexec",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-bigexec/bigexec/bigexec.js"
+        }
+      }
+    },
+    "node-red-contrib-canzea-elasticsearch": {
+      "name": "node-red-contrib-canzea-elasticsearch",
+      "version": "0.0.4",
+      "local": true,
+      "nodes": {
+        "search": {
+          "name": "search",
+          "types": [
+            "es-search"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-canzea-elasticsearch",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-canzea-elasticsearch/search.js"
+        },
+        "create": {
+          "name": "create",
+          "types": [
+            "es-create"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-canzea-elasticsearch",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-canzea-elasticsearch/create.js"
+        },
+        "exists": {
+          "name": "exists",
+          "types": [
+            "es-exists"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-canzea-elasticsearch",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-canzea-elasticsearch/exists.js"
+        },
+        "update": {
+          "name": "update",
+          "types": [
+            "es-update"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-canzea-elasticsearch",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-canzea-elasticsearch/update.js"
+        },
+        "delete": {
+          "name": "delete",
+          "types": [
+            "es-delete"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-canzea-elasticsearch",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-canzea-elasticsearch/delete.js"
+        },
+        "get": {
+          "name": "get",
+          "types": [
+            "es-get"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-canzea-elasticsearch",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-canzea-elasticsearch/get.js"
+        },
+        "remote-server": {
+          "name": "remote-server",
+          "types": [
+            "remote-server"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-canzea-elasticsearch",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-canzea-elasticsearch/remote-server.js"
+        }
+      }
+    },
+    "node-red-contrib-canzea-vars": {
+      "name": "node-red-contrib-canzea-vars",
+      "version": "0.0.7",
+      "local": true,
+      "nodes": {
+        "vars": {
+          "name": "vars",
+          "types": [
+            "vars"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-canzea-vars",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-canzea-vars/vars.js"
+        }
+      }
+    },
+    "node-red-contrib-chatbot": {
+      "name": "node-red-contrib-chatbot",
+      "version": "0.15.11",
+      "local": true,
+      "nodes": {
+        "chatbot-telegram-receive": {
+          "name": "chatbot-telegram-receive",
+          "types": [
+            "chatbot-telegram-node",
+            "chatbot-telegram-receive",
+            "chatbot-telegram-send"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-telegram-receive.js"
+        },
+        "chatbot-universal-receive": {
+          "name": "chatbot-universal-receive",
+          "types": [
+            "chatbot-universal-node",
+            "chatbot-universal-receive",
+            "chatbot-universal-send"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-universal-receive.js"
+        },
+        "chatbot-slack-receive": {
+          "name": "chatbot-slack-receive",
+          "types": [
+            "chatbot-slack-node",
+            "chatbot-slack-receive",
+            "chatbot-slack-send"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-slack-receive.js"
+        },
+        "chatbot-twilio-receive": {
+          "name": "chatbot-twilio-receive",
+          "types": [
+            "chatbot-twilio-node",
+            "chatbot-twilio-receive",
+            "chatbot-twilio-send"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-twilio-receive.js"
+        },
+        "chatbot-facebook-receive": {
+          "name": "chatbot-facebook-receive",
+          "types": [
+            "chatbot-facebook-node",
+            "chatbot-facebook-receive",
+            "chatbot-facebook-send"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-facebook-receive.js"
+        },
+        "chatbot-viber-receive": {
+          "name": "chatbot-viber-receive",
+          "types": [
+            "chatbot-viber-node",
+            "chatbot-viber-receive",
+            "chatbot-viber-send"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-viber-receive.js"
+        },
+        "chatbot-redbot": {
+          "name": "chatbot-redbot",
+          "types": [],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-redbot.js"
+        },
+        "chatbot-message": {
+          "name": "chatbot-message",
+          "types": [
+            "chatbot-message"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-message.js"
+        },
+        "chatbot-analytics": {
+          "name": "chatbot-analytics",
+          "types": [
+            "chatbot-analytics"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-analytics.js"
+        },
+        "chatbot-context": {
+          "name": "chatbot-context",
+          "types": [
+            "chatbot-context"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-context.js"
+        },
+        "chatbot-topic": {
+          "name": "chatbot-topic",
+          "types": [
+            "chatbot-topic"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-topic.js"
+        },
+        "chatbot-voice": {
+          "name": "chatbot-voice",
+          "types": [
+            "chatbot-voice"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-voice.js"
+        },
+        "chatbot-language": {
+          "name": "chatbot-language",
+          "types": [
+            "chatbot-language"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-language.js"
+        },
+        "chatbot-listen": {
+          "name": "chatbot-listen",
+          "types": [
+            "chatbot-listen"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-listen.js"
+        },
+        "chatbot-listen-lexicon": {
+          "name": "chatbot-listen-lexicon",
+          "types": [
+            "chatbot-listen-lexicon"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-listen-lexicon.js"
+        },
+        "chatbot-parse": {
+          "name": "chatbot-parse",
+          "types": [
+            "chatbot-parse"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-parse.js"
+        },
+        "chatbot-command": {
+          "name": "chatbot-command",
+          "types": [
+            "chatbot-command"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-command.js"
+        },
+        "chatbot-document": {
+          "name": "chatbot-document",
+          "types": [
+            "chatbot-document"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-document.js"
+        },
+        "chatbot-video": {
+          "name": "chatbot-video",
+          "types": [
+            "chatbot-video"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-video.js"
+        },
+        "chatbot-image": {
+          "name": "chatbot-image",
+          "types": [
+            "chatbot-image"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-image.js"
+        },
+        "chatbot-sticker": {
+          "name": "chatbot-sticker",
+          "types": [
+            "chatbot-sticker"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-sticker.js"
+        },
+        "chatbot-audio": {
+          "name": "chatbot-audio",
+          "types": [
+            "chatbot-audio"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-audio.js"
+        },
+        "chatbot-location": {
+          "name": "chatbot-location",
+          "types": [
+            "chatbot-location"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-location.js"
+        },
+        "chatbot-ask": {
+          "name": "chatbot-ask",
+          "types": [
+            "chatbot-ask"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-ask.js"
+        },
+        "chatbot-inline-buttons": {
+          "name": "chatbot-inline-buttons",
+          "types": [
+            "chatbot-inline-buttons"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-inline-buttons.js"
+        },
+        "chatbot-quick-replies": {
+          "name": "chatbot-quick-replies",
+          "types": [
+            "chatbot-quick-replies"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-quick-replies.js"
+        },
+        "chatbot-generic-template": {
+          "name": "chatbot-generic-template",
+          "types": [
+            "chatbot-generic-template"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-generic-template.js"
+        },
+        "chatbot-list-template": {
+          "name": "chatbot-list-template",
+          "types": [
+            "chatbot-list-template"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-list-template.js"
+        },
+        "chatbot-request": {
+          "name": "chatbot-request",
+          "types": [
+            "chatbot-request"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-request.js"
+        },
+        "chatbot-log": {
+          "name": "chatbot-log",
+          "types": [
+            "chatbot-log"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-log.js"
+        },
+        "chatbot-qrcode": {
+          "name": "chatbot-qrcode",
+          "types": [
+            "chatbot-qrcode"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-qrcode.js"
+        },
+        "chatbot-conversation": {
+          "name": "chatbot-conversation",
+          "types": [
+            "chatbot-conversation"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-conversation.js"
+        },
+        "chatbot-debug": {
+          "name": "chatbot-debug",
+          "types": [
+            "chatbot-debug"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-debug.js"
+        },
+        "chatbot-waiting": {
+          "name": "chatbot-waiting",
+          "types": [
+            "chatbot-waiting"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-waiting.js"
+        },
+        "chatbot-authorized": {
+          "name": "chatbot-authorized",
+          "types": [
+            "chatbot-authorized"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-authorized.js"
+        },
+        "chatbot-transport": {
+          "name": "chatbot-transport",
+          "types": [
+            "chatbot-transport"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-transport.js"
+        },
+        "chatbot-rivescript": {
+          "name": "chatbot-rivescript",
+          "types": [
+            "chatbot-rivescript"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-rivescript.js"
+        },
+        "chatbot-messenger-menu": {
+          "name": "chatbot-messenger-menu",
+          "types": [
+            "chatbot-messenger-menu"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-messenger-menu.js"
+        },
+        "chatbot-smooch-receive": {
+          "name": "chatbot-smooch-receive",
+          "types": [
+            "chatbot-smooch-node",
+            "chatbot-smooch-receive",
+            "chatbot-smooch-send"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-smooch-receive.js"
+        },
+        "chatbot-context-store": {
+          "name": "chatbot-context-store",
+          "types": [
+            "chatbot-context-store"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-context-store.js"
+        },
+        "chatbot-inline-query": {
+          "name": "chatbot-inline-query",
+          "types": [
+            "chatbot-inline-query"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-inline-query.js"
+        },
+        "chatbot-dialog": {
+          "name": "chatbot-dialog",
+          "types": [
+            "chatbot-dialog"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-dialog.js"
+        },
+        "chatbot-rules": {
+          "name": "chatbot-rules",
+          "types": [
+            "chatbot-rules"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-rules.js"
+        },
+        "chatbot-recast": {
+          "name": "chatbot-recast",
+          "types": [
+            "chatbot-recast-token",
+            "chatbot-recast"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-recast.js"
+        },
+        "chatbot-dialogflow": {
+          "name": "chatbot-dialogflow",
+          "types": [
+            "chatbot-dialogflow-token",
+            "chatbot-dialogflow"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-dialogflow.js"
+        },
+        "chatbot-invoice": {
+          "name": "chatbot-invoice",
+          "types": [
+            "chatbot-invoice"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-invoice.js"
+        },
+        "chatbot-invoice-shipping": {
+          "name": "chatbot-invoice-shipping",
+          "types": [
+            "chatbot-invoice-shipping"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-invoice-shipping.js"
+        },
+        "chatbot-extend": {
+          "name": "chatbot-extend",
+          "types": [
+            "chatbot-extend"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-extend.js"
+        },
+        "chatbot-support-table": {
+          "name": "chatbot-support-table",
+          "types": [
+            "chatbot-support-table"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-chatbot",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-chatbot/nodes/chatbot-support-table.js"
+        }
+      }
+    },
+    "node-red-contrib-counter": {
+      "name": "node-red-contrib-counter",
+      "version": "0.1.5",
+      "local": true,
+      "nodes": {
+        "counter": {
+          "name": "counter",
+          "types": [
+            "counter"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-counter",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-counter/counter.js"
+        }
+      }
+    },
+    "node-red-contrib-cron": {
+      "name": "node-red-contrib-cron",
+      "version": "0.0.4",
+      "local": true,
+      "nodes": {
+        "cron": {
+          "name": "cron",
+          "types": [
+            "cron"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-cron",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-cron/cron-node.js"
+        }
+      }
+    },
+    "node-red-contrib-graphs": {
+      "name": "node-red-contrib-graphs",
+      "version": "0.3.5",
+      "local": true,
+      "nodes": {
+        "datasource": {
+          "name": "datasource",
+          "types": [
+            "iot-datasource"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-graphs",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-graphs/datasource.js"
+        }
+      }
+    },
+    "node-red-contrib-http-request": {
+      "name": "node-red-contrib-http-request",
+      "version": "0.1.13",
+      "local": true,
+      "nodes": {
+        "www-request": {
+          "name": "www-request",
+          "types": [
+            "www-request"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-http-request",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-http-request/www-request.js"
+        }
+      }
+    },
+    "node-red-contrib-bigtimer": {
+      "name": "node-red-contrib-bigtimer",
+      "version": "2.0.3",
+      "local": true,
+      "nodes": {
+        "bigtimer": {
+          "name": "bigtimer",
+          "types": [
+            "bigtimer"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-bigtimer",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-bigtimer/bigtimer.js"
+        }
+      }
+    },
+    "node-red-contrib-json-schema": {
+      "name": "node-red-contrib-json-schema",
+      "version": "0.0.1",
+      "local": true,
+      "nodes": {
+        "json-schema": {
+          "name": "json-schema",
+          "types": [
+            "json-schema"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-json-schema",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-json-schema/schema.js"
+        }
+      }
+    },
+    "node-red-contrib-postgres": {
+      "name": "node-red-contrib-postgres",
+      "version": "0.6.1",
+      "local": true,
+      "nodes": {
+        "PostgreSql": {
+          "name": "PostgreSql",
+          "types": [
+            "postgresdb",
+            "postgres"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-postgres",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-postgres/postgres.js"
+        }
+      }
+    },
+    "node-red-contrib-selenium-webdriver": {
+      "name": "node-red-contrib-selenium-webdriver",
+      "version": "0.2.14",
+      "local": true,
+      "nodes": {
+        "selenium-webdriver": {
+          "name": "selenium-webdriver",
+          "types": [
+            "open-web",
+            "close-web",
+            "find-object",
+            "send-keys",
+            "click-on",
+            "set-value",
+            "to-file",
+            "get-value",
+            "get-attribute",
+            "get-text",
+            "run-script",
+            "screenshot",
+            "nav-to",
+            "nav-back",
+            "nav-forward",
+            "nav-refresh",
+            "selenium-server"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-contrib-selenium-webdriver",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-contrib-selenium-webdriver/selenium-webdriver.js"
+        }
+      }
+    },
+    "node-red-dashboard": {
+      "name": "node-red-dashboard",
+      "version": "2.11.0",
+      "local": true,
+      "nodes": {
+        "ui_base": {
+          "name": "ui_base",
+          "types": [
+            "ui_base"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_base.js"
+        },
+        "ui_button": {
+          "name": "ui_button",
+          "types": [
+            "ui_button"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_button.js"
+        },
+        "ui_dropdown": {
+          "name": "ui_dropdown",
+          "types": [
+            "ui_dropdown"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_dropdown.js"
+        },
+        "ui_switch": {
+          "name": "ui_switch",
+          "types": [
+            "ui_switch"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_switch.js"
+        },
+        "ui_slider": {
+          "name": "ui_slider",
+          "types": [
+            "ui_slider"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_slider.js"
+        },
+        "ui_numeric": {
+          "name": "ui_numeric",
+          "types": [
+            "ui_numeric"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_numeric.js"
+        },
+        "ui_text_input": {
+          "name": "ui_text_input",
+          "types": [
+            "ui_text_input"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_text_input.js"
+        },
+        "ui_date_picker": {
+          "name": "ui_date_picker",
+          "types": [
+            "ui_date_picker"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_date_picker.js"
+        },
+        "ui_colour_picker": {
+          "name": "ui_colour_picker",
+          "types": [
+            "ui_colour_picker"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_colour_picker.js"
+        },
+        "ui_form": {
+          "name": "ui_form",
+          "types": [
+            "ui_form"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_form.js"
+        },
+        "ui_text": {
+          "name": "ui_text",
+          "types": [
+            "ui_text"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_text.js"
+        },
+        "ui_gauge": {
+          "name": "ui_gauge",
+          "types": [
+            "ui_gauge"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_gauge.js"
+        },
+        "ui_chart": {
+          "name": "ui_chart",
+          "types": [
+            "ui_chart"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_chart.js"
+        },
+        "ui_audio": {
+          "name": "ui_audio",
+          "types": [
+            "ui_audio"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_audio.js"
+        },
+        "ui_toast": {
+          "name": "ui_toast",
+          "types": [
+            "ui_toast"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_toast.js"
+        },
+        "ui_ui_control": {
+          "name": "ui_ui_control",
+          "types": [
+            "ui_ui_control"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_ui_control.js"
+        },
+        "ui_template": {
+          "name": "ui_template",
+          "types": [
+            "ui_template"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_template.js"
+        },
+        "ui_link": {
+          "name": "ui_link",
+          "types": [
+            "ui_link"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_link.js"
+        },
+        "ui_tab": {
+          "name": "ui_tab",
+          "types": [
+            "ui_tab"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_tab.js"
+        },
+        "ui_group": {
+          "name": "ui_group",
+          "types": [
+            "ui_group"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-dashboard",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-dashboard/nodes/ui_group.js"
+        }
+      }
+    },
+    "node-red-node-mongodb": {
+      "name": "node-red-node-mongodb",
+      "version": "0.0.14",
+      "local": true,
+      "nodes": {
+        "mongo": {
+          "name": "mongo",
+          "types": [
+            "mongodb",
+            "mongodb out",
+            "mongodb in"
+          ],
+          "enabled": true,
+          "local": true,
+          "module": "node-red-node-mongodb",
+          "file": "/home/pm2user/.node-red/node_modules/node-red-node-mongodb/66-mongodb.js"
+        }
+      }
+    },
+    "node-red-node-email": {
+      "name": "node-red-node-email",
+      "version": "0.1.29",
+      "local": false,
+      "nodes": {
+        "email": {
+          "name": "email",
+          "types": [
+            "e-mail",
+            "e-mail in"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red-node-email",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red-node-email/61-email.js"
+        }
+      }
+    },
+    "node-red-node-feedparser": {
+      "name": "node-red-node-feedparser",
+      "version": "0.1.14",
+      "local": false,
+      "nodes": {
+        "feedparse": {
+          "name": "feedparse",
+          "types": [
+            "feedparse"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red-node-feedparser",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red-node-feedparser/32-feedparse.js"
+        }
+      }
+    },
+    "node-red-node-rbe": {
+      "name": "node-red-node-rbe",
+      "version": "0.2.4",
+      "local": false,
+      "nodes": {
+        "rbe": {
+          "name": "rbe",
+          "types": [
+            "rbe"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red-node-rbe",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red-node-rbe/rbe.js"
+        }
+      }
+    },
+    "node-red-node-twitter": {
+      "name": "node-red-node-twitter",
+      "version": "1.1.4",
+      "local": false,
+      "nodes": {
+        "twitter": {
+          "name": "twitter",
+          "types": [
+            "twitter-credentials",
+            "twitter in",
+            "twitter out"
+          ],
+          "enabled": true,
+          "local": false,
+          "module": "node-red-node-twitter",
+          "file": "/home/pm2user/flows-gateway/node_modules/node-red-node-twitter/27-twitter.js"
+        }
+      }
+    }
+  },
+  "users": {
+    "98f02d53-ad82-417d-ba03-36846a460765": {
+      "editor": {
+        "view": {
+          "view-grid-size": 20,
+          "view-node-status": true,
+          "view-show-tips": true
+        }
+      },
+      "git": {
+        "user": {
+          "name": "noone",
+          "email": "noone@example.com"
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,14 @@
 #!/bin/bash -e
 
+(cd $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc && docker build --tag flows-gateway.local .)
+
 docker rm -f flows-gateway || true
 
+rm -rf /var/local/flows-gateway/projects
+
 mkdir -p /var/local/flows-gateway/projects && chown pm2user:pm2user /var/local/flows-gateway/projects
+
+yes | cp -r $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc/projects/* /var/local/flows-gateway/projects
 
 docker create --name flows-gateway --net=vlan0 -p 8000:8000 \
     -e adminAuth=oauth2 \
@@ -14,7 +20,7 @@ docker create --name flows-gateway --net=vlan0 -p 8000:8000 \
     -e ADMIN_OAUTH2_CLIENT_SECRET=$OAUTH_CLIENTS_GITEA_CLIENT_SECRET \
     -e ADMIN_OAUTH2_ISSUER=$OAUTH_CLIENTS_GITEA_OIDC_ISSUER \
     -e ADMIN_OAUTH2_CALLBACK="https://$ES_DOMAIN/gwadmin/auth/strategy/callback" \
-    -e ECOSYSTEM -e ECOSYSTEM_LABEL="Ecosystem Gateway" -v /var/local/flows-gateway/config.json:/home/pm2user/.node-red/.config.json -v /var/local/flows-gateway/projects:/home/pm2user/.node-red/projects -v /var/local/flows-gateway/ssl:/home/pm2user/ssl -e VAULT_TOKEN -v /var/local/consul/ssl:/etc/vault/ssl canzea/flows-gateway:0.1.35
+    -e ECOSYSTEM -e ECOSYSTEM_LABEL="Ecosystem Gateway" -v /var/local/flows-gateway/config.json:/home/pm2user/.node-red/.config.json -v /var/local/flows-gateway/projects:/home/pm2user/.node-red/projects -v /var/local/flows-gateway/ssl:/home/pm2user/ssl -e VAULT_TOKEN -v /var/local/consul/ssl:/etc/vault/ssl flows_gateway.local
 
 systemctl restart flows-gateway
 
