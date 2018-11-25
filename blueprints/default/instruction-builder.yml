@@ -125,7 +125,7 @@ resources:
       action: first-config
       droplet: "${instance.name}"
   depends_on:
-  - "#previous"
+  - "${instanceId}-gocd-agent"
 - wire:
     gocd-agent-set-registry-creds:
       solution: gocd-agent
