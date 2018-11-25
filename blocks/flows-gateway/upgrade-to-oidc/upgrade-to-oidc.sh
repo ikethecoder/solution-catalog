@@ -6,9 +6,9 @@ docker rm -f flows-gateway || true
 
 rm -rf /var/local/flows-gateway/projects
 
-mkdir -p /var/local/flows-gateway/config/projects && chown pm2user:pm2user /var/local/flows-gateway/projects
+mkdir -p /var/local/flows-gateway/projects && chown pm2user:pm2user /var/local/flows-gateway/projects
 
-yes | cp -r $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc/projects/* /var/local/flows-gateway/projects
+yes | cp -r $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc/config/projects/* /var/local/flows-gateway/projects
 
 docker create --name flows-gateway --net=vlan0 -p 8000:8000 \
     -e adminAuth=oauth2 \
