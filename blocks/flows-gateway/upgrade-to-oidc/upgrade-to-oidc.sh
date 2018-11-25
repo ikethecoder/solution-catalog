@@ -24,7 +24,7 @@ docker create --name flows-gateway --net=vlan0 -p 8000:8000 \
     -e ADMIN_OAUTH2_CLIENT_SECRET=$OAUTH_CLIENTS_GITEA_CLIENT_SECRET \
     -e ADMIN_OAUTH2_ISSUER=$OAUTH_CLIENTS_GITEA_OIDC_ISSUER \
     -e ADMIN_OAUTH2_CALLBACK="https://$ES_DOMAIN/gwadmin/auth/strategy/callback" \
-    -e ECOSYSTEM -e ECOSYSTEM_LABEL="Ecosystem Gateway" -v /var/local/flows-gateway/config.json:/home/pm2user/.node-red/.config.json -v /var/local/flows-gateway/projects:/home/pm2user/.node-red/projects -v /var/local/flows-gateway/ssl:/home/pm2user/ssl -e VAULT_TOKEN -v /var/local/consul/ssl:/etc/vault/ssl flows-gateway.local
+    -e ECOSYSTEM -e ECOSYSTEM_LABEL="Ecosystem Gateway" -v /var/local/flows-gateway/projects:/home/pm2user/.node-red/projects -v /var/local/flows-gateway/ssl:/home/pm2user/ssl -e VAULT_TOKEN -v /var/local/consul/ssl:/etc/vault/ssl flows-gateway.local
 
 systemctl restart flows-gateway
 
