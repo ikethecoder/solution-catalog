@@ -16,4 +16,4 @@ canzea --lifecycle=wire \
 
 chmod 644 /var/local/gocd/home/.git*
 
-systemctl stop gocd-agent && systemctl start gocd-agent
+systemctl stop go-agent && systemctl start go-agent
