@@ -415,6 +415,13 @@ resources:
       commands: false
 
 - building_block:
+    ${instanceId}-mosquitto:
+      role: "mqtt_message_broker"
+      solution: "mosquitto/docker"
+      droplet: "${instance.name}"
+      commands: false
+
+- building_block:
     ${instanceId}-keycloak:
       role: "na"
       solution: "keycloak/docker"
