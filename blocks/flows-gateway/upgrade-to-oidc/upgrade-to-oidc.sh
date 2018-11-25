@@ -8,7 +8,9 @@ rm -rf /var/local/flows-gateway/projects
 
 mkdir -p /var/local/flows-gateway/projects
 
-unzip -d /var/local/flows-gateway/projects $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc/config/*.zip
+unzip -d /var/local/flows-gateway/projects $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc/config/keycloak.zip
+unzip -d /var/local/flows-gateway/projects $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc/config/temp.zip
+unzip -d /var/local/flows-gateway/projects $CATALOG_LOCATION/blocks/flows-gateway/upgrade-to-oidc/config/general.zip
 
 chown -R pm2user:pm2user /var/local/flows-gateway/projects
 
