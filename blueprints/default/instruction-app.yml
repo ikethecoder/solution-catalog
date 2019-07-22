@@ -112,7 +112,7 @@ resources:
       action: first-config
       droplet: "${instance.name}"
   depends_on:
-  - "${instanceId}-gocd-agent"
+  - "building_block.${instance.id}-gocd-agent"
 - wire:
     ${instanceId}-go:
       solution: "users"
