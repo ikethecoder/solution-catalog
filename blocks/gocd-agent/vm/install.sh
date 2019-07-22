@@ -1,4 +1,3 @@
-
 # yes | cp -f roles/deploy/gocd/config/gocd.repo /etc/yum.repos.d/.
 
 # sudo yum install -y go-agent
@@ -13,6 +12,7 @@ yum -y localinstall go-agent-17.3.0-4704.noarch.rpm
 
 chown -R go:go /var/go
 
+mkdir -p /var/local/gocd/home
 echo "" > /var/local/gocd/home/.gitconfig
 echo "" > /var/local/gocd/home/.git-credentials
 
