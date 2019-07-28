@@ -1,4 +1,5 @@
 require 'json'
+require 'fileutils'
 require 'commands/push-config'
 require 'template-runner'
 require 'trace-runner'
@@ -25,7 +26,11 @@ json['resources'].each do | resource |
 
         args = { rid => resource[rtype][rid] }
 
-        n.run "ruby #{ENV['CATALOG_LOCATION']}/helpers/config_writers/#{rtype}.rb '#{args.to_json}' PLUS", 0, 0
+        if File.directory?("#{ENV['CATALOG_LOCATION']}/helpers/config_writers/#{rtype}")
+            n.run "ruby #{ENV['CATALOG_LOCATION']}/helpers/config_writers/#{rtype}/writer.rb '#{args.to_json}' PLUS", 0, 0
+        else
+            n.run "ruby #{ENV['CATALOG_LOCATION']}/helpers/config_writers/#{rtype}.rb '#{args.to_json}' PLUS", 0, 0
+        end
     end
 
 end
