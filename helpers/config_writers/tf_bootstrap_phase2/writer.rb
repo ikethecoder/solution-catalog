@@ -27,7 +27,9 @@ root = "terraform/modules/#{properties['environment']}"
 
 templates = [
     "bootstrap_nginx_helm",
-    "variables-phase2"
+    "ssh_dns_routes",
+    "kube_helm",
+    "variable_phase2"
 ]
 
 if is_plus

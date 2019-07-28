@@ -33,12 +33,6 @@ resource "null_resource" "helm-deploy-proxy" {
     ]
   }
 
-
-  # The NGINX server needs to be up for the registry proxy to be added
-  depends_on = [
-    "null_resource.post-setup"
-  ]
-
 }
 
 

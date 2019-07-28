@@ -18,17 +18,17 @@ resources:
       region: "lon1"
       email: "ikethecoder@canzea.com"
 
-# - tf_digitalocean_kubernetes_cluster:
-#     ${instance.id}-cluster:
-#       environment: ${environment.id}
-#       kube_version: 1.14.4-do.0
-#       node_pool_size: s-4vcpu-8gb
-#       node_pool_count: 1
-#       domain_name: "${es.fqdn}"
-#       region: "lon1"
+- tf_digitalocean_kubernetes_cluster:
+    ${instance.id}-cluster:
+      environment: ${environment.id}
+      kube_version: 1.14.4-do.0
+      node_pool_size: s-4vcpu-8gb
+      node_pool_count: 1
+      domain_name: "${es.fqdn}"
+      region: "lon1"
 
-# - tf_bootstrap_phase2:
-#     ${instance.id}:
-#       environment: ${environment.id}
-#       instance: ${es.id}-${instance.id}
-#       domain_name: "${es.fqdn}"
+- tf_bootstrap_phase2:
+    ${instance.id}:
+      environment: ${environment.id}
+      instance: ${es.id}-${instance.id}
+      domain_name: "${es.fqdn}"

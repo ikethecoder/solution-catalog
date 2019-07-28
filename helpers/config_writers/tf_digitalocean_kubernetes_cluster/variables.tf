@@ -1,7 +1,10 @@
 
-variable region {
-    default = "{{region}}"
-}
-variable domain_name {
-    default = "{{domain_name}}"
-}
+
+# Configured by bootstrap
+
+# variable region {
+#     default = "{{region}}"
+# }
+# variable domain_name {
+#     default = "{{domain_name}}"
+# }

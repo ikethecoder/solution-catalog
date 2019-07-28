@@ -47,8 +47,3 @@ resource "null_resource" "helm-hack" {
     command = "helm init --client-only"
   }
 }
-
-resource "helm_repository" "private" {
-    name = "private"
-    url  = "https://helm.ops.${var.domain_name}/charts"
-}
