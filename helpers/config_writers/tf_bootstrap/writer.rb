@@ -28,7 +28,6 @@ root = "terraform/modules/#{properties['environment']}"
 templates = [
     "bootstrap_config",
     "bootstrap_firewall",
-    "bootstrap_nginx_helm",
     "bootstrap",
     "dns_routes",
     "domain_name_tls",

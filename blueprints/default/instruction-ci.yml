@@ -9,19 +9,14 @@ resources:
     ${instance.id}-hello:
       environment: ${environment.id}
       name: Marie
+
 - tf_bootstrap:
     ${instance.id}:
       environment: ${environment.id}
       instance: ${es.id}-${instance.id}
       domain_name: "${es.fqdn}"
       region: "lon1"
-
-# - tf_bootstrap_phase2:
-#     ${instance.id}:
-#       environment: ${environment.id}
-#       instance: ${es.id}-${instance.id}
-#       domain_name: "${es.fqdn}"
-#       region: "lon1"
+      email: "ikethecoder@canzea.com"
 
 # - tf_digitalocean_kubernetes_cluster:
 #     ${instance.id}-cluster:
@@ -31,3 +26,9 @@ resources:
 #       node_pool_count: 1
 #       domain_name: "${es.fqdn}"
 #       region: "lon1"
+
+# - tf_bootstrap_phase2:
+#     ${instance.id}:
+#       environment: ${environment.id}
+#       instance: ${es.id}-${instance.id}
+#       domain_name: "${es.fqdn}"

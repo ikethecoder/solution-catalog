@@ -34,7 +34,7 @@ data "template_file" "profile_d_sh" {
 data "archive_file" "dotfiles" {
   type        = "zip"
   output_path = "${path.module}/dotfiles_1.zip"
-  source_dir = "${path.module}/files"
+  source_dir = "${path.module}/assets"
 }
 
 data "archive_file" "customfiles" {

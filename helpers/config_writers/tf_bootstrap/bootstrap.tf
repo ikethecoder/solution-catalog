@@ -1,11 +1,4 @@
 
-variable pub_key {}
-variable pvt_key {}
-
-resource "digitalocean_ssh_key" "{{instance}}" {
-  name       = "{{instance}}"
-  public_key = "${file(var.pub_key)}"
-}
 
 resource "digitalocean_droplet" "{{instance}}" {
   image  = "ubuntu-18-04-x64"
@@ -15,7 +8,7 @@ resource "digitalocean_droplet" "{{instance}}" {
   private_networking = "true"
 
   ssh_keys = [
-      "${digitalocean_ssh_key.{{instance}}.fingerprint}"
+      "${var.ssh_fingerprint}"
   ]
 
   connection {

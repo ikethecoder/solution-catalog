@@ -1,4 +1,3 @@
-variable domain_name {}
 
 
 
@@ -30,7 +29,7 @@ resource "acme_certificate" "certificate" {
     provider = "digitalocean"
 
     config = {
-        DO_AUTH_TOKEN = "${var.do["token"]}"
+        DO_AUTH_TOKEN = "${var.do_token}"
     }
   }
 

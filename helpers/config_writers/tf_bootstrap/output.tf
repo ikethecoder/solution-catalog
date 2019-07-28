@@ -1,6 +1,6 @@
 
 output do_token {
-    value = "${var.do["token"]}"
+    value = "${var.do_token}"
 }
 
 output domain_name {
