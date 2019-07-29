@@ -1,7 +1,7 @@
 
 server {
   listen                    443 ssl;
-  server_name               helm.ops.184768.xyz;
+  server_name               helm.ops.${DOMAIN_NAME};
 
   ssl_certificate           /etc/certs/chain.pem;
   ssl_certificate_key       /etc/certs/host.key;

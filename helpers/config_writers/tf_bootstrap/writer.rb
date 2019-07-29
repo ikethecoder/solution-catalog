@@ -32,6 +32,7 @@ templates = [
     "dns_routes",
     "domain_name_tls",
     "output",
+    "spaces",
     "variables-bootstrap"
 ]
 

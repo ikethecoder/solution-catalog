@@ -13,3 +13,11 @@ variable "email" {
   type = "string"
   default = "{{email}}"
 }
+
+variable "do" {
+  type = "map"
+  default = {
+    spaces_access_key = ""
+    spaces_secret_key = ""
+  }
+}

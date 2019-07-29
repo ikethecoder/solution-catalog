@@ -23,18 +23,16 @@ if ['environment', 'instance', 'domain_name'].to_set.subtract(properties.keys).l
     raise "Missing Required Fields"
 end
 
-root = "terraform/modules/#{properties['environment']}"
+root = "terraform"
 
 templates = [
-    "bootstrap_nginx_helm",
-    "kube_helm",
-    "namespaces",
-    "ssh_dns_routes",
-    "variable_phase2"
+    "module-cd-blocks-modules",
+    "module-cd-blocks-output",
+    "module-cd-blocks-variables"
 ]
 
 if is_plus
-    pc.cp "#{__dir__}/assets","terraform/modules/#{properties['environment']}/assets"
+    pc.cp "#{__dir__}/modules","terraform/modules/blocks"
 
     for templ in templates do
         output = t.process "#{__dir__}/#{templ}.tf", properties
