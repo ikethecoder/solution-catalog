@@ -20,6 +20,8 @@ module "saas-providers" {
   acme_account_key = "${module.cd.acme_account_key}"
   
   gitlab = "${var.gitlab}"
+
+  source_ssh_ip = "${module.cd.source_ssh_ip}"
 }
 
 module "gitea-first-login" {
@@ -158,11 +160,12 @@ module "providergw-setup-project" {
 }
 
 
-module "tenant-canzea" {
+module "onboard-tenant-canzea" {
   source = "./modules/blocks/tenant"
 
   tenant = "01"
 
+  do_token = "${module.cd.do_token}"
   domain_name = "${module.cd.domain_name}"
   one_time_token_retrieval = "${module.cd.one_time_token_retrieval}"
   gitea_admin_password = "${module.gitea-first-login.admin_password}"

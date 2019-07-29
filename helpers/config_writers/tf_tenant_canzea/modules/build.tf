@@ -10,8 +10,8 @@ resource "canzea_resource" "cicd-environments-build-new" {
             environments:
                 build-new-es1122:
                     environment_variables:
-                        VAULT_ADDR: https://vault.ops.184768.xyz
-                        REGISTRY: registry.ops.184768.xyz
+                        VAULT_ADDR: https://vault.ops.${var.domain_name}
+                        REGISTRY: registry.ops.${var.domain_name}
                     pipelines:
                         - dynamic-db-es1122
                         - job-manager-es1122

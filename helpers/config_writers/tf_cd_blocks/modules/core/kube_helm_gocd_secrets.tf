@@ -23,7 +23,7 @@ resource "tls_self_signed_cert" "gocd_ssh" {
 
   provisioner "local-exec" {
     command = <<EOT
-        ssh-keyscan 35.231.145.151 > ${path.cwd}/_gocd_known_hosts
+        ssh-keyscan -p 30022 ${var.source_ssh_ip} > ${path.cwd}/_gocd_known_hosts
         ssh-keyscan gitlab.com >> ${path.cwd}/_gocd_known_hosts
         ssh-keyscan -p 30022 source-ssh.${var.domain_name} >> ${path.cwd}/_gocd_known_hosts
     EOT

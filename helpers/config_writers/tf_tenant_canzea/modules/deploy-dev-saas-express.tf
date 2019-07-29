@@ -63,14 +63,14 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-saas-express-app" 
                                     doks.digitalocean.com/node-pool: default-pool
 
                                 image:
-                                    repository: registry.ops.184768.xyz/es1122/saas-express
+                                    repository: registry.ops.${var.domain_name}/es1122/saas-express
                                     tag: latest
                                     pullPolicy: Always
 
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - saas-express-dev.es2222.184768.xyz
+                                    - saas-express-dev.es2222.${var.domain_name}
                                 
                             " > values.local.yaml
 

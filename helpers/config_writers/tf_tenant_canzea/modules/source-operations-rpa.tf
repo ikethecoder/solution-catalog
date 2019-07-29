@@ -87,14 +87,14 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-speak" {
                                     doks.digitalocean.com/node-pool: default-pool
 
                                 image:
-                                    repository: registry.ops.184768.xyz/es1122/rpa-speak
+                                    repository: registry.ops.${var.domain_name}/es1122/rpa-speak
                                     tag: latest
                                     pullPolicy: Always
 
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-speak-dev.es2222.184768.xyz
+                                    - rpa-speak-dev.es2222.${var.domain_name}
 
 
 
@@ -170,14 +170,14 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-ui" {
                                     doks.digitalocean.com/node-pool: default-pool
 
                                 image:
-                                    repository: registry.ops.184768.xyz/es1122/rpa-ui
+                                    repository: registry.ops.${var.domain_name}/es1122/rpa-ui
                                     tag: latest
                                     pullPolicy: Always
 
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-ui-dev.es2222.184768.xyz
+                                    - rpa-ui-dev.es2222.${var.domain_name}
 
 
 
@@ -253,14 +253,14 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-listen" {
                                     doks.digitalocean.com/node-pool: default-pool
 
                                 image:
-                                    repository: registry.ops.184768.xyz/es1122/rpa-listen
+                                    repository: registry.ops.${var.domain_name}/es1122/rpa-listen
                                     tag: latest
                                     pullPolicy: Always
 
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-listen-dev.es2222.184768.xyz
+                                    - rpa-listen-dev.es2222.${var.domain_name}
 
 
 
@@ -336,14 +336,14 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-channel" {
                                     doks.digitalocean.com/node-pool: default-pool
 
                                 image:
-                                    repository: registry.ops.184768.xyz/es1122/rpa-channel
+                                    repository: registry.ops.${var.domain_name}/es1122/rpa-channel
                                     tag: latest
                                     pullPolicy: Always
 
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-channel-dev.es2222.184768.xyz
+                                    - rpa-channel-dev.es2222.${var.domain_name}
 
 
 
@@ -419,14 +419,14 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-brain" {
                                     doks.digitalocean.com/node-pool: default-pool
 
                                 image:
-                                    repository: registry.ops.184768.xyz/es1122/rpa-brain
+                                    repository: registry.ops.${var.domain_name}/es1122/rpa-brain
                                     tag: latest
                                     pullPolicy: Always
 
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-brain-dev.es2222.184768.xyz
+                                    - rpa-brain-dev.es2222.${var.domain_name}
 
 
 

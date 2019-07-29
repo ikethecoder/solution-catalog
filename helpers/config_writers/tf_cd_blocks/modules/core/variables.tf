@@ -62,3 +62,7 @@ variable "gitlab" {
 variable "acme_account_key" {
   type = "string"
 }
+
+variable "source_ssh_ip" {
+  type = "string"
+}

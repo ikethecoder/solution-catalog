@@ -29,6 +29,7 @@ templates = [
     "bootstrap_nginx_helm",
     "kube_helm",
     "namespaces",
+    "output-phase2",
     "ssh_dns_routes",
     "variable_phase2"
 ]

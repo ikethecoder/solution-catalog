@@ -17,7 +17,7 @@ provider "aws" {
 
 
 resource "digitalocean_spaces_bucket" "bucket" {
-	name = "es0000-bucket"
+	name = "${var.es_id}-bucket"
 	acl = "private"
     region = "sfo2"
 }

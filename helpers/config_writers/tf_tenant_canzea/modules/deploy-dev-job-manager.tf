@@ -63,7 +63,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-job-manager-app" {
                                     doks.digitalocean.com/node-pool: default-pool
 
                                 image:
-                                    repository: registry.ops.184768.xyz/es1122/job-manager
+                                    repository: registry.ops.${var.domain_name}/es1122/job-manager
                                     tag: latest
                                     pullPolicy: Always
 
@@ -75,7 +75,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-job-manager-app" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - job-manager-dev.es2222.184768.xyz
+                                    - job-manager-dev.es2222.${var.domain_name}
                                 
                             " > values.local.yaml
 

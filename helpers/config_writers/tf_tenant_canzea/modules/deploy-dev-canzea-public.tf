@@ -66,14 +66,14 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                                     doks.digitalocean.com/node-pool: default-pool
 
                                 image:
-                                    repository: registry.ops.184768.xyz/es1122/canzea-public
+                                    repository: registry.ops.${var.domain_name}/es1122/canzea-public
                                     tag: latest
                                     pullPolicy: Always
 
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - public-dev.es2222.184768.xyz
+                                    - public-dev.es2222.${var.domain_name}
                                 
                             " > values.local.yaml
 

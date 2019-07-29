@@ -21,3 +21,7 @@ variable "gocd_admin_password" {
 variable "tenant" {
     type = "string"
 }
+
+variable "do_token" {
+    type = "string"
+}

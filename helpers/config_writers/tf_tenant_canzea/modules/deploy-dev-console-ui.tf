@@ -63,14 +63,14 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                                     doks.digitalocean.com/node-pool: default-pool
 
                                 image:
-                                    repository: registry.ops.184768.xyz/es1122/console-ui
+                                    repository: registry.ops.${var.domain_name}/es1122/console-ui
                                     tag: latest
                                     pullPolicy: Always
 
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - console-ui-dev.es2222.184768.xyz
+                                    - console-ui-dev.es2222.${var.domain_name}
                                 
                             " > values.local.yaml
 

@@ -16,7 +16,7 @@ provider "vault" {
 # Add a pipeline_group
 # Add a user
 #
-resource "vault_generic_secret" "tenant-${var.tenant}" {
+resource "vault_generic_secret" "tenant" {
   path = "secret/tenants/${var.tenant}/provider/gocd"
 
   data_json = <<EOT
@@ -28,7 +28,7 @@ resource "vault_generic_secret" "tenant-${var.tenant}" {
   EOT
 }
 
-resource "vault_generic_secret" "tenant-${var.tenant}-do" {
+resource "vault_generic_secret" "tenant-do" {
   path = "secret/tenants/${var.tenant}/provider/do"
 
   data_json = <<EOT
@@ -39,7 +39,7 @@ resource "vault_generic_secret" "tenant-${var.tenant}-do" {
   EOT
 }
 
-resource "vault_generic_secret" "tenant-${var.tenant}-gitea" {
+resource "vault_generic_secret" "tenant-gitea" {
   path = "secret/tenants/${var.tenant}/provider/gitea"
 
   data_json = <<EOT
