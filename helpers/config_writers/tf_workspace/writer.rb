@@ -19,19 +19,19 @@ resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId
 
-if ['environment', 'es_id', 'domain_name'].to_set.subtract(properties.keys).length != 0
+if ['workspace', 'es_id', 'domain_name'].to_set.subtract(properties.keys).length != 0
     raise "Missing Required Fields"
 end
 
 root = "terraform"
 
 templates = [
-    "module-tenant-canzea",
-    "module-tenant-variables"
+    "module-workspace",
+    "module-workspace-variables"
 ]
 
 if is_plus
-    pc.cp "#{__dir__}/modules","terraform/modules/tenants/canzea"
+    pc.cp "#{__dir__}/modules","terraform/modules/workspace"
 
     for templ in templates do
         output = t.process "#{__dir__}/#{templ}.tf", properties

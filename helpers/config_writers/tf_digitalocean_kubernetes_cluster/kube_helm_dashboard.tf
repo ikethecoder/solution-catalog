@@ -120,6 +120,14 @@ resource "helm_release" "kubernetes-dashboard" {
 #           serviceAccount:
 #             create : true
 #             name: ""
+           extraArgs:
+           - --insecure-bind-address=0.0.0.0
+           - --insecure-port=9090
+           - --enable-insecure-login
+           enableInsecureLogin: true
+           service:
+             internalPort: 9090
+             externalPort: 9090
            ingress:
              enabled: true
             #  tls:
