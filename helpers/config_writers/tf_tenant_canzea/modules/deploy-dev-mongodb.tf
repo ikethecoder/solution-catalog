@@ -9,30 +9,6 @@ resource "random_string" "mongoSuperPassword" {
   special = false
   override_special = "/@\" "
 }
-/*
-resource "helm_release" "mongodb" {
-    name      = "mongodb"
-    chart     = "stable/mongodb"
-    namespace = "db"
-
-    values = [
-        <<EOF
-         mongodbUsername: "${random_string.mongoSuperUser.result}"
-         mongodbPassword: "${random_string.mongoSuperPassword.result}"
-         mongodbDatabase: "general"
-         persistence:
-           enabled: true
-           size: "1Gi"
-        EOF
-    ]
-
-    depends_on = [
-      "null_resource.helm_init"
-    ]
-
-}
-*/
-
 
 resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongodb" {
     path = "/cicd/config"
@@ -46,7 +22,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongod
                 es1122-console-app-mongodb-dev:
                     group: canzea-es1122
                     environment_variables:
-                        PROJECT: console-app-mongodb
+                        PROJECT: canzea-mongodb
                         TENANT: es1122
                     materials:
                         charts:
@@ -98,30 +74,22 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongod
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - mongodb.${var.workspace}.ws.${var.domain_name}
+                                    - name: canzea-mongodb.${var.workspace}.ws.${var.domain_name}
 
                                 mongodbUsername: "${random_string.mongoSuperUser.result}"
                                 mongodbPassword: "${random_string.mongoSuperPassword.result}"
                                 mongodbDatabase: "general"
 
-
                                 persistence:
                                     enabled: true
                                     size: "1Gi"
-
 
                             " > values.local.yaml
 
                             helm init --client-only
 
-                            /bin/sh -c "set +e && helm status $PROJECT > /dev/null 2>&1"
+                            helm upgrade --install $PROJECT --recreate-pods -f ./values.local.yaml stable/mongodb
 
-                            if [ $? -eq 1 ]
-                            then
-                                helm install --name $PROJECT -f ./values.local.yaml stable/mongodb
-                            else
-                                helm upgrade $PROJECT --recreate-pods -f ./values.local.yaml stable/mongodb
-                            fi
         EOT
   }
 }
