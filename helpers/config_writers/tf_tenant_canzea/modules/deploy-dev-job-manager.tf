@@ -75,7 +75,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-job-manager-app" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - job-manager-dev.es2222.${var.domain_name}
+                                    - job-manager-dev.${var.workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 

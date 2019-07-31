@@ -98,7 +98,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongod
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - console-app-mongodb-dev.es2222.${var.domain_name}
+                                    - console-app-mongodb-dev.${var.workspace}.ws.${var.domain_name}
 
                                 mongodbUsername: "${random_string.mongoSuperUser.result}"
                                 mongodbPassword: "${random_string.mongoSuperPassword.result}"

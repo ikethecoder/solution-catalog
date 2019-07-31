@@ -9,4 +9,6 @@ module "tenant-canzea" {
   gocd_public_key_openssh = "${module.saas-providers.gocd_public_key_openssh}"
 
   gitlab = "${var.gitlab}"
+
+  workspace = "${var.workspace}"
 }

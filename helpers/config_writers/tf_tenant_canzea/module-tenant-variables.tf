@@ -12,3 +12,8 @@ variable "region" {
   type = "string"
   default = "{{region}}"
 }
+
+variable "workspace" {
+    type = "string"
+    default = "intg"
+}

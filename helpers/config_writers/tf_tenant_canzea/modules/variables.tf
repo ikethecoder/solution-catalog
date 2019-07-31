@@ -9,3 +9,5 @@ variable gocd_public_key_openssh {}
 variable gitlab {
     type = "map"
 }
+
+variable host_suffix {}

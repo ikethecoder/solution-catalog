@@ -73,7 +73,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - public-dev.es2222.${var.domain_name}
+                                    - public-dev.${var.workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 
