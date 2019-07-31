@@ -104,6 +104,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongod
                                 mongodbPassword: "${random_string.mongoSuperPassword.result}"
                                 mongodbDatabase: "general"
 
+
                                 persistence:
                                     enabled: true
                                     size: "1Gi"

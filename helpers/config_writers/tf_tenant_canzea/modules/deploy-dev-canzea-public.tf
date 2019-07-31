@@ -75,6 +75,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                                     hosts:
                                     - public.${var.workspace}.ws.${var.domain_name}
                                 
+                                
                             " > values.local.yaml
 
                             helm init --client-only

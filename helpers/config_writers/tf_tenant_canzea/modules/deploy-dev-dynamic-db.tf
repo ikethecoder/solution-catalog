@@ -67,6 +67,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-dynamic-db-app" {
                                     tag: latest
                                     pullPolicy: Always
 
+
                                 ingress:
                                     enabled: true
                                     hosts:

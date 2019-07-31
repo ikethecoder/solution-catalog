@@ -72,6 +72,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-job-manager-app" {
                                     enabled: true
                                     size: "1Gi"
 
+
                                 ingress:
                                     enabled: true
                                     hosts:

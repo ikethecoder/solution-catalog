@@ -81,6 +81,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-rabbit
                                     username: "${random_string.rabbitmqSuperUser.result}"
                                     password: "${random_string.rabbitmqSuperPassword.result}"
 
+
                                 persistence:
                                     enabled: true
                                     size: "1Gi"

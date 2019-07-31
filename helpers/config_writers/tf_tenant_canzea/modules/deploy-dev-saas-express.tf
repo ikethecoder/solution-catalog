@@ -72,6 +72,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-saas-express-app" 
                                     hosts:
                                     - saas-express.${var.workspace}.ws.${var.domain_name}
                                 
+                                
                             " > values.local.yaml
 
                             helm init --client-only

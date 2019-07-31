@@ -96,8 +96,6 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-speak" {
                                     hosts:
                                     - rpa-speak.${var.workspace}.ws.${var.domain_name}
 
-
-
                             " > values.local.yaml
 
                             helm init --client-only
@@ -179,8 +177,6 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-ui" {
                                     hosts:
                                     - rpa-ui.${var.workspace}.ws.${var.domain_name}
 
-
-
                             " > values.local.yaml
 
                             helm init --client-only
@@ -261,8 +257,6 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-listen" {
                                     enabled: true
                                     hosts:
                                     - rpa-listen.${var.workspace}.ws.${var.domain_name}
-
-
 
                             " > values.local.yaml
 
@@ -427,8 +421,6 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-brain" {
                                     enabled: true
                                     hosts:
                                     - rpa-brain.${var.workspace}.ws.${var.domain_name}
-
-
 
                             " > values.local.yaml
 
