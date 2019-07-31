@@ -22,8 +22,9 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongod
                 es1122-console-app-mongodb-dev:
                     group: canzea-es1122
                     environment_variables:
-                        PROJECT: canzea-mongodb
                         TENANT: es1122
+                        PROJECT: canzea-mongodb
+                        HELM_CHART: stable/mongodb
                     materials:
                         charts:
                             git: https://gitlab.com/ikethecoder/helm-charts.git
@@ -88,7 +89,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongod
 
                             helm init --client-only
 
-                            helm upgrade --install $PROJECT --recreate-pods -f ./values.local.yaml stable/mongodb
+                            helm upgrade --install $PROJECT --recreate-pods -f ./values.local.yaml $HELM_CHART
 
         EOT
   }
