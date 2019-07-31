@@ -70,7 +70,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - console-ui-dev.${var.workspace}.ws.${var.domain_name}
+                                    - console-ui.${var.workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 

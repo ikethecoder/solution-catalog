@@ -70,7 +70,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-dynamic-db-app" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - dynamic-db-dev.${var.workspace}.ws.${var.domain_name}
+                                    - dynamic-db.${var.workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 

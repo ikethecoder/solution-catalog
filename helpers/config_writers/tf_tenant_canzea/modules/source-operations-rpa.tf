@@ -94,7 +94,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-speak" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-speak-dev.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-speak.${var.workspace}.ws.${var.domain_name}
 
 
 
@@ -177,7 +177,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-ui" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-ui-dev.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-ui.${var.workspace}.ws.${var.domain_name}
 
 
 
@@ -260,7 +260,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-listen" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-listen-dev.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-listen.${var.workspace}.ws.${var.domain_name}
 
 
 
@@ -343,7 +343,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-channel" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-channel-dev.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-channel.${var.workspace}.ws.${var.domain_name}
 
 
 
@@ -426,7 +426,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-brain" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-brain-dev.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-brain.${var.workspace}.ws.${var.domain_name}
 
 
 
