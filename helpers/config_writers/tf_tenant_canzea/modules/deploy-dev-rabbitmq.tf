@@ -96,7 +96,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-rabbit
                             then
                                 helm install --name $PROJECT -f ./values.local.yaml stable/rabbitmq
                             else
-                                helm upgrade $PROJECT --recreate-pods -f ./values.local.yaml stable/rabbitmq
+                                helm upgrade $PROJECT --recreate-pods --namespace apps -f ./values.local.yaml stable/rabbitmq
                             fi
         EOT
   }

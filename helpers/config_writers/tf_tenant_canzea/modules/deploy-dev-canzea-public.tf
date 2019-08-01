@@ -86,7 +86,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                             then
                                 helm install --name $PROJECT -f ./values.local.yaml $PROJECT/.
                             else
-                                helm upgrade $PROJECT --recreate-pods -f ./values.local.yaml $PROJECT/.
+                                helm upgrade $PROJECT --recreate-pods --namespace apps -f ./values.local.yaml $PROJECT/.
                             fi
         EOT
   }

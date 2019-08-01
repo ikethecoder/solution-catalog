@@ -89,7 +89,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongod
 
                             helm init --client-only
 
-                            helm upgrade --install $PROJECT --recreate-pods -f ./values.local.yaml $HELM_CHART
+                            helm upgrade --install $PROJECT --recreate-pods --namespace apps -f ./values.local.yaml $HELM_CHART
 
         EOT
   }
