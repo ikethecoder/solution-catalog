@@ -10,3 +10,4 @@ resources:
       kube_version: 1.14.4-do.1
       node_pool_size: s-4vcpu-8gb
       node_pool_count: 1
+      email: "${owner.email}"

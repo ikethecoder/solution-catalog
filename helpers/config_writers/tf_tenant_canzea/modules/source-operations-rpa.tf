@@ -84,7 +84,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-speak" {
                                 replicaCount: 1
 
                                 nodeSelector:
-                                    doks.digitalocean.com/node-pool: default-pool
+                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
                                 image:
                                     repository: registry.ops.${var.domain_name}/es1122/rpa-speak
@@ -165,7 +165,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-ui" {
                                 replicaCount: 1
 
                                 nodeSelector:
-                                    doks.digitalocean.com/node-pool: default-pool
+                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
                                 image:
                                     repository: registry.ops.${var.domain_name}/es1122/rpa-ui
@@ -246,7 +246,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-listen" {
                                 replicaCount: 1
 
                                 nodeSelector:
-                                    doks.digitalocean.com/node-pool: default-pool
+                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
                                 image:
                                     repository: registry.ops.${var.domain_name}/es1122/rpa-listen
@@ -327,7 +327,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-channel" {
                                 replicaCount: 1
 
                                 nodeSelector:
-                                    doks.digitalocean.com/node-pool: default-pool
+                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
                                 image:
                                     repository: registry.ops.${var.domain_name}/es1122/rpa-channel
@@ -410,7 +410,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-brain" {
                                 replicaCount: 1
 
                                 nodeSelector:
-                                    doks.digitalocean.com/node-pool: default-pool
+                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
                                 image:
                                     repository: registry.ops.${var.domain_name}/es1122/rpa-brain

@@ -1,11 +1,11 @@
 resource "digitalocean_kubernetes_cluster" "cluster" {
-  name    = "${var.es_id}-${var.workspace}"
+  name    = "${var.es_id}-${var.workspace}-cluster"
   region  = "${var.region}"
   version = "${var.kube_version}"
   tags    = []
 
   node_pool {
-    name       = "default-pool"
+    name       = "${var.es_id}-${var.workspace}-pool"
     size       = "${var.node_pool_size}"
     node_count = "${var.node_pool_count}"
   }
