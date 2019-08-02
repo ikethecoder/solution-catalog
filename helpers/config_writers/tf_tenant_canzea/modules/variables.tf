@@ -11,3 +11,5 @@ variable gitlab {
 }
 
 variable host_suffix {}
+
+variable tenant_id {}

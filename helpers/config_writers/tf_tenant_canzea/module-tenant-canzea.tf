@@ -11,4 +11,6 @@ module "tenant-canzea" {
   gitlab = "${var.gitlab}"
 
   workspace = "${var.workspace}"
+
+  tenant_id = "01"
 }
