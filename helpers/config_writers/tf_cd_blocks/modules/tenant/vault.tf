@@ -11,8 +11,8 @@ resource "vault_policy" "tenant" {
 resource "vault_approle_auth_backend_role" "tenant" {
   role_name = "tenant-${var.tenant}-role"
   policies  = ["${vault_policy.tenant.name}"]
-  token_ttl = 30000
-  token_max_ttl = 60000
+  token_ttl = 86400 /* 24 hours / 30 mins = 1800 */
+  token_max_ttl = 172800
 }
 
 resource "vault_approle_auth_backend_role_secret_id" "tenant" {
