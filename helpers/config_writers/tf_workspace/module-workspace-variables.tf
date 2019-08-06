@@ -1,0 +1,3 @@
+variable do {
+    type = "map"
+}
