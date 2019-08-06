@@ -10,6 +10,6 @@ variable gitlab {
     type = "map"
 }
 
-variable host_suffix {}
-
 variable tenant_id {}
+
+variable workspace {}

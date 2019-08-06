@@ -27,8 +27,7 @@ resource "null_resource" "helm-deploy-proxy" {
 
     inline = [
         "git config --global credential.helper store",
-        "echo https://${var.gitlab["username"]}:${var.gitlab["password"]}@gitlab.com > /root/.git-credentials",
-        "(cd /var && rm -rf helm-charts && git clone https://gitlab.com/ikethecoder/helm-charts.git)",
+        "(cd /var && rm -rf helm-charts && git clone https://github.com/ikethecoder/helm-charts.git)",
         "nginx -s reload"
     ]
   }

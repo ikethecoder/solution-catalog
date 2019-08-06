@@ -5,7 +5,7 @@ provider "aws" {
   endpoints = {
       s3 = "sfo2.digitaloceanspaces.com"
   }
-  access_key = "${var.do["spaces_access_key"]}"
+  access_key = "${var.do["spaces_access_id"]}"
   secret_key = "${var.do["spaces_secret_key"]}"
   region     = "us-west-1"
 

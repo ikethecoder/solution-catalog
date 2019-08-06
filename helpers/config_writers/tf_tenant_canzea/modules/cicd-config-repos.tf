@@ -4,8 +4,8 @@ resource "canzea_resource" "cicd-config-repos-core" {
 
   attributes = {
       name = "core"
-      url = "git@gitlab.com:ikethecoder/yamya-infra.git"
-      branch = "develop"
+      url = "${canzea_resource.source_repository_canzea_gocd_config_mirror.api_data["ssh_url"]}"
+      branch = "master"
   }
 }
 
@@ -14,7 +14,7 @@ resource "canzea_resource" "cicd-config-repos-canzea" {
 
   attributes = {
       name = "canzea"
-      url = "git@gitlab.com:ikethecoder/canzea-pipelines.git"
+      url = "${canzea_resource.source_repository_canzea_pipelines.api_data["ssh_url"]}"
       branch = "develop"
   }
 }
@@ -23,7 +23,7 @@ resource "canzea_resource" "cicd-config-repos-ecosystem-ops" {
   path = "/cicd/config_repo"
 
   attributes = {
-      name = "ecosyste_ops"
+      name = "ecosystem_ops"
       url = "${canzea_resource.source_repository_es3333.api_data["ssh_url"]}"
       branch = "master"
   }

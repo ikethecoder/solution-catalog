@@ -1,3 +1,0 @@
-variable gitlab {
-    type = "map"
-}

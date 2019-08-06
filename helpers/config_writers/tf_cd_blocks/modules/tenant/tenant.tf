@@ -22,7 +22,6 @@ resource "vault_generic_secret" "tenant" {
   data_json = <<EOT
     {
       "url":   "https://gocd.cloud.${var.domain_name}",
-      "ssh_url": "git@source.cloud.${var.domain_name}",
       "admin_username": "admin",
       "admin_password": "${var.gocd_admin_password}"
     }
@@ -46,6 +45,7 @@ resource "vault_generic_secret" "tenant-gitea" {
   data_json = <<EOT
     {
       "url":   "https://source.cloud.${var.domain_name}",
+      "ssh_url": "git@source.cloud.${var.domain_name}",
       "admin_username": "scadmin",
       "admin_password": "${var.gitea_admin_password}"
     }
