@@ -1,6 +1,6 @@
 
 resource "digitalocean_firewall" "min" {
-  name = "${var.es_id} only-22"
+  name = "${var.es_id}-only-22"
 
   droplet_ids = ["${digitalocean_droplet.{{instance}}.id}"]
 
