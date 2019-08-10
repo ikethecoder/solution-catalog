@@ -47,6 +47,10 @@ resource "helm_release" "gocd" {
         server:
           shouldPreconfigure: true
 
+          plugins:
+            websocket_user: "admin"
+            websocket_password: "${random_string.gocd-admin-password.result}"
+
           security:
             ssh:
               enabled: true
