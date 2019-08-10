@@ -17,10 +17,10 @@ resource "vault_generic_secret" "console-ui" {
   data_json = <<EOT
     {
         "apiRootUrl": "https://saas-express.${var.workspace}.ws.${var.domain_name}",
-        "staticUrl": "https://esd39b-bucket.sfo2.cdn.digitaloceanspaces.com",
-        "dynamicdbUrl": "https://dynamicdb.${var.workspace}.ws.${var.domain_name}",
+        "staticUrl": "https://${var.es_id}-bucket.sfo2.cdn.digitaloceanspaces.com/01/console-ui.${var.workspace}.ws",
+        "dynamicdbUrl": "https://dynamic-db.${var.workspace}.ws.${var.domain_name}",
         "stripe": {
-          "key": "${data.vault_generic_secret.stripe.data["key"]}"
+          "key": "${data.vault_generic_secret.stripe.data["public_key"]}"
         }
     }
   EOT

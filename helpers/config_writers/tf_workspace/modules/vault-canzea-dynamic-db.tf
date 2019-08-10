@@ -20,7 +20,7 @@ resource "vault_generic_secret" "dynamic-db" {
     {
         "apiToken": "${random_string.secretToken.result}",
         "security": {
-            "originWhitelist": "https://console-ui.${var.workspace}.ws.${var.domain_name}",
+            "originWhitelist": "*",
             "accessRule": "",
             "jwtSigningKey": "${random_string.secretToken.result}"
         },

@@ -60,7 +60,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-job-manager-app" {
 
                             cat artifacts/kube_config | base64 -d > ~/.kube/config
 
-                            PARAMS_FROM_VAULT=`cat artifacts/env.yaml | fold | awk '{ printf "%4s%s\n","",$0 }'`
+                            PARAMS_FROM_VAULT=`cat artifacts/env.yaml | fold -w 200 | awk '{ printf "%4s%s\n","",$0 }'`
 
                             echo "
                             replicaCount: 1

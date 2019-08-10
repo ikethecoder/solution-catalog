@@ -32,6 +32,9 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                         - build:
                             source: env.yaml
                             destination: artifacts
+                        - build:
+                            source: s3cfg
+                            destination: artifacts
                         tasks:
                         - script: |
                             vault status
@@ -42,6 +45,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
 
                             vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
                             vault read -field data -format yaml secret/tenants/01/services/console-ui > env.yaml
+                            vault read -field data -format json secret/tenants/01/providers/do_s3 > s3cfg
 
                     - deploy:
                         clean_workspace: true
@@ -60,7 +64,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
 
                             cat artifacts/kube_config | base64 -d > ~/.kube/config
 
-                            PARAMS_FROM_VAULT=`cat artifacts/env.yaml | fold | awk '{ printf "%4s%s\n","",$0 }'`
+                            PARAMS_FROM_VAULT=`cat artifacts/env.yaml | fold -w 200 | awk '{ printf "%4s%s\n","",$0 }'`
 
                             echo "
                             replicaCount: 2
@@ -93,6 +97,41 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                             else
                                 helm upgrade $PROJECT --recreate-pods --namespace apps -f ./values.local.yaml $PROJECT/.
                             fi
+
+                    - deploy_static:
+                        clean_workspace: true
+                        elastic_profile_id: cloud-aws
+                        tasks:
+                        - fetch:
+                            pipeline: es1122-console-ui-dev
+                            stage: vault
+                            job: vault
+                            source: artifacts
+                            destination: .
+                        - fetch:
+                            pipeline: console-ui-es1122
+                            stage: build
+                            job: build
+                            source: artifacts
+                            destination: .
+                        - script: |
+
+                            ACCESS_KEY=`cat artifacts/s3cfg | jq -r ".access_key"`
+                            SECRET_KEY=`cat artifacts/s3cfg | jq -r ".secret_key"`
+                            BUCKET=`cat artifacts/s3cfg | jq -r ".bucket"`
+
+                            echo "
+                            [default]
+                                access_key = ${ACCESS_KEY}
+                                host_base = sfo2.digitaloceanspaces.com 
+                                host_bucket = %(bucket)s.sfo2.digitaloceanspaces.com
+                                secret_key = ${SECRET_KEY}
+                                verbosity = INFO
+                            " > ~/.s3cfg
+                            
+                            cat ~/.s3cfg
+
+                            (cd artifacts/web && s3cmd sync --acl-public . s3://$BUCKET/01/console-ui.intg.ws/)
         EOT
   }
 }
