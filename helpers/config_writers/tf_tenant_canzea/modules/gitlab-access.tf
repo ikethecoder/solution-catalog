@@ -23,10 +23,15 @@ resource "vault_generic_secret" "tenant-es1222-gitlab" {
   EOT
 }
 
-/*
+resource "canzea_resource" "gitlab-repo-webhook" {
+  path = "/gitlab/webhook/ikethecoder%2Fcanzea-public"
 
-gitlab = {
-    username  = "ikethecoder"
-    password = "uBLvyh6DhsTxY-QLJmqj"
+  attributes = {
+    url = "https://providergw.cloud.${var.domain_name}/gw/hooks/01/gitlab"
+    secret = "${vault_approle_auth_backend_login.login.client_token}"
+  }
+
+  depends_on = [
+      "vault_generic_secret.tenant-es1222-gitlab"
+  ]
 }
-*/

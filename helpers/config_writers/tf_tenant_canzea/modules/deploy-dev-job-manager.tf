@@ -29,6 +29,9 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-job-manager-app" {
                         - build:
                             source: kube_config
                             destination: artifacts
+                        - build:
+                            source: env.yaml
+                            destination: artifacts
                         tasks:
                         - script: |
                             vault status
@@ -38,6 +41,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-job-manager-app" {
                                 secret_id=$VAULT_SECRET_ID)
 
                             vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
+                            vault read -field data -format yaml secret/tenants/01/services/job-manager > env.yaml
 
                     - deploy:
                         clean_workspace: true
@@ -56,27 +60,30 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-job-manager-app" {
 
                             cat artifacts/kube_config | base64 -d > ~/.kube/config
 
+                            PARAMS_FROM_VAULT=`cat artifacts/env.yaml | fold | awk '{ printf "%4s%s\n","",$0 }'`
+
                             echo "
-                                replicaCount: 1
+                            replicaCount: 1
 
-                                nodeSelector:
-                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
+                            jobmanager:
+                            ${PARAMS_FROM_VAULT}
 
-                                image:
-                                    repository: registry.ops.${var.domain_name}/es1122/job-manager
-                                    tag: latest
-                                    pullPolicy: Always
+                            nodeSelector:
+                                doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
+                            image:
+                                repository: registry.ops.${var.domain_name}/es1122/job-manager
+                                tag: latest
+                                pullPolicy: Always
 
-                                persistence:
-                                    enabled: true
-                                    size: "1Gi"
+                            persistence:
+                                enabled: true
+                                size: "1Gi"
 
-
-                                ingress:
-                                    enabled: true
-                                    hosts:
-                                    - job-manager.${var.workspace}.ws.${var.domain_name}
+                            ingress:
+                                enabled: true
+                                hosts:
+                                - job-manager.${var.workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 

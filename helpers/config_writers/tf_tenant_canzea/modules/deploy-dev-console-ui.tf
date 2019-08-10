@@ -29,6 +29,9 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                         - build:
                             source: kube_config
                             destination: artifacts
+                        - build:
+                            source: env.yaml
+                            destination: artifacts
                         tasks:
                         - script: |
                             vault status
@@ -38,6 +41,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                                 secret_id=$VAULT_SECRET_ID)
 
                             vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
+                            vault read -field data -format yaml secret/tenants/01/services/console-ui > env.yaml
 
                     - deploy:
                         clean_workspace: true
@@ -56,21 +60,26 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
 
                             cat artifacts/kube_config | base64 -d > ~/.kube/config
 
+                            PARAMS_FROM_VAULT=`cat artifacts/env.yaml | fold | awk '{ printf "%4s%s\n","",$0 }'`
+
                             echo "
-                                replicaCount: 2
+                            replicaCount: 2
 
-                                nodeSelector:
-                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
+                            consoleui:
+                            ${PARAMS_FROM_VAULT}
 
-                                image:
-                                    repository: registry.ops.${var.domain_name}/es1122/console-ui
-                                    tag: latest
-                                    pullPolicy: Always
+                            nodeSelector:
+                                doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
-                                ingress:
-                                    enabled: true
-                                    hosts:
-                                    - console-ui.${var.workspace}.ws.${var.domain_name}
+                            image:
+                                repository: registry.ops.${var.domain_name}/es1122/console-ui
+                                tag: latest
+                                pullPolicy: Always
+
+                            ingress:
+                                enabled: true
+                                hosts:
+                                - console-ui.${var.workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 

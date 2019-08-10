@@ -1,0 +1,52 @@
+
+
+data "vault_generic_secret" "namedotcom" {
+  path = "secret/tenants/01/providers/namedotcom"
+}
+
+data "vault_generic_secret" "stripe" {
+  path = "secret/tenants/01/providers/stripe"
+}
+
+resource "vault_generic_secret" "saas-express" {
+  path = "secret/tenants/01/services/saas-express"
+
+  data_json = <<EOT
+    {
+        "apiToken": "${random_string.secretToken.result}",
+        "security": {
+            "originWhitelist": "https://console-ui.${var.workspace}.ws.${var.domain_name}",
+            "accessRule": "",
+            "jwtSigningKey": "${random_string.secretToken.result}"
+        },
+        "rabbitmq": {
+            "addresses" : "console-app-rabbitmq.cicd.svc.cluster.local",
+            "username": "${data.vault_generic_secret.rabbitmq.data["username"]}",
+            "password": "${data.vault_generic_secret.rabbitmq.data["password"]}"
+        },
+        "namedotcom": {
+            "username" : "${data.vault_generic_secret.namedotcom.data["username"]}",
+            "key" : "${data.vault_generic_secret.namedotcom.data["key"]}",
+            "minDomain" : 0,
+            "maxDomain": 0
+        },
+        "rootFolder": "/tmp",
+        "apiRootUrl": "http://localhost:2000",
+        "defaultCatalogVersion": "v1.0.2",
+        "defaultCatalogBranch": "develop",
+        "externalUrl": "https://console-ui.${var.workspace}.ws.${var.domain_name}",
+        "autoVerify": true,
+        "rootEcosystemDomain": "canzea.cc",
+        "cli": "canzea",
+        "dynamicdb": {
+          "url": "https://dynamic-db.${var.workspace}.ws.${var.domain_name}",
+          "apiToken": "${random_string.secretToken.result}"
+        },
+        "stripe": {
+          "key": "${data.vault_generic_secret.stripe.data["key"]}"
+        }
+    }
+  EOT
+}
+
+

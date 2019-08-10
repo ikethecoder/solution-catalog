@@ -29,6 +29,9 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                         - build:
                             source: kube_config
                             destination: artifacts
+                        - build:
+                            source: env.yaml
+                            destination: artifacts
                         tasks:
                         - script: |
                             vault status
@@ -38,6 +41,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                                 secret_id=$VAULT_SECRET_ID)
 
                             vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
+                            vault read -field data -format yaml secret/tenants/01/services/canzea-public > env.yaml
 
                     - deploy:
                         clean_workspace: true
@@ -56,26 +60,30 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
 
                             cat artifacts/kube_config | base64 -d > ~/.kube/config
 
+                            PARAMS_FROM_VAULT=`cat artifacts/env.yaml | fold | awk '{ printf "%4s%s\n","",$0 }'`
+  
                             echo "
-                                replicaCount: 3
 
-                                app:
-                                    version: \"$GO_DEPENDENCY_LABEL_MYUPSTREAM\"
+                            replicaCount: 3
 
-                                nodeSelector:
-                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
+                            app:
+                            ${PARAMS_FROM_VAULT}
+                                version: \"$GO_DEPENDENCY_LABEL_MYUPSTREAM\"
 
-                                image:
-                                    repository: registry.ops.${var.domain_name}/es1122/canzea-public
-                                    tag: latest
-                                    pullPolicy: Always
+                            nodeSelector:
+                                doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
-                                ingress:
-                                    enabled: true
-                                    hosts:
-                                    - public.${var.workspace}.ws.${var.domain_name}
-                                
-                                
+                            image:
+                                repository: registry.ops.${var.domain_name}/es1122/canzea-public
+                                tag: latest
+                                pullPolicy: Always
+
+                            ingress:
+                                enabled: true
+                                hosts:
+                                - public.${var.workspace}.ws.${var.domain_name}
+                            
+                            
                             " > values.local.yaml
 
                             helm init --client-only

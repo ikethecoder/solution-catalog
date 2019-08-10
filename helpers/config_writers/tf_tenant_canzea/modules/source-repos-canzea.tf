@@ -1,6 +1,6 @@
 
 resource "canzea_resource" "source_repository_canzea_pipelines" {
-  path = "/source/mirror/${canzea_resource.source_organization_es3333.id}"
+  path = "/source/mirror/${canzea_resource.source_organization.id}"
 
   attributes = {
     clone_addr = "https://gitlab.com/ikethecoder/canzea-pipelines.git"
@@ -8,14 +8,14 @@ resource "canzea_resource" "source_repository_canzea_pipelines" {
     auth_username = "token"
     auth_password = "${var.gitlab["password"]}"
     private = true
-    uid = "${canzea_resource.source_organization_es3333.api_data["id"]}"
+    uid = "${canzea_resource.source_organization.api_data["id"]}"
   }
 
   id_attribute = "name"
 }
 
 resource "canzea_resource" "canzea_pipelines_deploy_key_config" {
-  path = "/source/deploy_key/${canzea_resource.source_organization_es3333.id}/${canzea_resource.source_repository_canzea_pipelines.id}"
+  path = "/source/deploy_key/${canzea_resource.source_organization.id}/${canzea_resource.source_repository_canzea_pipelines.id}"
 
   attributes = {
     project = "ecosystem_operations/canzea-pipelines"

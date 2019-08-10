@@ -1,0 +1,27 @@
+
+resource "vault_generic_secret" "canzea-public" {
+  path = "secret/tenants/01/services/canzea-public"
+
+  data_json = <<EOT
+    {
+      "public_url": "https://public.${var.workspace}.ws.${var.domain_name}",
+      "console_ui_url": "https://console-ui.${var.workspace}.ws.${var.domain_name}"
+    }
+  EOT
+}
+
+
+resource "vault_generic_secret" "console-ui" {
+  path = "secret/tenants/01/services/console-ui"
+
+  data_json = <<EOT
+    {
+        "apiRootUrl": "https://saas-express.${var.workspace}.ws.${var.domain_name}",
+        "staticUrl": "https://esd39b-bucket.sfo2.cdn.digitaloceanspaces.com",
+        "dynamicdbUrl": "https://dynamicdb.${var.workspace}.ws.${var.domain_name}",
+        "stripe": {
+          "key": "${data.vault_generic_secret.stripe.data["key"]}"
+        }
+    }
+  EOT
+}

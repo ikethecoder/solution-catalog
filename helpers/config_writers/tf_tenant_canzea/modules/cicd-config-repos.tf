@@ -24,7 +24,7 @@ resource "canzea_resource" "cicd-config-repos-ecosystem-ops" {
 
   attributes = {
       name = "ecosystem_ops"
-      url = "${canzea_resource.source_repository_es3333.api_data["ssh_url"]}"
+      url = "${canzea_resource.source_repository.api_data["ssh_url"]}"
       branch = "master"
   }
 }

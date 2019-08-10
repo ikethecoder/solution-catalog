@@ -90,3 +90,21 @@ resource "canzea_resource" "gocd_elastic_profile_helm211" {
       image = "registry.ops.${var.domain_name}/agents/helm211:latest"
   }
 }
+
+resource "canzea_resource" "gocd_elastic_profile_cloud_aws" {
+  path = "/cicd/elastic_profile"
+
+  attributes = {
+      name = "cloud-aws"
+      image = "registry.ops.${var.domain_name}/agents/cloud-aws:latest"
+  }
+}
+
+resource "canzea_resource" "gocd_elastic_profile_cloud_digitalocean" {
+  path = "/cicd/elastic_profile"
+
+  attributes = {
+      name = "cloud-digitalocean"
+      image = "registry.ops.${var.domain_name}/agents/cloud-digitalocean:latest"
+  }
+}

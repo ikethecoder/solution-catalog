@@ -1,19 +1,19 @@
 
 resource "canzea_resource" "source_repository_canzea_gocd_config_mirror" {
-  path = "/source/mirror/${canzea_resource.source_organization_es3333.id}"
+  path = "/source/mirror/${canzea_resource.source_organization.id}"
 
   attributes = {
     clone_addr = "https://github.com/ikethecoder/canzea-gocd-config.git"
     repo_name = "canzea-gocd-config"
     private = true
-    uid = "${canzea_resource.source_organization_es3333.api_data["id"]}"
+    uid = "${canzea_resource.source_organization.api_data["id"]}"
   }
 
   id_attribute = "name"
 }
 
 resource "canzea_resource" "deploy_key_config" {
-  path = "/source/deploy_key/${canzea_resource.source_organization_es3333.id}/${canzea_resource.source_repository_canzea_gocd_config_mirror.id}"
+  path = "/source/deploy_key/${canzea_resource.source_organization.id}/${canzea_resource.source_repository_canzea_gocd_config_mirror.id}"
 
   attributes = {
     project = "ecosystem_operations/canzea-gocd-config"
@@ -36,7 +36,7 @@ resource "canzea_resource" "cicd_environments_canzea_gocd_config" {
             environments:
               cicd:
                 environment_variables:
-                  GIT_REPO: ${canzea_resource.source_repository_es3333.api_data["ssh_url"]}
+                  GIT_REPO: ${canzea_resource.source_repository.api_data["ssh_url"]}
                   GIT_BRANCH: master
                   REGISTRY: registry.ops.${var.domain_name}
                 pipelines:
