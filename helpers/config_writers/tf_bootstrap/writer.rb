@@ -43,6 +43,8 @@ if is_plus
         output = t.process "#{__dir__}/#{templ}.tf", properties
         pc.write "#{root}/#{templ}-#{properties['rid']}.tf", output
     end
+    output = t.process "#{__dir__}/variables-bs.tf", properties
+    pc.write "terraform/variables-bs-#{properties['rid']}.tf", output
 
 else
     for t in templates do
