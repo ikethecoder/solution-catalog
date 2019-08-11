@@ -3,14 +3,14 @@
 resource "canzea_static_resource" "cicd-encrypted-role-id" {
   path = "/cicd_encrypted_value"
   attributes = {
-      value = "${vault_approle_auth_backend_role.example.role_id}"
+      value = "${vault_approle_auth_backend_role.cicd-access.role_id}"
   }
 }
 
 resource "canzea_static_resource" "cicd-encrypted-secret-id" {
   path = "/cicd_encrypted_value"
   attributes = {
-      value = "${vault_approle_auth_backend_role_secret_id.id.secret_id}"
+      value = "${vault_approle_auth_backend_role_secret_id.cicd-access.secret_id}"
   }
 }
 

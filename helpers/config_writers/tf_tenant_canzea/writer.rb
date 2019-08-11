@@ -31,7 +31,7 @@ templates = [
 ]
 
 if is_plus
-    pc.cp "#{__dir__}/modules","terraform/modules/tenants/canzea"
+    pc.cp "#{__dir__}/modules","terraform/modules/tenants"
 
     for templ in templates do
         output = t.process "#{__dir__}/#{templ}.tf", properties

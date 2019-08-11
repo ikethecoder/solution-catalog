@@ -11,7 +11,7 @@ resource "null_resource" "helm-deploy-proxy" {
     config = "${data.template_file.nginx_conf_helm.rendered}"
   }
   connection {
-    host = "${digitalocean_droplet.{{instance}}.ipv4_address}"
+    host = "${var.base_proxy_ipv4_address}"
     user = "root"
     type = "ssh"
     private_key = "${file(var.pvt_key)}"

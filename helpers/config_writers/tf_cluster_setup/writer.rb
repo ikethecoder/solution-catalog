@@ -19,33 +19,27 @@ resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId
 
-if ['environment', 'instance', 'domain_name'].to_set.subtract(properties.keys).length != 0
+if ['environment', 'cluster_id', 'domain_name'].to_set.subtract(properties.keys).length != 0
     raise "Missing Required Fields"
 end
 
-root = "terraform/modules/#{properties['environment']}"
+root = "terraform/modules/#{properties['environment']}-cluster-setup"
 
 templates = [
-    "bootstrap_nginx_helm",
-    "kube_helm",
-    "namespaces",
-    "output-phase2",
-    "ssh_dns_routes",
-    "variable_phase2"
+    "module-cluster-setup",
+    "module-cluster-setup-vars"
 ]
 
 if is_plus
-    pc.cp "#{__dir__}/assets","terraform/modules/#{properties['environment']}/assets"
+    pc.cp "#{__dir__}/modules","#{root}"
 
     for templ in templates do
         output = t.process "#{__dir__}/#{templ}.tf", properties
-        pc.write "#{root}/#{templ}-#{properties['rid']}.tf", output
+        pc.write "terraform/#{templ}-#{properties['rid']}.tf", output
     end
 
 else
     for t in templates do
-        output = t.process "#{__dir__}/#{t}.tf", properties
-        pc.backupAndRemove "#{root}/#{t}-#{properties['rid']}.tf"
-        bc.backupAndRemove "#{root}/assets"
+        pc.backupAndRemove "terraform/#{t}-#{properties['rid']}.tf"
     end
 end

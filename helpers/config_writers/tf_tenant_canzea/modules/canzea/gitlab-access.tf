@@ -28,7 +28,7 @@ resource "canzea_resource" "gitlab-repo-webhook" {
 
   attributes = {
     url = "https://providergw.cloud.${var.domain_name}/gw/hooks/01/gitlab"
-    secret = "${vault_approle_auth_backend_login.login.client_token}"
+    secret = "${var.vault_token}"
   }
 
   depends_on = [

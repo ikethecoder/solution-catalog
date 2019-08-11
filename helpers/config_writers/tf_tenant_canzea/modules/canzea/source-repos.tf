@@ -24,7 +24,7 @@ resource "canzea_resource" "source_org_webhook" {
     #type = "gitea"
     url = "https://providergw.cloud.${var.domain_name}/gw/hooks/01/gitea"
     content_type = "json"
-    secret = "${vault_approle_auth_backend_login.login.client_token}"
+    secret = "${var.vault_token}"
     events = "create,delete,fork,push,issues,issue_comment,pull_request,repository,release"
     #active = true
   }

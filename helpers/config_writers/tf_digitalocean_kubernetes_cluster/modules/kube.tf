@@ -1,13 +1,13 @@
 resource "digitalocean_kubernetes_cluster" "cluster" {
-  name    = "{{rid}}"
+  name    = "${var.cluster_id}"
   region  = "${var.region}"
-  version = "{{kube_version}}"
+  version = "${var.kube_version}"
   tags    = ["all"]
 
   node_pool {
     name       = "default-pool"
-    size       = "{{node_pool_size}}"
-    node_count = {{node_pool_count}}
+    size       = "${var.node_pool_size}"
+    node_count = "${var.node_pool_count}"
   }
 }
 
