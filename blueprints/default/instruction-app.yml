@@ -4,6 +4,7 @@ resources:
     ${instance.id}:
       workspace: ${environment.id}
       instance: ${es.id}-${instance.id}
+      cluster_id: ${es.id}-${environment.id}-cluster
       domain_name: "${es.fqdn}"
       es_id: "${es.id}"
       region: "lon1"
@@ -11,4 +12,5 @@ resources:
       node_pool_size: s-4vcpu-8gb
       node_pool_count: 1
       email: "${owner.email}"
+      tenant_id: cci
       modules: ["workspace-${environment.id}"]

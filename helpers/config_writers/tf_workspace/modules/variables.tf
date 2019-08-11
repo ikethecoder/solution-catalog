@@ -2,10 +2,12 @@ variable "domain_name" {
 
 }
 
-
+variable "tenant_id" {}
 variable "es_id" {
 
 }
+
+variable cluster_id {}
 
 variable "workspace" {
 

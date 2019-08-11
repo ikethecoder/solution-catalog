@@ -1,15 +1,15 @@
 
 
 data "vault_generic_secret" "namedotcom" {
-  path = "secret/tenants/01/providers/namedotcom"
+  path = "secret/tenants/${var.tenant_id}/providers/namedotcom"
 }
 
 data "vault_generic_secret" "stripe" {
-  path = "secret/tenants/01/providers/stripe"
+  path = "secret/tenants/${var.tenant_id}/providers/stripe"
 }
 
 resource "vault_generic_secret" "saas-express" {
-  path = "secret/tenants/01/services/saas-express"
+  path = "secret/tenants/${var.tenant_id}/services/saas-express"
 
   data_json = <<EOT
     {
@@ -20,7 +20,7 @@ resource "vault_generic_secret" "saas-express" {
             "jwtSigningKey": "${random_string.secretToken.result}"
         },
         "rabbitmq": {
-            "addresses" : "console-app-rabbitmq.cicd.svc.cluster.local",
+            "addresses" : "rabbitmq.cicd.svc.cluster.local",
             "username": "${data.vault_generic_secret.rabbitmq.data["username"]}",
             "password": "${data.vault_generic_secret.rabbitmq.data["password"]}"
         },

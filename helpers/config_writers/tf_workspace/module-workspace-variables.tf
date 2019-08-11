@@ -1,3 +1,0 @@
-variable do {
-    type = "map"
-}

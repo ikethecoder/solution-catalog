@@ -4,8 +4,8 @@ provider "vault" {
   address = "https://vault.ops.${var.domain_name}"
 }
 
-resource "vault_generic_secret" "tenant-es1222" {
-  path = "secret/tenants/01/cluster"
+resource "vault_generic_secret" "cluster" {
+  path = "secret/tenants/${var.tenant_id}/cluster"
 
   data_json = <<EOT
     {

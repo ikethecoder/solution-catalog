@@ -6,11 +6,14 @@ module "workspace-{{workspace}}" {
 
   workspace = "{{workspace}}"
 
+  cluster_id = "{{cluster_id}}"
+
   email = "{{email}}"
 
   #vault_token = "${module.tenant-canzea.temp_token}"
   vault_token = "${data.http.root_token.body}"
 
+  tenant_id = "{{tenant_id}}"
 
   do = "${var.do}"
 
@@ -19,5 +22,5 @@ module "workspace-{{workspace}}" {
   node_pool_count = "{{node_pool_count}}"
   kube_version = "{{kube_version}}"
 
-  acme_account_key = "${module.cd.acme_account_key}"
+  acme_account_key = "${module.cd-bootstrap.acme_account_key}"
 }

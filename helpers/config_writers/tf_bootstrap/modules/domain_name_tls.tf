@@ -40,11 +40,3 @@ resource "acme_certificate" "certificate" {
     "digitalocean_firewall.min"
   ]
 }
-
-output "host" {
-    value = "${digitalocean_domain.default.name}"
-}
-
-output "acme_account_key" {
-  value = "${acme_registration.reg.account_key_pem}"
-}

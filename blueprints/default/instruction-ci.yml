@@ -23,34 +23,42 @@ resources:
 # - tf_digitalocean_kubernetes_cluster:
 #     ${es.id}-${segment.id}-cluster:
 #       environment: ${environment.id}
+#       domain_name: "${es.fqdn}"
 #       cluster_id: ${es.id}-${segment.id}-cluster
+#       region: "lon1"
 #       kube_version: 1.14.5-do.0
 #       node_pool_size: s-6vcpu-16gb
 #       node_pool_count: 1
-#       domain_name: "${es.fqdn}"
-#       region: "lon1"
 
 # - tf_cluster_setup:
 #     ${instance.id}:
 #       environment: ${environment.id}
-#       instance: ${es.id}-${instance.id}
 #       cluster_id: ${es.id}-${segment.id}-cluster
 #       domain_name: "${es.fqdn}"
 
 # - tf_cd_blocks:
 #     ${instance.id}:
 #       environment: ${environment.id}
-#       instance: ${es.id}-${instance.id}
 #       cluster_id: ${es.id}-${segment.id}-cluster
 #       domain_name: "${es.fqdn}"
 #       es_id: "${es.id}"
 #       modules: ["saas-providers","onboard-tenant-canzea", "providergw"]
 
-# - tf_tenant_canzea:
-#     ${instance.id}:
+# - tf_tenant_onboarding:
+#     cci:
+#       environment: ${environment.id}
+#       cluster_id: ${es.id}-${segment.id}-cluster
+#       domain_name: "${es.fqdn}"
+#       es_id: "${es.id}"
+#       tenant_id: "cci"
+#       modules: ["onboard-tenant-cci"]
+
+# - tf_tenant:
+#     cci:
 #       environment: ${environment.id}
 #       cluster_id: ${es.id}-${segment.id}-cluster
 #       instance: ${es.id}-${instance.id}
 #       domain_name: "${es.fqdn}"
+#       tenant_id: "cci"
 #       es_id: "${es.id}"
 #       modules: ["tenant-canzea"]

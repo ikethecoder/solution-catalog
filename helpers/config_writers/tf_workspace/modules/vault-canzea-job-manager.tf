@@ -1,7 +1,7 @@
 
 
 resource "vault_generic_secret" "job-manager" {
-  path = "secret/tenants/01/services/job-manager"
+  path = "secret/tenants/${var.tenant_id}/services/job-manager"
 
   data_json = <<EOT
     {
@@ -12,7 +12,7 @@ resource "vault_generic_secret" "job-manager" {
             "jwtSigningKey": "${random_string.secretToken.result}"
         },
         "rabbitmq": {
-            "addresses" : "console-app-rabbitmq.cicd.svc.cluster.local",
+            "addresses" : "rabbitmq.cicd.svc.cluster.local",
             "username": "${data.vault_generic_secret.rabbitmq.data["username"]}",
             "password": "${data.vault_generic_secret.rabbitmq.data["password"]}"
         },

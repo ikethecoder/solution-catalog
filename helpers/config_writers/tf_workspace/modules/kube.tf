@@ -1,5 +1,5 @@
 resource "digitalocean_kubernetes_cluster" "cluster" {
-  name    = "${var.es_id}-${var.workspace}-cluster"
+  name    = "${var.cluster_id}"
   region  = "${var.region}"
   version = "${var.kube_version}"
   tags    = []
