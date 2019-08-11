@@ -1,6 +1,6 @@
 
 resource "canzea_resource" "source_repository_canzea_pipelines" {
-  path = "/source/mirror/${var.source_org_id}"
+  path = "/source/mirror/${var.source_org_name}"
 
   attributes = {
     clone_addr = "https://gitlab.com/ikethecoder/canzea-pipelines.git"
@@ -15,7 +15,7 @@ resource "canzea_resource" "source_repository_canzea_pipelines" {
 }
 
 resource "canzea_resource" "canzea_pipelines_deploy_key_config" {
-  path = "/source/deploy_key/${var.source_org_id}/${canzea_resource.source_repository_canzea_pipelines.id}"
+  path = "/source/deploy_key/${var.source_org_name}/${canzea_resource.source_repository_canzea_pipelines.id}"
 
   attributes = {
     project = "ecosystem_operations/canzea-pipelines"

@@ -18,3 +18,4 @@ variable cicd_encrypted_role_id {}
 variable cicd_encrypted_secret_id {}
 
 variable source_org_id {}
+variable source_org_name {}

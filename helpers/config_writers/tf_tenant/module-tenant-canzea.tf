@@ -34,6 +34,7 @@ module "tenant-canzea" {
   cicd_encrypted_secret_id = "${module.tenant-base.cicd_encrypted_secret_id}"
 
   source_org_id = "${module.tenant-base.source_org_id}"
+  source_org_name = "${module.tenant-base.source_org_name}"
 
 }
 

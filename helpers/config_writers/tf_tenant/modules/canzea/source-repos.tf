@@ -4,7 +4,7 @@ Create a repository
 */
 
 resource "canzea_resource" "source_org_webhook" {
-  path = "/source/webhook/${var.source_org_id}"
+  path = "/source/webhook/${var.source_org_name}"
 
   attributes = {
     #type = "gitea"
@@ -18,7 +18,7 @@ resource "canzea_resource" "source_org_webhook" {
 
 
 resource "canzea_resource" "source_repository" {
-  path = "/source/repository/${var.source_org_id}"
+  path = "/source/repository/${var.source_org_name}"
 
   attributes = {
     auto_init = true
@@ -32,7 +32,7 @@ resource "canzea_resource" "source_repository" {
 }
 
 resource "canzea_resource" "deploy_key" {
-  path = "/source/deploy_key/${var.source_org_id}/${canzea_resource.source_repository.id}"
+  path = "/source/deploy_key/${var.source_org_name}/${canzea_resource.source_repository.id}"
 
   attributes = {
     project = "ecosystem_operations/cicd-pipelines"
