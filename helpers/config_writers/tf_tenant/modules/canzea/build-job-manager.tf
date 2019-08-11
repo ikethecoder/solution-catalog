@@ -2,16 +2,16 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-job-manager" {
     path = "/cicd/config"
 
     attributes = {
-        filename = "ecosystems/es1122/workspaces/build/pipeline-job-manager.gocd.yaml"
+        filename = "ecosystems/${var.es_id}/workspaces/build/pipeline-job-manager.gocd.yaml"
         definition = <<-EOT
 
                 format_version: 3
                 pipelines:
-                    job-manager-es1122:
-                        group: canzea-es1122
+                    ${var.tenant_id}-job-manager:
+                        group: ${var.tenant_id}
                         environment_variables:
                             PROJECT: job-manager
-                            TENANT: es1122
+                            TENANT: ${var.tenant_id}
                         label_template: "$${git_1[:8]}"
                         lock_behavior: none
                         materials:
@@ -44,7 +44,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-job-manager" {
                             elastic_profile_id: docker
                             tasks:
                             - fetch:
-                                pipeline: job-manager-es1122
+                                pipeline: ${var.tenant_id}-job-manager
                                 stage: build
                                 job: build
                                 source: artifacts

@@ -1,24 +1,24 @@
-resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-saas-express-app" {
+resource "canzea_resource" "cicd-pipeline-dev-pipeline-job-manager-app" {
     path = "/cicd/config"
 
     attributes = {
-        filename = "ecosystems/es1122/workspaces/dev/pipeline-saas-express.gocd.yaml"
+        filename = "ecosystems/${var.es_id}/workspaces/dev/pipeline-job-manager.gocd.yaml"
         definition = <<-EOT
 
             format_version: 3
             pipelines:
-                es1122-saas-express-dev:
-                    group: canzea-es1122
+                ${var.tenant_id}-job-manager-${var.workspace}:
+                    group: ${var.tenant_id}
                     environment_variables:
-                        PROJECT: saas-express
-                        TENANT: es1122
+                        PROJECT: job-manager
+                        TENANT: ${var.tenant_id}
                     materials:
                         charts:
                             git: https://gitlab.com/ikethecoder/helm-charts.git
                             branch: develop
                             auto_update: false
                         myupstream:
-                            pipeline: saas-express-es1122
+                            pipeline: ${var.tenant_id}-job-manager
                             stage: deploy
 
                     stages:
@@ -40,15 +40,15 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-saas-express-app" 
                                 role_id=$VAULT_ROLE_ID \
                                 secret_id=$VAULT_SECRET_ID)
 
-                            vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
-                            vault read -field data -format yaml secret/tenants/01/services/saas-express > env.yaml
+                            vault read -field kube_raw_config secret/tenants/${var.tenant_id}/cluster > kube_config
+                            vault read -field data -format yaml secret/tenants/${var.tenant_id}/services/job-manager > env.yaml
 
                     - deploy:
                         clean_workspace: true
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: es1122-saas-express-dev
+                            pipeline: ${var.tenant_id}-job-manager-${var.workspace}
                             stage: vault
                             job: vault
                             source: artifacts
@@ -65,22 +65,25 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-saas-express-app" 
                             echo "
                             replicaCount: 1
 
-                            saasexpress:
+                            jobmanager:
                             $PARAMS_FROM_VAULT
 
                             nodeSelector:
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
                             image:
-                                repository: registry.ops.${var.domain_name}/es1122/saas-express
+                                repository: registry.ops.${var.domain_name}/${var.tenant_id}/job-manager
                                 tag: latest
                                 pullPolicy: Always
+
+                            persistence:
+                                enabled: true
+                                size: "1Gi"
 
                             ingress:
                                 enabled: true
                                 hosts:
-                                - saas-express.${var.workspace}.ws.${var.domain_name}
-                            
+                                - job-manager.${var.workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 
@@ -90,7 +93,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-saas-express-app" 
 
                             if [ $? -eq 1 ]
                             then
-                                helm install --name $PROJECT -f ./values.local.yaml $PROJECT/.
+                                helm install --name $PROJECT --namespace apps -f ./values.local.yaml $PROJECT/.
                             else
                                 helm upgrade $PROJECT --recreate-pods --namespace apps -f ./values.local.yaml $PROJECT/.
                             fi

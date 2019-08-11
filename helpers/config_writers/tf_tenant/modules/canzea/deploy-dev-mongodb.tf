@@ -10,20 +10,20 @@ resource "random_string" "mongoSuperPassword" {
   override_special = "/@\" "
 }
 
-resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongodb" {
+resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-mongodb" {
     path = "/cicd/config"
 
     attributes = {
-        filename = "ecosystems/es1122/workspaces/dev/pipeline-console-app-mongodb.gocd.yaml"
+        filename = "ecosystems/${var.es_id}/workspaces/dev/pipeline-console-app-mongodb.gocd.yaml"
         definition = <<-EOT
 
             format_version: 3
             pipelines:
-                es1122-console-app-mongodb-dev:
-                    group: canzea-es1122
+                ${var.tenant_id}-mongodb-${var.workspace}:
+                    group: ${var.tenant_id}
                     environment_variables:
-                        TENANT: es1122
-                        PROJECT: canzea-mongodb
+                        TENANT: ${var.tenant_id}
+                        PROJECT: mongodb
                         HELM_CHART: stable/mongodb
                     materials:
                         charts:
@@ -47,14 +47,14 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-mongod
                                 role_id=$VAULT_ROLE_ID \
                                 secret_id=$VAULT_SECRET_ID)
 
-                            vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
+                            vault read -field kube_raw_config secret/tenants/${var.tenant_id}/cluster > kube_config
 
                     - deploy:
                         clean_workspace: true
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: es1122-console-app-mongodb-dev
+                            pipeline: ${var.tenant_id}-mongodb-${var.workspace}
                             stage: vault
                             job: vault
                             source: artifacts

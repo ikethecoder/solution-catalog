@@ -1,0 +1,32 @@
+resource "canzea_resource" "canzea_pipelines_environments_rpa" {
+  path = "/artifacts"
+
+  attributes = {
+      repository = "canzea-pipelines"
+      branch = "develop"
+      filename = "environments/build-rpa.gocd.yaml"
+      role_id = "${var.cicd_encrypted_role_id}"
+      definition = <<-EOT
+
+            format_version: 3
+            environments:
+                build-rpa-${var.es_id}:
+                    environment_variables:
+                        VAULT_ADDR: https://vault.ops.${var.domain_name}
+                        REGISTRY: registry.ops.${var.domain_name}
+                    secure_variables:
+                        VAULT_TOKEN: ""
+                    pipelines:
+                    - rpa-brain-es1122
+                    - rpa-channel-es1122
+                    - rpa-listen-es1122
+                    - rpa-speak-es1122
+                    - rpa-ui-es1122
+
+        EOT
+  }
+
+  depends_on = [
+    "canzea_resource.source_repository_canzea_pipelines"
+  ]
+}

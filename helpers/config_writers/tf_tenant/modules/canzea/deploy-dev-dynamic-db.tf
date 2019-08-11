@@ -1,24 +1,24 @@
-resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-dynamic-db-app" {
+resource "canzea_resource" "cicd-pipeline-dev-pipeline-dynamic-db-app" {
     path = "/cicd/config"
 
     attributes = {
-        filename = "ecosystems/es1122/workspaces/dev/pipeline-dynamic-db.gocd.yaml"
+        filename = "ecosystems/${var.es_id}/workspaces/dev/pipeline-dynamic-db.gocd.yaml"
         definition = <<-EOT
 
             format_version: 3
             pipelines:
-                es1122-dynamic-db-dev:
-                    group: canzea-es1122
+                ${var.tenant_id}-dynamic-db-${var.workspace}:
+                    group: ${var.tenant_id}
                     environment_variables:
                         PROJECT: dynamic-db
-                        TENANT: es1122
+                        TENANT: ${var.tenant_id}
                     materials:
                         charts:
                             git: https://gitlab.com/ikethecoder/helm-charts.git
                             branch: develop
                             auto_update: false
                         myupstream:
-                            pipeline: dynamic-db-es1122
+                            pipeline: ${var.tenant_id}-dynamic-db
                             stage: deploy
 
                     stages:
@@ -40,15 +40,15 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-dynamic-db-app" {
                                 role_id=$VAULT_ROLE_ID \
                                 secret_id=$VAULT_SECRET_ID)
 
-                            vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
-                            vault read -field data -format yaml secret/tenants/01/services/dynamic-db > env.yaml
+                            vault read -field kube_raw_config secret/tenants/${var.tenant_id}/cluster > kube_config
+                            vault read -field data -format yaml secret/tenants/${var.tenant_id}/services/dynamic-db > env.yaml
 
                     - deploy:
                         clean_workspace: true
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: es1122-dynamic-db-dev
+                            pipeline: ${var.tenant_id}-dynamic-db-${var.workspace}
                             stage: vault
                             job: vault
                             source: artifacts
@@ -72,7 +72,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-dynamic-db-app" {
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
                             image:
-                                repository: registry.ops.${var.domain_name}/es1122/dynamic-db
+                                repository: registry.ops.${var.domain_name}/${var.tenant_id}/dynamic-db
                                 tag: latest
                                 pullPolicy: Always
 
@@ -90,7 +90,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-dynamic-db-app" {
 
                             if [ $? -eq 1 ]
                             then
-                                helm install --name $PROJECT -f ./values.local.yaml $PROJECT/.
+                                helm install --name $PROJECT --namespace apps -f ./values.local.yaml $PROJECT/.
                             else
                                 helm upgrade $PROJECT --recreate-pods --namespace apps -f ./values.local.yaml $PROJECT/.
                             fi

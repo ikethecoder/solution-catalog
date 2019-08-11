@@ -2,20 +2,20 @@ resource "canzea_resource" "cicd-environments-build-new" {
   path = "/cicd/config"
 
   attributes = {
-      filename = "ecosystems/es1122/workspaces/build/environment.gocd.yaml"
-      role_id = "${canzea_static_resource.cicd-encrypted-role-id.api_data["encrypted_value"]}"
+      filename = "ecosystems/${var.es_id}/workspaces/build/environment.gocd.yaml"
+      role_id = "${var.cicd_encrypted_role_id}"
       definition = <<-EOT
 
             format_version: 3
             environments:
-                build-new-es1122:
+                ${var.tenant_id}-build:
                     environment_variables:
                         VAULT_ADDR: https://vault.ops.${var.domain_name}
                         REGISTRY: registry.ops.${var.domain_name}
                     pipelines:
-                        - dynamic-db-es1122
-                        - job-manager-es1122
-                        - saas-express-es1122
+                        - ${var.tenant_id}-dynamic-db
+                        - ${var.tenant_id}-job-manager
+                        - ${var.tenant_id}-saas-express
         EOT
   }
 }

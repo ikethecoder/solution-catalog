@@ -1,13 +1,4 @@
 
-resource "canzea_resource" "cicd-config-repos-core" {
-  path = "/cicd/config_repo"
-
-  attributes = {
-      name = "core"
-      url = "${canzea_resource.source_repository_canzea_gocd_config_mirror.api_data["ssh_url"]}"
-      branch = "master"
-  }
-}
 
 resource "canzea_resource" "cicd-config-repos-canzea" {
   path = "/cicd/config_repo"

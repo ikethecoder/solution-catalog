@@ -1,24 +1,24 @@
-resource "canzea_resource" "cicd-pipeline-dev-pipeline-dynamic-db" {
+resource "canzea_resource" "cicd-pipeline-dev-pipeline-saas-express" {
     path = "/cicd/config"
 
     attributes = {
-        filename = "ecosystems/es1122/workspaces/build/pipeline-dynamic-db.gocd.yaml"
+        filename = "ecosystems/${var.es_id}/workspaces/build/pipeline-saas-express.gocd.yaml"
         definition = <<-EOT
 
                 format_version: 3
                 pipelines:
-                    dynamic-db-es1122:
-                        group: canzea-es1122
+                    ${var.tenant_id}-saas-express:
+                        group: ${var.tenant_id}
                         environment_variables:
-                            PROJECT: dynamic-db
-                            TENANT: es1122
+                            PROJECT: saas-express
+                            TENANT: ${var.tenant_id}
                         label_template: "$${git_1[:8]}"
                         lock_behavior: none
                         materials:
                             git_1:
-                                git: git@gitlab.com:ikethecoder/dynamic-db.git
+                                git: git@gitlab.com:ikethecoder/saas-express.git
                                 branch: develop
-                                destination: dynamic-db
+                                destination: saas-express
                             git_2:
                                 git: git@gitlab.com:ikethecoder/console-app.git
                                 branch: develop
@@ -29,14 +29,14 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-dynamic-db" {
                             elastic_profile_id: "java8"
                             artifacts:
                             - build:
-                                source: dynamic-db/target
+                                source: saas-express/target
                                 destination: artifacts
                             tasks:
                             - script: |
                                 cd console-app
                                 mvn install -Dmaven.test.skip=true
 
-                                cd ../dynamic-db
+                                cd ../saas-express
                                 mvn install -Dmaven.test.skip=true
 
                         - deploy:
@@ -44,7 +44,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-dynamic-db" {
                             elastic_profile_id: docker
                             tasks:
                             - fetch:
-                                pipeline: dynamic-db-es1122
+                                pipeline: ${var.tenant_id}-saas-express
                                 stage: build
                                 job: build
                                 source: artifacts

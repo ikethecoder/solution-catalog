@@ -3,26 +3,12 @@
 Create a repository
 */
 
-resource "canzea_resource" "source_organization" {
-  path = "/source/organization"
-
-  attributes = {
-    description = "string"
-    full_name = "Ecosystem ${var.es_id} Operations"
-    location = "string"
-    username = "ecosystem_operations"
-    website = "string"
-  }
-
-  id_attribute = "username"
-}
-
 resource "canzea_resource" "source_org_webhook" {
-  path = "/source/webhook/${canzea_resource.source_organization.id}"
+  path = "/source/webhook/${var.source_org_id}"
 
   attributes = {
     #type = "gitea"
-    url = "https://providergw.cloud.${var.domain_name}/gw/hooks/01/gitea"
+    url = "https://providergw.cloud.${var.domain_name}/gw/hooks/${var.tenant_id}/gitea"
     content_type = "json"
     secret = "${var.vault_token}"
     events = "create,delete,fork,push,issues,issue_comment,pull_request,repository,release"
@@ -30,8 +16,9 @@ resource "canzea_resource" "source_org_webhook" {
   }
 }
 
+
 resource "canzea_resource" "source_repository" {
-  path = "/source/repository/${canzea_resource.source_organization.id}"
+  path = "/source/repository/${var.source_org_id}"
 
   attributes = {
     auto_init = true
@@ -45,7 +32,7 @@ resource "canzea_resource" "source_repository" {
 }
 
 resource "canzea_resource" "deploy_key" {
-  path = "/source/deploy_key/${canzea_resource.source_organization.id}/${canzea_resource.source_repository.id}"
+  path = "/source/deploy_key/${var.source_org_id}/${canzea_resource.source_repository.id}"
 
   attributes = {
     project = "ecosystem_operations/cicd-pipelines"

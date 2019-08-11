@@ -11,20 +11,20 @@ resource "random_string" "rabbitmqSuperPassword" {
   override_special = "/@\" "
 }
 
-resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-rabbitmq" {
+resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-rabbitmq" {
     path = "/cicd/config"
 
     attributes = {
-        filename = "ecosystems/es1122/workspaces/dev/pipeline-console-app-rabbitmq.gocd.yaml"
+        filename = "ecosystems/${var.es_id}/workspaces/dev/pipeline-console-app-rabbitmq.gocd.yaml"
         definition = <<-EOT
 
             format_version: 3
             pipelines:
-                es1122-console-app-rabbitmq-dev:
-                    group: canzea-es1122
+                ${var.tenant_id}-rabbitmq-${var.workspace}:
+                    group: ${var.tenant_id}
                     environment_variables:
-                        PROJECT: console-app-rabbitmq
-                        TENANT: es1122
+                        PROJECT: rabbitmq
+                        TENANT: ${var.tenant_id}
                     materials:
                         charts:
                             git: https://gitlab.com/ikethecoder/helm-charts.git
@@ -47,14 +47,14 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-rabbit
                                 role_id=$VAULT_ROLE_ID \
                                 secret_id=$VAULT_SECRET_ID)
 
-                            vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
+                            vault read -field kube_raw_config secret/tenants/${var.tenant_id}/cluster > kube_config
 
                     - deploy:
                         clean_workspace: true
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: es1122-console-app-rabbitmq-dev
+                            pipeline: ${var.tenant_id}-rabbitmq-${var.workspace}
                             stage: vault
                             job: vault
                             source: artifacts
@@ -94,7 +94,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-app-rabbit
 
                             if [ $? -eq 1 ]
                             then
-                                helm install --name $PROJECT -f ./values.local.yaml stable/rabbitmq
+                                helm install --name $PROJECT --namespace apps -f ./values.local.yaml stable/rabbitmq
                             else
                                 helm upgrade $PROJECT --recreate-pods --namespace apps -f ./values.local.yaml stable/rabbitmq
                             fi

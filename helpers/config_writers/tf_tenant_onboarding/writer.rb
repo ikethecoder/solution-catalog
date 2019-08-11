@@ -26,23 +26,19 @@ end
 root = "terraform"
 
 templates = [
-    "module-cd-blocks-modules",
-    "module-cd-blocks-output",
-    "module-cd-blocks-variables"
+    "tenant-onboard"
 ]
 
 if is_plus
-    pc.cp "#{__dir__}/modules","terraform/modules/blocks"
+    pc.cp "#{__dir__}/modules","terraform/modules/onboarding"
 
     for templ in templates do
         output = t.process "#{__dir__}/#{templ}.tf", properties
-        pc.write "#{root}/#{templ}-#{properties['rid']}.tf", output
+        pc.write "terraform/#{templ}-#{properties['rid']}.tf", output
     end
 
 else
     for t in templates do
-        output = t.process "#{__dir__}/#{t}.tf", properties
-        pc.backupAndRemove "#{root}/#{t}-#{properties['rid']}.tf"
-        bc.backupAndRemove "#{root}/assets"
+        pc.backupAndRemove "terraform/#{t}-#{properties['rid']}.tf"
     end
 end

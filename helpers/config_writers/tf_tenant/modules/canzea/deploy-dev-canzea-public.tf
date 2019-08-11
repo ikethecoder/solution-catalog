@@ -1,24 +1,24 @@
-resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
+resource "canzea_resource" "cicd-pipeline-dev-pipeline-canzea-public" {
     path = "/cicd/config"
 
     attributes = {
-        filename = "ecosystems/es1122/workspaces/dev/pipeline-canzea-public.gocd.yaml"
+        filename = "ecosystems/${var.es_id}/workspaces/dev/pipeline-canzea-public.gocd.yaml"
         definition = <<-EOT
 
             format_version: 3
             pipelines:
-                es1122-canzea-public-dev:
-                    group: canzea-es1122
+                ${var.tenant_id}-canzea-public-${var.workspace}:
+                    group: ${var.tenant_id}
                     environment_variables:
                         PROJECT: canzea-public
-                        TENANT: es1122
+                        TENANT: ${var.tenant_id}
                     materials:
                         charts:
                             git: https://gitlab.com/ikethecoder/helm-charts.git
                             branch: develop
                             auto_update: false
                         myupstream:
-                            pipeline: canzea-public-es1122
+                            pipeline: ${var.tenant_id}-canzea-public
                             stage: deploy
 
                     stages:
@@ -43,16 +43,16 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                                 role_id=$VAULT_ROLE_ID \
                                 secret_id=$VAULT_SECRET_ID)
 
-                            vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
-                            vault read -field data -format yaml secret/tenants/01/services/canzea-public > env.yaml
-                            vault read -field data -format json secret/tenants/01/providers/do_s3 > s3cfg
+                            vault read -field kube_raw_config secret/tenants/${var.tenant_id}/cluster > kube_config
+                            vault read -field data -format yaml secret/tenants/${var.tenant_id}/services/canzea-public > env.yaml
+                            vault read -field data -format json secret/tenants/${var.tenant_id}/providers/do_s3 > s3cfg
 
                     - deploy:
                         clean_workspace: true
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: es1122-canzea-public-dev
+                            pipeline: ${var.tenant_id}-canzea-public-${var.workspace}
                             stage: vault
                             job: vault
                             source: artifacts
@@ -78,7 +78,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
                             image:
-                                repository: registry.ops.${var.domain_name}/es1122/canzea-public
+                                repository: registry.ops.${var.domain_name}/${var.tenant_id}/canzea-public
                                 tag: latest
                                 pullPolicy: Always
 
@@ -96,7 +96,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
 
                             if [ $? -eq 1 ]
                             then
-                                helm install --name $PROJECT -f ./values.local.yaml $PROJECT/.
+                                helm install --name $PROJECT --namespace apps -f ./values.local.yaml $PROJECT/.
                             else
                                 helm upgrade $PROJECT --recreate-pods --namespace apps -f ./values.local.yaml $PROJECT/.
                             fi
@@ -106,13 +106,13 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                         elastic_profile_id: cloud-aws
                         tasks:
                         - fetch:
-                            pipeline: es1122-canzea-public-dev
+                            pipeline: ${var.tenant_id}-canzea-public-${var.workspace}
                             stage: vault
                             job: vault
                             source: artifacts
                             destination: .
                         - fetch:
-                            pipeline: canzea-public-es1122
+                            pipeline: ${var.tenant_id}-canzea-public
                             stage: build
                             job: build
                             source: artifacts
@@ -122,6 +122,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                             ACCESS_KEY=`cat artifacts/s3cfg | jq -r ".access_key"`
                             SECRET_KEY=`cat artifacts/s3cfg | jq -r ".secret_key"`
                             BUCKET=`cat artifacts/s3cfg | jq -r ".bucket"`
+                            PATH="public.${var.workspace}.ws"
 
                             echo "
                             [default]
@@ -132,7 +133,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-canzea-public" {
                                 verbosity = INFO
                             " > ~/.s3cfg
 
-                            (cd artifacts/public && s3cmd sync --acl-public . s3://$BUCKET/01/public.intg.ws/)
+                            (cd artifacts/public && s3cmd sync --acl-public . s3://$BUCKET/$TENANT/$PATH/)
         EOT
   }
 }

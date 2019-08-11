@@ -1,24 +1,24 @@
-resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
+resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-ui" {
     path = "/cicd/config"
 
     attributes = {
-        filename = "ecosystems/es1122/workspaces/dev/pipeline-console-ui.gocd.yaml"
+        filename = "ecosystems/${var.es_id}/workspaces/dev/pipeline-console-ui.gocd.yaml"
         definition = <<-EOT
 
             format_version: 3
             pipelines:
-                es1122-console-ui-dev:
-                    group: canzea-es1122
+                ${var.tenant_id}-console-ui-${var.workspace}:
+                    group: ${var.tenant_id}
                     environment_variables:
                         PROJECT: console-ui
-                        TENANT: es1122
+                        TENANT: ${var.tenant_id}
                     materials:
                         charts:
                             git: https://gitlab.com/ikethecoder/helm-charts.git
                             branch: develop
                             auto_update: false
                         myupstream:
-                            pipeline: console-ui-es1122
+                            pipeline: ${var.tenant_id}-console-ui
                             stage: deploy
 
                     stages:
@@ -43,16 +43,16 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                                 role_id=$VAULT_ROLE_ID \
                                 secret_id=$VAULT_SECRET_ID)
 
-                            vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
-                            vault read -field data -format yaml secret/tenants/01/services/console-ui > env.yaml
-                            vault read -field data -format json secret/tenants/01/providers/do_s3 > s3cfg
+                            vault read -field kube_raw_config secret/tenants/${var.tenant_id}/cluster > kube_config
+                            vault read -field data -format yaml secret/tenants/${var.tenant_id}/services/console-ui > env.yaml
+                            vault read -field data -format json secret/tenants/${var.tenant_id}/providers/do_s3 > s3cfg
 
                     - deploy:
                         clean_workspace: true
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: es1122-console-ui-dev
+                            pipeline: ${var.tenant_id}-console-ui-${var.workspace}
                             stage: vault
                             job: vault
                             source: artifacts
@@ -76,7 +76,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
 
                             image:
-                                repository: registry.ops.${var.domain_name}/es1122/console-ui
+                                repository: registry.ops.${var.domain_name}/${var.tenant_id}/console-ui
                                 tag: latest
                                 pullPolicy: Always
 
@@ -93,7 +93,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
 
                             if [ $? -eq 1 ]
                             then
-                                helm install --name $PROJECT -f ./values.local.yaml $PROJECT/.
+                                helm install --name $PROJECT --namespace apps -f ./values.local.yaml $PROJECT/.
                             else
                                 helm upgrade $PROJECT --recreate-pods --namespace apps -f ./values.local.yaml $PROJECT/.
                             fi
@@ -103,13 +103,13 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                         elastic_profile_id: cloud-aws
                         tasks:
                         - fetch:
-                            pipeline: es1122-console-ui-dev
+                            pipeline: ${var.tenant_id}-console-ui-${var.workspace}
                             stage: vault
                             job: vault
                             source: artifacts
                             destination: .
                         - fetch:
-                            pipeline: console-ui-es1122
+                            pipeline: ${var.tenant_id}-console-ui
                             stage: build
                             job: build
                             source: artifacts
@@ -131,7 +131,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                             
                             cat ~/.s3cfg
 
-                            (cd artifacts/web && s3cmd sync --acl-public . s3://$BUCKET/01/console-ui.intg.ws/)
+                            (cd artifacts/web && s3cmd sync --acl-public . s3://$BUCKET/$TENANT/console-ui.intg.ws/)
         EOT
   }
 }

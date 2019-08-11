@@ -23,6 +23,16 @@ resource "canzea_resource" "deploy_key_config" {
   }
 }
 
+resource "canzea_resource" "cicd-config-repos-core" {
+  path = "/cicd/config_repo"
+
+  attributes = {
+      name = "core"
+      url = "${canzea_resource.source_repository_canzea_gocd_config_mirror.api_data["ssh_url"]}"
+      branch = "master"
+  }
+}
+
 resource "canzea_resource" "cicd_environments_canzea_gocd_config" {
   path = "/artifacts"
 
@@ -36,7 +46,6 @@ resource "canzea_resource" "cicd_environments_canzea_gocd_config" {
             environments:
               cicd:
                 environment_variables:
-                  GIT_REPO: ${canzea_resource.source_repository.api_data["ssh_url"]}
                   GIT_BRANCH: master
                   REGISTRY: registry.ops.${var.domain_name}
                 pipelines:

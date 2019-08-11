@@ -2,25 +2,25 @@ resource "canzea_resource" "cicd-environments-dev-rpa" {
   path = "/cicd/config"
 
   attributes = {
-      filename = "ecosystems/es1122/workspaces/dev/environment-rpa.gocd.yaml"
-      role_id = "${canzea_static_resource.cicd-encrypted-role-id.api_data["encrypted_value"]}"
+      filename = "ecosystems/${var.es_id}/workspaces/dev/environment-rpa.gocd.yaml"
+      role_id = "${var.cicd_encrypted_role_id}"
       definition = <<-EOT
 
             format_version: 3
             environments:
-                dev-rpa:
+                ${var.tenant_id}-rpa:
                     environment_variables:
                         VAULT_ADDR: "https://vault.ops.${var.domain_name}"
                         REGISTRY: "registry.ops.${var.domain_name}"
                     secure_variables:
-                        VAULT_ROLE_ID: "${canzea_static_resource.cicd-encrypted-role-id.api_data["encrypted_value"]}"
-                        VAULT_SECRET_ID: "${canzea_static_resource.cicd-encrypted-secret-id.api_data["encrypted_value"]}"
+                        VAULT_ROLE_ID: "${var.cicd_encrypted_role_id}"
+                        VAULT_SECRET_ID: "${var.cicd_encrypted_secret_id}"
                     pipelines:
-                    - es1122-rpa-ui-dev
-                    - es1122-rpa-channel-dev
-                    - es1122-rpa-brain-dev
-                    - es1122-rpa-listen-dev
-                    - es1122-rpa-speak-dev
+                    - ${var.tenant_id}-rpa-ui-${var.workspace}
+                    - ${var.tenant_id}-rpa-channel-${var.workspace}
+                    - ${var.tenant_id}-rpa-brain-${var.workspace}
+                    - ${var.tenant_id}-rpa-listen-${var.workspace}
+                    - ${var.tenant_id}-rpa-speak-${var.workspace}
         EOT
   }
 }
