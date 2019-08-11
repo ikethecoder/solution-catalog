@@ -23,7 +23,7 @@ resource "helm_release" "gocd" {
     name       = "gocd"
     repository = "${data.helm_repository.private.metadata.0.name}"
     chart      = "private/gocd"
-    version    = "1.6.8"
+    version    = "1.6.9"
 
     namespace  = "cicd"
 
