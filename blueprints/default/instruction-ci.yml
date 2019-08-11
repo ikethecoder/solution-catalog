@@ -5,10 +5,10 @@ variables:
   blueprint: ""
   cloud_auth_id: ""
 resources:
-- tf_null_resource_echo:
-    ${instance.id}-hello:
-      environment: ${environment.id}
-      name: Marie
+# - tf_null_resource_echo:
+#     ${instance.id}-hello:
+#       environment: ${environment.id}
+#       name: Marie
 
 - tf_bootstrap:
     ${instance.id}:
@@ -23,23 +23,25 @@ resources:
 # - tf_digitalocean_kubernetes_cluster:
 #     ${es.id}-${segment.id}-cluster:
 #       environment: ${environment.id}
-#       cluster_id: ${es.id}-${segment.id}
+#       cluster_id: ${es.id}-${segment.id}-cluster
 #       kube_version: 1.14.5-do.0
 #       node_pool_size: s-6vcpu-16gb
 #       node_pool_count: 1
 #       domain_name: "${es.fqdn}"
 #       region: "lon1"
 
-# - tf_bootstrap_phase2:
+# - tf_cluster_setup:
 #     ${instance.id}:
 #       environment: ${environment.id}
 #       instance: ${es.id}-${instance.id}
+#       cluster_id: ${es.id}-${segment.id}-cluster
 #       domain_name: "${es.fqdn}"
 
 # - tf_cd_blocks:
 #     ${instance.id}:
 #       environment: ${environment.id}
 #       instance: ${es.id}-${instance.id}
+#       cluster_id: ${es.id}-${segment.id}-cluster
 #       domain_name: "${es.fqdn}"
 #       es_id: "${es.id}"
 #       modules: ["saas-providers","onboard-tenant-canzea", "providergw"]
@@ -47,6 +49,7 @@ resources:
 # - tf_tenant_canzea:
 #     ${instance.id}:
 #       environment: ${environment.id}
+#       cluster_id: ${es.id}-${segment.id}-cluster
 #       instance: ${es.id}-${instance.id}
 #       domain_name: "${es.fqdn}"
 #       es_id: "${es.id}"
