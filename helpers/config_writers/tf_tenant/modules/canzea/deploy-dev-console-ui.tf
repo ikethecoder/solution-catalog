@@ -7,7 +7,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-ui" {
 
             format_version: 3
             pipelines:
-                ${var.tenant_id}-console-ui-${var.workspace}:
+                ${var.tenant_id}-console-ui-${var.deploy_workspace}:
                     group: ${var.tenant_id}
                     environment_variables:
                         PROJECT: console-ui
@@ -52,7 +52,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-ui" {
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: ${var.tenant_id}-console-ui-${var.workspace}
+                            pipeline: ${var.tenant_id}-console-ui-${var.deploy_workspace}
                             stage: vault
                             job: vault
                             source: artifacts
@@ -103,7 +103,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-ui" {
                         elastic_profile_id: cloud-aws
                         tasks:
                         - fetch:
-                            pipeline: ${var.tenant_id}-console-ui-${var.workspace}
+                            pipeline: ${var.tenant_id}-console-ui-${var.deploy_workspace}
                             stage: vault
                             job: vault
                             source: artifacts

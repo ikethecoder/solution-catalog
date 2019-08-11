@@ -7,7 +7,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-saas-express-app" {
 
             format_version: 3
             pipelines:
-                ${var.tenant_id}-saas-express-${var.workspace}:
+                ${var.tenant_id}-saas-express-${var.deploy_workspace}:
                     group: ${var.tenant_id}
                     environment_variables:
                         PROJECT: saas-express
@@ -48,7 +48,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-saas-express-app" {
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: ${var.tenant_id}-saas-express-${var.workspace}
+                            pipeline: ${var.tenant_id}-saas-express-${var.deploy_workspace}
                             stage: vault
                             job: vault
                             source: artifacts

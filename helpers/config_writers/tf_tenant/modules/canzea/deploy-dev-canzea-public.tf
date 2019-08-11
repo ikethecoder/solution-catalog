@@ -7,7 +7,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-canzea-public" {
 
             format_version: 3
             pipelines:
-                ${var.tenant_id}-canzea-public-${var.workspace}:
+                ${var.tenant_id}-canzea-public-${var.deploy_workspace}:
                     group: ${var.tenant_id}
                     environment_variables:
                         PROJECT: canzea-public
@@ -52,7 +52,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-canzea-public" {
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: ${var.tenant_id}-canzea-public-${var.workspace}
+                            pipeline: ${var.tenant_id}-canzea-public-${var.deploy_workspace}
                             stage: vault
                             job: vault
                             source: artifacts
@@ -106,7 +106,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-canzea-public" {
                         elastic_profile_id: cloud-aws
                         tasks:
                         - fetch:
-                            pipeline: ${var.tenant_id}-canzea-public-${var.workspace}
+                            pipeline: ${var.tenant_id}-canzea-public-${var.deploy_workspace}
                             stage: vault
                             job: vault
                             source: artifacts
@@ -122,7 +122,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-canzea-public" {
                             ACCESS_KEY=`cat artifacts/s3cfg | jq -r ".access_key"`
                             SECRET_KEY=`cat artifacts/s3cfg | jq -r ".secret_key"`
                             BUCKET=`cat artifacts/s3cfg | jq -r ".bucket"`
-                            BUCKET_PATH="public.${var.workspace}.ws"
+                            BUCKET_PATH="public.${var.deploy_workspace}.ws"
 
                             echo "
                             [default]

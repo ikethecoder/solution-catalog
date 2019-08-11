@@ -16,11 +16,11 @@ resource "canzea_resource" "cicd-environments-dev-rpa" {
                         VAULT_ROLE_ID: "${var.cicd_encrypted_role_id}"
                         VAULT_SECRET_ID: "${var.cicd_encrypted_secret_id}"
                     pipelines:
-                    - ${var.tenant_id}-rpa-ui-${var.workspace}
-                    - ${var.tenant_id}-rpa-channel-${var.workspace}
-                    - ${var.tenant_id}-rpa-brain-${var.workspace}
-                    - ${var.tenant_id}-rpa-listen-${var.workspace}
-                    - ${var.tenant_id}-rpa-speak-${var.workspace}
+                    - ${var.tenant_id}-rpa-ui-${var.deploy_workspace}
+                    - ${var.tenant_id}-rpa-channel-${var.deploy_workspace}
+                    - ${var.tenant_id}-rpa-brain-${var.deploy_workspace}
+                    - ${var.tenant_id}-rpa-listen-${var.deploy_workspace}
+                    - ${var.tenant_id}-rpa-speak-${var.deploy_workspace}
         EOT
   }
 }

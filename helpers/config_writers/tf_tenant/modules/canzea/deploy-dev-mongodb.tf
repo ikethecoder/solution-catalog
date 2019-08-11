@@ -19,7 +19,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-mongodb" {
 
             format_version: 3
             pipelines:
-                ${var.tenant_id}-mongodb-${var.workspace}:
+                ${var.tenant_id}-mongodb-${var.deploy_workspace}:
                     group: ${var.tenant_id}
                     environment_variables:
                         TENANT: ${var.tenant_id}
@@ -54,7 +54,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-mongodb" {
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: ${var.tenant_id}-mongodb-${var.workspace}
+                            pipeline: ${var.tenant_id}-mongodb-${var.deploy_workspace}
                             stage: vault
                             job: vault
                             source: artifacts

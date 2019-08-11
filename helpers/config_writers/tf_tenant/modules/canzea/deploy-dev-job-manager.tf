@@ -7,7 +7,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-job-manager-app" {
 
             format_version: 3
             pipelines:
-                ${var.tenant_id}-job-manager-${var.workspace}:
+                ${var.tenant_id}-job-manager-${var.deploy_workspace}:
                     group: ${var.tenant_id}
                     environment_variables:
                         PROJECT: job-manager
@@ -48,7 +48,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-job-manager-app" {
                         elastic_profile_id: helm211
                         tasks:
                         - fetch:
-                            pipeline: ${var.tenant_id}-job-manager-${var.workspace}
+                            pipeline: ${var.tenant_id}-job-manager-${var.deploy_workspace}
                             stage: vault
                             job: vault
                             source: artifacts
