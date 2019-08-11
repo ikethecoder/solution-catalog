@@ -10,6 +10,7 @@ resource "random_string" "mongoSuperPassword" {
   override_special = "/@\" "
 }
 
+
 resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-mongodb" {
     path = "/cicd/config"
 
@@ -23,7 +24,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-mongodb" {
                     group: ${var.tenant_id}
                     environment_variables:
                         TENANT: ${var.tenant_id}
-                        PROJECT: mongodb
+                        PROJECT: mongo
                         HELM_CHART: stable/mongodb
                     materials:
                         charts:
@@ -75,7 +76,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-mongodb" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - name: canzea-mongodb.${var.deploy_workspace}.ws.${var.domain_name}
+                                    - name: mongo.${var.deploy_workspace}.ws.${var.domain_name}
 
                                 mongodbUsername: "${random_string.mongoSuperUser.result}"
                                 mongodbPassword: "${random_string.mongoSuperPassword.result}"

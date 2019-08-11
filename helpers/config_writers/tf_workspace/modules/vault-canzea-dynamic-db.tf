@@ -30,7 +30,7 @@ resource "vault_generic_secret" "dynamic-db" {
             "password": "${data.vault_generic_secret.rabbitmq.data["password"]}"
         },
         "mongodb": {
-            "host" : "mongodb.apps.svc.cluster.local",
+            "host" : "mongo-mongodb.apps.svc.cluster.local",
             "port" : 27017,
             "database" : "general",
             "username": "${data.vault_generic_secret.mongodb.data["username"]}",
