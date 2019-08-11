@@ -20,34 +20,34 @@ resources:
       es_id: "${es.id}"
       modules: ["cd"]
 
-- tf_digitalocean_kubernetes_cluster:
-    ${es.id}-${segment.id}-cluster:
-      environment: ${environment.id}
-      cluster_id: ${es.id}-${segment.id}
-      kube_version: 1.14.5-do.0
-      node_pool_size: s-6vcpu-16gb
-      node_pool_count: 1
-      domain_name: "${es.fqdn}"
-      region: "lon1"
+# - tf_digitalocean_kubernetes_cluster:
+#     ${es.id}-${segment.id}-cluster:
+#       environment: ${environment.id}
+#       cluster_id: ${es.id}-${segment.id}
+#       kube_version: 1.14.5-do.0
+#       node_pool_size: s-6vcpu-16gb
+#       node_pool_count: 1
+#       domain_name: "${es.fqdn}"
+#       region: "lon1"
 
-- tf_bootstrap_phase2:
-    ${instance.id}:
-      environment: ${environment.id}
-      instance: ${es.id}-${instance.id}
-      domain_name: "${es.fqdn}"
+# - tf_bootstrap_phase2:
+#     ${instance.id}:
+#       environment: ${environment.id}
+#       instance: ${es.id}-${instance.id}
+#       domain_name: "${es.fqdn}"
 
-- tf_cd_blocks:
-    ${instance.id}:
-      environment: ${environment.id}
-      instance: ${es.id}-${instance.id}
-      domain_name: "${es.fqdn}"
-      es_id: "${es.id}"
-      modules: ["saas-providers","onboard-tenant-canzea", "providergw"]
+# - tf_cd_blocks:
+#     ${instance.id}:
+#       environment: ${environment.id}
+#       instance: ${es.id}-${instance.id}
+#       domain_name: "${es.fqdn}"
+#       es_id: "${es.id}"
+#       modules: ["saas-providers","onboard-tenant-canzea", "providergw"]
 
-- tf_tenant_canzea:
-    ${instance.id}:
-      environment: ${environment.id}
-      instance: ${es.id}-${instance.id}
-      domain_name: "${es.fqdn}"
-      es_id: "${es.id}"
-      modules: ["tenant-canzea"]
+# - tf_tenant_canzea:
+#     ${instance.id}:
+#       environment: ${environment.id}
+#       instance: ${es.id}-${instance.id}
+#       domain_name: "${es.fqdn}"
+#       es_id: "${es.id}"
+#       modules: ["tenant-canzea"]
