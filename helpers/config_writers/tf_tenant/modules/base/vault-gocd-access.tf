@@ -9,6 +9,9 @@ resource "vault_policy" "cicd-access-policy" {
     path "secret/tenants/${var.tenant_id}/providers/*" {
         capabilities = ["read"]
     }
+    path "secret/tenants/${var.tenant_id}/cluster" {
+        capabilities = ["read"]
+    }
   EOT
 }
 
