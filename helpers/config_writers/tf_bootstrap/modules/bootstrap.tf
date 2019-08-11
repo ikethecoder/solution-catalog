@@ -1,8 +1,8 @@
 
 
-resource "digitalocean_droplet" "{{instance}}" {
+resource "digitalocean_droplet" "base" {
   image  = "ubuntu-18-04-x64"
-  name   = "{{instance}}"
+  name   = "${var.instance}"
   region = "${var.region}"
   size   = "s-1vcpu-1gb"
   private_networking = "true"
@@ -34,6 +34,6 @@ resource "digitalocean_droplet" "{{instance}}" {
 }
 
 output "ip" {
-    value = "${digitalocean_droplet.{{instance}}.ipv4_address}"
+    value = "${digitalocean_droplet.base.ipv4_address}"
 }
 

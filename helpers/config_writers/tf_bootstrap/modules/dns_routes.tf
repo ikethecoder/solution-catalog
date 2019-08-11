@@ -11,7 +11,7 @@ resource "digitalocean_record" "a-record" {
   domain = "${digitalocean_domain.default.name}"
   type   = "A"
   name   = "@"
-  value  = "${digitalocean_droplet.{{instance}}.ipv4_address}"
+  value  = "${digitalocean_droplet.base.ipv4_address}"
   ttl    = "30"
 }
 
@@ -19,7 +19,7 @@ resource "digitalocean_record" "a-vault" {
   domain = "${digitalocean_domain.default.name}"
   type   = "A"
   name   = "vault"
-  value  = "${digitalocean_droplet.{{instance}}.ipv4_address_private}"
+  value  = "${digitalocean_droplet.base.ipv4_address_private}"
   ttl    = "30"
 }
 

@@ -29,14 +29,14 @@ resource "acme_certificate" "certificate" {
     provider = "digitalocean"
 
     config = {
-        DO_AUTH_TOKEN = "${var.do_token}"
+        DO_AUTH_TOKEN = "${var.do["token"]}"
     }
   }
 
   depends_on = [
     "digitalocean_record.a-record",
     "digitalocean_record.wildcard",
-    "digitalocean_droplet.{{instance}}",
+    "digitalocean_droplet.base",
     "digitalocean_firewall.min"
   ]
 }

@@ -4,16 +4,16 @@ data "template_file" "server_agent_json" {
   vars = {
     NODE_NAME = "consul_s1"
     CONSUL_DATA_PATH = "/var/consul/data"
-    ADVERTISE_ADDR = "${digitalocean_droplet.{{instance}}.ipv4_address}"
-    JOIN1 = "${digitalocean_droplet.{{instance}}.ipv4_address}"
+    ADVERTISE_ADDR = "${digitalocean_droplet.base.ipv4_address}"
+    JOIN1 = "${digitalocean_droplet.base.ipv4_address}"
   }
 }
 
 data "template_file" "vault_server_hcl" {
   template = "${file("${path.module}/assets/vault_config.tpl")}"
   vars = {
-    API_ADDR = "http://${digitalocean_droplet.{{instance}}.ipv4_address}:8200"
-    CLUSTER_ADDR = "https://${digitalocean_droplet.{{instance}}.ipv4_address}:8201"
+    API_ADDR = "http://${digitalocean_droplet.base.ipv4_address}:8200"
+    CLUSTER_ADDR = "https://${digitalocean_droplet.base.ipv4_address}:8201"
   }
 }
 
@@ -75,7 +75,7 @@ resource "random_string" "one-time-token-retrieval" {
 resource "null_resource" "post-setup" {
 
   connection {
-    host = "${digitalocean_droplet.{{instance}}.ipv4_address}"
+    host = "${digitalocean_droplet.base.ipv4_address}"
     user = "root"
     type = "ssh"
     private_key = "${file(var.pvt_key)}"
@@ -135,7 +135,7 @@ resource "null_resource" "post-setup" {
   }
 
   depends_on = [
-    "digitalocean_droplet.{{instance}}"
+    "digitalocean_droplet.base"
   ]
 }
 

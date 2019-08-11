@@ -1,6 +1,6 @@
 
 output do_token {
-    value = "${var.do_token}"
+    value = "${var.do["token"]}"
 }
 
 output domain_name {
@@ -33,11 +33,11 @@ output node_cluster_collab {
 */
 
 output base_droplet_id {
-    value = "${digitalocean_droplet.{{instance}}.id}"
+    value = "${digitalocean_droplet.base.id}"
 }
 
 output base_proxy_ipv4_address {
-    value = "${digitalocean_droplet.{{instance}}.ipv4_address}"
+    value = "${digitalocean_droplet.base.ipv4_address}"
 }
 
 
