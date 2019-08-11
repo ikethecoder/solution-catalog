@@ -25,6 +25,8 @@ resource "helm_release" "gocd" {
     chart      = "private/gocd"
     version    = "1.6.9"
 
+    recreate_pods = true
+
     namespace  = "cicd"
 
     values = [
