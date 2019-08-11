@@ -14,6 +14,8 @@ variable tenant_id {}
 
 variable workspace {}
 
+variable deploy_workspace {}
+
 variable cicd_encrypted_role_id {}
 variable cicd_encrypted_secret_id {}
 

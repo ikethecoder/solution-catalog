@@ -73,7 +73,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-ui" {
                             $PARAMS_FROM_VAULT
 
                             nodeSelector:
-                                doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
+                                doks.digitalocean.com/node-pool: ${var.es_id}-${var.deploy_workspace}-pool
 
                             image:
                                 repository: registry.ops.${var.domain_name}/${var.tenant_id}/console-ui

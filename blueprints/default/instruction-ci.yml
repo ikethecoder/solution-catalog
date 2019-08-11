@@ -62,3 +62,4 @@ resources:
 #       tenant_id: "cci"
 #       es_id: "${es.id}"
 #       modules: ["tenant-canzea"]
+#       deploy_workspace: "intg"

@@ -27,7 +27,7 @@ resource "vault_generic_secret" "do_s3" {
     {
         "access_key": "${var.s3["access_key"]}",
         "secret_key": "${var.s3["secret_key"]}",
-        "bucket": "${var.s3["bucket"]}"
+        "bucket": "${var.es_id}-bucket"
     }
   EOT
 }

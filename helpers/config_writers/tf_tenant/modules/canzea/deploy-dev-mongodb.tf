@@ -70,7 +70,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-mongodb" {
                                 replicaCount: 1
 
                                 nodeSelector:
-                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
+                                    doks.digitalocean.com/node-pool: ${var.es_id}-${var.deploy_workspace}-pool
 
                                 ingress:
                                     enabled: true
