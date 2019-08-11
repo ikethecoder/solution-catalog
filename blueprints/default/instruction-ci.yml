@@ -18,12 +18,13 @@ resources:
       region: "lon1"
       email: "${owner.email}"
       es_id: "${es.id}"
+      modules: ["cd"]
 
 - tf_digitalocean_kubernetes_cluster:
     ${es.id}-${segment.id}-cluster:
       environment: ${environment.id}
       cluster_id: ${es.id}-${segment.id}
-      kube_version: 1.14.4-do.1
+      kube_version: 1.14.5-do.0
       node_pool_size: s-6vcpu-16gb
       node_pool_count: 1
       domain_name: "${es.fqdn}"
@@ -41,6 +42,7 @@ resources:
       instance: ${es.id}-${instance.id}
       domain_name: "${es.fqdn}"
       es_id: "${es.id}"
+      modules: ["saas-providers","onboard-tenant-canzea", "providergw"]
 
 - tf_tenant_canzea:
     ${instance.id}:
@@ -48,3 +50,4 @@ resources:
       instance: ${es.id}-${instance.id}
       domain_name: "${es.fqdn}"
       es_id: "${es.id}"
+      modules: ["tenant-canzea"]

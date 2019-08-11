@@ -22,6 +22,8 @@ module "saas-providers" {
   gitlab = "${var.gitlab}"
 
   source_ssh_ip = "${module.cd.source_ssh_ip}"
+
+  es_id = "${var.es_id}"
 }
 
 module "gitea-first-login" {

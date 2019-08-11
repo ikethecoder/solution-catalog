@@ -66,7 +66,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-saas-express-app" 
                             replicaCount: 1
 
                             saasexpress:
-                            ${PARAMS_FROM_VAULT}
+                            $PARAMS_FROM_VAULT
 
                             nodeSelector:
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool

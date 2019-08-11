@@ -21,8 +21,10 @@ resource "kubernetes_secret" "gocd-passwords" {
 //
 resource "helm_release" "gocd" {
     name       = "gocd"
-//    repository = "${helm_repository.private.metadata.0.name}"
+    repository = "${data.helm_repository.private.metadata.0.name}"
     chart      = "private/gocd"
+    version    = "1.6.8"
+
     namespace  = "cicd"
 
     values = [

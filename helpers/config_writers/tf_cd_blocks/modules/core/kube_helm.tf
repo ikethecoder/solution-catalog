@@ -15,6 +15,11 @@ provider "helm" {
 #    install_tiller  = "true"
 }
 
+data "helm_repository" "private" {
+    name = "private"
+    url  = "https://helm.ops.${var.domain_name}/charts"
+}
+
 resource null_resource "helm_init" {
     provisioner local-exec {
         command = "echo nothing"

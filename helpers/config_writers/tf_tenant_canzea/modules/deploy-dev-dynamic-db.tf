@@ -41,7 +41,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-dynamic-db-app" {
                                 secret_id=$VAULT_SECRET_ID)
 
                             vault read -field kube_raw_config secret/tenants/01/cluster > kube_config
-                            vault read -field data -format yaml secret/tenants/01/services/dynamicdb > env.yaml
+                            vault read -field data -format yaml secret/tenants/01/services/dynamic-db > env.yaml
 
                     - deploy:
                         clean_workspace: true
@@ -66,7 +66,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-dynamic-db-app" {
                             replicaCount: 1
 
                             dynamicdb:
-                            ${PARAMS_FROM_VAULT}
+                            $PARAMS_FROM_VAULT
 
                             nodeSelector:
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool

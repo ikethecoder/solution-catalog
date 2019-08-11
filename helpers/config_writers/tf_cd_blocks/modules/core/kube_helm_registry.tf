@@ -68,7 +68,7 @@ resource "null_resource" "registry-deploy-proxy" {
 
 
 resource "digitalocean_firewall" "registry" {
-  name = "registry"
+  name = "${var.domain_name}-registry"
 
   droplet_ids = ["${var.base_droplet_id}"]
 

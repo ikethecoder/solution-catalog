@@ -1,7 +1,7 @@
 
 resource "random_string" "secretToken" {
   length = 16
-  special = true
+  special = false
   override_special = "/@\" "
 }
 
@@ -32,7 +32,7 @@ resource "vault_generic_secret" "dynamic-db" {
         "mongodb": {
             "host" : "canzea-mongodb.apps.svc.cluster.local",
             "port" : 27017,
-            "database" : "canzea_db",
+            "database" : "general",
             "username": "${data.vault_generic_secret.mongodb.data["username"]}",
             "password": "${data.vault_generic_secret.mongodb.data["password"]}"
         }

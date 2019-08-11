@@ -66,3 +66,7 @@ variable "acme_account_key" {
 variable "source_ssh_ip" {
   type = "string"
 }
+
+variable "es_id" {
+  type = "string"
+}

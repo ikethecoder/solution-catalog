@@ -70,7 +70,7 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
                             replicaCount: 2
 
                             consoleui:
-                            ${PARAMS_FROM_VAULT}
+                            $PARAMS_FROM_VAULT
 
                             nodeSelector:
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.workspace}-pool
@@ -122,10 +122,10 @@ resource "canzea_resource" "cicd-pipeline-es2222-dev-pipeline-console-ui" {
 
                             echo "
                             [default]
-                                access_key = ${ACCESS_KEY}
+                                access_key = $ACCESS_KEY
                                 host_base = sfo2.digitaloceanspaces.com 
                                 host_bucket = %(bucket)s.sfo2.digitaloceanspaces.com
-                                secret_key = ${SECRET_KEY}
+                                secret_key = $SECRET_KEY
                                 verbosity = INFO
                             " > ~/.s3cfg
                             

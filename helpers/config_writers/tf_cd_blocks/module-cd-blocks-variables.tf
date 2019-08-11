@@ -16,3 +16,8 @@ variable flows_git {
         secret = "credentials"
     }
 }
+
+variable "es_id" {
+  type = "string"
+  default = "{{es_id}}"
+}

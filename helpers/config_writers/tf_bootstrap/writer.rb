@@ -46,8 +46,6 @@ if is_plus
 
 else
     for t in templates do
-        output = t.process "#{__dir__}/#{t}.tf", properties
         pc.backupAndRemove "#{root}/#{t}-#{properties['rid']}.tf"
-        bc.backupAndRemove "#{root}/assets"
     end
 end

@@ -21,13 +21,3 @@ module "workspace-{{workspace}}" {
 
   acme_account_key = "${module.cd.acme_account_key}"
 }
-
-data "http" "root_token" {
-  url = "https://helm.ops.${var.domain_name}/temp/${module.cd.one_time_token_retrieval}.txt"
-
-  request_headers {
-    "Accept" = "text/plain"
-  }
-
-}
-

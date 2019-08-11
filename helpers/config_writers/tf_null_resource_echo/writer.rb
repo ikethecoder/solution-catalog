@@ -33,6 +33,7 @@ end
 
 outFile = "terraform/modules/#{properties['environment']}/echo-#{properties['rid']}.tf"
 
+puts outFile
 if is_plus
     output = t.processString template, properties
     pc.write outFile, output
