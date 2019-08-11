@@ -122,7 +122,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-canzea-public" {
                             ACCESS_KEY=`cat artifacts/s3cfg | jq -r ".access_key"`
                             SECRET_KEY=`cat artifacts/s3cfg | jq -r ".secret_key"`
                             BUCKET=`cat artifacts/s3cfg | jq -r ".bucket"`
-                            PATH="public.${var.workspace}.ws"
+                            BUCKET_PATH="public.${var.workspace}.ws"
 
                             echo "
                             [default]
@@ -133,7 +133,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-canzea-public" {
                                 verbosity = INFO
                             " > ~/.s3cfg
 
-                            (cd artifacts/public && s3cmd sync --acl-public . s3://$BUCKET/$TENANT/$PATH/)
+                            (cd artifacts/public && s3cmd sync --acl-public . s3://$BUCKET/$TENANT/$BUCKET_PATH/)
         EOT
   }
 }
