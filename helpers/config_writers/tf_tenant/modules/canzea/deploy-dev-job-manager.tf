@@ -83,7 +83,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-job-manager-app" {
                             ingress:
                                 enabled: true
                                 hosts:
-                                - job-manager.${var.workspace}.ws.${var.domain_name}
+                                - job-manager.${var.deploy_workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 

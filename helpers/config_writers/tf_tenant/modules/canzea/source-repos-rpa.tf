@@ -10,18 +10,16 @@ resource "canzea_resource" "canzea_pipelines_environments_rpa" {
 
             format_version: 3
             environments:
-                build-rpa-${var.es_id}:
+                ${var.tenant_id}-build-rpa:
                     environment_variables:
                         VAULT_ADDR: https://vault.ops.${var.domain_name}
                         REGISTRY: registry.ops.${var.domain_name}
-                    secure_variables:
-                        VAULT_TOKEN: ""
                     pipelines:
-                    - rpa-brain-es1122
-                    - rpa-channel-es1122
-                    - rpa-listen-es1122
-                    - rpa-speak-es1122
-                    - rpa-ui-es1122
+                    - ${var.tenant_id}-rpa-brain
+                    - ${var.tenant_id}-rpa-channel
+                    - ${var.tenant_id}-rpa-listen
+                    - ${var.tenant_id}-rpa-speak
+                    - ${var.tenant_id}-rpa-ui
 
         EOT
   }

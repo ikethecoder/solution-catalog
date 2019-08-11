@@ -94,7 +94,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-speak" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-speak.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-speak.${var.deploy_workspace}.ws.${var.domain_name}
 
                             " > values.local.yaml
 
@@ -175,7 +175,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-ui" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-ui.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-ui.${var.deploy_workspace}.ws.${var.domain_name}
 
                             " > values.local.yaml
 
@@ -256,7 +256,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-listen" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-listen.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-listen.${var.deploy_workspace}.ws.${var.domain_name}
 
                             " > values.local.yaml
 
@@ -337,7 +337,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-channel" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-channel.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-channel.${var.deploy_workspace}.ws.${var.domain_name}
 
 
 
@@ -420,7 +420,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-rpa-brain" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rpa-brain.${var.workspace}.ws.${var.domain_name}
+                                    - rpa-brain.${var.deploy_workspace}.ws.${var.domain_name}
 
                             " > values.local.yaml
 

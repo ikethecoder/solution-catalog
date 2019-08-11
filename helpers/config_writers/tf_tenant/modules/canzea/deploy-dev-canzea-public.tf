@@ -85,7 +85,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-canzea-public" {
                             ingress:
                                 enabled: true
                                 hosts:
-                                - public.${var.workspace}.ws.${var.domain_name}
+                                - public.${var.deploy_workspace}.ws.${var.domain_name}
                             
                             
                             " > values.local.yaml

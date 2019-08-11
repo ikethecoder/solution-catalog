@@ -75,7 +75,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-rabbitmq" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - rabbitmq.${var.workspace}.ws.${var.domain_name}
+                                    - rabbitmq.${var.deploy_workspace}.ws.${var.domain_name}
 
                                 rabbitmq:
                                     username: "${random_string.rabbitmqSuperUser.result}"

@@ -83,7 +83,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-ui" {
                             ingress:
                                 enabled: true
                                 hosts:
-                                - console-ui.${var.workspace}.ws.${var.domain_name}
+                                - console-ui.${var.deploy_workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 

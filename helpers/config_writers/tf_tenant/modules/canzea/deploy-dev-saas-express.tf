@@ -79,7 +79,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-saas-express-app" {
                             ingress:
                                 enabled: true
                                 hosts:
-                                - saas-express.${var.workspace}.ws.${var.domain_name}
+                                - saas-express.${var.deploy_workspace}.ws.${var.domain_name}
                             
                                 
                             " > values.local.yaml

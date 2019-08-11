@@ -80,7 +80,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-dynamic-db-app" {
                             ingress:
                                 enabled: true
                                 hosts:
-                                - dynamic-db.${var.workspace}.ws.${var.domain_name}
+                                - dynamic-db.${var.deploy_workspace}.ws.${var.domain_name}
                                 
                             " > values.local.yaml
 

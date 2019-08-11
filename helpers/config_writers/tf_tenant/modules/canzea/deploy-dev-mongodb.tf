@@ -75,7 +75,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-app-mongodb" {
                                 ingress:
                                     enabled: true
                                     hosts:
-                                    - name: canzea-mongodb.${var.workspace}.ws.${var.domain_name}
+                                    - name: canzea-mongodb.${var.deploy_workspace}.ws.${var.domain_name}
 
                                 mongodbUsername: "${random_string.mongoSuperUser.result}"
                                 mongodbPassword: "${random_string.mongoSuperPassword.result}"

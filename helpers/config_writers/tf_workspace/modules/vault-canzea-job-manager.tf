@@ -12,7 +12,7 @@ resource "vault_generic_secret" "job-manager" {
             "jwtSigningKey": "${random_string.secretToken.result}"
         },
         "rabbitmq": {
-            "addresses" : "rabbitmq.cicd.svc.cluster.local",
+            "addresses" : "rabbitmq.apps.svc.cluster.local",
             "username": "${data.vault_generic_secret.rabbitmq.data["username"]}",
             "password": "${data.vault_generic_secret.rabbitmq.data["password"]}"
         },
