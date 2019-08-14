@@ -17,13 +17,14 @@ resource "vault_generic_secret" "job-manager" {
             "password": "${data.vault_generic_secret.rabbitmq.data["password"]}"
         },
         "apiRootUrl": "http://localhost:2000",
+        "apiJobsRootUrl": "https://job-manager.${var.workspace}.ws.${var.domain_name}",
         "defaultCatalogVersion": "v1.0.2",
         "defaultCatalogBranch": "develop",
         "externalUrl": "https://console-ui.${var.workspace}.ws.${var.domain_name}",
         "autoVerify": true,
         "rootEcosystemDomain": "canzea.cc",
         "cli": "canzea",
-        "terraformCommand": "_terraform",
+        "terraformCommand": "terraform",
         "dynamicdb": {
           "url": "https://dynamic-db.${var.workspace}.ws.${var.domain_name}",
           "apiToken": "${random_string.secretToken.result}"

@@ -35,3 +35,18 @@ resource "canzea_resource" "gitlab-repo-webhook" {
       "vault_generic_secret.gitlab"
   ]
 }
+
+
+resource "canzea_resource" "gitlab-repo-webhook-console-ui" {
+  path = "/gitlab/webhook/canzea%2Fconsole-ui"
+
+  attributes = {
+    url = "https://providergw.cloud.${var.domain_name}/gw/hooks/${var.tenant_id}/gitlab"
+    secret = "${var.vault_token}"
+  }
+
+  depends_on = [
+      "vault_generic_secret.gitlab"
+  ]
+}
+

@@ -52,10 +52,22 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-saas-express" {
                             - script: |
                                 set -e
                                 echo "
-                                FROM openjdk:8u151-jdk-alpine
+                                FROM ruby:2.4.4-alpine
 
-                                RUN apk update && apk add openssl && \
+                                RUN apk update && apk add openssl openjdk8 && \
                                     java -version
+
+                                ENV TERRAFORM_LATEST_VERSION="v0.11.8"
+                                RUN apk add curl && \
+                                    curl -L -O https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip && \
+                                    unzip terraform_0.11.8_linux_amd64.zip && \
+                                    mv terraform /usr/local/bin/terraform && \
+                                    rm -rf terraform_0.11.8_linux_amd64.zip
+
+                                RUN apk add git make ruby-dev build-base
+
+                                ENV CANZEA_LATEST_VERSION="v0.1.180"
+                                RUN gem install canzea -v 0.1.180
 
                                 RUN adduser -D -u 1006 appuser
 
