@@ -90,7 +90,7 @@ resource "helm_release" "gocd" {
 
           persistence:
             enabled: true
-            size: 4Gi
+            size: 8Gi
             extraVolumeMounts:
               - name: gocd-passwords
                 mountPath: /etc/go/
