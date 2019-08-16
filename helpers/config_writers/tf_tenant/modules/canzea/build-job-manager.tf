@@ -54,7 +54,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-job-manager" {
                                 echo "
                                 FROM ruby:2.4.4-alpine
 
-                                RUN apk update && apk add openssl openjdk8 && \
+                                RUN apk update && apk add openssl openjdk8 openssh-keygen && \
                                     java -version
 
                                 ENV TERRAFORM_LATEST_VERSION="v0.11.8"
