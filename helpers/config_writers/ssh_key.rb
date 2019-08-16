@@ -27,6 +27,8 @@ if is_plus
         pc.write "terraform/.es/id_rsa_#{key}.pub", File.read("id_rsa_#{key}.pub")
 
         File.delete "id_rsa_#{key}"
+        File.delete "id_rsa_#{key}.pub"
+        File.delete "id_rsa_#{key}.pem.pub"
 
         FileUtils.chmod 0600, "sc/ecosystems/#{ENV['ECOSYSTEM']}/terraform/.es/id_rsa_#{key}"
     end
