@@ -39,7 +39,7 @@ if is_plus
     end
 
 else
-    for t in templates do
-        pc.backupAndRemove "#{root}/#{t}-#{properties['rid']}.tf"
+    for templ in templates do
+        pc.backupAndRemove "terraform/#{templ}-#{properties['rid']}.tf"
     end
 end

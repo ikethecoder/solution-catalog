@@ -5,7 +5,6 @@ module "cd-bootstrap" {
         region = "{{region}}"
         email = "{{email}}"
         es_id = "{{es_id}}"
-        do = "${var.do}"
         ssh_fingerprint = "${module.common.ssh_fingerprint}"
         pvt_key = "${var.pvt_key}"
         instance = "{{instance}}"
