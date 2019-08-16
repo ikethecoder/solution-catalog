@@ -18,7 +18,7 @@ resources:
       region: "lon1"
       email: "${owner.email}"
       es_id: "${es.id}"
-      modules: ["cd"]
+      modules: ["cd-bootstrap"]
 
 # - tf_digitalocean_kubernetes_cluster:
 #     ${es.id}-${segment.id}-cluster:
