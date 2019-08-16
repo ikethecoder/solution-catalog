@@ -28,6 +28,7 @@ if is_plus
 
         pc.write "terraform/.es/id_rsa_#{key}", File.read("id_rsa_#{key}")
         pc.write "terraform/.es/id_rsa_#{key}.pub", File.read("id_rsa_#{key}.pub")
+        pc.write "terraform/.es/id_rsa_#{key}.pem.pub", File.read("id_rsa_#{key}.pem.pub")
 
         File.delete "id_rsa_#{key}"
         File.delete "id_rsa_#{key}.pub"
