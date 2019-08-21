@@ -44,7 +44,7 @@ data "http" "root_token" {
   url = "https://helm.ops.${var.domain_name}/temp/${module.cd-bootstrap.one_time_token_retrieval}.txt"
 
   request_headers {
-    "Accept" = "text/plain"
+    Accept = "text/plain"
   }
 }
 
