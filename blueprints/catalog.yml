@@ -37,7 +37,7 @@ buildingBlocks:
     description: Cloud computing, designed for developers.
     info: https://digitalocean.com
     url: https://cloud.digitalocean.com/droplets
-    logo: /images/logos/do.png
+    logo: /img/logos/do.png
     roles: [ "cloud_provider" ]
     resources: [ "droplets" ]
     authentication: token
@@ -72,7 +72,7 @@ buildingBlocks:
   consul:
     description: Service Discovery and Configuration Made Easy
     info: https://www.consul.io/
-    logo: /images/logos/consul.svg
+    logo: /img/logos/consul.svg
     roles: [ "service_discovery", 'distributed_kv_store']
     resources: [ "services", "nodes", "keyvalues" ]
     repo: https://github.com/hashicorp/consul.git
@@ -106,7 +106,7 @@ buildingBlocks:
   archiva:
     description: Archiva Package Repository
     info: https://archiva.apache.org/
-    logo: /images/logos/archiva.png
+    logo: /img/logos/archiva.png
     repo: https://github.com/apache/archiva.git
     tags: ['archiva-2.2.1']
     roles: [ "artifact_repository" ]
@@ -117,7 +117,7 @@ buildingBlocks:
   gocd:
     description: Go.CD Delivery Pipeline
     info: https://www.gocd.org/
-    logo: /images/logos/gocd.png
+    logo: /img/logos/gocd.png
     repo: https://github.com/gocd/gocd.git
     tags: ['17.11.0']
     roles: [ "continuous_delivery" ]
@@ -137,7 +137,7 @@ buildingBlocks:
   rocketchat:
     description: Rocket.Chat Real-Time Chat and Collaboration
     info: https://rocket.chat/
-    logo: /images/logos/rocketchat.png
+    logo: /img/logos/rocketchat.png
     repo: https://github.com/RocketChat/Rocket.Chat.git
     tags: []
     roles: [ "collaboration" ]
@@ -148,7 +148,7 @@ buildingBlocks:
   fabio:
     description: A fast, modern, zero-conf load balancing HTTP(S) router
     info: https://fabiolb.net/
-    logo: /images/logos/fabio.png
+    logo: /img/logos/fabio.png
     repo: https://github.com/fabiolb/fabio.git
     tags: ['v1.5.3']
     roles: [ "api_gateway" ]
@@ -158,7 +158,7 @@ buildingBlocks:
   kibana:
     description: Analytics and visualization platform that builds on Elasticsearch
     info: https://www.elastic.co/products/kibana
-    logo: /images/logos/kibana.svg
+    logo: /img/logos/kibana.svg
     repo: https://github.com/elastic/kibana.git
     tags: ['v5.3.0']
     roles: [ "analytics", "monitoring" ]
@@ -169,7 +169,7 @@ buildingBlocks:
   grafana:
     description: Metric analytics & visualization suite
     info: https://grafana.com/
-    logo: /images/logos/grafana.png
+    logo: /img/logos/grafana.png
     repo: https://github.com/grafana/grafana.git
     bg: black
     tags: ['v3.1.1']
@@ -189,7 +189,7 @@ buildingBlocks:
   nodered:
     description: Node-Red
     info: https://nodered.org/
-    logo: /images/logos/nodered.png
+    logo: /img/logos/nodered.png
     repo: https://github.com/node-red/node-red.git
     tags: ['0.17.5']
     roles: [ "integration_gateway" ]
@@ -276,7 +276,7 @@ buildingBlocks:
   mongodb:
     description: Mongodb
     info: https://www.mongodb.com/
-    logo: /images/logos/mongodb.png
+    logo: /img/logos/mongodb.png
     repo: https://github.com/mongodb/mongo.git
     roles: [ "document_database", 'nosql_database' ]
     resources: [  ]
@@ -285,7 +285,7 @@ buildingBlocks:
   rabbitmq:
     description: RabbitMQ is the most widely deployed open source message broker
     info: https://www.rabbitmq.com/
-    logo: /images/logos/rabbitmq.png
+    logo: /img/logos/rabbitmq.png
     repo: https://github.com/rabbitmq/rabbitmq-server.git
     roles: [ "messaging" ]
     resources: [ "topics", "channels" ]
@@ -305,7 +305,7 @@ buildingBlocks:
   elasticsearch:
     description: A distributed, RESTful search and analytics engine
     info: https://www.elastic.co/products/elasticsearch
-    logo: /images/logos/elasticsearch.svg
+    logo: /img/logos/elasticsearch.svg
     repo: https://github.com/elastic/elasticsearch.git
     tags: ['v5.6.4']
     roles: [ "document_database" ]
@@ -315,7 +315,7 @@ buildingBlocks:
   vault:
     description: Manage Secrets and Protect Sensitive Data
     info: https://www.vaultproject.io/
-    logo: /images/logos/vault.svg
+    logo: /img/logos/vault.svg
     repo: https://github.com/hashicorp/vault.git
     tags: []
     roles: [ "secret_mgmt" ]
@@ -326,7 +326,7 @@ buildingBlocks:
   phantomjs:
     description: A headless WebKit scriptable with a JavaScript API
     info: http://phantomjs.org/
-    logo: /images/logos/phantomjs.png
+    logo: /img/logos/phantomjs.png
     repo: https://github.com/ariya/phantomjs.git
     roles: [ "headless_browser" ]
     resources: [  ]
@@ -425,7 +425,7 @@ buildingBlocks:
   fail2ban:
     description: An intrusion prevention software framework
     info: https://www.fail2ban.org/
-    logo: /images/logos/fail2ban.png
+    logo: /img/logos/fail2ban.png
     repo: https://github.com/fail2ban/fail2ban.git
     roles: ['network_intrusion_gw', 'application_firewall']
 
@@ -438,7 +438,7 @@ buildingBlocks:
   keycloak:
     description: Identity and access management solution
     info: https://www.keycloak.org/
-    logo: /images/logos/keycloak.png
+    logo: /img/logos/keycloak.png
     repo: https://github.com/keycloak/keycloak.git
     roles: ['identity_and_access']
 
@@ -469,7 +469,7 @@ buildingBlocks:
     type: library
 
   gitea:
-    logo: /images/logos/gitea.png
+    logo: /img/logos/gitea.png
     info: https://gitea.io/
     fg: "#6D963A"
     bg: "#EFEFEF"
@@ -727,7 +727,7 @@ buildingBlocks:
   strongswan:
     info: https://www.strongswan.org/
     repo: https://github.com/strongswan/strongswan.git
-    logo: /images/logos/strongswan.png
+    logo: /img/logos/strongswan.png
     description: IPsec-based VPN Solution
     roles: ["vpn"]
     fg: "#CB382F"
@@ -759,7 +759,7 @@ buildingBlocks:
 
   openshift:
     description: Container application platform
-    logo: https://assets.openshift.com/hubfs/images/logos/osh/Logotype_RH_OpenShift_wLogo_RGB_White.png
+    logo: https://assets.openshift.com/hubfs/img/logos/osh/Logotype_RH_OpenShift_wLogo_RGB_White.png
     bg: "#333333"
     roles: ["cloud_provider", "container_platform"]
     hosting: subscription
@@ -831,7 +831,7 @@ buildingBlocks:
     hosting: subscription
 
   minio:
-    logo: /images/logos/minio.png
+    logo: /img/logos/minio.png
     info: https://www.minio.io/
     repo: https://github.com/minio/minio.git
     description: Object storage server compatible with Amazon S3 APIs
@@ -903,7 +903,7 @@ buildingBlocks:
     roles: ["social_networking"]
 
   mosquitto:
-    logo: /images/logos/mosquitto.png
+    logo: /img/logos/mosquitto.png
     description: Lightweight message broker that implements the MQTT protocol versions 3.1 and 3.1.1
     type: service
     repo: https://github.com/eclipse/mosquitto.git
