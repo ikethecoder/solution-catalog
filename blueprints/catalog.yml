@@ -117,7 +117,7 @@ buildingBlocks:
   gocd:
     description: Go.CD Delivery Pipeline
     info: https://www.gocd.org/
-    logo: /img/logos/gocd.png
+    logo: /img/logos/gocd.jpeg
     repo: https://github.com/gocd/gocd.git
     tags: ['17.11.0']
     roles: [ "continuous_delivery" ]
