@@ -67,13 +67,14 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-saas-express-app" {
 
                             saasexpress:
                             $PARAMS_FROM_VAULT
-
+                                pipelineLabel: "$GO_DEPENDENCY_LABEL_MYUPSTREAM.$GO_PIPELINE_LABEL"
+                                
                             nodeSelector:
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.deploy_workspace}-pool
 
                             image:
                                 repository: registry.ops.${var.domain_name}/${var.tenant_id}/saas-express
-                                tag: latest
+                                tag: $GO_DEPENDENCY_LABEL_MYUPSTREAM
                                 pullPolicy: Always
 
                             ingress:

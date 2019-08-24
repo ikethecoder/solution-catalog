@@ -72,14 +72,15 @@ resource "canzea_resource" "cicd-pipeline-deploy" {
 
                             app:
                             $PARAMS_FROM_VAULT
-                                version: \"$GO_DEPENDENCY_LABEL_MYUPSTREAM\"
+                                version: \"$GO_PIPELINE_LABEL\"
+                                link_base: \"${var.deploy_workspace}.ws.${var.domain_name}\"
 
                             nodeSelector:
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.deploy_workspace}-pool
 
                             image:
                                 repository: registry.ops.${var.domain_name}/${var.tenant_id}/${var.project}
-                                tag: latest
+                                tag: $GO_DEPENDENCY_LABEL_MYUPSTREAM
                                 pullPolicy: Always
 
                             ingress:
@@ -92,7 +93,7 @@ resource "canzea_resource" "cicd-pipeline-deploy" {
 
                             helm init --client-only
 
-                            helm upgrade $PROJECT --install --recreate-pods --namespace apps -f ./values.local.yaml $PROJECT/.
+                            helm upgrade $PROJECT --install --reuse-values --namespace apps -f ./values.local.yaml $PROJECT/.
 
                     - deploy_static:
                         clean_workspace: true

@@ -71,13 +71,14 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-console-ui" {
 
                             consoleui:
                             $PARAMS_FROM_VAULT
+                                clientVersion: "$GO_DEPENDENCY_LABEL_MYUPSTREAM.$GO_PIPELINE_LABEL"
 
                             nodeSelector:
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.deploy_workspace}-pool
 
                             image:
                                 repository: registry.ops.${var.domain_name}/${var.tenant_id}/console-ui
-                                tag: latest
+                                tag: $GO_DEPENDENCY_LABEL_MYUPSTREAM
                                 pullPolicy: Always
 
                             ingress:

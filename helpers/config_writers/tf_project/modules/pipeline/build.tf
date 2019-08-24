@@ -32,25 +32,51 @@ resource "canzea_resource" "cicd-pipeline-build" {
                                 cd ${var.project}
                                 cp -r src target
 
+                        - templating:
+                            clean_workspace: true
+                            elastic_profile_id: template
+                            artifacts:
+                            - build:
+                                source: artifacts/target
+                                destination: artifacts
+                            tasks:
+                            - fetch:
+                                pipeline: cci-cci-public
+                                stage: build
+                                job: build
+                                source: artifacts
+                                destination: .
+                            - script: |
+                                echo '
+                                {
+                                    "matches": [{
+                                        "search":"%APP_VERSION%", "replace_env":"GO_PIPELINE_LABEL"
+                                    }]
+                                }' > config.json                            
+                                
+                                template artifacts/target     
+
                         - publish:
                             clean_workspace: true
                             elastic_profile_id: docker
                             tasks:
                             - fetch:
                                 pipeline: ${var.tenant_id}-${var.project}
-                                stage: build
-                                job: build
+                                stage: templating
+                                job: templating
                                 source: artifacts
                                 destination: .
                             - script: |
                                 set -e
                                 echo "
-                                FROM nginx:1.13.8-alpine
+                                FROM $REGISTRY/agents/nginx-templated:latest
                                 COPY artifacts/target /usr/share/nginx/html
                                 " > Dockerfile
                                 docker build --tag $PROJECT.local .
                                 docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:latest
+                                docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:$GO_PIPELINE_LABEL                                
                                 docker push $REGISTRY/$TENANT/$PROJECT
+                                echo "Pushed with TAG $GO_PIPELINE_LABEL"
 
         EOT
   }

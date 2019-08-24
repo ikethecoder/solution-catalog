@@ -67,13 +67,14 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-dynamic-db-app" {
 
                             dynamicdb:
                             $PARAMS_FROM_VAULT
-
+                                pipelineLabel: "$GO_DEPENDENCY_LABEL_MYUPSTREAM.$GO_PIPELINE_LABEL"
+                                
                             nodeSelector:
                                 doks.digitalocean.com/node-pool: ${var.es_id}-${var.deploy_workspace}-pool
 
                             image:
                                 repository: registry.ops.${var.domain_name}/${var.tenant_id}/dynamic-db
-                                tag: latest
+                                tag: $GO_DEPENDENCY_LABEL_MYUPSTREAM
                                 pullPolicy: Always
 
 

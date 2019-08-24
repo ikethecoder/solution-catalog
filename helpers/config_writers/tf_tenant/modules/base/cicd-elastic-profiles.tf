@@ -8,6 +8,15 @@ resource "canzea_resource" "gocd_elastic_profile_hugo" {
   }
 }
 
+resource "canzea_resource" "gocd_elastic_profile_template" {
+  path = "/cicd/elastic_profile"
+
+  attributes = {
+      name = "template"
+      image = "registry.ops.${var.domain_name}/agents/static-template:latest"
+  }
+}
+
 resource "canzea_resource" "gocd_elastic_profile_java8" {
   path = "/cicd/elastic_profile"
 

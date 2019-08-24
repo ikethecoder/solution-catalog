@@ -71,6 +71,7 @@ resource "canzea_resource" "cicd-pipeline-dev-pipeline-dynamic-db" {
                                 
                                 docker build --tag $PROJECT.local .
                                 docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:latest
+                                docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:$GO_PIPELINE_LABEL
                                 docker push $REGISTRY/$TENANT/$PROJECT
 
         EOT

@@ -10,9 +10,7 @@ resources:
         repo_url: "git@gitlab.com:ikethecoder/cci-public.git"
         repo_branch: "develop"
         deploy_workspace: "${environment.id}"
-        dns_prefix: "w"
-
-
+        dns_prefix: "www"
 
 ```
 
