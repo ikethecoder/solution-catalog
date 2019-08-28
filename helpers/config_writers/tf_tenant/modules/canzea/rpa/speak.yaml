@@ -1,0 +1,61 @@
+format_version: 3
+pipelines:
+  ${tenant_id}-rpa-speak:
+    group: ${tenant_id}-rpa
+    environment_variables:
+      PROJECT: rpa-speak
+      TENANT: ${tenant_id}
+    label_template: "$${source[:8]}"
+    lock_behavior: none
+    materials:
+      source:
+        git: git@gitlab.com:ikethecoder/rpa-speak.git
+        auto_update: false
+        branch: develop
+    stages:
+    - build:
+        clean_workspace: true
+        elastic_profile_id: "java8"
+        artifacts:
+        - build:
+           source: build/distributions/*.tar
+           destination: artifacts
+        tasks:
+        - script: |
+            export GRADLE_USER_HOME=`pwd`/.gradle
+            ./gradlew build
+            ./gradlew assembleDist
+
+    - deploy:
+        clean_workspace: true
+        elastic_profile_id: docker
+        tasks:
+        - fetch:
+            pipeline: ${tenant_id}-rpa-speak
+            stage: build
+            job: build
+            source: artifacts
+            destination: .
+        - script: |
+            echo "
+
+              FROM anapsix/alpine-java
+
+              COPY artifacts/rpa-speak.tar /
+
+              WORKDIR /
+
+              RUN tar -xf rpa-speak.tar
+
+              EXPOSE 5050
+
+              ENTRYPOINT /rpa-speak/bin/rpa-speak
+
+            " > Dockerfile
+
+            ls -l artifacts
+
+            docker build --tag $PROJECT.local .
+            docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:latest
+            docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:$GO_PIPELINE_LABEL
+            docker push $REGISTRY/$TENANT/$PROJECT

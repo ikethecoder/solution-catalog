@@ -1,0 +1,53 @@
+format_version: 3
+pipelines:
+  ${tenant_id}-rpa-ui:
+    group: ${tenant_id}-rpa
+    environment_variables:
+      PROJECT: rpa-ui
+      TENANT: ${tenant_id}
+    label_template: "$${source[:8]}"
+    lock_behavior: none
+    materials:
+      source:
+        git: https://github.com/canzea-lab/rpa-ui.git
+        auto_update: false
+        branch: develop
+    stages:
+    - build:
+        clean_workspace: true
+        elastic_profile_id: "nodejs8"
+        artifacts:
+        - build:
+            source: build
+            destination: artifacts
+        tasks:
+        - script: |
+            npm install            
+            npm run build
+
+
+    - deploy:
+        clean_workspace: true
+        elastic_profile_id: docker
+        tasks:
+        - fetch:
+            pipeline: ${tenant_id}-rpa-ui
+            stage: build
+            job: build
+            source: artifacts
+            destination: .
+        - script: |
+            echo "
+
+              FROM nginx:1.13.8-alpine
+
+              COPY artifacts/build /usr/share/nginx/html
+
+            " > Dockerfile
+
+            ls -l artifacts
+
+            docker build --tag $PROJECT.local .
+            docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:latest
+            docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:$GO_PIPELINE_LABEL
+            docker push $REGISTRY/$TENANT/$PROJECT

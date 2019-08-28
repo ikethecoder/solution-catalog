@@ -1,0 +1,64 @@
+format_version: 3
+pipelines:
+  ${tenant_id}-rpa-listen:
+    group: ${tenant_id}-rpa
+    environment_variables:
+      PROJECT: rpa-listen
+      TENANT: ${tenant_id}
+    label_template: "$${source[:8]}"
+    lock_behavior: none
+    materials:
+      source:
+        git: git@gitlab.com:ikethecoder/rpa-listen.git
+        auto_update: false
+        branch: develop
+    stages:
+    - build:
+        clean_workspace: true
+        elastic_profile_id: "nodejs8"
+        artifacts:
+        - build:
+           source: node_modules
+           destination: artifacts
+        tasks:
+        - script: |
+            npm install
+
+    - deploy:
+        clean_workspace: true
+        elastic_profile_id: docker
+        tasks:
+        - fetch:
+            pipeline: ${tenant_id}-rpa-listen
+            stage: build
+            job: build
+            source: artifacts
+            destination: .
+        - script: |
+            echo "
+
+              FROM jrottenberg/ffmpeg:4.0-ubuntu
+
+              RUN apt-get install -y wget
+              RUN wget -qO- https://deb.nodesource.com/setup_10.x | bash -
+              RUN apt-get install -y nodejs
+
+              WORKDIR /app
+
+              COPY artifacts/node_modules node_modules
+              COPY src src
+              COPY package.json ./
+
+              EXPOSE 8080
+
+              ENTRYPOINT npm start
+
+            " > Dockerfile
+
+            ls -l
+            ls -l artifacts
+
+            docker build --tag $PROJECT.local .
+            docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:latest
+            docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:$GO_PIPELINE_LABEL
+            docker push $REGISTRY/$TENANT/$PROJECT

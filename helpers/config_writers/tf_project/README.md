@@ -20,3 +20,19 @@ resources:
 * Adding the pipelines to the environments
 * Vault settings for HELM
 * Hooks
+
+# TLS
+
+```yaml
+ingress:
+    enabled: true
+    hosts:
+    - ${var.dns_prefix}.${var.deploy_workspace}.ws.${var.domain_name}
+    - copeconsulting.ca
+
+    tls:
+        - secretName: cci-ssl
+          hosts:
+            - copeconsulting.ca
+
+```

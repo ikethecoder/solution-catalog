@@ -3,66 +3,106 @@ resource "canzea_resource" "cicd-pipeline-rpa-brain" {
 
     attributes = {
         filename = "ecosystems/${var.es_id}/workspaces/build/pipeline-rpa-brain.gocd.yaml"
-        definition = <<-EOT
-
-format_version: 3
-pipelines:
-  rpa-brain-es1122:
-    group: libraries-es1122
-    environment_variables:
-      PROJECT: rpa-brain
-      TENANT: es1122
-    label_template: "${source[:8]}"
-    lock_behavior: none
-    materials:
-      source:
-        git: git@gitlab.com:ikethecoder/rpa-brain.git
-        auto_update: false
-        branch: develop
-    stages:
-    - build:
-        clean_workspace: true
-        elastic_profile_id: "python37"
-        # artifacts:
-        # - build:
-        #    source: .
-        #    destination: artifacts
-        tasks:
-        - script: |
-            echo "nothing to do for build"
-        
-    - deploy:
-        clean_workspace: true
-        elastic_profile_id: docker
-        tasks:
-        # - fetch:
-        #     pipeline: rpa-brain-es1122
-        #     stage: build
-        #     job: build
-        #     source: artifacts
-        #     destination: .
-        - script: |
-            echo "
-
-              FROM rasa/rasa_core:latest
-
-              RUN pip install -r requirements.txt
-
-              RUN pip install spacy
-              RUN pip install sklearn_crfsuite
-
-              RUN python -m spacy download en
-
-              COPY projects /projects
-              COPY credentials.yml /tmp/credentials.yml
-              COPY nlu_config.yml /tmp/nlu_config.yml
-
-            " > Dockerfile
-
-            docker build --tag $PROJECT.local .
-            docker tag $PROJECT.local $REGISTRY/${TENANT}/${PROJECT}:latest
-            docker push $REGISTRY/${TENANT}/${PROJECT}
-
-        EOT
+        definition = "${data.template_file.rpa-brain.rendered}"
     }
+}
+
+
+data "template_file" "rpa-brain" {
+  template = "${file("${path.module}/rpa/brain.yaml")}"
+  vars = {
+    tenant_id = "${var.tenant_id}"
+  }
+}
+
+resource "canzea_resource" "cicd-pipeline-rpa-channel" {
+    path = "/cicd/config"
+
+    attributes = {
+        filename = "ecosystems/${var.es_id}/workspaces/build/pipeline-rpa-channel.gocd.yaml"
+        definition = "${data.template_file.rpa-channel.rendered}"
+    }
+}
+
+
+data "template_file" "rpa-channel" {
+  template = "${file("${path.module}/rpa/channel.yaml")}"
+  vars = {
+    tenant_id = "${var.tenant_id}"
+  }
+}
+
+resource "canzea_resource" "cicd-pipeline-rpa-listen" {
+    path = "/cicd/config"
+
+    attributes = {
+        filename = "ecosystems/${var.es_id}/workspaces/build/pipeline-rpa-listen.gocd.yaml"
+        definition = "${data.template_file.rpa-listen.rendered}"
+    }
+}
+
+
+data "template_file" "rpa-listen" {
+  template = "${file("${path.module}/rpa/listen.yaml")}"
+  vars = {
+    tenant_id = "${var.tenant_id}"
+  }
+}
+
+resource "canzea_resource" "cicd-pipeline-rpa-speak" {
+    path = "/cicd/config"
+
+    attributes = {
+        filename = "ecosystems/${var.es_id}/workspaces/build/pipeline-rpa-speak.gocd.yaml"
+        definition = "${data.template_file.rpa-speak.rendered}"
+    }
+}
+
+
+data "template_file" "rpa-speak" {
+  template = "${file("${path.module}/rpa/speak.yaml")}"
+  vars = {
+    tenant_id = "${var.tenant_id}"
+  }
+}
+
+resource "canzea_resource" "cicd-pipeline-rpa-ui" {
+    path = "/cicd/config"
+
+    attributes = {
+        filename = "ecosystems/${var.es_id}/workspaces/build/pipeline-rpa-ui.gocd.yaml"
+        definition = "${data.template_file.rpa-ui.rendered}"
+    }
+}
+
+
+data "template_file" "rpa-ui" {
+  template = "${file("${path.module}/rpa/ui.yaml")}"
+  vars = {
+    tenant_id = "${var.tenant_id}"
+  }
+}
+
+resource "canzea_resource" "cicd-environments-build-rpa" {
+  path = "/cicd/config"
+
+  attributes = {
+      filename = "ecosystems/${var.es_id}/workspaces/build/rpa-environment.gocd.yaml"
+      role_id = "${var.cicd_encrypted_role_id}"
+      definition = <<-EOT
+
+            format_version: 3
+            environments:
+                ${var.tenant_id}-build-rpa:
+                    environment_variables:
+                        VAULT_ADDR: https://vault.ops.${var.domain_name}
+                        REGISTRY: registry.ops.${var.domain_name}
+                    pipelines:
+                        - ${var.tenant_id}-rpa-brain
+                        - ${var.tenant_id}-rpa-channel
+                        - ${var.tenant_id}-rpa-listen
+                        - ${var.tenant_id}-rpa-speak
+                        - ${var.tenant_id}-rpa-ui
+        EOT
+  }
 }
