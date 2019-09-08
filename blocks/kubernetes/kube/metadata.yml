@@ -1,0 +1,11 @@
+name: kubernetes
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-kubernetes:
+        service: kubernetes
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://cluster.cloud.${es.fqdn}"

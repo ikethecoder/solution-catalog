@@ -1,0 +1,11 @@
+name: keycloak
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-keycloak:
+        service: keycloak
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://auth.cloud.${es.fqdn}"

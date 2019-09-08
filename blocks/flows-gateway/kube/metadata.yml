@@ -1,0 +1,11 @@
+name: providergw
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-providergw:
+        service: providergw
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://providergw.cloud.${es.fqdn}"

@@ -111,7 +111,7 @@ pipelines:
                 ACCESS_KEY=`cat artifacts/s3cfg | jq -r ".access_key"`
                 SECRET_KEY=`cat artifacts/s3cfg | jq -r ".secret_key"`
                 BUCKET=`cat artifacts/s3cfg | jq -r ".bucket"`
-                PATH="${dns_prefix}.${workspace}.ws"
+                RPATH="${dns_prefix}.${workspace}.ws"
 
                 echo "
                 [default]
@@ -122,4 +122,4 @@ pipelines:
                     verbosity = INFO
                 " > ~/.s3cfg
 
-                (cd artifacts/${cdn_path} && s3cmd sync --acl-public . s3://$BUCKET/$TENANT/$PATH/)
+                (cd artifacts/${cdn_path} && s3cmd sync --acl-public . s3://$BUCKET/$TENANT/$RPATH/)

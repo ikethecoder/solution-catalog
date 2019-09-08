@@ -1,0 +1,11 @@
+name: traefik
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-traefik:
+        service: traefik
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://lb.cloud.${es.fqdn}"

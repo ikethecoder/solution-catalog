@@ -1,0 +1,11 @@
+name: minio
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-minio:
+        service: minio
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://minio.cloud.${es.fqdn}"

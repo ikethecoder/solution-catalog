@@ -63,3 +63,48 @@ resources:
 #       es_id: "${es.id}"
 #       modules: ["tenant-canzea"]
 #       deploy_workspace: "intg"
+
+- building_block:
+    ${instance.id}-consul:
+      solution: "consul/kube"
+      instance_name: "${instance.name}"
+
+- building_block:
+    ${instance.id}-vault:
+      solution: "vault/kube"
+      instance_name: "${instance.name}"
+
+- building_block:
+    ${instance.id}-gocd:
+      solution: "gocd/kube"
+      instance_name: "${instance.name}"
+
+- building_block:
+    ${instance.id}-traefik:
+      solution: "traefik/kube"
+      instance_name: "${instance.name}"
+
+- building_block:
+    ${instance.id}-minio:
+      solution: "minio/kube"
+      instance_name: "${instance.name}"
+
+- building_block:
+    ${instance.id}-keycloak:
+      solution: "keycloak/kube"
+      instance_name: "${instance.name}"
+
+- building_block:
+    ${instance.id}-gitea:
+      solution: "gitea/kube"
+      instance_name: "${instance.name}"
+
+- building_block:
+    ${instance.id}-kubernetes:
+      solution: "kubernetes/kube"
+      instance_name: "${instance.name}"
+
+- building_block:
+    ${instance.id}-providergw:
+      solution: "flows-gateway/kube"
+      instance_name: "${instance.name}"

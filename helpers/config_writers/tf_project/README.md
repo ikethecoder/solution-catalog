@@ -12,6 +12,15 @@ resources:
         deploy_workspace: "${environment.id}"
         dns_prefix: "www"
 
+resources:
+  - tf_project:
+      data-mining:
+        tenant_id: "cci"
+        repo_url: "git@gitlab.com:ikethecoder/data-mining.git"
+        repo_branch: "master"
+        deploy_workspace: "${environment.id}"
+        dns_prefix: "mining"
+
 ```
 
 # Remaining work

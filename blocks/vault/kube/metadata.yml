@@ -1,0 +1,11 @@
+name: vault
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-vault:
+        service: vault
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://vault.ops.${es.fqdn}"

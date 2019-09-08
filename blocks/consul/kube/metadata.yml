@@ -1,0 +1,11 @@
+name: consul
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-consul:
+        service: consul
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://consul.ops.${es.fqdn}"
