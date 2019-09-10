@@ -10,8 +10,7 @@ commit = g.log[0]
 
 g.remote('origin').fetch
 
-stats = g.diff('origin', commit).stats
+stats = g.diff('origin/'+branch, commit).stats
 
-origin = g.gcommit('origin').sha
-
+origin = g.gcommit('origin/'+branch).sha
 puts JSON.generate({"branch" => branch, "commitRevision" => commit, "date" => commit.date.strftime('%FT%T%:z'), "message" => commit.message, "author" => {"name" => commit.author.name, "email" => commit.author.email}, "stats":stats, "origin":origin })
