@@ -1,0 +1,11 @@
+name: helpy
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-helpy:
+        service: helpy
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://support.cloud.${es.fqdn}"

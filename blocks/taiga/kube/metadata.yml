@@ -1,0 +1,11 @@
+name: taiga
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-taiga:
+        service: taiga
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://taiga.cloud.${es.fqdn}"
