@@ -1,0 +1,12 @@
+name: namedotcom
+version: tbd
+resources:
+  - service_endpoint:
+      ${instance.id}-namedotcom:
+        service: namedotcom
+        instance: ${instance.id}
+        environment: ${environment.id}
+        segment: ${segment.id}
+        type: console
+        secure: "https://name.com"
+

@@ -108,3 +108,8 @@ resources:
     ${instance.id}-providergw:
       solution: "flows-gateway/kube"
       instance_name: "${instance.name}"
+
+- building_block:
+    ${instance.id}-namedotcom:
+      solution: "namedotcom/kube"
+      instance_name: "${instance.name}"

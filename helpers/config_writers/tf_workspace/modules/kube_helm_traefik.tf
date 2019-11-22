@@ -4,6 +4,8 @@ resource "helm_release" "dev-traefik" {
   chart = "stable/traefik"
   namespace = "kube-system"
 
+  recreate_pods = true
+  
   values = [
         <<EOF
          rbac:
