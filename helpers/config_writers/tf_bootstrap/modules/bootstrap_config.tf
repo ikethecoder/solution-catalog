@@ -141,3 +141,52 @@ resource "null_resource" "post-setup" {
 
 
 
+resource "null_resource" "install-ssl" {
+
+  connection {
+    host = "${digitalocean_droplet.base.ipv4_address}"
+    user = "root"
+    type = "ssh"
+    private_key = "${file(var.pvt_key)}"
+    timeout = "2m"
+  }
+ 
+  provisioner "remote-exec" {
+
+    inline = [
+        "mkdir -p /etc/certs"
+    ]
+  }
+
+  provisioner "file" {
+    content     = "${acme_certificate.certificate.private_key_pem}"
+    destination = "/etc/certs/host.key"
+  }
+
+  provisioner "file" {
+    content     = "${acme_certificate.certificate.certificate_pem}"
+    destination = "/etc/certs/host.crt"
+  }
+
+  provisioner "file" {
+    content     = "${acme_certificate.certificate.certificate_pem}\n${acme_certificate.certificate.issuer_pem}"
+    destination = "/etc/certs/chain.pem"
+  }
+
+  provisioner "file" {
+    content     = "${acme_certificate.certificate.issuer_pem}"
+    destination = "/etc/certs/issuer.pem"
+  }
+
+  provisioner "remote-exec" {
+
+    inline = [
+        "systemctl restart nginx"
+    ]
+  }
+
+  depends_on = [
+    "digitalocean_droplet.base",
+    "null_resource.post-setup"
+  ]
+}
