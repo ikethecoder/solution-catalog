@@ -1,5 +1,5 @@
 module "workspace-{{workspace}}" {
-  source  = "./modules/workspace"
+  source  = "./modules/workspace.2"
 
   es_id = "${var.es_id}"
   domain_name = "${var.domain_name}"
