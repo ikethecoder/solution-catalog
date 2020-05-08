@@ -1,24 +1,9 @@
-resource "helm_release" "heapster" {
-    name = "heapster"
-    chart = "stable/heapster"
-    namespace = "kube-system"
 
-    values = [
-        <<EOF
-           rbac:
-              create: true
-        EOF
-    ]
-
-
-    depends_on = [
-      "null_resource.helm_init"
-    ]
-}
 
 resource "helm_release" "kubernetes-dashboard" {
     name = "kubernetes-dashboard"
-    chart = "stable/kubernetes-dashboard"
+    repository = "https://kubernetes-charts.storage.googleapis.com"
+    chart = "kubernetes-dashboard"
     namespace = "kube-system"
 
     values = [
@@ -50,7 +35,6 @@ resource "helm_release" "kubernetes-dashboard" {
     ]
 
     depends_on = [
-      "null_resource.helm_init"
     ]
 
 }

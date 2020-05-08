@@ -1,7 +1,8 @@
 
 resource "helm_release" "dev-traefik" {
   name  = "cicd-traefik"
-  chart = "stable/traefik"
+  repository = "https://kubernetes-charts.storage.googleapis.com"
+  chart = "traefik"
   namespace = "kube-system"
 
   recreate_pods = true
@@ -29,9 +30,6 @@ resource "helm_release" "dev-traefik" {
       value = "lb.${var.workspace}.ws.${var.domain_name}"
   }
 
-  depends_on = [
-    "null_resource.helm_init"
-  ]
 }
 
 data "kubernetes_service" "traefik" {
@@ -43,12 +41,4 @@ data "kubernetes_service" "traefik" {
   depends_on = [
     "helm_release.dev-traefik"
   ]
-}
-
-resource "digitalocean_record" "cluster" {
-  domain = "${var.domain_name}"
-  type   = "A"
-  name   = "*.${var.workspace}.ws"
-  value  = "${data.kubernetes_service.traefik.load_balancer_ingress.0.ip}"
-  ttl    = "30"
 }
