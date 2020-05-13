@@ -19,26 +19,27 @@ resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId
 
-if ['repo_url', 'repo_branch', 'tenant_id'].to_set.subtract(properties.keys).length != 0
+if ['block', 'workspace', 'es_id', 'domain_name'].to_set.subtract(properties.keys).length != 0
     raise "Missing Required Fields"
 end
 
-root = "terraform/modules/cicd_environment.2"
+root = "terraform"
 
 templates = [
-    "module-project"
+    "module-block"
 ]
 
 if is_plus
-    pc.cp "#{__dir__}/modules","#{root}"
+    pc.cp "#{__dir__}/modules","terraform/modules/blocks.2/#{properties['block']}"
+    pc.cp "#{__dir__}/../../../blocks/#{properties['block']}/kube/modules","terraform/modules/blocks.2/#{properties['block']}"
 
     for templ in templates do
         output = t.process "#{__dir__}/#{templ}.tf", properties
-        pc.write "terraform/#{templ}-#{properties['rid']}.tf", output
+        pc.write "#{root}/#{templ}-#{properties['rid']}.tf", output
     end
 
 else
-    for t in templates do
-        pc.backupAndRemove "terraform/#{t}-#{properties['rid']}.tf"
+    for templ in templates do
+        pc.backupAndRemove "#{root}/#{templ}-#{properties['rid']}.tf"
     end
 end

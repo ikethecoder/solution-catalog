@@ -19,14 +19,14 @@ resourceId = params.keys[0]
 properties = params[resourceId]
 properties['rid'] = resourceId
 
-if ['repo_url', 'repo_branch', 'tenant_id'].to_set.subtract(properties.keys).length != 0
+if ['workspace', 'tenant_id', 'pipelines'].to_set.subtract(properties.keys).length != 0
     raise "Missing Required Fields"
 end
 
-root = "terraform/modules/cicd_environment.2"
+root = "terraform/modules/cicd_environment.3"
 
 templates = [
-    "module-project"
+    "module-env"
 ]
 
 if is_plus

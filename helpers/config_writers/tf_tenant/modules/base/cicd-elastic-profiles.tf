@@ -100,6 +100,15 @@ resource "canzea_resource" "gocd_elastic_profile_helm211" {
   }
 }
 
+resource "canzea_resource" "gocd_elastic_profile_helm321" {
+  path = "/cicd/elastic_profile"
+
+  attributes = {
+      name = "helm321"
+      image = "registry.ops.${var.domain_name}/agents/helm321:latest"
+  }
+}
+
 resource "canzea_resource" "gocd_elastic_profile_cloud_aws" {
   path = "/cicd/elastic_profile"
 

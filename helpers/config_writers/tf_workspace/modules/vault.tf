@@ -5,7 +5,7 @@ provider "vault" {
 }
 
 resource "vault_generic_secret" "cluster" {
-  path = "secret/tenants/${var.tenant_id}/cluster"
+  path = "secret/tenants/${var.tenant_id}/${var.workspace}/cluster"
 
   data_json = <<EOT
     {

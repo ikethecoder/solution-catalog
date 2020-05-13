@@ -1,0 +1,68 @@
+format_version: 3
+pipelines:
+  ${tenant_id}-mini-functions:
+    group: ${tenant_id}
+    environment_variables:
+      PROJECT: mini-functions
+      TENANT: ${tenant_id}
+    label_template: "$${source[:8]}"
+    lock_behavior: none
+    materials:
+      source:
+        git: git@gitlab.com:ikethecoder/mini-functions.git
+        auto_update: false
+        branch: develop
+    stages:
+    - build:
+        clean_workspace: true
+        elastic_profile_id: "nodejs8"
+        artifacts:
+        - build:
+           source: node_modules
+           destination: artifacts
+        tasks:
+        - script: |
+            npm install
+
+    - deploy:
+        clean_workspace: true
+        elastic_profile_id: docker
+        tasks:
+        - fetch:
+            pipeline: ${tenant_id}-mini-functions
+            stage: build
+            job: build
+            source: artifacts
+            destination: .
+        - script: |
+            echo "
+
+              FROM node:10-alpine
+
+              WORKDIR /app
+
+              COPY package*.json ./
+
+              RUN npm install
+
+              COPY src .
+
+              RUN apk add git
+              
+              RUN chown 1000:1000 /app
+
+              EXPOSE 8080
+
+              USER 1000
+
+              ENTRYPOINT npm start
+
+            " > Dockerfile
+
+            ls -l
+            ls -l artifacts
+
+            docker build --tag $PROJECT.local .
+            docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:latest
+            docker tag $PROJECT.local $REGISTRY/$TENANT/$PROJECT:$GO_PIPELINE_LABEL
+            docker push $REGISTRY/$TENANT/$PROJECT

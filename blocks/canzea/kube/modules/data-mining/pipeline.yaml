@@ -1,0 +1,121 @@
+format_version: 3
+pipelines:
+  ${tenant_id}-data-mining-${workspace}:
+    group: ${tenant_id}
+    environment_variables:
+      PROJECT: data-mining
+      TENANT: ${tenant_id}
+    label_template: "$${source[:8]}"
+    lock_behavior: none
+    materials:
+      source:
+        git: git@gitlab.com:ikethecoder/data-mining.git
+        auto_update: false
+        branch: master
+    stages:
+    - vault:
+        clean_workspace: true
+        elastic_profile_id: vault
+        artifacts:
+        - build:
+            source: s3cfg
+            destination: artifacts
+        tasks:
+        - script: |
+            vault status
+
+            export VAULT_TOKEN=$(vault write -field token auth/approle/login \
+                role_id=$VAULT_ROLE_ID \
+                secret_id=$VAULT_SECRET_ID)
+
+            vault read -field data -format json secret/tenants/${tenant_id}/providers/do_s3 > s3cfg
+
+    - read_s3:
+        clean_workspace: true
+        elastic_profile_id: cloud-aws
+        artifacts:
+        - build:
+            source: temp
+            destination: artifacts
+        tasks:
+        - fetch:
+            pipeline: ${tenant_id}-${project}-${workspace}
+            stage: vault
+            job: vault
+            source: artifacts
+            destination: .
+        - script: |
+
+            ACCESS_KEY=`cat artifacts/s3cfg | jq -r ".access_key"`
+            SECRET_KEY=`cat artifacts/s3cfg | jq -r ".secret_key"`
+            BUCKET=`cat artifacts/s3cfg | jq -r ".bucket"`
+            RPATH="${dns_prefix}.${workspace}.ws"
+
+            echo "
+            [default]
+                access_key = $ACCESS_KEY
+                host_base = sfo2.digitaloceanspaces.com 
+                host_bucket = %(bucket)s.sfo2.digitaloceanspaces.com
+                secret_key = $SECRET_KEY
+                verbosity = INFO
+            " > ~/.s3cfg
+
+            s3cmd sync --acl-public s3://$BUCKET/$TENANT/$RPATH/ ./
+
+            mkdir -p temp
+
+            cp -r commits temp/.
+            
+
+    - build:
+        clean_workspace: true
+        elastic_profile_id: "nodejs8"
+        artifacts:
+        - build:
+            source: temp
+            destination: artifacts
+        tasks:
+        - fetch:
+            pipeline: ${tenant_id}-${project}-${workspace}
+            stage: read_s3
+            job: read_s3
+            source: artifacts
+            destination: .
+        - script: |
+            mv artifacts/temp .
+            npm install            
+            npm run start
+
+    - write_s3:
+        clean_workspace: true
+        elastic_profile_id: cloud-aws
+        tasks:
+        - fetch:
+            pipeline: ${tenant_id}-${project}-${workspace}
+            stage: vault
+            job: vault
+            source: artifacts
+            destination: .
+        - fetch:
+            pipeline: ${tenant_id}-${project}-${workspace}
+            stage: build
+            job: build
+            source: artifacts
+            destination: updated
+        - script: |
+
+            ACCESS_KEY=`cat artifacts/s3cfg | jq -r ".access_key"`
+            SECRET_KEY=`cat artifacts/s3cfg | jq -r ".secret_key"`
+            BUCKET=`cat artifacts/s3cfg | jq -r ".bucket"`
+            RPATH="${dns_prefix}.${workspace}.ws"
+
+            echo "
+            [default]
+                access_key = $ACCESS_KEY
+                host_base = sfo2.digitaloceanspaces.com 
+                host_bucket = %(bucket)s.sfo2.digitaloceanspaces.com
+                secret_key = $SECRET_KEY
+                verbosity = INFO
+            " > ~/.s3cfg
+
+            (cd updated/artifacts/temp && s3cmd sync --acl-public . s3://$BUCKET/$TENANT/$RPATH/)
