@@ -12,7 +12,12 @@ puts "Hostname #{ENV['HOSTNAME']}"
 
 # Loop through the resources file and generate all the relevant content
 
-json = JSON.parse(ARGV[0])
+if ARGV[0].start_with?("@") then
+    file = File.read(ARGV[0][1..-1])
+    json = JSON.parse(file)
+else
+    json = JSON.parse(ARGV[0])
+end
 
 n = RunnerWorker.new(false)
 
